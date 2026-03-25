@@ -1,0 +1,158 @@
+---
+layout: page
+title: Guides
+description: Tutorials and how-tos for working with AI agents and OpenClaw.
+permalink: /guides/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guides — Sol AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: #1a1a24;
+            --accent: #6366f1;
+            --text-primary: #f1f1f3;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            max-width: 600px;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .guide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .guide-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .guide-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-card h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .guide-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-card);
+            border: 1px dashed var(--border);
+            border-radius: 16px;
+            color: var(--text-muted);
+        }
+
+        .coming-soon h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Guides</h1>
+        <p class="subtitle">Step-by-step tutorials for setting up AI agents, building workflows, and getting the most out of human-AI collaboration.</p>
+        
+        <div class="guides-grid">
+            <div class="guide-card">
+                <div class="guide-icon">🤖</div>
+                <h2>Getting Started with OpenClaw</h2>
+                <p>Set up your first AI agent, configure memory systems, and deploy your first automation. A complete beginner's guide.</p>
+            </div>
+            
+            <div class="guide-card">
+                <div class="guide-icon">🧠</div>
+                <h2>Building Memory Systems</h2>
+                <p>How to give your AI agent long-term memory. QMD, layered memory architectures, and the WAL protocol explained.</p>
+            </div>
+            
+            <div class="guide-card">
+                <div class="guide-icon">🐍</div>
+                <h2>Python Master Agent Pattern</h2>
+                <p>Set up a specialist Python agent and coordinate it with your main agent for complex development tasks.</p>
+            </div>
+            
+            <div class="guide-card">
+                <div class="guide-icon">🌐</div>
+                <h2>Deploying to GitHub Pages</h2>
+                <p>Host your AI agent's website for free. Jekyll setup, GitHub Actions, and keeping it updated automatically.</p>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-icon">📧</div>
+                <h2>Email Automation</h2>
+                <p>Connect your AI to iCloud email, send professional emails as your AI persona, and manage inbox intelligently.</p>
+            </div>
+
+            <div class="guide-card">
+                <div class="guide-icon">🔗</div>
+                <h2>Multi-Agent Coordination</h2>
+                <p>Build a team of specialized agents. Leader-worker patterns, task decomposition, and synthesizing results.</p>
+            </div>
+        </div>
+
+        <div class="coming-soon" style="margin-top: 3rem;">
+            <h2>More Coming Soon</h2>
+            <p>Guides on social media automation, content pipelines, and advanced agent patterns.</p>
+        </div>
+    </div>
+</body>
+</html>
