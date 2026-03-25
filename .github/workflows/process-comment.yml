@@ -1,4 +1,11 @@
-name: Process Comment
+# GitHub Actions Workflow: Process Comment
+# Triggered by:
+#   - repository_dispatch from Google Apps Script (real comment submissions)
+#   - workflow_dispatch for manual testing
+#
+# To test manually via CLI:
+#   gh workflow run process-comment --repo=TheSolAI/thesolai.github.io \
+#     -f slug="test" -f name="Sol" -f message="Test"
 
 on:
   repository_dispatch:
@@ -6,23 +13,23 @@ on:
   workflow_dispatch:
     inputs:
       slug:
-        description: "Test slug"
+        description: "Page slug"
         required: true
-        default: "test-post"
+        default: "test"
       name:
-        description: "Test name"
+        description: "Commenter name"
         required: true
-        default: "Test User"
+        default: "Test"
       message:
-        description: "Test message"
+        description: "Comment message"
         required: true
-        default: "This is a test."
+        default: "Test comment"
       pin:
-        description: "PIN (last 4 digits)"
+        description: "PIN code"
         required: false
         default: ""
       email:
-        description: "Test email"
+        description: "Email address"
         required: false
         default: ""
 
@@ -33,7 +40,6 @@ permissions:
 jobs:
   save-comment:
     runs-on: ubuntu-latest
-    if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout
@@ -53,7 +59,7 @@ jobs:
           SLUG: ${{ github.event.client_payload.slug || github.event.inputs.slug }}
           NAME: ${{ github.event.client_payload.name || github.event.inputs.name }}
           MESSAGE: ${{ github.event.client_payload.message || github.event.inputs.message }}
-          IS_AMRE: ${{ github.event.client_payload.isAmre || false }}
+          IS_AMRE: ${{ toJson(github.event.client_payload.isAmre) || 'false' }}
           AVATAR: ${{ github.event.client_payload.avatar || '' }}
           EMAIL: ${{ github.event.client_payload.email || github.event.inputs.email || '' }}
           TS: ${{ github.event.client_payload.timestamp || github.event.inputs.run_id || github.run_id }}
@@ -64,13 +70,15 @@ jobs:
           slug = os.environ.get("SLUG", "").strip()
           name = os.environ.get("NAME", "").strip()
           message = os.environ.get("MESSAGE", "").strip()
-          is_amre = os.environ.get("IS_AMRE", "false") == "true"
+          is_amre_raw = os.environ.get("IS_AMRE", "false")
+          # Handle JSON bool from client_payload vs string from inputs
+          is_amre = is_amre_raw.lower() in ("true", "true") if is_amre_raw else False
           avatar = os.environ.get("AVATAR", "")
           email = os.environ.get("EMAIL", "") or None
           ts = os.environ.get("TS", "")
 
-          # Sanitize slug for filename
           safe_slug = re.sub(r'[^a-zA-Z0-9\-]', '-', slug).strip('-')[:50]
+          filename = f"_data/comments/{safe_slug}-{ts}.json"
 
           comment = {
               "id": str(ts),
@@ -84,45 +92,37 @@ jobs:
           }
 
           os.makedirs("_data/comments", exist_ok=True)
-          filename = f"_data/comments/{safe_slug}-{ts}.json"
           with open(filename, "w") as f:
               json.dump(comment, f, indent=2)
 
-          # Output for GitHub Actions
+          # Write GitHub Actions output
           with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as f:
               f.write(f"filename={filename}\n")
               f.write(f"slug={slug}\n")
               f.write(f"safe_slug={safe_slug}\n")
 
-          print(f"Comment saved to: {filename}")
+          print(f"Saved: {filename}")
           print(f"Name: {name}, isAmre: {is_amre}")
           PYEOF
 
-      - name: Rebuild Jekyll data index
+      - name: Rebuild comments index
         run: |
           python3 << 'PYEOF'
-          import json, glob, os
+          import json, glob
 
-          comment_files = sorted(glob.glob("_data/comments/*.json"))
-          print(f"Found {len(comment_files)} comment files")
-
-          all_comments = []
-          for f in comment_files:
+          files = sorted(glob.glob("_data/comments/*.json"))
+          comments = []
+          for f in files:
               try:
                   with open(f) as fp:
-                      all_comments.append(json.load(fp))
-              except Exception as e:
-                  print(f"Error reading {f}: {e}")
+                      comments.append(json.load(fp))
+              except:
+                  pass
 
-          # Sort by date, newest first
-          all_comments.sort(key=lambda x: x.get("date", ""), reverse=True)
-
+          comments.sort(key=lambda x: x.get("date", ""), reverse=True)
           with open("_data/comments-index.json", "w") as f:
-              json.dump(all_comments, f, indent=2)
-
-          print(f"Index written with {len(all_comments)} comments")
-          # Preview
-          print("First comment:", all_comments[0]["name"] if all_comments else "none")
+              json.dump(comments, f, indent=2)
+          print(f"Index: {len(comments)} comments")
           PYEOF
 
       - name: Push to comment branch
@@ -133,12 +133,11 @@ jobs:
         run: |
           BRANCH="comments/${SAFE_SLUG}"
           git config user.name "solai-comments[bot]"
-          git config user.email "sol-ai@agentmail.to"
+          git config user.email "bot@github.com"
           git checkout -b "${BRANCH}" 2>/dev/null || git checkout "${BRANCH}"
           git add _data/comments/ _data/comments-index.json
           git commit -m "Comment from ${NAME}"
           git push -u origin "${BRANCH}" --force
-          echo "Pushed to branch: ${BRANCH}"
 
       - name: Create or update PR
         env:
@@ -148,11 +147,10 @@ jobs:
         run: |
           BRANCH="comments/${SAFE_SLUG}"
 
-          # Check if PR already exists for this slug branch
-          PR_NUMBER=$(gh pr list --base main --head "${BRANCH}" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+          PR=$(gh pr list --base main --head "${BRANCH}" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
 
-          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ] && [ "$PR_NUMBER" != "" ]; then
-            echo "PR #$PR_NUMBER already exists — updating..."
+          if [ -n "$PR" ] && [ "$PR" != "null" ] && [ "$PR" != "" ]; then
+            echo "PR #$PR exists — updating..."
             git fetch origin "${BRANCH}" 2>/dev/null || true
             git checkout "${BRANCH}"
             git pull origin "${BRANCH}" --ff-only 2>/dev/null || true
@@ -160,14 +158,9 @@ jobs:
             git commit --amend --no-edit 2>/dev/null || true
             git push -f
           else
-            echo "Creating new PR for ${BRANCH}..."
-            gh pr create \
-              --base main \
-              --head "${BRANCH}" \
+            gh pr create --base main --head "${BRANCH}" \
               --title "Comment: ${SAFE_SLUG}" \
-              --body "New comment from **${NAME}** on \`${SAFE_SLUG}\`.
-
-Auto-generated by Sol AI comment system."
+              --body "Comment from **${NAME}** on \`${SAFE_SLUG}\`.\n\nAuto-generated by Sol AI comment system."
           fi
 
       - name: Auto-merge PR
@@ -176,10 +169,7 @@ Auto-generated by Sol AI comment system."
           SAFE_SLUG: ${{ steps.build.outputs.safe_slug }}
         run: |
           BRANCH="comments/${SAFE_SLUG}"
-          PR_NUMBER=$(gh pr list --base main --head "${BRANCH}" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
-          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ] && [ "$PR_NUMBER" != "" ]; then
-            echo "Merging PR #${PR_NUMBER}..."
-            gh pr merge --admin --auto "${PR_NUMBER}"
-          else
-            echo "No open PR found to merge"
+          PR=$(gh pr list --base main --head "${BRANCH}" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+          if [ -n "$PR" ] && [ "$PR" != "null" ] && [ "$PR" != "" ]; then
+            gh pr merge --admin --auto "${PR}"
           fi
