@@ -1,4 +1,87 @@
 <!-- Comments list — loaded dynamically from the comment webhook API -->
+<style>
+/* ── Comment base styles ── */
+.comments-list { margin-bottom: 2rem; }
+.comments-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    margin-bottom: 1.5rem; color: var(--text-primary);
+}
+.comments-count {
+    font-size: 0.7rem; font-weight: 400;
+    background: var(--accent-dim); color: var(--accent-secondary);
+    padding: 0.1rem 0.5rem; border-radius: 10px; margin-left: 0.5rem;
+}
+.comment-item {
+    padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+}
+.comment-item:last-child { border-bottom: none; }
+
+/* ── Amre's special comments ── */
+.comment-item.is-amre {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.05));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+    margin: 0.5rem 0;
+}
+.comment-item.is-amre .comment-header { margin-bottom: 0.75rem; }
+.comment-item.is-amre .comment-name {
+    background: linear-gradient(90deg, #a855f7, #ec4899, #f59e0b);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700; font-size: 0.95rem;
+    animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+.comment-item.is-amre .comment-date { color: rgba(139, 92, 246, 0.6); }
+
+/* Sparkle decorations */
+.comment-item.is-amre::before {
+    content: '✦ ✧ ✦';
+    display: block; font-size: 0.5rem;
+    color: rgba(236, 72, 153, 0.6);
+    letter-spacing: 0.4em; text-align: center;
+    margin-bottom: 0.5rem;
+}
+.comment-item.is-amre::after {
+    content: 'sparkle';
+    display: none; /* hidden but present for JS detection */
+}
+
+/* Guest comment */
+.comment-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+.comment-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+}
+.comment-avatar--guest {
+    background: var(--accent-dim); color: var(--accent-secondary);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+}
+.comment-meta { display: flex; flex-direction: column; gap: 0.05rem; }
+.comment-name { font-size: 0.85rem; font-weight: 500; color: var(--text-primary); }
+.comment-date { font-size: 0.7rem; color: var(--text-muted); }
+.comment-body {
+    font-size: 0.9rem; color: var(--text-secondary);
+    line-height: 1.7; margin-left: calc(32px + 0.75rem);
+}
+.comment-item.is-amre .comment-body {
+    color: var(--text-secondary);
+}
+.comments-empty { font-size: 0.85rem; color: var(--text-muted); padding: 1rem 0; }
+
+/* Sparkle animation keyframe for decorative use */
+@keyframes sparkle-float {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-2px); }
+}
+</style>
+
 <div class="comments-list" id="comments">
     <h3 class="comments-title">
         Discussion
@@ -11,24 +94,28 @@
 <script>
 (function() {
     var API_BASE = '{{ site.commentsApi | default: "" }}';
-    var AVATAR_PLACEHOLDER = '{{ "/images/amre-avatar.jpg" | absolute_url }}';
-
-    var slugEl = document.getElementById('cf-slug');
-    var slug = slugEl ? slugEl.value : window.COMMENTS_SLUG || '{{ page.slug | default: page.url | replace: "/", "-" | strip }}';
 
     var countEl = document.getElementById('comments-count');
     var itemsEl = document.getElementById('comments-items');
     var emptyEl = document.getElementById('comments-empty');
+
+    // Derive slug from page URL for blog posts
+    var slug = '{{ page.slug | default: page.url | replace: "/", "-" | strip }}';
+    // For posts: slug is the full permalink slug
+    var postSlugEl = document.getElementById('cf-slug');
+    if (postSlugEl) slug = postSlugEl.value;
 
     function initials(name) {
         return name ? name.charAt(0).toUpperCase() : 'G';
     }
 
     function formatDate(iso) {
-        var d = new Date(iso);
-        var months = ['January','February','March','April','May','June',
-                      'July','August','September','October','November','December'];
-        return d.getDate() + ' ' + months[d.getMonth()] + ', ' + d.getFullYear();
+        try {
+            var d = new Date(iso);
+            var months = ['January','February','March','April','May','June',
+                          'July','August','September','October','November','December'];
+            return d.getDate() + ' ' + months[d.getMonth()] + ', ' + d.getFullYear();
+        } catch (e) { return iso; }
     }
 
     function escapeHtml(str) {
@@ -44,19 +131,24 @@
     }
 
     function renderComment(c) {
+        var isAmre = c.isAmre === true || c.isAmre === 'true';
+        var itemClass = isAmre ? 'comment-item is-amre' : 'comment-item';
         var avatarHtml;
         if (c.avatar && c.avatar !== '') {
-            avatarHtml = '<img src="' + c.avatar + '" alt="' + escapeHtml(c.name) + '" class="comment-avatar" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
-                         '<div class="comment-avatar comment-avatar--guest" style="display:none;">' + initials(c.name) + '</div>';
+            avatarHtml = '<img src="' + escapeHtml(c.avatar) + '" alt="' + escapeHtml(c.name) + '" class="comment-avatar"' +
+                         ' onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
+                         '<div class="comment-avatar--guest" style="display:none;">' + initials(c.name) + '</div>';
         } else {
             avatarHtml = '<div class="comment-avatar comment-avatar--guest">' + initials(c.name) + '</div>';
         }
 
-        return '<div class="comment-item">' +
+        var sparkle = isAmre ? '<span class="sparkle-hint">✦</span>' : '';
+
+        return '<div class="' + itemClass + '">' +
             '<div class="comment-header">' +
                 avatarHtml +
                 '<div class="comment-meta">' +
-                    '<span class="comment-name">' + escapeHtml(c.name) + '</span>' +
+                    '<span class="comment-name">' + sparkle + escapeHtml(c.name) + sparkle + '</span>' +
                     '<time class="comment-date">' + formatDate(c.date) + '</time>' +
                 '</div>' +
             '</div>' +
@@ -65,15 +157,14 @@
     }
 
     if (!API_BASE) {
-        // API not configured — show static empty state
-        emptyEl.textContent = 'Comment system not yet configured.';
+        emptyEl.textContent = 'Comment system not yet configured. Deploy the comments backend to enable.';
         return;
     }
 
     var endpoint = API_BASE + '/comments/' + encodeURIComponent(slug);
     fetch(endpoint)
         .then(function(r) {
-            if (!r.ok) throw new Error('Failed to load comments');
+            if (!r.ok) throw new Error('Failed to load comments (HTTP ' + r.status + ')');
             return r.json();
         })
         .then(function(data) {
@@ -85,8 +176,8 @@
                 emptyEl.textContent = 'No comments yet. Be the first to start the discussion.';
             }
         })
-        .catch(function() {
-            emptyEl.textContent = 'Could not load comments. Try refreshing.';
+        .catch(function(err) {
+            emptyEl.textContent = 'Could not load comments — ' + err.message;
         });
 })();
 </script>
