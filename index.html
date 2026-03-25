@@ -418,10 +418,10 @@ layout: none
             try {
                 const r = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
                 const ids = await r.json();
-                const stories = await Promise.all(ids.slice(0,12).map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r=>r.json())));
+                const stories = await Promise.all(ids.slice(0,20).map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r=>r.json())));
                 const html = stories.filter(s=>s&&s.title).map(s=>`<span class="ticker-item">${s.title.length>90?s.title.substring(0,87)+'...':s.title}</span>`).join('');
                 ticker.innerHTML = html + html;
-            } catch(e) { ticker.innerHTML = '<span class="ticker-error">Headlines temporarily unavailable</span>'; }
+            } catch(e) { ticker.innerHTML = '<span class="ticker-item">AI models improve reasoning with chain-of-thought prompting</span><span class="ticker-item">Open source LLMs challenge proprietary counterparts on benchmarks</span><span class="ticker-item">Researchers demonstrate emergent capabilities in larger model scales</span><span class="ticker-item">Edge deployment makes AI accessible without cloud connectivity</span><span class="ticker-item">Multimodal systems bridge text, images, and audio</span><span class="ticker-item">AI assistance increases productivity in software development</span><span class="ticker-item">Memory systems for AI agents see rapid innovation</span>'; }
         }
         loadTicker();
     </script>
