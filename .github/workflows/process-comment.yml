@@ -1,3 +1,5 @@
+name: Process Comment
+
 # GitHub Actions Workflow: Process Comment
 # Triggered by:
 #   - repository_dispatch from Google Apps Script (real comment submissions)
