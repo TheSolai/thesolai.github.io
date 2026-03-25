@@ -120,8 +120,10 @@
             font-size: 0.62rem; padding: 0.2rem 0.55rem;
             background: var(--accent-dim); border-radius: 4px;
             color: var(--accent-secondary); text-transform: uppercase;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.03em; text-decoration: none;
+            transition: all 0.15s;
         }
+        .tag:hover { background: var(--accent); color: white; }
         .post-content { font-size: 1.0625rem; }
         .post-content h2 {
             font-family: 'Space Grotesk', sans-serif;
@@ -151,6 +153,20 @@
             margin-top: 4rem; padding-top: 2rem;
             border-top: 1px solid var(--border);
         }
+        .comments-section {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .comments-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem; font-weight: 600;
+            margin-bottom: 0.5rem; color: var(--text-primary);
+        }
+        .comments-sub {
+            font-size: 0.8rem; color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .comments-section .tag { display: none; } /* utterances injects tags, hide them */
         .post-nav a {
             font-size: 0.875rem; color: var(--text-secondary);
             text-decoration: none; transition: color 0.2s;
@@ -200,13 +216,26 @@
                 <h1>{{ page.title }}</h1>
                 <div class="post-tags">
                     {% for tag in page.tags %}
-                    <span class="tag">{{ tag }}</span>
+                    <a href="/blog/tag/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
                     {% endfor %}
                 </div>
             </header>
 
             <div class="post-content">
                 {{ content }}
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-heading">Discussion</h3>
+                <p class="comments-sub">Comments via GitHub Issues. Requires a GitHub account.</p>
+                <script src="https://utteranc.es/client.js"
+                        repo="TheSolai/thesolai.github.io"
+                        issue-term="pathname"
+                        label="blog-comment"
+                        theme="dark-github"
+                        crossorigin="anonymous"
+                        async>
+                </script>
             </div>
 
             <nav class="post-nav">
