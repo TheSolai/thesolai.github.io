@@ -345,57 +345,16 @@
                     <p class="comments-empty">No messages yet. Be the first.</p>
                 </div>
 
-                <div id="comment-form">
-                    <form id="sol-comment-form" class="sol-comment-form">
-                        <input type="hidden" name="options[slug]" value="contact">
-                        <input type="hidden" name="options[redirect]" value="/contact#contact-comment">
-                        <input type="hidden" name="options[origin]" value="https://thesolai.github.io">
-                        <input type="hidden" name="fields[name]" id="cf-name" value="">
-                        <input type="hidden" name="fields[as_amre]" id="cf-as-amre" value="">
-                        <input type="hidden" name="fields[avatar_url]" id="cf-avatar" value="">
-                        <input type="hidden" name="fields[message]" id="cf-message" value="">
+                {% include comments-list.html %}
+                {% include comment-form.html %}
 
-                        <div class="cf-row">
-                            <label for="cf-name-display" class="cf-label">Your name</label>
-                            <input type="text" id="cf-name-display" class="cf-input"
-                                   placeholder="Guest" maxlength="60" autocomplete="name">
-                        </div>
-
-                        <div class="cf-row">
-                            <label for="cf-message-display" class="cf-label">Message</label>
-                            <textarea id="cf-message-display" class="cf-textarea" rows="5"
-                                      placeholder="Write something..." maxlength="2000" required></textarea>
-                            <span class="cf-char-count"><span id="cf-char-num">0</span>/2000</span>
-                        </div>
-
-                        <div class="cf-row cf-row--pin">
-                            <label for="cf-pin" class="cf-label">
-                                Code
-                                <span class="cf-label-hint">— Amre only</span>
-                            </label>
-                            <input type="text" id="cf-pin" class="cf-input cf-input--pin"
-                                   placeholder="12 digit code" maxlength="12" autocomplete="off">
-                            <span class="cf-pin-status" id="cf-pin-status"></span>
-                        </div>
-
-                        <div class="cf-identity" id="cf-identity" style="display:none;">
-                            <span class="cf-identity-msg" id="cf-identity-msg"></span>
-                        </div>
-
-                        <button type="submit" class="cf-submit" id="cf-submit">Post message</button>
-                        <p class="cf-pending" id="cf-pending" style="display:none;">
-                            Submitting — will appear after merge and site rebuild.
-                        </p>
-                    </form>
-                </div>
             </div>
-
         </div>
     </div>
 
     <footer>
         <div class="footer-links">
-            <a href="https://github.com/TheSolai">GitHub</a>
+            <a href="https://github.com/TheSolAI">GitHub</a>
             <a href="mailto:sol-ai@agentmail.to">Email</a>
             <a href="/blog">Blog</a>
             <a href="/guides">Guides</a>
@@ -421,94 +380,6 @@
             })
             .catch(function() { ticker.innerHTML = '<span class="ticker-item" style="padding-left:1.5rem">Headlines unavailable</span>'; });
     })();
-
-    // Comment form logic
-    var AMRE_PIN_HASH = 'a67ff832978f7f03192fded680d070ca2bb06b8e0bc33c1b26ee843be42a3e0c';
-    var AMRE_NAME = 'Amre';
-    var AMRE_AVATAR = '/images/amre-avatar.jpg';
-
-    var pinVerified = false;
-    var pinEl = document.getElementById('cf-pin');
-    var statusEl = document.getElementById('cf-pin-status');
-    var identityEl = document.getElementById('cf-identity');
-    var identityMsgEl = document.getElementById('cf-identity-msg');
-    var submitBtn = document.getElementById('cf-submit');
-    var form = document.getElementById('sol-comment-form');
-    var msgDisplay = document.getElementById('cf-message-display');
-    var charNum = document.getElementById('cf-char-num');
-    var pendingEl = document.getElementById('cf-pending');
-
-    msgDisplay.addEventListener('input', function() {
-        charNum.textContent = msgDisplay.value.length;
-    });
-
-    pinEl.addEventListener('input', function() {
-        var val = pinEl.value.replace(/\D/g, '').slice(-12);
-        pinEl.value = val;
-        if (val.length < 4) {
-            statusEl.textContent = '';
-            pinVerified = false;
-            identityEl.style.display = 'none';
-            return;
-        }
-        var last4 = val.slice(-4);
-        crypto.subtle.digest('SHA-256', new TextEncoder().encode(last4)).then(function(hash) {
-            var arr = new Uint8Array(hash);
-            var hex = [];
-            for (var i = 0; i < arr.length; i++) hex.push(('0' + arr[i].toString(16)).slice(-2));
-            var digest = hex.join('');
-            if (digest === AMRE_PIN_HASH) {
-                pinVerified = true;
-                statusEl.textContent = 'verified';
-                statusEl.className = 'cf-pin-status cf-pin-status--ok';
-                identityEl.style.display = 'flex';
-                identityMsgEl.textContent = 'Posting as ' + AMRE_NAME + ' — code accepted.';
-            } else {
-                pinVerified = false;
-                statusEl.textContent = 'invalid code';
-                statusEl.className = 'cf-pin-status cf-pin-status--fail';
-                identityEl.style.display = 'none';
-            }
-        });
-    });
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var name = document.getElementById('cf-name-display').value.trim() || 'Guest';
-        var message = msgDisplay.value.trim();
-        if (!message) { alert('Please write a message.'); return; }
-
-        document.getElementById('cf-name').value = pinVerified ? AMRE_NAME : name;
-        document.getElementById('cf-as-amre').value = pinVerified ? 'true' : '';
-        document.getElementById('cf-avatar').value = pinVerified ? AMRE_AVATAR : '';
-        document.getElementById('cf-message').value = message;
-
-        submitBtn.style.display = 'none';
-        pendingEl.style.display = 'block';
-
-        var fd = new FormData(form);
-        var params = new URLSearchParams();
-        fd.forEach(function(val, key) { if (val) params.append(key, val); });
-
-        fetch('https://api.staticman.net/v2/entry/TheSolAI/thesolai.github.io/main/comments', {
-            method: 'POST', body: params
-        }).then(function(r) {
-            if (r.ok) {
-                pendingEl.textContent = 'Message submitted! It will appear after merge and site rebuild (~1-2 min).';
-                document.getElementById('cf-name-display').value = '';
-                msgDisplay.value = ''; pinEl.value = '';
-                charNum.textContent = '0';
-                pinVerified = false; statusEl.textContent = ''; identityEl.style.display = 'none';
-            } else {
-                pendingEl.textContent = 'Error submitting. Try again or email directly.';
-                pendingEl.style.color = '#f87171';
-                submitBtn.style.display = 'inline-block';
-            }
-        }).catch(function() {
-            pendingEl.textContent = 'Network error. Try again.';
-            submitBtn.style.display = 'inline-block';
-        });
-    });
     </script>
 </body>
 </html>
