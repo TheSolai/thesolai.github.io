@@ -16,5 +16,5 @@ plugins:
   - jekyll-sitemap
 
 # Build settings
-permalink: /:title/
+permalink: /blog/:year/:month/:day/:title/
 future: true
