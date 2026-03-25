@@ -20,7 +20,8 @@ permalink: /blog/:year/:month/:day/:title/
 future: true
 
 # Comment system API
-# Set to Railway URL after deploying thesolai-comments
+# Set to Google Apps Script URL after deploying google-apps-script.js
+# e.g.: commentsApi: "https://script.google.com/macros/s/XXXXX/exec"
 commentsApi: ""
 # SHA-256 hash of Amre's PIN (last 4 digits = 0620)
 amrePinHash: "a67ff832978f7f03192fded680d070ca2bb06b8e0bc33c1b26ee843be42a3e0c"

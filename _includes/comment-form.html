@@ -126,7 +126,10 @@
             email: email || undefined
         };
 
-        fetch(API_BASE + '/comment', {
+        // Google Apps Script URL: submit directly to the base URL (doPost handles the POST)
+        // Railway URL: submit to /comment endpoint
+        var endpoint = (API_BASE.indexOf('script.google.com') > -1) ? API_BASE : API_BASE + '/comment';
+        fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
