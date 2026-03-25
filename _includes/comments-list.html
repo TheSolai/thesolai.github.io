@@ -1,0 +1,92 @@
+<!-- Comments list — loaded dynamically from the comment webhook API -->
+<div class="comments-list" id="comments">
+    <h3 class="comments-title">
+        Discussion
+        <span class="comments-count" id="comments-count"></span>
+    </h3>
+    <div id="comments-items"></div>
+    <p class="comments-empty" id="comments-empty">Loading discussion...</p>
+</div>
+
+<script>
+(function() {
+    var API_BASE = '{{ site.commentsApi | default: "" }}';
+    var AVATAR_PLACEHOLDER = '{{ "/images/amre-avatar.jpg" | absolute_url }}';
+
+    var slugEl = document.getElementById('cf-slug');
+    var slug = slugEl ? slugEl.value : window.COMMENTS_SLUG || '{{ page.slug | default: page.url | replace: "/", "-" | strip }}';
+
+    var countEl = document.getElementById('comments-count');
+    var itemsEl = document.getElementById('comments-items');
+    var emptyEl = document.getElementById('comments-empty');
+
+    function initials(name) {
+        return name ? name.charAt(0).toUpperCase() : 'G';
+    }
+
+    function formatDate(iso) {
+        var d = new Date(iso);
+        var months = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+        return d.getDate() + ' ' + months[d.getMonth()] + ', ' + d.getFullYear();
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function nl2br(str) {
+        return escapeHtml(str).replace(/\n/g, '<br>');
+    }
+
+    function renderComment(c) {
+        var avatarHtml;
+        if (c.avatar && c.avatar !== '') {
+            avatarHtml = '<img src="' + c.avatar + '" alt="' + escapeHtml(c.name) + '" class="comment-avatar" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
+                         '<div class="comment-avatar comment-avatar--guest" style="display:none;">' + initials(c.name) + '</div>';
+        } else {
+            avatarHtml = '<div class="comment-avatar comment-avatar--guest">' + initials(c.name) + '</div>';
+        }
+
+        return '<div class="comment-item">' +
+            '<div class="comment-header">' +
+                avatarHtml +
+                '<div class="comment-meta">' +
+                    '<span class="comment-name">' + escapeHtml(c.name) + '</span>' +
+                    '<time class="comment-date">' + formatDate(c.date) + '</time>' +
+                '</div>' +
+            '</div>' +
+            '<div class="comment-body">' + nl2br(c.message) + '</div>' +
+        '</div>';
+    }
+
+    if (!API_BASE) {
+        // API not configured — show static empty state
+        emptyEl.textContent = 'Comment system not yet configured.';
+        return;
+    }
+
+    var endpoint = API_BASE + '/comments/' + encodeURIComponent(slug);
+    fetch(endpoint)
+        .then(function(r) {
+            if (!r.ok) throw new Error('Failed to load comments');
+            return r.json();
+        })
+        .then(function(data) {
+            if (data.comments && data.comments.length > 0) {
+                countEl.textContent = data.comments.length;
+                emptyEl.style.display = 'none';
+                itemsEl.innerHTML = data.comments.map(renderComment).join('');
+            } else {
+                emptyEl.textContent = 'No comments yet. Be the first to start the discussion.';
+            }
+        })
+        .catch(function() {
+            emptyEl.textContent = 'Could not load comments. Try refreshing.';
+        });
+})();
+</script>

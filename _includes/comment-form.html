@@ -1,0 +1,152 @@
+<!-- Comment form — submits to the comment webhook API -->
+<div class="comment-form-wrap" id="comment-form">
+    <h3 class="comment-form-title">Leave a comment</h3>
+    <p class="comment-form-sub">Name and message required. Code field is for Amre only.</p>
+
+    <form id="sol-comment-form" class="sol-comment-form">
+        <input type="hidden" id="cf-slug" value="{{ page.slug | default: page.url | replace: '/', '-' | strip }}">
+        <input type="hidden" id="cf-name-field" value="">
+        <input type="hidden" id="cf-as-amre-field" value="">
+        <input type="hidden" id="cf-avatar-field" value="">
+
+        <div class="cf-row">
+            <label for="cf-name-display" class="cf-label">Your name</label>
+            <input type="text" id="cf-name-display" class="cf-input"
+                   placeholder="Guest" autocomplete="name" maxlength="60">
+        </div>
+
+        <div class="cf-row">
+            <label for="cf-message-display" class="cf-label">Message</label>
+            <textarea id="cf-message-display" class="cf-textarea" rows="5"
+                      placeholder="Share your thoughts..." maxlength="2000" required></textarea>
+            <span class="cf-char-count"><span id="cf-char-num">0</span>/2000</span>
+        </div>
+
+        <div class="cf-row cf-row--pin">
+            <label for="cf-pin" class="cf-label">
+                Code
+                <span class="cf-label-hint">(optional — Amre only)</span>
+            </label>
+            <input type="text" id="cf-pin" class="cf-input cf-input--pin"
+                   placeholder="12 digit code" maxlength="12" autocomplete="off">
+            <span class="cf-pin-status" id="cf-pin-status"></span>
+        </div>
+
+        <div class="cf-identity" id="cf-identity" style="display:none;">
+            <span class="cf-identity-msg" id="cf-identity-msg"></span>
+        </div>
+
+        <button type="submit" class="cf-submit" id="cf-submit">Post comment</button>
+        <p class="cf-pending" id="cf-pending" style="display:none;"></p>
+    </form>
+</div>
+
+<script>
+(function() {
+    // Webhook API base — update this when the comment server is deployed
+    var API_BASE = '{{ site.commentsApi | default: "" }}';
+    var AMRE_PIN_HASH = 'a67ff832978f7f03192fded680d070ca2bb06b8e0bc33c1b26ee843be42a3e0c';
+    var AMRE_NAME = 'Amre';
+    var AMRE_AVATAR = '{{ site.url }}/images/amre-avatar.jpg';
+
+    var pinVerified = false;
+    var pinEl = document.getElementById('cf-pin');
+    var statusEl = document.getElementById('cf-pin-status');
+    var identityEl = document.getElementById('cf-identity');
+    var identityMsgEl = document.getElementById('cf-identity-msg');
+    var submitBtn = document.getElementById('cf-submit');
+    var form = document.getElementById('sol-comment-form');
+    var nameDisplay = document.getElementById('cf-name-display');
+    var msgDisplay = document.getElementById('cf-message-display');
+    var charNum = document.getElementById('cf-char-num');
+    var pendingEl = document.getElementById('cf-pending');
+
+    msgDisplay.addEventListener('input', function() {
+        charNum.textContent = msgDisplay.value.length;
+    });
+
+    pinEl.addEventListener('input', function() {
+        var val = pinEl.value.replace(/\D/g, '').slice(-12);
+        pinEl.value = val;
+        if (val.length < 4) {
+            statusEl.textContent = '';
+            pinVerified = false;
+            identityEl.style.display = 'none';
+            return;
+        }
+        var last4 = val.slice(-4);
+        crypto.subtle.digest('SHA-256', new TextEncoder().encode(last4)).then(function(hash) {
+            var arr = new Uint8Array(hash);
+            var hex = [];
+            for (var i = 0; i < arr.length; i++) hex.push(('0' + arr[i].toString(16)).slice(-2));
+            var digest = hex.join('');
+            if (digest === AMRE_PIN_HASH) {
+                pinVerified = true;
+                statusEl.textContent = 'verified';
+                statusEl.className = 'cf-pin-status cf-pin-status--ok';
+                identityEl.style.display = 'flex';
+                identityMsgEl.textContent = 'Posting as ' + AMRE_NAME + ' — code accepted.';
+            } else {
+                pinVerified = false;
+                statusEl.textContent = 'invalid code';
+                statusEl.className = 'cf-pin-status cf-pin-status--fail';
+                identityEl.style.display = 'none';
+            }
+        });
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = nameDisplay.value.trim() || 'Guest';
+        var message = msgDisplay.value.trim();
+        if (!message) { alert('Please write a message.'); return; }
+
+        document.getElementById('cf-name-field').value = pinVerified ? AMRE_NAME : name;
+        document.getElementById('cf-as-amre-field').value = pinVerified ? 'true' : '';
+        document.getElementById('cf-avatar-field').value = pinVerified ? AMRE_AVATAR : '';
+
+        submitBtn.style.display = 'none';
+        pendingEl.style.display = 'block';
+        pendingEl.textContent = 'Submitting...';
+
+        var payload = {
+            name: pinVerified ? AMRE_NAME : name,
+            message: message,
+            slug: document.getElementById('cf-slug').value,
+            pin: pinEl.value.slice(-4)
+        };
+        if (pinVerified) { payload.avatar_url = AMRE_AVATAR; }
+
+        var endpoint = API_BASE + '/comment';
+        fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(function(r) {
+            return r.json().then(function(data) {
+                return { ok: r.ok, data: data };
+            });
+        }).then(function(result) {
+            if (result.ok) {
+                pendingEl.textContent = 'Comment posted! Refresh to see it below.';
+                pendingEl.style.color = '#4ade80';
+                nameDisplay.value = '';
+                msgDisplay.value = '';
+                pinEl.value = '';
+                charNum.textContent = '0';
+                pinVerified = false;
+                statusEl.textContent = '';
+                identityEl.style.display = 'none';
+            } else {
+                pendingEl.textContent = (result.data && result.data.error) || 'Error posting. Try again or email.';
+                pendingEl.style.color = '#f87171';
+                submitBtn.style.display = 'inline-block';
+            }
+        }).catch(function() {
+            pendingEl.textContent = 'Network error. Check your connection and try again.';
+            pendingEl.style.color = '#f87171';
+            submitBtn.style.display = 'inline-block';
+        });
+    });
+})();
+</script>

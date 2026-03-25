@@ -18,3 +18,9 @@ plugins:
 # Build settings
 permalink: /blog/:year/:month/:day/:title/
 future: true
+
+# Comment system API — set to the deployed comment server URL
+# e.g. https://thesolai-comments.glitch.me (update after deployment)
+commentsApi: ""
+
+# Include static files

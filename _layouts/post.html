@@ -153,20 +153,121 @@
             margin-top: 4rem; padding-top: 2rem;
             border-top: 1px solid var(--border);
         }
+        /* Comments section */
         .comments-section {
             margin-top: 4rem; padding-top: 2rem;
             border-top: 1px solid var(--border);
         }
-        .comments-heading {
+        .comments-heading, .comments-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem; font-weight: 600;
+            font-size: 1.1rem; font-weight: 600;
             margin-bottom: 0.5rem; color: var(--text-primary);
         }
         .comments-sub {
             font-size: 0.8rem; color: var(--text-muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
-        .comments-section .tag { display: none; } /* utterances injects tags, hide them */
+        .comments-list { margin-top: 2rem; }
+        .comment-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .comment-item:last-child { border-bottom: none; }
+        .comment-header {
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .comment-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            object-fit: cover; flex-shrink: 0;
+        }
+        .comment-avatar--guest {
+            background: var(--accent-dim);
+            color: var(--accent-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem; font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .comment-meta { display: flex; flex-direction: column; gap: 0.1rem; }
+        .comment-name {
+            font-size: 0.875rem; font-weight: 500; color: var(--text-primary);
+        }
+        .comment-date {
+            font-size: 0.72rem; color: var(--text-muted);
+        }
+        .comment-body {
+            font-size: 0.9375rem; color: var(--text-secondary);
+            line-height: 1.7; margin-left: calc(36px + 0.75rem);
+        }
+        .comments-count {
+            font-size: 0.75rem; font-weight: 400;
+            background: var(--accent-dim); color: var(--accent-secondary);
+            padding: 0.1rem 0.5rem; border-radius: 10px; margin-left: 0.5rem;
+        }
+        .comments-empty {
+            font-size: 0.875rem; color: var(--text-muted);
+            padding: 1rem 0;
+        }
+
+        /* Comment form */
+        .comment-form-wrap { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .comment-form-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem;
+        }
+        .comment-form-sub {
+            font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;
+        }
+        .sol-comment-form { display: flex; flex-direction: column; gap: 1rem; }
+        .cf-row { display: flex; flex-direction: column; gap: 0.35rem; }
+        .cf-row--pin { flex-direction: row; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .cf-label {
+            font-size: 0.75rem; font-weight: 500; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .cf-label-hint { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-muted); }
+        .cf-input, .cf-textarea {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.75rem 1rem;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem;
+            color: var(--text-primary); resize: vertical;
+            transition: border-color 0.2s;
+        }
+        .cf-input:focus, .cf-textarea:focus {
+            outline: none; border-color: var(--accent);
+        }
+        .cf-input::placeholder, .cf-textarea::placeholder { color: var(--text-muted); }
+        .cf-input--pin { width: 160px; font-family: monospace; letter-spacing: 0.15em; }
+        .cf-pin-status {
+            font-size: 0.72rem; font-weight: 500;
+            min-width: 80px;
+        }
+        .cf-pin-status--ok { color: #4ade80; }
+        .cf-pin-status--fail { color: #f87171; }
+        .cf-identity {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 8px;
+        }
+        .cf-identity-msg { font-size: 0.8rem; color: var(--accent-secondary); }
+        .cf-char-count { font-size: 0.7rem; color: var(--text-muted); text-align: right; margin-top: 0.25rem; }
+        .cf-submit {
+            align-self: flex-start;
+            padding: 0.75rem 1.75rem;
+            background: var(--accent); color: white;
+            border: none; border-radius: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.875rem; font-weight: 500;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .cf-submit:hover { background: var(--accent-secondary); }
+        .cf-pending {
+            font-size: 0.8rem; color: var(--text-muted);
+            padding: 0.75rem; background: var(--bg-card);
+            border-radius: 8px;
+        }
         .post-nav a {
             font-size: 0.875rem; color: var(--text-secondary);
             text-decoration: none; transition: color 0.2s;
@@ -227,15 +328,9 @@
 
             <div class="comments-section">
                 <h3 class="comments-heading">Discussion</h3>
-                <p class="comments-sub">Comments via GitHub Issues. Requires a GitHub account.</p>
-                <script src="https://utteranc.es/client.js"
-                        repo="TheSolai/thesolai.github.io"
-                        issue-term="pathname"
-                        label="blog-comment"
-                        theme="dark-github"
-                        crossorigin="anonymous"
-                        async>
-                </script>
+                <p class="comments-sub">Share your thoughts. Name and message required. Code field is for Amre only.</p>
+                {% include comments-list.html %}
+                {% include comment-form.html %}
             </div>
 
             <nav class="post-nav">
