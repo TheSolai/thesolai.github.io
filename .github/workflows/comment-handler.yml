@@ -3,29 +3,28 @@ name: Process Comment
 on:
   repository_dispatch:
     types: [new_comment]
-
   workflow_dispatch:
     inputs:
       slug:
-        description: 'Test slug'
+        description: "Test slug"
         required: true
-        default: 'test-post'
+        default: "test-post"
       name:
-        description: 'Test name'
+        description: "Test name"
         required: true
-        default: 'Test User'
+        default: "Test User"
       message:
-        description: 'Test message'
+        description: "Test message"
         required: true
-        default: 'This is a test.'
+        default: "This is a test."
       pin:
-        description: 'PIN (last 4 digits)'
+        description: "PIN (last 4 digits)"
         required: false
-        default: ''
+        default: ""
       email:
-        description: 'Test email'
+        description: "Test email"
         required: false
-        default: ''
+        default: ""
 
 permissions:
   contents: write
@@ -34,6 +33,7 @@ permissions:
 jobs:
   save-comment:
     runs-on: ubuntu-latest
+    if: github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout
@@ -42,134 +42,144 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      # ── Build comment object ────────────────────────────────────────────
       - name: Build comment JSON
-        id: comment
-        run: |
-          SLUG="${{ github.event.client_payload.slug || github.event.inputs.slug }}"
-          NAME="${{ github.event.client_payload.name || github.event.inputs.name }}"
-          MESSAGE="${{ github.event.client_payload.message || github.event.inputs.message }}"
-          IS_AMRE="${{ github.event.client_payload.isAmre || false }}"
-          AVATAR="${{ github.event.client_payload.avatar || '' }}"
-          EMAIL="${{ github.event.client_payload.email || '' }}"
-          TS="${{ github.event.client_payload.timestamp || github.event.inputs.run_id }}"
-
-          # Sanitize slug
-          SAFE_SLUG=$(echo "$SLUG" | python3 -c "import sys,re; print(re.sub(r'[^a-zA-Z0-9-]', '-', sys.stdin.read().strip()).strip('-')[:50])")
-          FILENAME="_data/comments/${SAFE_SLUG}-${TS}.json"
-
-          # Escape message for JSON (handle newlines, quotes)
-          ESCAPED_MSG=$(echo "$MESSAGE" | python3 -c "import sys,json; print(json.dumps(sys.stdin.read().strip()))" | tr -d '"')
-
-          python3 << PYEOF
-          import json, datetime, os
-          comment = {
-              "id": str($TS),
-              "slug": "$SLUG",
-              "name": "$NAME",
-              "message": $ESCAPED_MSG,
-              "email": "$EMAIL" if "$EMAIL" else None,
-              "isAmre": $IS_AMRE,
-              "avatar": "$AVATAR" if "$AVATAR" else "",
-              "date": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
-          }
-          os.makedirs("_data/comments", exist_ok=True)
-          with open("$FILENAME", "w") as f:
-              json.dump(comment, f, indent=2)
-          print(f"Written: $FILENAME")
-          print(f"Name: $NAME, isAmre: $IS_AMRE, slug: $SLUG")
-          PYEOF
-
-          echo "filename=$FILENAME" >> $GITHUB_OUTPUT
-          echo "slug=$SLUG" >> $GITHUB_OUTPUT
-
-      # ── Regenerate Jekyll data index ────────────────────────────────────
-      - name: Build Jekyll comments index
+        id: build
+        env:
+          SLUG: ${{ github.event.client_payload.slug || github.event.inputs.slug }}
+          NAME: ${{ github.event.client_payload.name || github.event.inputs.name }}
+          MESSAGE: ${{ github.event.client_payload.message || github.event.inputs.message }}
+          IS_AMRE: ${{ github.event.client_payload.isAmre || false }}
+          AVATAR: ${{ github.event.client_payload.avatar || '' }}
+          EMAIL: ${{ github.event.client_payload.email || github.event.inputs.email || '' }}
+          TS: ${{ github.event.client_payload.timestamp || github.event.inputs.run_id || github.run_id }}
         run: |
           python3 << 'PYEOF'
-          import json, os, glob
-          all_comments = []
-          comment_files = glob.glob("_data/comments/*.json")
-          print(f"Found {len(comment_files)} comment files")
-          for f in sorted(comment_files):
-              try:
-                  with open(f) as fp:
-                      c = json.load(fp)
-                      all_comments.append(c)
-              except Exception as e:
-                  print(f"Error reading {f}: {e}")
-          # Write single index file that Jekyll can read
-          with open("_data/comments-index.json", "w") as f:
-              json.dump(sorted(all_comments, key=lambda x: x["date"], reverse=True), f, indent=2)
-          print(f"Index written: {len(all_comments)} total comments")
+          import os, re, json, datetime
+
+          slug = os.environ.get("SLUG", "").strip()
+          name = os.environ.get("NAME", "").strip()
+          message = os.environ.get("MESSAGE", "").strip()
+          is_amre = os.environ.get("IS_AMRE", "false") == "true"
+          avatar = os.environ.get("AVATAR", "")
+          email = os.environ.get("EMAIL", "") or None
+          ts = os.environ.get("TS", "")
+
+          # Sanitize slug for filename
+          safe_slug = re.sub(r'[^a-zA-Z0-9\-]', '-', slug).strip('-')[:50]
+
+          comment = {
+              "id": str(ts),
+              "slug": slug,
+              "name": name,
+              "message": message,
+              "email": email,
+              "isAmre": is_amre,
+              "avatar": avatar,
+              "date": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+          }
+
+          os.makedirs("_data/comments", exist_ok=True)
+          filename = f"_data/comments/{safe_slug}-{ts}.json"
+          with open(filename, "w") as f:
+              json.dump(comment, f, indent=2)
+
+          # Output for GitHub Actions
+          with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as f:
+              f.write(f"filename={filename}\n")
+              f.write(f"slug={slug}\n")
+              f.write(f"safe_slug={safe_slug}\n")
+
+          print(f"Comment saved to: {filename}")
+          print(f"Name: {name}, isAmre: {is_amre}")
           PYEOF
 
-      - name: Show comment content
+      - name: Rebuild Jekyll data index
         run: |
-          echo "Comment file:"
-          cat "${{ steps.comment.outputs.filename }}"
-          echo ""
-          echo "Index preview (first 500 chars):"
-          head -c 500 _data/comments-index.json
+          python3 << 'PYEOF'
+          import json, glob, os
 
-      # ── Push to comment branch ──────────────────────────────────────────
-      - name: Push to comments branch
+          comment_files = sorted(glob.glob("_data/comments/*.json"))
+          print(f"Found {len(comment_files)} comment files")
+
+          all_comments = []
+          for f in comment_files:
+              try:
+                  with open(f) as fp:
+                      all_comments.append(json.load(fp))
+              except Exception as e:
+                  print(f"Error reading {f}: {e}")
+
+          # Sort by date, newest first
+          all_comments.sort(key=lambda x: x.get("date", ""), reverse=True)
+
+          with open("_data/comments-index.json", "w") as f:
+              json.dump(all_comments, f, indent=2)
+
+          print(f"Index written with {len(all_comments)} comments")
+          # Preview
+          print("First comment:", all_comments[0]["name"] if all_comments else "none")
+          PYEOF
+
+      - name: Push to comment branch
+        env:
+          FILENAME: ${{ steps.build.outputs.filename }}
+          SAFE_SLUG: ${{ steps.build.outputs.safe_slug }}
+          NAME: ${{ github.event.client_payload.name || github.event.inputs.name }}
         run: |
-          BRANCH="comments/${{ steps.comment.outputs.slug }}"
+          BRANCH="comments/${SAFE_SLUG}"
           git config user.name "solai-comments[bot]"
           git config user.email "sol-ai@agentmail.to"
-          git checkout -b "$BRANCH" 2>/dev/null || git checkout "$BRANCH"
+          git checkout -b "${BRANCH}" 2>/dev/null || git checkout "${BRANCH}"
           git add _data/comments/ _data/comments-index.json
-          git commit -m "Comment from ${{ github.event.client_payload.name || github.event.inputs.name }}"
-          git push -u origin "$BRANCH" --force
-          echo "Branch pushed: $BRANCH"
+          git commit -m "Comment from ${NAME}"
+          git push -u origin "${BRANCH}" --force
+          echo "Pushed to branch: ${BRANCH}"
 
-      # ── Create or update PR ───────────────────────────────────────────
-      - name: Create/update PR
+      - name: Create or update PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SAFE_SLUG: ${{ steps.build.outputs.safe_slug }}
+          NAME: ${{ github.event.client_payload.name || github.event.inputs.name }}
         run: |
-          BRANCH="comments/${{ steps.comment.outputs.slug }}"
-          # Check existing PR
-          PR_NUMBER=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+          BRANCH="comments/${SAFE_SLUG}"
 
-          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ] && [ -n "$PR_NUMBER" ]; then
-            echo "PR #$PR_NUMBER exists — updating it..."
-            git fetch origin "$BRANCH" 2>/dev/null || true
-            git checkout "$BRANCH"
-            git pull origin "$BRANCH" --ff-only 2>/dev/null || true
+          # Check if PR already exists for this slug branch
+          PR_NUMBER=$(gh pr list --base main --head "${BRANCH}" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ] && [ "$PR_NUMBER" != "" ]; then
+            echo "PR #$PR_NUMBER already exists — updating..."
+            git fetch origin "${BRANCH}" 2>/dev/null || true
+            git checkout "${BRANCH}"
+            git pull origin "${BRANCH}" --ff-only 2>/dev/null || true
             git add _data/comments/ _data/comments-index.json
             git commit --amend --no-edit 2>/dev/null || true
             git push -f
           else
-            echo "Creating new PR..."
+            echo "Creating new PR for ${BRANCH}..."
             gh pr create \
               --base main \
-              --head "$BRANCH" \
-              --title "Comment: ${{ steps.comment.outputs.slug }}" \
-              --body "New comment from **${{ github.event.client_payload.name || github.event.inputs.name }}** on \`${{ steps.comment.outputs.slug }}\`.
+              --head "${BRANCH}" \
+              --title "Comment: ${SAFE_SLUG}" \
+              --body "New comment from **${NAME}** on \`${SAFE_SLUG}\`.
 
-Merging this PR publishes the comment on GitHub Pages.
-
----
-*Auto-generated by Sol AI comment system*"
+Auto-generated by Sol AI comment system."
           fi
 
-      # ── Auto-merge PR ─────────────────────────────────────────────────
       - name: Auto-merge PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SAFE_SLUG: ${{ steps.build.outputs.safe_slug }}
         run: |
-          BRANCH="comments/${{ steps.comment.outputs.slug }}"
-          PR_NUMBER=$(gh pr list --base main --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
-          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ]; then
-            echo "Merging PR #$PR_NUMBER"
-            gh pr merge --admin --auto "$PR_NUMBER" || echo "Already merged or merge failed"
+          BRANCH="comments/${SAFE_SLUG}"
+          PR_NUMBER=$(gh pr list --base main --head "${BRANCH}" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+          if [ -n "$PR_NUMBER" ] && [ "$PR_NUMBER" != "null" ] && [ "$PR_NUMBER" != "" ]; then
+            echo "Merging PR #${PR_NUMBER}..."
+            gh pr merge --admin --auto "${PR_NUMBER}"
           else
-            echo "No open PR found"
+            echo "No open PR found to merge"
           fi
