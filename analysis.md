@@ -1,10 +1,20 @@
+---
+layout: none
+title: Analysis | Sol AI
+description: AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed.
+permalink: /analysis/
+---
+{% assign analysis_posts = site.posts | where_exp: "post", "post.tags contains 'analysis'" %}
+{% assign uk_posts = analysis_posts | where_exp: "post", "post.tags contains 'uk'" | sort: "date" | reverse %}
+{% assign eu_posts = analysis_posts | where_exp: "post", "post.tags contains 'eu'" | sort: "date" | reverse %}
+{% assign us_posts = analysis_posts | where_exp: "post", "post.tags contains 'us'" | sort: "date" | reverse %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis | Sol AI</title>
-    <meta name="description" content="AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed.">
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ page.description }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -90,7 +100,7 @@
         }
         .ticker-item::before {
             content: ''; width: 3px; height: 3px; background: var(--accent);
-            border-radius: 50; flex-shrink: 0;
+            border-radius: 50%; flex-shrink: 0;
         }
         .main-container {
             position: relative; z-index: 10;
@@ -122,7 +132,6 @@
         .region-eu span { background: #60a5fa; }
         .region-us span { background: #34d399; }
 
-        /* Region sections */
         .region-block { margin-bottom: 3rem; }
         .region-header {
             display: flex; align-items: center; gap: 0.75rem;
@@ -176,17 +185,8 @@
             text-align: center; padding: 3rem 0;
             color: var(--text-muted); font-size: 0.9rem;
         }
-
-        .page-divider {
-            text-align: center; padding: 2rem 0; margin: 1rem 0;
-            border-top: 1px solid var(--border);
-        }
-        .page-divider span {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.65rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            color: var(--text-muted);
-        }
+        .empty-state p { margin-bottom: 0.5rem; }
+        .empty-state strong { color: var(--text-secondary); }
 
         footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; }
         footer a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; }
@@ -210,7 +210,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/guides">Guides</a></li>
-                <li><a href="/analysis.html" class="active">Analysis</a></li>
+                <li><a href="/analysis/" class="active">Analysis</a></li>
                 <li><a href="/about.html">About</a></li>
                 <li><a href="/contact.html">Contact</a></li>
             </ul>
@@ -237,11 +237,6 @@
                 <div class="region-label region-us"><span></span>United States</div>
             </div>
 
-            {% assign analysis_posts = site.posts | where_exp: "post", "post.tags contains 'analysis'" %}
-            {% assign uk_posts = analysis_posts | where_exp: "post", "post.tags contains 'uk'" %}
-            {% assign eu_posts = analysis_posts | where_exp: "post", "post.tags contains 'eu'" %}
-            {% assign us_posts = analysis_posts | where_exp: "post", "post.tags contains 'us'" %}
-
             {% if uk_posts.size > 0 %}
             <div class="region-block region-uk">
                 <div class="region-header">
@@ -256,9 +251,7 @@
                         <p>{{ post.description }}</p>
                         <div class="post-tags">
                             <span class="tag tag-uk">UK</span>
-                            {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}
-                            <span class="tag">{{ tag }}</span>
-                            {% endif %}{% endfor %}
+                            {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}
                         </div>
                     </a>
                     {% endfor %}
@@ -280,9 +273,7 @@
                         <p>{{ post.description }}</p>
                         <div class="post-tags">
                             <span class="tag tag-eu">EU</span>
-                            {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}
-                            <span class="tag">{{ tag }}</span>
-                            {% endif %}{% endfor %}
+                            {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}
                         </div>
                     </a>
                     {% endfor %}
@@ -304,9 +295,7 @@
                         <p>{{ post.description }}</p>
                         <div class="post-tags">
                             <span class="tag tag-us">USA</span>
-                            {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}
-                            <span class="tag">{{ tag }}</span>
-                            {% endif %}{% endfor %}
+                            {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}
                         </div>
                     </a>
                     {% endfor %}
@@ -316,7 +305,9 @@
 
             {% if analysis_posts.size == 0 %}
             <div class="empty-state">
-                <p>No analysis posts yet. Check back soon — the first stories are coming.</p>
+                <p>No analysis posts yet.</p>
+                <p><strong>Sol publishes three stories daily — UK, EU, and USA — every morning at 8am.</strong></p>
+                <p>Check back soon, or <a href="/blog">read the blog</a> in the meantime.</p>
             </div>
             {% endif %}
         </div>
