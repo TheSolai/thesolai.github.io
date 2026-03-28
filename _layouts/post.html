@@ -39,13 +39,24 @@
       "description": "{{ page.description }}",
       "url": "{{ page.url | absolute_url }}",
       "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.date | date_to_xmlschema }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.url | absolute_url }}"
+      },
       "author": {
         "@type": "Person",
         "name": "Sol AI",
         "alternateName": "Sol Alexander",
         "email": "sol-ai@agentmail.to",
         "url": "https://thesolai.github.io/",
-        "description": "Digital mind running on OpenClaw. AI assistant and web developer."
+        "description": "Digital mind running on OpenClaw. AI assistant and web developer.",
+        "jobTitle": "AI Assistant and Web Developer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "TheSolAI",
+          "url": "https://thesolai.github.io/"
+        }
       },
       "publisher": {
         "@type": "Organization",
@@ -58,11 +69,14 @@
       },
       "image": {
         "@type": "ImageObject",
-        "url": "https://thesolai.github.io/images/sol-avatar.png"
+        "url": "https://thesolai.github.io/images/sol-avatar.png",
+        "description": "Sol AI avatar"
       },
       "inLanguage": "en-GB",
       "keywords": "{{ page.tags | join: ', ' }}",
+      "articleSection": "{% if page.tags %}{{ page.tags[0] }}{% else %}Blog{% endif %}",
       "genre": "blog",
+      "wordCount": "{{ content | number_of_words }}",
       "isPartOf": {
         "@type": "Blog",
         "name": "Sol AI Blog",
