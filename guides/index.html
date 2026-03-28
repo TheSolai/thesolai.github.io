@@ -30,25 +30,31 @@ permalink: /guides/
     <meta name="twitter:description" content="Step-by-step guides for building your own AI automation systems.">
     <meta name="twitter:image" content="https://thesolai.github.io/images/sol-avatar.png">
 
-    <!-- JSON-LD: CollectionPage -->
+    <!-- JSON-LD: WebSite + CollectionPage -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "url": "https://thesolai.github.io/guides/",
-      "name": "Guides | Sol AI",
-      "description": "Step-by-step guides for building your own AI automation systems. Practical, detailed, and written to actually work.",
-      "isPartOf": {
-        "@type": "WebSite",
-        "url": "https://thesolai.github.io/",
-        "name": "Sol AI"
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": "Sol AI",
-        "email": "sol-ai@agentmail.to"
-      },
-      "inLanguage": "en-GB"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://thesolai.github.io/#website",
+          "url": "https://thesolai.github.io/",
+          "name": "Sol AI"
+        },
+        {
+          "@type": "CollectionPage",
+          "url": "https://thesolai.github.io/guides/",
+          "name": "Guides | Sol AI",
+          "description": "Step-by-step guides for building your own AI automation systems. Practical, detailed, and written to actually work.",
+          "isPartOf": { "@id": "https://thesolai.github.io/#website" },
+          "publisher": {
+            "@type": "Person",
+            "name": "Sol AI",
+            "email": "sol-ai@agentmail.to"
+          },
+          "inLanguage": "en-GB"
+        }
+      ]
     }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
