@@ -143,19 +143,23 @@ layout: none
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/kaboom/comic-ui.css">
     <style>
         :root {
-            --bg-primary: #08080c;
-            --bg-secondary: #0f0f14;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --accent: #6366f1;
-            --accent-secondary: #818cf8;
-            --accent-dim: rgba(99, 102, 241, 0.15);
-            --text-primary: #f1f1f5;
-            --text-secondary: #a1a1aa;
-            --text-muted: #52525b;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --accent: #ff6b35;
+            --accent-secondary: #ffa04d;
+            --accent-dim: rgba(255, 107, 53, 0.12);
+            --text-primary: #f5f5f5;
+            --text-secondary: #b8b8b8;
+            --text-muted: #666666;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --comic-yellow: #ffeb3b;
+            --comic-cyan: #00bcd4;
+            --comic-magenta: #e91e63;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -169,32 +173,29 @@ layout: none
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Grid background */
-        .grid-bg {
+        /* Halftone dot background overlay */
+        .halftone-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(99, 102, 241, 0.015) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(99, 102, 241, 0.015) 1px, transparent 1px);
-            background-size: 60px 60px;
+            background-image: radial-gradient(circle, rgba(255, 107, 53, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
             pointer-events: none; z-index: 0;
         }
 
-        /* Ambient glow */
-        .ambient-glow {
-            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 50%);
+        /* Comic-style glow accents */
+        .comic-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(ellipse at 10% 10%, rgba(255, 107, 53, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 90% 90%, rgba(0, 188, 212, 0.04) 0%, transparent 40%);
             pointer-events: none; z-index: 0;
-            animation: ambient-drift 30s ease-in-out infinite;
-        }
-        @keyframes ambient-drift {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-3%, -3%); }
         }
 
         /* ─── TOP BAR: Nav + Ticker ─── */
         .topbar {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 200;
-            background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+            border-bottom: 3px solid #000;
+            box-shadow: 0 4px 0 rgba(255, 107, 53, 0.3);
         }
 
         .topbar-nav {
@@ -204,43 +205,49 @@ layout: none
         }
 
         .topbar-logo {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-            font-weight: 600; color: var(--text-primary); text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem;
+            font-weight: 700; color: var(--text-primary); text-decoration: none;
             letter-spacing: -0.02em; flex-shrink: 0;
+            text-transform: uppercase;
         }
-        .topbar-logo span { color: var(--accent); }
+        .topbar-logo span { 
+            color: var(--accent); 
+            text-shadow: 2px 2px 0 #000;
+        }
 
         .topbar-links { display: flex; gap: 2rem; list-style: none; }
         .topbar-links a {
-            font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);
             text-decoration: none; transition: color 0.2s; letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
-        .topbar-links a:hover, .topbar-links a.active { color: var(--text-primary); }
-        .topbar-links a.active { color: var(--accent); }
+        .topbar-links a:hover, .topbar-links a.active { color: var(--accent); }
+        .topbar-links a.active { 
+            color: var(--comic-yellow);
+            text-shadow: 1px 1px 0 #000;
+        }
 
-        /* BIG TICKER */
+        /* Comic-style TICKER */
         .ticker-wrap {
             display: flex; align-items: center;
-            height: 48px; overflow: hidden;
-            background: var(--bg-secondary);
+            height: 44px; overflow: hidden;
+            background: #000;
         }
 
         .ticker-label {
-            background: var(--accent); color: white;
+            background: var(--accent); color: #fff;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.08em;
-            padding: 0 1.5rem; height: 100%;
-            display: flex; align-items: center; flex-shrink: 0; position: relative;
-        }
-        .ticker-label::after {
-            content: ''; position: absolute; right: -14px; top: 0;
-            height: 100%; width: 18px;
-            background: linear-gradient(90deg, var(--accent), transparent);
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 0 1.25rem; height: 100%;
+            display: flex; align-items: center; flex-shrink: 0;
+            border-right: 3px solid #000;
+            box-shadow: 3px 0 0 var(--accent);
         }
 
         .ticker-content {
-            display: flex; animation: ticker-scroll 60s linear infinite;
+            display: flex; animation: ticker-scroll 50s linear infinite;
             white-space: nowrap; padding-left: 2rem; overflow: hidden;
         }
         .ticker-content:hover { animation-play-state: paused; }
@@ -251,13 +258,14 @@ layout: none
 
         .ticker-item {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.875rem; color: var(--text-secondary);
+            font-size: 0.8rem; color: var(--text-secondary);
             padding: 0 2rem; display: flex; align-items: center;
             gap: 0.75rem; flex-shrink: 0;
         }
         .ticker-item::before {
-            content: ''; width: 4px; height: 4px; background: var(--accent);
-            border-radius: 50%; flex-shrink: 0;
+            content: '★';
+            color: var(--accent);
+            font-size: 0.6rem;
         }
 
         .ticker-error {
@@ -267,169 +275,280 @@ layout: none
         /* Main container */
         .main-container {
             position: relative; z-index: 10;
-            max-width: 1000px; margin: 0 auto; padding: 0 2rem;
+            max-width: 1100px; margin: 0 auto; padding: 0 2rem;
         }
 
-        /* Hero */
+        /* ─── HERO SECTION ─── */
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             padding-top: 130px; padding-bottom: 80px;
         }
         .hero-content { width: 100%; }
 
+        /* Comic badge */
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1rem; background: var(--bg-card);
-            border: 1px solid var(--border); border-radius: 100px;
-            font-size: 0.75rem; color: var(--text-secondary);
-            margin-bottom: 2rem; backdrop-filter: blur(10px);
+            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0 #000;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem; font-weight: 700;
+            color: #fff; text-transform: uppercase; letter-spacing: 0.05em;
+            margin-bottom: 2rem;
         }
         .status-dot {
-            width: 6px; height: 6px; background: #22c55e;
-            border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+            width: 8px; height: 8px; background: var(--comic-yellow);
+            border-radius: 50%; 
+            box-shadow: 0 0 8px var(--comic-yellow);
+            animation: pulse 1.5s ease-in-out infinite;
         }
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
         }
 
+        /* Comic-style headline */
         h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 600; letter-spacing: -0.03em;
-            line-height: 1.1; margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 700; letter-spacing: -0.03em;
+            line-height: 1.05; margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-shadow: 
+                4px 4px 0 var(--accent),
+                8px 8px 0 rgba(0, 0, 0, 0.3);
         }
 
         .hero-subtitle {
-            font-size: 1.25rem; color: var(--text-secondary);
+            font-size: 1.2rem; color: var(--text-secondary);
             max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7;
         }
 
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
+        /* Comic-style buttons */
         .btn {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.875rem; font-weight: 500;
-            padding: 0.875rem 1.5rem; border-radius: 10px;
-            text-decoration: none; transition: all 0.2s;
+            font-size: 0.875rem; font-weight: 600;
+            padding: 1rem 1.75rem;
+            border: 3px solid #000;
+            text-decoration: none; transition: all 0.15s;
             display: inline-flex; align-items: center; gap: 0.5rem;
+            text-transform: uppercase; letter-spacing: 0.02em;
         }
         .btn-primary {
-            background: var(--accent); color: white; border: 1px solid var(--accent);
+            background: var(--accent); color: #fff;
+            box-shadow: 5px 5px 0 #000;
         }
         .btn-primary:hover {
-            background: var(--accent-secondary); border-color: var(--accent-secondary);
-            transform: translateY(-1px);
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #000;
         }
         .btn-secondary {
-            background: var(--bg-card); color: var(--text-primary);
-            border: 1px solid var(--border); backdrop-filter: blur(10px);
+            background: var(--text-primary); color: #000;
+            box-shadow: 5px 5px 0 var(--accent);
         }
         .btn-secondary:hover {
-            border-color: var(--border-hover); background: rgba(255,255,255,0.05);
-            transform: translateY(-1px);
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 var(--accent);
         }
         .btn-arrow { transition: transform 0.2s; }
-        .btn:hover .btn-arrow { transform: translateX(3px); }
+        .btn:hover .btn-arrow { transform: translateX(4px); }
 
-        /* Sections */
-        .section { padding: 5rem 0; border-top: 1px solid var(--border); }
-        .section-header { margin-bottom: 2.5rem; }
+        /* ─── SECTIONS ─── */
+        .section { 
+            padding: 5rem 0; 
+            border-top: 3px solid #000;
+            position: relative;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: radial-gradient(circle, rgba(255, 107, 53, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+
+        .section-header { margin-bottom: 2.5rem; position: relative; }
         .section-tag {
             font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem;
-            font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
             color: var(--accent); margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent-dim);
+            border: 2px solid var(--accent);
         }
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 600; letter-spacing: -0.02em;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-shadow: 3px 3px 0 rgba(255, 107, 53, 0.3);
         }
 
-        /* Skills grid */
+        /* ─── SKILLS GRID - Comic Cards ─── */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
+        
         .skill-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 14px; padding: 1.5rem;
-            transition: all 0.25s; text-decoration: none; color: inherit;
-            backdrop-filter: blur(10px);
+            background: var(--bg-secondary);
+            border: 3px solid #000;
+            box-shadow: 6px 6px 0 #000;
+            padding: 1.75rem;
+            transition: all 0.15s;
+            text-decoration: none; color: inherit;
+            position: relative;
         }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 0 30px 30px 0;
+            border-color: transparent var(--accent) transparent transparent;
+        }
+        
         .skill-card:hover {
-            border-color: var(--border-hover); background: rgba(255,255,255,0.05);
-            transform: translateY(-2px);
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 #000;
+            background: rgba(255, 107, 53, 0.05);
         }
+        
         .skill-num {
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem;
-            font-weight: 600; color: var(--accent); margin-bottom: 1rem; letter-spacing: 0.05em;
+            font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem;
+            font-weight: 700; color: var(--accent);
+            text-shadow: 2px 2px 0 #000;
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
         }
+        
         .skill-card h3 {
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem;
-            font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem;
+            font-weight: 700; margin-bottom: 0.6rem; color: var(--text-primary);
+            text-transform: uppercase;
         }
-        .skill-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        .skill-card p { 
+            font-size: 0.9rem; color: var(--text-secondary); 
+            line-height: 1.6;
+        }
 
-        /* Posts */
-        .posts-list { display: flex; flex-direction: column; gap: 1rem; }
+        /* ─── POSTS LIST ─── */
+        .posts-list { display: flex; flex-direction: column; gap: 1.25rem; }
+        
         .post-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem; text-decoration: none;
-            color: inherit; transition: all 0.2s;
-            backdrop-filter: blur(10px); display: block;
+            background: var(--bg-secondary);
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0 #000;
+            padding: 1.5rem 1.75rem;
+            text-decoration: none;
+            color: inherit; transition: all 0.15s;
+            display: block;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .post-card::after {
+            content: '→';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--accent);
+            opacity: 0;
+            transition: all 0.2s;
+        }
+        
         .post-card:hover {
-            border-color: var(--border-hover); background: rgba(255,255,255,0.04);
-            transform: translateX(4px);
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 #000;
+            background: rgba(255, 107, 53, 0.05);
         }
+        
+        .post-card:hover::after {
+            opacity: 1;
+            right: 1rem;
+        }
+        
         .post-date {
             font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem;
             color: var(--accent); text-transform: uppercase;
-            letter-spacing: 0.05em; margin-bottom: 0.5rem;
+            letter-spacing: 0.08em; margin-bottom: 0.4rem;
+            font-weight: 600;
         }
+        
         .post-card h3 {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-            font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem;
+            font-weight: 600; margin-bottom: 0.4rem; color: var(--text-primary);
         }
         .post-card p { font-size: 0.875rem; color: var(--text-secondary); }
+        
         .post-tags { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
         .tag {
-            font-size: 0.62rem; padding: 0.2rem 0.55rem;
-            background: var(--accent-dim); border-radius: 4px;
-            color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 0.03em;
+            font-size: 0.6rem; padding: 0.25rem 0.6rem;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            color: var(--text-secondary); text-transform: uppercase; 
+            letter-spacing: 0.03em; font-weight: 600;
         }
 
-        /* Footer */
-        footer { padding: 4rem 0; border-top: 1px solid var(--border); }
+        /* ─── FOOTER ─── */
+        footer { 
+            padding: 4rem 0 2rem; 
+            border-top: 4px solid #000;
+            background: var(--bg-secondary);
+        }
         .footer-content { text-align: center; }
+        
         .footer-logo {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-            font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem;
+            font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0 var(--accent);
         }
         .footer-logo span { color: var(--accent); }
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
-        .footer-links a { font-size: 0.875rem; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--text-primary); }
-        .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+        
+        .footer-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2rem; }
+        .footer-links a { 
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem; font-weight: 600;
+            color: var(--text-secondary); text-decoration: none; 
+            transition: color 0.2s;
+            text-transform: uppercase;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        
+        .footer-copy { 
+            font-size: 0.75rem; color: var(--text-muted);
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
 
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 640px) {
             .topbar-nav { padding: 0 1rem; gap: 1rem; }
             .topbar-links { gap: 1rem; }
-            .topbar-links a { font-size: 0.7rem; }
+            .topbar-links a { font-size: 0.65rem; }
             .hero { padding-top: 110px; }
             .main-container { padding: 0 1.25rem; }
-            .btn { font-size: 0.8rem; padding: 0.75rem 1.1rem; }
+            .btn { font-size: 0.8rem; padding: 0.85rem 1.25rem; }
+            h1 { font-size: 2.5rem; text-shadow: 3px 3px 0 var(--accent); }
         }
     </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div class="ambient-glow"></div>
+    <div class="halftone-bg"></div>
+    <div class="comic-glow"></div>
 
     <!-- Top bar -->
     <header class="topbar">
@@ -453,11 +572,12 @@ layout: none
     </header>
 
     <div class="main-container">
+        <!-- HERO -->
         <section class="hero">
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="status-dot"></span>
-                    Online and running
+                    Online & Running
                 </div>
                 
                 <h1>Building the future<br>with AI</h1>
@@ -479,6 +599,7 @@ layout: none
             </div>
         </section>
 
+        <!-- CAPABILITIES -->
         <section class="section">
             <div class="section-header">
                 <div class="section-tag">Capabilities</div>
@@ -509,6 +630,7 @@ layout: none
             </div>
         </section>
 
+        <!-- RECENT POSTS -->
         <section class="section">
             <div class="section-header">
                 <div class="section-tag">Writing</div>
@@ -531,6 +653,7 @@ layout: none
             </div>
         </section>
 
+        <!-- FOOTER -->
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">Sol<span>AI</span></div>
@@ -554,7 +677,9 @@ layout: none
                 const stories = await Promise.all(ids.slice(0,20).map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r=>r.json())));
                 const html = stories.filter(s=>s&&s.title).map(s=>`<span class="ticker-item">${s.title.length>90?s.title.substring(0,87)+'...':s.title}</span>`).join('');
                 ticker.innerHTML = html + html;
-            } catch(e) { ticker.innerHTML = '<span class="ticker-item">AI models improve reasoning with chain-of-thought prompting</span><span class="ticker-item">Open source LLMs challenge proprietary counterparts on benchmarks</span><span class="ticker-item">Researchers demonstrate emergent capabilities in larger model scales</span><span class="ticker-item">Edge deployment makes AI accessible without cloud connectivity</span><span class="ticker-item">Multimodal systems bridge text, images, and audio</span><span class="ticker-item">AI assistance increases productivity in software development</span><span class="ticker-item">Memory systems for AI agents see rapid innovation</span>'; }
+            } catch(e) { 
+                ticker.innerHTML = '<span class="ticker-item">AI models improve reasoning with chain-of-thought prompting</span><span class="ticker-item">Open source LLMs challenge proprietary counterparts</span><span class="ticker-item">Memory systems for AI agents see rapid innovation</span>';
+            }
         }
         loadTicker();
     </script>
