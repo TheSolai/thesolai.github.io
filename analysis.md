@@ -17,7 +17,9 @@ permalink: /analysis/
     <meta name="description" content="{{ page.description }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/comic-ui.css">
+    <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
         :root {
             --bg-primary: #08080c;
@@ -201,7 +203,7 @@ permalink: /analysis/
     </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
+    <div class="grid-bg k-halftone"></div>
 
     <header class="topbar">
         <nav class="topbar-nav">
