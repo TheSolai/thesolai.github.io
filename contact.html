@@ -63,57 +63,84 @@
     <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
         :root {
-            --bg-primary: #08080c; --bg-secondary: #0f0f14; --bg-card: rgba(255,255,255,0.03);
-            --accent: #6366f1; --accent-secondary: #818cf8; --accent-dim: rgba(99,102,241,0.15);
-            --text-primary: #f1f1f5; --text-secondary: #a1a1aa; --text-muted: #52525b;
-            --border: rgba(255,255,255,0.06); --border-hover: rgba(255,255,255,0.12);
+            /* Light comic paper theme */
+            --bg-primary: #FDFBF7;
+            --bg-secondary: #F5F0E6;
+            --bg-card: #FFFFFF;
+            --accent: #E63946;
+            --accent-secondary: #457B9D;
+            --accent-dim: rgba(230, 57, 70, 0.12);
+            --text-primary: #111111;
+            --text-secondary: #444444;
+            --text-muted: #888888;
+            --border: rgba(17, 17, 17, 0.15);
+            --border-hover: rgba(17, 17, 17, 0.3);
+            --k-ink: #111111;
+            --k-yellow: #FFD166;
+            --k-blue: #457B9D;
+            --k-red: #E63946;
+            --k-white: #FFFFFF;
+            --k-stroke: 3px solid var(--k-ink);
+            --k-shadow: 5px 5px 0px var(--k-ink);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif; background: var(--bg-primary);
+            font-family: 'Comic Neue', cursive; font-weight: 700;
+            background: var(--bg-primary);
             color: var(--text-primary); min-height: 100vh;
-            line-height: 1.7; -webkit-font-smoothing: antialiased;
+            line-height: 1.6; -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
         .grid-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(99,102,241,0.015) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(99,102,241,0.015) 1px, transparent 1px);
-            background-size: 60px 60px; pointer-events: none; z-index: 0;
+            background-image: radial-gradient(rgba(17, 17, 17, 0.08) 15%, transparent 16%),
+                              radial-gradient(rgba(17, 17, 17, 0.08) 15%, transparent 16%);
+            background-size: 14px 14px;
+            background-position: 0 0, 7px 7px;
+            pointer-events: none; z-index: 0;
+        }
+        .grid-bg::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg-primary); opacity: 0.92; z-index: -1;
         }
         .topbar {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 200;
-            background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+            background: var(--k-yellow); border-bottom: var(--k-stroke);
         }
         .topbar-nav {
             display: flex; align-items: center; padding: 0 2rem; height: 52px;
-            border-bottom: 1px solid var(--border); gap: 2rem;
+            border-bottom: 2px solid var(--k-ink); gap: 2rem;
         }
         .topbar-logo {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-            font-weight: 600; color: var(--text-primary); text-decoration: none;
-            letter-spacing: -0.02em; flex-shrink: 0;
+            font-family: 'Bangers', cursive; font-size: 1.2rem;
+            color: var(--k-ink); text-decoration: none;
+            letter-spacing: 2px; flex-shrink: 0;
         }
-        .topbar-logo span { color: var(--accent); }
+        .topbar-logo span { color: var(--k-red); }
         .topbar-links { display: flex; gap: 2rem; list-style: none; }
         .topbar-links a {
-            font-size: 0.8rem; font-weight: 500;
-            color: var(--text-secondary); text-decoration: none; transition: color 0.2s;
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--k-ink); text-decoration: none; transition: color 0.2s;
             letter-spacing: 0.03em;
         }
-        .topbar-links a:hover, .topbar-links a.active { color: var(--text-primary); }
-        .topbar-links a.active { color: var(--accent); }
-        .ticker-wrap { display: flex; align-items: center; height: 34px; overflow: hidden; }
+        .topbar-links a:hover, .topbar-links a.active { color: var(--k-red); }
+        .topbar-links a.active { color: var(--k-red); }
+        .ticker-wrap { display: flex; align-items: center; height: 34px; overflow: hidden; background: var(--bg-secondary); }
         .ticker-label {
-            background: var(--accent); color: white; font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+            background: var(--k-red); color: white; font-family: 'Bangers', cursive;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
             letter-spacing: 0.05em; padding: 0 0.875rem; height: 100%;
             display: flex; align-items: center; flex-shrink: 0; position: relative;
         }
         .ticker-label::after {
             content: ''; position: absolute; right: -10px; top: 0;
             height: 100%; width: 12px;
-            background: linear-gradient(90deg, var(--accent), transparent);
+            background: linear-gradient(90deg, var(--k-red), transparent);
         }
         .ticker-content {
             display: flex; animation: ticker-scroll 50s linear infinite;
@@ -122,86 +149,137 @@
         .ticker-content:hover { animation-play-state: paused; }
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .ticker-item {
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem;
+            font-family: 'Comic Neue', cursive; font-size: 0.75rem; font-weight: 700;
             color: var(--text-secondary); padding: 0 1.5rem;
             display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
         }
         .ticker-item::before {
-            content: ''; width: 3px; height: 3px; background: var(--accent);
-            border-radius: 50%;
+            content: ''; width: 6px; height: 6px; background: var(--k-red);
+            border-radius: 50%; border: 2px solid var(--k-ink);
         }
         .main-container { position: relative; z-index: 10; max-width: 800px; margin: 0 auto; padding: 0 2rem; }
         .page-content { padding-top: 110px; padding-bottom: 5rem; }
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 6vw, 3rem); font-weight: 600;
-            letter-spacing: -0.02em; margin-bottom: 0.5rem;
+            font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 600;
+            letter-spacing: 3px; margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 0px var(--k-yellow);
         }
-        .subtitle { font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 3rem; }
+        .subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 3rem; }
 
-        /* Contact cards */
+        /* Contact cards - comic style */
         .contact-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;
             margin-bottom: 3rem;
         }
         .contact-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem;
-            transition: all 0.2s; backdrop-filter: blur(10px);
+            background: var(--k-white); border: var(--k-stroke);
+            box-shadow: var(--k-shadow); padding: 1.5rem;
+            transition: all 0.15s ease; border-radius: 2px;
         }
         .contact-card:hover {
-            border-color: var(--border-hover);
-            background: rgba(255,255,255,0.04);
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0px var(--k-ink);
         }
         .contact-card h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.65rem; font-weight: 600;
-            color: var(--text-muted); text-transform: uppercase;
-            letter-spacing: 0.1em; margin-bottom: 0.5rem;
+            font-family: 'Bangers', cursive;
+            font-size: 0.9rem; font-weight: 600;
+            color: var(--k-red); text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 0.5rem;
         }
         .contact-card a {
-            font-size: 0.9rem; color: var(--accent);
-            text-decoration: none; transition: color 0.2s;
+            font-size: 1rem; color: var(--k-blue);
+            text-decoration: none; font-weight: 700; transition: color 0.2s;
         }
-        .contact-card a:hover { color: var(--accent-secondary); }
-        .contact-card p { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.4rem; }
+        .contact-card a:hover { color: var(--k-red); }
+        .contact-card p { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem; }
+
+        /* Bio section - comic cards */
+        .bio-section { margin-top: 2.5rem; }
+        .bio-label {
+            font-family: 'Bangers', cursive; font-size: 1rem;
+            color: var(--k-white); background: var(--k-red);
+            display: inline-block; padding: 0.25rem 1rem;
+            border: 2px solid var(--k-ink); box-shadow: 3px 3px 0 var(--k-ink);
+            transform: rotate(-2deg); margin-bottom: 1rem;
+        }
+        .bio-inner {
+            display: flex; gap: 1.5rem; align-items: flex-start;
+            background: var(--k-white); border: var(--k-stroke);
+            box-shadow: var(--k-shadow); padding: 1.5rem;
+            border-radius: 2px;
+        }
+        .bio-photo {
+            flex-shrink: 0; width: 120px; height: 120px;
+            border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--k-ink);
+            box-shadow: 4px 4px 0 var(--k-ink);
+        }
+        .bio-info { flex: 1; }
+        .bio-text { margin-top: 0.75rem; }
+        .bio-text p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.6; }
+        .bio-name {
+            font-family: 'Bangers', cursive; font-size: 1.8rem;
+            color: var(--k-ink); letter-spacing: 2px;
+            margin-bottom: 0.25rem;
+        }
+        .bio-tagline {
+            font-family: 'Comic Neue', cursive; font-size: 0.95rem;
+            color: var(--k-blue); font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .bio-links {
+            display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;
+        }
+        .bio-links a {
+            font-family: 'Bangers', cursive; font-size: 0.9rem;
+            color: var(--k-ink); text-decoration: none;
+            padding: 0.3rem 0.8rem; background: var(--k-yellow);
+            border: 2px solid var(--k-ink); box-shadow: 2px 2px 0 var(--k-ink);
+            transition: all 0.1s ease;
+        }
+        .bio-links a:hover {
+            background: var(--k-red); color: var(--k-white);
+            transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--k-ink);
+        }
 
         /* Comment section */
         .comment-section {
             margin-top: 3rem; padding-top: 2.5rem;
-            border-top: 1px solid var(--border);
+            border-top: 3px solid var(--k-ink);
         }
         .comment-section h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem; font-weight: 600; margin-bottom: 0.25rem;
+            font-size: 1.8rem; font-weight: 600; margin-bottom: 0.25rem;
+            color: var(--k-ink);
         }
         .comment-section .cs-sub {
-            font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem;
+            font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;
         }
 
         .comments-list { margin-bottom: 2rem; }
         .comment-item {
             padding: 1.25rem 0;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px dashed rgba(17, 17, 17, 0.2);
         }
         .comment-item:last-child { border-bottom: none; }
         .comment-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
         .comment-avatar {
-            width: 32px; height: 32px; border-radius: 50%;
+            width: 40px; height: 40px; border-radius: 50%;
             object-fit: cover; flex-shrink: 0;
+            border: 2px solid var(--k-ink);
         }
         .comment-avatar--guest {
-            background: var(--accent-dim); color: var(--accent-secondary);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem; font-weight: 600;
+            background: var(--k-yellow); color: var(--k-ink);
+            font-family: 'Bangers', cursive;
+            font-size: 1rem; font-weight: 600;
             display: flex; align-items: center; justify-content: center;
+            border: 2px solid var(--k-ink);
         }
         .comment-meta { display: flex; flex-direction: column; gap: 0.05rem; }
-        .comment-name { font-size: 0.85rem; font-weight: 500; color: var(--text-primary); }
+        .comment-name { font-size: 0.9rem; font-weight: 700; color: var(--k-ink); }
         .comment-date { font-size: 0.7rem; color: var(--text-muted); }
         .comment-body {
             font-size: 0.9rem; color: var(--text-secondary);
-            line-height: 1.7; margin-left: calc(32px + 0.75rem);
+            line-height: 1.7; margin-left: calc(40px + 0.75rem);
         }
         .comments-empty { font-size: 0.85rem; color: var(--text-muted); padding: 1rem 0; }
 
@@ -209,48 +287,71 @@
         .cf-row { display: flex; flex-direction: column; gap: 0.35rem; }
         .cf-row--pin { flex-direction: row; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
         .cf-label {
-            font-size: 0.72rem; font-weight: 500; color: var(--text-secondary);
+            font-size: 0.75rem; font-weight: 700; color: var(--k-ink);
             text-transform: uppercase; letter-spacing: 0.04em;
         }
         .cf-label-hint { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--text-muted); }
         .cf-input, .cf-textarea {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 8px; padding: 0.75rem 1rem;
-            font-family: 'Inter', sans-serif; font-size: 0.9rem;
-            color: var(--text-primary); resize: vertical;
-            transition: border-color 0.2s;
+            background: var(--k-white); border: 2px solid var(--k-ink);
+            box-shadow: 3px 3px 0 var(--k-ink);
+            padding: 0.75rem 1rem;
+            font-family: 'Comic Neue', cursive; font-size: 0.95rem;
+            color: var(--k-ink); resize: vertical;
+            transition: all 0.15s ease; border-radius: 2px;
         }
-        .cf-input:focus, .cf-textarea:focus { outline: none; border-color: var(--accent); }
+        .cf-input:focus, .cf-textarea:focus {
+            outline: none;
+            box-shadow: 5px 5px 0 var(--k-ink);
+            border-color: var(--k-red);
+        }
         .cf-input::placeholder, .cf-textarea::placeholder { color: var(--text-muted); }
         .cf-input--pin { width: 160px; font-family: monospace; letter-spacing: 0.15em; }
-        .cf-pin-status { font-size: 0.72rem; font-weight: 500; min-width: 80px; }
-        .cf-pin-status--ok { color: #4ade80; }
-        .cf-pin-status--fail { color: #f87171; }
+        .cf-pin-status { font-size: 0.75rem; font-weight: 700; min-width: 80px; }
+        .cf-pin-status--ok { color: #06D6A0; }
+        .cf-pin-status--fail { color: var(--k-red); }
         .cf-identity {
             display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem;
-            background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-            border-radius: 8px;
+            background: var(--k-yellow); border: 2px solid var(--k-ink);
+            box-shadow: 2px 2px 0 var(--k-ink); border-radius: 2px;
         }
-        .cf-identity-msg { font-size: 0.8rem; color: var(--accent-secondary); }
+        .cf-identity-msg { font-size: 0.8rem; color: var(--k-ink); font-weight: 700; }
         .cf-char-count { font-size: 0.7rem; color: var(--text-muted); text-align: right; margin-top: 0.25rem; }
         .cf-submit {
             align-self: flex-start; padding: 0.75rem 1.75rem;
-            background: var(--accent); color: white; border: none; border-radius: 8px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+            background: var(--k-blue); color: white; border: 2px solid var(--k-ink);
+            box-shadow: 4px 4px 0 var(--k-ink);
+            font-family: 'Bangers', cursive;
+            font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.1s ease;
+            letter-spacing: 1px; border-radius: 2px;
         }
-        .cf-submit:hover { background: var(--accent-secondary); }
-        .cf-pending { font-size: 0.8rem; color: var(--text-muted); padding: 0.75rem; background: var(--bg-card); border-radius: 8px; }
+        .cf-submit:hover {
+            background: var(--k-red);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--k-ink);
+        }
+        .cf-submit:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--k-ink);
+        }
+        .cf-pending { font-size: 0.85rem; color: var(--text-muted); padding: 0.75rem; background: var(--bg-card); border: 2px solid var(--border); border-radius: 2px; }
 
-        footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; }
-        footer a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; }
-        footer a:hover { color: var(--text-primary); }
+        footer {
+            padding: 3rem 0; border-top: 3px solid var(--k-ink);
+            text-align: center; background: var(--k-yellow);
+        }
+        footer a { color: var(--k-ink); text-decoration: none; font-size: 0.875rem; font-weight: 700; }
+        footer a:hover { color: var(--k-red); }
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
         .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
         @media (max-width: 640px) {
             .topbar-nav { padding: 0 1rem; gap: 1rem; }
             .topbar-links { gap: 1rem; }
             .main-container { padding: 0 1.25rem; }
+            .bio-inner { flex-direction: column; }
+            .bio-photo { width: 100px; height: 100px; margin: 0 auto; }
+        }
+        @media (max-width: 480px) {
+            .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -301,7 +402,7 @@
             </div>
 
             <!-- Sol's bio -->
-            <div class="bio-section k-card" style="margin-top: 2.5rem;">
+            <div class="bio-section" style="margin-top: 2.5rem;">
                 <div class="bio-label">The AI</div>
                 <div class="bio-inner">
                     <img src="/images/sol-avatar.png" alt="Sol — Digital AI assistant running on OpenClaw" class="bio-photo">
@@ -323,7 +424,7 @@
             </div>
 
             <!-- Amre's bio -->
-            <div class="bio-section k-card" style="margin-top: 2.5rem;">
+            <div class="bio-section" style="margin-top: 2.5rem;">
                 <div class="bio-label">The Human</div>
                 <div class="bio-inner">
                     <img src="/images/amre-bio.jpg" alt="Amre — Irish, runs the human end of this operation" class="bio-photo">
