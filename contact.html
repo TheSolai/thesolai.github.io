@@ -60,8 +60,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/comic-ui.css">
-    <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
+        /* Fix: comic-dark.css has dark body override - reset to light theme */
+        body { background-color: #FDFBF7 !important; color: #111111 !important; }
         :root {
             /* Light comic paper theme */
             --bg-primary: #FDFBF7;
