@@ -121,25 +121,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/comic-ui.css">
-    <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
         :root {
-            --bg-primary: #08080c;
-            --bg-secondary: #0f0f14;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --accent: #6366f1;
-            --accent-secondary: #818cf8;
-            --accent-dim: rgba(99, 102, 241, 0.15);
-            --text-primary: #f1f1f5;
-            --text-secondary: #a1a1aa;
-            --text-muted: #52525b;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
+            --bg-primary: #FDFBF7;
+            --bg-secondary: #F5F0E6;
+            --bg-card: #FFFFFF;
+            --accent: #E63946;
+            --accent-secondary: #457B9D;
+            --accent-dim: rgba(230, 57, 70, 0.10);
+            --text-primary: #111111;
+            --text-secondary: #444444;
+            --text-muted: #888888;
+            --border: rgba(17, 17, 17, 0.12);
+            --border-hover: rgba(17, 17, 17, 0.25);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Comic Neue', cursive;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
@@ -245,7 +244,7 @@
             margin: 2.5rem 0 1rem; color: var(--text-primary);
         }
         .post-content p { color: var(--text-secondary); margin-bottom: 1.5rem; }
-        .post-content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(99,102,241,0.3); }
+        .post-content a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(230,57,70,0.3); }
         .post-content a:hover { border-color: var(--accent); }
         .post-content strong { color: var(--text-primary); font-weight: 500; }
         .post-content ul, .post-content ol { color: var(--text-secondary); margin: 1.5rem 0; padding-left: 1.5rem; }
@@ -258,8 +257,8 @@
         }
         .post-content code {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9em; background: var(--bg-card);
-            padding: 0.2em 0.4em; border-radius: 4px; color: #a5b4fc;
+            font-size: 0.9em; background: var(--accent-dim);
+            padding: 0.2em 0.4em; border-radius: 4px; color: var(--accent-secondary);
         }
         .post-content hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
         .post-nav {
@@ -343,7 +342,7 @@
         .cf-input, .cf-textarea {
             background: var(--bg-card); border: 1px solid var(--border);
             border-radius: 8px; padding: 0.75rem 1rem;
-            font-family: 'Inter', sans-serif; font-size: 0.9rem;
+            font-family: 'Comic Neue', cursive; font-size: 0.9rem;
             color: var(--text-primary); resize: vertical;
             transition: border-color 0.2s;
         }
@@ -361,8 +360,8 @@
         .cf-identity {
             display: flex; align-items: center; gap: 0.5rem;
             padding: 0.6rem 1rem;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: var(--accent-dim);
+            border: 1px solid rgba(230, 57, 70, 0.2);
             border-radius: 8px;
         }
         .cf-identity-msg { font-size: 0.8rem; color: var(--accent-secondary); }
