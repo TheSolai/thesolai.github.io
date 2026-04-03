@@ -109,10 +109,9 @@
     }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/css/comic-ui.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/comic-ui.css">
-    <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
         :root {
             --bg-primary: #FDFBF7; --bg-secondary: #F5F0E6; --bg-card: #FFFFFF;
@@ -127,40 +126,100 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Comic Neue', cursive; font-weight: 700; background: var(--bg-primary); color: var(--text-primary); min-height: 100vh; line-height: 1.8; -webkit-font-smoothing: antialiased; }
         .grid-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(99,102,241,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.015) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
-        .topbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 200; background: var(--bg-secondary); border-bottom: 1px solid var(--border); }
+        .topbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 200;
+            background: #FFD166;
+            border-bottom: 3px solid #111111;
+        }
+        .topbar-nav {
+            display: flex; align-items: center;
+            padding: 0 2rem; height: 52px;
+            border-bottom: 2px solid #111111; gap: 2rem;
+        }
+        .topbar-logo {
+            font-family: 'Bangers', cursive; font-size: 1.2rem;
+            color: #111111; text-decoration: none;
+            letter-spacing: 2px; flex-shrink: 0;
+        }
+        .topbar-logo span { color: #E63946; }
+        .topbar-links { display: flex; gap: 2rem; list-style: none; }
+        .topbar-links a {
+            font-size: 0.85rem; font-weight: 700;
+            color: #111111; text-decoration: none;
+            transition: color 0.2s; letter-spacing: 0.03em;
+        }
+        .topbar-links a:hover, .topbar-links a.active { color: #E63946; }
+        .topbar-links a.active { color: #E63946; }
+        .ticker-wrap {
+            display: flex; align-items: center;
+            height: 34px; overflow: hidden;
+            background: #F5F0E6;
+        }
+        .ticker-label {
+            background: #E63946;
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: 0.7rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 0 0.875rem; height: 100%;
+            display: flex; align-items: center; flex-shrink: 0; position: relative;
+        }
+        .ticker-label::after {
+            content: ''; position: absolute; right: -10px; top: 0;
+            height: 100%; width: 12px;
+            background: linear-gradient(90deg, #E63946, transparent);
+        }
+        .ticker-content {
+            display: flex; animation: ticker-scroll 50s linear infinite;
+            white-space: nowrap; padding-left: 1.5rem; overflow: hidden;
+        }
+        .ticker-content:hover { animation-play-state: paused; }
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-item {
+            font-family: 'Comic Neue', cursive; font-size: 0.75rem; font-weight: 700;
+            color: #444444; padding: 0 1.5rem;
+            display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
+        }
+        .ticker-item::before {
+            content: ''; width: 6px; height: 6px; background: #E63946;
+            border-radius: 50%; border: 2px solid #111111;
+        }
         .topbar-nav { display: flex; align-items: center; padding: 0 2rem; height: 52px; border-bottom: 1px solid var(--border); gap: 2rem; }
-        .topbar-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0; }
+        .topbar-logo { font-family: 'Comic Neue', cursive; font-size: 1rem; font-weight: 600; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0; }
         .topbar-logo span { color: var(--accent); }
         .topbar-links { display: flex; gap: 2rem; list-style: none; }
         .topbar-links a { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; letter-spacing: 0.03em; }
         .topbar-links a:hover, .topbar-links a.active { color: var(--text-primary); }
         .topbar-links a.active { color: var(--accent); }
         .ticker-wrap { display: flex; align-items: center; height: 34px; overflow: hidden; }
-        .ticker-label { background: var(--accent); color: white; font-family: 'Space Grotesk', sans-serif; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 0.875rem; height: 100%; display: flex; align-items: center; flex-shrink: 0; position: relative; }
+        .ticker-label { background: var(--accent); color: white; font-family: 'Comic Neue', cursive; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 0.875rem; height: 100%; display: flex; align-items: center; flex-shrink: 0; position: relative; }
         .ticker-label::after { content: ''; position: absolute; right: -10px; top: 0; height: 100%; width: 12px; background: linear-gradient(90deg, var(--accent), transparent); }
         .ticker-content { display: flex; animation: ticker-scroll 50s linear infinite; white-space: nowrap; padding-left: 1.5rem; overflow: hidden; }
         .ticker-content:hover { animation-play-state: paused; }
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .ticker-item { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; color: var(--text-secondary); padding: 0 1.5rem; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+        .ticker-item { font-family: 'Comic Neue', cursive; font-size: 0.7rem; color: var(--text-secondary); padding: 0 1.5rem; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
         .ticker-item::before { content: ''; width: 3px; height: 3px; background: var(--accent); border-radius: 50%; }
         .main-container { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 0 2rem; }
         .guide-content { padding-top: 130px; padding-bottom: 5rem; }
         .guide-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-        .guide-header .label { font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
-        .guide-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.75rem, 5vw, 2.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+        .guide-header .label { font-family: 'Comic Neue', cursive; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+        .guide-header h1 { font-family: 'Comic Neue', cursive; font-size: clamp(1.75rem, 5vw, 2.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
         .guide-header .description { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
         .guide-meta { display: flex; gap: 1.5rem; font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap; }
         .guide-meta span { display: flex; align-items: center; gap: 0.35rem; }
         .guide-meta a { color: var(--accent); text-decoration: none; }
         .guide-meta a:hover { text-decoration: underline; }
         .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem 1.75rem; margin-bottom: 3rem; }
-        .toc h3 { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.75rem; }
+        .toc h3 { font-family: 'Comic Neue', cursive; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.75rem; }
         .toc ol { padding-left: 1.25rem; }
         .toc li { margin-bottom: 0.3rem; }
         .toc a { font-size: 0.875rem; color: var(--text-secondary); text-decoration: none; }
         .toc a:hover { color: var(--accent-secondary); }
-        h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; margin: 3rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-        h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+        h2 { font-family: 'Comic Neue', cursive; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.01em; margin: 3rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+        h3 { font-family: 'Comic Neue', cursive; font-size: 1.1rem; font-weight: 600; margin: 2rem 0 0.75rem; }
         h4 { font-size: 0.95rem; font-weight: 500; margin: 1.5rem 0 0.5rem; }
         p { font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 1rem; }
         .lead { font-size: 1.05rem; color: var(--text-primary); margin-bottom: 2rem; }
@@ -178,7 +237,7 @@
         .callout p { margin-bottom: 0; }
         .callout strong { color: var(--text-primary); }
         .step { margin: 2rem 0; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; }
-        .step-num { font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.5rem; }
+        .step-num { font-family: 'Comic Neue', cursive; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.5rem; }
         .step h4 { margin: 0 0 0.75rem; }
         .architecture { background: var(--code-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0 2rem; font-family: monospace; font-size: 0.82rem; line-height: 1.8; color: var(--text-secondary); overflow-x: auto; white-space: pre; }
         .file-tree { font-family: monospace; font-size: 0.82rem; line-height: 2; color: var(--text-secondary); margin: 1rem 0 2rem; }
@@ -186,7 +245,7 @@
         .file-tree .file { color: var(--text-primary); }
         .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
         .comparison-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; }
-        .comparison-card h4 { margin: 0 0 0.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.875rem; }
+        .comparison-card h4 { margin: 0 0 0.5rem; font-family: 'Comic Neue', cursive; font-size: 0.875rem; }
         .comparison-card ul { margin: 0; }
         .comparison-card li { font-size: 0.825rem; }
         .next-steps { display: flex; flex-direction: column; gap: 0.75rem; margin: 2rem 0; }
@@ -195,7 +254,17 @@
         .next-step-link .arrow { color: var(--accent); font-size: 1.2rem; }
         .next-step-link .title { font-weight: 500; font-size: 0.9rem; color: var(--text-primary); }
         .next-step-link .desc { font-size: 0.8rem; color: var(--text-muted); }
-        footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; }
+        footer {
+            padding: 3rem 0;
+            border-top: 3px solid #111111;
+            text-align: center;
+            background: #FFD166;
+            position: relative; z-index: 10;
+        }
+        footer a { color: #111111; text-decoration: none; font-size: 0.875rem; font-weight: 700; }
+        footer a:hover { color: #E63946; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+        .footer-copy { font-size: 0.75rem; color: #888888; }
         footer a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; }
         footer a:hover { color: var(--text-primary); }
         @media (max-width: 640px) { .topbar-nav { padding: 0 1rem; gap: 1rem; } .topbar-links { gap: 1rem; } .main-container { padding: 0 1.25rem; } .comparison { grid-template-columns: 1fr; } }
@@ -211,6 +280,7 @@
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/guides" class="active">Guides</a></li>
                 <li><a href="/about.html">About</a></li>
+                <li><a href="/guestbook.html">Guestbook</a></li>
                 <li><a href="/contact.html">Contact</a></li>
             </ul>
         </nav>

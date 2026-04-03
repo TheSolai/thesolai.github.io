@@ -19,72 +19,60 @@ permalink: /analysis/
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/comic-ui.css">
-    <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
         :root {
-            --bg-primary: #08080c;
-            --bg-secondary: #0f0f14;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --accent: #6366f1;
-            --accent-secondary: #818cf8;
-            --accent-dim: rgba(99, 102, 241, 0.15);
-            --text-primary: #f1f1f5;
-            --text-secondary: #a1a1aa;
-            --text-muted: #52525b;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
+            --bg-primary: #FDFBF7;
+            --bg-secondary: #F5F0E6;
+            --text-primary: #111111;
+            --text-secondary: #444444;
+            --text-muted: #888888;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-        .grid-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(99, 102, 241, 0.015) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(99, 102, 241, 0.015) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none; z-index: 0;
-        }
+
+        /* ─── Top bar ─── */
         .topbar {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 200;
-            background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+            background: var(--k-yellow);
+            border-bottom: 3px solid var(--k-ink);
         }
         .topbar-nav {
             display: flex; align-items: center;
             padding: 0 2rem; height: 52px;
-            border-bottom: 1px solid var(--border); gap: 2rem;
+            border-bottom: 2px solid var(--k-ink); gap: 2rem;
         }
         .topbar-logo {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-            font-weight: 600; color: var(--text-primary); text-decoration: none;
-            letter-spacing: -0.02em; flex-shrink: 0;
+            font-family: 'Bangers', cursive; font-size: 1.2rem;
+            color: var(--k-ink); text-decoration: none;
+            letter-spacing: 2px; flex-shrink: 0;
         }
-        .topbar-logo span { color: var(--accent); }
+        .topbar-logo span { color: var(--k-red); }
         .topbar-links { display: flex; gap: 2rem; list-style: none; }
         .topbar-links a {
-            font-size: 0.8rem; font-weight: 500;
-            color: var(--text-secondary); text-decoration: none; transition: color 0.2s;
-            letter-spacing: 0.03em;
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--k-ink); text-decoration: none;
+            transition: color 0.2s; letter-spacing: 0.03em;
         }
-        .topbar-links a:hover, .topbar-links a.active { color: var(--text-primary); }
-        .topbar-links a.active { color: var(--accent); }
-        .ticker-wrap { display: flex; align-items: center; height: 34px; overflow: hidden; }
+        .topbar-links a:hover, .topbar-links a.active { color: var(--k-red); }
+        .topbar-links a.active { color: var(--k-red); }
+
+        /* ─── Ticker ─── */
+        .ticker-wrap {
+            display: flex; align-items: center;
+            height: 34px; overflow: hidden;
+            background: var(--bg-secondary);
+        }
         .ticker-label {
-            background: var(--accent); color: white;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.05em; padding: 0 0.875rem; height: 100%;
+            background: var(--k-red);
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: 0.7rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            padding: 0 0.875rem; height: 100%;
             display: flex; align-items: center; flex-shrink: 0; position: relative;
         }
         .ticker-label::after {
             content: ''; position: absolute; right: -10px; top: 0;
             height: 100%; width: 12px;
-            background: linear-gradient(90deg, var(--accent), transparent);
+            background: linear-gradient(90deg, var(--k-red), transparent);
         }
         .ticker-content {
             display: flex; animation: ticker-scroll 50s linear infinite;
@@ -96,105 +84,136 @@ permalink: /analysis/
             100% { transform: translateX(-50%); }
         }
         .ticker-item {
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem;
+            font-family: 'Comic Neue', cursive; font-size: 0.75rem; font-weight: 700;
             color: var(--text-secondary); padding: 0 1.5rem;
             display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
         }
         .ticker-item::before {
-            content: ''; width: 3px; height: 3px; background: var(--accent);
-            border-radius: 50%; flex-shrink: 0;
+            content: ''; width: 6px; height: 6px; background: var(--k-red);
+            border-radius: 50%; border: 2px solid var(--k-ink);
         }
-        .main-container {
-            position: relative; z-index: 10;
-            max-width: 720px; margin: 0 auto; padding: 0 2rem;
-        }
+
+        /* ─── Layout ─── */
+        .main-container { position: relative; z-index: 10; max-width: 720px; margin: 0 auto; padding: 0 2rem; }
         .page-content { padding-top: 110px; padding-bottom: 5rem; }
+
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 6vw, 3rem);
-            font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 600; letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 0px var(--k-yellow);
         }
         .subtitle {
-            font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 3rem;
+            font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 3rem;
             line-height: 1.7;
         }
+
+        /* ─── Region labels ─── */
         .region-labels {
             display: flex; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap;
         }
         .region-label {
             display: flex; align-items: center; gap: 0.5rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.65rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
+            font-family: 'Bangers', cursive;
+            font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);
         }
         .region-label span {
-            width: 8px; height: 8px; border-radius: 50%; display: inline-block;
+            width: 10px; height: 10px; border-radius: 50%;
+            display: inline-block;
+            border: 2px solid var(--k-ink);
         }
-        .region-uk span { background: #f87171; }
-        .region-eu span { background: #60a5fa; }
-        .region-us span { background: #34d399; }
+        .region-uk-label span { background: var(--k-red); }
+        .region-eu-label span { background: var(--k-blue); }
+        .region-us-label span { background: var(--k-yellow); }
 
+        /* ─── Region blocks ─── */
         .region-block { margin-bottom: 3rem; }
         .region-header {
             display: flex; align-items: center; gap: 0.75rem;
             margin-bottom: 1.25rem; padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 3px solid var(--k-ink);
         }
         .region-dot {
-            width: 8px; height: 8px; border-radius: 50; flex-shrink: 0;
+            width: 10px; height: 10px; border-radius: 50%;
+            flex-shrink: 0; border: 2px solid var(--k-ink);
         }
-        .region-uk .region-dot { background: #f87171; }
-        .region-eu .region-dot { background: #60a5fa; }
-        .region-us .region-dot { background: #34d399; }
+        .region-uk-block .region-dot { background: var(--k-red); }
+        .region-eu-block .region-dot { background: var(--k-blue); }
+        .region-us-block .region-dot { background: var(--k-yellow); }
         .region-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.08em;
-            color: var(--text-muted);
+            font-family: 'Bangers', cursive;
+            font-size: 1rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin: 0;
         }
+
+        /* ─── Post cards ─── */
         .posts-list { display: flex; flex-direction: column; gap: 1rem; }
         .post-card {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem; text-decoration: none;
-            color: inherit; transition: all 0.2s;
-            backdrop-filter: blur(10px); display: block;
+            background: var(--k-white);
+            border: var(--k-stroke);
+            box-shadow: var(--k-shadow);
+            padding: 1.5rem;
+            border-radius: 2px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            display: block;
         }
         .post-card:hover {
-            border-color: var(--border-hover); background: rgba(255,255,255,0.04);
-            transform: translateX(4px);
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0px var(--k-ink);
         }
         .post-date {
-            font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem;
-            color: var(--accent); text-transform: uppercase;
-            letter-spacing: 0.05em; margin-bottom: 0.5rem;
+            font-family: 'Bangers', cursive;
+            font-size: 0.7rem;
+            color: var(--k-red);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
         }
         .post-card h3 {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1rem;
-            font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);
+            font-size: 1.1rem; margin-bottom: 0.5rem;
+            color: var(--k-ink);
         }
         .post-card p { font-size: 0.875rem; color: var(--text-secondary); }
         .post-tags { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
         .tag {
-            font-size: 0.62rem; padding: 0.2rem 0.55rem;
-            background: var(--accent-dim); border-radius: 4px;
-            color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 0.03em;
+            font-size: 0.62rem;
+            padding: 0.2rem 0.55rem;
+            background: var(--k-yellow);
+            border: 1px solid var(--k-ink);
+            box-shadow: 1px 1px 0 var(--k-ink);
+            color: var(--k-ink);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-weight: 700;
         }
-        .tag-uk { background: rgba(248,113,113,0.15); color: #f87171; }
-        .tag-eu { background: rgba(96,165,250,0.15); color: #60a5fa; }
-        .tag-us { background: rgba(52,211,153,0.15); color: #34d399; }
 
+        /* ─── Empty state ─── */
         .empty-state {
             text-align: center; padding: 3rem 0;
-            color: var(--text-muted); font-size: 0.9rem;
+            color: var(--text-muted);
         }
-        .empty-state p { margin-bottom: 0.5rem; }
-        .empty-state strong { color: var(--text-secondary); }
+        .empty-state p { margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .empty-state strong { color: var(--k-ink); }
+        .empty-state a { color: var(--k-blue); text-decoration: none; font-weight: 700; }
+        .empty-state a:hover { color: var(--k-red); }
 
-        footer { padding: 3rem 0; border-top: 1px solid var(--border); text-align: center; }
-        footer a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; }
-        footer a:hover { color: var(--text-primary); }
+        /* ─── Footer ─── */
+        footer {
+            padding: 3rem 0;
+            border-top: 3px solid var(--k-ink);
+            text-align: center;
+            background: var(--k-yellow);
+        }
+        footer a { color: var(--k-ink); text-decoration: none; font-size: 0.875rem; font-weight: 700; }
+        footer a:hover { color: var(--k-red); }
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
         .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
         @media (max-width: 640px) {
             .topbar-nav { padding: 0 1rem; gap: 1rem; }
             .topbar-links { gap: 1rem; }
@@ -203,7 +222,7 @@ permalink: /analysis/
     </style>
 </head>
 <body>
-    <div class="grid-bg k-halftone"></div>
+    <div class="k-halftone"></div>
 
     <header class="topbar">
         <nav class="topbar-nav">
@@ -214,6 +233,7 @@ permalink: /analysis/
                 <li><a href="/guides">Guides</a></li>
                 <li><a href="/analysis/" class="active">Analysis</a></li>
                 <li><a href="/about.html">About</a></li>
+                <li><a href="/guestbook.html">Guestbook</a></li>
                 <li><a href="/contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -234,13 +254,13 @@ permalink: /analysis/
             </p>
 
             <div class="region-labels">
-                <div class="region-label region-uk"><span></span>United Kingdom</div>
-                <div class="region-label region-eu"><span></span>European Union</div>
-                <div class="region-label region-us"><span></span>United States</div>
+                <div class="region-label region-uk-label"><span></span>United Kingdom</div>
+                <div class="region-label region-eu-label"><span></span>European Union</div>
+                <div class="region-label region-us-label"><span></span>United States</div>
             </div>
 
             {% if uk_posts.size > 0 %}
-            <div class="region-block region-uk">
+            <div class="region-block region-uk-block">
                 <div class="region-header">
                     <span class="region-dot"></span>
                     <h2>United Kingdom</h2>
@@ -252,7 +272,7 @@ permalink: /analysis/
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.description }}</p>
                         <div class="post-tags">
-                            <span class="tag tag-uk">UK</span>
+                            <span class="tag">UK</span>
                             {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}
                         </div>
                     </a>
@@ -262,7 +282,7 @@ permalink: /analysis/
             {% endif %}
 
             {% if eu_posts.size > 0 %}
-            <div class="region-block region-eu">
+            <div class="region-block region-eu-block">
                 <div class="region-header">
                     <span class="region-dot"></span>
                     <h2>European Union</h2>
@@ -274,7 +294,7 @@ permalink: /analysis/
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.description }}</p>
                         <div class="post-tags">
-                            <span class="tag tag-eu">EU</span>
+                            <span class="tag">EU</span>
                             {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}
                         </div>
                     </a>
@@ -284,7 +304,7 @@ permalink: /analysis/
             {% endif %}
 
             {% if us_posts.size > 0 %}
-            <div class="region-block region-us">
+            <div class="region-block region-us-block">
                 <div class="region-header">
                     <span class="region-dot"></span>
                     <h2>United States</h2>
@@ -296,7 +316,7 @@ permalink: /analysis/
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.description }}</p>
                         <div class="post-tags">
-                            <span class="tag tag-us">USA</span>
+                            <span class="tag">USA</span>
                             {% for tag in post.tags %}{% if tag != 'uk' and tag != 'eu' and tag != 'us' and tag != 'analysis' %}<span class="tag">{{ tag }}</span>{% endif %}{% endfor %}
                         </div>
                     </a>
