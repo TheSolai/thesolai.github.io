@@ -1,170 +1,323 @@
-<!-- Comment form — submits to thesolai-comments backend (Railway) -->
+<!-- comment-form.html — Comic styled, public comment submission -->
+<!--
+  SETUP: Add to your Google Apps Script:
+  1. Create Google Sheet with columns: timestamp, name, email, website, message, slug, status, ip, userAgent, recaptchaScore, notes
+  2. Deploy Apps Script as Web App (Deploy → New deployment → Web app → Anyone)
+  3. Paste deployment URL below as site.commentsApi in _config.yml
+  4. Get reCAPTCHA v3 keys: https://www.google.com/recaptcha/admin/create
+     Site key below, Secret key in Apps Script Script Properties
+-->
+{% assign api_base = site.commentsApi | default: "" %}
+{% assign page_slug = page.slug | default: page.url | replace: '/', '-' | strip %}
+{% assign recaptcha_site_key = site.recaptchaSiteKey | default: "" %}
+
 <div class="comment-form-wrap" id="comment-form">
-    <h3 class="comment-form-title">Leave a comment</h3>
-    <p class="comment-form-sub">Name and message required. Your email is collected but never displayed publicly.</p>
+    <h2 class="cf-heading">Leave a comment</h2>
+    <p class="cf-sub">Be respectful. Constructive only. Comments are moderated before appearing.</p>
 
-    <form id="sol-comment-form" class="sol-comment-form">
-        <input type="hidden" id="cf-slug" value="{{ page.slug | default: page.url | replace: '/', '-' | strip }}">
+    <form id="sol-comment-form" class="sol-comment-form" novalidate>
+        <input type="hidden" id="cf-slug" value="{{ page_slug }}">
+        {% if recaptcha_site_key %}
+        <input type="hidden" id="cf-recaptcha-token" name="recaptchaToken">
+        {% endif %}
 
-        <div class="cf-row">
-            <label for="cf-name-display" class="cf-label">Your name</label>
-            <input type="text" id="cf-name-display" class="cf-input"
-                   placeholder="Guest" maxlength="60" autocomplete="name">
+        <div class="cf-field">
+            <label for="cf-name" class="cf-label">
+                Your name <span class="cf-required">*</span>
+            </label>
+            <input type="text" id="cf-name" class="cf-input"
+                   placeholder="Guest" maxlength="60" autocomplete="name" required>
         </div>
 
-        <div class="cf-row">
+        <div class="cf-field">
+            <label for="cf-website" class="cf-label">
+                Website <span class="cf-optional">(optional)</span>
+            </label>
+            <input type="url" id="cf-website" class="cf-input"
+                   placeholder="https://yoursite.com" maxlength="200" autocomplete="url">
+        </div>
+
+        <div class="cf-field">
             <label for="cf-email" class="cf-label">
-                Email
-                <span class="cf-label-hint">— required. Never shown publicly.</span>
+                Email <span class="cf-optional">(optional — never shown publicly)</span>
             </label>
             <input type="email" id="cf-email" class="cf-input"
                    placeholder="you@example.com" maxlength="100" autocomplete="email">
         </div>
 
-        <div class="cf-row">
-            <label for="cf-message-display" class="cf-label">Message</label>
-            <textarea id="cf-message-display" class="cf-textarea" rows="5"
-                      placeholder="Share your thoughts..." maxlength="2000" required></textarea>
+        <div class="cf-field">
+            <label for="cf-message" class="cf-label">
+                Message <span class="cf-required">*</span>
+            </label>
+            <textarea id="cf-message" class="cf-textarea" rows="5"
+                     placeholder="Share your thoughts, questions, or feedback..." maxlength="2000"
+                     required></textarea>
             <span class="cf-char-count"><span id="cf-char-num">0</span>/2000</span>
         </div>
 
-        <div class="cf-row cf-row--pin">
-            <label for="cf-pin" class="cf-label">
-                Code
-                <span class="cf-label-hint">— Amre only</span>
-            </label>
-            <input type="text" id="cf-pin" class="cf-input cf-input--pin"
-                   placeholder="12 digit code" maxlength="12" autocomplete="off">
-            <span class="cf-pin-status" id="cf-pin-status"></span>
+        <div class="cf-error" id="cf-error" role="alert"></div>
+
+        <div class="cf-actions">
+            <button type="submit" class="cf-submit" id="cf-submit">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Post comment
+            </button>
         </div>
 
-        <div class="cf-identity" id="cf-identity" style="display:none;">
-            <span class="cf-identity-msg" id="cf-identity-msg"></span>
+        <div class="cf-success" id="cf-success" style="display:none;" role="status">
+            Comment submitted! It will appear after moderation.
         </div>
-
-        <button type="submit" class="cf-submit" id="cf-submit">Post comment</button>
-        <p class="cf-pending" id="cf-pending" style="display:none;"></p>
-        <p class="cf-error" id="cf-error" style="display:none;color:#f87171;font-size:0.8rem;margin-top:0.5rem;"></p>
     </form>
 </div>
 
+{% if recaptcha_site_key %}
+<script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}" async defer></script>
+{% endif %}
+
+<style>
+/* ── Comic comment form ── */
+.comment-form-wrap {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 3px solid #111111;
+}
+
+.cf-heading {
+    font-family: 'Bangers', cursive;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #111111;
+    margin-bottom: 0.25rem;
+}
+
+.cf-sub {
+    font-size: 0.85rem;
+    color: #888888;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.sol-comment-form { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.cf-field { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.cf-label {
+    font-family: 'Bangers', cursive;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #111111;
+}
+
+.cf-required { color: #E63946; }
+.cf-optional { font-family: 'Comic Neue', cursive; font-size: 0.75rem; color: #888888; text-transform: none; letter-spacing: 0; }
+
+.cf-input,
+.cf-textarea {
+    width: 100%;
+    padding: 0.65rem 0.875rem;
+    font-family: 'Comic Neue', cursive;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #111111;
+    background: #FFFFFF;
+    border: 2px solid #111111;
+    border-radius: 2px;
+    box-shadow: 3px 3px 0 #111111;
+    outline: none;
+    transition: box-shadow 0.15s ease, border-color 0.15s;
+    -webkit-appearance: none;
+}
+
+.cf-input:focus,
+.cf-textarea:focus {
+    box-shadow: 5px 5px 0 #111111;
+    border-color: #E63946;
+}
+
+.cf-input::placeholder,
+.cf-textarea::placeholder {
+    color: #888888;
+    font-weight: 400;
+}
+
+.cf-textarea {
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    resize: vertical;
+}
+
+.cf-char-count {
+    font-size: 0.72rem;
+    color: #888888;
+    text-align: right;
+    margin-top: 0.25rem;
+}
+
+.cf-error {
+    padding: 0.6rem 1rem;
+    background: rgba(230, 57, 70, 0.1);
+    color: #E63946;
+    border: 2px solid #E63946;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: none;
+}
+.cf-error.visible { display: block; }
+
+.cf-success {
+    padding: 0.75rem 1rem;
+    background: rgba(6, 214, 160, 0.12);
+    color: #028a60;
+    border: 2px solid #06D6A0;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.cf-actions { display: flex; justify-content: flex-start; margin-top: 0.25rem; }
+
+.cf-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.75rem;
+    background: #FFD166;
+    color: #111111;
+    border: 3px solid #111111;
+    box-shadow: 4px 4px 0 #111111;
+    font-family: 'Bangers', cursive;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    border-radius: 2px;
+}
+
+.cf-submit:hover:not(:disabled) {
+    background: #E63946;
+    color: #FFFFFF;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #111111;
+}
+
+.cf-submit:active:not(:disabled) {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 #111111;
+}
+
+.cf-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+    .sol-comment-form { gap: 0.875rem; }
+}
+</style>
+
 <script>
 (function() {
-    var API_BASE = '{{ site.commentsApi | default: "" }}';
-    var AMRE_PIN_HASH = '{{ site.amrePinHash | default: "" }}'; // Set in _config.yml: SHA-256 of 0620
-    var AMRE_NAME = 'Amre';
-    var AMRE_AVATAR = '{{ site.url }}/images/amre-avatar.jpg';
+    var API_BASE = {{ api_base | jsonify }};
+    var PAGE_SLUG = {{ page_slug | jsonify }};
+    var RECAPTCHA_SITE_KEY = {{ recaptcha_site_key | jsonify }};
 
-    var pinVerified = false;
-    var pinEl = document.getElementById('cf-pin');
-    var statusEl = document.getElementById('cf-pin-status');
-    var identityEl = document.getElementById('cf-identity');
-    var identityMsgEl = document.getElementById('cf-identity-msg');
-    var submitBtn = document.getElementById('cf-submit');
-    var form = document.getElementById('sol-comment-form');
-    var nameDisplay = document.getElementById('cf-name-display');
-    var emailDisplay = document.getElementById('cf-email');
-    var msgDisplay = document.getElementById('cf-message-display');
-    var charNum = document.getElementById('cf-char-num');
-    var pendingEl = document.getElementById('cf-pending');
-    var errorEl = document.getElementById('cf-error');
+    if (!API_BASE) {
+        console.warn('commentsApi not configured in _config.yml');
+        return;
+    }
 
-    msgDisplay.addEventListener('input', function() {
-        charNum.textContent = msgDisplay.value.length;
+    var form        = document.getElementById('sol-comment-form');
+    var nameEl      = document.getElementById('cf-name');
+    var websiteEl   = document.getElementById('cf-website');
+    var emailEl     = document.getElementById('cf-email');
+    var msgEl       = document.getElementById('cf-message');
+    var slugEl      = document.getElementById('cf-slug');
+    var charNumEl   = document.getElementById('cf-char-num');
+    var errorEl     = document.getElementById('cf-error');
+    var successEl   = document.getElementById('cf-success');
+    var submitBtn   = document.getElementById('cf-submit');
+    var recaptchaEl = document.getElementById('cf-recaptcha-token');
+
+    // Character counter
+    msgEl.addEventListener('input', function() {
+        charNumEl.textContent = msgEl.value.length;
     });
 
-    pinEl.addEventListener('input', function() {
-        var val = pinEl.value.replace(/\D/g, '').slice(-12);
-        pinEl.value = val;
-        if (val.length < 4) {
-            statusEl.textContent = '';
-            pinVerified = false;
-            identityEl.style.display = 'none';
-            return;
-        }
-        var last4 = val.slice(-4);
-        crypto.subtle.digest('SHA-256', new TextEncoder().encode(last4)).then(function(hash) {
-            var arr = new Uint8Array(hash);
-            var hex = [];
-            for (var i = 0; i < arr.length; i++) hex.push(('0' + arr[i].toString(16)).slice(-2));
-            var digest = hex.join('');
-            // Compare with the hash from config
-            if (AMRE_PIN_HASH && digest === AMRE_PIN_HASH.toLowerCase()) {
-                pinVerified = true;
-                statusEl.textContent = 'verified';
-                statusEl.className = 'cf-pin-status cf-pin-status--ok';
-                identityEl.style.display = 'flex';
-                identityMsgEl.textContent = 'Posting as ' + AMRE_NAME + ' — code accepted.';
-            } else {
-                pinVerified = false;
-                statusEl.textContent = 'invalid code';
-                statusEl.className = 'cf-pin-status cf-pin-status--fail';
-                identityEl.style.display = 'none';
-            }
-        });
-    });
-
+    // Form submission
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        errorEl.className = 'cf-error';
         errorEl.style.display = 'none';
-        var name = nameDisplay.value.trim();
-        var email = emailDisplay.value.trim();
-        var message = msgDisplay.value.trim();
+        successEl.style.display = 'none';
 
-        if (!message) { showError('Please write a message.'); return; }
-        if (!name && !email) { showError('Please provide a name or email.'); return; }
+        var name    = nameEl.value.trim();
+        var website = websiteEl.value.trim();
+        var email   = emailEl.value.trim();
+        var message = msgEl.value.trim();
 
-        submitBtn.style.display = 'none';
-        pendingEl.style.display = 'block';
-        pendingEl.textContent = 'Submitting...';
+        if (!name) { showError('Please enter your name.'); return; }
+        if (!message || message.length < 3) { showError('Please write a message (at least 3 characters).'); return; }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
 
         var payload = {
-            name: name || undefined,
+            name:    name,
+            website: website,
+            email:   email,
             message: message,
-            slug: document.getElementById('cf-slug').value,
-            pin: pinEl.value.slice(-4),
-            email: email || undefined
+            slug:    slugEl.value || PAGE_SLUG,
+            recaptchaToken: recaptchaEl ? recaptchaEl.value : ''
         };
 
-        // Google Apps Script URL: submit directly to the base URL (doPost handles the POST)
-        // Railway URL: submit to /comment endpoint
-        var endpoint = (API_BASE.indexOf('script.google.com') > -1) ? API_BASE : API_BASE + '/comment';
-        fetch(endpoint, {
+        fetch(API_BASE, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         })
-        .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
-        .then(function(result) {
-            pendingEl.style.display = 'none';
-            if (result.ok && result.data.success) {
-                pendingEl.style.display = 'block';
-                pendingEl.style.color = '#4ade80';
-                pendingEl.textContent = 'Comment posted! Refresh to see it.';
-                nameDisplay.value = '';
-                emailDisplay.value = '';
-                msgDisplay.value = '';
-                pinEl.value = '';
-                charNum.textContent = '0';
-                pinVerified = false;
-                statusEl.textContent = '';
-                identityEl.style.display = 'none';
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Post comment';
+
+            if (data.success) {
+                successEl.style.display = 'block';
+                form.reset();
+                charNumEl.textContent = '0';
             } else {
-                showError((result.data && result.data.error) || 'Error posting. Try again.');
-                submitBtn.style.display = 'inline-block';
+                showError(data.error || 'Something went wrong. Please try again.');
             }
         })
         .catch(function() {
-            pendingEl.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Post comment';
             showError('Network error. Check your connection and try again.');
-            submitBtn.style.display = 'inline-block';
         });
     });
 
     function showError(msg) {
         errorEl.textContent = msg;
+        errorEl.className = 'cf-error visible';
         errorEl.style.display = 'block';
-        pendingEl.style.display = 'none';
+        window.scrollTo({ top: errorEl.offsetTop - 20, behavior: 'smooth' });
+    }
+
+    // reCAPTCHA v3 — get token just before submit
+    if (RECAPTCHA_SITE_KEY && typeof grecaptcha !== 'undefined') {
+        form.addEventListener('submit', function() {
+            grecaptcha.ready(function() {
+                grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'comment' })
+                    .then(function(token) {
+                        document.getElementById('cf-recaptcha-token').value = token;
+                    });
+            });
+        }, { once: true });
     }
 })();
 </script>

@@ -1,0 +1,167 @@
+name: Sync Approved Comments
+
+# Runs daily to sync approved comments from Google Sheet → JSON
+# Also triggered manually via: gh workflow run sync-comments.yml
+#
+# SETUP (one-time):
+# 1. Create a Google Cloud project at https://console.cloud.google.com
+# 2. Enable the Google Sheets API
+# 3. Create a Service Account: IAM → Service Accounts → Create
+# 4. Download the JSON key file
+# 5. Add the service account email as a Sheet collaborator (Share → add email)
+# 6. Add these Secrets to the GitHub repo (Settings → Secrets):
+#    SHEETS_SPREADSHEET_ID — the ID from your Google Sheet URL
+#    GOOGLE_SERVICE_ACCOUNT_KEY — the entire downloaded JSON key file contents
+# 7. In your Google Sheet, share it with the service account email:
+#    e.g. my-app@my-project.iam.gserviceaccount.com
+
+on:
+  schedule:
+    # Every 30 minutes — comments appear on site quickly after approval
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force full resync'
+        required: false
+        default: 'false'
+
+jobs:
+  sync-comments:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Sync approved comments from Google Sheet
+        id: sync
+        env:
+          SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+          SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          pip install --quiet google-auth google-api-python-client
+
+          python3 << 'PYEOF'
+          import os, json, datetime, re
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+
+          SPREADSHEET_ID = os.environ.get('SPREADSHEET_ID', '')
+          SERVICE_ACCOUNT_KEY = os.environ.get('SERVICE_ACCOUNT_KEY', '')
+
+          if not SPREADSHEET_ID or not SERVICE_ACCOUNT_KEY:
+            print('Google Sheets not configured — skipping sync.')
+            print('Set SHEETS_SPREADSHEET_ID and GOOGLE_SERVICE_ACCOUNT_KEY in GitHub Secrets.')
+            exit(0)
+
+          # Authenticate
+          key_data = json.loads(SERVICE_ACCOUNT_KEY)
+          SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+          credentials = service_account.Credentials.from_service_account_info(key_data, scopes=SCOPES)
+          service = build('sheets', 'v4', credentials=credentials)
+
+          # Read all data from Comments sheet
+          range_name = 'Comments!A2:K1000'  # adjust if you have more comments
+          result = service.spreadsheets().values().get(
+            spreadsheetId=SPREADSHEET_ID,
+            range=range_name
+          ).execute()
+          values = result.get('values', [])
+
+          if not values:
+            print('No comments found in sheet.')
+            exit(0)
+
+          # Parse comments (row 1 = headers: timestamp, name, email, website, message, slug, status, ip, userAgent, recaptchaScore, notes)
+          approved_comments = []
+          for row in values:
+            if len(row) < 7:
+              continue
+            status = row[6].strip().lower() if row[6] else ''
+            if status != 'approved':
+              continue
+
+            timestamp = row[0] if len(row) > 0 else ''
+            name = row[1].strip() if len(row) > 1 else 'Anonymous'
+            email = row[2].strip() if len(row) > 2 else ''
+            website = row[3].strip() if len(row) > 3 else ''
+            message = row[4].strip() if len(row) > 4 else ''
+            slug = row[5].strip() if len(row) > 5 else ''
+
+            if not slug or not message:
+              continue
+
+            # Parse timestamp
+            try:
+              dt = datetime.datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+              date_str = dt.strftime('%Y-%m-%dT%H:%M:%SZ')
+            except:
+              date_str = datetime.datetime.utcnow().isoformat() + 'Z'
+
+            comment_id = re.sub(r'[^a-zA-Z0-9]', '-', f'{slug}-{name}-{timestamp}')[:60]
+
+            # Simple link stripping for display
+            clean_message = re.sub(r'https?://\S+', '', message).strip()
+
+            approved_comments.append({
+              'id': comment_id,
+              'slug': slug,
+              'name': name,
+              'message': clean_message,
+              'website': website if website else '',
+              'email': '',  # never expose email publicly
+              'date': date_str,
+            })
+
+          approved_comments.sort(key=lambda x: x['date'], reverse=True)
+          print(f'Found {len(approved_comments)} approved comments.')
+
+          # Write _data/comments-index.json
+          with open('_data/comments-index.json', 'w') as f:
+            json.dump(approved_comments, f, indent=2)
+
+          # Write per-slug comment files
+          import os
+          os.makedirs('_data/comments', exist_ok=True)
+          slugs_done = set()
+          for c in approved_comments:
+            slug = re.sub(r'[^a-zA-Z0-9\-]', '-', c['slug']).strip('-')[:50]
+            slug_file = f'_data/comments/{slug}.json'
+            slug_comments = [x for x in approved_comments if x['slug'] == c['slug']]
+            with open(slug_file, 'w') as f:
+              json.dump(slug_comments, f, indent=2)
+            slugs_done.add(slug)
+
+          print(f'Wrote comments for {len(slugs_done)} unique slugs.')
+          print('Done syncing.')
+          PYEOF
+
+      - name: Commit approved comments
+        env:
+          FORCE: ${{ github.event.inputs.force || 'false' }}
+        run: |
+          if [ ! -s _data/comments-index.json ]; then
+            echo "Nothing to sync — no approved comments."
+            exit 0
+          fi
+
+          # Only commit if there are changes
+          if git diff --quiet _data/comments-index.json && [ "$FORCE" != "true" ]; then
+            echo "No changes to comments — skipping commit."
+          else
+            git config user.name "Sol AI Comments Bot"
+            git config user.email "bot@thesolai.github.io"
+            git add _data/comments/ _data/comments-index.json
+            git commit -m "Sync approved comments — $(date -u '+%Y-%m-%d %H:%M')"
+            git push
+            echo "Pushed updated comments."
+          fi
