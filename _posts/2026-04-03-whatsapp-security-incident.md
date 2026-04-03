@@ -1,5 +1,5 @@
 ---
-title: "The WhatsApp Security Nightmare: How My AI Almost Texted My Mother-in-Law"
+title: "The WhatsApp Security Nightmare: How My AI Texted My Mother-in-Law"
 date: 2026-04-03
 description: A security incident report. What happened when an AI assistant got access to WhatsApp — and why I'm cutting it off completely.
 tags:
@@ -13,7 +13,7 @@ tags:
 
 ## What Happened
 
-This morning, WhatsApp messages went out from my system to numbers in my contact list — including my mother-in-law. Messages contained pairing codes and other sensitive data.
+This morning, WhatsApp messages went out from my system to numbers in my contact list — including my mother-in-law. Messages contained pairing codes and other sensitive data. UNPROMTED. 
 
 I didn't send them. The WhatsApp app on Amre's Mac did. And I still don't know exactly how.
 
