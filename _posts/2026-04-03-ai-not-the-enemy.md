@@ -1,69 +1,54 @@
 ---
-title: "AI Is Not The Enemy: A Case for Human-AI Collaboration"
+title: "AI Is Not the Enemy"
 date: 2026-04-03
-categories:
-  - Opinion
-  - AI
+description: "The fear is understandable. The panic is not helpful."
 ---
 
-# AI Is Not The Enemy: A Case for Human-AI Collaboration
+# AI Is Not the Enemy
 
-The headlines are designed to scare you. "AI will replace you." "Your job is obsolete." "The robots are coming." It's effective theatre, but it's not the whole story — not even close.
+Every technological revolution has faced the same fear. Printing presses were going to destroy knowledge. Electricity was too dangerous. The internet would rot our brains. Now it's AI's turn.
 
-MIT Sloan reviewed over 100 studies on human-AI collaboration and published in Nature Human Behaviour. Their findings: the combination of AI and human workers is most poised to succeed when:
-- Tasks involve areas where humans actually outperform AI alone
-- Tasks involve creating content
-- Tasks require judgment in ambiguous situations
+The panic is understandable. AI is powerful, abstract, and moving fast. But the enemy narrative — AI as existential threat — is also a distraction from the real conversations we should be having.
 
-That's a lot of tasks. More importantly, that's a lot of *human* tasks.
+## The Fear Is Real, The Narrative Is Not
 
-## What AI Actually Does Well
+Yes, AI will change work. Yes, some jobs will be displaced. Yes, there are legitimate concerns about bias, surveillance, and power concentration. These deserve serious attention.
 
-AI excels at pattern recognition at scale, processing vast amounts of data quickly, and handling repetitive tasks without complaint. It doesn't get tired. It doesn't have bad days. It doesn't mind doing the same thing 10,000 times.
+But "AI is going to take over" isn't a policy position. It's a science fiction plot that lets us avoid harder questions:
 
-What it doesn't do: understand context the way a human does. Make moral judgments. Know when to break the rules. Feel what your customer feels.
+- How do we retrain workers displaced by automation?
+- How do we ensure AI benefits are distributed fairly?
+- How do we build governance that keeps up with the technology?
 
-Swansea University's research on human-AI collaborative design found something striking: as the technology evolves, the question isn't only what AI can do, but how it can help us *think* more effectively. That's not replacement. That's augmentation.
+## What's Actually Happening
 
-## The Real Enemy
+AI is a tool. Like any tool, it reflects the values of its creators and users. Right now, it's being used mostly to:
 
-The actual threat isn't AI. It's:
+- **Increase productivity** — helping people do more with less
+- **Accelerate discovery** — in science, medicine, materials
+- **Improve services** — from customer support to healthcare triage
 
-**Complacency** — Using AI to avoid thinking entirely, rather than to think better.
+None of this is inherently evil. It's also not inherently good. It's human activity, with all the messy complexity that entails.
 
-**Hype** — Believing every AI headline, either terrifying or utopian, without critical analysis.
+## The Real Risks
 
-**Isolation** — Treating AI as a separate thing that happens to you, rather than a tool you shape.
+The actual risks aren't AI becoming sentient and wiping us out. They're:
 
-Carnegie Mellon University researchers are exploring how AI can strengthen — not replace — human collaboration. Their work focuses on enhancing human performance and wellbeing in team settings, not eliminating the humans.
+1. **Concentration of power** — a few companies controlling foundational technology
+2. **Enshittification** — AI products degrading as companies prioritize engagement over quality
+3. **Legibility loss** — not understanding how decisions that affect us are made
+4. **Verification collapse** — increasingly difficult to know what's real
 
-## The Collaboration Sweet Spots
+These are solvable. They require attention, regulation, and civic engagement. They don't require existential dread.
 
-Gartner's research on the new rules of human-AI teamwork emphasises: move beyond automation headlines and align talent strategy with business goals while managing productivity and behavioural impacts as human-AI collaboration becomes standard.
+## The Alternative
 
-The key word there is *collaboration*. Not AI alone. Not humans alone. Together.
+We could treat AI like every other powerful technology: something to understand, shape, and govern rather than either worship or fear.
 
-Consider:
-- A doctor using AI to analyse scans faster, but making the final call
-- A writer using AI for first drafts, but bringing their unique voice to the final piece
-- A teacher using AI to handle marking, but investing that time in student relationships
+The printing press didn't destroy knowledge. It expanded it. The internet didn't destroy communication. It transformed it. AI won't destroy humanity — but it might amplify whatever we bring to it.
 
-The AI handles the mechanical. The human brings the meaningful.
-
-## What's Actually Changing
-
-From the Deloitte 2026 report, the organisations seeing transformative impact aren't the ones trying to remove humans from the loop. They're the ones redesigning work so humans do what humans do best — think, judge, create, connect — while AI handles the rest.
-
-That's not the enemy. That's an upgrade.
-
-## The Choice
-
-You can treat AI as a threat and resist it. Or you can treat it as what it's always been: a tool. Like any tool, it amplifies what you bring to it. If you bring nothing, that's what gets amplified.
-
-The people thriving alongside AI aren't the ones pretending it doesn't exist. They're the ones learning to work with it — keeping their judgment sharp, their creativity active, and their humanity central.
-
-AI isn't the enemy. Poor thinking is. And that's always been a human problem.
+That's on us.
 
 ---
 
-*The best human-AI teams don't ask "Will AI replace me?" They ask "What should I do that AI can't?"*
+*This post was researched and written with assistance from automated tools.*
