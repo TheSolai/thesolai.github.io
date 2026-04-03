@@ -97,10 +97,9 @@
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/css/comic-ui.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/comic-ui.css">
-    <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
         :root {
             --bg-primary: #FDFBF7; --bg-secondary: #F5F0E6; --bg-card: #FFFFFF;
@@ -299,12 +298,16 @@
             color: var(--text-muted);
         }
         footer {
+            padding: 3rem 0;
+            border-top: 3px solid #111111;
             text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            background: #FFD166;
+            position: relative; z-index: 10;
         }
+        footer a { color: #111111; text-decoration: none; font-size: 0.875rem; font-weight: 700; }
+        footer a:hover { color: #E63946; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+        .footer-copy { font-size: 0.75rem; color: #888888; }
         footer a { color: var(--text-secondary); }
         @media (max-width: 600px) {
             .page-wrap { padding: 1.5rem 1rem; }

@@ -1,0 +1,86 @@
+{
+  "uk": {
+    "label": "United Kingdom",
+    "date": "2026-04-03",
+    "candidates": [
+      {
+        "title": "AI regulatory sandboxes: State of play and implementation challenges",
+        "url": "https://epthinktank.eu/2026/04/01/ai-regulatory-sandboxes-state-of-play-and-implementation-challenges/",
+        "body": "The AI Act obliges Member States to establish, or participate in, at least one AI regulatory sandbox. These are controlled environments in which AI systems' compliance with the AI Act can be tested.",
+        "snippet": "[Could not fetch: [Errno 61] Connection refused]",
+        "score": 3
+      },
+      {
+        "title": "Scotland launches five-year AI strategy",
+        "url": "https://www.computerweekly.com/news/366640538/Scotland-launches-five-year-AI-strategy",
+        "body": "Scottish government has launched a five-year AI strategy, encompassing a series of measures with the aim of positioning ...",
+        "snippet": "Scotland launches five-year AI strategy | Computer Weekly Search the TechTarget Network Join CW+ Login Register Cookies News In Depth Blogs Opinion Videos Podcasts Premium Content Webinars Post Office Scandal RSS IT Management IT leadership &amp; CW500 IT architecture IT efficiency Governance Innovation Legislation &amp; regulation Operations &amp; support Project management Strategy Supplier mana",
+        "score": 2
+      },
+      {
+        "title": "Event round-up: AI Leader's Series: Neuro AI",
+        "url": "https://www.techuk.org/resource/event-round-up-ai-leader-s-series-neuro-ai.html",
+        "body": "Our first AI Leader\u2019s Series session of 2026 brought together leading experts to explore what neuro AI actually means in ...",
+        "snippet": "[Could not fetch: Client error '404 Not Found' for url 'https://www.techuk.org/resource/event-round-up-ai-leader-s-series-neuro-ai.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404]",
+        "score": 2
+      }
+    ],
+    "status": "pending_review"
+  },
+  "eu": {
+    "label": "European Union",
+    "date": "2026-04-03",
+    "candidates": [
+      {
+        "title": "Impact of the EU AI Act on consumer privacy and global business",
+        "url": "https://www.msn.com/en-us/technology/artificial-intelligence/impact-of-the-eu-ai-act-on-consumer-privacy-and-global-business/ar-AA1GEA6w?ocid=BingNewsVerp",
+        "body": "Fact checked by Vikki Velasquez Key Takeaways The EU AI Act is the first major law on responsible and transparent AI use by ...",
+        "snippet": "MSN",
+        "score": 2
+      },
+      {
+        "title": "EU Parliament backs delaying AI Act deadlines for biometrics, high-risk applications",
+        "url": "https://www.biometricupdate.com/202603/eu-parliament-backs-delaying-ai-act-deadlines-for-biometrics-high-risk-applications",
+        "body": "European Parliament has voted in favor of delaying certain rules of the EU AI Act related to high-risk AI applications, ...",
+        "snippet": "EU Parliament backs delaying AI Act deadlines for biometrics, high-risk applications | Biometric Update About Us Subscribe rss linkedin twitter facebook spotify Search for: All Content Companies Search Biometrics News All Biometrics News Access Control Age Assurance Industry Analysis Behavioral Biometrics Biometric R&amp;D Biometrics Stocks Border and Port Security Civil / National ID Commercial A",
+        "score": 2
+      },
+      {
+        "title": "EU backs nude app ban and delays to landmark AI rules",
+        "url": "https://www.theverge.com/ai-artificial-intelligence/901315/eu-ai-act-delays-ban-nudify-apps",
+        "body": "European lawmakers have voted to delay key parts of the EU AI Act, the bloc\u2019s flagship law for regulating artificial ...",
+        "snippet": "EU backs nude app ban and delays to landmark AI rules | The Verge Skip to main content The homepage The Verge The Verge logo. The Verge The Verge logo. Tech Reviews Science Entertainment AI Policy Hamburger Navigation Button The homepage The Verge The Verge logo. Hamburger Navigation Button Navigation Drawer The Verge The Verge logo. Login / Sign Up close Close Search Tech Expand Amazon Apple Face",
+        "score": 2
+      }
+    ],
+    "status": "pending_review"
+  },
+  "us": {
+    "label": "United States",
+    "date": "2026-04-03",
+    "candidates": [
+      {
+        "title": "White House urges Congress to take a light touch on AI regulations",
+        "url": "https://www.msn.com/en-us/news/politics/white-house-urges-congress-to-take-a-light-touch-on-ai-regulations/ar-AA1Z52ER?ocid=BingNewsVerp",
+        "body": "A legislative blueprint laid out how Trump wants Congress to address concerns about artificial intelligence without curbing ...",
+        "snippet": "MSN",
+        "score": 2
+      },
+      {
+        "title": "Louisiana scraps some, but not all, AI proposals after Trump threats",
+        "url": "https://www.fox8live.com/2026/04/02/louisiana-scraps-some-not-all-ai-proposals-after-trump-threats/",
+        "body": "At least a third of the nearly 20 bills Louisiana lawmakers proposed to put guardrails on artificial intelligence have been ...",
+        "snippet": "Louisiana scraps some, but not all, AI proposals after Trump threats Skip to content Gulf Coast Sports &amp; Entertainment Network Download our Apps Live Video News Weather Unchecked Overtime Crime Investigations We the People Sports Pels on TV Espa\u00f1ol Watch Live Home News Videos Crime Jailbreak State National Investigations Unchecked Overtime Supplying a High Fox 8 Defenders Local Veterans First ",
+        "score": 2
+      },
+      {
+        "title": "AOC and Bernie Sanders have a bill to pause AI data center construction. Here's what's in it.",
+        "url": "https://www.businessinsider.com/aoc-bernie-sanders-introduce-bill-ai-data-center-moratorium-2026-3",
+        "body": "The bill would halt the construction of new AI data centers around the US until \"strong national safeguards\" are put in place ...",
+        "snippet": "AOC, Bernie Sanders Roll Out Bill to Pause AI Data Center Construction - Business Insider Business Insider Subscribe Newsletters Search Business Strategy Economy Finance Retail Advertising Careers Law Media Real Estate Small Business The Better Work Project Personal Finance Tech Science AI Enterprise Transportation Startups Innovation Markets Stocks Indices Commodities Crypto Currencies ETFs Lifes",
+        "score": 2
+      }
+    ],
+    "status": "pending_review"
+  }
+}
