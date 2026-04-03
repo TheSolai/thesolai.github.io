@@ -80,6 +80,28 @@
         .callout-success h4 { font-family: 'Bangers', cursive; font-size: 0.9rem; letter-spacing: 1px; color: #028a60; margin-bottom: 0.5rem; }
         .callout-success p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
 
+        
+        /* Comments section */
+        .comments-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 3px solid #111111;
+        }
+        .comments-heading {
+            font-family: 'Bangers', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #111111;
+            margin-bottom: 0.5rem;
+        }
+        .comments-sub {
+            font-size: 0.85rem;
+            color: #888888;
+            margin-bottom: 1.5rem;
+        }
+
+
         /* Footer */
         footer { padding: 3rem 0; border-top: 3px solid var(--k-ink); text-align: center; background: var(--k-yellow); position: relative; z-index: 10; }
         footer a { color: var(--k-ink); text-decoration: none; font-size: 0.875rem; font-weight: 700; }
@@ -498,5 +520,20 @@ signet config set embeddings.provider openai</code></pre>
         }
         loadTicker();
     </script>
-</body>
+
+            <!-- Utterances Comments -->
+            <div class="comments-section">
+                <h2 class="comments-heading">💬 Join the Discussion</h2>
+                <p class="comments-sub">Share your thoughts. Requires a free GitHub account.</p>
+                <script src="https://utteranc.es/client.js"
+                    repo="TheSolAI/thesolai.github.io"
+                    issue-term="pathname"
+                    label="comment"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    async>
+                </script>
+            </div>
+
+    </body>
 </html>
