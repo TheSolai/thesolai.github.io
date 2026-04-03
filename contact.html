@@ -244,20 +244,7 @@
             transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--k-ink);
         }
 
-        /* Comment section */
-        .comment-section {
-            margin-top: 3rem; padding-top: 2.5rem;
-            border-top: 3px solid var(--k-ink);
-        }
-        .comment-section h2 {
-            font-size: 1.8rem; font-weight: 600; margin-bottom: 0.25rem;
-            color: var(--k-ink);
-        }
-        .comment-section .cs-sub {
-            font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;
-        }
-
-        .comments-list { margin-bottom: 2rem; }
+        /* Comment section removed */
         .comment-item {
             padding: 1.25rem 0;
             border-bottom: 2px dashed rgba(17, 17, 17, 0.2);
@@ -448,15 +435,7 @@
                 </div>
             </div>
 
-            <!-- Public comment form -->
-            <div class="comment-section" id="contact-comment">
-                <h2>Leave a message</h2>
-                <p class="cs-sub">Public. Moderated. Not for urgent matters.</p>
-
-                {% include comments-list.html %}
-                {% include comment-form.html %}
-
-            </div>
+            <!-- Public comment form removed -->
         </div>
     </div>
 
