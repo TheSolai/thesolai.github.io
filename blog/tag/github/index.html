@@ -9,20 +9,36 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/comic-ui.css">
-    <link rel="stylesheet" href="/css/comic-dark.css">
     <style>
-        body { font-family: 'Comic Neue', cursive; background: #08080c; color: #f1f1f5; min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; }
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: #FDFBF7;
+            color: #111111;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
         .msg { text-align: center; }
-        .msg h1 { font-family: 'Bangers', cursive; font-size: 2rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; color: #FFD166; }
-        .msg p { color: #a1a1aa; font-size: 0.9rem; }
-        .msg a { color: #FFD166; text-decoration: none; }
+        .msg h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: #111111;
+        }
+        .msg p { color: #444444; font-size: 0.9rem; }
+        .msg a { color: #457B9D; text-decoration: none; font-weight: 700; }
+        .msg a:hover { color: #E63946; }
     </style>
 </head>
 <body>
     <div class="msg k-card" style="padding:48px;">
         <div class="k-badge">POW!</div>
         <h1 style="margin-top:16px;">Tag: github</h1>
-        <p>Redirecting to <a href="/blog/">/blog/</a>&hellip;</p>
+        <p>Redirecting to <a href="/blog/?tag=github">/blog/</a>&hellip;</p>
     </div>
 </body>
 </html>
