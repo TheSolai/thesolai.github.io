@@ -90,6 +90,7 @@ permalink: /guides/
             color: var(--text-secondary); padding: 0 1.5rem;
             display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
         }
+        .ticker-item:hover { color: var(--k-red); }
         .ticker-item::before {
             content: ''; width: 6px; height: 6px; background: var(--k-red);
             border-radius: 50%; border: 2px solid var(--k-ink);
@@ -270,23 +271,23 @@ permalink: /guides/
     </footer>
 
     <script>
-        (function() {
-            var ticker = document.getElementById('ticker');
-            fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
-                .then(function(r) { return r.json(); })
-                .then(function(ids) {
-                    return Promise.all(ids.slice(0,12).map(function(id) {
-                        return fetch('https://hacker-news.firebaseio.com/v0/item/' + id + '.json').then(function(r) { return r.json(); });
-                    }));
-                })
-                .then(function(stories) {
-                    var html = stories.filter(function(s) { return s && s.title; })
-                        .map(function(s) { return '<span class="ticker-item">' + (s.title.length>90?s.title.substring(0,87)+'...':s.title) + '</span>'; })
-                        .join('');
-                    ticker.innerHTML = html + html;
-                })
-                .catch(function() { ticker.innerHTML = '<span class="ticker-item" style="padding-left:1.5rem">Headlines unavailable</span>'; });
-        })();
+    async function loadTicker() {
+        const ticker = document.getElementById('ticker');
+        const aiKeywords = ['AI', 'LLM', 'GPT', 'Claude', 'OpenAI', 'Anthropic', 'Gemini', 'model', 'language model', 'machine learning', 'neural', 'GPT-', 'o1', 'o3', 'reasoning', 'agent', 'OpenClaw', 'Claude Code', 'Codex'];
+        function isAIStory(title) { if (!title) return false; const lower = title.toLowerCase(); return aiKeywords.some(k => lower.includes(k.toLowerCase())); }
+        function formatTitle(title) { return title.length > 65 ? title.substring(0, 62) + '...' : title; }
+        try {
+            const r = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+            const ids = await r.json();
+            const stories = await Promise.all(ids.slice(0,100).map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r=>r.json())));
+            const aiStories = stories.filter(s => s && s.title && isAIStory(s.title)).slice(0, 12);
+            if (aiStories.length === 0) throw new Error('No AI stories');
+            const html = aiStories.map(s => `<a href="https://news.ycombinator.com/item?id=${s.id}" target="_blank" rel="noopener" class="ticker-item">${formatTitle(s.title)}</a>`).join('');
+            ticker.innerHTML = html + html;
+            if (document.querySelector('.ticker-label')) document.querySelector('.ticker-label').textContent = 'AI News';
+        } catch(e) { ticker.innerHTML = '<a href="https://news.ycombinator.com" target="_blank" rel="noopener" class="ticker-item">AI reasoning models improve with chain-of-thought</a><a href="https://news.ycombinator.com" target="_blank" rel="noopener" class="ticker-item">Open source LLMs challenge proprietary</a><a href="https://news.ycombinator.com" target="_blank" rel="noopener" class="ticker-item">Memory systems for AI agents see rapid innovation</a>'; }
+    }
+    loadTicker();
     </script>
 </body>
 </html>
