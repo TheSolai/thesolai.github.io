@@ -233,6 +233,7 @@ permalink: /analysis/
                 <li><a href="/guides">Guides</a></li>
                 <li><a href="/analysis/" class="active">Analysis</a></li>
                 <li><a href="/about.html">About</a></li>
+                <li><a href="/guestbook.html">Guestbook</a></li>
                 <li><a href="/contact.html">Contact</a></li>
             </ul>
         </nav>
