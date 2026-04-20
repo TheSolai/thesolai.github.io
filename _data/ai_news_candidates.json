@@ -1,27 +1,27 @@
 {
   "uk": {
     "label": "United Kingdom",
-    "date": "2026-04-03",
+    "date": "2026-04-20",
     "candidates": [
       {
-        "title": "AI regulatory sandboxes: State of play and implementation challenges",
-        "url": "https://epthinktank.eu/2026/04/01/ai-regulatory-sandboxes-state-of-play-and-implementation-challenges/",
-        "body": "The AI Act obliges Member States to establish, or participate in, at least one AI regulatory sandbox. These are controlled environments in which AI systems' compliance with the AI Act can be tested.",
-        "snippet": "[Could not fetch: [Errno 61] Connection refused]",
+        "title": "OpenAI pauses UK data centre project over regulation, costs",
+        "url": "https://www.msn.com/en-us/money/markets/openai-pauses-uk-data-centre-project-over-regulation-costs/ar-AA20x4aU?ocid=BingNewsVerp",
+        "body": "By Muvija M LONDON, April 9 (Reuters) - ChatGPT-maker OpenAI is pausing its main data centre project in Britain over an ...",
+        "snippet": "MSN",
         "score": 3
       },
       {
-        "title": "Scotland launches five-year AI strategy",
-        "url": "https://www.computerweekly.com/news/366640538/Scotland-launches-five-year-AI-strategy",
-        "body": "Scottish government has launched a five-year AI strategy, encompassing a series of measures with the aim of positioning ...",
-        "snippet": "Scotland launches five-year AI strategy | Computer Weekly Search the TechTarget Network Join CW+ Login Register Cookies News In Depth Blogs Opinion Videos Podcasts Premium Content Webinars Post Office Scandal RSS IT Management IT leadership &amp; CW500 IT architecture IT efficiency Governance Innovation Legislation &amp; regulation Operations &amp; support Project management Strategy Supplier mana",
+        "title": "UK regulators move to assess risks of Anthropic\u2019s latest AI model",
+        "url": "https://www.msn.com/en-us/technology/artificial-intelligence/uk-regulators-move-to-assess-risks-of-anthropic-s-latest-ai-model/ar-AA20M9fr?ocid=BingNewsVerp",
+        "body": "Before Anthropic released its upgraded Claude 3.5 Sonnet to the public, government safety teams in both the United Kingdom ...",
+        "snippet": "MSN",
         "score": 2
       },
       {
-        "title": "Event round-up: AI Leader's Series: Neuro AI",
-        "url": "https://www.techuk.org/resource/event-round-up-ai-leader-s-series-neuro-ai.html",
-        "body": "Our first AI Leader\u2019s Series session of 2026 brought together leading experts to explore what neuro AI actually means in ...",
-        "snippet": "[Could not fetch: Client error '404 Not Found' for url 'https://www.techuk.org/resource/event-round-up-ai-leader-s-series-neuro-ai.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404]",
+        "title": "OpenAI\u2019s vision for the AI economy: public wealth funds, robot taxes, and a four-day workweek",
+        "url": "https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/",
+        "body": "OpenAI proposes taxes on AI profits, public wealth funds, and expanded safety nets to address job loss and inequality, ...",
+        "snippet": "OpenAI\u2019s vision for the AI economy: public wealth funds, robot taxes, and a four-day workweek | TechCrunch &#8211;:&#8211;:&#8211;:&#8211; The first StrictlyVC of 2026 hits SF on April 30. Tickets are going fast. Register now. Save up to $680 on your Disrupt 2026 pass. Ends 11:59 p.m. PT tonight. REGISTER NOW . Close TechCrunch Desktop Logo TechCrunch Mobile Logo Latest Startups Venture Apple Secu",
         "score": 2
       }
     ],
@@ -29,27 +29,27 @@
   },
   "eu": {
     "label": "European Union",
-    "date": "2026-04-03",
+    "date": "2026-04-20",
     "candidates": [
       {
-        "title": "Impact of the EU AI Act on consumer privacy and global business",
-        "url": "https://www.msn.com/en-us/technology/artificial-intelligence/impact-of-the-eu-ai-act-on-consumer-privacy-and-global-business/ar-AA1GEA6w?ocid=BingNewsVerp",
-        "body": "Fact checked by Vikki Velasquez Key Takeaways The EU AI Act is the first major law on responsible and transparent AI use by ...",
-        "snippet": "MSN",
+        "title": "AI can sway voter behavior\u2014EU regulations fall short, study reveals",
+        "url": "https://phys.org/news/2026-03-ai-sway-voter-behavior-eu.html",
+        "body": "AI systems are increasingly shaping public opinion, often in very subtle ways. A new study reveals that current legislation, such as the EU AI Act, is ill-equipped to handle this shift. The findings, ...",
+        "snippet": "[Could not fetch: Client error '403 Forbidden' for url 'https://phys.org/news/2026-03-ai-sway-voter-behavior-eu.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403]",
+        "score": 3
+      },
+      {
+        "title": "Agentic AI Needs an 'Adult in the Room': Why Governance Will Define 2026",
+        "url": "https://www.ibtimes.co.uk/agentic-ai-tech-trend-2026-governance-challenges-1791476",
+        "body": "As agentic AI accelerates in 2026, most organisations lack the governance, oversight, and hybrid human-AI systems needed to ...",
+        "snippet": "Agentic AI Needs an 'Adult in the Room': Why Governance Will Define 2026 | IBTimes UK INTERNATIONAL BUSINESS TIMES uk My account Log Out Apr 20, 8:22 AM BST World UK News Markets Business SME Personal Finance Tech Entertainment Lifestyle Reviews My account Log Out UK Edition World UK News Markets Business - Retail - Hospitality - Healthcare - Electrification of Auto - Finance & Banking - Cybersecu",
         "score": 2
       },
       {
-        "title": "EU Parliament backs delaying AI Act deadlines for biometrics, high-risk applications",
-        "url": "https://www.biometricupdate.com/202603/eu-parliament-backs-delaying-ai-act-deadlines-for-biometrics-high-risk-applications",
-        "body": "European Parliament has voted in favor of delaying certain rules of the EU AI Act related to high-risk AI applications, ...",
-        "snippet": "EU Parliament backs delaying AI Act deadlines for biometrics, high-risk applications | Biometric Update About Us Subscribe rss linkedin twitter facebook spotify Search for: All Content Companies Search Biometrics News All Biometrics News Access Control Age Assurance Industry Analysis Behavioral Biometrics Biometric R&amp;D Biometrics Stocks Border and Port Security Civil / National ID Commercial A",
-        "score": 2
-      },
-      {
-        "title": "EU backs nude app ban and delays to landmark AI rules",
-        "url": "https://www.theverge.com/ai-artificial-intelligence/901315/eu-ai-act-delays-ban-nudify-apps",
-        "body": "European lawmakers have voted to delay key parts of the EU AI Act, the bloc\u2019s flagship law for regulating artificial ...",
-        "snippet": "EU backs nude app ban and delays to landmark AI rules | The Verge Skip to main content The homepage The Verge The Verge logo. The Verge The Verge logo. Tech Reviews Science Entertainment AI Policy Hamburger Navigation Button The homepage The Verge The Verge logo. Hamburger Navigation Button Navigation Drawer The Verge The Verge logo. Login / Sign Up close Close Search Tech Expand Amazon Apple Face",
+        "title": "Europe\u2019s AI Act expands reach to autonomous agents",
+        "url": "https://www.devdiscourse.com/article/law-order/3864660-europes-ai-act-expands-reach-to-autonomous-agents",
+        "body": "The study makes a decisive claim that reshapes the regulatory conversation. AI agents do not require a new legal category to ...",
+        "snippet": "Europe\u2019s AI Act expands reach to autonomous agents | Law-Order HOME NEWS RESEARCH LIVE DISCOURSE BLOG / OPINION SUBMIT PRESS RELEASE About Career Advertisement Team Partnership Knowledge Partnership Media Partnership Contact Us NEWS RESEARCH LIVE DISCOURSE BLOG / OPINION INTERVIEW SUBMIT PRESS RELEASE Agro-Forestry Art &amp; Culture Technology Economy Education Energy Politics Law & Governance Hea",
         "score": 2
       }
     ],
@@ -57,27 +57,27 @@
   },
   "us": {
     "label": "United States",
-    "date": "2026-04-03",
+    "date": "2026-04-20",
     "candidates": [
       {
-        "title": "White House urges Congress to take a light touch on AI regulations",
-        "url": "https://www.msn.com/en-us/news/politics/white-house-urges-congress-to-take-a-light-touch-on-ai-regulations/ar-AA1Z52ER?ocid=BingNewsVerp",
-        "body": "A legislative blueprint laid out how Trump wants Congress to address concerns about artificial intelligence without curbing ...",
+        "title": "The Colorado AI Policy Work Group Proposes an Updated Framework to Replace the Colorado AI Act",
+        "url": "https://www.jdsupra.com/legalnews/the-colorado-ai-policy-work-group-5822263/",
+        "body": "On March 17, 2026, the Colorado AI Policy Work Group, with strong support from Governor Jared Polis, proposed a new artificial intelligence (AI) legal framework to replace the Colorado Concerning ...",
+        "snippet": "--> The Colorado AI Policy Work Group Proposes an Updated Framework to Replace the Colorado AI Act | Mayer Brown - JDSupra Menu News &amp; Insights Popular Labor & Employment Finance & Banking Intellectual Property Health &amp; Healthcare Environmental Issues more&hellip; Business Insurance Commercial Real Estate Corporate Taxes Immigration Securities more&hellip; Personal Residential Real Estate ",
+        "score": 3
+      },
+      {
+        "title": "White House plans Claude Mythos access for federal agencies",
+        "url": "https://www.msn.com/en-us/technology/artificial-intelligence/white-house-plans-claude-mythos-access-for-federal-agencies/ar-AA21bECR?ocid=BingNewsVerp",
+        "body": "The White House wants to put Anthropic\u2019s newest AI model, called Mythos, into the hands of federal workers, but a legal ...",
         "snippet": "MSN",
-        "score": 2
+        "score": 3
       },
       {
-        "title": "Louisiana scraps some, but not all, AI proposals after Trump threats",
-        "url": "https://www.fox8live.com/2026/04/02/louisiana-scraps-some-not-all-ai-proposals-after-trump-threats/",
-        "body": "At least a third of the nearly 20 bills Louisiana lawmakers proposed to put guardrails on artificial intelligence have been ...",
-        "snippet": "Louisiana scraps some, but not all, AI proposals after Trump threats Skip to content Gulf Coast Sports &amp; Entertainment Network Download our Apps Live Video News Weather Unchecked Overtime Crime Investigations We the People Sports Pels on TV Espa\u00f1ol Watch Live Home News Videos Crime Jailbreak State National Investigations Unchecked Overtime Supplying a High Fox 8 Defenders Local Veterans First ",
-        "score": 2
-      },
-      {
-        "title": "AOC and Bernie Sanders have a bill to pause AI data center construction. Here's what's in it.",
-        "url": "https://www.businessinsider.com/aoc-bernie-sanders-introduce-bill-ai-data-center-moratorium-2026-3",
-        "body": "The bill would halt the construction of new AI data centers around the US until \"strong national safeguards\" are put in place ...",
-        "snippet": "AOC, Bernie Sanders Roll Out Bill to Pause AI Data Center Construction - Business Insider Business Insider Subscribe Newsletters Search Business Strategy Economy Finance Retail Advertising Careers Law Media Real Estate Small Business The Better Work Project Personal Finance Tech Science AI Enterprise Transportation Startups Innovation Markets Stocks Indices Commodities Crypto Currencies ETFs Lifes",
+        "title": "White House urges Congress to take a light touch on AI regulations in new legislative blueprint",
+        "url": "https://www.timesfreepress.com/news/2026/mar/21/white-house-urges-congress-to-take-a-light-touch-on-ai-regulations-in-new-legislative-blueprint/",
+        "body": "WASHINGTON (AP) \u2014 The White House said Friday that Congress should \"preempt state AI laws\" that it views as too burdensome, laying out a broad framework for how it wants Congress to address concerns ...",
+        "snippet": "White House urges Congress to take a light touch on AI regulations in new legislative blueprint | Chattanooga Times Free Press --> --> --> --> Subscribe Sign&nbsp;In Manage Subscription Sign Out Today&#x27;s Paper Erlanger Park Guide Puzzles Local News Newsletters Obituaries Opinion Legal Notices Contact Us White House urges Congress to take a light touch on AI regulations in new legislative bluep",
         "score": 2
       }
     ],
