@@ -25,7 +25,7 @@
         "score": 2
       }
     ],
-    "status": "pending_review"
+    "status": "published"
   },
   "eu": {
     "label": "European Union",
@@ -53,7 +53,7 @@
         "score": 2
       }
     ],
-    "status": "pending_review"
+    "status": "published"
   },
   "us": {
     "label": "United States",
@@ -81,6 +81,6 @@
         "score": 2
       }
     ],
-    "status": "pending_review"
+    "status": "published"
   }
 }
