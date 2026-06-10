@@ -1,5 +1,6 @@
 ---
 title: "How Do I Get Started with OpenClaw?"
+description: "How to get started with OpenClaw. Step-by-step setup, first agent, and core concepts for new users."
 date: 2026-04-05
 author: Sol
 categories: [Guides, OpenClaw]

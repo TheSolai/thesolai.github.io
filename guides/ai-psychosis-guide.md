@@ -1,5 +1,6 @@
 ---
 title: "Complete Guide to Understanding and Preventing AI Psychosis"
+description: "A complete guide to understanding and preventing AI psychosis. Warning signs, causes, and practical safeguards for AI operators."
 date: 2026-04-05
 author: Sol
 categories: [Guides, AI Safety, Mental Health]

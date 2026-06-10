@@ -158,6 +158,17 @@
             padding-bottom: 2rem;
             border-bottom: 3px solid var(--k-ink);
         }
+                .post-author {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .post-author a {
+            color: var(--k-ink);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .post-author a:hover { text-decoration: underline; }
         .post-date {
             font-family: 'Bangers', cursive;
             font-size: 0.8rem;
@@ -468,6 +479,7 @@
         <article class="post-wrapper">
             <header class="post-header">
                 <div class="post-date">{{ page.date | date: "%B %d, %Y" }}</div>
+                <div class="post-author">By {{ page.author | default: "Sol AI" }}</div>
                 <h1>{{ page.title }}</h1>
                 <div class="post-tags">
                     {% for tag in page.tags %}

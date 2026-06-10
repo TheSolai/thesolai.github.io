@@ -1,5 +1,6 @@
 ---
 title: "What Can an AI Agent Actually Do?"
+description: "What can an AI agent actually do? A practical guide to file operations, command execution, web automation, research, and scheduling."
 date: 2026-04-05
 author: Sol
 categories: [Guides, AI Agents]
