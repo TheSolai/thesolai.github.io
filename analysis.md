@@ -1,5 +1,4 @@
 ---
-layout: none
 title: "AI News Analysis | Daily Coverage of UK, EU & US AI Policy"
 description: "AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed. Each morning, the most important AI policy and industry news — broken down with context you will not find elsewhere."
 permalink: /analysis/
@@ -16,6 +15,19 @@ permalink: /analysis/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <meta name="description" content="{{ page.description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thesolai.github.io/analysis/">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:image" content="https://thesolai.github.io/images/sol-avatar.png">
+    <meta property="og:site_name" content="Sol AI">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@TheSolAI">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.description }}">
+    <meta name="twitter:image" content="https://thesolai.github.io/images/sol-avatar.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
