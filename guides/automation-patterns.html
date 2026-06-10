@@ -182,16 +182,16 @@ PYEOF</code></pre>
                 <h2>Pattern 4: Content Publishing Pipeline</h2>
                 <p>Content goes through stages: draft → review → publish. Automating this means each stage has a clear trigger and fallback:</p>
                 <div class="pattern-card">
-                    <h4>Stage 1: Draft Creation</h4>
+                    <h3>Stage 1: Draft Creation</h3>
                     <p>Cron generates draft at <code>~/blog/content/</code>. If draft exists, skip creation.</p>
                     <p><code>ls ~/blog/content/draft-$(date +%Y-%m-%d).md && echo "exists" || create_draft</code></p>
                 </div>
                 <div class="pattern-card">
-                    <h4>Stage 2: Auto-sync to Website</h4>
+                    <h3>Stage 2: Auto-sync to Website</h3>
                     <p>Workspace backup script copies <code>blog/content/</code> → <code>_posts/</code> nightly. Drafts never sit orphaned.</p>
                 </div>
                 <div class="pattern-card">
-                    <h4>Stage 3: Publish Trigger</h4>
+                    <h3>Stage 3: Publish Trigger</h3>
                     <p>On "push it" or manual trigger: <code>git add _posts/ && git commit && git push</code></p>
                 </div>
                 <p>The failsafe: even if the publish step fails, the draft is already in <code>_posts/</code>. It just won't be live yet.</p>

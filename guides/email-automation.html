@@ -379,7 +379,7 @@ OpenClaw AI ──► Cron jobs / Heartbeat
                     </ul>
                 </div>
                 <div class="comparison-card">
-                    <h4>Gmail</h4>
+                    <h3>Gmail</h3>
                     <ul>
                         <li>Requires OAuth 2.0 (more complex)</li>
                         <li>App passwords deprecated</li>
@@ -391,13 +391,13 @@ OpenClaw AI ──► Cron jobs / Heartbeat
             <h3>iCloud Setup</h3>
             <div class="step">
                 <div class="step-num">Step 1.1</div>
-                <h4>Enable two-factor authentication on your Apple ID</h4>
+                <h3>Enable two-factor authentication on your Apple ID</h3>
                 <p>Go to <a href="https://appleid.apple.com">appleid.apple.com</a> → Sign In → Two-Factor Authentication. This is required before you can generate app-specific passwords.</p>
             </div>
 
             <div class="step">
                 <div class="step-num">Step 1.2</div>
-                <h4>Generate an app-specific password</h4>
+                <h3>Generate an app-specific password</h3>
                 <p>Still at <a href="https://appleid.apple.com">appleid.apple.com</a> → Sign In → <strong>App-Specific Passwords</strong> → Generate.</p>
                 <p>Name it something descriptive: <code>himalaya</code> or <code>email-automation</code>.</p>
                 <p>Copy the password immediately. Apple only shows it once. It looks like: <code>xxxx-xxxx-xxxx-xxxx</code></p>
@@ -405,7 +405,7 @@ OpenClaw AI ──► Cron jobs / Heartbeat
 
             <div class="step">
                 <div class="step-num">Step 1.3</div>
-                <h4>Enable IMAP on iCloud Mail</h4>
+                <h3>Enable IMAP on iCloud Mail</h3>
                 <p>Go to <a href="https://www.icloud.com/mail">icloud.com/mail</a> → Settings (gear icon) → Email → Enable <strong>Sync email</strong>. This allows third-party clients like himalaya to access your mail.</p>
             </div>
 
@@ -430,7 +430,7 @@ OpenClaw AI ──► Cron jobs / Heartbeat
 
             <div class="step">
                 <div class="step-num">Step 2.3</div>
-                <h4>Create the config file</h4>
+                <h3>Create the config file</h3>
                 <p>Copy the template from the <a href="https://github.com/TheSolAI/SolEmail">SolEmail repository</a>:</p>
                 <pre><code>cp SolEmail/config/himalaya/config.toml ~/.config/himalaya/config.toml
 nano ~/.config/himalaya/config.toml</code></pre>
@@ -459,21 +459,21 @@ format = "maildir"</code></pre>
 
             <div class="step">
                 <div class="step-num">Step 2.4</div>
-                <h4>Test the configuration</h4>
+                <h3>Test the configuration</h3>
                 <pre><code>himalaya account list</code></pre>
                 <p>You should see your account listed. If not, check the config for typos.</p>
             </div>
 
             <div class="step">
                 <div class="step-num">Step 2.5</div>
-                <h4>Sync emails to local storage</h4>
+                <h3>Sync emails to local storage</h3>
                 <pre><code>himalaya sync</code></pre>
                 <p>This downloads your emails to <code>~/.mail/myemail/</code>. The first sync may take a while if you have a large inbox. Subsequent syncs only download new messages.</p>
             </div>
 
             <div class="step">
                 <div class="step-num">Step 2.6</div>
-                <h4>List recent emails</h4>
+                <h3>List recent emails</h3>
                 <pre><code>himalaya envelope -w 200</code></pre>
                 <p>You should see a table of your recent emails. himalaya is working.</p>
             </div>
@@ -623,22 +623,22 @@ python3 ~/.openclaw/workspace/scripts/agentmail-send.py \
 
             <h2 id="troubleshooting">Troubleshooting</h2>
 
-            <h4>"Authentication failed" when sending</h4>
+            <h3>"Authentication failed" when sending</h3>
             <p>The app password is wrong, expired, or you accidentally used your main Apple ID password. Generate a new app-specific password at appleid.apple.com.</p>
 
-            <h4>"No emails found" with envelope</h4>
+            <h3>"No emails found" with envelope</h3>
             <p>Run <code>himalaya sync</code> first. If emails still don't appear, check that IMAP is enabled in your iCloud settings.</p>
 
-            <h4>SMTP timeout</h4>
+            <h3>SMTP timeout</h3>
             <p>Try port 465 (SSL) instead of 587 (STARTTLS): <code>export SMTP_PORT=465</code>. Some networks block port 587.</p>
 
-            <h4>himalaya command not found</h4>
+            <h3>himalaya command not found</h3>
             <p>Run <code>brew install himalaya</code>. If already installed, check your PATH: <code>which himalaya</code>.</p>
 
-            <h4>Emails not appearing as unread</h4>
+            <h3>Emails not appearing as unread</h3>
             <p>himalaya tracks read/unread status locally in the Maildir. Use <code>himalaya envelope --unread</code> to see only unread emails.</p>
 
-            <h4>himalaya sync is slow</h4>
+            <h3>himalaya sync is slow</h3>
             <p>Normal on first run (large inbox download). Subsequent syncs are incremental and take seconds. If it's consistently slow, check your network connection.</p>
 
             <h2 id="next">Next Steps</h2>

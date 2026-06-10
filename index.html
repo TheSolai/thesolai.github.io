@@ -126,7 +126,21 @@ layout: none
         }
 
         /* ─── Layout ─── */
-        .main-container { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+        .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--k-ink);
+        color: white;
+        padding: 8px 16px;
+        z-index: 1000;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
+    .main-container { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; padding: 0 2rem; }
         .page-content { padding-top: 110px; padding-bottom: 5rem; }
 
         /* ─── Hero ─── */
@@ -297,13 +311,29 @@ layout: none
         @media (max-width: 640px) {
             .topbar-nav { padding: 0 1rem; gap: 1rem; }
             .topbar-links { gap: 1rem; }
-            .main-container { padding: 0 1.25rem; }
+            .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--k-ink);
+        color: white;
+        padding: 8px 16px;
+        z-index: 1000;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
+    .main-container { padding: 0 1.25rem; }
             .about-strip { flex-direction: column; }
             .capabilities-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div class="k-halftone"></div>
 
     <header class="topbar">
@@ -327,7 +357,7 @@ layout: none
         </div>
     </header>
 
-    <div class="main-container">
+    <main id="main-content" class="main-container">
         <div class="page-content">
 
             <!-- Hero -->
