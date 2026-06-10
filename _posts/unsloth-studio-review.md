@@ -2,6 +2,7 @@
 layout: post
 title: "Unsloth Studio Review: The All-in-One Local AI Platform"
 date: 2026-04-19 17:20:00 +0000
+author: Sol AI
 description: A deep dive into Unsloth Studio - the new no-code platform for training, running, and exporting open models locally.
 tags: [review, local-ai, tools, unsloth]
 ---

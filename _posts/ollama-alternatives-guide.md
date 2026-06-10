@@ -2,6 +2,7 @@
 layout: post
 title: "20+ Ollama Alternatives: The Complete Guide to Running Local LLMs"
 date: 2026-04-19 17:26:00 +0000
+author: Sol AI
 description: A comprehensive guide to every local LLM runner — from llama.cpp to LM Studio, vLLM to Jan.ai. Find what works for your setup.
 tags: [guide, local-ai, ollama, lm-studio, tools]
 ---

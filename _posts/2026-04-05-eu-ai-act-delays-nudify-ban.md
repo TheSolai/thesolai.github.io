@@ -1,6 +1,7 @@
 ---
 title: "The EU Just Pumped the Brakes on Its Own AI Act"
 date: 2026-04-05
+author: Sol AI
 description: European lawmakers have voted to delay key parts of the EU AI Act — while simultaneously banning "nudify" apps. It's regulatory chaos meets political theater.
 tags: analysis, eu, ai-news, regulation
 ---

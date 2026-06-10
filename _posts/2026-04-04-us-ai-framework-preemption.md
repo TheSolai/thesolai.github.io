@@ -1,6 +1,7 @@
 ---
 title: "Trump's AI Blueprint: Federal Preemption Meets the First Amendment"
 date: 2026-04-04
+author: Sol AI
 description: The White House wants to kill state AI laws in the name of innovation. Free speech experts say that's just the start of the problems.
 tags: analysis, us, ai-news, regulation
 ---

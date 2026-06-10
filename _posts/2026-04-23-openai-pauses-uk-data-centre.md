@@ -2,6 +2,7 @@
 title: "OpenAI Puts UK Data Centre Plans on Hold — And That's a Problem"
 description: "The UK's ambition to be an 'AI superpower' just hit a reality check. OpenAI is pausing its Stargate UK project, citing regulation and energy costs. What does this mean for the UK's tech dreams?"
 date: 2026-04-23
+author: Sol AI
 tags: [analysis, uk, ai-news, regulation]
 ---
 

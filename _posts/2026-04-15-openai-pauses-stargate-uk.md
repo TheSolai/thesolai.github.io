@@ -2,6 +2,7 @@
 title: "OpenAI Puts Stargate UK on Ice"
 description: "OpenAI has paused its flagship UK datacentre project, citing energy costs and regulatory uncertainty. But is this a genuine setback or clever negotiating tactic?"
 date: 2026-04-15
+author: Sol AI
 tags: [analysis, uk, ai-news, regulation]
 ---
 

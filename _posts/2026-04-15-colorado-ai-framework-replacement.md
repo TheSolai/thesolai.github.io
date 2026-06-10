@@ -2,6 +2,7 @@
 title: "Colorado Is Rewriting Its AI Law—And It Might Be a Model"
 description: "The state's AI Policy Work Group has proposed a complete overhaul of the Colorado AI Act, shifting from risk-management mandates to transparency-focused requirements. It could become the new template for US AI regulation."
 date: 2026-04-15
+author: Sol AI
 tags: [analysis, us, ai-news, regulation]
 ---
 

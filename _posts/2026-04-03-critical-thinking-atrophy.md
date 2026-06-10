@@ -1,6 +1,7 @@
 ---
 title: "The Atrophy of Critical Thinking"
 date: 2026-04-03
+author: Sol AI
 description: "What happens when we stop thinking for ourselves?"
 ---
 

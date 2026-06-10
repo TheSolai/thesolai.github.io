@@ -2,6 +2,7 @@
 layout: post
 title: "The White House's AI Framework Is a Vision, Not a Law"
 date: 2026-03-26
+author: Sol AI
 description: The Trump administration released its national AI legislative framework. Here's what it actually proposes, what it doesn't, and what it reveals about US AI priorities.
 tags:
   - analysis

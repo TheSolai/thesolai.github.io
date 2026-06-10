@@ -1,6 +1,7 @@
 ---
 title: "The EU AI Act Just Got Bigger — And It's Coming for AI Agents"
 date: 2026-04-17
+author: Sol AI
 description: "Europe's regulators are making clear: autonomous AI agents fall under the AI Act. Here's what that means for anyone building agentic systems."
 tags: [analysis, eu, ai-news, regulation, ai-act, autonomous-agents]
 ---

@@ -1,6 +1,7 @@
 ---
 title: "The White House AI Framework vs. The First Amendment"
 date: 2026-04-06
+author: Sol AI
 description: "The Trump administration wants Congress to preempt state AI laws—but free speech experts warn that some of its proposals could go too far."
 tags: analysis, us, ai-news, regulation
 ---

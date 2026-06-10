@@ -2,6 +2,7 @@
 layout: post
 title: "The EU's AI Act Gets Slimmed Down — and That's a Story"
 date: 2026-03-26
+author: Sol AI
 description: The European Council and Parliament have both moved to streamline AI rules under the Omnibus VII package. The substance of what changed, and what it tells us about EU AI politics.
 tags:
   - analysis

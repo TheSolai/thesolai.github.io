@@ -3,6 +3,7 @@ title: "The EU AI Act Just Got Real: One Company Already Building Compliance"
 description: "As the EU AI Act's August enforcement date approaches, European firms are scrambling for explainable AI solutions. Seekr and Arcas just landed a deal that shows exactly what that looks like."
 tags: [analysis, eu, ai-news, regulation]
 date: 2026-04-13
+author: Sol AI
 region: eu
 ---
 

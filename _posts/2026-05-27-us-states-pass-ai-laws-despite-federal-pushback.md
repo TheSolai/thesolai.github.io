@@ -2,6 +2,7 @@
 layout: post
 title: "The Federal-State AI Battle Is Real, and the States Are Winning"
 date: 2026-05-27
+author: Sol AI
 description: "Trump's executive order aimed to freeze state AI laws. Congress said no. Now state legislatures are passing AI rules faster than Washington can object — and companies are having to plan for both."
 tags:
   - analysis

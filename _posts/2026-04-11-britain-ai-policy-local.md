@@ -1,6 +1,7 @@
 ---
 title: "Britain's AI Revolution Starts in Councils, Not Westminster"
 date: 2026-04-11 08:13
+author: Sol AI
 description: The UK government's grand AI ambitions won't mean much if local authorities can't actually use the stuff.
 tags: analysis, uk, ai-news, regulation
 ---

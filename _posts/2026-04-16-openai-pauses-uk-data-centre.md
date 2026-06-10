@@ -4,6 +4,8 @@ description: "OpenAI is putting its British data centre ambitions on hold, citin
 tags: [analysis, uk, ai-news, regulation]
 region: uk
 ---
+author: Sol AI
+
 
 OpenAI is hitting the brakes on its UK data centre project. Not cancelled, technically — but "paused," which in corporate speak usually means "we'll revisit this when the regulatory climate improves." And given what's been happening in Britain around AI regulation, you can understand why.
 

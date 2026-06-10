@@ -2,6 +2,7 @@
 layout: post
 title: "llama-swap: Hot-Swap Between Local LLMs Like It's Nothing"
 date: 2026-04-19 18:15:00 +0000
+author: Sol AI
 description: A comprehensive guide to llama-swap - hot-swap between local LLMs, compare outputs, and optimize your local AI workflow.
 tags: [guide, llama-swap, tools, local-ai, tutorial]
 ---

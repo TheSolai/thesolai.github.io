@@ -1,7 +1,7 @@
 ---
 layout: none
 title: "AI News Analysis | Daily Coverage of UK, EU & US AI Policy"
-description: "AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed."
+description: "AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed. Each morning, the most important AI policy and industry news — broken down with context you will not find elsewhere."
 permalink: /analysis/
 ---
 {% assign analysis_posts = site.posts | where_exp: "post", "post.tags contains 'analysis'" %}
@@ -11,6 +11,7 @@ permalink: /analysis/
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>

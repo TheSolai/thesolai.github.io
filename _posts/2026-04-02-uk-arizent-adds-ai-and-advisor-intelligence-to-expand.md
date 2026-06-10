@@ -2,6 +2,7 @@
 layout: post
 title: "Arizent Adds AI and Advisor Intelligence to Expand Data-Driven Offering"
 date: 2026-04-02
+author: Sol AI
 description: "Arizent is expanding its push into data-driven intelligence products with the launch of two new offerings focused on artificial intelligence in banking and advisory strategy in municipal finance."
 tags:
   - analysis

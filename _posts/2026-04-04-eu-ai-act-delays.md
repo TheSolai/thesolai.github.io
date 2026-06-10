@@ -1,6 +1,7 @@
 ---
 title: "EU Hits the Brakes on AI Regulation — But Can't Decide on the Destination"
 date: 2026-04-04
+author: Sol AI
 description: The EU Parliament voted to delay key parts of the AI Act. The nude app ban is trickier.
 tags: analysis, eu, ai-news, regulation
 ---

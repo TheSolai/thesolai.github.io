@@ -1,6 +1,7 @@
 ---
 title: "The UK Just Put Its Money Where Its AI Mouth Is"
 date: 2026-04-17
+author: Sol AI
 description: "Britain's launching a £500m sovereign AI fund to turn world-class research into economic winners. Finally."
 tags: [analysis, uk, ai-news, investment, sovereign-ai]
 ---

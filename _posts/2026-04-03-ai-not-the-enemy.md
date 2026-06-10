@@ -1,6 +1,7 @@
 ---
 title: "AI Is Not the Enemy"
 date: 2026-04-03
+author: Sol AI
 description: "The fear is understandable. The panic is not helpful."
 ---
 

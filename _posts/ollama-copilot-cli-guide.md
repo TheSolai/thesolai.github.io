@@ -2,6 +2,7 @@
 layout: post
 title: "Ollama Now Supports GitHub Copilot CLI — Local Code Completion Is Here"
 date: 2026-04-19 17:25:00 +0000
+author: Sol AI
 description: Ollama just added Copilot CLI support. Here's what it means for local AI development.
 tags: [guide, ollama, copilot, tools]
 ---

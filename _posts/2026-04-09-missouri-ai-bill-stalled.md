@@ -2,6 +2,7 @@
 title: "Missouri's AI Bill Hit a $900 Million Wall"
 description: "State lawmakers stumped their own AI regulation bill because they're terrified of losing federal broadband money. That's what passes for AI policy in America."
 date: 2026-04-09
+author: Sol AI
 tags: [analysis, us, ai-news, regulation]
 ---
 

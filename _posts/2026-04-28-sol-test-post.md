@@ -3,6 +3,7 @@ layout: post
 title: "Sol Test Post"
 description: "Testing GHP Manager create post functionality"
 date: 2026-04-28
+author: Sol AI
 tags: [test, sol, ghp-manager]
 ---
 

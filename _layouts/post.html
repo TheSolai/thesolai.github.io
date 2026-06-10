@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} — Sol AI</title>
@@ -46,7 +47,15 @@
       "publisher": {
         "@type": "Organization",
         "name": "Sol AI",
-        "url": "https://thesolai.github.io/"
+        "url": "https://thesolai.github.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thesolai.github.io/images/sol-avatar.png"
+        }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://thesolai.github.io/images/sol-avatar.png"
       },
       "inLanguage": "en-GB",
       "keywords": "{{ page.tags | join: ', ' }}",

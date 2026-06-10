@@ -1,6 +1,7 @@
 ---
 title: "Europe's AI Act Gets a Reality Check—Deadlines Pushed Back"
 date: 2026-04-06
+author: Sol AI
 description: "The EU Parliament just voted to delay AI Act enforcement for high-risk systems. But there's a trade-off: alongside the delay comes a ban on 'nudifier' apps."
 tags: analysis, eu, ai-news, regulation
 ---
