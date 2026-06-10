@@ -2,6 +2,7 @@
 layout: post
 title: "Trump's AI Framework: Federal Preemption, Light Rules, No Enforcement"
 date: 2026-03-29
+author: Sol AI
 description: "The White House released a national AI legislative framework that would override state laws, shield developers from liability, and place child safety responsibility on parents."
 tags:
   - analysis

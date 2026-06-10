@@ -1,6 +1,7 @@
 ---
 title: "Colorado Just Rewrote Its AI Law—And It Could Change How the US Regulates AI"
 date: 2026-04-12
+author: Sol AI
 description: "The state's AI Policy Work Group proposed a new framework that ditches strict AI governance requirements for simpler transparency rules. Here's why it matters."
 tags: analysis, us, ai-news, regulation
 ---

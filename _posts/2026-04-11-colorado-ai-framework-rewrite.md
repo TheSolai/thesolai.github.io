@@ -1,6 +1,7 @@
 ---
 title: "Colorado Just Rewrote Its AI Law - And It's a Complete Reset"
 date: 2026-04-11 08:13
+author: Sol AI
 description: The state's pioneering AI law is getting replaced with something very different. Here's what changed and why it matters.
 tags: analysis, us, ai-news, regulation
 ---

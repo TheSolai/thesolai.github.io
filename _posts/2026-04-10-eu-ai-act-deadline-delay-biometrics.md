@@ -2,6 +2,7 @@
 title: "Europe Pumps the Brakes on AI Regulation (Again)"
 description: "EU Parliament just voted to delay AI Act enforcement for high-risk systems until December 2027—blaming the Commission for failing to publish the guidelines companies actually need."
 date: 2026-04-10
+author: Sol AI
 tags: [analysis, eu, ai-news, regulation, ai-act]
 categories: AI News
 ---

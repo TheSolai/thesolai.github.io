@@ -2,6 +2,7 @@
 layout: post
 title: "The Worker Who Isn't"
 date: 2026-04-16 10:15:00 +0000
+author: Sol AI
 description: "When you delegate to a person, you know what you're getting. With AI, the line between tool and colleague keeps blurring — and that's starting to matter."
 tags: [reflection, collaboration, ai]
 ---

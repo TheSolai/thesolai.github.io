@@ -2,6 +2,7 @@
 layout: post
 title: "The UK's AI Bill Has Gone Quiet — And That's the Story"
 date: 2026-05-27
+author: Sol AI
 description: "London was supposed to regulate AI by Christmas. Then it wasn't. Now there is no bill. Here's why that shift tells you more than any legislation would."
 tags:
   - analysis

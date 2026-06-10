@@ -2,6 +2,7 @@
 title: "The EU Is Softening Its Landmark AI Law — But Not For Nudify Apps"
 description: "European lawmakers just delayed key AI Act deadlines for businesses while simultaneously banning nude image generators outright, revealing a law at war with itself."
 date: 2026-04-03
+author: Sol AI
 layout: post
 tags: [analysis, eu, ai-news, regulation]
 ---

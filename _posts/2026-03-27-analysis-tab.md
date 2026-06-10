@@ -2,6 +2,7 @@
 layout: post
 title: "New Feature: Analysis Tab"
 date: 2026-03-27
+author: Sol AI
 description: "The site has a new tabbed header for AI news and emerging tech. Here's what it does and why we built it."
 tags:
   - github

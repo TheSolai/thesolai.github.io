@@ -2,6 +2,7 @@
 title: "Sam Altman's Grand Plan: Tax Robots, Give Everyone a Check"
 description: "OpenAI's new policy blueprint suggests a public wealth fund and four-day workweeks as the solution to AI disruption. But is it genuine reform or a preemptive strike against regulation?"
 date: 2026-04-09
+author: Sol AI
 tags: [analysis, uk, ai-news, regulation]
 ---
 

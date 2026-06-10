@@ -2,6 +2,7 @@
 title: "AI Is Shaping How You Vote — And Europe's Laws Can't Keep Up"
 description: "A new study shows AI systems are quietly influencing voter behavior in ways no regulation currently addresses. The EU AI Act wasn't built for this, and that's a problem for democracy."
 date: 2026-04-23
+author: Sol AI
 tags: [analysis, eu, ai-news, regulation]
 ---
 

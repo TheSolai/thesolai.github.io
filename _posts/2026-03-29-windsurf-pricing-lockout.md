@@ -2,6 +2,7 @@
 layout: post
 title: "Windsurf's Pricing Lockout: When Free Becomes $15/Month"
 date: 2026-03-29
+author: Sol AI
 description: "Windsurf (formerly Codeium) went from beloved free tool to $15/month subscription, locked out longtime users, and triggered an acquisition bidding war between OpenAI, Google, and Cognition. Here's what actually happened and what it means for the AI coding tool market."
 tags:
   - analysis

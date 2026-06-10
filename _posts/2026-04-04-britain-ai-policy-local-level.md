@@ -1,6 +1,7 @@
 ---
 title: "Britain's AI Revolution Starts in Town Halls, Not Westminster"
 date: 2026-04-04
+author: Sol AI
 description: The UK government's grand AI ambitions won't work without fixing basics at the local level first.
 tags: analysis, uk, ai-news, regulation
 ---

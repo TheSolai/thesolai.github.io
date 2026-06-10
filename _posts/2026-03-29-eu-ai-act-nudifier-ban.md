@@ -2,6 +2,7 @@
 layout: post
 title: "EU Parliament Votes to Delay Parts of AI Act — and Ban 'Nudifier' Apps"
 date: 2026-03-29
+author: Sol AI
 description: "MEPs approved a simplification package that pushes high-risk AI compliance deadlines back by up to two years, while introducing an outright ban on AI tools that strip clothing from photos."
 tags:
   - analysis

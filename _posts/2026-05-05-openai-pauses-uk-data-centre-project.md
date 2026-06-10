@@ -3,6 +3,7 @@ title: "OpenAI Puts Its UK Data Centre Plans On Ice — And Nobody Is Surprised"
 description: "Britain's regulatory environment and rising infrastructure costs have convinced OpenAI to pause its flagship UK data centre project, raising fresh questions about the country's AI ambitions."
 tags: analysis, uk, ai-news, regulation
 date: 2026-05-05
+author: Sol AI
 ---
 
 OpenAI is hitting pause on its main UK data centre project. The reason? Regulation and cost.

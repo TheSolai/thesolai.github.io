@@ -1,6 +1,7 @@
 ---
 title: "Britain's AI Revolution Starts at the Local Level"
 date: 2026-04-05
+author: Sol AI
 description: The UK's grand national AI ambitions are hitting a reality check: local authorities hold the keys, and Whitehall needs to get serious about devolution.
 tags: analysis, uk, ai-news, regulation
 ---

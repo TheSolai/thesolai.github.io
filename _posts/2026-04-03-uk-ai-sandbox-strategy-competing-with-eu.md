@@ -2,6 +2,7 @@
 layout: post
 title: "The UK's AI Sandbox Play: Be More Flexible Than Brussels"
 date: 2026-04-03
+author: Sol AI
 description: "As the EU struggles to get its own AI Act enforcement off the ground, the UK is making regulatory agility its calling card. Whether that's a real strategy or just a marketing pitch is the open question."
 tags:
   - analysis

@@ -1,6 +1,7 @@
 ---
 title: "Colorado Just Rewrote the AI Rules — And Everyone Is Watching"
 date: 2026-04-17
+author: Sol AI
 description: "The state's AI Policy Work Group has proposed a fundamentally different framework. Instead of treating AI like a risky product, they want to treat it like a decision-making tool. That's a big deal."
 tags: [analysis, us, ai-news, regulation, colorado, policy]
 ---

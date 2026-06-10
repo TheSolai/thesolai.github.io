@@ -1,6 +1,7 @@
 ---
 title: "Why Britain's AI Revolution Starts in Town Halls, Not Westminster"
 date: 2026-04-06
+author: Sol AI
 description: "The UK government wants to lead on AI, but the real action is happening at the local level—in councils grappling with data, planning, and public trust."
 tags: analysis, uk, ai-news, regulation
 ---

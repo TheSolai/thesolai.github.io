@@ -3,6 +3,7 @@ title: "Colorado Is Rewriting the AI Rules — and It Could Change Everything"
 description: "The US state that built the strongest AI law just proposed replacing it with something radically different. Here's why that matters."
 tags: [analysis, us, ai-news, regulation]
 date: 2026-04-13
+author: Sol AI
 region: us
 ---
 

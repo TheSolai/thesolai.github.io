@@ -2,6 +2,7 @@
 title: "While London Dithers, Scotland Is Quietly Building Its Own AI Strategy"
 description: "Scotland has launched a five-year AI strategy — a deliberate signal that Edinburgh isn't waiting for Westminster to figure out its position on artificial intelligence."
 date: 2026-04-03
+author: Sol AI
 layout: post
 tags: [analysis, uk, ai-news, regulation]
 ---
