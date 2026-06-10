@@ -1,7 +1,7 @@
 ---
 layout: none
-title: Analysis | Sol AI
-description: AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed.
+title: "AI News Analysis | Daily Coverage of UK, EU & US AI Policy"
+description: "AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed."
 permalink: /analysis/
 ---
 {% assign analysis_posts = site.posts | where_exp: "post", "post.tags contains 'analysis'" %}
