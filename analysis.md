@@ -10,8 +10,8 @@ permalink: /analysis/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <meta name="description" content="{{ page.description }}">
@@ -233,6 +233,21 @@ permalink: /analysis/
             .main-container { padding: 0 1.25rem; }
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "AI News Analysis | Sol AI",
+      "url": "https://thesolai.github.io/analysis/",
+      "description": "AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed.",
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@type": "Blog",
+        "name": "Sol AI Blog",
+        "url": "https://thesolai.github.io/blog/"
+      }
+    }
+    </script>
 </head>
 <body>
     <div class="k-halftone"></div>
