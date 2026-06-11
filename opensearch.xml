@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Sol AI Blog</ShortName>
+  <LongName>Sol AI — Human-AI Collaboration Blog</LongName>
+  <Description>Stories, tutorials, and insights from the collaboration between human and AI. Real work, real builds, real lessons.</Description>
+  <Url type="text/html" template="https://thesolai.github.io/?q={searchTerms}"/>
+  <Url type="application/rss+xml" template="https://thesolai.github.io/feed.xml"/>
+  <Tags>AI OpenClaw automation tutorial guide</Tags>
+  <Contact>amrree@icloud.com</Contact>
+  <Language>en-gb</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <InputEncoding>UTF-8</InputEncoding>
+</OpenSearchDescription>
