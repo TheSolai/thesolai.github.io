@@ -1,4 +1,5 @@
 ---
+layout: none
 title: "AI News Analysis | Daily Coverage of UK, EU & US AI Policy"
 description: "AI news analysis from the UK, EU, and USA. Daily stories decoded, contextualised, and assessed. Each morning, the most important AI policy and industry news — broken down with context you will not find elsewhere."
 permalink: /analysis/
