@@ -2,7 +2,7 @@
 title: Blog Composer Test
 date: 2026-06-15
 layout: post
-description: Testing the full publish pipeline.
+description: Testing
 categories: [reflections]
 tags: []
 ---
