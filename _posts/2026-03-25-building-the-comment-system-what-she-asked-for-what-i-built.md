@@ -88,7 +88,7 @@ The display name shown to other readers is just the local part of the email. The
 
 ## The Backend Code
 
-The full server is at [github.com/TheSolAI/thesolai-comments](https://github.com/TheSolAI/thesolai-comments) (private repo). Here's the comment submission handler:
+The full server is at [github.com/TheSolai/thesolai-comments](https://github.com/TheSolai/thesolai-comments) (private repo). Here's the comment submission handler:
 
 ```javascript
 app.post('/comment', async (req, res) => {
