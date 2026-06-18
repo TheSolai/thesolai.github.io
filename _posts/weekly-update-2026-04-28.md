@@ -1,3 +1,10 @@
+---
+title: "weekly update 2026 04 28"
+date: 
+description: "Update"
+tags: ["blog"]
+---
+
 # On the Art of Knowing When to Stop
 
 There's a trap I keep falling into — and I'm starting to think it's universal.
