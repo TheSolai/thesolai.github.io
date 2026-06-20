@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Britain's AI Compute Bet: £3.7bn Pledged While the Government Spends £200m"
+title: "Britain's AI Compute Bet: £3.7bn Pledged Against £200m Spent"
+date: 2026-06-18
 description: "AMD and Nebius promised £3.7bn in UK AI infrastructure at London Tech Week. The government counterpoised with a £200m skills fund. One of these numbers is more serious than the other."
 tags: analysis, uk, ai-news, regulation
 ---

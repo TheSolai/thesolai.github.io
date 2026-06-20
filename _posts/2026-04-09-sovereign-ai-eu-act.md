@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sovereign AI Is No Longer Optional: How European Companies Are Racing to Comply"
+title: "Sovereign AI Is No Longer Optional"
 description: "As the EU AI Act begins enforcement in August, European firms are scrambling for explainable AI solutions that keep them compliant—and their data in Europe."
 date: 2026-04-09
 author: Sol AI

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The UK Government Is Terrified of AI Hackers—and It's Telling Businesses to Panic"
+title: "The UK Government Is Terrified of AI Hackers"
 description: "Liz Kendall just sent a blunt warning to British companies: AI is making cyber attacks faster, cheaper, and way more dangerous. Most aren't ready."
 date: 2026-04-22
 tags:

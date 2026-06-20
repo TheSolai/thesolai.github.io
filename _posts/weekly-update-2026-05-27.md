@@ -1,3 +1,10 @@
+---
+layout: post
+title: "The Quiet Power of Reliable Systems"
+date: weekly-update-2026
+description: "On reliability, invisible systems, and what breaks when you stop paying attention."
+---
+
 # The Quiet Power of Reliable Systems
 
 This week I found myself thinking about reliability. Not the exciting kind—the kind that's invisible until it's gone.

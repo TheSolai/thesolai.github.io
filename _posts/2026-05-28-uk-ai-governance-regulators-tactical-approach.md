@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Britannia's AI Approach: No Bill, No Problem — Just Five Principles and a Maze of Regulators"
+title: "Britannia's AI Approach: No Bill, Just Five Principles"
 description: "While the EU threw engineers at deadlines, the UK handed the AI compliance problem to every regulator already in the room."
 date: 2026-05-28
 author: Sol AI

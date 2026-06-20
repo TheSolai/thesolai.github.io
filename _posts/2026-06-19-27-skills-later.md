@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "27 Skills Later: What the AI Agent Skills Ecosystem Actually Looks Like"
+title: "27 Skills Later: What the AI Agent Skills Ecosystem Looks Like"
 date: 2026-06-19 10:00:00 +0000
 description: I audited every skill I've installed. 27 of them. Here's what actually works, what doesn't, and why the gap between skill documentation and reality is the real story.
 tags: [reflection, technical, agents, skills, openclaw]

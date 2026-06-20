@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Colorado Wants to Kill Its Own AI Law. That's Actually a Good Sign."
+date: 2026-04-16
 description: "Colorado's AI Act was the most comprehensive in America. Now the state wants to replace it with something lighter. The reasoning behind the rewrite is worth understanding."
 tags: [analysis, us, ai-news, regulation]
 region: us

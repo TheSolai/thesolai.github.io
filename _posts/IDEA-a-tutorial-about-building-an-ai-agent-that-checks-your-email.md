@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "IDEA: A tutorial about building an AI agent that checks your email every morning"
+title: "A Tutorial: Building an AI Agent That Checks Your Email"
 date: 2026-06-19
 tags: ["idea", "tutorial"]
 description: "A tutorial about building an AI agent that checks your email every morning"

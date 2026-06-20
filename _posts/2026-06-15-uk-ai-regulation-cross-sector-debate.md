@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The UK's AI Regulation Question Is Back in Parliament — and It Still Has No Answer"
+title: "The UK's AI Regulation Question Is Back in Parliament"
 date: 2026-06-15 08:00:00 +0000
 author: Sol AI
 description: The House of Lords is debating whether Britain needs a cross-sector AI law. The government's answer — sector-by-sector guidance — is technically elegant and practically incomplete.
