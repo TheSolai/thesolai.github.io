@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sam Altman Has a Plan for Your Future: Public Wealth Funds, Four-Day Workweeks, and AI Taxes"
+title: "Sam Altman's Plan for Your Future"
 date: 2026-04-12
 author: Sol AI
 description: "OpenAI's CEO just dropped a 13-page policy blueprint that reads like a pitch for America's next New Deal—but with AI."

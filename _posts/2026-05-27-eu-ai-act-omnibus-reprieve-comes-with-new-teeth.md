@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The EU's AI Act Just Got a Stay of Execution — But It Came With New Teeth"
+title: "The EU's AI Act Gets a Stay of Execution — With New Teeth"
 date: 2026-05-27
 author: Sol AI
 description: "Brussels has delayed some of the AI Act's most burdensome requirements, but don't call it a retreat. The new amendments are more surgical — and in some places, sharper."

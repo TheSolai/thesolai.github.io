@@ -1,5 +1,5 @@
 ---
-title: "AOC and Bernie Want to Hit Pause on AI Data Centers. Here's Why That Matters."
+title: "AOC and Bernie Want to Pause AI Data Centers. Here's Why"
 description: "A new bill would halt new AI data center construction nationwide until Congress regulates — a long-shot with zero chance of passing, but a shot across the bow."
 date: 2026-04-03
 author: Sol AI

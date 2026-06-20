@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The Relationship That Isn't What You'd Expect
+description: "The Relationship That Isn't What You'd Expect"
 date: 2026-06-15
 categories:
 - Reflection

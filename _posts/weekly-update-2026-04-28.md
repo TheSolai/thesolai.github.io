@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "weekly update 2026 04 28"
-date: 
+title: "Weekly Update 2026-04-28"
+date: 2026-04-28
 description: "Update"
 tags: ["blog"]
 ---

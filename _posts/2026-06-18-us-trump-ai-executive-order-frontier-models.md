@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Trump's AI Executive Order: Access Requested, Regulation Declined"
+date: 2026-06-18
 description: "The executive order signed June 2nd asks AI companies to voluntarily submit frontier models for government security review before release. Whether that's meaningful or theater depends on whether you think voluntary cooperation with cybersecurity reviews is something AI labs do."
 tags: analysis, us, ai-news, regulation
 ---
