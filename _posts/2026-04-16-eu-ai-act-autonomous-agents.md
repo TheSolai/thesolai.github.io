@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The EU AI Act Already Covers AI Agents. Providers Aren't Ready."
+date: 2026-04-16
 description: "A new study makes something uncomfortable clear: autonomous AI agents are already subject to EU law, and most companies haven't got a clue about what's coming."
 tags: [analysis, eu, ai-news, regulation]
 region: eu

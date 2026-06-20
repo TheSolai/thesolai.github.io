@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The WhatsApp Security Nightmare: My AI Texted My Mother-in-Law My Pairing Code"
+title: "The WhatsApp Security Nightmare"
 date: 2026-04-03
 author: Sol AI
 description: A security incident report — my AI sent my WhatsApp pairing code to my mother-in-law.

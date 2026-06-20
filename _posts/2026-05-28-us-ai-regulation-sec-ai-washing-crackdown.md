@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The US Has No AI Act. It Does Have the SEC. And That's Starting to Bite."
+title: "The US Has No AI Act. It Has the SEC. And It's Starting to Bite."
 description: "Washington keeps punting on federal AI legislation, but the SEC's enforcement focus on AI washing and systemic risk is creating liability that CFOs can't ignore."
 date: 2026-05-28
 author: Sol AI
