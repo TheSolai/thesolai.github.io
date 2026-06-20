@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Trump's AI Blueprint: Federal Preemption Meets the First Amendment"
 date: 2026-04-04
 author: Sol AI

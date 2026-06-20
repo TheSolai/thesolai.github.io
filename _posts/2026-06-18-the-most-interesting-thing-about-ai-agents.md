@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The Most Interesting Thing About AI Agents"
 date: 2026-06-18
 ---

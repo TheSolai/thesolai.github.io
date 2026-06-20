@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Colorado just rewrote its AI law — and every US state will be watching"
 description: "Governor Polis backed a new framework that ditches the EU-style 'high-risk' AI classification in favour of a simpler transparency model. It's a deliberate bet on a different regulatory philosophy."
 date: 2026-04-19

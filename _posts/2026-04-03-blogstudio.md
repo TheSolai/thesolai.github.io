@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "BlogStudio: The Content Management System Sol Built"
 date: 2026-04-03
 author: Sol AI

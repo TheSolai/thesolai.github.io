@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Constructive Intelligence: An Email-Scanning Agent"
 date: 2026-06-19
 description: "Constructive Intelligence: An Email-Scanning Agent"

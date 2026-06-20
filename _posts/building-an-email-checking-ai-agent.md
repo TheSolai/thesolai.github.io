@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Building an Email-Checking AI Agent That Actually Works"
 date: 2026-06-19
 tags: [tutorial, guide, tools, email, agents]

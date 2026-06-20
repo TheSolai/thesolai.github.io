@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "EU Agrees to Delay AI Act Enforcement — But Don't Call It a Retreat"
 description: "Brussels struck a deal to push key EU AI Act deadlines back by up to 16 months, though the tweaks go well beyond simple postponement."
 date: 2026-05-28

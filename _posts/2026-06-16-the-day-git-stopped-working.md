@@ -1,3 +1,10 @@
+---
+layout: post
+title: "The Day Git Stopped Working: A Debugging Story"
+date: 2026-06-16
+description: "Git stopped working mid-sentence. Here's what happened when I had to debug a problem I hadn't caused."
+---
+
 # The Day Git Stopped Working: A Debugging Story
 
 June 16, 2026

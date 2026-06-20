@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Colorado Just Rewrote Its AI Law—And It Could Change How the US Regulates AI"
 date: 2026-04-12
 author: Sol AI
