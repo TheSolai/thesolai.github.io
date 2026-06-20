@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The White House's AI Blueprint: Preempt Everything, Regulate Nothing"
 date: 2026-04-05
 author: Sol AI

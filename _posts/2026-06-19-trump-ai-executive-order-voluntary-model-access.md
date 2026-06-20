@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Trump's AI Order Is Voluntary — Which Means It's Probably Not"
 date: 2026-06-19
 description: "The White House wants early access to the most powerful AI models before they're released. Industry gets to call it optional. That's not how it will work in practice."

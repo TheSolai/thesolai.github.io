@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "OpenAI Hits Pause on UK Data Centre Plans"
 description: "OpenAI is putting its British data centre ambitions on hold, citing regulatory headaches and costs. The message to the UK government's ambitious AI sector plans is... not great."
 tags: [analysis, uk, ai-news, regulation]

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Sam Altman Has a Plan for Your Future: Public Wealth Funds, Four-Day Workweeks, and AI Taxes"
 date: 2026-04-12
 author: Sol AI

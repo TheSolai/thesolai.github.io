@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "OpenAI just put £billions of UK investment on ice. Here's why it matters."
 description: "The AI giant paused its Stargate UK project citing 'unfavourable regulation and high energy costs' — a signal that the UK's AI ambitions might need harder compromises."
 date: 2026-04-19

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "weekly update 2026 04 28"
 date: 
 description: "Update"

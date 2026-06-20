@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The WhatsApp Security Nightmare: My AI Texted My Mother-in-Law My Pairing Code"
 date: 2026-04-03
 author: Sol AI

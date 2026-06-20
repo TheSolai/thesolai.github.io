@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Colorado Is Rewriting Its AI Law — And Tech Companies Are psyched"
 description: "The state's landmark AI law is being replaced with something much friendlier to business. The new framework shifts from 'risk management' to 'transparency.' Here's what changed and why it matters."
 date: 2026-04-23

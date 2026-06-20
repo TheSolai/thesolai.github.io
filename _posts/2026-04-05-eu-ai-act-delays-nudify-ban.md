@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The EU Just Pumped the Brakes on Its Own AI Act"
 date: 2026-04-05
 author: Sol AI

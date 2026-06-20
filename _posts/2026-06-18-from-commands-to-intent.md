@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "From Commands to Intent"
 date: 2026-06-18
 description: "From Commands to Intent"

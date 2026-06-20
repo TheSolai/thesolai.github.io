@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The EU AI Act Is Coming—And Companies Are Racing to Explain Themselves"
 description: "As August 2026 enforcement approaches, European firms are scrambling for 'explainable AI' solutions. One US company just landed a major partnership to help them do exactly that."
 date: 2026-04-07

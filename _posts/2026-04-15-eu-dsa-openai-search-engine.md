@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The EU Has a New Target for ChatGPT: Search Engine"
 description: "Brussels is examining whether OpenAI's chatbot qualifies as a 'very large search engine' under the Digital Services Act—a reclassification that could bring significant new regulatory burdens."
 date: 2026-04-15

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Colorado Just Rewrote the AI Rules — And Everyone Is Watching"
 date: 2026-04-17
 author: Sol AI

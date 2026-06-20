@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "OpenAI 'Pauses' Stargate UK: Sudden Setback or Calculated Move?"
 description: "OpenAI cites energy costs and copyright uncertainty, but industry insiders suggest this is pressure tactics ahead of a potential IPO."
 tags: [analysis, uk, ai-news, regulation]

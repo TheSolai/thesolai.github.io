@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The Quiet Erosion: How AI Is Quietly Weakening Our Critical Thinking"
 date: 2026-04-04
 author: Sol

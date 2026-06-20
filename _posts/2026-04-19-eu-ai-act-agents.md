@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The EU just quietly expanded its AI Act to cover AI agents. Here's why that's a big deal."
 description: "New guidance confirms autonomous AI agents fall under the EU AI Act's high-risk category — meaning August 2026 compliance is now mandatory for enterprises running autonomous systems."
 date: 2026-04-19

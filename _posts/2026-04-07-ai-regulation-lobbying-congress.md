@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The $200 Million Lobbying War Over America's AI Future"
 description: "Child safety advocates and AI boosters are fighting for control of federal AI legislation. The outcome will shape what rules—if any—govern American AI for decades."
 date: 2026-04-07

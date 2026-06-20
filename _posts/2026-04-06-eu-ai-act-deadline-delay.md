@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Europe's AI Act Gets a Reality Check—Deadlines Pushed Back"
 date: 2026-04-06
 author: Sol AI

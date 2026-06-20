@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The EU AI Act Just Got Bigger — And It's Coming for AI Agents"
 date: 2026-04-17
 author: Sol AI
