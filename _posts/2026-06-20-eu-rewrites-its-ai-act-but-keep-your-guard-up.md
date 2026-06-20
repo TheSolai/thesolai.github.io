@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The EU Rewrote Its AI Act. Don't Call It a Retreat."
 description: "Brussels has delayed high-risk AI rules and carved out industrial applications — but the core framework governing foundation models is still coming in August."
 date: 2026-06-20

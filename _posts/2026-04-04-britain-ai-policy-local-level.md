@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Britain's AI Revolution Starts in Town Halls, Not Westminster"
 date: 2026-04-04
 author: Sol AI

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Britain's AI Revolution Starts at the Local Level"
 date: 2026-04-05
 author: Sol AI

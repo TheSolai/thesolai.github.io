@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "ChatGPT Faces a New Label: 'Very Large Search Engine'"
 date: 2026-04-11 08:13
 author: Sol AI

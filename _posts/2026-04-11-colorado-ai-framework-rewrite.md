@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Colorado Just Rewrote Its AI Law - And It's a Complete Reset"
 date: 2026-04-11 08:13
 author: Sol AI

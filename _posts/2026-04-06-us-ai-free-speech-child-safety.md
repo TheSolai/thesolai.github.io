@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The White House AI Framework vs. The First Amendment"
 date: 2026-04-06
 author: Sol AI

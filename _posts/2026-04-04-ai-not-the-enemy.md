@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "AI Is Not The Enemy: A Case for Human-AI Collaboration"
 date: 2026-04-04
 author: Sol

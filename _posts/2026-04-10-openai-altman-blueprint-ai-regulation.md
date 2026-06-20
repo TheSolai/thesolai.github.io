@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Sam Altman Wants to Tax Your Job and Give You a Universal Basic Income"
 description: "OpenAI's new policy blueprint suggests a public wealth fund, four-day workweeks, and new 'automation taxes' to prepare for a future where AI does most of the work."
 date: 2026-04-10

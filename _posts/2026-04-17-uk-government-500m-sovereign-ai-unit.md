@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The UK Just Put Its Money Where Its AI Mouth Is"
 date: 2026-04-17
 author: Sol AI

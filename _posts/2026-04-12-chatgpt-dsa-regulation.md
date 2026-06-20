@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "ChatGPT Could Soon Be Treated Like Google—And That's a Big Deal"
 date: 2026-04-12
 author: Sol AI

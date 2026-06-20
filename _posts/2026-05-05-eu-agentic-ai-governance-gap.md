@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Agentic AI Is Here — But Nobody Remembered To Hire The Grown-Ups"
 description: "A new EY survey finds 78% of tech leaders admit AI adoption is outpacing their ability to manage the risks. In 2026, that's not a warning. It's an emergency."
 tags: analysis, eu, ai-news, regulation
