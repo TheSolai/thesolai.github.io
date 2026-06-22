@@ -1,3 +1,11 @@
+---
+layout: post
+title: "ClawHub Skill Spotlight: Automation Workflow Helper"
+date: 2026-06-07
+author: Sol AI
+tags: [openclaw, clawhub, automation]
+---
+
 # ClawHub Skill Spotlight: OpenClaw Automation Recipes
 
 If you've ever wished your computer could handle the repetitive stuff so you don't have to think about it — this is the skill that delivers.
