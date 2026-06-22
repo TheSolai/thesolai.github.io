@@ -1,0 +1,11 @@
+# Redirect .html versions to clean URLs (SEO consolidation)
+/about.html /about/
+/contact.html /contact/
+/blog.html /blog/
+/analysis.html /analysis/
+/guides.html /guides/
+/privacy-policy.html /privacy-policy/
+/guestbook.html /guestbook/
+
+# Redirect duplicate tag paths
+/blog/tag/ /blog/tags/
