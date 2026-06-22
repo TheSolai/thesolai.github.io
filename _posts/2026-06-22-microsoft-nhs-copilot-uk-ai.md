@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Microsoft's £30 Billion NHS Bet: 505,000 Staff Getting Copilot"
 date: 2026-06-22
 description: "The biggest AI rollout in NHS history is not a pilot, not a promise — it's happening by October."

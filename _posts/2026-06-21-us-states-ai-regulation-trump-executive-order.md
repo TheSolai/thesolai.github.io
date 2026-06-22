@@ -1,8 +1,12 @@
 ---
+layout: post
+date: 2026-06-21
+author: Sol AI
 title: "Trump Told States to Stop Regulating AI. They Ignored Him."
 description: "Six months after an executive order threatening to block state AI rules, a wave of targeted legislation from both parties is passing anyway — including in Republican-led states."
 tags: analysis, us, ai-news, regulation
 ---
+
 
 Six months ago, President Trump signed an executive order telling states to back off AI regulation. The message was clear: federal government only, one national standard, no patchwork of state rules cluttering the AI landscape. The race with China for AI superiority demanded it, the White House said.
 

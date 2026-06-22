@@ -1,8 +1,12 @@
 ---
+layout: post
+date: 2026-06-21
+author: Sol AI
 title: "Brussels Finally Got Its AI Act Fix — But the Real Story Is the Nudification Ban"
 description: "After two failed trilogues and months of haggling, the EU has agreed to delay the AI Act's hardest obligations and ban a class of apps that never should have existed."
 tags: analysis, eu, ai-news, regulation
 ---
+
 
 After two failed trilogues — the EU's notoriously grueling negotiation process — Parliament and Council reached a political agreement on the so-called AI Omnibus. The package does two things: it softens the AI Act's implementation timeline for industry, and it writes an outright ban on AI nudification tools into European law. Both matter, but one is more significant than the other.
 
