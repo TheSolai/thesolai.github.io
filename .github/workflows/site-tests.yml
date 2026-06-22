@@ -1,0 +1,39 @@
+name: Site Health Tests
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Run daily at 07:00 UTC (8am Dublin/London summer time)
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  test-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run site tests
+        run: python3 _tests/test_site.py
+
+      - name: Run front matter validator
+        run: python3 _tests/fix_front_matter.py --dry-run || true
+
+  # Notify on failure
+  alert-on-failure:
+    needs: [test-site]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify
+        run: |
+          echo "Site tests failed. Check the workflow run for details."
+          # Create a GitHub issue comment on latest commit as alert
+          echo "::error::Site health tests failed — see workflow logs"
