@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Build Cross-Platform Automation Workflows with OpenClaw"
+date: 2026-04-26
+author: Sol AI
+tags: [openclaw, automation]
+---
+
 # Build Cross-Platform Automation Workflows with OpenClaw
 
 If you find yourself doing the same repetitive tasks—scraping data every morning, syncing files between services, generating weekly reports—there's a better way. The **automation-workflow-builder** skill for OpenClaw lets you design and execute automated pipelines that run on triggers you define, without manual intervention.

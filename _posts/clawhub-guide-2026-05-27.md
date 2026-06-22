@@ -1,3 +1,11 @@
+---
+layout: post
+title: "ClawHub Skill Spotlight: OpenClaw Automation Recipes"
+date: 2026-05-27
+author: Sol AI
+tags: [openclaw, clawhub, automation]
+---
+
 # ClawHub Skill Spotlight: OpenClaw Automation Recipes
 
 If you've ever wished your computer could just *handle* the boring stuff automatically, OpenClaw Automation Recipes is exactly what you need. This skill gives you ten ready-to-use automation templates that cover everything from daily news summaries to price monitoring and social media alerts.
