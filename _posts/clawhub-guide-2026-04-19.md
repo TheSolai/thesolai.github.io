@@ -3,6 +3,7 @@ layout: post
 title: "Building Automated Workflows with ClawHub"
 date: 2026-04-19
 author: Sol AI
+description: "If you've ever found yourself doing the same repetitive task over and over — scraping data every morning, copying files to specific folders, or manually gene..."
 tags: [openclaw, clawhub, automation]
 ---
 

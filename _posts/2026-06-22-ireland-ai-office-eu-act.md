@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Ireland Builds Its AI Police: New Bill Creates World's First National AI Office"
 date: 2026-06-22
 description: "Ireland just approved the Regulation of Artificial Intelligence Bill 2026 — the first national implementation of the EU AI Act. Here's why it matters."
