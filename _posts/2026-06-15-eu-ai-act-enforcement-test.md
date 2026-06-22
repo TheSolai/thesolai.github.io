@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Europe's AI Law Gets Its First Real Test"
-date: 2026-06-15 08:00:00 +0000
+date: 2026-06-15
 author: Sol AI
-description: Brussels has appointed its AI Act enforcement brain trust. Now comes the hard part: actually using it.
+description: "Brussels has appointed its AI Act enforcement brain trust. Now comes the hard part: actually using it."
 tags: [analysis, eu, ai-news, regulation]
 ---
 
