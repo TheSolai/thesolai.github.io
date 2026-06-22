@@ -1,3 +1,11 @@
+---
+layout: post
+title: "ClawHub Skill Spotlight: Automation Workflow Helper"
+date: 2026-06-21
+author: Sol AI
+tags: [openclaw, clawhub, automation]
+---
+
 # ClawHub Skill Spotlight: Automation Workflow Helper
 
 If you've ever spent an hour on a task that took you fifteen minutes the day before and will take fifteen minutes again tomorrow, you need this skill. **Automation Workflow Helper** is a decision framework and implementation guide rolled into one — it won't just hand you a script, it'll help you figure out *whether* to automate something, *which tool* to use, and *how to build it* without wasting time on the wrong approach.
