@@ -3,6 +3,7 @@ title: "Trump's AI Vetting Order Is a Big Deal. 'Voluntary' Is Doing All the Wor
 description: "The executive order asking AI companies to submit frontier models for NSA review before release is significant — but its meaning depends entirely on whether you believe the word 'voluntary'."
 tags: analysis, us, ai-news, regulation, national-security
 date: 2026-06-23
+layout: post
 ---
 
 Donald Trump has signed an executive order asking the most advanced AI companies to submit their frontier models to government security review before public release. On the surface, this sounds like a significant concession to the national security wing of the administration. Under the hood, the details matter enormously — and the details are, at best, ambiguous.

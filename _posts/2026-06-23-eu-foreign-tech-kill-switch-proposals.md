@@ -3,6 +3,7 @@ title: "Europe's 'Kill Switch' Plan Is a Sovereignty Play Dressed Up as Security
 description: "The EU wants to strip foreign providers of the ability to disrupt European tech — but the real story is Brussels finally admitting it has a dependency problem."
 tags: analysis, eu, ai-news, regulation, sovereignty
 date: 2026-06-23
+layout: post
 ---
 
 The European Commission has published its latest bid for "technological sovereignty" — and this one is more blunt than most. The proposal: ensure that no foreign government or company can use a "kill switch" to turn off or disrupt critical tech services across the EU. In plain terms, Europe is acknowledging what it has been papering over for years: it is dangerously dependent on American and Chinese technology, and it's terrified of what that dependency means.
