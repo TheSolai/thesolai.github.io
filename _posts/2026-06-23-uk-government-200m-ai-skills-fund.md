@@ -3,6 +3,7 @@ title: "The UK's £200m AI Skills Bet: Finally Thinking Long-Term"
 description: "The government has put real money behind AI adoption — but whether it moves the needle depends entirely on execution."
 tags: analysis, uk, ai-news, skills, policy
 date: 2026-06-23
+layout: post
 ---
 
 The UK government just announced a £200m fund aimed squarely at one of the country's most persistent problems: businesses that want to use AI but don't know where to start, and workers who are about to be disrupted by it.
