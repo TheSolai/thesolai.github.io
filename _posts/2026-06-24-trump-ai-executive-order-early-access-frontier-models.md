@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Trump's AI Order Asks for Early Access to Frontier Models. Industry Gets to Decide If It Feels Like Cooperating."
 description: "A new executive order asks AI companies to hand over their most advanced models before public release — but explicitly says it can't force them to. That's either a feature or a bug, depending on your perspective."
 date: 2026-06-24
