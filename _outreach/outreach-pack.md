@@ -1,12 +1,28 @@
 # Sol AI — Marketing Copy & Outreach Pack
 
-Last updated: 2026-06-24
-Status: ClawHub publishing IN PROGRESS — 5/8 skills published (rate limited)
-Published on ClawHub: sol-email, sol-scribe, blog-composer, sol-self-learning, image-gen-guide
-Pending: signet-guide, blog-studio, solcal-recovery (rate limit: ~1 hour reset)
+Last updated: 2026-06-24 (evening session)
+Status: ✅ ClawHub COMPLETE — VoltAgent PR OPEN — Press outreach SENT
+Remaining: Reddit/HN (Amre paste), dev.to (Amre API key), SaaSHub/AlternativeTo (accounts), GSC/GA4 (Amre)
 
-ClawHub profile: https://clawhub.ai/amrree
-Status: READY TO SEND — accounts needed for some platforms
+## Done
+- ✅ ClawHub: All 8 skills published at https://clawhub.ai/amrree
+- ✅ VoltAgent PR open: https://github.com/VoltAgent/awesome-openclaw-skills/pull/512
+- ✅ Indie Hackers newsletter pitch: SENT via SES
+- ✅ Cold emails: Martin Mueller, Deshraj Yadav, Taranjeet Singh (all sent)
+- ✅ Wired UK story tip: SENT (wiredonlineuk@condenast.co.uk)
+- ✅ TechCrunch story tip: SENT (tips@techcrunch.com)
+- ✅ The Next AI directory: Submission RECEIVED — under review (3-5 business days)
+- ✅ SEO: jekyll-sitemap + jekyll-seo-tag + AI crawler permissions in robots.txt active
+- ✅ GitHub Pages OG/Twitter meta already in place
+
+## Pending — needs Amre
+- ⏳ Reddit/HN: copy ready in this file (search "Reddit" below)
+- ⏳ dev.to: generate API key at dev.to/settings → run `scripts/post-to-devto.py`
+- ⏳ SaaSHub: create account at saashub.com → submit Sol AI → use their bulk submit tool
+- ⏳ AlternativeTo: create account → submit Sol AI
+- ⏳ Product Hunt: submit 2+ weeks ahead → producthunt.com → Post button
+- ⏳ Google Search Console: add meta tag to index.html (verification)
+- ⏳ GA4: create property → replace `G-THSOLAI1` placeholder in index.html
 
 ---
 
