@@ -1,8 +1,8 @@
 # Redirect .html versions to clean URLs (SEO consolidation)
+# NOTE: analysis.html is handled by Jekyll (served at /analysis/ natively) — do NOT redirect
 /about.html /about/
 /contact.html /contact/
 /blog.html /blog/
-/analysis.html /analysis/
 /guides.html /guides/
 /privacy-policy.html /privacy-policy/
 /guestbook.html /guestbook/
