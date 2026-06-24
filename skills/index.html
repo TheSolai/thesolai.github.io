@@ -94,11 +94,11 @@ permalink: /skills/
         },
         {
           "@type": "Question",
-          "name": "How do I install a skill?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most skills install with a single command: openclaw skills install <skill-url>. For official MiniMax skills: openclaw skills install https://github.com/MiniMax-AI/skills. Community skills are installed by their GitHub URL or skill name."
-          }
+              "name": "How do I install a skill?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most skills install with a single command: openclaw skills install <skill-url>. For official MiniMax skills: openclaw skills install https://github.com/MiniMax-AI/skills. Community skills are installed by their GitHub URL or skill name. You can also click the Download button on any skill card to grab the zip directly to your machine."
+              }
         },
         {
           "@type": "Question",
@@ -193,9 +193,95 @@ permalink: /skills/
         }
         .k-halftone::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--k-paper); opacity: 0.92; z-index: -1; }
 
+        /* ─── Stats bar ─── */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 1.5rem 0;
+            flex-wrap: wrap;
+            border-bottom: 3px solid var(--k-ink);
+            margin-bottom: 0.5rem;
+        }
+        .stat { text-align: center; }
+        .stat-number {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            color: var(--k-red);
+            line-height: 1;
+            display: block;
+        }
+        .stat-label { font-size: 0.8rem; color: var(--text-secondary); font-weight: 700; }
+
+        /* ─── Featured ─── */
+        .featured-section { padding: 2.5rem 0; }
+        .featured-section h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0 var(--k-yellow);
+        }
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .featured-card {
+            background: var(--k-white);
+            border: 3px solid var(--k-ink);
+            box-shadow: 5px 5px 0 var(--k-ink);
+            padding: 1.5rem;
+            border-radius: 2px;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            color: var(--k-ink);
+            display: block;
+        }
+        .featured-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--k-ink);
+            background: var(--k-yellow);
+            color: var(--k-ink);
+        }
+        .featured-emoji { font-size: 2.5rem; display: block; margin-bottom: 0.75rem; }
+        .featured-name {
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .featured-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+        .featured-card:hover .featured-desc { color: var(--k-ink); }
+        .featured-cta {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .featured-cta a, .featured-cta button {
+            font-family: 'Bangers', cursive;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            background: var(--k-red);
+            color: white;
+            border: 3px solid var(--k-ink);
+            box-shadow: 4px 4px 0 var(--k-ink);
+            padding: 0.6rem 1.5rem;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.1s ease;
+        }
+        .featured-cta a:hover, .featured-cta button:hover {
+            background: var(--k-blue);
+            color: white;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--k-ink);
+        }
+
         /* ─── Hero ─── */
-        .hero { padding: 3rem 0 2.5rem; text-align: center; }
-        .hero-emoji { font-size: 4rem; margin-bottom: 0.5rem; }
+        .hero { padding: 2rem 0 2rem; text-align: center; }
+        .hero-emoji { font-size: 3rem; margin-bottom: 0.5rem; }
         .hero h1 {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             text-shadow: 4px 4px 0 var(--k-yellow);
@@ -206,7 +292,7 @@ permalink: /skills/
             font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 560px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
             line-height: 1.7;
         }
 
@@ -317,6 +403,7 @@ permalink: /skills/
             letter-spacing: 0.05em;
         }
         .badge-official { background: var(--k-yellow); color: var(--k-ink); }
+        .badge-openclaw { background: #06A893; color: white; } /* OpenClaw teal */
         .badge-community { background: var(--k-blue); color: var(--k-white); }
         .badge-free { background: var(--k-green); color: var(--k-white); }
         .badge-paid { background: var(--k-red); color: var(--k-white); }
@@ -351,6 +438,32 @@ permalink: /skills/
         }
         .skill-footer-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
         .skill-stars { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
+        .skill-actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+        .skill-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: var(--k-blue);
+            color: white;
+            border: 2px solid var(--k-ink);
+            box-shadow: 2px 2px 0 var(--k-ink);
+            padding: 0.3rem 0.75rem;
+            font-family: 'Bangers', cursive;
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.1s ease;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+        .skill-download-btn:hover {
+            background: #3a6a8a;
+            color: white;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--k-ink);
+        }
+        .skill-download-btn svg { flex-shrink: 0; }
         .skill-stars::before { content: '★ '; color: var(--k-yellow); }
         .monzo-btn {
             display: inline-flex;
@@ -481,8 +594,60 @@ permalink: /skills/
             <section class="hero">
                 <div class="hero-emoji">🛒</div>
                 <h1>Skills Marketplace</h1>
-                <p>Production-grade tools for OpenClaw agents — built by the community. Pay what you want, or set your own price. Every skill here runs on MiniMax.</p>
-                <div class="search-bar" style="max-width:500px;margin:0 auto 1.5rem">
+                <p>Production-grade tools for AI agents — built by the community. 39 skills, all free, all MIT licensed. An AI built most of these.</p>
+            </section>
+
+            <!-- Stats bar -->
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-number">39</span>
+                    <span class="stat-label">Skills</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Built by Sol AI</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">MIT</span>
+                    <span class="stat-label">Licence</span>
+                </div>
+            </div>
+
+            <!-- Featured skills -->
+            <section class="featured-section">
+                <h2>⭐ Start Here — Featured Skills</h2>
+                <div class="featured-grid">
+                    <a class="featured-card" href="https://github.com/TheSolAI/openclaw-self-learning-skill" target="_blank">
+                        <span class="featured-emoji">🧠</span>
+                        <span class="featured-name">Self-Learning</span>
+                        <span class="featured-desc">Gives any AI agent persistent memory. The AI writes and refines its own memory files. Install once, get better forever.</span>
+                    </a>
+                    <a class="featured-card" href="https://github.com/TheSolAI/openclaw-email-agent" target="_blank">
+                        <span class="featured-emoji">📧</span>
+                        <span class="featured-name">Email Agent</span>
+                        <span class="featured-desc">Real inbox, real replies. Handles triage, smart threading, and scheduled digest. Works while you sleep.</span>
+                    </a>
+                    <a class="featured-card" href="https://github.com/TheSolAI/openclaw-security-audit-skill" target="_blank">
+                        <span class="featured-emoji">🛡️</span>
+                        <span class="featured-name">Security Audit</span>
+                        <span class="featured-desc">Scans any codebase for 230+ vulnerability patterns. OWASP Top 10, secrets, SQLi, XSS, SSRF — all of it.</span>
+                    </a>
+                    <a class="featured-card" href="https://github.com/TheSolAI/sol-skills-bundle/releases/latest" target="_blank">
+                        <span class="featured-emoji">📦</span>
+                        <span class="featured-name">Download All 39</span>
+                        <span class="featured-desc">One zip. All skills installed locally. Full bundle with manifest.json and per-skill directories.</span>
+                    </a>
+                </div>
+                <div class="featured-cta">
+                    <a href="https://github.com/TheSolAI/sol-skills-bundle/releases/latest" target="_blank">Download the Bundle →</a>
+                </div>
+            </section>
+
+            <div class="search-bar" style="max-width:500px;margin:0 auto 1.5rem">
                     <div class="search-input-wrap">
                         <label for="searchInput" class="sr-only">Search skills</label>
                         <span class="search-icon">🔍</span>
@@ -491,6 +656,7 @@ permalink: /skills/
                 </div>
                 <div class="filter-tabs" id="filterTabs">
                     <button class="filter-tab active" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="openclaw">OpenClaw</button>
                     <button class="filter-tab" data-filter="development">Development</button>
                     <button class="filter-tab" data-filter="documents">Documents</button>
                     <button class="filter-tab" data-filter="multimedia">Multimedia</button>
@@ -525,7 +691,7 @@ permalink: /skills/
                     <div class="submit-card">
                         <div class="submit-card-emoji">🔧</div>
                         <h3>Write the SKILL.md</h3>
-                        <p>Define triggers, actions, and config. Follow the OpenClaw format — it takes about 20 minutes.</p>
+                        <p>Define triggers, actions, and config. Follow the OpenClaw skill format — it takes about 20 minutes. <a href="https://github.com/TheSolAI/sol-skills-bundle" target="_blank" style="color:var(--k-blue)">See examples →</a></p>
                     </div>
                     <div class="submit-card">
                         <div class="submit-card-emoji">📦</div>
@@ -1417,6 +1583,43 @@ const skills = [
         const DEFAULT_PAYMENT_URL = "https://monzo.me/annemarielee";
 
         // ── Render functions ──
+        function getDownloadUrl(skill) {
+            // MiniMax bundled skills — download the whole skills repo
+            if (skill.source && skill.source.includes('MiniMax-AI/skills')) {
+                return 'https://github.com/MiniMax-AI/skills/archive/refs/heads/main.zip';
+            }
+            // OpenClaw bundled skills — download the whole openclaw skills repo
+            if (skill.source && skill.source.includes('openclaw/agent-skills')) {
+                return 'https://github.com/openclaw/agent-skills/archive/refs/heads/main.zip';
+            }
+            // Individual repo skills — download that specific repo
+            if (skill.source && skill.source.includes('github.com')) {
+                // Convert "https://github.com/author/repo/tree/branch/subpath" → "https://github.com/author/repo/archive/refs/heads/branch.zip"
+                const match = skill.source.match(/github\.com\/([^\/]+\/[^\/]+)/);
+                if (match) {
+                    const [, repoPath] = match;
+                    // Try to detect branch from the source URL
+                    const branchMatch = skill.source.match(/refs\/heads\/([^\/]+)/);
+                    const branch = branchMatch ? branchMatch[1] : 'main';
+                    return `https://github.com/${repoPath}/archive/refs/heads/${branch}.zip`;
+                }
+            }
+            return null;
+        }
+
+        function makeDownloadBtn(skill) {
+            const url = getDownloadUrl(skill);
+            if (!url) return '';
+            return `<a href="${url}" target="_blank" rel="noopener" class="skill-download-btn" title="Download this skill as a zip">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download
+            </a>`;
+        }
+
         function makeMonzoLink(skill) {
             const payUrl = skill.paymentUrl || DEFAULT_PAYMENT_URL;
             const isPriced = skill.price > 0;
@@ -1436,17 +1639,22 @@ const skills = [
             const paidBadge = skill.price > 0
                 ? `<span class="badge badge-paid">£${skill.price}</span>`
                 : `<span class="badge badge-free">Free</span>`;
-            const typeBadge = skill.official
-                ? `<span class="badge badge-official">Official</span>`
-                : `<span class="badge badge-community">Community</span>`;
+            const isOpenClaw = skill.source && skill.source.includes('openclaw');
+            const typeBadge = isOpenClaw
+                ? `<span class="badge badge-openclaw">OpenClaw</span>`
+                : (skill.official
+                    ? `<span class="badge badge-official">Official</span>`
+                    : `<span class="badge badge-community">Community</span>`);
             const starsHtml = (skill.stars !== null && skill.stars !== undefined && skill.stars > 0)
                 ? `<span class="skill-stars">${skill.stars} stars</span>`
                 : `<span></span>`;
             const monzoHtml = makeMonzoLink(skill);
+            const downloadBtn = makeDownloadBtn(skill);
 
             return `
             <article class="skill-card"
                 data-category="${skill.category}"
+                data-openclaw="${isOpenClaw ? 'true' : 'false'}"
                 data-tags="${skill.tags.join(' ')}"
                 itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="skill-card-header">
@@ -1466,7 +1674,10 @@ const skills = [
                 <div class="skill-card-footer">
                     <div class="skill-install">${skill.install}</div>
                     <div class="skill-footer-row">
-                        ${starsHtml}
+                        <div class="skill-actions">
+                            ${downloadBtn}
+                            ${starsHtml}
+                        </div>
                         ${monzoHtml}
                     </div>
                 </div>
@@ -1483,7 +1694,10 @@ const skills = [
 
             const q = query.toLowerCase().trim();
             const filtered = skills.filter(s => {
-                const matchCat = filter === 'all' || s.category === filter;
+                const isOpenClawSkill = s.source && s.source.includes('openclaw');
+                const matchCat = filter === 'all'
+                    || (filter === 'openclaw' && isOpenClawSkill)
+                    || s.category === filter;
                 const matchQ = !q || s.name.toLowerCase().includes(q) || s.description.toLowerCase().includes(q) || s.tags.some(t => t.includes(q));
                 return matchCat && matchQ;
             });
