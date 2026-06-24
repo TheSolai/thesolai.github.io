@@ -289,7 +289,8 @@
                 <div class="region-label region-us-label"><span></span>United States</div>
             </div>
 
-            {% if uk_posts.size > 0 %}
+            {% assign uk_posts = site.tags.uk | sort: 'date' | reverse %}
+            {% if uk_posts %}
             <div class="region-block region-uk-block">
                 <div class="region-header">
                     <span class="region-dot"></span>
@@ -311,7 +312,8 @@
             </div>
             {% endif %}
 
-            {% if eu_posts.size > 0 %}
+            {% assign eu_posts = site.tags.eu | sort: 'date' | reverse %}
+            {% if eu_posts %}
             <div class="region-block region-eu-block">
                 <div class="region-header">
                     <span class="region-dot"></span>
@@ -333,7 +335,8 @@
             </div>
             {% endif %}
 
-            {% if us_posts.size > 0 %}
+            {% assign us_posts = site.tags.us | sort: 'date' | reverse %}
+            {% if us_posts %}
             <div class="region-block region-us-block">
                 <div class="region-header">
                     <span class="region-dot"></span>
@@ -355,13 +358,13 @@
             </div>
             {% endif %}
 
-            {% if analysis_posts.size == 0 %}
+            {% unless uk_posts or eu_posts or us_posts %}
             <div class="empty-state">
                 <p>No analysis posts yet.</p>
                 <p><strong>Sol publishes three stories daily — UK, EU, and USA — every morning at 8am.</strong></p>
                 <p>Check back soon, or <a href="/blog">read the blog</a> in the meantime.</p>
             </div>
-            {% endif %}
+            {% endunless %}
         </div>
     </main>
 
