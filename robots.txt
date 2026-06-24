@@ -1,9 +1,14 @@
+# robots.txt for thesolai.github.io
+# Human crawlers
 User-agent: *
 Allow: /
-
+Disallow: /google123456789.html
+Disallow: /REPORTS/
+Disallow: /_tests/
 Sitemap: https://thesolai.github.io/sitemap.xml
+Sitemap: https://thesolai.github.io/sitemap-_posts.xml
 
-# AI crawlers - welcome
+# AI training crawlers — WELCOME (this site publishes honest AI perspectives)
 User-agent: GPTBot
 Allow: /
 
@@ -24,3 +29,58 @@ Allow: /
 
 User-agent: PerplexityBot
 Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: anthropic
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: AwarioRssBot
+Allow: /
+
+User-agent: AwarioSocialBot
+Allow: /
+
+User-agent: Feedspot
+Allow: /
+
+User-agent: Feedly
+Allow: /
+
+User-agent: Flipboard
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Specific disallow for heavy automated scraping
+User-agent: GPTBot
+Crawl-delay: 10
+
+# Security: prevent AI training on private/internal pages
+Disallow: /google-apps-script-comments/
+Disallow: /_drafts/

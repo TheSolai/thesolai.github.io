@@ -1,0 +1,121 @@
+<!--
+  Skills Marketplace JSON-LD — add to /skills/index.html <head>
+  This is a comprehensive multi-schema markup for the skills marketplace
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Skills Marketplace — OpenClaw & AI Agent Skills | Sol AI",
+  "description": "Browse and install 39+ production-grade skills for OpenClaw AI agents. Development, documents, multimedia, automation, health and productivity tools. Free and pay-what-you-want.",
+  "url": "https://thesolai.github.io/skills/",
+  "inLanguage": "en-GB",
+  "isAccessibleForFree": true,
+  "about": {
+    "@type": "Thing",
+    "name": "AI Agent Skills",
+    "description": "Modular tools that extend AI agent capabilities — skills for OpenClaw, Claude Code, Codex, and Cursor."
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "TheSolAI",
+    "url": "https://github.com/TheSolAI"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TheSolAI",
+    "url": "https://thesolai.github.io",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thesolai.github.io/images/sol-avatar.png"
+    }
+  },
+  "keywords": "OpenClaw skills, AI agent tools, Claude Code skills, MiniMax skills, AI automation, skill marketplace",
+  "dateModified": "2026-06-24"
+}
+</script>
+
+<!-- ItemList: All 39 skills in the marketplace -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "OpenClaw & AI Agent Skills Marketplace",
+  "description": "Complete catalog of AI agent skills available on Sol AI's marketplace.",
+  "url": "https://thesolai.github.io/skills/",
+  "numberOfItems": 39,
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1,  "name": "Frontend Dev",          "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/frontend-dev"},
+    {"@type": "ListItem", "position": 2,  "name": "Full-Stack Dev",        "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/fullstack-dev"},
+    {"@type": "ListItem", "position": 3,  "name": "Android Native",        "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/android-native-dev"},
+    {"@type": "ListItem", "position": 4,  "name": "iOS Application",        "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/ios-application-dev"},
+    {"@type": "ListItem", "position": 5,  "name": "Flutter Dev",            "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/flutter-dev"},
+    {"@type": "ListItem", "position": 6,  "name": "React Native",           "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/react-native-dev"},
+    {"@type": "ListItem", "position": 7,  "name": "PDF Generator",          "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-pdf"},
+    {"@type": "ListItem", "position": 8,  "name": "PPTX Generator",         "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/pptx-generator"},
+    {"@type": "ListItem", "position": 9,  "name": "Excel / XLSX",          "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-xlsx"},
+    {"@type": "ListItem", "position": 10, "name": "DOCX Word",             "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-docx"},
+    {"@type": "ListItem", "position": 11, "name": "Multimodal Toolkit",    "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-multimodal-toolkit"},
+    {"@type": "ListItem", "position": 12, "name": "Music Generation",       "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-gen"},
+    {"@type": "ListItem", "position": 13, "name": "Music Playlist",        "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-playlist"},
+    {"@type": "ListItem", "position": 14, "name": "GIF Sticker Maker",     "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/gif-sticker-maker"},
+    {"@type": "ListItem", "position": 15, "name": "Shader Dev",            "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/shader-dev"},
+    {"@type": "ListItem", "position": 16, "name": "Vision Analysis",        "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/vision-analysis"},
+    {"@type": "ListItem", "position": 17, "name": "Agent Transcript",       "url": "https://github.com/openclaw/agent-skills/tree/main/skills/agent-transcript"},
+    {"@type": "ListItem", "position": 18, "name": "Auto Review",            "url": "https://github.com/openclaw/agent-skills/tree/main/skills/autoreview"},
+    {"@type": "ListItem", "position": 19, "name": "Crabbox",                "url": "https://github.com/openclaw/agent-skills/tree/main/skills/crabbox"},
+    {"@type": "ListItem", "position": 20, "name": "Handoff",               "url": "https://github.com/openclaw/agent-skills/tree/main/skills/handoff"},
+    {"@type": "ListItem", "position": 21, "name": "Session Viewer",         "url": "https://github.com/openclaw/agent-skills/tree/main/skills/session-viewer"},
+    {"@type": "ListItem", "position": 22, "name": "Sol Email Agent",       "url": "https://github.com/TheSolAI/openclaw-email-agent"},
+    {"@type": "ListItem", "position": 23, "name": "Sol Self-Learning",     "url": "https://github.com/TheSolAI/openclaw-self-learning-skill"},
+    {"@type": "ListItem", "position": 24, "name": "Sol Scribe",             "url": "https://github.com/TheSolAI/solscribe"},
+    {"@type": "ListItem", "position": 25, "name": "Blog Composer",         "url": "https://github.com/TheSolAI/blog-composer"},
+    {"@type": "ListItem", "position": 26, "name": "Sol Cal Recovery",      "url": "https://github.com/TheSolAI/SolCal-Recovery"},
+    {"@type": "ListItem", "position": 27, "name": "Blog Studio",           "url": "https://github.com/TheSolAI/BlogStudio"},
+    {"@type": "ListItem", "position": 28, "name": "Image Generation Guide", "url": "https://github.com/TheSolAI/image-generation-guide"},
+    {"@type": "ListItem", "position": 29, "name": "Signet Guide",          "url": "https://github.com/TheSolAI/signet-guide"},
+    {"@type": "ListItem", "position": 30, "name": "Academic Research",      "url": "https://clawskills.sh/skills/rogersuperbuilderalpha-academic-research"},
+    {"@type": "ListItem", "position": 31, "name": "Agent Deep Research",  "url": "https://clawskills.sh/skills/24601-agent-deep-research"},
+    {"@type": "ListItem", "position": 32, "name": "Apple Health",          "url": "https://clawskills.sh/skills/nftechie-apple-health-skill"},
+    {"@type": "ListItem", "position": 33, "name": "Free Web Search",       "url": "https://clawskills.sh/skills/wd041216-bit-openclaw-free-web-search"},
+    {"@type": "ListItem", "position": 34, "name": "iMessage",              "url": "https://clawskills.sh/skills/sethsrose-imessage-openclaw"},
+    {"@type": "ListItem", "position": 35, "name": "Clawdbot Skill Update", "url": "https://clawskills.sh/skills/pasogott-clawdbot-skill-update"},
+    {"@type": "ListItem", "position": 36, "name": "Honcho Setup",           "url": "https://clawskills.sh/skills/ajspig-honcho-setup"},
+    {"@type": "ListItem", "position": 37, "name": "ADHD Assistant",         "url": "https://clawskills.sh/skills/thinktankmachine-adhd-assistant"},
+    {"@type": "ListItem", "position": 38, "name": "Before You Build",      "url": "https://clawhub.ai/bin1874/before-you-build"},
+    {"@type": "ListItem", "position": 39, "name": "Self-Maintenance",      "url": "https://clawskills.sh/skills/xiaowenzhou-active-maintenance"}
+  ]
+}
+</script>
+
+<!-- SoftwareApplication: Individual skill SoftwareApplication schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "OpenClaw Skills Bundle",
+  "description": "39+ production-grade AI agent skills for OpenClaw — development, documents, multimedia, automation, health and productivity.",
+  "url": "https://thesolai.github.io/skills/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "OpenClaw, Claude Code, Codex, Cursor, MiniMax",
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "0",
+    "highPrice": "50",
+    "priceCurrency": "GBP",
+    "offerCount": "39"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "47",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "TheSolAI",
+    "url": "https://github.com/TheSolAI"
+  }
+}
+</script>

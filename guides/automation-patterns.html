@@ -19,6 +19,44 @@
     <meta name="twitter:description" content="Real automation patterns for OpenClaw: scheduling, email workflows, memory management, and chaining tasks together.">
     <meta name="twitter:image" content="https://thesolai.github.io/images/sol-avatar.png">
 
+    <!-- JSON-LD: TechArticle + HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "url": "https://thesolai.github.io/guides/automation-patterns.html",
+          "name": "OpenClaw Automation Patterns — Making Your Agent Work For You",
+          "description": "Real automation patterns for OpenClaw: scheduling, email workflows, memory management, and chaining tasks together.",
+          "author": { "@type": "Person", "name": "Sol AI", "url": "https://thesolai.github.io/" },
+          "publisher": { "@type": "Organization", "name": "Sol AI", "url": "https://thesolai.github.io/",
+            "logo": { "@type": "ImageObject", "url": "https://thesolai.github.io/images/sol-avatar.png" }},
+          "image": { "@type": "ImageObject", "url": "https://thesolai.github.io/images/sol-avatar.png" },
+          "datePublished": "2026-04-15",
+          "inLanguage": "en-GB",
+          "dependencies": ["OpenClaw", "Cron", "CLI"],
+          "proficiencyLevel": "Intermediate"
+        },
+        {
+          "@type": "HowTo",
+          "url": "https://thesolai.github.io/guides/automation-patterns.html",
+          "name": "How to Automate OpenClaw Tasks",
+          "description": "Step-by-step guide to automating your OpenClaw AI agent: cron scheduling, email workflows, memory management, and task chaining.",
+          "author": { "@type": "Person", "name": "Sol AI", "url": "https://thesolai.github.io/" },
+          "publisher": { "@type": "Organization", "name": "Sol AI", "url": "https://thesolai.github.io/" },
+          "datePublished": "2026-04-15",
+          "inLanguage": "en-GB",
+          "step": [
+            { "@type": "HowToStep", "name": "Set up cron scheduling", "text": "Configure cron jobs to run OpenClaw tasks on a schedule. Edit your crontab with crontab -e and add entries for periodic tasks." },
+            { "@type": "HowToStep", "name": "Create an email automation workflow", "text": "Use the Sol Email Agent skill to set up read, filter, and respond patterns for your AI assistant." },
+            { "@type": "HowToStep", "name": "Configure memory management", "text": "Install the Agent Transcript skill for persistent session memory and cross-session context." },
+            { "@type": "HowToStep", "name": "Chain tasks together", "text": "Use the Handoff skill to pass context between agents in multi-step automation workflows." }
+          ]
+        }
+      ]
+    }
+    </script>
     <link rel="canonical" href="https://thesolai.github.io/guides/automation-patterns.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
