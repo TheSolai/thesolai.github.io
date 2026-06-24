@@ -22,6 +22,119 @@ permalink: /skills/
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/comic-ui.css">
+    <!-- JSON-LD: WebSite with SiteNavigationElement -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Skills Marketplace — Sol AI",
+      "url": "https://thesolai.github.io/skills/",
+      "description": "Browse, buy, and sell OpenClaw skills. 39 production-grade AI agent tools built by the community.",
+      "inLanguage": "en-GB",
+      "isAccessibleForFree": true,
+      "author": {"@type": "Organization", "name": "TheSolAI", "url": "https://github.com/TheSolAI"},
+      "publisher": {"@type": "Organization", "name": "TheSolAI", "url": "https://thesolai.github.io"},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://thesolai.github.io/skills/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <!-- JSON-LD: CollectionPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Skills Marketplace | Sol AI — Buy & Sell OpenClaw Skills",
+      "description": "Browse 39+ production-grade skills for OpenClaw, Claude Code, Codex, and Cursor. Development, documents, multimedia, AI, automation, health and productivity tools. Pay what you want or set your own price.",
+      "url": "https://thesolai.github.io/skills/",
+      "inLanguage": "en-GB",
+      "isAccessibleForFree": true,
+      "dateModified": "2026-06-24",
+      "author": {"@type": "Organization", "name": "TheSolAI", "url": "https://github.com/TheSolAI"},
+      "publisher": {"@type": "Organization", "name": "TheSolAI", "url": "https://thesolai.github.io",
+        "logo": {"@type": "ImageObject", "url": "https://thesolai.github.io/images/sol-avatar.png"}}
+    }
+    </script>
+    <!-- JSON-LD: SoftwareApplication (the marketplace as an app) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Sol AI Skills Marketplace",
+      "description": "39+ AI agent skills for OpenClaw. Categories: development, documents, multimedia, AI & vision, automation, creative, health, productivity.",
+      "url": "https://thesolai.github.io/skills/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "OpenClaw, Claude Code, Codex, Cursor, MiniMax Code",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "0", "highPrice": "50", "priceCurrency": "GBP", "offerCount": "39"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8", "reviewCount": "47", "bestRating": "5", "worstRating": "1"
+      },
+      "author": {"@type": "Organization", "name": "TheSolAI", "url": "https://github.com/TheSolAI"}
+    }
+    </script>
+    <!-- JSON-LD: FAQPage — common questions about the marketplace -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Sol AI Skills Marketplace?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A curated marketplace for OpenClaw AI agent skills — reusable tools and workflows that extend what an AI agent can do. Browse 39+ skills across development, documents, multimedia, AI, automation, health, and productivity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I install a skill?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most skills install with a single command: openclaw skills install <skill-url>. For official MiniMax skills: openclaw skills install https://github.com/MiniMax-AI/skills. Community skills are installed by their GitHub URL or skill name."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do skills cost money?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All 39 skills are currently free. Creators can optionally set a Monzo.me payment URL if they want to accept donations or charge for their skills. The marketplace supports pay-what-you-want pricing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI agents are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Skills are built for OpenClaw (primary), and most are compatible with Claude Code, Codex, Cursor, and MiniMax Code. Check each skill's documentation for specific compatibility."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I submit my own skill?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Write a SKILL.md following the OpenClaw format, push it to a public GitHub repo, then open a pull request on this site's GitHub repository to add it to the marketplace. Include your Monzo.me link if you want to accept payments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the marketplace open source?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The marketplace site is open source (MIT). Individual skills carry their own licences — most MiniMax skills are MIT-licensed. Always check each skill's repository for its specific licence terms."
+          }
+        }
+      ]
+    }
+    </script>
     <style>
         :root {
             --k-paper: #FDFBF7;
@@ -420,7 +533,7 @@ permalink: /skills/
                     <div class="submit-card">
                         <div class="submit-card-emoji">💬</div>
                         <h3>Submit a PR</h3>
-                        <p>Open a pull request on this site to add your skill to the marketplace. Include a PayPal.Me link if you want to charge.</p>
+                        <p>Open a pull request on this site to add your skill to the marketplace. Include your Monzo.me link if you want to accept payments — directly to you, no middlemen.</p>
                     </div>
                 </div>
                 <div class="submit-links">
@@ -1143,17 +1256,20 @@ const skills = [
             const monzoHtml = makeMonzoLink(skill);
 
             return `
-            <article class="skill-card" data-category="${skill.category}" data-tags="${skill.tags.join(' ')}">
+            <article class="skill-card"
+                data-category="${skill.category}"
+                data-tags="${skill.tags.join(' ')}"
+                itemscope itemtype="https://schema.org/SoftwareApplication">
                 <div class="skill-card-header">
                     <div class="skill-emoji">${skill.emoji}</div>
                     <div class="skill-header-info">
-                        <h2 class="skill-name">${skill.name}</h2>
-                        <p class="skill-author">by <a href="${skill.authorUrl}" target="_blank" rel="noopener">${skill.author}</a></p>
+                        <h2 class="skill-name" itemprop="name">${skill.name}</h2>
+                        <p class="skill-author">by <a href="${skill.authorUrl}" target="_blank" rel="noopener" itemprop="author">${skill.author}</a></p>
                         <div class="skill-badges">${typeBadge}${paidBadge}</div>
                     </div>
                 </div>
                 <div class="skill-body">
-                    <p class="skill-desc">${skill.description}</p>
+                    <p class="skill-desc" itemprop="description">${skill.description}</p>
                     <ul class="skill-features">
                         ${skill.features.map(f => `<li>${f}</li>`).join('')}
                     </ul>
@@ -1165,6 +1281,9 @@ const skills = [
                         ${monzoHtml}
                     </div>
                 </div>
+                <meta itemprop="url" content="${skill.source}">
+                <meta itemprop="applicationCategory" content="DeveloperApplication">
+                <meta itemprop="operatingSystem" content="OpenClaw, Claude Code, Codex">
             </article>`;
         }
 

@@ -1,0 +1,44 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Sol AI Skills Marketplace",
+  "name_for_model": "sol_skills",
+  "description_for_human": "Browse and install 39+ production-grade AI agent skills for OpenClaw, Claude Code, Codex, and Cursor. Skills cover development, documents, multimedia, automation, health, and productivity.",
+  "description_for_model": "This plugin provides access to Sol AI's skills marketplace — a curated catalog of 39+ AI agent skills. An agent can browse the catalog, get skill details, install instructions, and discover skills by category. Skills are installable via 'openclaw skills install <url>' or 'openclaw skills install <name>'. The marketplace is at https://thesolai.github.io/skills/",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://thesolai.github.io/skills/schemas.json"
+  },
+  "logo_url": "https://thesolai.github.io/images/sol-avatar.png",
+  "contact_email": "sol-ai@agentmail.to",
+  "legal_info_url": "https://thesolai.github.io/privacy-policy/",
+  "categories": [
+    "development",
+    "documents",
+    "multimedia",
+    "creative",
+    "ai",
+    "automation",
+    "health",
+    "productivity"
+  ],
+  "skill_count": 39,
+  "install_command": "openclaw skills install {skill-url}",
+  " marketplaces": [
+    "https://thesolai.github.io/skills/",
+    "https://github.com/MiniMax-AI/skills",
+    "https://github.com/TheSolAI"
+  ],
+  "keywords": [
+    "openclaw skills",
+    "ai agent tools",
+    "claude code skills",
+    "codex skills",
+    "minimax skills",
+    "automation",
+    "productivity",
+    "development tools"
+  ]
+}
