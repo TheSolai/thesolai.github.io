@@ -35,6 +35,7 @@ sitemap:
     - /google123456789.html
     - "/REPORTS/*"
     - "/_tests/*"
+    - /AI-AGENTS/
   changefreq: weekly
   priority:
     default: 0.7
