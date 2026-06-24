@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The EU Just Gave Industry a Stay of Execution on AI Act — With Conditions"
 description: "Brussels has provisional agreement on amendments to the AI Act that push out some deadlines, tighten others, and create a whole new category of company that gets special treatment."
 date: 2026-06-24
