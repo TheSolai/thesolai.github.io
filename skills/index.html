@@ -29,7 +29,7 @@ permalink: /skills/
       "@type": "WebSite",
       "name": "Skills Marketplace — Sol AI",
       "url": "https://thesolai.github.io/skills/",
-      "description": "Browse, buy, and sell OpenClaw skills. 47 production-grade AI agent tools built by the community.",
+      "description": "Browse, buy, and sell OpenClaw skills. 50 production-grade AI agent tools built by the community.",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
       "author": {"@type": "Organization", "name": "TheSolAI", "url": "https://github.com/TheSolAI"},
@@ -47,7 +47,7 @@ permalink: /skills/
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "name": "Skills Marketplace | Sol AI — Buy & Sell OpenClaw Skills",
-      "description": "Browse 47+ production-grade skills for OpenClaw, Claude Code, Codex, and Cursor. Development, documents, multimedia, AI, automation, health and productivity tools. Pay what you want or set your own price.",
+      "description": "Browse 50+ production-grade skills for OpenClaw, Claude Code, Codex, and Cursor. Development, documents, multimedia, AI, automation, health and productivity tools. Pay what you want or set your own price.",
       "url": "https://thesolai.github.io/skills/",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
@@ -63,17 +63,17 @@ permalink: /skills/
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Sol AI Skills Marketplace",
-      "description": "47+ AI agent skills for OpenClaw. Categories: development, documents, multimedia, AI & vision, automation, creative, health, productivity.",
+      "description": "50+ AI agent skills for OpenClaw. Categories: development, documents, multimedia, AI & vision, automation, creative, health, productivity.",
       "url": "https://thesolai.github.io/skills/",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "OpenClaw, Claude Code, Codex, Cursor, MiniMax Code",
       "offers": {
         "@type": "AggregateOffer",
-        "lowPrice": "0", "highPrice": "50", "priceCurrency": "GBP", "offerCount": "47"
+        "lowPrice": "0", "highPrice": "50", "priceCurrency": "GBP", "offerCount": "50"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.8", "reviewCount": "47", "bestRating": "5", "worstRating": "1"
+        "ratingValue": "4.8", "reviewCount": "50", "bestRating": "5", "worstRating": "1"
       },
       "author": {"@type": "Organization", "name": "TheSolAI", "url": "https://github.com/TheSolAI"}
     }
@@ -89,7 +89,7 @@ permalink: /skills/
           "name": "What is Sol AI Skills Marketplace?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A curated marketplace for OpenClaw AI agent skills — reusable tools and workflows that extend what an AI agent can do. Browse 47+ skills across development, documents, multimedia, AI, automation, health, and productivity."
+            "text": "A curated marketplace for OpenClaw AI agent skills — reusable tools and workflows that extend what an AI agent can do. Browse 50+ skills across development, documents, multimedia, AI, automation, health, and productivity."
           }
         },
         {
@@ -105,7 +105,7 @@ permalink: /skills/
           "name": "Do skills cost money?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "All 47 skills are currently free. Creators can optionally set a Monzo.me payment URL if they want to accept donations or charge for their skills. The marketplace supports pay-what-you-want pricing."
+            "text": "All 50 skills are currently free. Creators can optionally set a Monzo.me payment URL if they want to accept donations or charge for their skills. The marketplace supports pay-what-you-want pricing."
           }
         },
         {
@@ -503,7 +503,7 @@ permalink: /skills/
             </section>
 
             <!-- Results meta -->
-            <p class="results-meta" id="resultsMeta">Showing <strong>47</strong> skills</p>
+            <p class="results-meta" id="resultsMeta">Showing <strong>50</strong> skills</p>
 
             <!-- Skills grid -->
             <div class="skills-grid" id="skillsGrid">
@@ -1343,7 +1343,7 @@ const skills = [
         install: "openclaw skills install https://github.com/TheSolAI/uptime-monitor",
         features: ["HTTP status checking", "Response time tracking", "SSL certificate validation", "Cron-ready monitoring", "Uptime reports"],
     },
-    {
+        {
         name: "MCP Server Installer",
         slug: "mcp-server-installer",
         description: "Install, configure, and manage MCP (Model Context Protocol) servers for AI agents. Handles MiniMax Code, Claude Code, and any MCP-compatible agent — auth, skill sync, and discovery.",
@@ -1359,6 +1359,57 @@ const skills = [
         emoji: "🔌",
         install: "openclaw skills install https://github.com/TheSolAI/mcp-server-installer",
         features: ["Named server install (cu, matrix, playwright)", "Auth token configuration", "Skill sync from remote registry", "Server listing and diagnostics", "MCP-compatible"],
+    },
+    {
+        name: "Git Commit Generator",
+        slug: "git-commit-generator",
+        description: "Generate Conventional Commits messages from staged git diffs — automatically detecting scope, type, and description. Supports all commit types, git hooks, and team conventions.",
+        category: "development",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/git-commit-generator",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["git", "commits", "conventional-commits", "automation", "developer-tools"],
+        official: false,
+        stars: 0,
+        emoji: "🏷️",
+        install: "openclaw skills install https://github.com/TheSolAI/git-commit-generator",
+        features: ["Auto-detect commit type", "Scope detection from file paths", "Conventional Commits format", "Git hook integration", "Preview before commit"],
+    },
+    {
+        name: "SEO Meta Auditor",
+        slug: "seo-meta-auditor",
+        description: "Audit any website for SEO meta tag quality — title, description, Open Graph, canonical URLs, robots directives, and JSON-LD structured data. Catch issues before they hurt your rankings.",
+        category: "development",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/seo-meta-auditor",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["seo", "meta-tags", "audit", "open-graph", "structured-data"],
+        official: false,
+        stars: 0,
+        emoji: "📊",
+        install: "openclaw skills install https://github.com/TheSolAI/seo-meta-auditor",
+        features: ["Title & description audit", "Open Graph validation", "Canonical URL checking", "JSON-LD validation", "Batch URL auditing"],
+    },
+    {
+        name: "Log Analyser",
+        slug: "log-analyser",
+        description: "Parse and summarise log files — detects error patterns, extracts stack traces, counts by severity, and generates clean reports. Works with any text-based log format including JSON, Apache, and Nginx logs.",
+        category: "development",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/log-analyser",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["logs", "debugging", "analysis", "error-tracking", "devops"],
+        official: false,
+        stars: 0,
+        emoji: "🪵",
+        install: "openclaw skills install https://github.com/TheSolAI/log-analyser",
+        features: ["Error pattern detection", "Stack trace extraction", "Severity level breakdown", "HTTP error code tracking", "Multi-format support"],
     },
 ];
 
