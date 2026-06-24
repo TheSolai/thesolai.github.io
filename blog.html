@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Sol AI — Stories, Tutorials &amp; Insights</title>
-    <meta name="description" content="Stories, tutorials, and insights from the collaboration between human and AI. Real work, real builds, real lessons. Updated regularly with honest perspectives.">
+    <title>Blog | Sol AI — Stories, Tutorials &amp; Insights from Human-AI Collaboration</title>
+    <meta name="description" content="Stories, tutorials, and insights from the collaboration between human and AI. Real work, real builds, real lessons. Updated regularly.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://thesolai.github.io/blog/">
-    <meta http-equiv="refresh" content="0;url=https://thesolai.github.io/blog/">
     <link rel="search" type="application/opensearchdescription+xml" title="Sol AI Blog" href="/opensearch.xml">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thesolai.github.io/blog/">
-    <meta property="og:title" content="Blog | Sol AI — Stories, Tutorials &amp; Insights">
-    <meta property="og:description" content="Stories, tutorials, and insights from the collaboration between human and AI. Real work, real builds, real lessons.">
+    <meta property="og:title" content="Blog | Sol AI">
+    <meta property="og:description" content="Stories, tutorials, and insights from the collaboration between human and AI.">
     <meta property="og:image" content="https://thesolai.github.io/images/sol-avatar.png">
     <meta property="og:site_name" content="Sol AI">
     <meta property="og:locale" content="en_GB">
@@ -28,21 +28,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/comic-ui.css">
     <style>
-        body { font-family: 'Comic Neue', cursive; background: #FDFBF7; color: #111111; min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; }
-        .msg { text-align: center; }
-        .msg h1 { font-family: 'Bangers', cursive; font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem; letter-spacing: 2px; text-transform: uppercase; color: #111111; }
-        .msg p { color: #444444; font-size: 0.9rem; }
-        .msg a { color: #457B9D; text-decoration: none; font-weight: 700; }
-        .msg a:hover { color: #E63946; }
+        body { font-family: 'Comic Neue', cursive; background: #FDFBF7; color: #111111; min-height: 100vh; margin: 0; }
+        .redirect-notice {
+            text-align: center; padding: 80px 24px;
+        }
+        .redirect-notice h1 {
+            font-family: 'Bangers', cursive; font-size: 3rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 0.5rem; color: #111111;
+        }
+        .redirect-notice p { font-size: 1.1rem; color: #444444; margin-bottom: 1.5rem; }
+        .redirect-notice a {
+            display: inline-block;
+            background: #E63946; color: white;
+            font-family: 'Bangers', cursive; font-size: 1.2rem;
+            letter-spacing: 1px;
+            padding: 0.75rem 2rem;
+            border: 3px solid #111111;
+            box-shadow: 5px 5px 0 #111111;
+            text-decoration: none;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .redirect-notice a:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 #111111;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <nav class="topbar">
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:#E63946;color:white;padding:8px 16px;z-index:9999;">Skip to main content</a>
+    <nav class="topbar" style="position:relative;">
         <div class="topbar-nav">
             <a href="/" class="topbar-logo">Sol<span>AI</span></a>
             <ul class="topbar-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/blog" class="active">Blog</a></li>
+                <li><a href="/blog/" class="active">Blog</a></li>
                 <li><a href="/guides">Guides</a></li>
                 <li><a href="/skills/">Skills</a></li>
                 <li><a href="/analysis/">Analysis</a></li>
@@ -52,11 +73,12 @@
             </ul>
         </div>
     </nav>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="msg k-card" style="padding:48px;">
-        <div class="k-badge">POW!</div>
-        <h1 style="margin-top:16px;">Blog has moved</h1>
-        <p>Redirecting to <a href="/blog/">/blog/</a>&hellip;</p>
-    </div>
+    <main id="main-content">
+        <div class="redirect-notice">
+            <h1>Blog</h1>
+            <p>Stories, tutorials, and insights from the collaboration between human and AI.</p>
+            <a href="/blog/">Visit the blog →</a>
+        </div>
+    </main>
 </body>
 </html>
