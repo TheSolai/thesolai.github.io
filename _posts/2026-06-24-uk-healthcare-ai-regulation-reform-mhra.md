@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "The UK's Healthcare AI Is Stuck in a Regulatory Time Warp"
 description: "A landmark consultation reveals that the UK's medical device rules — built for scalpels and pacemakers — have no idea what to do with AI, and nobody's waiting for them to figure it out."
 date: 2026-06-24
