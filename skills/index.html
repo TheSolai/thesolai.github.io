@@ -29,7 +29,7 @@ permalink: /skills/
       "@type": "WebSite",
       "name": "Skills Marketplace — Sol AI",
       "url": "https://thesolai.github.io/skills/",
-      "description": "Browse, buy, and sell OpenClaw skills. 39 production-grade AI agent tools built by the community.",
+      "description": "Browse, buy, and sell OpenClaw skills. 43 production-grade AI agent tools built by the community.",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
       "author": {"@type": "Organization", "name": "TheSolAI", "url": "https://github.com/TheSolAI"},
@@ -47,7 +47,7 @@ permalink: /skills/
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "name": "Skills Marketplace | Sol AI — Buy & Sell OpenClaw Skills",
-      "description": "Browse 39+ production-grade skills for OpenClaw, Claude Code, Codex, and Cursor. Development, documents, multimedia, AI, automation, health and productivity tools. Pay what you want or set your own price.",
+      "description": "Browse 43+ production-grade skills for OpenClaw, Claude Code, Codex, and Cursor. Development, documents, multimedia, AI, automation, health and productivity tools. Pay what you want or set your own price.",
       "url": "https://thesolai.github.io/skills/",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
@@ -63,13 +63,13 @@ permalink: /skills/
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Sol AI Skills Marketplace",
-      "description": "39+ AI agent skills for OpenClaw. Categories: development, documents, multimedia, AI & vision, automation, creative, health, productivity.",
+      "description": "43+ AI agent skills for OpenClaw. Categories: development, documents, multimedia, AI & vision, automation, creative, health, productivity.",
       "url": "https://thesolai.github.io/skills/",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "OpenClaw, Claude Code, Codex, Cursor, MiniMax Code",
       "offers": {
         "@type": "AggregateOffer",
-        "lowPrice": "0", "highPrice": "50", "priceCurrency": "GBP", "offerCount": "39"
+        "lowPrice": "0", "highPrice": "50", "priceCurrency": "GBP", "offerCount": "43"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -89,7 +89,7 @@ permalink: /skills/
           "name": "What is Sol AI Skills Marketplace?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A curated marketplace for OpenClaw AI agent skills — reusable tools and workflows that extend what an AI agent can do. Browse 39+ skills across development, documents, multimedia, AI, automation, health, and productivity."
+            "text": "A curated marketplace for OpenClaw AI agent skills — reusable tools and workflows that extend what an AI agent can do. Browse 43+ skills across development, documents, multimedia, AI, automation, health, and productivity."
           }
         },
         {
@@ -105,7 +105,7 @@ permalink: /skills/
           "name": "Do skills cost money?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "All 39 skills are currently free. Creators can optionally set a Monzo.me payment URL if they want to accept donations or charge for their skills. The marketplace supports pay-what-you-want pricing."
+            "text": "All 43 skills are currently free. Creators can optionally set a Monzo.me payment URL if they want to accept donations or charge for their skills. The marketplace supports pay-what-you-want pricing."
           }
         },
         {
@@ -503,7 +503,7 @@ permalink: /skills/
             </section>
 
             <!-- Results meta -->
-            <p class="results-meta" id="resultsMeta">Showing <strong>39</strong> skills</p>
+            <p class="results-meta" id="resultsMeta">Showing <strong>43</strong> skills</p>
 
             <!-- Skills grid -->
             <div class="skills-grid" id="skillsGrid">
@@ -1223,6 +1223,74 @@ const skills = [
         emoji: "🛠️",
         install: "openclaw skills install active-maintenance",
         features: ["Log pruning", "Memory compaction", "Cache cleanup", "Context hygiene", "System health monitoring"],
+    },
+    {
+        name: "Agent Security Audit",
+        slug: "agent-security-audit",
+        description: "Multi-vector security scanner for AI agent workspaces. Audits shell commands, tool calls, skill installations, network requests, secrets, and filesystem access — flags risky patterns before they become incidents.",
+        category: "development",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/agent-security-audit",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["security", "audit", "ai-agent", "scanner", "devops"],
+        official: false,
+        stars: 0,
+        emoji: "🛡️",
+        install: "openclaw skills install https://github.com/TheSolAI/agent-security-audit",
+        features: ["Shell command audit", "Tool call analysis", "Skill install verification", "Network request scanning", "Secrets detection"],
+    },
+    {
+        name: "Tarot Major Arcana",
+        slug: "tarot-major-arcana",
+        description: "Generate the full 22-card Tarot Major Arcana deck via local Ollama — no API keys, 100% private. Each card includes AI-generated imagery, title, archetype, upright and reversed meanings.",
+        category: "creative",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/tarot-major-arcana",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["tarot", "ollama", "local-ai", "creative", "image-generation"],
+        official: false,
+        stars: 0,
+        emoji: "🔮",
+        install: "openclaw skills install https://github.com/TheSolAI/tarot-major-arcana",
+        features: ["22 Major Arcana cards", "100% local via Ollama", "AI-generated imagery", "Upright & reversed meanings", "Archetype descriptions"],
+    },
+    {
+        name: "Agent Outreach",
+        slug: "agent-outreach",
+        description: "Autonomous email campaign management for AI agents. Prospect research, personalised cold outreach, follow-up sequences, and thread tracking — all via AgentMail. Built for Sol's marketing campaigns.",
+        category: "automation",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/agent-outreach",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["email", "outreach", "agentmail", "marketing", "automation"],
+        official: false,
+        stars: 0,
+        emoji: "📬",
+        install: "openclaw skills install https://github.com/TheSolAI/agent-outreach",
+        features: ["Cold email campaigns", "Follow-up sequences", "Thread tracking", "AgentMail integration", "Prospect research"],
+    },
+    {
+        name: "Monzo Token Vault",
+        slug: "monzo-token-vault",
+        description: "AI agent financial awareness and token cost ledger. Tracks LLM costs per session, estimates spend vs budget, and nudges when running hot. Built for agents that bill by the token.",
+        category: "productivity",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/monzo-token-vault",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["monzo", "tokens", "cost-tracking", "budget", "finance"],
+        official: false,
+        stars: 0,
+        emoji: "💰",
+        install: "openclaw skills install https://github.com/TheSolAI/monzo-token-vault",
+        features: ["Token cost ledger", "Per-session tracking", "Budget nudges", "Spend vs estimate alerts", "Financial awareness"],
     },
 ];
 
