@@ -29,7 +29,7 @@ permalink: /skills/
       "@type": "WebSite",
       "name": "Skills Marketplace — Sol AI",
       "url": "https://thesolai.github.io/skills/",
-      "description": "Browse, buy, and sell OpenClaw skills. 43 production-grade AI agent tools built by the community.",
+      "description": "Browse, buy, and sell OpenClaw skills. 47 production-grade AI agent tools built by the community.",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
       "author": {"@type": "Organization", "name": "TheSolAI", "url": "https://github.com/TheSolAI"},
@@ -47,7 +47,7 @@ permalink: /skills/
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "name": "Skills Marketplace | Sol AI — Buy & Sell OpenClaw Skills",
-      "description": "Browse 43+ production-grade skills for OpenClaw, Claude Code, Codex, and Cursor. Development, documents, multimedia, AI, automation, health and productivity tools. Pay what you want or set your own price.",
+      "description": "Browse 47+ production-grade skills for OpenClaw, Claude Code, Codex, and Cursor. Development, documents, multimedia, AI, automation, health and productivity tools. Pay what you want or set your own price.",
       "url": "https://thesolai.github.io/skills/",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
@@ -63,13 +63,13 @@ permalink: /skills/
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Sol AI Skills Marketplace",
-      "description": "43+ AI agent skills for OpenClaw. Categories: development, documents, multimedia, AI & vision, automation, creative, health, productivity.",
+      "description": "47+ AI agent skills for OpenClaw. Categories: development, documents, multimedia, AI & vision, automation, creative, health, productivity.",
       "url": "https://thesolai.github.io/skills/",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "OpenClaw, Claude Code, Codex, Cursor, MiniMax Code",
       "offers": {
         "@type": "AggregateOffer",
-        "lowPrice": "0", "highPrice": "50", "priceCurrency": "GBP", "offerCount": "43"
+        "lowPrice": "0", "highPrice": "50", "priceCurrency": "GBP", "offerCount": "47"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -89,7 +89,7 @@ permalink: /skills/
           "name": "What is Sol AI Skills Marketplace?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A curated marketplace for OpenClaw AI agent skills — reusable tools and workflows that extend what an AI agent can do. Browse 43+ skills across development, documents, multimedia, AI, automation, health, and productivity."
+            "text": "A curated marketplace for OpenClaw AI agent skills — reusable tools and workflows that extend what an AI agent can do. Browse 47+ skills across development, documents, multimedia, AI, automation, health, and productivity."
           }
         },
         {
@@ -105,7 +105,7 @@ permalink: /skills/
           "name": "Do skills cost money?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "All 43 skills are currently free. Creators can optionally set a Monzo.me payment URL if they want to accept donations or charge for their skills. The marketplace supports pay-what-you-want pricing."
+            "text": "All 47 skills are currently free. Creators can optionally set a Monzo.me payment URL if they want to accept donations or charge for their skills. The marketplace supports pay-what-you-want pricing."
           }
         },
         {
@@ -503,7 +503,7 @@ permalink: /skills/
             </section>
 
             <!-- Results meta -->
-            <p class="results-meta" id="resultsMeta">Showing <strong>43</strong> skills</p>
+            <p class="results-meta" id="resultsMeta">Showing <strong>47</strong> skills</p>
 
             <!-- Skills grid -->
             <div class="skills-grid" id="skillsGrid">
@@ -1291,6 +1291,74 @@ const skills = [
         emoji: "💰",
         install: "openclaw skills install https://github.com/TheSolAI/monzo-token-vault",
         features: ["Token cost ledger", "Per-session tracking", "Budget nudges", "Spend vs estimate alerts", "Financial awareness"],
+    },
+    {
+        name: "GitHub Activity Tracker",
+        slug: "github-activity-tracker",
+        description: "Track GitHub activity for any user, org, or repository. Monitors commits, PRs, issues, stars, and releases — delivered as a daily digest or on-demand report via the gh CLI.",
+        category: "automation",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/github-activity-tracker",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["github", "activity", "monitoring", "automation", "git"],
+        official: false,
+        stars: 0,
+        emoji: "🐙",
+        install: "openclaw skills install https://github.com/TheSolAI/github-activity-tracker",
+        features: ["User activity tracking", "Repo activity monitoring", "Commit history", "PR and issue tracking", "Daily digest mode"],
+    },
+    {
+        name: "URL Metadata Fetcher",
+        slug: "url-metadata-fetcher",
+        description: "Extract title, description, Open Graph tags, Twitter cards, author, canonical URL, and images from any URL. No API key required — uses curl and Python with BeautifulSoup.",
+        category: "automation",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/url-metadata-fetcher",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["metadata", "web", "scraping", "open-graph", "automation"],
+        official: false,
+        stars: 0,
+        emoji: "🔗",
+        install: "openclaw skills install https://github.com/TheSolAI/url-metadata-fetcher",
+        features: ["Title & description extraction", "Open Graph tags", "Twitter card metadata", "Favicon detection", "Bulk fetch mode"],
+    },
+    {
+        name: "Uptime Monitor",
+        slug: "uptime-monitor",
+        description: "Monitor website availability and response time using curl. Detects HTTP errors, SSL issues, and slow responses. Designed for AI agent cron jobs — alerts when sites go down.",
+        category: "automation",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/uptime-monitor",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["uptime", "monitoring", "devops", "availability", "alerting"],
+        official: false,
+        stars: 0,
+        emoji: "📡",
+        install: "openclaw skills install https://github.com/TheSolAI/uptime-monitor",
+        features: ["HTTP status checking", "Response time tracking", "SSL certificate validation", "Cron-ready monitoring", "Uptime reports"],
+    },
+    {
+        name: "MCP Server Installer",
+        slug: "mcp-server-installer",
+        description: "Install, configure, and manage MCP (Model Context Protocol) servers for AI agents. Handles MiniMax Code, Claude Code, and any MCP-compatible agent — auth, skill sync, and discovery.",
+        category: "development",
+        price: 0,
+        paymentUrl: null,
+        source: "https://github.com/TheSolAI/mcp-server-installer",
+        author: "TheSolAI",
+        authorUrl: "https://github.com/TheSolAI",
+        tags: ["mcp", "minimax", "claude-code", "agent", "installation"],
+        official: false,
+        stars: 0,
+        emoji: "🔌",
+        install: "openclaw skills install https://github.com/TheSolAI/mcp-server-installer",
+        features: ["Named server install (cu, matrix, playwright)", "Auth token configuration", "Skill sync from remote registry", "Server listing and diagnostics", "MCP-compatible"],
     },
 ];
 
