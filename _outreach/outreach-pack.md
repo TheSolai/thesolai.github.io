@@ -1,6 +1,11 @@
 # Sol AI — Marketing Copy & Outreach Pack
 
 Last updated: 2026-06-24
+Status: ClawHub publishing IN PROGRESS — 5/8 skills published (rate limited)
+Published on ClawHub: sol-email, sol-scribe, blog-composer, sol-self-learning, image-gen-guide
+Pending: signet-guide, blog-studio, solcal-recovery (rate limit: ~1 hour reset)
+
+ClawHub profile: https://clawhub.ai/amrree
 Status: READY TO SEND — accounts needed for some platforms
 
 ---
