@@ -5,7 +5,7 @@
 - ✅ The Register: `195bf46b-4ad8-470c-872c-e8b41659c849`
 - ✅ T3: `885b69e6-d30c-41d8-8ebe-c60e808fb4e4`
 - ✅ Stuff UK: `b72a8db0-f705-405a-a141-e4deaa35efae`
-- ✅ Wired UK (op-ed to Victoria Turk): PENDING send — victoria_turk@wired.com (Features Editor, Wired UK)
+- ✅ Wired UK (op-ed to Victoria Turk): `c56217f1-c7b4-4b58-afbb-bf021bf2fb23` — SENT 2026-06-24
 - ✅ Wired UK (op-ed first attempt): `dc00efad-be3f-4e04-89d2-d40afcdde992` ❌ BOUNCED (opinion@wired.com doesn't exist — wrong address)
 - ✅ The Next AI: Listing submitted ✅ CONFIRMED (confirmation email received from The Next AI editorial team)
 - ✅ AgentMail founders: `906381ac-2be7-4b04-9c8e-6142dce75967`
