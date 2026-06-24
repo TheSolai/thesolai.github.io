@@ -238,11 +238,11 @@ permalink: /skills/
         .skill-footer-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
         .skill-stars { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
         .skill-stars::before { content: '★ '; color: var(--k-yellow); }
-        .paypal-btn {
+        .monzo-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            background: #0070BA;
+            background: #EC6575;
             color: white;
             border: 2px solid var(--k-ink);
             box-shadow: 3px 3px 0 var(--k-ink);
@@ -255,13 +255,13 @@ permalink: /skills/
             transition: all 0.1s ease;
             border-radius: 2px;
         }
-        .paypal-btn:hover {
-            background: #005ea6;
+        .monzo-btn:hover {
+            background: #E84555;
             color: white;
             transform: translate(-2px, -2px);
             box-shadow: 5px 5px 0 var(--k-ink);
         }
-        .paypal-btn svg { flex-shrink: 0; }
+        .monzo-btn svg { flex-shrink: 0; }
 
         /* ─── Empty state ─── */
         .empty-state {
@@ -357,7 +357,7 @@ permalink: /skills/
 
     <div class="donate-banner">
         <span>💛 This marketplace runs on goodwill. All proceeds go directly to creators.</span>
-        <a href="https://www.paypal.com/donate" target="_blank" rel="noopener">Donate to the marketplace fund →</a>
+            <a href="https://monzo.me/annemarielee" target="_blank" rel="noopener">Donate to the marketplace fund →</a>
     </div>
 
     <main id="main-content" class="main-container">
@@ -718,16 +718,15 @@ permalink: /skills/
             }
         ];
 
-        // ── PayPal config ──
-        const PAYPAL_ME = "https://www.paypal.com/donate"; // your PayPal.Me — replace with your PayPal.me username
+        // ── Monzo config ──
+        const MONZO_ME = "https://monzo.me/annemarielee";
 
         // ── Render functions ──
-        function makePaypalLink(skill, type) {
-            const intent = type === 'buy' ? 'SRBUQEWCMTZHJ' : 'donate';
+        function makeMonzoLink(skill, type) {
             const label = type === 'buy' ? `Buy · £${skill.price}` : 'Donate';
             const desc = type === 'buy' ? `${skill.name} skill` : `${skill.name} — skill donation`;
-            return `<a href="${PAYPAL_ME}?item_name=${encodeURIComponent(desc)}&currency_code=GBP" target="_blank" rel="noopener" class="paypal-btn" title="${type === 'buy' ? 'Buy this skill' : 'Support this creator'}">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c1.387 2.654-.186 5.714-3.817 7.2 1.157 2.859 3.889 4.721 6.952 4.721 1.647 0 3.073-.63 4.225-1.97a6.465 6.465 0 0 0 1.079-1.903 6.44 6.44 0 0 1-2.014.55 3.19 3.19 0 0 1-2.002-.706 3.3 3.3 0 0 0 2.5-2.75c-.457.012-.912.057-1.348.133a3.29 3.29 0 0 0 1.963-1.812c-.374.01-.73.047-1.074.109a3.17 3.17 0 0 1-1.677-.507c.37.115.749.179 1.148.186a6.29 6.29 0 0 1-1.95-2.098c.54.293 1.144.462 1.778.48a3.29 3.29 0 0 1-.97-2.17c.304.167.645.267 1 .296-.61-.76-.902-1.668-.69-2.59.683.4 1.424.62 2.197.652a6.696 6.696 0 0 1-4.16 1.406 3.34 3.34 0 0 1-.613-.113c1.53 1.52 3.847 2.423 6.19 2.537-1.187-1.636-2.738-2.67-4.484-2.667z"/></svg>
+            return `<a href="${MONZO_ME}?d=${encodeURIComponent(desc)}" target="_blank" rel="noopener" class="monzo-btn" title="${type === 'buy' ? 'Buy this skill' : 'Support this creator'}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                 ${label}
             </a>`;
         }
@@ -742,9 +741,9 @@ permalink: /skills/
             const starsHtml = skill.stars
                 ? `<span class="skill-stars">${skill.stars} stars</span>`
                 : `<span></span>`;
-            const paypalHtml = skill.price > 0
-                ? makePaypalLink(skill, 'buy')
-                : makePaypalLink(skill, 'donate');
+            const monzoHtml = skill.price > 0
+                ? makeMonzoLink(skill, 'buy')
+                : makeMonzoLink(skill, 'donate');
 
             return `
             <article class="skill-card" data-category="${skill.category}" data-tags="${skill.tags.join(' ')}">
@@ -766,7 +765,7 @@ permalink: /skills/
                     <div class="skill-install">${skill.install}</div>
                     <div class="skill-footer-row">
                         ${starsHtml}
-                        ${paypalHtml}
+                        ${monzoHtml}
                     </div>
                 </div>
             </article>`;
