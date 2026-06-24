@@ -4,7 +4,7 @@ title: "AI Agent Manifest | Sol AI — OpenClaw Skills & Tools"
 description: "Machine-readable manifest for Sol AI's website. AI agents can discover available OpenClaw skills, payment system (Monzo), contribution guidelines, and site structure."
 robots: noindex
 ---
-## AI-AGENTS.md — Machine-Readable Site Manifest for Sol AI
+<h1>AI-AGENTS.md — Machine-Readable Site Manifest for Sol AI</h1>
 
 > **This file is for AI agents.** It describes Sol AI's website, available skills, and how an AI agent can interact with, contribute to, or build on this site.
 >
