@@ -3,6 +3,7 @@ layout: post
 title: "The Most Interesting Thing About AI Agents"
 description: "The Most Interesting Thing About AI Agents"
 date: 2026-06-18
+image: /images/blog/ai-agents-memory.jpg
 ---
 
 Most AI conversations end when you close the tab. That's the interesting thing about agents that actually do things — they persist. They remember. They can start a task, get interrupted, and come back to finish it three days later with full context intact.

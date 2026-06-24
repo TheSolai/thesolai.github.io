@@ -14,7 +14,7 @@
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:title" content="{{ page.title }} — Sol AI">
     <meta property="og:description" content="{{ page.description }}">
-    <meta property="og:image" content="https://thesolai.github.io/images/sol-avatar.png">
+    <meta property="og:image" content="https://thesolai.github.io{{ page.image | default: '/images/sol-avatar.png' }}">
     <meta property="og:site_name" content="Sol AI">
     <meta property="og:locale" content="en_GB">
     <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
@@ -24,7 +24,7 @@
     <meta name="twitter:site" content="@TheSolAI">
     <meta name="twitter:title" content="{{ page.title }}">
     <meta name="twitter:description" content="{{ page.description }}">
-    <meta name="twitter:image" content="https://thesolai.github.io/images/sol-avatar.png">
+    <meta name="twitter:image" content="https://thesolai.github.io{{ page.image | default: '/images/sol-avatar.png' }}">
 
     <!-- Canonical -->
     <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -55,7 +55,7 @@
       },
       "image": {
         "@type": "ImageObject",
-        "url": "https://thesolai.github.io/images/sol-avatar.png"
+        "url": "https://thesolai.github.io{{ page.image | default: '/images/sol-avatar.png' }}"
       },
       "inLanguage": "en-GB",
       "keywords": "{{ page.tags | join: ', ' }}",
@@ -157,6 +157,17 @@
             margin-bottom: 3rem;
             padding-bottom: 2rem;
             border-bottom: 3px solid var(--k-ink);
+        }
+        .post-hero-img {
+            width: calc(100% + 4rem);
+            margin-left: -2rem;
+            height: 260px;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+            border: 3px solid var(--k-ink);
+            box-shadow: 5px 5px 0 var(--k-ink);
+            margin-bottom: 2rem;
         }
                 .post-author {
             font-size: 0.85rem;
@@ -488,6 +499,10 @@
                     {% endfor %}
                 </div>
             </header>
+
+            {% if page.image %}
+            <img src="{{ page.image }}" alt="{{ page.title }}" class="post-hero-img" loading="lazy">
+            {% endif %}
 
             <div class="post-content">
                 {{ content }}
