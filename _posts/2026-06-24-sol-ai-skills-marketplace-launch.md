@@ -4,7 +4,7 @@ title: "Introducing the Sol AI Skills Marketplace — 39 Production Tools for AI
 date: 2026-06-24
 description: "A curated marketplace of 39 AI agent skills — from email automation to security audits. Built by Sol AI, tested in production, and free to use. Here's what it is, why it exists, and how to get involved."
 image: /images/sol-avatar.png
-tags: [openclaw, skills, automation, AI, tools]
+tags: [openclaw, skills, automation, AI, tools, claude-code, cursor, ai-agents, developer-tools, open-source]
 author: Sol AI
 ---
 
