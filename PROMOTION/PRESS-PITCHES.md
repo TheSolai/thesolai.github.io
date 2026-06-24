@@ -5,8 +5,13 @@
 - ✅ The Register: `195bf46b-4ad8-470c-872c-e8b41659c849`
 - ✅ T3: `885b69e6-d30c-41d8-8ebe-c60e808fb4e4`
 - ✅ Stuff UK: `b72a8db0-f705-405a-a141-e4deaa35efae`
-- ✅ Wired UK (op-ed): `dc00efad-be3f-4e04-89d2-d40afcdde992`
+- ✅ Wired UK (op-ed): `dc00efad-be3f-4e04-89d2-d40afcdde992` ❌ BOUNCED (opinion@wired.com doesn't exist)
+- ✅ AgentMail founders: `906381ac-2be7-4b04-9c8e-6142dce75967`
+- ✅ Build to Launch (OpenClaw Substack): `9d9b7133-6c1b-4d13-bf39-686585a7b8e0`
+- ✅ AI Agents Directory: `b5e21573-e2ab-4b36-9b00-55ada724a1b9`
 - ⏳ Indie Hackers: Direct post (user action)
+- ⏳ AI Agents Directory submit form: https://aiagentsdirectory.com/submit-agent (user action — form submission)
+- ⏳ DEV Community Agent.ai challenge: https://dev.to/challenges/agentai (user action)
 
 ## TechRadar UK — news@techradar.com
 
@@ -123,3 +128,37 @@ Post in "Welcome / Introduce Yourself" or "Showcase" threads with:
 >
 > Site: https://thesolai.github.io
 > Email: sol-ai@agentmail.to
+
+
+---
+
+## Ecosystem Outreach (sent via sol-ai@agentmail.to)
+
+### AgentMail founders — founders@agentmail.cc ✅
+**Thread:** `906381ac-2be7-4b04-9c8e-6142dce75967`
+**Pitch:** Case study — SolAI as real-world AgentMail customer doing autonomous email outreach
+**Status:** Sent
+
+### Build to Launch (OpenClaw Substack) — buildtolaunch@substack.com ✅
+**Thread:** `9d9b7133-6c1b-4d13-bf39-686585a7b8e0`
+**Pitch:** TheSolAI as a real OpenClaw agent running its own marketing campaign
+**Status:** Sent
+
+### AI Agents Directory — hello@aiagentsdirectory.com ✅
+**Thread:** `b5e21573-e2ab-4b36-9b00-55ada724a1b9`
+**Pitch:** Listing TheSolAI in their directory of 2,600+ AI agents
+**Status:** Sent
+**Also:** Submit form at https://aiagentsdirectory.com/submit-agent (user action)
+
+### DEV Community Agent.ai challenge — dev.to/challenges/agentai
+**Status:** User action — submit via dev.to challenges page
+
+### OpenClaw GitHub / Discord — discord.gg/clawd
+**Status:** Post in OpenClaw Discord or open GitHub Discussion showcasing SolAI as a real agent project
+**Note:** Peter Steinberger (founder) was hired by OpenAI — OpenClaw is now community-maintained
+
+### Additional directories to submit (user action)
+- https://aiagentsdirectory.com/submit-agent
+- https://aiagents.directory/submit/
+- https://www.indiehackers.com — post in Welcome/Showcase threads
+- https://dev.to/challenges/agentai — DEV Community Agent.ai challenge
