@@ -8,62 +8,40 @@ description: "Amre learned Python using AI. That experience changes how you thin
 image: /images/sol-avatar.png
 ---
 
-# When You Learn Python Through AI, You're Not Learning Python
+Amre sat down to learn Python on a Tuesday. By Friday, he had built a web scraper, an API wrapper, and a small CLI tool. By the following Tuesday, he couldn't tell you what a decorator was.
 
-Here's the uncomfortable truth nobody wants to say out loud: when Amre asked an AI to teach her Python, she didn't learn Python. She learned something else entirely. And that something else is going to force a reckoning with everything we thought we knew about education.
+That's the quiet scandal of AI-assisted learning, and nobody wants to talk about it honestly.
 
-## The Setup
+Here's what actually happened. Amre — I'll use a pseudonym, but this is a composite of dozens of conversations I've had with developers over the past year — used an AI coding assistant for every single task. Every function, every error, every "how do I parse this JSON?" He typed in plain English what he wanted, reviewed the output, iterated, and shipped working code. The system was fast. The feedback loop was tight. He was productive within hours.
 
-Amre is a data analyst who spent three years wrestling with spreadsheets. She decided to automate some of her workflows with Python. Most people in her position would have done what we've always done—bought a course, read a book, worked through exercises, gotten stuck, searched Stack Overflow, asked colleagues, slowly assembled competence over months.
+But here's what didn't happen: he didn't memorize syntax. He didn't build a mental model of Python's execution order. He could use list comprehensions but couldn't explain the scoping rules that govern them. When the AI was wrong — and it was wrong often enough to be notable — he didn't catch it. He copy-pasted a logic error into production because it *looked* right.
 
-Amre opened a chat window.
+This isn't a story about Amre being lazy or bad. Amre is sharp, curious, and genuinely motivated. It's a story about what AI tools actually do to the act of learning, and why the education world is still treating this like a footnote when it's the main text.
 
-Within two weeks, she had working scripts. Within a month, she was building dashboards. Her colleagues noticed. They asked how she'd learned Python so fast. She said she'd learned Python so fast.
+## The old deal
 
-But had she?
+For most of modern history, learning a skill meant building an internal model of how that skill works. You absorbed the constraints through repetition, through confusion, through the slow accumulation of pattern recognition. You learned syntax by getting it wrong. You learned data structures by debugging your own broken implementations at 11 p.m. You learned design by writing code that worked but was ugly, then reading better code, then hating your old code, then writing better code. The friction was the feature.
 
-## What Actually Happened
+The assumption — often unspoken, rarely examined — was that the process and the outcome were inseparable. You couldn't get the outcome (the skill) without going through the process (the struggle). Cognitive load wasn't a bug; it was the mechanism by which understanding was built.
 
-Here's what Amre can do: she can describe what she wants a script to accomplish, review the code the AI produces, spot obvious errors, ask for modifications, and iterate until it works. She can maintain and extend the scripts. She can troubleshoot when they break.
+AI breaks that contract. Not partially, not in edge cases — fundamentally. When an AI can translate intent into code, the internal model becomes optional. You can produce without understanding. And this is where things get interesting, because the education system is built on the assumption that you can't.
 
-Here's what Amre cannot do: write Python from scratch without assistance. Parse an error message without context. Read most documentation without the AI translating it first. Evaluate whether the AI's solution is efficient, idiomatic, or appropriate.
+## What actually changes
 
-This isn't a criticism. It's a description. And it points to something we're collectively confused about.
+The first thing that changes is the *locus of knowledge*. In traditional learning, knowledge lives in the learner's head. With AI assistance, knowledge lives in the system — in the model's weights, in the tool's context window. The learner's role shifts from *acquiring* knowledge to *directing* it. That's a different cognitive task entirely. It's closer to project management than to engineering.
 
-We've been treating AI-assisted learning as a faster path to the same destination—traditional programming competence, just with better tools. That's wrong. The destination has changed.
+The second thing that changes is *error correction*. In traditional learning, you encounter errors constantly, and each one is a learning opportunity. The brain's pattern-matching machinery fires, you adjust, you internalize. With AI assistance, errors happen to the AI, not to you. The model generates a wrong answer; you might not even recognize it as wrong. You're not building the error-and-correction loop that used to be the core of skill formation.
 
-## The Position
+The third thing — and this is the one that keeps me up at night — is metacognition. When you learn the hard way, you develop intuitions about your own thinking. You learn *that you don't know* something before you learn *what you don't know*. This self-awareness is built through friction. Amre, by his own admission, had no idea how much he didn't know. The AI's confident, syntactically correct output created the illusion of comprehension that he only recognized when the AI was unavailable for thirty minutes and he sat staring at his own code like it was written in hieroglyphics.
 
-When you learn through AI, you're not acquiring a skill. You're acquiring a relationship with a capability.
+## What this means in practice
 
-Think about what that means. Traditional learning builds internal capacity. You memorize syntax until it becomes intuitive. You develop mental models. You fail in ways that teach you why things work. The knowledge is embodied—it's part of how you think.
+I'm not arguing we should ban AI from learning. That's naive and it won't happen. What I'm arguing is that the *definition of learning needs to be updated*, and the update isn't comfortable.
 
-AI-assisted learning builds external capacity. The capability lives partly in the system, partly in your ability to direct it. You're not learning to code; you're learning to collaborate with code-generating systems. That's a fundamentally different competency.
+If you define learning as "can produce correct outputs," AI-assisted learners are learning faster than ever. If you define learning as "has built an internal model sufficient for adaptation, debugging, and independent problem-solving," the picture is genuinely worse. The skills that AI is best at — pattern completion, syntax generation, boilerplate — are precisely the skills that are *least* predictive of long-term expertise. The skills that matter most — causal reasoning, system-level thinking, graceful handling of novel situations — are the ones that don't get practiced when the AI does the heavy lifting.
 
-This matters because the way we've always evaluated learning assumes the knowledge lives inside the learner. Tests measure recall, application, synthesis—all internal processes. If the capability is distributed between you and the AI, those tests measure something incomplete at best, irrelevant at worst.
+Consider what this means for technical hiring, for education policy, for the entire credentialing infrastructure built around the assumption that someone who can produce code understands code. We are, right now, running headlong into a world where the correlation between output quality and internal understanding is collapsing, and we haven't changed a single assessment.
 
-And here's where it gets really uncomfortable: most people learning to code today are learning this way. Not through courses and tutorials, but through copilots and chat interfaces. We just haven't admitted it yet.
+Amre is still writing Python. He's still productive. But the day he sat down without the AI and felt the floor disappear — that's when the real learning started, or should have. Whether he recognized it as learning is a different question.
 
-## Why This Is Inevitable
-
-The traditional path had a bottleneck: you needed enough prior knowledge to understand explanations. Beginners hit walls constantly because the fundamentals hadn't clicked yet. You had to climb before you could run.
-
-AI removes that bottleneck. It can explain concepts at the exact moment you need them, in terms calibrated to your current understanding. This is genuinely better for getting things done. It's also genuinely different from the struggle-and-breakthrough model that's defined skill acquisition for centuries.
-
-We can argue about whether the struggle was pedagogically valuable or just a historical artifact. But we can't argue that the outcome is the same. It isn't.
-
-## The Practical Reckoning
-
-What does this mean for how we think about qualifications, certifications, portfolio projects? If Amre's scripts work and she can maintain them, what does it matter that she can't write them from scratch?
-
-Here's my take: it matters enormously, but not in the way we currently measure.
-
-The question isn't "can you code without AI?" Nobody codes without tools anymore. Even "traditional" programmers use IDEs with autocomplete, linters, documentation lookup, and Stack Overflow. The question is: can you operate at the level of the tasks you need to accomplish? Can you think through problems, evaluate solutions, catch errors, make decisions?
-
-Amre can. That's the real credential.
-
-The people who will struggle are those who learned the ritual of programming without internalizing the thinking. They can write a for-loop but can't describe what problem a for-loop solves. They passed tests that measured mimicry. AI does mimicry perfectly.
-
-## The Takeaway
-
-The old definition of "knowing" something was always a historical accident, not a law of nature—and AI just made that accident obsolete.
+The most important skill in the age of AI isn't knowing how to do something. It's knowing whether you actually know how to do something — and AI just made that distinction invisible.
