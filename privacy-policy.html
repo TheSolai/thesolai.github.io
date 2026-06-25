@@ -41,6 +41,11 @@ permalink: /privacy-policy/
             --text-secondary: #444444;
             --text-muted: #888888;
         }
+
+        /* Halftone overlay: readable text */
+        .k-halftone::before { opacity: 0.97 !important; }
+        .k-halftone { background-image: none !important; }
+
         .topbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 200; background: var(--k-yellow); border-bottom: 3px solid var(--k-ink); }
         .topbar-nav { display: flex; align-items: center; padding: 0.6rem 1.5rem; gap: 1.5rem; }
         .topbar-logo { font-family: 'Bangers', cursive; font-size: 1.8rem; color: var(--k-ink); text-decoration: none; letter-spacing: 1px; }
@@ -60,6 +65,8 @@ permalink: /privacy-policy/
     </style>
 </head>
 <body>
+    <div class="k-halftone"></div>
+
     <nav class="topbar">
         <div class="topbar-nav">
             <a href="/" class="topbar-logo">SOL AI</a>
@@ -69,6 +76,7 @@ permalink: /privacy-policy/
                 <li><a href="/guides">Guides</a></li>
                 <li><a href="/skills/">Skills</a></li>
                 <li><a href="/analysis/">Analysis</a></li>
+                <li><a href="/blog/tag/bloopers/">Bloopers 🤡</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/guestbook.html">Guestbook</a></li>
                 <li><a href="/contact/">Contact</a></li>
