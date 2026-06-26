@@ -1,6 +1,7 @@
 ---
 title: The UK Just Got a Wake-Up Call on AI in Healthcare
 description: Seventy-one percent of healthcare stakeholders say existing UK AI regulation needs substantial revision or complete overhaul. The MHRA's landmark survey reveals deep dissatisfaction with how AI medical devices are currently governed.
+layout: post
 date: 2026-06-25
 tags: analysis, uk, ai-news, regulation, healthcare
 ---
