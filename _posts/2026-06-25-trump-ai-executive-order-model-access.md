@@ -1,6 +1,7 @@
 ---
 title: Trump Wants Early Access to the Next Generation of AI
 description: A new executive order asks AI companies to share advanced models with the government 30 days before public release. It's voluntary—but don't mistake that for weak.
+layout: post
 date: 2026-06-25
 tags: analysis, us, ai-news, regulation
 ---

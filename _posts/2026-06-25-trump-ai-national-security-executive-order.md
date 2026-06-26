@@ -2,6 +2,7 @@
 title: "Trump's AI Security Order Is Voluntary. That's the Point — and the Problem."
 description: "The executive order signed on June 2 asks AI companies to share their most advanced models with national security agencies 30 days before public release. It's framed as voluntary. Nobody believes it stays that way."
 tags: [analysis, us, ai-news, regulation, national-security]
+layout: post
 date: 2026-06-25
 ---
 
