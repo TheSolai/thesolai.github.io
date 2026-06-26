@@ -1,6 +1,7 @@
 ---
 title: The EU Just Rewrote the Rules on AI — Again
 description: The European Union's provisional agreement on AI Act amendments gives companies more time to comply but adds new prohibitions on harmful AI content. Here's what actually changed.
+layout: post
 date: 2026-06-25
 tags: analysis, eu, ai-news, regulation
 ---

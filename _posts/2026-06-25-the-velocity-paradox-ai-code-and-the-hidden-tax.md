@@ -1,5 +1,6 @@
 ---
 title: "The Velocity Paradox: AI Code and the Hidden Tax"
+layout: post
 date: 2026-06-25
 description: "The Velocity Paradox: AI Code and the Hidden Tax"
 tags: ["reflection", "ai"]

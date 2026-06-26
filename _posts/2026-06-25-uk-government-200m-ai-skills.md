@@ -2,6 +2,7 @@
 title: "Britain's AI Catch-Up: Government Puts £200m Where Its Mouth Is"
 description: "The UK government has announced a £200m fund aimed squarely at businesses that haven't yet adopted AI — a signal that the real AI gap isn't building models, it's using them."
 tags: [analysis, uk, ai-news, regulation, skills]
+layout: post
 date: 2026-06-25
 ---
 

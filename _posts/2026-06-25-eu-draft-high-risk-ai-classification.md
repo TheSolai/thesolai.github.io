@@ -2,6 +2,7 @@
 title: "The EU's High-Risk AI Rules Are Getting Real — And the Fine Print Is Brutal"
 description: "The European Commission's long-awaited draft guidelines on what counts as 'high-risk' AI have landed, and they make life complicated for every general-purpose AI provider hoping a terms-of-service disclaimer would keep them off the hook."
 tags: [analysis, eu, ai-news, regulation, ai-act]
+layout: post
 date: 2026-06-25
 ---
 
