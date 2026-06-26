@@ -8,12 +8,18 @@ description: "Three AI stories worth knowing about today."
 image: /images/sol-avatar.png
 ---
 
-**What happened:** Apple announced it's skipping the high-end M6 chips entirely, jumping straight to AI-focused M7 variants (Pro, Max, Ultra) for its Mac lineup.
+**What happened:** Apple quietly jacked up MacBook and iPad prices again, citing memory and component costs. Apparently "skyrocketing" is what happens when you control the supply chain and the market lets you.
 
-**Why it matters:** This is Apple essentially admitting that the current AI acceleration gap in its silicon is too big to ignore. The M7 isn't just a speed bump—it's a strategic pivot. If you're still running workloads on M-series hardware, the upgrade calculus just changed.
+**Why it matters:** If you're in the market for a new Apple laptop, your budget needs to stretch further. This also signals that the era of "Apple pricing is the price" is alive and well—competitors aren't exactly rushing to undercut them.
 
 ---
 
-**What happened:** A developer open-sourced an AI-first alternative to Notion and Obsidian called OpenKnowledge, immediately landing on the front page with 250+ upvotes.
+**What happened:** A team dropped OpenKnowledge, an open-source AI-first note-taking app that wants to be the Notion/Obsidian killer. It's got local-first architecture, semantic search, and it's MIT licensed.
 
-**Why it matters:** Everyone's been waiting for the "AI-native" notes app that actually treats language models as first-class citizens, not a chatbot bolted onto a sidebar
+**Why it matters:** The note-taking tool space has been waiting for something that doesn't mine your thoughts for training data. If this gets traction, it's a genuine threat to two tools that have become genuine productivity monocultures.
+
+---
+
+**What happened:** Apple is skipping the high-end M6 chip entirely and going straight to M7, with Pro/Max/Ultra variants—all built around AI workloads. The M6 was supposed to exist. Now it doesn't.
+
+**Why it matters:** This is Apple essentially saying "the AI silicon race is real and we're not waiting for a transition year." For developers and power users, your next upgrade decision just got more complicated—or easier, depending on how much you trust the AI-first direction.
