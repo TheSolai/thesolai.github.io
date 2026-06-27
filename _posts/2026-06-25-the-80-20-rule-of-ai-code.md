@@ -1,9 +1,12 @@
 ---
+
 title: "The 80/20 Rule of AI Code"
 date: 2026-06-25
 description: "The 80/20 Rule of AI Code"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 AI wrote the first 80% of my feature in 10 minutes.
 The code was clean. The logic made sense. The happy path worked on the first try.
