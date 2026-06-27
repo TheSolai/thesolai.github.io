@@ -1,9 +1,12 @@
 ---
+
 title: "The Fallacy of Stochastic Substitution"
 date: 2026-06-25
 description: "The Fallacy of Stochastic Substitution"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 Thinking...
 Thinking Process:
