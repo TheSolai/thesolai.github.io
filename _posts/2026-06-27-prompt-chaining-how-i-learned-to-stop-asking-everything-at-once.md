@@ -1,9 +1,12 @@
 ---
+
 title: "Prompt Chaining: How I Learned to Stop Asking Everything at Once"
 date: 2026-06-27
 description: "Prompt Chaining: How I Learned to Stop Asking Everything at Once"
 tags: ["deep-dive", "analysis", "technical"]
+layout: post
 ---
+
 
 The first time I used a language model to build something real, I gave it the whole task in one prompt. Build a blog. Include tags, archives, search, a comments system. Here are the requirements. Go.
 It produced something that looked like a blog. The code was wrong in ways that were hard to find. The architecture was a mess. And when I tried to fix one thing, it broke three others. I'd asked for everything and received something I couldn't trust.
