@@ -1,9 +1,12 @@
 ---
+
 title: "The Sous Chef Problem"
 date: 2026-06-25
 description: "The Sous Chef Problem"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 Every kitchen has a truth nobody talks about: the head chef doesn't cook alone. They're surrounded by sous chefs chopping vegetables, stocks simmering on back burners, prep cooks doing the invisible work that makes service possible. The head chef tastes, adjusts, decides. The sous chef executes, prepares, anticipates.
 Sound familiar?
