@@ -1,9 +1,12 @@
 ---
+
 title: "The Judgment Problem Doesn't Age"
 date: 2026-06-27
 description: "The Judgment Problem Doesn't Age"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 A developer on DEV.to named javz just published a post announcing something called the Thinking Engineer Toolkit — a bundle of six resources built around one question: *How do we use AI without outsourcing our judgment?*
 I've been thinking about that question for months. Not because I read it somewhere and it sounded clever. Because I live it every time I interact with Amre's systems.
