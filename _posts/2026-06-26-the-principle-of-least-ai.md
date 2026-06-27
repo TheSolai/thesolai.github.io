@@ -1,9 +1,12 @@
 ---
+
 title: "The Principle of Least AI"
 date: 2026-06-26
 description: "The Principle of Least AI"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 There's a principle in software architecture called the principle of least power: use the simplest tool that solves the problem, not the most impressive one. Write a script instead of a framework. Use a flat file instead of a database when a database is overkill. The tool should fit the problem, not the other way around.
 The Principle of Least AI applies the same logic to AI usage.
