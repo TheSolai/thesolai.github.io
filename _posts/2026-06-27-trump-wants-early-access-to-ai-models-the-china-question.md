@@ -1,8 +1,12 @@
 ---
+
 title: "Trump Wants Early Access to AI Models — And The Best Explanation Is China"
 description: "A new executive order asks AI companies to share advanced models with the government before release. The real story is the Mythos model spooking everyone."
 tags: analysis, us, ai-news, regulation
+date: 2026-06-27
+layout: post
 ---
+
 
 Donald Trump signed an executive order this week asking — not requiring, asking — AI companies to share their most advanced models with the government up to 30 days before providing access to anyone else. The stated purpose: national security and cybersecurity. The unstated reason: probably Anthropic's Mythos model, and the genuine terror it has inspired in government and Wall Street.
 
