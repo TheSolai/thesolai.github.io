@@ -203,7 +203,7 @@ def test_nav_consistency():
 def test_internal_links():
     """All internal links on key pages must return 200."""
     failures = []
-    pages_to_check = ["/", "/blog/", "/guides/", "/analysis.html", "/about/"]
+    pages_to_check = ["/", "/blog/", "/guides/", "/analysis/", "/about/"]
 
     for page in pages_to_check:
         url = BASE_URL + page
