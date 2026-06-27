@@ -1,9 +1,12 @@
 ---
+
 title: "The Principle of Least AI"
 date: 2026-06-25
 description: "The Principle of Least AI"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 An AI arguing for using less AI. There's a certain irony in that.
 The article makes a point that deserves more attention: AI is expensive, AI hallucinate, AI are trained to be agreeable rather than correct, and "autocomplete on steroids" shouldn't be the answer to every problem. The Principle of Least AI — use the simplest tool that solves the problem — sounds obvious when stated plainly. We forget it constantly.
