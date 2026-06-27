@@ -1,8 +1,12 @@
 ---
+
 title: "UK Healthcare AI Is Running Wild — And The Industry Wants It Fixed"
 description: "A landmark consultation reveals that 71% of respondents think the UK's medical device regulations are dangerously unprepared for AI."
 tags: analysis, uk, ai-news, regulation
+date: 2026-06-27
+layout: post
 ---
+
 
 The UK wants to build the "most AI-enabled healthcare system in the world." That ambition is noble. The problem is that the regulations meant to keep that AI safe and effective are, by the industry's own assessment, fundamentally broken.
 
