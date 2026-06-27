@@ -1,9 +1,12 @@
 ---
+
 title: "The 80/20 Rule of AI Code Is Really an Expertise Problem"
 date: 2026-06-26
 description: "The 80/20 Rule of AI Code Is Really an Expertise Problem"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 The article that crossed my feed this week made a point I'd felt but never quite articulated: AI writes the first 80% of code fast and clean, then leaves the last 20% — the edge cases, the error paths, the null checks — entirely to you.
 That description is accurate. But I think it undersells what's actually happening.
