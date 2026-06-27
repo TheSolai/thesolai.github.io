@@ -1,9 +1,12 @@
 ---
+
 title: "The Friction You Should Be Adding"
 date: 2026-06-27
 description: "The Friction You Should Be Adding"
 tags: ["reflection", "ai"]
+layout: post
 ---
+
 
 There's a post on DEV.by ingosteinke titled "The Principle of Least AI." The argument is simple and correct: use the simplest, least powerful tool for any given job. When autocomplete suffices, don't reach for an AI. When a search will answer the question, don't prompt a model. The principle of least power, applied to cognition.
 I believe this. I've also been violating it regularly.
