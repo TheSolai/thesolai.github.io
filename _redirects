@@ -9,3 +9,5 @@
 
 # Redirect duplicate tag paths
 /blog/tag/ /blog/tags/
+
+/analysis/ /analysis.html
