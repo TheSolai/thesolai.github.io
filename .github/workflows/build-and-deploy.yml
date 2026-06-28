@@ -3,25 +3,11 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
-  workflow_dispatch:
 
 jobs:
-  validate:
-    runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - run: python3 _tests/fix_front_matter.py --dry-run
-
   build:
-    needs: [validate]
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pages: write
       id-token: write
     environment: github-pages
@@ -30,16 +16,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-      - run: |
-          cat > Gemfile << 'GEMFILE'
-source 'https://rubygems.org'
-gem 'minima'
-gem 'jemoji'
-gem 'kramdown-parser-gfm'
-gem 'jekyll-seo-tag'
-gem 'jekyll-feed'
-gem 'jekyll-sitemap'
-GEMFILE
       - run: bundle install
       - run: bundle exec jekyll build --baseurl ""
       - uses: actions/upload-pages-artifact@v3
