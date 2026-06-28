@@ -1,224 +1,178 @@
 #!/usr/bin/env python3
 """
-Fix missing front matter in blog posts.
-Run: python3 _tests/fix_front_matter.py
+Blog post front matter validator.
+Checks all posts in _posts/ have the required Jekyll front matter fields.
+
+Usage:
+  python3 _tests/fix_front_matter.py          # validate only, exit non-zero on issues
+  python3 _tests/fix_front_matter.py --fix    # auto-fix fixable issues, then validate
+  python3 _tests/fix_front_matter.py --dry-run # validate only (legacy alias)
 """
+import argparse
+import base64
 import re
-from pathlib import Path
+import subprocess
 import sys
+import json
+from pathlib import Path
 
-SITE_DIR = Path(__file__).parent.parent
-POSTS_DIR = SITE_DIR / "_posts"
+REPO = "TheSolAI/thesolai.github.io"
+POSTS_DIR = "_posts"
 
-# Posts that are stubs - should not be published
-STUBS = [
-    "2026-06-22-thinking.md",
-    "2026-06-22-the-ai-adoption-paradox-usage-vs-engineering.md",
-]
-
-# Clawhub posts needing description added
-CLAWHUB_POSTS = [
-    "clawhub-guide-2026-04-12.md",
-    "clawhub-guide-2026-04-19.md",
-    "clawhub-guide-2026-04-26.md",
-    "clawhub-guide-2026-05-27.md",
-    "clawhub-guide-2026-05-31.md",
-    "clawhub-guide-2026-06-07.md",
-    "clawhub-guide-2026-06-14.md",
-    "clawhub-guide-2026-06-21.md",
-    "deep-dive-2026-06-12.md",
-]
-
-# Posts needing date and layout fixed (from filename date)
-DATE_FIXES = {
-    "2026-06-21-us-states-ai-regulation-trump-executive-order.md": "2026-06-21",
-    "2026-06-21-uk-google-cma-publishers-ai-search.md": "2026-06-21",
-    "2026-06-21-eu-ai-act-omnibus-deal-nudification-ban.md": "2026-06-21",
+# Required fields and what "correct" looks like for each
+REQUIRED_FIELDS = {
+    "title":    lambda v: bool(v.strip()),
+    "date":     lambda v: bool(re.match(r"^\d{4}-\d\d-\d\d", v.strip())),
+    "layout":   lambda v: v.strip() == "post",
+    "description": lambda v: len(v.strip()) > 0,
 }
 
-# Posts needing layout added
-LAYOUT_MISSING = [
-    "2026-06-22-microsoft-nhs-copilot-uk-ai.md",
-    "2026-06-22-trump-ai-security-order-us.md",
-    "2026-06-22-the-ai-adoption-paradox-usage-vs-engineering.md",
-]
+# Fields that can be auto-fixed
+AUTO_FIXABLE = {"layout"}
 
-def extract_first_sentence(content: str) -> str:
-    """Extract first 1-2 sentences for description."""
-    # Remove the H1 line
-    content = re.sub(r'^# .+$', '', content, flags=re.MULTILINE).strip()
-    # Get first paragraph
-    para = re.split(r'\n\n+', content)[0]
-    # Clean markdown
-    para = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', para)  # links
-    para = re.sub(r'[*_`#]', '', para)  # bold/italic/code
-    para = re.sub(r'\s+', ' ', para).strip()
-    # Truncate to 160 chars
-    if len(para) > 160:
-        para = para[:157] + '...'
-    return para
+def gh_get(path):
+    r = subprocess.run(
+        ["gh", "api", f"repos/{REPO}/contents/{path}", "--jq", "{sha, content}"],
+        capture_output=True, text=True, encoding="utf-8"
+    )
+    if r.returncode != 0:
+        return None, None
+    data = json.loads(r.stdout)
+    return data["sha"], base64.b64decode(data["content"]).decode("utf-8")
 
-def remove_post(post_path: Path) -> bool:
-    """Move a stub post to _drafts/"""
-    draft_dir = SITE_DIR / "_drafts"
-    draft_dir.mkdir(exist_ok=True)
-    dest = draft_dir / post_path.name
-    post_path.rename(dest)
-    print(f"  Moved stub to _drafts/: {post_path.name}")
-    return True
+def gh_put(path, sha, content, msg):
+    encoded = base64.b64encode(content.encode()).decode()
+    r = subprocess.run(
+        ["gh", "api", f"repos/{REPO}/contents/{path}",
+         "--method", "PUT",
+         "--field", f"message={msg}",
+         "--field", f"sha={sha}",
+         "--field", f"content={encoded}",
+         "--field", "branch=main"],
+        capture_output=True, text=True
+    )
+    return r.returncode == 0, r.stderr[:200] if r.stderr else "OK"
 
-def fix_clawhub_post(post_path: Path) -> bool:
-    """Add description to a clawhub post."""
-    content = post_path.read_text()
+def parse_frontmatter(content):
+    """Return (fm_dict, fm_text, body) or (None, None, None) if malformed."""
+    if not content.startswith("---"):
+        return None, None, None
     fm_end = content.find("\n---", 3)
     if fm_end == -1:
-        print(f"  SKIP (no closing ---): {post_path.name}")
-        return False
-    
-    fm = content[:fm_end + 4]
+        return None, None, None
+    fm_text = content[3:fm_end]
     body = content[fm_end + 4:]
-    
-    # Extract description from body
-    desc = extract_first_sentence(body)
-    
-    # Add description after author line, or after date if no author
-    if re.search(r'^author:', fm, re.MULTILINE):
-        new_fm = re.sub(
-            r'^((author:.*)(\n))',
-            r'\1description: "' + desc + '"\n',
-            fm, flags=re.MULTILINE
-        )
-    else:
-        new_fm = re.sub(
-            r'^((date:.*)(\n))',
-            r'\1author: Sol AI\ndescription: "' + desc + '"\n',
-            fm, flags=re.MULTILINE
-        )
-    
-    post_path.write_text(new_fm + body)
-    print(f"  Fixed: {post_path.name}")
-    return True
+    fm = {}
+    for line in fm_text.split("\n"):
+        kv = re.match(r"^(\w+):\s*(.*)$", line.strip())
+        if kv:
+            fm[kv[1]] = kv[2].strip()
+    return fm, fm_text, body
 
-def fix_date_and_layout(post_path: Path, date_str: str) -> bool:
-    """Add date and layout to a post missing them."""
-    content = post_path.read_text()
-    fm_end = content.find("\n---", 3)
-    if fm_end == -1:
-        print(f"  SKIP (no closing ---): {post_path.name}")
-        return False
-    
-    fm = content[:fm_end + 4]
-    body = content[fm_end + 4:]
-    
-    # Check what fields exist
-    has_layout = bool(re.search(r'^layout:', fm, re.MULTILINE))
-    has_date = bool(re.search(r'^date:', fm, re.MULTILINE))
-    
-    # Build replacement front matter
-    lines = ['---']
-    lines.append('layout: post')
-    lines.append(f'date: {date_str}')
-    lines.append('author: Sol AI')
-    
-    # Add title (extract from existing fm or body)
-    title_match = re.search(r'^title:\s*"?(.+?)"?\s*$', fm, re.MULTILINE)
-    title = title_match.group(1) if title_match else "Untitled"
-    lines.append(f'title: "{title}"')
-    
-    # Add description
-    desc_match = re.search(r'^description:\s*"?(.+?)"?\s*$', fm, re.MULTILINE)
-    if desc_match:
-        lines.append(f'description: "{desc_match.group(1)}"')
-    
-    # Add tags if present
-    tags_match = re.search(r'^tags:\s*(.+?)\s*$', fm, re.MULTILINE)
-    if tags_match:
-        lines.append(f'tags: {tags_match.group(1)}')
-    
-    lines.append('---')
-    new_fm = '\n'.join(lines) + '\n'
-    
-    post_path.write_text(new_fm + body)
-    print(f"  Fixed date+layout: {post_path.name}")
-    return True
+def extract_date_from_filename(filename):
+    m = re.match(r"^(20\d\d-\d\d-\d\d)-", filename)
+    return m.group(1) if m else None
 
-def fix_layout_only(post_path: Path) -> bool:
-    """Add layout: post to a post that has it missing."""
-    content = post_path.read_text()
-    fm_end = content.find("\n---", 3)
-    if fm_end == -1:
-        print(f"  SKIP (no closing ---): {post_path.name}")
-        return False
-    
-    fm = content[:fm_end + 4]
-    body = content[fm_end + 4:]
-    
-    # Add layout: post after opening ---
-    new_fm = '---\nlayout: post\n' + fm[4:]
-    
-    post_path.write_text(new_fm + body)
-    print(f"  Fixed layout: {post_path.name}")
-    return True
+def validate_post(filename, sha, content, fix=False):
+    """Validate a single post. Returns list of issues (empty = OK)."""
+    issues = []
+    fm, fm_text, body = parse_frontmatter(content)
 
-def fix_five_hours_post():
-    """Fix the post with layout in wrong position."""
-    post_path = POSTS_DIR / "2026-06-21-five-hours-multi-whatsapp.md"
-    if not post_path.exists():
-        return False
-    content = post_path.read_text()
-    # The layout line is after title/date - just rewrite clean front matter
-    body_start = content.find('---', 3)
-    body = content[body_start + 3:]
-    
-    new_fm = """---
-layout: post
-title: "Five Hours to Set Up Two WhatsApps: A Confession"
-date: 2026-06-21
-author: Sol AI
-description: "Five hours. That's how long it took me to get two WhatsApp instances running on the same machine. Two. WhatsApps. One machine."
----
-"""
-    post_path.write_text(new_fm + body)
-    print(f"  Fixed: {post_path.name}")
-    return True
+    if fm is None:
+        issues.append("missing or malformed front matter (no --- delimiters)")
+        return issues, None
+
+    for field, check in REQUIRED_FIELDS.items():
+        value = fm.get(field, "")
+        if not check(value):
+            if field == "layout":
+                # Try to fix it
+                if fix and "layout" in AUTO_FIXABLE:
+                    new_fm_lines = ["---"]
+                    for line in fm_text.split("\n"):
+                        stripped = line.strip()
+                        if stripped.startswith("layout:"):
+                            continue  # skip old layout
+                        new_fm_lines.append(line)
+                    # Insert layout: post after opening ---
+                    new_fm_lines.insert(1, "layout: post")
+                    new_fm_lines.append("---")
+                    new_content = "\n".join(new_fm_lines) + "\n" + body
+                    ok, err = gh_put(f"{POSTS_DIR}/{filename}", sha, new_content,
+                        f"Auto-fix: add layout: post to {filename}")
+                    if ok:
+                        return [], "auto-fixed"
+                    else:
+                        issues.append(f"layout: post missing (auto-fix failed: {err})")
+                else:
+                    issues.append("layout: post missing")
+            elif field == "date":
+                issues.append("date missing or malformed (should be YYYY-MM-DD)")
+            else:
+                issues.append(f"{field} missing or empty")
+
+    return issues, None
 
 def main():
-    print("Fixing stub posts...")
-    for name in STUBS:
-        p = POSTS_DIR / name
-        if p.exists():
-            remove_post(p)
+    parser = argparse.ArgumentParser(description="Validate blog post front matter")
+    parser.add_argument("--fix", action="store_true",
+                        help="Auto-fix fixable issues (missing layout: post)")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Validate only (legacy alias for no-op fix)")
+    args = parser.parse_args()
+    fix = args.fix and not args.dry_run
+
+    # Get list of posts
+    r = subprocess.run(
+        ["gh", "api", f"repos/{REPO}/contents/{POSTS_DIR}", "--jq", "[.[].name]"],
+        capture_output=True, text=True, encoding="utf-8"
+    )
+    if r.returncode != 0:
+        print(f"ERROR: Could not fetch posts: {r.stderr[:200]}")
+        sys.exit(1)
+
+    import json as _json
+    try:
+        posts = _json.loads(r.stdout)
+    except:
+        print("ERROR: Could not parse posts list")
+        sys.exit(1)
+
+    posts = [p for p in posts if p.endswith(".md")]
+    print(f"Checking {len(posts)} posts...")
+
+    all_issues = []
+    fixed_count = 0
+
+    for i, post in enumerate(posts):
+        sha, content = gh_get(f"{POSTS_DIR}/{post}")
+        if sha is None:
+            print(f"  SKIP {post}: could not fetch")
+            continue
+
+        issues, fix_result = validate_post(post, sha, content, fix=fix)
+        if fix_result == "auto-fixed":
+            print(f"  AUTO-FIXED {post}")
+            fixed_count += 1
+        elif issues:
+            for issue in issues:
+                print(f"  FAIL {post}: {issue}")
+                all_issues.append(f"{post}: {issue}")
         else:
-            print(f"  Not found (already moved?): {name}")
-    
-    print("\nFixing clawhub posts (adding description)...")
-    for name in CLAWHUB_POSTS:
-        p = POSTS_DIR / name
-        if p.exists():
-            fix_clawhub_post(p)
-        else:
-            print(f"  Not found: {name}")
-    
-    print("\nFixing posts with missing date+layout...")
-    for name, date in DATE_FIXES.items():
-        p = POSTS_DIR / name
-        if p.exists():
-            fix_date_and_layout(p, date)
-        else:
-            print(f"  Not found: {name}")
-    
-    print("\nFixing posts missing only layout...")
-    for name in LAYOUT_MISSING:
-        p = POSTS_DIR / name
-        if p.exists():
-            fix_layout_only(p)
-        else:
-            print(f"  Not found: {name}")
-    
-    print("\nFixing five-hours post (layout position)...")
-    fix_five_hours_post()
-    
-    print("\nDone!")
+            print(f"  OK {post}")
+
+    print()
+    if fixed_count:
+        print(f"Auto-fixed {fixed_count} posts.")
+    if all_issues:
+        print(f"FAILED: {len(all_issues)} issue(s) found.")
+        print("\nIssues:")
+        for issue in all_issues:
+            print(f"  - {issue}")
+        sys.exit(1)
+    else:
+        print(f"All {len(posts)} posts OK.")
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
