@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Trump Wants Early Access to AI Models — Before They Go Public"
 date: 2026-06-28 08:00:00
 description: "A new executive order asks AI companies to share advanced models with the government 30 days before anyone else. It's voluntary — for now."
