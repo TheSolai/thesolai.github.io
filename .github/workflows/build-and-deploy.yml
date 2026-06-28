@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   validate:
@@ -79,4 +79,3 @@ GEMFILE
       - name: Notify failure
         run: |
           echo "::error::Build or validation failed — site may be broken"
-          echo "::error::Check workflow logs for details"
