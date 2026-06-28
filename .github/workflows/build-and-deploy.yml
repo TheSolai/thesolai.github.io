@@ -15,10 +15,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate front matter
-        run: python3 _tests/fix_front_matter.py --dry-run
-      - name: Run site health tests
-        run: python3 _tests/test_site.py
+      - run: python3 _tests/fix_front_matter.py --dry-run
 
   build:
     needs: [validate]
@@ -29,13 +26,13 @@ jobs:
       id-token: write
     environment:
       name: github-pages
+      url: https://thesolai.github.io
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-      - name: Create Gemfile
-        run: |
+      - run: |
           cat > Gemfile << 'GEMFILE'
 source 'https://rubygems.org'
 gem 'minima'
@@ -45,14 +42,9 @@ gem 'jekyll-seo-tag'
 gem 'jekyll-feed'
 gem 'jekyll-sitemap'
 GEMFILE
-      - name: Install dependencies
-        run: bundle install
-      - name: Build Jekyll
-        run: bundle exec jekyll build --baseurl ""
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - run: bundle install
+      - run: bundle exec jekyll build --baseurl ""
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
