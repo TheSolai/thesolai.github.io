@@ -24,9 +24,7 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: https://thesolai.github.io
+    environment: github-pages
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
