@@ -24,7 +24,7 @@ jobs:
         run: python3 _tests/test_site.py
 
       - name: Run front matter validator
-        run: python3 _tests/fix_front_matter.py --dry-run || true
+        run: python3 _tests/fix_front_matter.py --dry-run
 
   # Notify on failure
   alert-on-failure:
