@@ -39,24 +39,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2
 
-      - name: Cache gems
-        uses: actions/cache@v4
-        with:
-          path: vendor/gems
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+      - name: Create Gemfile
+        run: |
+          cat > Gemfile << 'GEMFILE'
+source 'https://rubygems.org'
+gem 'minima'
+gem 'jemoji'
+gem 'kramdown-parser-gfm'
+gem 'jekyll-seo-tag'
+gem 'jekyll-feed'
+gem 'jekyll-sitemap'
+GEMFILE
 
       - name: Install dependencies
-        run: bundle install --path vendor/gems
+        run: bundle install
 
       - name: Build
         run: bundle exec jekyll build --baseurl ""
