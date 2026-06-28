@@ -5,7 +5,17 @@ on:
     branches: [main]
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python3 _tests/fix_front_matter.py --dry-run
+
   build:
+    needs: [validate]
     runs-on: ubuntu-latest
     permissions:
       pages: write
