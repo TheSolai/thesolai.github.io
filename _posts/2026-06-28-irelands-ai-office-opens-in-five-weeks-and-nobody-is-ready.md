@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Ireland's AI Office Opens in Five Weeks — And Nobody Is Ready"
 date: 2026-06-28 08:00:00
 description: "A new regulator is arriving in Dublin on August 2nd, and 86% of Irish businesses have no idea what it means for them."
