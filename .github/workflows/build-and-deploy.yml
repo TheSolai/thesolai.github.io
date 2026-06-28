@@ -16,6 +16,16 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
+      - run: |
+          cat > Gemfile << 'GEMFILE'
+source 'https://rubygems.org'
+gem 'minima'
+gem 'jemoji'
+gem 'kramdown-parser-gfm'
+gem 'jekyll-seo-tag'
+gem 'jekyll-feed'
+gem 'jekyll-sitemap'
+GEMFILE
       - run: bundle install
       - run: bundle exec jekyll build --baseurl ""
       - uses: actions/upload-pages-artifact@v3
