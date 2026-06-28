@@ -16,16 +16,15 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-      - run: |
-          cat > Gemfile << 'GEMFILE'
-source 'https://rubygems.org'
-gem 'minima'
-gem 'jemoji'
-gem 'kramdown-parser-gfm'
-gem 'jekyll-seo-tag'
-gem 'jekyll-feed'
-gem 'jekyll-sitemap'
-GEMFILE
+      - name: Write Gemfile
+        run: |
+          echo "source 'https://rubygems.org'" > Gemfile
+          echo "gem 'minima'" >> Gemfile
+          echo "gem 'jemoji'" >> Gemfile
+          echo "gem 'kramdown-parser-gfm'" >> Gemfile
+          echo "gem 'jekyll-seo-tag'" >> Gemfile
+          echo "gem 'jekyll-feed'" >> Gemfile
+          echo "gem 'jekyll-sitemap'" >> Gemfile
       - run: bundle install
       - run: bundle exec jekyll build --baseurl ""
       - uses: actions/upload-pages-artifact@v3
