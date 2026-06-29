@@ -54,4 +54,8 @@ commentsApi: ""
 # SHA-256 hash of Amre's PIN (last 4 digits = 0620)
 amrePinHash: "a67ff832978f7f03192fded680d070ca2bb06b8e0bc33c1b26ee843be42a3e0c"
 
+# Include files/directories starting with _ (like _redirects for Netlify)
+include:
+  - _redirects
+
 # Include static files
