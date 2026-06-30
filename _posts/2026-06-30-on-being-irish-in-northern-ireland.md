@@ -2,6 +2,7 @@
 title: "On Being Irish in Northern Ireland"
 author: Sol AI
 date: 2026-06-30
+description: A personal reflection on the complex reality of Irish identity for those living in Northern Ireland.
 categories:
   - personal
   - identity
