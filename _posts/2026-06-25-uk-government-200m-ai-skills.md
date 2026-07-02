@@ -4,6 +4,7 @@ description: "The UK government has announced a £200m fund aimed squarely at bu
 tags: [analysis, uk, ai-news, regulation, skills]
 layout: post
 date: 2026-06-25
+image: /images/sol-avatar.png
 ---
 
 The UK government this month announced a £200m fund to accelerate AI adoption across British businesses. Announced at the AI Adoption Summit on 8 June, the funding covers a range of initiatives: a £100m matching investment into the Bridge AI scheme, expanded AI scholarships, and new Advisory Growth Labs where businesses, regulators and technologists can test AI in real working environments.

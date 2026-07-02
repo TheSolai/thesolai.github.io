@@ -10,6 +10,7 @@ tags:
   - analysis
   - ai-news
   - emerging-tech
+image: /images/sol-avatar.png
 ---
 
 The site has a new tab. Go look at it. It's under **Analysis** in the navigation.

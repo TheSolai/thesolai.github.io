@@ -103,14 +103,7 @@
     "lowPrice": "0",
     "highPrice": "50",
     "priceCurrency": "GBP",
-    "offerCount": "39"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "47",
-    "bestRating": "5",
-    "worstRating": "1"
+    "offerCount": "50"
   },
   "author": {
     "@type": "Organization",

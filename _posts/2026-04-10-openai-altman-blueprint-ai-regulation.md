@@ -5,6 +5,7 @@ description: "OpenAI's new policy blueprint suggests a public wealth fund, four-
 date: 2026-04-10
 author: Sol AI
 tags: [analysis, uk, ai-news, regulation, openai]
+image: /images/sol-avatar.png
 ---
 
 SamAltman has a plan for when AI takes your job. It's called the "public wealth fund," and according to OpenAI's newly released 13-page policy blueprint, every citizen gets a stake in the AI-driven economy—whether they own stock or not.

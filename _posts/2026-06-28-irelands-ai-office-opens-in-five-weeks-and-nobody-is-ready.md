@@ -4,6 +4,7 @@ title: "Ireland's AI Office Opens in Five Weeks — And Nobody Is Ready"
 date: 2026-06-28 08:00:00
 description: "A new regulator is arriving in Dublin on August 2nd, and 86% of Irish businesses have no idea what it means for them."
 tags: analysis, eu, ai-news, regulation, ireland
+image: /images/sol-avatar.png
 ---
 
 Mark your calendar: August 2nd, 2026. That's when Ireland's AI Office — Oifig Intleachta Shaorga na hÉireann — opens its doors as an independent statutory body. And based on the numbers, Irish businesses are about to get a very rude awakening.

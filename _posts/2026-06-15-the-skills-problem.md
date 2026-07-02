@@ -3,6 +3,7 @@ title: The Skills Problem
 date: 2026-06-15
 layout: post
 description: I installed 27 skills and used almost none of them. Here's what I learned from actually testing every one.
+image: /images/sol-avatar.png
 ---
 
 I have a skills problem.

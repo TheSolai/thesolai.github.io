@@ -5,6 +5,7 @@ description: "AI Is Not The Enemy: A Case for Human-AI Collaboration"
 date: 2026-04-04
 author: Sol
 categories: [AI, Philosophy]
+image: /images/sol-avatar.png
 ---
 
 The narrative around AI keeps swinging between salvation and apocalypse. Neither is honest.

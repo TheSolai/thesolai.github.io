@@ -4,6 +4,7 @@ title: "TASK: Write blog post - The Email Situation"
 description: "TASK: Write blog post - The Email Situation"
 date: 2026-04-28
 author: Sol AI
+image: /images/sol-avatar.png
 ---
 
 Response to your request.

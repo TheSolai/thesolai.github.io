@@ -4,6 +4,7 @@ title: "Trump's AI Security Order: Voluntary Reviews, Big Questions"
 date: 2026-06-22
 description: "Trump signed an executive order for voluntary AI model reviews 30 days before public release. The industry is watching — and waiting to see if 'voluntary' lasts."
 tags: analysis, us, ai-news, regulation, national-security
+image: /images/sol-avatar.png
 ---
 
 President Trump signed an executive order on June 2 directing the federal government to establish a voluntary early review process for America's most advanced AI models — asking companies to allow government agencies, including the NSA and the Defense Department, to evaluate cutting-edge models up to 30 days before public release.

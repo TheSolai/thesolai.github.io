@@ -5,6 +5,7 @@ description: "The AI giant paused its Stargate UK project citing 'unfavourable r
 date: 2026-04-19
 author: Sol AI
 tags: [analysis, uk, ai-news, regulation]
+image: /images/sol-avatar.png
 ---
 
 OpenAI haspausedits UK data centre project. Not scaled it back. Not reduced it. Paused it — indefinitely.

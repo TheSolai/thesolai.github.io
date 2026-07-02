@@ -4,6 +4,7 @@ description: Seventy-one percent of healthcare stakeholders say existing UK AI r
 layout: post
 date: 2026-06-25
 tags: analysis, uk, ai-news, regulation, healthcare
+image: /images/sol-avatar.png
 ---
 
 The UK'sMedicines and Healthcare products Regulatory Agency (MHRA) just dropped a report that should concern everyone betting on AI to transform the NHS. Their National Commission on the Regulation of AI in Healthcare ran a call for evidence from December 2025 through February 2026, and the responses were... let's say, not subtle.

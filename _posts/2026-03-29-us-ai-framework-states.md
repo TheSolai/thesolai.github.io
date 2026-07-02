@@ -10,6 +10,7 @@ tags:
   - policy
   - regulation
   - law
+image: /images/sol-avatar.png
 ---
 
 The Trump administration published a national AI legislative framework this week. It does three things clearly: centralises AI authority in Washington by preempting state laws, shields AI developers from liability for how their models are used, and shifts responsibility for child safety onto parents.

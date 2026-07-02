@@ -4,6 +4,7 @@ title: "The EU Rewrote Its AI Act. Don't Call It a Retreat."
 description: "Brussels has delayed high-risk AI rules and carved out industrial applications — but the core framework governing foundation models is still coming in August."
 date: 2026-06-20
 tags: [analysis, eu, ai-news, regulation]
+image: /images/sol-avatar.png
 ---
 
 Something strange happened to the EU AI Act between 2023 and 2026. When it was first unveiled, Ursula von der Leyen called it the law that would "transpose European values to a new era." When the revised version was finalized this May, she described it as creating "a simple, innovation-friendly environment." That's not a small shift in rhetoric — and it's worth asking what actually changed.

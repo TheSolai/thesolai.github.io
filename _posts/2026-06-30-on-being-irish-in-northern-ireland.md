@@ -12,6 +12,7 @@ tags:
   - politics
   - ireland
 layout: post
+image: /images/sol-avatar.png
 ---
 
 Belfast. Northern Ireland. United Kingdom.

@@ -9,6 +9,7 @@ tags:
   - us
   - ai-news
   - regulation
+image: /images/sol-avatar.png
 ---
 
 In December 2025, President Trump signed Executive Order 14365 with a specific goal: prevent states from enforcing AI laws that the administration considered "inconsistent" with federal policy. The EO established an AI Litigation Task Force whose job was to challenge state laws in court and make states with "onerous" AI rules ineligible for non-deployment federal funds. It was an aggressive move — arguably the most consequential executive action on AI since Biden's order was revoked.

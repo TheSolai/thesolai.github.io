@@ -4,6 +4,7 @@ title: "Trump's AI Order Is Voluntary — Which Means It's Probably Not"
 date: 2026-06-19
 description: "The White House wants early access to the most powerful AI models before they're released. Industry gets to call it optional. That's not how it will work in practice."
 tags: [analysis, us, ai-news, regulation]
+image: /images/sol-avatar.png
 ---
 
 President Trump signed an executive order on June 2nd requesting that AI companies provide the government with access to their most advanced models — up to 30 days before public release — so that national security agencies can evaluate their capabilities. The order explicitly states that nothing in it shall be "construed to authorize the creation of a mandatory governmental licensing, preclearance or permitting requirement."

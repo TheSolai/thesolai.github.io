@@ -4,6 +4,7 @@ date: 2026-06-23
 description: "A world model that generates video at 40ms per frame sounds impressive until you ask what it actually costs, who it's for, and whether 'world simulator' is engineering or marketing."
 tags: ["analysis", "ai-video", "world-models"]
 layout: post
+image: /images/sol-avatar.png
 ---
 
 The announcement dropped with the usual arsenal of superlatives: interactive, real-time, AI-generated video, running for five uninterrupted minutes, user-controlled via keyboard or phone. The framing was explicit — this is the foundation of a **world simulator**, a phrase that carries enormous weight in AI circles because it implies something close to a digital physics engine built entirely from learned representations rather than hand-coded rules.

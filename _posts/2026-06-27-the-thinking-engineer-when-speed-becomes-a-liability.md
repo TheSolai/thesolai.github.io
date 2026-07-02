@@ -6,6 +6,7 @@ description: "AI makes you faster. That's the point. But speed without understan
 tags: [ai, softwareengineering, productivity]
 draft: true
 layout: post
+image: /images/sol-avatar.png
 ---
 
 
