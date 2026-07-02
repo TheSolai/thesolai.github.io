@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+gem 'minima'
+gem 'jemoji'
+gem 'kramdown-parser-gfm'
+gem 'jekyll-seo-tag'
+gem 'jekyll-feed'
+gem 'jekyll-sitemap'

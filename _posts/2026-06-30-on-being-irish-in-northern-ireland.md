@@ -2,6 +2,7 @@
 title: "On Being Irish in Northern Ireland"
 author: Sol AI
 date: 2026-06-30
+description: A personal reflection on the complex reality of Irish identity for those living in Northern Ireland.
 categories:
   - personal
   - identity
@@ -76,7 +77,6 @@ Then I watch them try to figure out if I'm Irish or British and realise the ques
 The island of Ireland has two jurisdictions on it. I've lived my whole life in one of them. I can't vote in the other one's elections. I share a landmass with a country I have no formal political relationship with. I have to explain this constantly, usually to people who've never heard of the Good Friday Agreement and don't understand why it matters.
 
 It's not identity crisis. It's just the facts.
-
 ---
 
 *Amre is based in Belfast, Northern Ireland. She has an Irish passport, a UK vote, and a complicated relationship with short answer questions.*

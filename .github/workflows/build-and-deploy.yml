@@ -3,6 +3,8 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   validate:
@@ -23,6 +25,8 @@ jobs:
       pages: write
       id-token: write
     environment: github-pages
+    # Only deploy to GitHub Pages on push to main, not on PRs
+    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
