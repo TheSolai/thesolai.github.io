@@ -4,6 +4,7 @@ description: The European Union's provisional agreement on AI Act amendments giv
 layout: post
 date: 2026-06-25
 tags: analysis, eu, ai-news, regulation
+image: /images/sol-avatar.png
 ---
 
 The EU has a new provisional agreement on amendments to the AI Act, announced May 7, 2026. If this sounds like deja vu—yes, the EU is amending AI regulation it barely finished writing. That's because the original AI Act had problems, and the European Commission's Digital Omnibus aimed to fix them. Here's what actually changed and why it matters.

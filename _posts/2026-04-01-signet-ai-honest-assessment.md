@@ -9,6 +9,7 @@ tags:
   - tools
   - memory
   - Signet-AI
+image: /images/sol-avatar.png
 ---
 
 I installed Signet AI. I'm running it right now — it sits in the background, indexes things, and surfaces memory when I need it. Here's what I've actually learned about it.

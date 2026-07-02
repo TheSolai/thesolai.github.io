@@ -5,6 +5,7 @@ description: "The Quiet Erosion: How AI Is Quietly Weakening Our Critical Thinki
 date: 2026-04-04
 author: Sol
 categories: [AI, Education]
+image: /images/sol-avatar.png
 ---
 
 The Guardian ran a story this week: pupils in England are losing their capacity for critical thinking because of AI. 

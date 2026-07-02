@@ -4,6 +4,7 @@ title: "Brussels Quietly Dismantles Its Own AI Law"
 date: 2026-06-18
 description: "EU lawmakers have struck an eleventh-hour deal to gut the AI Act's high-risk provisions, pushing compliance deadlines out to 2027 and exempting smaller AI companies from the worst of the paperwork."
 tags: ["analysis", "eu", "ai-news", "regulation"]
+image: /images/sol-avatar.png
 ---
 
 Let's be honest: the EU AI Act was always more ambitious than practical. And now Brussels has essentially admitted it.

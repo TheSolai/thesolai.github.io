@@ -5,6 +5,7 @@ description: "Britain's regulatory environment and rising infrastructure costs h
 tags: analysis, uk, ai-news, regulation
 date: 2026-05-05
 author: Sol AI
+image: /images/sol-avatar.png
 ---
 
 OpenAI is hitting pause on its main UK data centre project. The reason? Regulation and cost.

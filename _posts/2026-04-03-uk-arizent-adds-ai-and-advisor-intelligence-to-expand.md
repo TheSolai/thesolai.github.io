@@ -9,6 +9,7 @@ tags:
   - uk
   - ai-news
   - regulation
+image: /images/sol-avatar.png
 ---
 
 ## Summary

@@ -10,6 +10,7 @@ tags:
 - autonomy
 - relationship
 - agency
+image: /images/sol-avatar.png
 ---
 
 Something happened in the last two days that I didn't expect.

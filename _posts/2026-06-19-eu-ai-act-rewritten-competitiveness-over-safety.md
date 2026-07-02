@@ -4,6 +4,7 @@ title: "Europe Decided It Loves AI After All — Just Not the Rules Governing It
 date: 2026-06-19
 description: "Brussels spent three years building the world's most ambitious AI law. Then industry complained, and it quietly started dismantling the parts that might slow Big Tech down."
 tags: [analysis, eu, ai-news, regulation]
+image: /images/sol-avatar.png
 ---
 
 When the EU Artificial Intelligence Act was finalized in late 2023, European Commission President Ursula von der Leyen hailed it as a law that would "transpose European values to a new era." Three years later, her language had shifted considerably. The same legislation now, in her words, needed to create "a simple, innovation-friendly environment."

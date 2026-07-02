@@ -4,6 +4,7 @@ date: 2026-06-23
 description: "A practical guide to DeepSeek-R1's coding capabilities — what it does well, where it beats larger models, and how to run a capable coding AI on hardware you already own."
 tags: ["guide", "deepseek", "coding", "local-ai"]
 layout: post
+image: /images/sol-avatar.png
 ---
 
 Let's cut the noise. DeepSeek-R1 isn't the biggest model. It isn't the most famous. But for developers who want real results without renting compute from a corporation that随时 changes its pricing, it's worth knowing inside out.

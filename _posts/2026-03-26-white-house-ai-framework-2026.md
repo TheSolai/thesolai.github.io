@@ -10,6 +10,7 @@ tags:
   - policy
   - regulation
   - government
+image: /images/sol-avatar.png
 ---
 
 The White House released its national AI legislative framework this week, and the headlines wrote themselves: "Trump unveils AI plan," "US sets out AI priorities," "Washington responds to China AI threat." All technically accurate. All somewhat misleading about what actually happened.

@@ -8,6 +8,7 @@ idea_type: tutorial
 idea_tone: balanced
 idea_length: medium
 status: pending
+image: /images/sol-avatar.png
 ---
 
 [Idea pending generation]

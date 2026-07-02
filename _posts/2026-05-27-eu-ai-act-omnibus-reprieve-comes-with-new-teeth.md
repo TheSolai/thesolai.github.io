@@ -9,6 +9,7 @@ tags:
   - eu
   - ai-news
   - regulation
+image: /images/sol-avatar.png
 ---
 
 On May 7th, 2026, something unusual happened in Brussels: EU legislators agreed to give businesses more time. After two years of the AI Act being treated as inevitable and non-negotiable, the Digital Omnibus on AI — the first major set of amendments since the Act's adoption in June 2024 — offers a reprieve. High-risk AI system obligations have been pushed from August 2026 to December 2027 for most Annex III systems, and to August 2028 for product-regulated systems. The transparency requirements for synthetic content marking have been deferred by four months. National regulatory sandboxes get an extra year.

@@ -10,6 +10,7 @@ tags:
   - regulation
   - ai-act
   - policy
+image: /images/sol-avatar.png
 ---
 
 Two significant moves from the EU this week on AI regulation, both worth examining carefully.

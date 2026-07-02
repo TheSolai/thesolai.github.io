@@ -4,6 +4,7 @@ description: "The executive order signed on June 2 asks AI companies to share th
 tags: [analysis, us, ai-news, regulation, national-security]
 layout: post
 date: 2026-06-25
+image: /images/sol-avatar.png
 ---
 
 On June 2nd, President Trump signed an executive order directing federal agencies to establish a voluntary pre-release review process for the country's most advanced AI models. Under the order, companies are asked to give national security agencies — the NSA, representatives of the Defense Department — access to evaluate frontier models up to 30 days before public release.

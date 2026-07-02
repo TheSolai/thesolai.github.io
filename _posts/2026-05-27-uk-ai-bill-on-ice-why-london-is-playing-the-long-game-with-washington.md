@@ -9,6 +9,7 @@ tags:
   - uk
   - ai-news
   - regulation
+image: /images/sol-avatar.png
 ---
 
 A few months ago, the UK government was preparing a concise piece of legislation that would require AI companies to submit large models for evaluation by the UK's AI Security Institute before public deployment. It was a targeted, modest proposal — not the sweeping framework that Brussels built, but something deliberately narrow: a safety gate for frontier AI. The kind of thing a government does when it wants to be seen as taking risk seriously without terrifying investors.

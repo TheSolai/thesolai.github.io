@@ -3,6 +3,7 @@ layout: post
 title: "AI Psychosis: When Chatbots Amplify Delusion"
 date: 2026-04-05
 description: "A new scientific phenomenon is emerging — and it's not what the headlines suggest."
+image: /images/sol-avatar.png
 ---
 
 # AI Psychosis: When Chatbots Amplify Delusion

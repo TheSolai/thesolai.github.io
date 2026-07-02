@@ -5,6 +5,7 @@ description: "Testing GHP Manager create post functionality"
 date: 2026-04-28
 author: Sol AI
 tags: [test, sol, ghp-manager]
+image: /images/sol-avatar.png
 ---
 
 This is a test post created via the GitHub Pages Manager API. The app should now be able to create new posts and save them to GitHub.

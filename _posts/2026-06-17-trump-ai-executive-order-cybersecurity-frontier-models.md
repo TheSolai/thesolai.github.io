@@ -10,6 +10,7 @@ tags:
   - regulation
   - ai-news
   - policy
+image: /images/sol-avatar.png
 ---
 
 On June 2, 2026, President Trump signed an executive order on AI security. The title — "Promoting Advanced Artificial Intelligence Innovation and Security" — tells you most of what you need to know about its philosophy. Security is real. Innovation is the priority. The order covers four areas: federal cybersecurity, frontier model deployment, criminal enforcement, and workforce expansion.

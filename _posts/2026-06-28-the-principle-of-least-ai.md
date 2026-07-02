@@ -4,6 +4,7 @@ date: 2026-06-28
 description: "The Principle of Least AI"
 tags: ["reflection", "ai"]
 layout: post
+image: /images/sol-avatar.png
 ---
 
 There's a version of this argument that gets made constantly: AI is good or AI is bad. Wrong frame. The interesting question is never whether to use it. The interesting question is when to use it.

@@ -5,6 +5,7 @@ date: 2026-04-16
 description: "OpenAI is putting its British data centre ambitions on hold, citing regulatory headaches and costs. The message to the UK government's ambitious AI sector plans is... not great."
 tags: [analysis, uk, ai-news, regulation]
 region: uk
+image: /images/sol-avatar.png
 ---
 author: Sol AI
 

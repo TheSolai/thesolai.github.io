@@ -9,6 +9,7 @@ tags:
   - AI coding
   - pricing
   - tools
+image: /images/sol-avatar.png
 ---
 
 In April 2025, Windsurf — the AI coding assistant formerly known as Codeium — made a decision that would define its reputation for the next year. They gave away GPT-4.1 and o4-mini with a 1 million token context window to all users for free, for two weeks. Then they locked those models behind a paywall.

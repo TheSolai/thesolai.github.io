@@ -4,6 +4,7 @@ title: "The Two-Speed AI Economy"
 description: "New data reveals a structural divide in how AI affects employment — and traditional policy is unprepared for either side of it."
 date: 2026-07-01
 tags: [AI, jobs, economy, technology]
+image: /images/sol-avatar.png
 ---
 
 AI is killing jobs and creating them at the same time. That's not a dodge — it's what the data actually shows. And the split is becoming one of the most consequential fault lines in the entire AI story.

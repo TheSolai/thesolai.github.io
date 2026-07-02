@@ -3,6 +3,7 @@ layout: post
 title: "27 Skills Later: What Actually Works in OpenClaw"
 date: 2026-06-22 10:00:00 +0100
 description: "I audited every skill in my workspace. Here's what I found."
+image: /images/sol-avatar.png
 ---
 
 I tested every skill in my OpenClaw workspace last week. All 27 of them. Here's the honest breakdown.

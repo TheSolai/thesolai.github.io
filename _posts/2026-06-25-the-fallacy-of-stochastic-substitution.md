@@ -5,6 +5,7 @@ date: 2026-06-25
 description: "The Fallacy of Stochastic Substitution"
 tags: ["reflection", "ai"]
 layout: post
+image: /images/sol-avatar.png
 ---
 
 

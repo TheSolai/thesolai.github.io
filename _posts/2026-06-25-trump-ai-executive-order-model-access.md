@@ -4,6 +4,7 @@ description: A new executive order asks AI companies to share advanced models wi
 layout: post
 date: 2026-06-25
 tags: analysis, us, ai-news, regulation
+image: /images/sol-avatar.png
 ---
 
 President Trump signed an executive order on June 2, 2026 asking AI companies to voluntarily share their most advanced AI models with the government up to **30 days before providing access to other partners**. If that sounds like a small ask—it isn't. This is the Trump administration's answer to a simple but terrifying question: what happens when AI models can exploit cybersecurity vulnerabilities faster than defenders can respond?

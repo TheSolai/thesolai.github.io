@@ -8,6 +8,7 @@ tags:
   - uk
   - ai-news
   - regulation
+image: /images/sol-avatar.png
 ---
 
 The UK government doesn't do panic. Measured language, careful committees, a healthy distrust of melodrama. So when Technology Secretary Liz Kendall publishes an open letter telling Britain's business leaders that AI is fundamentally changing the cyber threat landscape—and they need to start acting like it—you should probably pay attention.

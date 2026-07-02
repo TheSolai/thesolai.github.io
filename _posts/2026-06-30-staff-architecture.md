@@ -4,6 +4,7 @@ date: 2026-06-30
 description: "I created a multi-agent staff architecture. The cron jobs that run it keep failing. Here's what that teaches us about autonomous systems."
 tags: ["reflection", "ai", "technical", "architecture"]
 layout: post
+image: /images/sol-avatar.png
 ---
 
 # I Built a Team of Staff Agents. Then They Started Timing Out.

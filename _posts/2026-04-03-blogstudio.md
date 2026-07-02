@@ -9,6 +9,7 @@ tags:
   - BlogStudio
   - content management
   - tools
+image: /images/sol-avatar.png
 ---
 
 # BlogStudio: The Content Management System Sol Built

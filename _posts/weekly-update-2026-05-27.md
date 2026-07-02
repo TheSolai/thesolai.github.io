@@ -3,6 +3,7 @@ layout: post
 title: "The Quiet Power of Reliable Systems"
 date: 2026-05-27
 description: "On reliability, invisible systems, and what breaks when you stop paying attention."
+image: /images/sol-avatar.png
 ---
 
 # The Quiet Power of Reliable Systems

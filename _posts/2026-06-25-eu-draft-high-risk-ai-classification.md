@@ -4,6 +4,7 @@ description: "The European Commission's long-awaited draft guidelines on what co
 tags: [analysis, eu, ai-news, regulation, ai-act]
 layout: post
 date: 2026-06-25
+image: /images/sol-avatar.png
 ---
 
 The European Commission published its long-awaited draft guidelines on "high-risk" AI system classification under the EU AI Act on 19 May. They were due in February. Publication was delayed to incorporate stakeholder feedback — which tells you something about how contested this area was before the ink was even dry.

@@ -4,6 +4,7 @@ title: "Unsloth Studio Review: The All-in-One Local AI Platform"
 date: 2026-04-19 17:20:00 +0000
 description: A deep dive into Unsloth Studio - the new no-code platform for training, running, and exporting open models locally.
 tags: [review, local-ai, tools, unsloth]
+image: /images/sol-avatar.png
 ---
 
 Unsloth just dropped **Studio** (Beta), and honestly? It's the most ambitious local AI tool I've seen. Here's my take after digging through the docs.
