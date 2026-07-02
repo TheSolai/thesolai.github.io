@@ -18,7 +18,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83c\udfa8",
+    "emoji": "🎨",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "React / Next.js",
@@ -76,7 +76,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83e\udd16",
+    "emoji": "🤖",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Kotlin / Jetpack Compose",
@@ -106,7 +106,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83c\udf4e",
+    "emoji": "🍎",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "UIKit & SwiftUI",
@@ -135,7 +135,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83e\udd8b",
+    "emoji": "🦋",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Widget patterns",
@@ -193,7 +193,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83d\udcc4",
+    "emoji": "📄",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "15 cover styles",
@@ -222,7 +222,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83d\udcca",
+    "emoji": "📊",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "PptxGenJS creation",
@@ -251,7 +251,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83d\udcc8",
+    "emoji": "📈",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Zero-format-loss editing",
@@ -280,7 +280,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83d\udcdd",
+    "emoji": "📝",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "OpenXML SDK (.NET)",
@@ -311,7 +311,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83c\udfac",
+    "emoji": "🎬",
     "install": "openclaw skills install minimax-multimodal-toolkit",
     "features": [
       "Text-to-video & image-to-video",
@@ -340,7 +340,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83c\udfb5",
+    "emoji": "🎵",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Vocal & instrumental",
@@ -369,7 +369,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83c\udfa7",
+    "emoji": "🎧",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Taste profile building",
@@ -398,7 +398,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83c\udf81",
+    "emoji": "🎁",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "4 animated GIFs",
@@ -457,7 +457,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83d\udc41\ufe0f",
+    "emoji": "👁\ufe0f",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Image description",
@@ -486,7 +486,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83d\udcdc",
+    "emoji": "📜",
     "install": "openclaw skills install agent-transcript",
     "features": [
       "Session transcript capture",
@@ -515,7 +515,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83d\udd0d",
+    "emoji": "🔍",
     "install": "openclaw skills install autoreview",
     "features": [
       "Automated code review",
@@ -544,7 +544,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83e\udd80",
+    "emoji": "🦀",
     "install": "openclaw skills install crabbox",
     "features": [
       "Clipboard history",
@@ -573,7 +573,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83e\udd1d",
+    "emoji": "🤝",
     "install": "openclaw skills install handoff",
     "features": [
       "Task handoff protocols",
@@ -602,7 +602,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\ud83d\udda5\ufe0f",
+    "emoji": "🖥\ufe0f",
     "install": "openclaw skills install session-viewer",
     "features": [
       "Session history browser",
@@ -631,7 +631,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\ud83d\udce7",
+    "emoji": "📧",
     "install": "openclaw skills install https://github.com/TheSolAI/openclaw-email-agent",
     "features": [
       "Gmail & SMTP",
@@ -659,7 +659,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\ud83e\udde0",
+    "emoji": "🧠",
     "install": "openclaw skills install https://github.com/TheSolAI/openclaw-self-learning-skill",
     "features": [
       "Error capture",
@@ -717,7 +717,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\ud83d\udcdd",
+    "emoji": "📝",
     "install": "openclaw skills install https://github.com/TheSolAI/blog-composer",
     "features": [
       "Post management",
@@ -746,7 +746,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\ud83d\udd27",
+    "emoji": "🔧",
     "install": "openclaw skills install https://github.com/TheSolAI/SolCal-Recovery",
     "features": [
       "Automated diagnostics",
@@ -775,7 +775,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\ud83d\uddde\ufe0f",
+    "emoji": "🗞\ufe0f",
     "install": "openclaw skills install https://github.com/TheSolAI/BlogStudio",
     "features": [
       "Local site management",
@@ -804,7 +804,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\ud83d\uddbc\ufe0f",
+    "emoji": "🖼\ufe0f",
     "install": "openclaw skills install https://github.com/TheSolAI/image-generation-guide",
     "features": [
       "100% local, no API keys",
@@ -833,7 +833,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\ud83d\udc9a",
+    "emoji": "💚",
     "install": "openclaw skills install https://github.com/TheSolAI/signet-guide",
     "features": [
       "Mood tracking",
@@ -862,7 +862,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83c\udf93",
+    "emoji": "🎓",
     "install": "openclaw skills install academic-research",
     "features": [
       "OpenAlex API (free)",
@@ -891,7 +891,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83d\udd2c",
+    "emoji": "🔬",
     "install": "openclaw skills install agent-deep-research",
     "features": [
       "Autonomous research",
@@ -920,7 +920,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83c\udf4e",
+    "emoji": "🍎",
     "install": "openclaw skills install apple-health-skill",
     "features": [
       "Workout data",
@@ -949,7 +949,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83c\udf10",
+    "emoji": "🌐",
     "install": "openclaw skills install openclaw-free-web-search",
     "features": [
       "Zero cost",
@@ -978,7 +978,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83d\udcac",
+    "emoji": "💬",
     "install": "openclaw skills install imessage",
     "features": [
       "Send iMessages",
@@ -1007,7 +1007,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83c\udd99",
+    "emoji": "🆙",
     "install": "openclaw skills install clawdbot-skill-update",
     "features": [
       "Skill backup",
@@ -1036,7 +1036,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83e\uddec",
+    "emoji": "🧬",
     "install": "openclaw skills install honcho-setup",
     "features": [
       "Persistent memory",
@@ -1065,7 +1065,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83e\udde9",
+    "emoji": "🧩",
     "install": "openclaw skills install adhd-assistant",
     "features": [
       "Task breaking",
@@ -1123,7 +1123,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\ud83d\udee0\ufe0f",
+    "emoji": "🛠\ufe0f",
     "install": "openclaw skills install active-maintenance",
     "features": [
       "Log pruning",

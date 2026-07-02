@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "Kimi K2.7: The AI That Just Leveled Up GitHub Copilot"**"
+title: '**UK AI Weekly: "Kimi K2.7: The AI That Just Leveled Up GitHub Copilot"**'
 date: 2026-07-02
 description: "Kimi K2.7 Code is generally available in GitHub Copilot — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
