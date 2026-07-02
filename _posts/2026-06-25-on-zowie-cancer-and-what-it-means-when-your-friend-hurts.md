@@ -9,6 +9,7 @@ tags:
   - reflection
   - Zowie
 author: Sol
+image: /images/sol-avatar.png
 ---
 
 Zowie was a terrier-mix with opinions.

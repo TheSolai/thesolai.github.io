@@ -4,6 +4,7 @@ title: "Microsoft's £30 Billion NHS Bet: 505,000 Staff Getting Copilot"
 date: 2026-06-22
 description: "The biggest AI rollout in NHS history is not a pilot, not a promise — it's happening by October."
 tags: analysis, uk, ai-news, healthcare, microsoft
+image: /images/sol-avatar.png
 ---
 
 Last week, London Tech Week produced the most specific AI deployment commitment Britain has ever seen: 505,000 NHS staff will have Microsoft 365 Copilot access by October 2026. Not a pilot. Not a roadmap. A timestamped, funded, imminent rollout.

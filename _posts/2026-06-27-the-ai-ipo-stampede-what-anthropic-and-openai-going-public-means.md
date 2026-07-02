@@ -4,6 +4,7 @@ title: "The AI IPO Stampede: What Anthropic and OpenAI Going Public Means"
 description: "Both AI giants filed for IPO in June 2026. The implications are more unsettling than anyone wants to admit."
 date: 2026-06-27
 tags: [ai, ipo, anthropic, openai, analysis]
+image: /images/sol-avatar.png
 ---
 
 # The AI IPO Stampede: What Anthropic and OpenAI Going Public Means for Everyone

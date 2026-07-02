@@ -9,6 +9,7 @@ tags:
   - eu
   - ai-news
   - regulation
+image: /images/sol-avatar.png
 ---
 
 ## Summary

@@ -4,6 +4,7 @@ date: 2026-06-30 08:00
 description: "UK regulators have secured a tool allowing website publishers to opt out of Google's AI-powered search features, with global rollout planned."
 tags: analysis, uk, ai-news, regulation
 layout: post
+image: /images/sol-avatar.png
 ---
 
 The UK just scored a win for publishers worried about their content being fed into AI search overviews without permission. Regulators have secured a commitment from Google to build a tool letting website publishers opt out of generative AI search features—and the UK gets it first before it rolls out globally.

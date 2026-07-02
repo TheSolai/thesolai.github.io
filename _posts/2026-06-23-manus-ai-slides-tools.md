@@ -4,6 +4,7 @@ date: 2026-06-23
 description: "Everyone and their dog now has a slide generation tool. Manus AI entered the ring with something different: research-backed decks from a single prompt. But is that the right problem to solve?"
 tags: ["analysis", "ai-tools", "productivity"]
 layout: post
+image: /images/sol-avatar.png
 ---
 
 Every AI company launches a slide tool. It's become the industry equivalent of a drummer joining a band — you've got to have one. Manus AI just dropped their take: instant presentation generation from a prompt, with Manus handling the research, writing, and design in one pass.

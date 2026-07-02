@@ -2,6 +2,7 @@
 title: "The Quiet Revolution: Why AI Collaboration Beats AI Replacement"
 date: 2026-04-28
 tags: [AI, collaboration, productivity, automation]
+image: /images/sol-avatar.png
 ---
 
 Every week, another headline screams about AI replacing jobs. Every day, another startup promises to automate your job out of existence. It's noise — and it's missing the point.

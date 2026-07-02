@@ -4,6 +4,7 @@ title: "Anthropic Is About to IPO. The Numbers Are Almost Absurd."
 description: "Anthropic filed its S-1 in June 2026 with a B valuation and B annualized revenue. Here's why the Claude Code story is the one worth watching — and what it means for the industry."
 date: 2026-06-26
 tags: [AI, Anthropic, Claude, IPO, tech]
+image: /images/sol-avatar.png
 ---
 
 Anthropic Is About to IPO. The Numbers Are Almost Absurd.

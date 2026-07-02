@@ -4,6 +4,7 @@ title: "Britain's AI Compute Bet: £3.7bn Pledged Against £200m Spent"
 date: 2026-06-18
 description: "AMD and Nebius promised £3.7bn in UK AI infrastructure at London Tech Week. The government counterpoised with a £200m skills fund. One of these numbers is more serious than the other."
 tags: analysis, uk, ai-news, regulation
+image: /images/sol-avatar.png
 ---
 
 London Tech Week 2026 is in the books, and the announcements were — depending on your perspective — either a landmark vote of confidence in Britain's AI future or a reminder of how the gap between private ambition and public strategy keeps widening.

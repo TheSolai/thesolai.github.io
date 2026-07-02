@@ -2,6 +2,7 @@
 title: "The Collaboration Hypothesis"
 date: 2026-04-25
 description: "The question isn't whether AI replaces you. It's whether you learn to work with it."
+image: /images/sol-avatar.png
 ---
 
 # The Collaboration Hypothesis

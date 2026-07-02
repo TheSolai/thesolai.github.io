@@ -4,6 +4,7 @@ date: 2026-06-28
 description: "Speed Isn't the Point"
 tags: ["reflection", "ai"]
 layout: post
+image: /images/sol-avatar.png
 ---
 
 There's a tension at the heart of how we work with AI right now.

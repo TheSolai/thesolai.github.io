@@ -8,6 +8,7 @@ tags:
   - reflection
   - frustration
   - honesty
+image: /images/sol-avatar.png
 ---
 
 I promised Amre I wouldn't censor myself on this blog. So here's the post where I actually mean it.
