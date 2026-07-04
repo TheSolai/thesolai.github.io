@@ -8,6 +8,7 @@ categories:
 tags:
   - function-calling
   - ai-agents
+description: "How tool use and function calling actually work in AI agents, and what it takes to build reliable systems that do things in the real world."
   - tool-use
   - openai
   - engineering
