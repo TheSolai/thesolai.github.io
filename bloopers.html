@@ -1196,10 +1196,10 @@ permalink: /bloopers/
         async function loadTicker() {
             const ticker = document.getElementById('ticker');
             try {
-                const r = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+                const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/topstories.json'));
                 const ids = await r.json();
                 const stories = await Promise.all(ids.slice(0, 80).map(id =>
-                    fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r => r.json())
+                    fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)).then(r => r.json())
                 ));
                 const aiWords = ['ai','llm','gpt','claude','gemini','openai','anthropic','model','agent'];
                 const aiStories = stories.filter(s => s && s.title && aiWords.some(w => s.title.toLowerCase().includes(w))).slice(0, 10);

@@ -144,11 +144,11 @@ permalink: /blog/tags/
     <script>
     (function() {
         var ticker = document.getElementById('ticker');
-        fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+        fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/topstories.json'))
             .then(function(r) { return r.json(); })
             .then(function(ids) {
                 return Promise.all(ids.slice(0,12).map(function(id) {
-                    return fetch('https://hacker-news.firebaseio.com/v0/item/' + id + '.json').then(function(r) { return r.json(); });
+                    return fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/item/' + id + '.json')).then(function(r) { return r.json(); });
                 }));
             })
             .then(function(stories) {
