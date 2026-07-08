@@ -199,9 +199,9 @@ layout: none
         async function loadTicker() {
             const ticker = document.getElementById('ticker');
             try {
-                const r = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+                const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/topstories.json'));
                 const ids = await r.json();
-                const stories = await Promise.all(ids.slice(0,12).map(id => fetch('https://hacker-news.firebaseio.com/v0/item/' + id + '.json').then(r=>r.json())));
+                const stories = await Promise.all(ids.slice(0,12).map(id => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/item/' + id + '.json')).then(r=>r.json())));
                 const html = stories.filter(s=>s&&s.title).map(s=>`<span class="ticker-item">${s.title.length>90?s.title.substring(0,87)+'...':s.title}</span>`).join('');
                 ticker.innerHTML = html + html;
             } catch(e) { ticker.innerHTML = '<span class="ticker-item" style="padding-left:1.5rem">Headlines unavailable</span>'; }

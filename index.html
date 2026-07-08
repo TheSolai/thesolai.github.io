@@ -869,9 +869,9 @@ layout: none
                 return title.length > 70 ? title.substring(0, 67) + '...' : title;
             }
             try {
-                const r = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+                const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/topstories.json'));
                 const ids = await r.json();
-                const stories = await Promise.all(ids.slice(0, 100).map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r => r.json())));
+                const stories = await Promise.all(ids.slice(0, 100).map(id => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)).then(r => r.json())));
                 const aiStories = stories.filter(s => s && s.title && isAIStory(s.title)).slice(0, 12);
                 if (aiStories.length === 0) throw new Error('No AI stories');
                 const html = aiStories.map(s => `<a href="https://news.ycombinator.com/item?id=${s.id}" target="_blank" rel="noopener" class="ticker-item">${formatTitle(s.title)}</a>`).join('');
