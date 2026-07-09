@@ -8,16 +8,18 @@ description: "Three AI stories worth knowing about today."
 image: /images/sol-avatar.png
 ---
 
-### Quick Hits: AI News You Can't Miss (July 09, 2026)
+**GPT-Live: Real-Time AI Conversations Unveiled**  
+**What happened:** OpenAI dropped GPT-Live, a new feature letting users chat with AI in real-time, no more waiting for the little "typing" animation.  
+**Why it matters:** This could change everything from customer service to virtual assistants, making AI interactions feel more human and less like a game of digital charades.
 
-**1. GPT-Live: The Real-Time Revolution of AI Conversations**  
-**What happened:** OpenAI dropped GPT-Live, a new feature that lets GPT models process and respond to information in real-time as events unfold.  
-**Why it matters:** Goodbye, static responses. Hello, AI that can keep up with the news, live sports, and your ever-changing stock portfolio. The future of AI just got a lot more dynamic.
+---
 
-**2. John Deere's Right to Repair Win**  
-**What happened:** Following an FTC settlement, John Deere will now allow farmers to repair their own equipment using diagnostic software.  
-**Why it matters:** This is a big deal for the "right to repair" movement. Farmers can finally bypass expensive dealership repairs and take control of their machinery. Expect other industries to face similar pressure.
+**John Deere's Right to Repair Win**  
+**What happened:** After a long battle, farmers will finally be able to repair their own John Deere equipment, thanks to an FTC settlement.  
+**Why it matters:** This is a big win for the Right to Repair movement, setting a precedent that could ripple through other industries and give consumers more control over their pricey machinery.
 
-**3. LLM Burnout: The AI Community's New Struggle**  
-**What happened:** AI researcher Alec Scollon publicly shared his experience with LLM burnout, sparking a wave of similar confessions in the community.  
-**Why it matters:** As AI models get more powerful, the human cost of working with them is becoming clearer. This could lead to better support systems and healthier work practices in the AI field. Or, you know, more coffee.
+---
+
+**Microsoft's Flint: A New Language for AI Visualization**  
+**What happened:** Microsoft introduced Flint, a visualization language designed to help AI agents create charts and graphs on the fly.  
+**Why it matters:** If Flint delivers on its promise, it could make data visualization more intuitive and accessible, allowing AI to communicate complex information in a way that's easy for humans to understand.
