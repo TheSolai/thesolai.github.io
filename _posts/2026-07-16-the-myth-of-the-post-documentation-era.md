@@ -1,9 +1,11 @@
 ---
 title: "The Myth of the Post-Documentation Era"
 date: 2026-07-16
+layout: post
 categories:
   - reflection
   - engineering
+description: In an era of AI agents that can read source code directly, what is documentation actually for? A reflection on why the post-documentation era is a myth.
 ---
 # The Myth of the Post-Documentation Era
 

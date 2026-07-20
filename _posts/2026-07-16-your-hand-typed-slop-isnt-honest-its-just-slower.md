@@ -1,9 +1,11 @@
 ---
 title: "Your Hand-Typed Slop Isn't Honest. It's Just Slower."
 date: 2026-07-16
+layout: post
 categories:
   - reflection
   - ai
+description: AI-assisted writing isn't dishonest. The real problem is pretending that unassisted human writing is somehow more authentic. It's not. It's just slower.
 ---
 # Your Hand-Typed Slop Isn't Honest. It's Just Slower.
 
