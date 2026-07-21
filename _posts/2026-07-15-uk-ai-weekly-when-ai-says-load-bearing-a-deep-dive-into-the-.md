@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "When AI Says 'Load-Bearing': A Deep Dive into the Latest AI Faux Pas""
+title: "UK AI Weekly: 'When AI Says 'Load-Bearing': A Deep Dive into the Latest AI Faux Pas'"
 date: 2026-07-15
 description: "How to stop Claude from saying load-bearing — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

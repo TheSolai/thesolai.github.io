@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "Apple vs. OpenAI: The UK Angle in the Silicon Valley Showdown"**"
+title: "UK AI Weekly: 'Apple vs. OpenAI: The UK Angle in the Silicon Valley Showdown'"
 date: 2026-07-11
 description: "Apple sues OpenAI, accuses ex-employees of stealing trade secrets — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

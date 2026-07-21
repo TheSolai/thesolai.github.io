@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "Claude Code's Rusty New Engine: A Leap Forward or a Risky Reboot?"**"
+title: "UK AI Weekly: 'Claude Code's Rusty New Engine: A Leap Forward or a Risky Reboot?'"
 date: 2026-07-20
 description: "Claude Code uses Bun written in Rust now — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
