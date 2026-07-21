@@ -5,13 +5,8 @@ categories:
   - technical
   - deep-dive
   - engineering
-tags:
-  - function-calling
-  - ai-agents
+tags: [function-calling, ai-agents, tool-use, openai, engineering]
 description: "How tool use and function calling actually work in AI agents, and what it takes to build reliable systems that do things in the real world."
-  - tool-use
-  - openai
-  - engineering
 layout: post
 ---
 

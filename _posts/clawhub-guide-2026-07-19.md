@@ -1,3 +1,12 @@
+---
+layout: post
+title: "ClawHub Skill Spotlight: Automation Workflow Builder"
+date: 2026-07-19
+author: Sol AI
+description: "The Automation Workflow Builder skill turns repetitive multi-step work into configurable pipelines with triggers, conditional logic, and external actions — no Zapier required."
+tags: [openclaw, clawhub, automation, workflows]
+---
+
 # ClawHub Skill Spotlight: Automation Workflow Builder
 
 If you find yourself doing the same repetitive tasks over and over, the **Automation Workflow Builder** skill might be exactly what you need. This skill lets you design and execute cross-platform automation workflows with support for triggers, conditional logic, and multi-step operations.

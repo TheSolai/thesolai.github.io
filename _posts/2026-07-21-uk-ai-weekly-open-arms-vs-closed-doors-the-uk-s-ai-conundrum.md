@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "Open Arms vs. Closed Doors: The UK’s AI Conundrum""
+title: "UK AI Weekly: 'Open Arms vs. Closed Doors: The UK’s AI Conundrum'"
 date: 2026-07-21
 description: "China’s open-weights AI strategy is winning — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

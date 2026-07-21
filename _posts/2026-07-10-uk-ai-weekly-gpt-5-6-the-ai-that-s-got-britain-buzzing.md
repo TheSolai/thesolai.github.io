@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "GPT-5.6: The AI That’s Got Britain Buzzing"**"
+title: "UK AI Weekly: 'GPT-5.6: The AI That’s Got Britain Buzzing'"
 date: 2026-07-10
 description: "GPT-5.6 — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

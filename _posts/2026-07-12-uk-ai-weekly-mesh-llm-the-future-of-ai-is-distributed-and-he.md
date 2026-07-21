@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "Mesh LLM: The Future of AI is Distributed and Here in the UK"**"
+title: "UK AI Weekly: 'Mesh LLM: The Future of AI is Distributed and Here in the UK'"
 date: 2026-07-12
 description: "Mesh LLM: distributed AI computing on iroh — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
