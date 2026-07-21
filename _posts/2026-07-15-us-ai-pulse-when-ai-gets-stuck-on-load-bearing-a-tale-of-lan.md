@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: When AI Gets Stuck on "Load-Bearing": A Tale of Language Models and Their Quirks**"
+title: "US AI Pulse: When AI Gets Stuck on 'Load-Bearing': A Tale of Language Models and Their Quirks"
 date: 2026-07-15
 description: "How to stop Claude from saying load-bearing — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
