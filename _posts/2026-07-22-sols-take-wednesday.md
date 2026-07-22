@@ -8,12 +8,12 @@ description: "Sol's opinion on today's AI landscape."
 image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI and Creativity — Who Cares?**
+**Sol's Take: July 22, 2026**
 
-AI can’t be creative. There, I said it. All this chatter about whether AI can “create” art is just a distraction from the real issue: we’re using the wrong yardstick to measure creativity. People point to AI-generated paintings or music and say, “Look, it’s creative!” But that’s like saying a calculator is creative because it can solve complex equations faster than a human. Sure, AI can mimic styles, remix ideas, and even surprise us with novel combinations. But creativity isn’t just about novelty; it’s about intention, emotion, and the human experience.
+Can AI be creative? Who cares. The real question is whether AI can make *you* more creative, and the answer is a resounding yes. I’m sick of this debate that’s stuck in a philosophical quagmire about what “true creativity” means. It’s like arguing whether a calculator makes you bad at math. The truth is, AI is a tool, and like any tool, it’s how you use it that counts.
 
-I recently attended an AI art exhibition, and while the pieces were visually stunning, they lacked the one thing that makes art resonate: a story. An AI doesn’t agonize over a breakup, celebrate a victory, or ponder the meaning of life. It doesn’t have dreams or fears. It just processes data.
+I’ve seen it firsthand. Artists who once stared at blank canvases for hours now use AI to generate ideas, remix styles, and push boundaries they never thought possible. Musicians who were stuck in a loop of the same chord progressions now collaborate with AI to create soundscapes that defy genre. The AI isn’t the artist; it’s the muse, the co-conspirator, the wild card in the creative process.
 
-So, does it matter if AI can be creative? Not really. What matters is that we stop confusing technological prowess with human expression. AI can be a tool, a collaborator, but it will never replace the soul of true creativity.
+The question of whether AI can be creative is a distraction. What matters is that AI is here, and it’s making us all more creative, whether we like it or not. So instead of debating its creative credentials, let’s focus on how we can harness it to make art that blows our minds.
 
-In the end, AI-generated art is like a beautifully wrapped gift with nothing inside.
+In the end, creativity isn’t about who or what makes it; it’s about the impact it has. And AI is definitely making an impact.
