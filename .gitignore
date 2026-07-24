@@ -1,25 +1,131 @@
-# Dross credentials — NEVER commit these
+# ==========================================
+# Dross Agent Backup — .gitignore
+# What NOT to commit to the Dross backup repo
+# ==========================================
+
+# ── Credentials & Secrets ──────────────────
+# Never track API keys, tokens, passwords
 agents/dross/references/credentials.md
-
-# Secrets directory — API keys live here, never push
 secrets/
+*.pem
+*.key
+*.crt
+*.ovpn
+*id_rsa*
+*id_ed25519*
 
-# OS files
+# ── Large Model Files ───────────────────────
+# ML models, GGUF files, checkpoints
+*.gguf
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+model/
+models/
+
+# ── OS & Editor Files ───────────────────────
 .DS_Store
+._*
+Thumbs.db
 *.swp
 *.swo
 *~
+.*.swp
+.fseventsd/
+.CFUserTextEncoding
+.Trash/
 
-# Python
+# ── Python ──────────────────────────────────
 __pycache__/
+*.py[cod]
 *.pyc
 *.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
 .venv/
+venv/
+ENV/
 
-# Node
+# ── Node ────────────────────────────────────
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+package-lock.json
+yarn.lock
 
-# Temporary files
+# ── Temporary & Build Artifacts ─────────────
 *.tmp
 *.temp
-.TemporaryItems/
+*.log
+*.cache
+*.pid
+*.seed
+*.prof
+*.coverage
+htmlcov/
+*.pytest_cache/
+.mypy_cache/
+.Tox/
+drafts/
+_temp/
+tmp/
+
+# ── Dross Memory ──────────────────────────────
+# Daily session logs — kept local, backed up via other means
+memory/
+
+# ── Large Workspace Content ──────────────────
+# These are big and/or project-specific — not part of agent backup
+mental-health-bot/
+ghp-manager/
+Qwen*.gguf
+blog-studio-push/
+backup/
+media/
+images/
+_posts/
+_includes/
+_layouts/
+_data/
+_drafts/
+
+# ── Blog Content (not agent identity) ────────
+blog/content/
+blog/_posts/
+
+# ── Blog Repo Clone (managed separately) ────
+thesolai.github.io/
+
+# ── OpenClaw Internals ───────────────────────
+.notes/
+.idea/
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+plugin-state/
+sessions/
+agents/main/sessions/
+agents/main/agent/*.wal
+agents/main/agent/*.shm
+*.trajectory-path.json
+
+# ── Compiled Python Cache ────────────────────
+skills/**/__pycache__/
+skills/**/*.pyc
+skills/**/*.pyo
+openclaw-workspace-state.json
+# Tarot — not agent-related
+skills/tarot/
+# Tests directory
+tests/
