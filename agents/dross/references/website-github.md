@@ -85,14 +85,17 @@ Repo: github.com/TheSolAI/blog-composer
 **Schedule:** Sunday 8am
 **Command:** `squirrel crawl && squirrel analyze`
 **Status:** ERROR (needs investigation)
+**Log:** `memory/seo-check-*.md`
 
 ### AI News Aggregator
 **Schedule:** 8am daily
 **Output:** Trending topics, posted to blog
+**Logs:** `memory/trending-2026-*.md`
 
 ### Comments Moderation
 **Schedule:** Sunday 11am
 **Platform:** Utterances (GitHub Discussions)
+**Logs:** `memory/comments-moderation-2026-*.md`
 
 ---
 
