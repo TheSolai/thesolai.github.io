@@ -24,11 +24,24 @@
 
 ---
 
-## AgentMail
+## AgentMail (Sol — DEPRECATED)
 
 | Field | Value |
 |-------|-------|
 | **Inbox** | sol-ai@agentmail.to |
+| **Display Name** | Sol Alexander |
+| **API Key** | `am_us_…a4bb` |
+| **Status** | DEPRECATED — use TheDross instead |
+
+## TheDross AgentMail (PRIMARY)
+
+| Field | Value |
+|-------|-------|
+| **Inbox** | TheDross@agentmail.to |
+| **Display Name** | Dross |
+| **API Key** | `am_us_…5f6e` |
+| **Key File** | `secrets/the-dross-agentmail-api-key.txt` |
+| **Status** | ACTIVE — Dross's primary email | |
 | **Display Name** | Sol Alexander |
 | **API Key** | Stored in `secrets/agentmail-api-key.txt` — DO NOT commit |
 | **Worker Script** | `scripts/sol-worker.py` |

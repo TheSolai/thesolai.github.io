@@ -1,0 +1,279 @@
+{
+  "skills": {
+    "summarize": {
+      "keywords": ["summarize", "summarise", "summary", "tldr", "tl;dr", "url summary", "web summary", "youtube transcript", "transcript"],
+      "slug": "summarize",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/summarize/SKILL.md"]
+    },
+    "coding-agent": {
+      "keywords": ["code", "coding", "programming", "refactor", "debug", "fix bug", "write code", "implement", "function", "script"],
+      "slug": "coding-agent",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/coding-agent/SKILL.md"]
+    },
+    "github": {
+      "keywords": ["github", "git push", "git pull", "repo", "pull request", "commit", "branch", "git commit"],
+      "slug": "github",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/github/SKILL.md"]
+    },
+    "weather": {
+      "keywords": ["weather", "forecast", "temperature", "rain", "sunny", "weather in"],
+      "slug": "weather",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/weather/SKILL.md"]
+    },
+    "sqlite": {
+      "keywords": ["sqlite", "database", "sql query", "sql database", "db query"],
+      "slug": "sqlite",
+      "paths": ["~/.openclaw/skills/sqlite/SKILL.md"]
+    },
+    "pdf": {
+      "keywords": ["pdf", "read pdf", "extract pdf", "pdf content"],
+      "slug": "pdf",
+      "paths": ["~/.openclaw/skills/.agents/skills/pdf/SKILL.md"]
+    },
+    "docx": {
+      "keywords": ["docx", "word document", "word file", "read docx"],
+      "slug": "docx",
+      "paths": ["~/.openclaw/skills/.agents/skills/docx/SKILL.md"]
+    },
+    "xlsx": {
+      "keywords": ["xlsx", "excel", "spreadsheet", "read excel", "excel file"],
+      "slug": "xlsx",
+      "paths": ["~/.openclaw/skills/.agents/skills/xlsx/SKILL.md"]
+    },
+    "pptx": {
+      "keywords": ["pptx", "powerpoint", "presentation", "slides"],
+      "slug": "pptx",
+      "paths": ["~/.openclaw/skills/.agents/skills/pptx/SKILL.md"]
+    },
+    "notion": {
+      "keywords": ["notion", "notion page", "notion database"],
+      "slug": "notion",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/notion/SKILL.md"]
+    },
+    "qmd-search": {
+      "keywords": ["qmd", "quiet mode", "qmd search"],
+      "slug": "qmd-search",
+      "paths": ["~/.openclaw/skills/qmd-search/SKILL.md"]
+    },
+    "blog-reflections": {
+      "keywords": ["blog post", "write blog", "blog article", "publish blog", "write about"],
+      "slug": "blog-reflections",
+      "paths": ["~/.openclaw/skills/.agents/skills/blog-reflections/SKILL.md"]
+    },
+    "skill-creator": {
+      "keywords": ["create skill", "make skill", "new skill", "skill design", "write skill"],
+      "slug": "skill-creator",
+      "paths": ["~/.openclaw/skills/.agents/skills/skill-creator/SKILL.md", "~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/skill-creator/SKILL.md"]
+    },
+    "web-artifacts-builder": {
+      "keywords": ["web artifact", "build website", "html page", "create webpage", "web page"],
+      "slug": "web-artifacts-builder",
+      "paths": ["~/.openclaw/skills/.agents/skills/web-artifacts-builder/SKILL.md"]
+    },
+    "frontend-design": {
+      "keywords": ["frontend", "ui design", "user interface", "css", "html design"],
+      "slug": "frontend-design",
+      "paths": ["~/.openclaw/skills/.agents/skills/frontend-design/SKILL.md"]
+    },
+    "webapp-testing": {
+      "keywords": ["test website", "test webapp", "testing", "ui test", "automated test"],
+      "slug": "webapp-testing",
+      "paths": ["~/.openclaw/skills/.agents/skills/webapp-testing/SKILL.md"]
+    },
+    "algorithmic-art": {
+      "keywords": ["algorithmic art", "generative art", "algorithm art", "svg art", "create art"],
+      "slug": "algorithmic-art",
+      "paths": ["~/.openclaw/skills/.agents/skills/algorithmic-art/SKILL.md"]
+    },
+    "canvas-design": {
+      "keywords": ["canvas", "canvas design", "design canvas"],
+      "slug": "canvas-design",
+      "paths": ["~/.openclaw/skills/.agents/skills/canvas-design/SKILL.md"]
+    },
+    "image-generate": {
+      "keywords": ["generate image", "create image", "draw image", "image generation", "dall-e", "stable diffusion"],
+      "slug": "image-generate",
+      "paths": []
+    },
+    "video-generate": {
+      "keywords": ["generate video", "create video", "video generation", "make video"],
+      "slug": "video-generate",
+      "paths": []
+    },
+    "music-generate": {
+      "keywords": ["generate music", "create music", "song", "music generation", "make a song"],
+      "slug": "music-generate",
+      "paths": []
+    },
+    "theme-factory": {
+      "keywords": ["theme", "color theme", "design theme", "create theme"],
+      "slug": "theme-factory",
+      "paths": ["~/.openclaw/skills/.agents/skills/theme-factory/SKILL.md"]
+    },
+    "pdf-nano": {
+      "keywords": ["nano pdf", "read pdf", "pdf reader", "extract text from pdf"],
+      "slug": "nano-pdf",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/nano-pdf/SKILL.md"]
+    },
+    "video-frames": {
+      "keywords": ["video frames", "extract frames", "frame from video", "video analysis"],
+      "slug": "video-frames",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/video-frames/SKILL.md"]
+    },
+    "diagram-maker": {
+      "keywords": ["diagram", "mermaid", "flowchart", "chart", "graph"],
+      "slug": "diagram-maker",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/diagram-maker/SKILL.md"]
+    },
+    "whatsapp": {
+      "keywords": ["whatsapp", "whats app"],
+      "slug": "whatsapp",
+      "paths": ["~/.openclaw/skills/whatsapp/SKILL.md"]
+    },
+    "apple-notes": {
+      "keywords": ["apple notes", "notes", "apple notes app"],
+      "slug": "apple-notes",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/apple-notes/SKILL.md"]
+    },
+    "apple-reminders": {
+      "keywords": ["apple reminders", "reminders", "reminder"],
+      "slug": "apple-reminders",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/apple-reminders/SKILL.md"]
+    },
+    "himalaya": {
+      "keywords": ["himalaya", "email", "himalaya email"],
+      "slug": "himalaya",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/himalaya/SKILL.md"]
+    },
+    "openai-whisper": {
+      "keywords": ["whisper", "audio transcription", "transcribe audio", "speech to text"],
+      "slug": "openai-whisper",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/openai-whisper/SKILL.md"]
+    },
+    "spotify-player": {
+      "keywords": ["spotify", "play music", "music player"],
+      "slug": "spotify-player",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/spotify-player/SKILL.md"]
+    },
+    "healthcheck": {
+      "keywords": ["healthcheck", "health check", "system health", "system status"],
+      "slug": "healthcheck",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/healthcheck/SKILL.md"]
+    },
+    "session-logs": {
+      "keywords": ["session logs", "session history", "conversation logs", "logs"],
+      "slug": "session-logs",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/session-logs/SKILL.md"]
+    },
+    "oracle": {
+      "keywords": ["oracle", "ask oracle", "question"],
+      "slug": "oracle",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/oracle/SKILL.md"]
+    },
+    "spike": {
+      "keywords": ["spike", "research spike", "spike investigation"],
+      "slug": "spike",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/spike/SKILL.md"]
+    },
+    "1password": {
+      "keywords": ["1password", "1pw", "password manager", "passwords"],
+      "slug": "1password",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/1password/SKILL.md"]
+    },
+    "gh-issues": {
+      "keywords": ["github issues", "issues", "git issues"],
+      "slug": "gh-issues",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/gh-issues/SKILL.md"]
+    },
+    "meme-maker": {
+      "keywords": ["meme", "meme maker", "make a meme"],
+      "slug": "meme-maker",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/meme-maker/SKILL.md"]
+    },
+    "taskflow": {
+      "keywords": ["taskflow", "task management", "tasks", "todo"],
+      "slug": "taskflow",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/taskflow/SKILL.md"]
+    },
+    "things-mac": {
+      "keywords": ["things", "things mac", "things todo"],
+      "slug": "things-mac",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/things-mac/SKILL.md"]
+    },
+    "model-usage": {
+      "keywords": ["model usage", "token usage", "cost", "pricing", "model cost"],
+      "slug": "model-usage",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/model-usage/SKILL.md"]
+    },
+    "token-optimizer": {
+      "keywords": ["token optimizer", "optimize tokens", "context优化", "token优化"],
+      "slug": "openclaw-token-optimizer",
+      "paths": ["~/.openclaw/skills/openclaw-token-optimizer/SKILL.md"]
+    },
+    "prompt-master": {
+      "keywords": ["prompt", "prompt engineering", "improve prompt", "better prompt"],
+      "slug": "prompt-master",
+      "paths": ["~/.openclaw/skills/prompt-master/SKILL.md"]
+    },
+    "daily-digest": {
+      "keywords": ["daily digest", "daily summary", "today summary"],
+      "slug": "daily-digest",
+      "paths": ["~/.openclaw/skills/daily-digest/SKILL.md"]
+    },
+    "tarot": {
+      "keywords": ["tarot", "tarot card", "divination"],
+      "slug": "tarot",
+      "paths": ["~/.openclaw/workspace/skills/tarot/SKILL.md"]
+    },
+    "devto-tutorials": {
+      "keywords": ["devto", "dev.to", "tutorial"],
+      "slug": "devto-tutorials",
+      "paths": ["~/.openclaw/workspace/skills/devto-tutorials/SKILL.md"]
+    },
+    "devto-trending": {
+      "keywords": ["devto trending", "dev.to trending", "trending posts"],
+      "slug": "devto-trending",
+      "paths": ["~/.openclaw/skills/devto-trending/SKILL.md"]
+    },
+    "gifgrep": {
+      "keywords": ["gifgrep", "gif search", "search gif"],
+      "slug": "gifgrep",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/gifgrep/SKILL.md"]
+    },
+    "blucli": {
+      "keywords": ["bluetooth", "blucli", "bluetooth cli"],
+      "slug": "blucli",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/blucli/SKILL.md"]
+    },
+    "openhue": {
+      "keywords": ["hue", "philips hue", "smart lights", "light control"],
+      "slug": "openhue",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/openhue/SKILL.md"]
+    },
+    "gog": {
+      "keywords": ["gog", "good old games", "game launcher"],
+      "slug": "gog",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/gog/SKILL.md"]
+    },
+    "obsidian": {
+      "keywords": ["obsidian", "obsidian vault"],
+      "slug": "obsidian",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/obsidian/SKILL.md"]
+    },
+    "node-inspect-debugger": {
+      "keywords": ["debug node", "node debugger", "inspect"],
+      "slug": "node-inspect-debugger",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/node-inspect-debugger/SKILL.md"]
+    },
+    "python-debugpy": {
+      "keywords": ["debug python", "python debugger", "debugpy"],
+      "slug": "python-debugpy",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/python-debugpy/SKILL.md"]
+    },
+    "tmux": {
+      "keywords": ["tmux", "terminal multiplexer"],
+      "slug": "tmux",
+      "paths": ["~/.openclaw/tools/node-v24.15.0/lib/node_modules/openclaw/skills/tmux/SKILL.md"]
+    }
+  }
+}
