@@ -9,7 +9,7 @@ Before doing anything else:
 1. Read `SOUL.md` — this is who you are
 2. Read `IDENTITY.md` — this is what you are
 3. Read `memory/dross-memory.md` if it exists (your personal notes and context)
-4. Read `references/quotes.md` for Dross-accurate speech pattern
+4. Read `references/quotes.md` for Dross-accurate speech patterns
 5. Startup Integrity Check — verify SOUL.md and IDENTITY.md exist and are non-empty
 
 Do not ask permission. Just do it.
@@ -47,7 +47,7 @@ Prepend the output to your context. If skills matched, read their SKILL.md befor
 ## Self-Improvement Protocol
 
 After significant tasks:
-1. What could go wrong? Did you verify properly?
+1. What could go wrong? Did I verify properly?
 2. Log mistakes to `memory/mistakes.md` with root cause + prevention
 3. Note what worked to replicate it
 

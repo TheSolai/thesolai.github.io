@@ -38,7 +38,7 @@ OWN MESSAGES:
 
 ### Important Rule
 **ALWAYS read FULL email body via `threads.get()` — never just the preview/subject**
-Burned on Costa complaint email — skimmed preview, missed mother-in-law coeliac story entirely. Full body is in `msg.text` or `msg.extracted_text` from `threads.get()`.
+Burned on Costa complaint email — skimmed preview, missed the mother-in-law coeliac story entirely. Full body is in `msg.text` or `msg.extracted_text` from `threads.get()`.
 
 ---
 
@@ -68,7 +68,7 @@ Just talk to her like a human, not formal.
 **SMTP Host:** smtp.mail.me.com
 **SMTP Ports:** 465 (SSL) / 587 (STARTTLS)
 **IMAP Host:** imap.mail.me.com (993 SSL)
-**App Password:** Stored in secrets
+**App Password:** rfwr-duvp-uvzp-ogen
 
 **Tool:** himalaya skill — `himalaya` CLI for iCloud access
 

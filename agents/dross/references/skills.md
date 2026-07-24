@@ -115,7 +115,7 @@ These skills are reference only — they provide patterns/frameworks but no stan
 
 ## Skills Needing Infrastructure (LOW Priority)
 
-These need setup that isn't done yet:
+These need setup that isn't done yet. Documented at `memory/tool-gaps-2026-06-22.md`:
 
 | Skill | What It Needs | Priority |
 |-------|--------------|----------|
@@ -129,13 +129,15 @@ These need setup that isn't done yet:
 
 ## Skill Management
 
+**Role:** `agents/roles/skill-manager.md` — full lifecycle management
+
 **Vetting required before install:**
 ```bash
 clawhub install <skill>
 shieldcortex scan-skills  # on new skill after install
 ```
 
-**Skills inventory:** `memory/skills.md`
+**Skills inventory:** `memory/skills.md` (updated 2026-06-15)
 
 **Audit schedule:**
 - Chunk 1: Mon 9am (skills 1-7)
