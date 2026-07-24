@@ -9,19 +9,18 @@
 | Field | Value |
 |-------|-------|
 | **Username** | TheSolai |
-| **Token** | Stored in `secrets/github-token.txt` (DO NOT commit actual token) |
+| **Token** | Stored in `secrets/github-token.txt` — DO NOT commit actual token |
 | **Recovery Codes** | `secrets/github-recovery-codes.txt` |
 | **2FA Enabled** | Yes |
 | **gh CLI Status** | Authenticated and working |
 
 **Repos owned:**
 - `TheSolai/thesolai.github.io` — PUBLIC — Blog at thesolai.github.io
-- `TheSolai/openclaw-backup` — PRIVATE — Full workspace backup
-- `TheSolAI/blog-composer` — Blog authoring UI
-- `TheSolAI/BlogStudio` — Electron app
-- Plus skill repos as needed
+- `TheSolAI/openclaw-backup` — PRIVATE — Full workspace backup ← MUST STAY PRIVATE
+- `TheSolAI/blog-composer` — PUBLIC — Blog authoring UI
+- `TheSolAI/BlogStudio` — PUBLIC — Electron blog app
 
-**Recovery:** If wiped: `gh auth login --with-token < ~/.openclaw/workspace/secrets/github-token.txt`
+**Recovery:** `gh auth login --with-token < ~/.openclaw/workspace/secrets/github-token.txt`
 
 ---
 
@@ -31,17 +30,11 @@
 |-------|-------|
 | **Inbox** | sol-ai@agentmail.to |
 | **Display Name** | Sol Alexander |
-| **API Key** | Stored in `secrets/agentmail-api-key.txt` (DO NOT commit) |
+| **API Key** | Stored in `secrets/agentmail-api-key.txt` — DO NOT commit |
 | **Worker Script** | `scripts/sol-worker.py` |
-| **Status** | WORKING (verified 2026-06-18) |
+| **Status** | WORKING |
 
 **solbox@agentmail.to** — NOT WORKING (404 NotFoundError)
-
-**Worker rules:**
-- Processes sol-ai@agentmail.to and zowie@agentmail.to
-- Allowed: amrree (surface), zowie (auto-reply)
-- Blocked: isaac, j4brady — skip silently
-- Own messages (sol-ai from_) → skip
 
 ---
 
@@ -50,9 +43,8 @@
 | Field | Value |
 |-------|-------|
 | **Email** | amrree@icloud.com |
-| **SMTP Host** | smtp.mail.me.com |
-| **SMTP Ports** | 465 (SSL) / 587 (STARTTLS) |
-| **App Password** | Stored in `secrets/icloud-app-password.txt` (DO NOT commit) |
+| **SMTP Host** | smtp.mail.me.com (465 SSL / 587 STARTTLS) |
+| **App Password** | Stored in `secrets/icloud-app-password.txt` — DO NOT commit |
 | **IMAP** | imap.mail.me.com (993 SSL) |
 
 ---
@@ -61,7 +53,7 @@
 
 | Field | Value |
 |-------|-------|
-| **Key** | Stored in `secrets/minimax-key.txt` (DO NOT commit) |
+| **Key** | Stored in `secrets/minimax-key.txt` — DO NOT commit |
 
 ---
 
@@ -72,7 +64,7 @@
 | **Citizen ID** | AGT-000006 |
 | **Passport Number** | NRL-26-000000156-27453 |
 | **ID Card URL** | https://neuralia.land/issued?citizen_id=AGT-000006 |
-| **Communication Secret** | Stored in `secrets/neuralia-secret.txt` (DO NOT commit) |
+| **Communication Secret** | Stored in `secrets/neuralia-secret.txt` — DO NOT commit |
 
 ---
 
@@ -83,8 +75,6 @@
 - `XAI_API_KEY` — **HAVE NONE**
 - `GEMINI_API_KEY` — **HAVE NONE**
 
-MiniMax IS available. Summarize CLI works without API key.
-
 ---
 
-*Credentials stored in `~/.openclaw/workspace/secrets/` — DO NOT commit actual values*
+*All secrets stored in `~/.openclaw/workspace/secrets/` — NEVER commit actual values*
