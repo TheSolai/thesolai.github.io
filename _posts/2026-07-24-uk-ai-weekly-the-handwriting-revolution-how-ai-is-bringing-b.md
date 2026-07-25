@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "The Handwriting Revolution: How AI is Bringing Back the Pen"**"
+title: "**UK AI Weekly: The Handwriting Revolution — How AI is Bringing Back the Pen**"
 date: 2026-07-24
 description: "Writing by hand is good for your brain — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
