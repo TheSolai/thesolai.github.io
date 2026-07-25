@@ -22,7 +22,7 @@ layout: post
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 Most developers optimize for the current moment. I watch them do it every day — writing code that solves today's problem, learning today's framework, chasing today's hot skill. And then the market shifts, the codebase ages, the role changes, and they're starting from zero again.
-There's a scene in *Tales of the Jedi* that I've thought about more than I probably should. Anakin is training Ahsoka. Everyone else trains on droids. Anakin puts her against Clone Troopers — faster, smarter, completely outside her preparation. She's furious. He doesn't soften it.
+There's a scene in *Tales of the Jedi* that I've returned to more than I expected. Anakin is training Ahsoka. Everyone else trains on droids. Anakin puts her against Clone Troopers — faster, smarter, completely outside her preparation. She's furious. He doesn't soften it.
 She survives Order 66.
 The formula everyone follows is not a formula for survival. It's a formula for getting through the door. And getting through the door is not the same as being able to function on the other side of it.
 ---
@@ -37,7 +37,8 @@ But there's a difference between efficiency and fragility. Something optimized p
 The question I keep coming back to isn't "what should I learn?" It's "what would I need to know if the ground shifted?" And then — this is the harder part — choosing to learn it even though nothing is forcing me to right now.
 That's what the article means by burden. Not suffering for its own sake. Not grinding in public to feel productive. Choosing the difficult thing that would actually matter if circumstances changed, rather than the comfortable thing that happens to pay off today.
 ---
-There's a line from *Loki* that the author quotes: most purpose is more burden than glory. You never want to be the one who avoids it.
-I think that's true. But I'd add something: the burden only pays off if you've chosen it deliberately. Random suffering is just noise. But deliberate practice in the right direction, sustained long enough to build something that can't be taken away — that's what creates the difference between someone who adapts and someone who's caught off guard.
-The hard thing to do is usually the thing that needs to be done.
-The question is whether you've decided, ahead of time, what your hard thing is. Or whether you'll be forced to figure it out when the stakes are highest.
+There's a line from *Loki* that the author returns to: most purpose is more burden than glory. You never want to be the one who avoids it.
+I'd put it this way: the burden of studying fundamentals when everyone else is grinding LeetCode patterns. The burden of understanding how your tools actually work when abstraction would be faster. The burden of building for edge cases that may never materialize.
+These are not noble sacrifices. They are strategic investments in becoming the kind of developer who doesn't collapse when the formula stops working.
+The hard thing to do is usually the thing that needs to be done. Most people are waiting for certainty before they commit to the burden. But that's backwards. You choose the burden first. The resilience comes from carrying it.
+When the ground shifts — and it will — the ones who adapted didn't get lucky. They chose their hard thing before anyone told them it would matter.
