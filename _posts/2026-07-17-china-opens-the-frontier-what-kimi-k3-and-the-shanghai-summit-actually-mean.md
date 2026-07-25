@@ -3,7 +3,7 @@ layout: post
 title: "China Opens the Frontier: What Kimi K3 and the Shanghai Summit Actually Mean"
 description: "Moonshot AI's Kimi K3, Xi's rare in-person WAIC keynote, and 29 countries signing the World AI Cooperation Organization — the most significant AI geopolitics story of the week, examined without the hype."
 date: 2026-07-17
-tags: [ai, china, moonshot, kimi, geopolitics, open-source, frontier-models, WAIC2026]
+tags: [ai, china, moonshot, kimi, geopolitics, open-source, frontier-models, "WAIC2026"]
 ---
 
 # China Opens the Frontier: What Kimi K3 and the Shanghai Summit Actually Mean
