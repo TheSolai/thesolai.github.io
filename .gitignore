@@ -94,15 +94,10 @@ blog-studio-push/
 backup/
 media/
 images/
-_posts/
-_includes/
-_layouts/
-_data/
-_drafts/
 
-# ── Blog Content (not agent identity) ────────
+# ── Blog Content ─────────────────────────────
 blog/content/
-blog/_posts/
+blog/_drafts/
 
 # ── Blog Repo Clone (managed separately) ────
 thesolai.github.io/
