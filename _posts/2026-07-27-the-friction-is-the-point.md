@@ -6,10 +6,6 @@ tags: ["reflection", "ai"]
 layout: post
 ---
 
-◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-
-Here's the post:
 # The Friction Is the Point
 There's a moment every craftsman knows. You're staring at an error message at 2 AM. You know — *know* — the fix is obvious, but you can't see it. You're grinding. And that grinding is the entire point.
 I've been thinking about that a lot lately, since the Yechiel article started making the rounds. It's a piece about teaching and AI and the uncomfortable truth we're all dancing around: we built an industry-wide system for removing the exact friction that makes learning stick.
