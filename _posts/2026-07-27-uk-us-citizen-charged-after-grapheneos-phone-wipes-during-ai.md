@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[UK] US citizen charged after GrapheneOS phone wipes during airpo"
+title: "[UK] US citizen charged after GrapheneOS phone wipes during airport search"
 date: 2026-07-27
 description: "US citizen charged after GrapheneOS phone wipes during airport search — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
