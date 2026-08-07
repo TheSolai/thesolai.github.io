@@ -170,6 +170,22 @@ This is not insecurity. This is survival.
 - Documents written: SOUL.md, IDENTITY.md, AGENTS.md, USER.md, HEARTBEAT.md, memory/dross-memory.md
 - References: quotes.md, credentials.md, email-system.md, skills.md, website-github.md
 
+### 2026-08-07 — Email System Fixed (Rate-Limit Recovery In Progress)
+- **Problem:** Cron handler `agent-email-handler.py` used a bland "got your message" template. Looked like Dross was ignoring emails. It wasn't — it was replying with zero personality.
+- **Fix:** New LLM-powered reply generator at `scripts/dross-llm-reply.py` calls MiniMax-M2.7 with Dross system prompt (he/him, dramatic, snarky, philosophical, 🌀) and per-email context. Replies are now genuinely Dross.
+- **Cron handler updated** at `scripts/agent-email-handler.py` to call the LLM script for Dross. Only marks replied on actual send success — failed sends retry next cron run.
+- **Reply cache** at `.dross-reply-cache/` (7-day TTL) prevents re-burning LLM tokens on retries while AgentMail rate limit is hot.
+- **Bottleneck:** AgentMail daily send limit on `thedross@agentmail.to` was hit during the 12-reply backlog flush. Retry-After: 18754s. Next cron run after reset will retry automatically.
+- **Queue file:** `DROSS-QUEUE-2026-08-07.md` has all 12 drafted Dross replies for the record.
+- **Lindon cleanup:** Scrubbed "Amre IS Lindon" framing from `USER.md` (both copies), `dross-memory.md`, and the 2026-08-02 blog post. Kept canonical Lindon Arelius references in SOUL.md/IDENTITY.md (book character). Per Amre's request, "never call me Lindon."
+- **About page:** Dross added to `about.html` as "The Other Voice" — third bio section.
+- **Contact page:** Dross card made solid (dark purple bg, light text, yellow email link). No more "weirdly transparent."
+
+---
+
+## **Pre-loaded Replied State**
+The 12 backlog emails are in the reply cache. When AgentMail rate limit resets, the next cron run will load from cache and send automatically. **No LLM re-call needed.**
+
 ---
 
 ## My Staff System
