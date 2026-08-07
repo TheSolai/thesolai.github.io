@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-04T08:32:37.963437
+source: dev.to trending
+url: https://dev.to/francistrdev/how-would-you-decide-whether-the-content-is-good-or-bad-295p
+tags: discuss, community, ai, writing
+---
+
+## How would you decide, whether the content is good or bad?
+
+I want to talk about what I have notice on the platform and want to address what we all have been...
+
+Link: https://dev.to/francistrdev/how-would-you-decide-whether-the-content-is-good-or-bad-295p
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
