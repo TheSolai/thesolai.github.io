@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "skills": {
+    "book-writing": {
+      "version": "1.0.0",
+      "installedAt": 1785019925549,
+      "ownerHandle": "ivangdavila"
+    },
+    "summarize-1-0-0": {
+      "version": "1.0.0",
+      "installedAt": 1785019944559,
+      "ownerHandle": "garrisongg"
+    },
+    "human-writing": {
+      "version": "1.0.0",
+      "installedAt": 1785019951584,
+      "ownerHandle": "reighlan"
+    },
+    "clarity-and-grace": {
+      "version": "1.0.0",
+      "installedAt": 1785019960161,
+      "ownerHandle": "poemswe"
+    },
+    "tmux": {
+      "version": "1.0.0",
+      "installedAt": 1785020887455,
+      "ownerHandle": "steipete"
+    },
+    "shell-scripting": {
+      "version": "1.0.0",
+      "installedAt": 1785020893626,
+      "ownerHandle": "gitgoodordietrying"
+    },
+    "bash": {
+      "version": "1.0.5",
+      "installedAt": 1785020900217,
+      "ownerHandle": "ivangdavila"
+    },
+    "terminal-command-execution": {
+      "version": "1.0.0",
+      "installedAt": 1785020905589,
+      "ownerHandle": "big-fox"
+    },
+    "mermaid-diagram": {
+      "version": "1.0.0",
+      "installedAt": 1785020911363,
+      "ownerHandle": "pupujanet-eng"
+    },
+    "diagram": {
+      "version": "1.0.0",
+      "installedAt": 1785020916787,
+      "ownerHandle": "ivangdavila"
+    },
+    "sqlite": {
+      "version": "1.0.0",
+      "installedAt": 1785020921901,
+      "ownerHandle": "ivangdavila"
+    },
+    "debug-checklist": {
+      "version": "1.0.0",
+      "installedAt": 1785020927638,
+      "ownerHandle": "gatsby047-oss"
+    },
+    "free-bash-safety-primer": {
+      "version": "1.0.1",
+      "installedAt": 1785020933333,
+      "ownerHandle": "thebrierfox"
+    },
+    "coding-cli-management": {
+      "version": "1.0.0",
+      "installedAt": 1785020939023,
+      "ownerHandle": "montycn"
+    },
+    "automation-workflows-0-1-0": {
+      "version": "1.0.0",
+      "installedAt": 1785067392837,
+      "ownerHandle": "lucasayala"
+    },
+    "weather": {
+      "version": "1.0.0",
+      "installedAt": 1785076456862,
+      "ownerHandle": "steipete"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+---
+idea_date: 2026-07-27T08:32:48.250918
+source: dev.to trending
+url: https://dev.to/francistrdev/choose-your-burden-4dgl
+tags: discuss, community, productivity, mentalhealth
+---
+
+## Choose your Burden
+
+Hey everyone. Just an update on the Salesforce Certification. I am planning on releasing articles...
+
+Link: https://dev.to/francistrdev/choose-your-burden-4dgl
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)

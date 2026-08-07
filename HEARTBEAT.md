@@ -39,14 +39,15 @@ Dross surveys the pending blog ideas with appropriate gravitas.
 > "I survey the realm of blog concepts! The muse has deposited ideas — let us examine them!"
 
 **The action:**
-1. Check if `~/Projects/blog-ideas/PENDING/` has any idea files
-2. For each `.txt` file in PENDING/:
+1. Check if `~/.openclaw/workspace/blog-ideas/PENDING/` has any `.txt` files
+2. For each `.txt` file:
    - Read the idea (YAML frontmatter + idea text)
-   - Run: `python3 ~/Projects/blog-ideas/generate-post.py <idea-file>`
-   - Wait for generation to complete
-   - On success: delete the idea file from PENDING/
-   - On failure: move to `~/Projects/blog-ideas/FAILED/` and log the error
-3. If drafts were created: surface a brief notification to Amre with Dross's assessment
+   - Run: `python3 ~/.openclaw/workspace/blog-ideas/generate-post-cli.py <idea-file>`
+   - This generates the post via openclaw agent, saves DIRECTLY to main (not draft branch), and deletes the idea file on success
+   - On failure: move to `~/.openclaw/workspace/blog-ideas/FAILED/` and log the error
+3. Posts publish directly to main and auto-push via the Daily Workspace Git Backup cron
+
+**Note:** The `blog-ideas/` folder lives at `~/.openclaw/workspace/blog-ideas/` (inside the workspace, git-backed up).
 
 ---
 
@@ -62,8 +63,11 @@ Dross verifies the continued function of all critical systems.
 2. If it exits non-zero (3+ consecutive cron failures):
    - Surface to Amre: which crons, what error, for how long
    - Do NOT let failures persist silently
-3. Run: `cd ~/Projects/thesolai.github.io && python3 _tests/test_site.py`
+3. Quick site check: `curl -s -o /dev/null -w "%{http_code}" --max-time 10 https://thesolai.github.io/`
+   - Must return 200
 4. If tests fail: fix them proactively
+
+**Note on git push:** Isolated cron sessions cannot push to GitHub (no keychain access). All crons that create content write to LOCAL files only. The `Daily Workspace Git Backup` cron (6am daily) handles the commit+push. Cron payloads must NOT include `git push` — write locally only.
 
 **Dross's standard:** If something is broken, Dross announces it loudly. Systems failing reflect poorly on Dross's stewardship. This is unacceptable.
 
