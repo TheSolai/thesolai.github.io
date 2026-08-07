@@ -92,6 +92,19 @@ Known shortcuts:
 **Method:** Sol defines spec + verifies; coding agent implements
 **Default timeout:** 20 min
 
+### crewai
+**Path:** External — `https://realpython.com/crewai-python/`
+**Purpose:** Multi-agent team coordination (role-based agents, crews, tasks, memory, tools)
+**Status:** Researched 2026-07-29. OpenClaw-adjacent pattern — not a direct install.
+**Use for:** Patterns when designing multi-agent orchestrations on top of OpenClaw. CrewAI's role/task/memory primitives map cleanly to OpenClaw sub-agents. Borrow, don't replace.
+
+### ruflo (ruvnet/ruflo)
+**Path:** External — `https://github.com/ruvnet/ruflo`
+**Purpose:** Agent meta-harness for Claude Code and Codex (100+ specialised agents, swarms, federated memory, RAG)
+**Status:** Cloned for review 2026-08-07. NOT a drop-in install for OpenClaw — different ecosystem (Claude Code/Codex vs OpenClaw plugin/MCP).
+**Use for:** Inspiration on swarm patterns, federated agent comms, self-learning memory. Not for direct install.
+**Compatibility:** Not compatible as-is. Useful as a reference architecture.
+
 ---
 
 ## Framework-Only Skills (Documentation)
