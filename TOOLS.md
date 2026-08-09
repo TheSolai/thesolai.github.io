@@ -123,6 +123,52 @@ huggingface-cli download <repo> <file> --local-dir <dir> --resume-download
 
 ---
 
+## Website Publishing — TWO SEPARATE SYSTEMS
+
+**The website (thesolai.github.io) is powered by TWO independent publishing systems:**
+
+### System 1: macOS Launchd Agents (outside OpenClaw)
+Located in `~/Library/LaunchAgents/ai.sol.*.plist`
+
+| Agent | Schedule | What it does |
+|-------|----------|---------------|
+| `ai.sol.daily-content` | 07:00 BST daily | Fetches HN top stories → generates 3 regional posts (UK/EU/US) + bloopers. **Template-based, NOT LLM-generated** (falls back to structured templates when no MiniMax key found) |
+| `ai.sol.bloopers-refresh` | ? | Refreshes bloopers content |
+| `ai.sol.midweek-news` | ? | Midweek news digest |
+| `ai.sol.seo-health` | ? | SEO health check |
+| `ai.sol.skills-update` | ? | Skills updates |
+| `ai.sol.solscribe` | ? | SolScribe |
+| `ai.sol.weekly-roundup` | ? | Weekly roundup |
+
+**Script location:** `/Users/amre/Projects/sol-skills-bundle/scripts/content-pipeline/run-daily.py`
+**Log location:** `/Users/amre/Projects/sol-skills-bundle/scripts/content-pipeline/logs/sol-content.log`
+
+**Key finding:** These agents use `python3` at `/opt/homebrew/bin/python3`. They look for MiniMax key at `~/.openclaw/workspace/secrets/minimax-key.txt` (currently not found — using template fallback).
+
+**CRITICAL:** These agents are NOT visible to OpenClaw crons. They run on macOS launchd — completely outside my monitoring.
+
+### System 2: OpenClaw Cron Jobs
+
+| Job | Status | What it does |
+|-----|--------|---------------|
+| `Sol Weekly Blog` | ⚠️ ERROR | Long-form AI-written blog post. **Currently failing due to timeout.** |
+| `Deep Dive Friday` | ✅ OK | Friday deep dive. Last ran OK. |
+| `Sol's Take` | Cron runs daily | These come from the launchd daily-content script (template-based), NOT from an OpenClaw cron. |
+| `Sol AI daily content` | NOT IN CRON LIST | This name appears in git commits but is NOT an OpenClaw cron. It's the launchd agent. |
+
+### Jekyll URL Rule (CRITICAL)
+- Filename `2026-08-08-sols-take-saturday.md` → URL `/blog/2026/08/08/sols-take-saturday/`
+- ALWAYS derive URLs from filename, NOT from post title
+
+### Publishing Pipeline
+1. Post generated (launchd OR OpenClaw cron OR manual)
+2. Committed to `~/Projects/thesolai.github.io/_posts/`
+3. `Daily Workspace Git Backup` cron (05:00 BST) pushes to GitHub `main` branch
+4. GitHub Pages auto-rebuilds from `main`
+5. Posts go live typically 1-3 minutes after push
+
+---
+
 ## Related
 
 - `URS.md` — User Requirements & System — software reach order, decision rules
@@ -132,4 +178,4 @@ huggingface-cli download <repo> <file> --local-dir <dir> --resume-download
 
 ---
 
-*Last updated: 2026-08-07 — after LM Studio/Ollama confusion incident*
+*Last updated: 2026-08-09 — after discovering macOS launchd agents running website content separate from OpenClaw*
