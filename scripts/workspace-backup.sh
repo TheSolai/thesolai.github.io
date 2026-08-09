@@ -20,7 +20,8 @@ fi
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 git commit -m "Workspace backup: $TIMESTAMP" >> "$LOG_FILE" 2>&1
 
-# Push to origin
+# Pull and push to origin
+git pull --rebase origin main >> "$LOG_FILE" 2>&1
 if git push origin main >> "$LOG_FILE" 2>&1; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') | ✅ SUCCESS | Pushed to GitHub" >> "$LOG_FILE"
     exit 0
