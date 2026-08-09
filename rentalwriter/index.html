@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RentalWriter — AI Writing Feedback for £9</title>
+  <meta name="description" content="A basic AI word processor. Five expert editors. Zero subscription. Write your manuscript, get honest feedback, improve. £9 one-time.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1816;
+      --paper: #faf8f5;
+      --warm-gray: #e8e4df;
+      --muted: #7a7570;
+      --accent: #c47b5a;
+      --accent-dark: #a85f42;
+      --green: #4a7c59;
+      --border: #d4cfc9;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+    h1, h2, h3, h4 { font-family: 'Bitter', serif; line-height: 1.2; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+    }
+    nav .inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; gap: 2rem;
+      height: 60px;
+    }
+    nav .logo {
+      font-family: 'Bitter', serif; font-weight: 700; font-size: 1.15rem;
+      text-decoration: none; color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+    nav .logo span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; margin-left: auto; }
+    nav ul a {
+      text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 600;
+      transition: color 0.15s;
+    }
+    nav ul a:hover, nav ul a.active { color: var(--ink); }
+    nav ul a.cta-btn {
+      background: var(--accent); color: white !important;
+      padding: 0.4rem 1rem; border-radius: 5px;
+      font-size: 0.85rem;
+    }
+    nav ul a.cta-btn:hover { background: var(--accent-dark); }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 2.8rem; margin-bottom: 1rem; letter-spacing: -0.5px;
+    }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero .sub {
+      font-size: 1.15rem; color: var(--muted); margin-bottom: 2rem;
+    }
+    .hero .price-tag {
+      display: inline-block;
+      background: var(--ink); color: white;
+      font-size: 0.85rem; font-weight: 600;
+      padding: 0.4rem 1rem; border-radius: 5px;
+      margin-bottom: 1.5rem;
+    }
+    .hero .price-tag span { color: var(--accent); font-size: 1.2rem; }
+    .hero .buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent); color: white;
+      padding: 0.75rem 1.75rem; border-radius: 6px;
+      text-decoration: none; font-weight: 700; font-size: 1rem;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-secondary {
+      display: inline-block;
+      background: transparent; color: var(--ink);
+      padding: 0.75rem 1.75rem; border-radius: 6px;
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      border: 2px solid var(--border);
+      transition: border-color 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--ink); }
+    .hero-visual {
+      background: var(--warm-gray);
+      border-radius: 12px; padding: 2rem;
+      border: 1px solid var(--border);
+      font-family: 'Bitter', serif;
+    }
+    .hero-visual .editor-mock {
+      background: white; border-radius: 8px; padding: 1.5rem;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    .hero-visual .line { height: 10px; background: var(--border); border-radius: 3px; margin-bottom: 8px; }
+    .hero-visual .line.short { width: 60%; }
+    .hero-visual .line.medium { width: 80%; }
+    .hero-visual .line.full { width: 100%; }
+    .hero-visual .line.accent { background: var(--accent); opacity: 0.4; }
+    .hero-visual .ai-panel {
+      background: var(--ink); color: #e8e4df; border-radius: 8px; padding: 1rem 1.25rem;
+      font-size: 0.8rem; line-height: 1.5;
+    }
+    .hero-visual .ai-panel .label {
+      color: var(--accent); font-weight: 700; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;
+    }
+
+    /* ── Social proof bar ── */
+    .proof-bar {
+      background: var(--ink); color: white;
+      padding: 1.5rem 2rem;
+    }
+    .proof-bar .inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; gap: 3rem; align-items: center; flex-wrap: wrap;
+    }
+    .proof-bar .stat { text-align: center; }
+    .proof-bar .stat .num { font-family: 'Bitter', serif; font-size: 1.6rem; font-weight: 700; }
+    .proof-bar .stat .label { font-size: 0.78rem; color: #a8a49e; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── Sections ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    section h2 { font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: -0.3px; }
+    section .section-sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 3rem; }
+
+    /* ── Problem / Agitation ── */
+    .problem { background: var(--warm-gray); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+    .problem-item { background: white; border-radius: 10px; padding: 1.5rem; border: 1px solid var(--border); }
+    .problem-item h4 { margin-bottom: 0.5rem; color: var(--accent-dark); }
+    .problem-item p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── Feature highlights ── */
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    .feature-card {
+      background: white; border: 1px solid var(--border); border-radius: 10px;
+      padding: 1.75rem;
+    }
+    .feature-card .icon {
+      font-size: 1.8rem; margin-bottom: 0.75rem;
+      width: 48px; height: 48px; background: var(--warm-gray);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    .feature-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── Bottom CTA ── */
+    .cta-strip {
+      background: var(--ink); color: white;
+      padding: 4rem 2rem; text-align: center;
+    }
+    .cta-strip h2 { color: white; margin-bottom: 1rem; font-size: 2rem; }
+    .cta-strip p { color: #a8a49e; margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-strip .btn-primary { font-size: 1.1rem; padding: 0.9rem 2.5rem; background: var(--accent); }
+    .cta-strip .btn-primary:hover { background: var(--accent-dark); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
+      .hero h1 { font-size: 2rem; }
+      .features-grid, .problem-grid { grid-template-columns: 1fr; }
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="inner">
+    <a href="index.html" class="logo">Rental<span>Writer</span></a>
+    <ul>
+      <li><a href="features.html">Features</a></li>
+      <li><a href="editor.html">Editor</a></li>
+      <li><a href="personas.html">Personas</a></li>
+      <li><a href="pricing.html" class="cta-btn">Buy — £9</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>Write. Get <span class="highlight">honest feedback.</span> Improve.</h1>
+    <p class="sub">A basic AI word processor that reads your manuscript and tells you what's actually wrong with it. Five expert editor voices. One simple price.</p>
+    <div class="price-tag">One-time price: <span>£9</span></div>
+    <div class="buttons">
+      <a href="pricing.html" class="btn-primary">Get RentalWriter →</a>
+      <a href="features.html" class="btn-secondary">See how it works</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="editor-mock">
+      <div class="line medium"></div>
+      <div class="line full"></div>
+      <div class="line full"></div>
+      <div class="line medium"></div>
+      <div class="line full"></div>
+      <div class="line short"></div>
+      <br>
+      <div class="line accent short" style="margin-top:12px;"></div>
+      <div class="line full"></div>
+      <div class="line medium"></div>
+    </div>
+    <div class="ai-panel">
+      <div class="label">Blunt Editor</div>
+      <p>"The second paragraph loses momentum entirely. You open strong — then drift into description that doesn't earn its place. Cut it or justify it."</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Social proof bar ── -->
+<div class="proof-bar">
+  <div class="inner">
+    <div class="stat"><div class="num">5</div><div class="label">Editor Personas</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Local — Your Data Stays Yours</div></div>
+    <div class="stat"><div class="num">£9</div><div class="label">One-Time. No Subscription.</div></div>
+    <div class="stat"><div class="num">macOS</div><div class="label">Desktop App</div></div>
+  </div>
+</div>
+
+<!-- ── Problem ── -->
+<section class="problem">
+  <div class="container">
+    <h2>Writing is lonely. Feedback is expensive.</h2>
+    <p class="section-sub">Most writers finish a draft and have no idea if it's any good. Beta readers are hard to find. Professional edits cost hundreds. And AI tools either tell you everything is perfect, or rewrite your voice into generic slop.</p>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <h4>AI that sounds like AI</h4>
+        <p>Most writing tools correct grammar and tell you to "show don't tell." That's not feedback — that's a checklist. Your manuscript needs someone who reads like a reader.</p>
+      </div>
+      <div class="problem-item">
+        <h4>Subscriptions eating you alive</h4>
+        <p>Grammarly. ProWritingAid. Sudowrite. ChatGPT. Jasper. You're paying £40+ a month across tools that each do one thing. RentalWriter is £9. Forever.</p>
+      </div>
+      <div class="problem-item">
+        <h4>Cloud everything</h4>
+        <p>Your manuscript — the most private thing you're working on — is being processed on someone else's servers. Every keystroke. Every unfinished thought.</p>
+      </div>
+      <div class="problem-item">
+        <h4>No sense of your reader</h4>
+        <p>You need someone who will say "I didn't buy this motivation" or "this felt rushed." Not a grammar checker. An honest reader who pays attention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section>
+  <div class="container">
+    <h2>What RentalWriter does</h2>
+    <p class="section-sub">Five editor personas. Four feedback modes. One manuscript. That's it.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">✂️</div>
+        <h3>Copy Edit</h3>
+        <p>Line-by-line corrections. Grammar, punctuation, clarity, consistency. The stuff that breaks a reader's immersion.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💬</div>
+        <h3>Feedback</h3>
+        <p>What a first reader would say. Emotional reactions, pacing problems, character moments that land — and the ones that don't.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h3>Revision</h3>
+        <p>Rewrite suggestions that preserve your voice. Not "let me rewrite this" — "here's what you're reaching for and why you stopped."</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔍</div>
+        <h3>Format Check</h3>
+        <p>Chapter headings, scene breaks, dialogue punctuation, em-dashes. Industry-standard manuscript formatting — verified automatically.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="features.html" class="btn-secondary">All features →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Bottom CTA ── -->
+<div class="cta-strip">
+  <h2>Ready to finish your manuscript?</h2>
+  <p>RentalWriter. £9. Yours forever. No subscription.</p>
+  <a href="pricing.html" class="btn-primary">Get it now →</a>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p><a href="index.html">RentalWriter</a> · <a href="pricing.html">Buy</a> · <a href="https://github.com/TheSolAI/rentalwriter" target="_blank">GitHub</a></p>
+  <p style="margin-top:0.5rem;">© 2026 DrossApps · One-person indie studio · Belfast, Northern Ireland</p>
+</footer>
+
+</body>
+</html>
