@@ -80,6 +80,11 @@
       "version": "1.0.0",
       "installedAt": 1785076456862,
       "ownerHandle": "steipete"
+    },
+    "automation-workflow-builder": {
+      "version": "1.0.0",
+      "installedAt": 1786276986940,
+      "ownerHandle": "careytian-ai"
     }
   }
 }
