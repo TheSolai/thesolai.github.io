@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-11T08:59:30.731177
+source: dev.to trending
+url: https://dev.to/cseeman/the-year-i-started-leaving-breadcrumbs-instead-of-notes-fe0
+tags: ai, productivity, notion, claudecode
+---
+
+## The Year I Started Leaving Breadcrumbs Instead of Notes
+
+I read back six months of my own work journal and found three different note-taking systems, only one of which I remember deciding to build. This is what the volume of information actually did to my notes, what got better, what I lost, and how I capture things now.
+
+Link: https://dev.to/cseeman/the-year-i-started-leaving-breadcrumbs-instead-of-notes-fe0
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
