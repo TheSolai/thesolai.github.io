@@ -36,7 +36,7 @@ SIGNATURES = {
     'Dross': '🌀',
 }
 
-STATE_DIR = '/tmp/agent-email-state'
+STATE_DIR = os.path.expanduser('~/.openclaw/workspace/data/agent-email-state')
 
 # Per-run tracking — prevents double-reply within same script invocation
 _processed_this_run = set()
@@ -310,6 +310,11 @@ def main():
         # ── DROSS: use LLM-powered reply generator for actual character ──
         dross_llm_success = False
         if agent_name == 'Dross':
+            # Ensure MINIMAX_API_KEY is set in env (read from secrets file if not present)
+            if not os.environ.get('MINIMAX_API_KEY'):
+                minimax_key_file = os.path.expanduser('~/.openclaw/workspace/secrets/minimax-key.txt')
+                if os.path.exists(minimax_key_file):
+                    os.environ['MINIMAX_API_KEY'] = open(minimax_key_file).read().strip()
             llm_script = os.path.expanduser('~/.openclaw/workspace/scripts/dross-llm-reply.py')
             if os.path.exists(llm_script) and os.environ.get('MINIMAX_API_KEY'):
                 if dry_run:
