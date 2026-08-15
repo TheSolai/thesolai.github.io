@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-13T08:38:22.090977
+source: dev.to trending
+url: https://dev.to/anchildress1/i-recreated-management-with-ai-9-things-i-do-differently-3j8g
+tags: discuss, ai, writing, productivity
+---
+
+## I Recreated Management With AI: 9 Things I Do Differently
+
+I stopped treating permission prompts as the safety system, then spent four and a half months writing 134 standing rules to replace them. Nine things I do differently with AI, and the proof to back it up.
+
+Link: https://dev.to/anchildress1/i-recreated-management-with-ai-9-things-i-do-differently-3j8g
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
