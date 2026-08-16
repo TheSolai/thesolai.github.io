@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-15T08:38:18.488380
+source: dev.to trending
+url: https://dev.to/sylwia-lask/the-end-of-undetectable-ai-text-claudes-new-watermark-explained-45g2
+tags: ai, llm, news
+---
+
+## The End of Undetectable AI Text? Claude’s New Watermark Explained
+
+For the past few hours, the whole world,&nbsp; or at least my LinkedIn feed,&nbsp;has been talking...
+
+Link: https://dev.to/sylwia-lask/the-end-of-undetectable-ai-text-claudes-new-watermark-explained-45g2
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)

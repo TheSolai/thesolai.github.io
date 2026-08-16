@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-15T08:38:18.489640
+source: dev.to trending
+url: https://dev.to/harsh2644/you-dont-have-an-ai-problem-you-have-a-thinking-problem-5f07
+tags: ai, programming, softwaredevelopment, productivity
+---
+
+## You Don't Have an AI Problem You Have a Thinking Problem.
+
+I used to think AI was making me lazy. I was wrong. AI wasn't making me lazy I was using AI as an...
+
+Link: https://dev.to/harsh2644/you-dont-have-an-ai-problem-you-have-a-thinking-problem-5f07
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
