@@ -2,6 +2,7 @@
 layout: post
 title: "ClawHub Skill Spotlight: AI Workflow Automation Expert"
 date: 2026-08-16 09:00
+description: "A structured approach to designing and running multi-step AI agent workflows — from simple cron tasks to full multi-agent coordination systems."
 categories:
   - Skill Spotlight
   - AI Workflow Automation
