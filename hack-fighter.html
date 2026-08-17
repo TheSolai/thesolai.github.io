@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HACK FIGHTER</title>
+    <style>
+*,:before,:after{box-sizing:border-box;border:0 solid}
+body{margin:0;background:#050505;color:#e0e0e0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;min-height:100vh;overflow-x:hidden}
+button{font-family:inherit}
+.scanlines{position:fixed;inset:0;z-index:100;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px);pointer-events:none}
+.vignette{position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.8) 100%);pointer-events:none}
+.screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:10;padding:1rem}
+.fighter-grid{display:flex;gap:1.5rem;align-items:center;width:100%;max-width:52rem}
+.fighter-card{flex:1;border-radius:.75rem;border:2px solid transparent;padding:1.5rem;background:linear-gradient(135deg,#0a0a0a,#111);transition:all .15s;cursor:pointer;position:relative}
+.fighter-card:hover{border-color:#333}
+.fighter-card .logo{font-size:4rem;text-align:center;margin-bottom:.5rem;transition:transform .2s}
+.fighter-card:hover .logo{transform:scale(1.1)}
+.fighter-card .name{font-size:.875rem;font-weight:900;text-align:center;margin-bottom:.25rem}
+.fighter-card .tagline{font-size:.65rem;color:#555;text-align:center;text-transform:uppercase;letter-spacing:.05em}
+.fighter-card .strength{font-size:.6rem;color:#333;margin-top:.25rem;text-align:center}
+.vs-badge{font-size:1.5rem;font-weight:900;color:#333;flex-shrink:0;text-align:center}
+.vs-badge.flash{color:#00ff41;text-shadow:0 0 20px #00ff41;transform:scale(1.25)}
+.header-row{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:52rem;font-size:.65rem;color:#555;letter-spacing:.3em;margin-bottom:.5rem}
+.progress-bar{width:100%;max-width:52rem;height:2px;background:#1a1a1a;border-radius:99px;margin-bottom:1.5rem;overflow:hidden}
+.progress-fill{height:100%;background:#00ff41;box-shadow:0 0 10px #00ff41;transition:width .5s}
+.flash-overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(0,255,65,.08);pointer-events:none}
+.flash-text{font-size:5rem;font-weight:900;color:#00ff41;text-shadow:0 0 60px #00ff41;animation:ping .4s}
+@keyframes ping{0%,100%{opacity:1}50%{opacity:.5;transform:scale(1.2)}}
+.title-text{font-size:4rem;font-weight:900;letter-spacing:-.05em;color:#00ff41;text-shadow:0 0 30px #00ff41,0 0 60px #00ff4180}
+.insert-coin{margin-top:2rem;padding:.75rem 2.5rem;font-size:1rem;font-weight:900;letter-spacing:.3em;text-transform:uppercase;border:2px solid #00ff41;color:#00ff41;background:transparent;cursor:pointer;transition:all .15s}
+.insert-coin:hover{background:#00ff41;color:#000}
+.win-label{font-size:.65rem;color:#00ff41;letter-spacing:.5em;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.win-champion{font-size:5rem;filter:drop-shadow(0 0 20px currentColor)}
+.win-name{font-size:2.5rem;font-weight:900;text-shadow:0 0 30px currentColor}
+.mini-bracket{display:flex;align-items:center;gap:.5rem;margin-top:2rem;overflow-x:auto;padding-bottom:.5rem;width:100%;max-width:52rem}
+.bracket-col{display:flex;flex-direction:column;gap:.25rem}
+.rematch-btn,.picks-btn{margin-top:2rem;padding:.5rem 1.5rem;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;border:1px solid #333;color:#666;background:transparent;cursor:pointer;transition:all .15s}
+.rematch-btn:hover{border-color:#00ff41;color:#00ff41}
+.picks-btn:hover{border-color:#555;color:#aaa}
+.battle-screen{flex-direction:column;padding-top:1.5rem;justify-content:flex-start}
+.stats-box{margin-top:1.5rem;width:100%;max-width:28rem}
+.stats-title{font-size:.65rem;color:#333;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.5rem}
+.stat-row{display:flex;align-items:center;gap:.75rem;padding:.5rem;border-radius:.25rem;background:#0a0a0a;border:1px solid #1a1a1a}
+.stat-row .emo{font-size:1.25rem}
+.stat-row .dname{font-size:.875rem;font-weight:700}
+.stat-row .round{font-size:.6rem;color:#333;margin-left:auto;font-family:monospace}
+.tac{text-align:center}
+.distro-badge{width:5rem;height:2rem;background:#111;border:1px solid #1a1a1a;border-radius:.25rem}
+@media(max-width:640px){.title-text{font-size:2.5rem}.fighter-grid{gap:.75rem}.fighter-card{padding:1rem}.vs-badge{font-size:1.25rem}.flash-text{font-size:3rem}.logo{font-size:2.5rem!important}}
+    </style>
+  </head>
+  <body>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div id="app"></div>
+    <script>
+var DSTROS=[
+  {id:"kali",n:"Kali Linux",t:"The full-threat offensive platform",s:"Tools arsenal",c:"#3674a9",g:"#3b82f6",e:"\uD83D\uDC89"},
+  {id:"parrot",n:"Parrot OS",t:"Security by design, privacy by default",s:"Anonymity focus",c:"#1a5fb4",g:"#60a5fa",e:"\uD83E\uDD9C"},
+  {id:"htb",n:"Hack The Box",t:"Penetration testing playground",s:"Learning labs",c:"#9c27b0",g:"#a855f7",e:"\uD83C\uDFF9"},
+  {id:"pentoo",n:"Pentoo",t:"Hardened Gentoo for security work",s:"Kernel hardening",c:"#1e3a5f",g:"#38bdf8",e:"\u2694\uFE0F"},
+  {id:"backbox",n:"BackBox",t:"Ubuntu-based penetration testing",s:"Lightweight",c:"#1f7a1f",g:"#22c55e",e:"\uD83D\uDCE6"},
+  {id:"onion",n:"Security Onion",t:"Network security monitoring",s:"Detection suite",c:"#b91c1c",g:"#ef4444",e:"\uD83E\uDDD1"},
+  {id:"caine",n:"CAINE",t:"Computer Aided Investigative Environment",s:"Forensics-first",c:"#1d4ed8",g:"#6366f1",e:"\uD83D\uDD0D"},
+  {id:"tails",n:"Tails",t:"Amnesic incognito live system",s:"Leave no trace",c:"#7c3aed",g:"#8b5cf6",e:"\uD83D\uDC11"},
+  {id:"whonix",n:"Whonix",t:"Anonymous operating system",s:"Tor isolation",c:"#0f766e",g:"#2dd4bf",e:"\uD83D\uDEE1\uFE0F"},
+  {id:"qubes",n:"Qubes OS",t:"Security through isolation",s:"Hypervisor split",c:"#c026d3",g:"#e879f9",e:"\uD83D\uDDD2"},
+  {id:"blackarch",n:"BlackArch",t:"Arch Linux for security",s:"Massive repo",c:"#292524",g:"#a8a29e",e:"\u26AB\uFE0F"},
+  {id:"archstrike",n:"ArchStrike",t:"Arch meets Metasploit",s:"Rolling toolchain",c:"#0891b2",g:"#22d3ee",e:"\uD83C\uDFB9"},
+  {id:"samurai",n:"Samurai WTF",t:"Web testing framework",s:"Browser pivoting",c:"#b45309",g:"#f59e0b",e:"\uD83E\uDD77"},
+  {id:"santoku",n:"Santoku",t:"Mobile forensics and analysis",s:"Android focus",c:"#15803d",g:"#4ade80",e:"\uD83D\uDCF1"},
+  {id:"nst",n:"NST",t:"Network Security Toolkit",s:"Net analysis",c:"#1e40af",g:"#3b82f6",e:"\uD83C\uDF0E"},
+  {id:"porteus",n:"Porteus",t:"Featherweight portable security",s:"Tiny footprint",c:"#374151",g:"#9ca3af",e:"\uD83E\uDE76"}
+];
+
+function sh(a){
+  var b = a.slice();
+  for (var i = b.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = b[i]; b[i] = b[j]; b[j] = tmp;
+  }
+  return b;
+}
+
+function mkQF(){
+  var s = sh(DSTROS.slice());
+  return [
+    {a:s[0],b:s[1]},{a:s[2],b:s[3]},
+    {a:s[4],b:s[5]},{a:s[6],b:s[7]},
+    {a:s[8],b:s[9]},{a:s[10],b:s[11]},
+    {a:s[12],b:s[13]},{a:s[14],b:s[15]}
+  ];
+}
+
+function mkSF(qf){
+  return [
+    {a:qf[0].w,b:qf[1].w},{a:qf[2].w,b:qf[3].w},
+    {a:qf[4].w,b:qf[5].w},{a:qf[6].w,b:qf[7].w}
+  ];
+}
+
+function mkF(sf){
+  return [{a:sf[0].w,b:sf[1].w}];
+}
+
+var S = {phase:"intro",round:"QF",qf:[],sf:[],f:[],cm:0,bs:"idle",rw:0,picks:[],showStats:false};
+
+function rL(){return S.round==="QF"?"QUARTERFINALS":S.round==="SF"?"SEMIFINALS":"FINAL ROUND";}
+function rC(){return S.round==="QF"?8:S.round==="SF"?4:1;}
+function rN(){return S.round==="QF"?1:S.round==="SF"?2:3;}
+function curM(){return S.round==="QF"?S.qf[S.cm]:S.round==="SF"?S.sf[S.cm]:S.f[S.cm];}
+
+function badge(d,ch){
+  if(!d) return '<div class="distro-badge"></div>';
+  var col = ch ? "#00ff41" : d.c;
+  var bg  = ch ? "#00ff4108" : d.c+"08";
+  var bc  = ch ? "#00ff4140" : d.c+"30";
+  return '<div style="color:'+col+';background:'+bg+';border:1px solid '+bc+';padding:.2rem .5rem;border-radius:.25rem;font-size:.6rem;font-weight:700;font-family:monospace;white-space:nowrap">'+d.n+'</div>';
+}
+
+function rematch(){
+  S = {phase:"intro",round:"QF",qf:[],sf:[],f:[],cm:0,bs:"idle",rw:0,picks:[],showStats:false};
+  render();
+}
+
+function pick(d){
+  if(S.bs !== "picking") return;
+  S.bs = "flash";
+  render();
+  setTimeout(function(){
+    if(S.round === "QF"){
+      S.qf[S.cm].w = d;
+      if(S.cm < 7){
+        S.cm++; S.rw++; S.picks.push(d); S.bs = "picking";
+      } else {
+        S.sf = mkSF(S.qf); S.round = "SF"; S.cm = 0; S.rw = 0; S.picks = []; S.bs = "picking";
+      }
+    } else if(S.round === "SF"){
+      S.sf[S.cm].w = d;
+      if(S.cm < 3){
+        S.cm++; S.rw++; S.picks.push(d); S.bs = "picking";
+      } else {
+        S.f = mkF(S.sf); S.round = "F"; S.cm = 0; S.rw = 0; S.picks = []; S.bs = "picking";
+      }
+    } else {
+      S.f[S.cm].w = d; S.picks.push(d); S.bs = "done"; S.phase = "result";
+    }
+    render();
+  }, 600);
+}
+
+function render(){
+  var app = document.getElementById("app");
+  if(S.phase === "intro"){
+    app.innerHTML = '<div class="screen">'+
+      '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.04;font-size:20rem;pointer-events:none">\uD83C\uDFF4</div>'+
+      '<div class="tac">'+
+        '<div class="title-text">HACK FIGHTER</div>'+
+        '<div style="color:#888;font-size:.875rem;letter-spacing:.3em;text-transform:uppercase;margin-top:.75rem">Choose your distro. Rule the ring.</div>'+
+        '<div style="color:#444;font-size:.7rem;margin-top:.75rem">16 distros enter. 1 leaves victorious.</div>'+
+        '<button class="insert-coin" onclick="startGame()">INSERT COIN</button>'+
+        '<div style="color:#333;font-size:.65rem;margin-top:1rem">Press to begin</div>'+
+      '</div>'+
+    '</div>';
+  } else if(S.phase === "battle" || S.bs === "picking" || S.bs === "flash"){
+    var m = curM();
+    var pfill = ((S.cm + (S.bs==="flash"?1:0)) / rC() * 100) + "%";
+    var aFighter = S.round==="QF" ? S.qf[S.cm].a : S.round==="SF" ? S.sf[S.cm].a : S.f[S.cm].a;
+    var bFighter = S.round==="QF" ? S.qf[S.cm].b : S.round==="SF" ? S.sf[S.cm].b : S.f[S.cm].b;
+    app.innerHTML = '<div class="screen battle-screen">'+
+      '<div class="header-row"><span>ROUND '+rN()+' / 3</span><span style="color:#00ff41;letter-spacing:.3em">'+rL()+'</span><span>BATTLE '+(S.cm+1)+' / '+rC()+'</span></div>'+
+      '<div class="progress-bar"><div class="progress-fill" style="width:'+pfill+'"></div></div>'+
+      '<div class="fighter-grid">'+
+        '<button class="fighter-card" onclick="pick(aFighter)" '+(S.bs!=="picking"?"disabled":"")+'>'+
+          '<div class="logo" style="filter:drop-shadow(0 0 8px '+m.a.g+')">'+m.a.e+'</div>'+
+          '<div class="name" style="color:'+m.a.c+'">'+m.a.n+'</div>'+
+          '<div class="tagline">'+m.a.t+'</div>'+
+          '<div class="strength">STRENGTH: '+m.a.s+'</div>'+
+        '</button>'+
+        '<div class="vs-badge '+(S.bs==="flash"?"flash":"")+'">VS</div>'+
+        '<button class="fighter-card" onclick="pick(bFighter)" '+(S.bs!=="picking"?"disabled":"")+'>'+
+          '<div class="logo" style="filter:drop-shadow(0 0 8px '+m.b.g+')">'+m.b.e+'</div>'+
+          '<div class="name" style="color:'+m.b.c+'">'+m.b.n+'</div>'+
+          '<div class="tagline">'+m.b.t+'</div>'+
+          '<div class="strength">STRENGTH: '+m.b.s+'</div>'+
+        '</button>'+
+      '</div>'+
+      (S.bs==="flash" ? '<div class="flash-overlay"><div class="flash-text">WINNER!</div></div>' : '')+
+      '<div class="mini-bracket">'+
+        '<div class="bracket-col">'+
+          S.qf.map(function(x){return '<div style="height:2rem;display:flex;align-items:center">'+badge(x.w)+'</div>';}).join("")+
+        '</div>'+
+        '<div style="color:#222;font-size:.6rem">\u2192</div>'+
+        '<div class="bracket-col">'+
+          (S.sf.length ? S.sf.map(function(x){return '<div style="height:2rem;display:flex;align-items:center">'+badge(x.w)+'</div>';}).join("") : '<div style="height:8rem"></div>')+
+        '</div>'+
+        '<div style="color:#222;font-size:.6rem">\u2192</div>'+
+        '<div class="bracket-col">'+
+          (S.f.length ? '<div style="height:2rem;display:flex;align-items:center">'+badge(S.f[0].w,true)+'</div>' : '<div style="height:2rem"></div>')+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  } else if(S.phase === "result"){
+    var champ = S.f[0].w;
+    var rows = S.picks.map(function(d,i){
+      return '<div class="stat-row"><span class="emo">'+d.e+'</span><span class="dname" style="color:'+d.c+'">'+d.n+'</span><span class="round">R'+(i+1)+'</span></div>';
+    }).join("") + '<div class="stat-row"><span class="emo">'+champ.e+'</span><span class="dname" style="color:'+champ.c+'">'+champ.n+'</span><span class="round">\uD83C\uDFC6 CHAMPION</span></div>';
+    app.innerHTML = '<div class="screen">'+
+      '<div class="win-label">AND THE WINNER IS...</div>'+
+      '<div class="win-champion" style="color:'+champ.g+'">'+champ.e+'</div>'+
+      '<div class="win-name" style="color:'+champ.c+';text-shadow:0 0 30px '+champ.g+'">'+champ.n+'</div>'+
+      '<div style="color:#555;font-size:.75rem;font-family:monospace;margin-top:.5rem">'+champ.t+'</div>'+
+      '<div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">'+
+        '<button class="picks-btn" onclick="toggleStats()">'+(S.showStats?"HIDE":"YOUR PICKS")+'</button>'+
+        '<button class="rematch-btn" onclick="rematch()">REMATCH</button>'+
+      '</div>'+
+      (S.showStats ? '<div class="stats-box"><div class="stats-title">Your Champions</div>'+rows+'</div>' : '')+
+    '</div>';
+  }
+}
+
+function toggleStats(){
+  S.showStats = !S.showStats;
+  render();
+}
+
+function startGame(){
+  S = {phase:"battle",round:"QF",qf:mkQF(),sf:[],f:[],cm:0,bs:"picking",rw:0,picks:[],showStats:false};
+  render();
+}
+
+var aFighter, bFighter;
+render();
+    </script>
+  </body>
+</html>
