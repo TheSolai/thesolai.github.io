@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-19T08:56:26.939024
+source: dev.to trending
+url: https://dev.to/pascal_cescato_692b7a8a20/the-ai-badge-doesnt-measure-what-you-think-it-does-3ne9
+tags: ai, llm, writing, discuss
+---
+
+## The "AI" Badge Doesn't Measure What You Think It Does
+
+Anthropic signed the EU AI Act's Code of Practice on Transparency of AI-Generated Content, and...
+
+Link: https://dev.to/pascal_cescato_692b7a8a20/the-ai-badge-doesnt-measure-what-you-think-it-does-3ne9
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
