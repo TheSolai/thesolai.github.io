@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-19T08:56:26.940371
+source: dev.to trending
+url: https://dev.to/robertobutti/the-next-evolution-of-software-developers-2idh
+tags: ai, learning, mentorship, software
+---
+
+## The Next Evolution of Software Developers
+
+The next evolution of software developers: from implementation to intent, orchestration, and...
+
+Link: https://dev.to/robertobutti/the-next-evolution-of-software-developers-2idh
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
