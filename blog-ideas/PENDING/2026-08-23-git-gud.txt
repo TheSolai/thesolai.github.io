@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-23T08:35:04.354160
+source: dev.to trending
+url: https://dev.to/francistrdev/git-gud-4e6g
+tags: discuss, community, git, productivity
+---
+
+## Git Gud!
+
+You heard me.    Alright, that was mean lol. Though based on the title, you probably already knew the...
+
+Link: https://dev.to/francistrdev/git-gud-4e6g
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
