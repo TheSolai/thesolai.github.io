@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-25T08:45:14.436852
+source: dev.to trending
+url: https://dev.to/marcosomma/i-write-less-code-than-i-used-to-that-may-be-the-point-3kk
+tags: ai, programming, productivity, python
+---
+
+## I Write Less Code Than I Used To. That May Be the Point.
+
+Over the last year, my day-to-day job has changed in a way I am still trying to understand. I am...
+
+Link: https://dev.to/marcosomma/i-write-less-code-than-i-used-to-that-may-be-the-point-3kk
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
