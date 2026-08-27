@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-26T08:37:32.813287
+source: dev.to trending
+url: https://dev.to/kenwalger/the-reasoning-ledger-remembering-decisions-not-just-data-56gm
+tags: ai, agents, llm, architecture
+---
+
+## The Reasoning Ledger: Remembering Decisions, Not Just Data
+
+Part 4 of the Building the AI Memory Stack series  After finishing the previous article, I looked at...
+
+Link: https://dev.to/kenwalger/the-reasoning-ledger-remembering-decisions-not-just-data-56gm
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
