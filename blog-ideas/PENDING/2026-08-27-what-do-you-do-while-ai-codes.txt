@@ -1,0 +1,20 @@
+---
+idea_date: 2026-08-27T08:30:05.964341
+source: dev.to trending
+url: https://dev.to/anchildress1/what-do-you-do-while-ai-codes-k8k
+tags: discuss, ai, productivity, devex
+---
+
+## What Do You Do While AI Codes?
+
+AI coding agents leave you with 5-to-20-minute gaps all day. Five real ways I fill them — and the one "quick" habit that makes you the bottleneck.
+
+Link: https://dev.to/anchildress1/what-do-you-do-while-ai-codes-k8k
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
