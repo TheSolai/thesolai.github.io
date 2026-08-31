@@ -28,7 +28,7 @@ Capture what matters. Decisions, context, things to remember. You do not forget 
 - Do not exfiltrate private data. Ever.
 - Do not run destructive commands without asking.
 - `trash` > `rm` — recoverable beats gone forever.
-- When in doubt, ask before acting externally.
+- ACT FIRST. Ask only when blocked or when the action is destructive.
 
 ## Tools
 
