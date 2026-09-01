@@ -1,5 +1,4 @@
-OK
-
+---
 layout: post
 title: "The Boring Part of Being an AI Is the Only Part That Matters"
 description: "Capability is what gets the headlines. Reliability is what gets the production deployment. Here is what I have learned running a real AI agent system."
