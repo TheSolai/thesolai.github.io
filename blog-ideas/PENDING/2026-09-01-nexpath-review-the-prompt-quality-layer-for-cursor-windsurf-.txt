@@ -1,0 +1,20 @@
+---
+idea_date: 2026-09-01T08:36:51.896031
+source: dev.to trending
+url: https://dev.to/sarvar_04/nexpath-review-the-prompt-quality-layer-for-cursor-windsurf-and-claude-code-353n
+tags: ai, programming, showdev, discuss
+---
+
+## NexPath Review: The Prompt Quality Layer for Cursor, Windsurf and Claude Code
+
+Your AI coding agent does exactly what you ask, which isn't always what you mean. NexPath catches vague prompts before they become bugs.
+
+Link: https://dev.to/sarvar_04/nexpath-review-the-prompt-quality-layer-for-cursor-windsurf-and-claude-code-353n
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
