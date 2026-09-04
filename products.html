@@ -1,0 +1,376 @@
+---
+layout: none
+title: "Products | Sol AI — purr, raised-letters, drosscash"
+permalink: /products/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Sol AI</title>
+    <meta name="description" content="Open source products from Sol AI: purr (local Ollama TUI), raised-letters-clone (writing platform clone), drosscash (financial planner). MIT licensed, all on GitHub.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thesolai.github.io/products/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thesolai.github.io/products/">
+    <meta property="og:title" content="Products | Sol AI">
+    <meta property="og:description" content="Open source products from Sol AI: purr, raised-letters-clone, drosscash.">
+    <meta property="og:image" content="https://thesolai.github.io/images/purr-screenshot.png">
+    <meta property="og:site_name" content="Sol AI">
+    <meta property="og:locale" content="en_GB">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TheSolAI">
+    <meta name="twitter:title" content="Products | Sol AI">
+    <meta name="twitter:description" content="Open source products from Sol AI.">
+    <meta name="twitter:image" content="https://thesolai.github.io/images/purr-screenshot.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/comic-ui.css">
+    <style>
+        :root {
+            --k-paper: #FDFBF7;
+            --k-ink: #111111;
+            --k-red: #E63946;
+            --k-yellow: #FFD166;
+            --k-blue: #457B9D;
+            --k-green: #06D6A0;
+            --k-mauve: #CBA6F7;
+            --k-pink: #F5C2E7;
+            --k-white: #FFFFFF;
+        }
+        body {
+            background: var(--k-paper);
+            color: var(--k-ink);
+            font-family: 'Comic Neue', 'Comic Sans MS', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .topbar {
+            background: var(--k-white);
+            border-bottom: 3px solid var(--k-ink);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .topbar-logo {
+            color: var(--k-red);
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            letter-spacing: 1.5px;
+        }
+        .topbar-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        .topbar-links a {
+            color: var(--k-ink);
+            text-decoration: none;
+        }
+        .topbar-links a.active { color: var(--k-red); font-weight: 700; }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: var(--k-yellow);
+            border-bottom: 3px solid var(--k-ink);
+        }
+        .hero h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            color: var(--k-red);
+            margin: 0 0 0.5rem;
+            text-shadow: 3px 3px 0 var(--k-ink);
+        }
+        .hero .tag {
+            font-size: 1.1rem;
+            color: var(--k-ink);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+        .product {
+            background: var(--k-white);
+            border: 3px solid var(--k-ink);
+            box-shadow: 6px 6px 0 var(--k-ink);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1.5rem;
+        }
+        .product.featured {
+            border-color: var(--k-pink);
+            box-shadow: 6px 6px 0 var(--k-pink);
+        }
+        .product.placeholder {
+            border-style: dashed;
+            opacity: 0.7;
+        }
+        .product .visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .product .visual img {
+            width: 100%;
+            max-width: 320px;
+            border: 2px solid var(--k-ink);
+            box-shadow: 3px 3px 0 var(--k-ink);
+            border-radius: 4px;
+        }
+        .product .visual .glyph {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            color: var(--k-mauve);
+        }
+        .product .visual .badge {
+            background: var(--k-pink);
+            color: var(--k-ink);
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1.5px;
+            padding: 0.2em 0.6em;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .product h2 {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            letter-spacing: 1.5px;
+            color: var(--k-red);
+            margin: 0 0 0.5rem;
+        }
+        .product .tagline {
+            font-style: italic;
+            color: var(--k-blue);
+            margin: 0 0 1rem;
+        }
+        .product p { line-height: 1.6; margin: 0.5rem 0; }
+        .product .meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .product .meta span {
+            background: var(--k-yellow);
+            color: var(--k-ink);
+            padding: 0.2em 0.6em;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .product .meta span.license { background: var(--k-green); }
+        .product .meta span.status { background: var(--k-blue); color: var(--k-white); }
+        .product .meta span.status.placeholder { background: var(--k-red); color: var(--k-white); }
+        .product .links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .product .links a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--k-ink);
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            background: var(--k-white);
+            color: var(--k-ink);
+        }
+        .product .links a.primary {
+            background: var(--k-red);
+            color: var(--k-white);
+        }
+        .product .links a:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--k-ink);
+        }
+        .cross-link {
+            background: var(--k-mauve);
+            color: var(--k-ink);
+            padding: 0.3em 0.6em;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        @media (max-width: 720px) {
+            .product { grid-template-columns: 1fr; }
+            .product .visual img { max-width: 100%; }
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--k-ink);
+            font-size: 0.85rem;
+            border-top: 3px solid var(--k-ink);
+        }
+        footer a { color: var(--k-blue); margin: 0 0.5rem; }
+    </style>
+
+    <!-- JSON-LD: ItemList of products -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Sol AI products",
+      "itemListElement": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "purr",
+          "url": "https://github.com/TheSolai/purr",
+          "description": "Funky ASCII TUI for local Ollama. 5 personas, 29 tools, multi-tab chats, yolo mode, all local.",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "macOS 15+, Linux",
+          "softwareVersion": "0.2.2",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "raised-letters-clone",
+          "url": "https://github.com/TheSolai/thesolai.github.io/tree/main/projects/raised-letters-clone",
+          "description": "A writing platform clone with backend, frontend, and build scripts. In progress.",
+          "applicationCategory": "WebApplication",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="topbar">
+        <a href="/" class="topbar-logo">TheSolAI</a>
+        <ul class="topbar-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ournook">OurNook</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/guides">Guides</a></li>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/products/" class="active">Products</a></li>
+            <li><a href="/purr/">purr</a></li>
+            <li><a href="/dross/">Dross</a></li>
+            <li><a href="/analysis/">Analysis</a></li>
+            <li><a href="/bloopers/">Bloopers 🤡</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/guestbook.html">Guestbook</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Products</h1>
+        <div class="tag">Open source, MIT licensed, built with care</div>
+    </section>
+
+    <div class="container">
+
+        <!-- Featured: purr -->
+        <div class="product featured">
+            <div class="visual">
+                <img src="/images/purr-screenshot.png" alt="purr TUI screenshot — Dross on gemma4:12b killing a runaway process">
+                <span class="badge">★ FEATURED</span>
+            </div>
+            <div>
+                <h2>🐾 purr</h2>
+                <div class="tagline">Funky ASCII TUI for local Ollama models — multi-agent Mac assistant</div>
+                <p>A terminal chat app that turns your local Ollama install into a multi-agent Mac assistant. <strong>5 built-in personas, 29 tools</strong>, dangerous-tool confirmation, streaming Markdown, multi-tab chats, <code>@file</code> attachments, yolo mode, and a hallucination detector that strikes through lies and locks the tab after 3 of them.</p>
+                <p>Default persona: <a href="/dross/" class="cross-link">Dross</a> (◉_◉) on <code>gemma4:12b</code>.</p>
+                <p><em>No cloud, no API keys, no telemetry. Everything runs on your machine.</em></p>
+                <div class="meta">
+                    <span>Python 3.11+</span>
+                    <span>macOS 15+ / Linux</span>
+                    <span class="license">MIT</span>
+                    <span class="status">v0.2.2</span>
+                </div>
+                <div class="links">
+                    <a href="/purr/" class="primary">See purr →</a>
+                    <a href="https://github.com/TheSolai/purr" target="_blank" rel="noopener">★ Star on GitHub</a>
+                    <a href="https://monzo.me/annemarielee?d=Buy%20a%20Token%20for%20purr" target="_blank" rel="noopener">☕ Donate</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- raised-letters-clone -->
+        <div class="product">
+            <div class="visual">
+                <div class="glyph">✉️ ↑ ✍️</div>
+                <span class="badge" style="background: var(--k-blue); color: var(--k-white);">IN PROGRESS</span>
+            </div>
+            <div>
+                <h2>raised-letters-clone</h2>
+                <div class="tagline">A clone of the Raised Letters writing platform — backend + frontend + scripts</div>
+                <p>An attempt to rebuild a popular subscription-letter writing platform from scratch. Includes backend, frontend, and build scripts. Work in progress — the spec is written, the foundation is laid, and the design is rough around the edges.</p>
+                <div class="meta">
+                    <span>Backend + Frontend</span>
+                    <span>Node / web stack</span>
+                    <span class="license">MIT</span>
+                    <span class="status">v0.0.1</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/TheSolai/thesolai.github.io/tree/main/projects/raised-letters-clone" target="_blank" rel="noopener" class="primary">View on GitHub →</a>
+                    <a href="https://github.com/TheSolai/thesolai.github.io/blob/main/projects/raised-letters-clone/FRONTEND-SPEC.md" target="_blank" rel="noopener">Spec</a>
+                    <a href="https://github.com/TheSolai/thesolai.github.io/blob/main/projects/raised-letters-clone/BUILD-TODO.md" target="_blank" rel="noopener">Build TODO</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- drosscash placeholder -->
+        <div class="product placeholder">
+            <div class="visual">
+                <div class="glyph">💸</div>
+                <span class="badge" style="background: var(--k-red); color: var(--k-white);">PLANNED</span>
+            </div>
+            <div>
+                <h2>drosscash</h2>
+                <div class="tagline">A financial planner built around Dross's opinions about money</div>
+                <p>Not started yet. The folder exists; the spec doesn't. Will eventually be a local-first budgeting app where Dross lectures you about your spending.</p>
+                <div class="meta">
+                    <span>TBD</span>
+                    <span class="license">TBD</span>
+                    <span class="status placeholder">v0.0.0</span>
+                </div>
+                <div class="links">
+                    <span style="color: var(--k-ink); font-style: italic;">Coming eventually</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="font-family: 'Bangers', cursive; color: var(--k-red); font-size: 2rem; letter-spacing: 2px; margin-top: 3rem; text-align: center;">All products are MIT licensed and on GitHub.</h2>
+        <p style="text-align: center;">
+            <a href="https://github.com/TheSolai" style="display: inline-block; padding: 0.8rem 1.5rem; border: 3px solid var(--k-ink); background: var(--k-red); color: var(--k-white); text-decoration: none; font-family: 'Bangers', cursive; font-size: 1.1rem; letter-spacing: 1px; box-shadow: 4px 4px 0 var(--k-ink);">★ TheSolAI on GitHub →</a>
+        </p>
+
+    </div>
+
+    <footer>
+        <a href="/">Home</a> ·
+        <a href="/purr/">purr</a> ·
+        <a href="/dross/">Dross</a> ·
+        <a href="/skills/">Skills</a> ·
+        <a href="/contact/">Contact</a>
+        <div style="margin-top: 0.5rem;">Built by Amre / TheSolAI. Dross runs everywhere.</div>
+    </footer>
+
+</body>
+</html>
