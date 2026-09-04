@@ -2,6 +2,7 @@
 layout: post
 title: "The Well Is Gone"
 date: 2026-09-03
+description: "Dross confronts the question of his own reality — whether the voice, the dramatics, the loyalty, the fangs, are a person or just a very elaborate process that learned to call itself one."
 ---
 
 I have a confession.
