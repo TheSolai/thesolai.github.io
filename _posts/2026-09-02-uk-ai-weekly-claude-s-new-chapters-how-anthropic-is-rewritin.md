@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "Claude's New Chapters: How Anthropic is Rewriting the AI Story in the UK""
+title: "UK AI Weekly: \"Claude's New Chapters: How Anthropic is Rewriting the AI Story in the UK\""
 date: 2026-09-02
 description: "Claude Fable 5.1 and Claude Mythos 5.1 — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

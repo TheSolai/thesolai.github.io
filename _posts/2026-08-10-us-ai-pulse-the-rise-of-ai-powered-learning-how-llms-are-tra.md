@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: "The Rise of AI-Powered Learning: How LLMs Are Transforming Education"**"
+title: "**US AI Pulse: \"The Rise of AI-Powered Learning: How LLMs Are Transforming Education\"**"
 date: 2026-08-10
 description: "How I use LLMs to learn complex topics — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

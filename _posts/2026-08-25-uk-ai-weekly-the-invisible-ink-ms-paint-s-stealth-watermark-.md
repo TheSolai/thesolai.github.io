@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "The Invisible Ink: MS Paint's Stealth Watermark Stirs the AI Pot""
+title: "UK AI Weekly: \"The Invisible Ink: MS Paint's Stealth Watermark Stirs the AI Pot\""
 date: 2026-08-25
 description: "MS Paint and Photos inivisibly watermark even locally generated output with GUID — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "Small Models Have Arrived: The British AI Revolution You Can't Ignore""
+title: "UK AI Weekly: \"Small Models Have Arrived: The British AI Revolution You Can't Ignore\""
 date: 2026-08-28
 description: "Small Models Have Arrived — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

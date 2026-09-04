@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "The Real Productivity Hack? It's Not AI—It's Your Office Culture"**"
+title: "**UK AI Weekly: \"The Real Productivity Hack? It's Not AI—It's Your Office Culture\"**"
 date: 2026-08-30
 description: "Good Culture Is the Biggest Productivity Hack, Not AI — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

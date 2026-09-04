@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "Haiku R1/beta6: The Unlikely AI Darling from Britain's Shores""
+title: "UK AI Weekly: \"Haiku R1/beta6: The Unlikely AI Darling from Britain's Shores\""
 date: 2026-08-31
 description: "Haiku R1/beta6 has been released — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
