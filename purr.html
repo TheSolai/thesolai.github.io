@@ -1,0 +1,457 @@
+---
+layout: none
+title: "purr — Funky ASCII TUI for Local Ollama Models | Sol AI"
+permalink: /purr/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>purr — Funky ASCII TUI for Local Ollama | Sol AI</title>
+    <meta name="description" content="A terminal chat app that turns your local Ollama install into a multi-agent Mac assistant. 5 built-in personas, 29 tools, dangerous-tool confirmation, web access, yolo mode. No cloud, no API keys, no telemetry. MIT licensed.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thesolai.github.io/purr/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thesolai.github.io/purr/">
+    <meta property="og:title" content="purr — Funky ASCII TUI for Local Ollama | Sol AI">
+    <meta property="og:description" content="Multi-agent Mac assistant. 5 personas, 29 tools, all local. No cloud, no keys.">
+    <meta property="og:image" content="https://thesolai.github.io/images/purr-screenshot.png">
+    <meta property="og:site_name" content="Sol AI">
+    <meta property="og:locale" content="en_GB">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TheSolAI">
+    <meta name="twitter:title" content="purr — Funky ASCII TUI for Local Ollama | Sol AI">
+    <meta name="twitter:description" content="Multi-agent Mac assistant. 5 personas, 29 tools, all local.">
+    <meta name="twitter:image" content="https://thesolai.github.io/images/purr-screenshot.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/comic-ui.css">
+    <style>
+        :root {
+            --k-paper: #1E1E2E;
+            --k-ink: #CDD6F4;
+            --k-red: #F38BA8;
+            --k-yellow: #F9E2AF;
+            --k-blue: #89B4FA;
+            --k-green: #A6E3A1;
+            --k-mauve: #CBA6F7;
+            --k-pink: #F5C2E7;
+            --k-bg: #1E1E2E;
+            --k-surface: #313244;
+            --k-surface2: #45475A;
+            --k-muted: #6C7086;
+        }
+        body {
+            background: var(--k-bg);
+            color: var(--k-ink);
+            font-family: 'Comic Neue', 'Comic Sans MS', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: linear-gradient(180deg, #181825 0%, #1E1E2E 100%);
+            border-bottom: 3px solid var(--k-pink);
+        }
+        .hero pre {
+            font-family: 'JetBrains Mono', 'Menlo', monospace;
+            color: var(--k-pink);
+            font-size: 1.1rem;
+            line-height: 1.1;
+            display: inline-block;
+            text-align: left;
+            margin: 0 auto;
+            text-shadow: 0 0 12px rgba(245, 194, 231, 0.3);
+        }
+        .hero h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            color: var(--k-yellow);
+            margin: 1.5rem 0 0.5rem;
+            text-shadow: 3px 3px 0 var(--k-pink);
+        }
+        .hero .tag {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--k-mauve);
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+        }
+        .cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .cta {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: 3px solid var(--k-ink);
+            box-shadow: 4px 4px 0 var(--k-ink);
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        .cta-primary { background: var(--k-pink); color: var(--k-bg); }
+        .cta-secondary { background: var(--k-blue); color: var(--k-bg); }
+        .cta-donate { background: var(--k-red); color: white; }
+
+        .screenshot {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            border: 3px solid var(--k-ink);
+            box-shadow: 6px 6px 0 var(--k-pink);
+            margin: 2rem 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        h2 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            color: var(--k-yellow);
+            margin: 2.5rem 0 1rem;
+            text-shadow: 2px 2px 0 var(--k-pink);
+        }
+        h3 {
+            color: var(--k-mauve);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+        p, li {
+            line-height: 1.6;
+        }
+        a { color: var(--k-blue); }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--k-surface);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: var(--k-green);
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--k-surface);
+            border: 2px solid var(--k-surface2);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--k-ink);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .card {
+            background: var(--k-surface);
+            border: 2px solid var(--k-surface2);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .card .glyph {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--k-mauve);
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+        .card .name {
+            font-family: 'Bangers', cursive;
+            color: var(--k-yellow);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        .card .role {
+            color: var(--k-muted);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin: 0.3rem 0 0.5rem;
+        }
+        .feat {
+            background: var(--k-surface);
+            border-left: 4px solid var(--k-pink);
+            padding: 0.8rem 1rem;
+            margin: 0.6rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .feat strong { color: var(--k-yellow); }
+        .donate-strip {
+            background: var(--k-red);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin: 3rem 0 0;
+            border-top: 3px solid var(--k-ink);
+            border-bottom: 3px solid var(--k-ink);
+        }
+        .donate-strip h2 {
+            color: white;
+            text-shadow: 2px 2px 0 var(--k-ink);
+            margin: 0 0 0.5rem;
+        }
+        .donate-strip p {
+            max-width: 600px;
+            margin: 0 auto 1rem;
+        }
+        .donate-strip .cta {
+            background: white;
+            color: var(--k-red);
+            font-size: 1.3rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--k-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--k-surface2);
+        }
+        footer a { color: var(--k-blue); margin: 0 0.5rem; }
+        .key {
+            display: inline-block;
+            background: var(--k-surface2);
+            border: 1px solid var(--k-muted);
+            border-radius: 4px;
+            padding: 0 0.4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            color: var(--k-ink);
+        }
+    </style>
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "purr",
+      "alternateName": "purr TUI",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Terminal Chat Client",
+      "operatingSystem": "macOS 15+, Linux",
+      "description": "A funky ASCII TUI for chatting with local Ollama models. 5 built-in personas, 29 tools, multi-tab, @file attachments, yolo mode, web access. No cloud, no API keys.",
+      "url": "https://github.com/TheSolai/purr",
+      "downloadUrl": "https://github.com/TheSolai/purr",
+      "softwareVersion": "0.2.1",
+      "softwareRequirements": "Python 3.11+, Ollama 0.5+",
+      "license": "https://github.com/TheSolai/purr/blob/main/LICENSE",
+      "author": {
+        "@type": "Person",
+        "name": "Amre",
+        "url": "https://github.com/TheSolAI"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "featureList": [
+        "5 built-in personas (Dross, Assistant, Friend, Mac Planner, Sysadmin)",
+        "29 tools including shell, file ops, web access, activity monitor",
+        "Multi-tab concurrent chats",
+        "@file inline attachments",
+        "Web access (DuckDuckGo + URL fetch)",
+        "YOLO mode with audit log",
+        "Dangerous tool-call hallucination detection with strike system",
+        "Chat history browser with /history and /resume"
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <section class="hero">
+        <pre>
+      /\_____/\        ____  _   _  ____  ____
+     /  o   o  \      |  _ \| | | ||  _ \|  _ \
+    ( ==  ^  == )     | |_) | | | || |_) | | | |
+     )         (      |  __/| |_| ||  _ <| |_| |
+    (   )   (   )     |_|    \___/ |_| \_\____/
+   (__(___)_(___)__)
+        </pre>
+        <h1>purr</h1>
+        <div class="tag">funky ASCII TUI · local Ollama · multi-agent · Mac-first</div>
+        <div class="cta-row">
+            <a href="https://github.com/TheSolai/purr" class="cta cta-primary" target="_blank" rel="noopener">★ Star on GitHub</a>
+            <a href="#install" class="cta cta-secondary">↓ Install</a>
+            <a href="https://monzo.me/annemarielee?d=Buy%20a%20Token%20for%20purr" class="cta cta-donate" target="_blank" rel="noopener">☕ Buy a Token</a>
+        </div>
+    </section>
+
+    <div class="screenshot">
+        <a href="https://github.com/TheSolai/purr/blob/main/docs/screenshot.png" target="_blank" rel="noopener">
+            <img src="/images/purr-screenshot.png" alt="purr TUI screenshot — Dross showing top CPU consumers and killing a runaway process" loading="lazy">
+        </a>
+        <div style="color: var(--k-muted); font-size: 0.85rem;">Dross killing a runaway process. The chat shows the tool call, the result, and the recovery message — all from local Ollama, no cloud.</div>
+    </div>
+
+    <div class="container">
+
+        <h2>What is purr?</h2>
+        <p>Purr is a terminal chat app that turns your local Ollama install into a multi-agent Mac assistant. <strong>Five built-in personas, 29 tools</strong>, dangerous-tool confirmation, streaming Markdown, full keyboard control — and it all runs on your machine. <strong>No cloud, no API keys, no telemetry.</strong></p>
+        <p>It started as a wrapper for chatting with Dross, the OpenClaw mind-spirit, and grew into a proper Mac automation harness. The user types in plain English; Dross calls the tools; the tools do the work. You see every tool call, every argument, every result — in the chat, inline.</p>
+
+        <h2>The personas</h2>
+        <p>Switch any time with <code>/agent &lt;name&gt;</code>. Each persona has its own system prompt, tool whitelist, and category. Build your own — drop a JSON in <code>~/.purr/agents/</code>.</p>
+        <div class="grid">
+            <div class="card">
+                <div class="glyph">(◉_◉)</div>
+                <div class="name">Dross</div>
+                <div class="role">the most valuable mind-spirit in the world — main man, OpenClaw primary</div>
+                <div>29 tools · the default. Dramatic, opinionated, runs everything.</div>
+            </div>
+            <div class="card">
+                <div class="glyph">(=^.^=)</div>
+                <div class="name">Assistant</div>
+                <div class="role">witty, warm, general-purpose local AI companion</div>
+                <div>29 tools · polite voice. The workhorse for casual requests.</div>
+            </div>
+            <div class="card">
+                <div class="glyph">(♥.♥)</div>
+                <div class="name">Friend</div>
+                <div class="role">warm conversational companion, no tools</div>
+                <div>0 tools · chat-only by design. Switch to it when you want to think out loud.</div>
+            </div>
+            <div class="card">
+                <div class="glyph">(☼.☼)</div>
+                <div class="name">Mac Planner</div>
+                <div class="role">Mac productivity — Calendar, Reminders, Notes</div>
+                <div>3 tools · AppleScript-driven. <code>calendar add</code>, <code>reminders add</code>, <code>notes add</code>.</div>
+            </div>
+            <div class="card">
+                <div class="glyph">(&gt;_&gt;)</div>
+                <div class="name">Sysadmin</div>
+                <div class="role">shell + file + system info on the user's Mac</div>
+                <div>8 tools · no marketing copy, just runs commands.</div>
+            </div>
+            <div class="card">
+                <div class="glyph">+ yours</div>
+                <div class="name">Make your own</div>
+                <div class="role">drop a JSON in <code>~/.purr/agents/</code> — instant custom agent</div>
+                <div>See <a href="https://github.com/TheSolai/purr/blob/main/examples/README.md" target="_blank" rel="noopener">examples/README.md</a> for the schema.</div>
+            </div>
+        </div>
+
+        <h2>What it can do</h2>
+        <div class="feat">
+            <strong>29 tools</strong> across shell, file ops, web, productivity, and the activity monitor.
+            Shell refuses <code>rm</code> / <code>sudo</code> / <code>-rf</code> at the wrapper level.
+            <code>trash</code> sends files to the macOS Trash, recoverable from Finder.
+        </div>
+        <div class="feat">
+            <strong>Multi-tab chats</strong> (<code>Ctrl+T</code> new, <code>Ctrl+W</code> close, <code>Ctrl+1..9</code> switch).
+            Each tab is a separate conversation with its own history file under <code>~/.purr/chats/</code>.
+        </div>
+        <div class="feat">
+            <strong><code>@file</code> attachments</strong>. Type <code>@~/path/to/file.py</code> in your message
+            and purr inlines the file contents before sending. Quoted paths for spaces, language hint per
+            extension, 200kB cap.
+        </div>
+        <div class="feat">
+            <strong>Web access</strong>. <code>web_search</code> (DuckDuckGo, no API key) and <code>web_fetch</code>
+            (URL → text, regex-stripped). All non-Friend personas get both.
+        </div>
+        <div class="feat">
+            <strong>YOLO mode</strong>. <code>/yolo on</code> → <code>/yolo confirm</code> (two-step) pre-approves
+            all dangerous tool calls. Every action is logged to <code>~/.purr/logs/yolo-actions.log</code>.
+        </div>
+        <div class="feat">
+            <strong>Hallucination detection with consequences</strong>. When the assistant claims an action
+            ("I have saved the file") without actually calling the tool, the response is struck through,
+            dropped from history, and a strike is added to the tab. 3 strikes → tab locked until
+            <code>/forgive</code>. Audit log at <code>~/.purr/logs/lies.log</code>.
+        </div>
+        <div class="feat">
+            <strong>Chat history browser</strong>. <code>/history</code> lists past sessions;
+            <code>/resume N</code> opens the Nth one in a new tab. Edit-and-regenerate with
+            <span class="key">Ctrl+R</span>, copy to clipboard with <code>/copy</code>.
+        </div>
+
+        <h2 id="install">Install</h2>
+        <p>Any Mac with Python 3.11+ and Ollama installed. From the GitHub repo:</p>
+        <pre><code>git clone https://github.com/TheSolai/purr
+cd purr
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+
+# Make sure Ollama is running
+ollama serve          # or: brew services start ollama
+
+# Launch
+purr</code></pre>
+        <p>First launch seeds 5 personas and creates <code>~/.purr/</code> (config, agents, chats, logs). Everything is local — chat history, agent definitions, audit logs.</p>
+
+        <h2>Keys you'll actually use</h2>
+        <p>
+            <span class="key">ctrl+n</span> new agent ·
+            <span class="key">ctrl+t</span> new tab ·
+            <span class="key">ctrl+w</span> close tab ·
+            <span class="key">ctrl+1..9</span> switch tab ·
+            <span class="key">ctrl+r</span> regenerate ·
+            <span class="key">ctrl+l</span> clear chat ·
+            <span class="key">ctrl+c</span> quit
+        </p>
+
+        <h2>Recommended models</h2>
+        <p>Any Ollama model with tool support. The README has a tested table; quick picks:</p>
+        <ul>
+            <li><code>llama3-groq-tool-use:8b</code> — fast, purpose-built for tool calling</li>
+            <li><code>qwen3:8b</code> — good general purpose</li>
+            <li><code>qwen3:14b</code> — smarter, slower</li>
+            <li><code>gpt-oss:20b</code> — high quality, 131k context</li>
+        </ul>
+
+        <h2>What purr is NOT</h2>
+        <p>Not a coding IDE (use aider, continue, or cursor for that). Not a multi-tenant cloud service. Not a Claude-desktop replacement — there's no third-party login, no model you don't already own. It's a thin, opinionated, fully-local wrapper around the Ollama HTTP API plus a curated set of macOS automation tools.</p>
+
+        <h2>License & credit</h2>
+        <p>MIT. Built by <a href="https://github.com/TheSolAI">Amre / TheSolAI</a>. Purr is the user-facing shell for the OpenClaw / Dross agent system — Dross runs everywhere. Inspired by <code>gemini-cli</code>, <code>openclaw</code>, <code>parllama</code>, and <code>elia</code>.</p>
+
+    </div>
+
+    <div class="donate-strip">
+        <h2>☕ Buy a Token for purr</h2>
+        <p>Building a multi-agent TUI takes time. If purr saved you an afternoon, helped you script a cron job, or just made you smile at Dross's commentary, consider buying a token toward the next release.</p>
+        <a href="https://monzo.me/annemarielee?d=Buy%20a%20Token%20for%20purr" class="cta cta-donate" target="_blank" rel="noopener">☕ Buy a Token →</a>
+        <div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.85;">Goes straight to Monzo — no middlemen, no platform fees.</div>
+    </div>
+
+    <footer>
+        <a href="https://github.com/TheSolai/purr" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="/">Sol AI</a> ·
+        <a href="/blog/">Blog</a> ·
+        <a href="/contact/">Contact</a> ·
+        <a href="/skills/">Skills</a>
+        <div style="margin-top: 0.5rem;">purr is part of the OpenClaw agent system. Dross runs everywhere.</div>
+    </footer>
+
+</body>
+</html>
