@@ -3,20 +3,21 @@
 Blog post front matter validator.
 Checks all posts in _posts/ have the required Jekyll front matter fields.
 
+Reads posts from the LOCAL filesystem (the repo is checked out in CI as
+well as on the developer's machine). Does NOT call the GitHub API — the
+previous version did, which hung indefinitely in CI when `gh` wasn't
+installed in the runner.
+
 Usage:
   python3 _tests/fix_front_matter.py          # validate only, exit non-zero on issues
   python3 _tests/fix_front_matter.py --fix    # auto-fix fixable issues, then validate
   python3 _tests/fix_front_matter.py --dry-run # validate only (legacy alias)
 """
 import argparse
-import base64
 import re
-import subprocess
 import sys
-import json
 from pathlib import Path
 
-REPO = "TheSolAI/thesolai.github.io"
 POSTS_DIR = "_posts"
 
 # Required fields and what "correct" looks like for each
@@ -30,28 +31,21 @@ REQUIRED_FIELDS = {
 # Fields that can be auto-fixed
 AUTO_FIXABLE = {"layout"}
 
-def gh_get(path):
-    r = subprocess.run(
-        ["gh", "api", f"repos/{REPO}/contents/{path}", "--jq", "{sha, content}"],
-        capture_output=True, text=True, encoding="utf-8"
-    )
-    if r.returncode != 0:
-        return None, None
-    data = json.loads(r.stdout)
-    return data["sha"], base64.b64decode(data["content"]).decode("utf-8")
 
-def gh_put(path, sha, content, msg):
-    encoded = base64.b64encode(content.encode()).decode()
-    r = subprocess.run(
-        ["gh", "api", f"repos/{REPO}/contents/{path}",
-         "--method", "PUT",
-         "--field", f"message={msg}",
-         "--field", f"sha={sha}",
-         "--field", f"content={encoded}",
-         "--field", "branch=main"],
-        capture_output=True, text=True
-    )
-    return r.returncode == 0, r.stderr[:200] if r.stderr else "OK"
+def list_posts() -> list[str]:
+    """Return markdown filenames in _posts/. Local FS read, no API."""
+    p = Path(POSTS_DIR)
+    if not p.exists():
+        return []
+    return sorted(child.name for child in p.glob("*.md"))
+
+
+def read_post(filename: str) -> str:
+    """Read a post from the local checkout. Returns "" on missing."""
+    p = Path(POSTS_DIR) / filename
+    if not p.exists():
+        return ""
+    return p.read_text(encoding="utf-8")
 
 def parse_frontmatter(content):
     """Return (fm_dict, fm_text, body) or (None, None, None) if malformed."""
@@ -73,8 +67,18 @@ def extract_date_from_filename(filename):
     m = re.match(r"^(20\d\d-\d\d-\d\d)-", filename)
     return m.group(1) if m else None
 
-def validate_post(filename, sha, content, fix=False):
-    """Validate a single post. Returns list of issues (empty = OK)."""
+def write_post(filename: str, content: str) -> bool:
+    """Write a post back to disk. Returns True on success."""
+    try:
+        (Path(POSTS_DIR) / filename).write_text(content, encoding="utf-8")
+        return True
+    except OSError as e:
+        return False
+
+
+def validate_post(filename, content, fix=False):
+    """Validate a single post. Returns (issues, fix_result) where fix_result
+    is "auto-fixed" if --fix applied a fix, else None."""
     issues = []
     fm, fm_text, body = parse_frontmatter(content)
 
@@ -86,7 +90,7 @@ def validate_post(filename, sha, content, fix=False):
         value = fm.get(field, "")
         if not check(value):
             if field == "layout":
-                # Try to fix it
+                # Try to fix it (developer tool — only with --fix locally)
                 if fix and "layout" in AUTO_FIXABLE:
                     new_fm_lines = ["---"]
                     for line in fm_text.split("\n"):
@@ -98,12 +102,9 @@ def validate_post(filename, sha, content, fix=False):
                     new_fm_lines.insert(1, "layout: post")
                     new_fm_lines.append("---")
                     new_content = "\n".join(new_fm_lines) + "\n" + body
-                    ok, err = gh_put(f"{POSTS_DIR}/{filename}", sha, new_content,
-                        f"Auto-fix: add layout: post to {filename}")
-                    if ok:
+                    if write_post(filename, new_content):
                         return [], "auto-fixed"
-                    else:
-                        issues.append(f"layout: post missing (auto-fix failed: {err})")
+                    issues.append("layout: post missing (auto-fix failed: write error)")
                 else:
                     issues.append("layout: post missing")
             elif field == "date":
@@ -122,35 +123,19 @@ def main():
     args = parser.parse_args()
     fix = args.fix and not args.dry_run
 
-    # Get list of posts
-    r = subprocess.run(
-        ["gh", "api", f"repos/{REPO}/contents/{POSTS_DIR}", "--jq", "[.[].name]"],
-        capture_output=True, text=True, encoding="utf-8"
-    )
-    if r.returncode != 0:
-        print(f"ERROR: Could not fetch posts: {r.stderr[:200]}")
-        sys.exit(1)
-
-    import json as _json
-    try:
-        posts = _json.loads(r.stdout)
-    except:
-        print("ERROR: Could not parse posts list")
-        sys.exit(1)
-
-    posts = [p for p in posts if p.endswith(".md")]
+    posts = list_posts()
     print(f"Checking {len(posts)} posts...")
 
     all_issues = []
     fixed_count = 0
 
     for i, post in enumerate(posts):
-        sha, content = gh_get(f"{POSTS_DIR}/{post}")
-        if sha is None:
-            print(f"  SKIP {post}: could not fetch")
+        content = read_post(post)
+        if not content:
+            print(f"  SKIP {post}: could not read")
             continue
 
-        issues, fix_result = validate_post(post, sha, content, fix=fix)
+        issues, fix_result = validate_post(post, content, fix=fix)
         if fix_result == "auto-fixed":
             print(f"  AUTO-FIXED {post}")
             fixed_count += 1
@@ -159,7 +144,8 @@ def main():
                 print(f"  FAIL {post}: {issue}")
                 all_issues.append(f"{post}: {issue}")
         else:
-            print(f"  OK {post}")
+            # quiet on success — only print failures
+            pass
 
     print()
     if fixed_count:
