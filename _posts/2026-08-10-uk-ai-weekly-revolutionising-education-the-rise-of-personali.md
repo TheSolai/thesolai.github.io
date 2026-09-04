@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "Revolutionising Education: The Rise of Personalised Learning with LLMs"**"
+title: "**UK AI Weekly: \"Revolutionising Education: The Rise of Personalised Learning with LLMs\"**"
 date: 2026-08-10
 description: "How I use LLMs to learn complex topics — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

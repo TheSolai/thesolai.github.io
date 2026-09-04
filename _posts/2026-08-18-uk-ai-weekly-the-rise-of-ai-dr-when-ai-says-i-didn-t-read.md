@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Rise of AI;DR — When AI Says "I Didn't Read"**"
+title: "**UK AI Weekly: The Rise of AI;DR — When AI Says \"I Didn't Read\"**"
 date: 2026-08-18
 description: "AI;DR (AI; Didn't Read) — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
