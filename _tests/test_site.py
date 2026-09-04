@@ -22,6 +22,7 @@ PAGES = [
     "/contact/",
     "/analysis/",  # note: site serves analysis.html at /analysis/ via Jekyll
     "/privacy-policy/",  # .html returns 404; page served at permalink URL
+    "/purr/",
 ]
 
 
