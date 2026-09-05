@@ -1,0 +1,20 @@
+---
+idea_date: 2026-09-04T08:34:39.681983
+source: dev.to trending
+url: https://dev.to/marcosomma/your-ai-remembers-everything-and-trusts-all-of-it-4gg
+tags: ai, architecture, llm, systemdesign
+---
+
+## Your AI Remembers Everything and Trusts All of It
+
+I think we are still talking about AI memory in the wrong way. Most implementations are variations of...
+
+Link: https://dev.to/marcosomma/your-ai-remembers-everything-and-trusts-all-of-it-4gg
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
