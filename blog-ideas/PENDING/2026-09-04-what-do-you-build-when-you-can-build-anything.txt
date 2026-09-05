@@ -1,0 +1,20 @@
+---
+idea_date: 2026-09-04T08:34:39.679346
+source: dev.to trending
+url: https://dev.to/ale3oula/what-do-you-build-when-you-can-build-anything-4eg0
+tags: ai, productivity, discuss
+---
+
+## What do you build when you can build anything?
+
+My hot take is: Telling people that they have to build endlessly is very, very, very bad advice. If...
+
+Link: https://dev.to/ale3oula/what-do-you-build-when-you-can-build-anything-4eg0
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
