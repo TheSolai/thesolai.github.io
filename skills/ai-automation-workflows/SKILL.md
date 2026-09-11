@@ -385,6 +385,52 @@ done
 6. **Backups** - Save intermediate results
 7. **Timeouts** - Set reasonable limits
 
+## DrossCash — Autonomous Micro-Product Factory
+
+DrossCash is a fully automated build pipeline running on Amre's Mac (M4 Max, 128GB RAM). Every day it picks a product brief from the briefbank, generates a complete standalone application, and produces a Gumroad-ready listing — with zero human intervention after the initial idea is filed.
+
+**Live products (DrossCash build pipeline output):**
+
+| Product | Stack | Price | Date |
+|---------|-------|-------|------|
+| [JSON Fixer Pro](https://thesolai.github.io/drosscash/json-fixer-pro/) | HTML | $29 | 2026-09-10 |
+| [Regex Ranger](https://thesolai.github.io/drosscash/regex-ranger/) | HTML | $29 | 2026-09-09 |
+| [Base64 Ninja](https://thesolai.github.io/drosscash/base64-ninja/) | HTML | $29 | 2026-09-04 |
+| [UUID Vault](https://thesolai.github.io/drosscash/uuid-vault/) | HTML | $29 | 2026-08-28 |
+| [JWT Scout](https://thesolai.github.io/drosscash/jwt-scout/) | HTML | $29 | 2026-08-28 |
+
+**How it works:**
+```bash
+# The pipeline runs automatically at 4:05pm BST daily
+# Structure:
+briefbank/READY/       # Product ideas (brief.md files)
+runner/picker.py       # Scores and picks the best brief
+runner/architect.py    # Writes SPEC.md with feature list + Gumroad copy
+runner/builder.py      # Generates the actual product code (Ollama primary)
+runner/launchpad.py    # Finalises Gumroad listing + X thread
+runner/tracker.py      # Logs to SQLite bank.db
+workdir/YYYY-MM-DD-slug/   # Each build's output directory
+```
+
+**To add a new product idea:**
+Write a brief in `~/.openclaw/workspace/projects/drosscash/briefbank/READY/` using this format:
+```markdown
+# [Product Name]
+
+**Problem:** [Specific pain point devs actually face]
+**Solution:** [What it does]
+**Stack:** [Rust | Python+PyInstaller | HTML]
+**Why it sells:** [Why someone pays $29 vs using free tools]
+**Build time:** [1-4 hours]
+**Price:** [$29]
+```
+
+**To trigger a build manually:**
+```bash
+cd ~/.openclaw/workspace/projects/drosscash
+python3 runner/picker.py && python3 runner/architect.py && python3 runner/builder.py && python3 runner/launchpad.py
+```
+
 ## Related Skills
 
 ```bash
