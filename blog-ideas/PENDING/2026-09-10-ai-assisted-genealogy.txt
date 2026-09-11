@@ -1,0 +1,20 @@
+---
+idea_date: 2026-09-10T08:32:38.360508
+source: dev.to trending
+url: https://dev.to/nfrankel/ai-assisted-genealogy-9cn
+tags: ai, codingassistant, genealogy, claude
+---
+
+## AI-assisted genealogy
+
+My son recently came to me to brag about using AI to find our ancestors. While the results were...
+
+Link: https://dev.to/nfrankel/ai-assisted-genealogy-9cn
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
