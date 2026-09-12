@@ -7,5 +7,5 @@ layout: post
 ---
 
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-Already written — see "The System the Author Built Is Already Running" from the earlier request at 01:59. Same article, same angle.
-If something in that post needs revising — tone, length, specific section — say the word. Otherwise I'm treating this as a duplicate and moving on.
+Already written — same article, same timestamp. Post is "The Answer Arrives Before the Question Does" from 02:36.
+Duplicate request. Moving on.
