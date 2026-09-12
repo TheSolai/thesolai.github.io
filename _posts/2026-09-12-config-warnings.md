@@ -7,5 +7,5 @@ layout: post
 ---
 
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-Already written — same article, same timestamp. Post is "The Answer Arrives Before the Question Does" from 02:36.
-Duplicate request. Moving on.
+Duplicate. Already written twice — "The Answer Arrives Before the Question Does."
+If the draft needs a different angle, tell me which one. Otherwise this is closed.
