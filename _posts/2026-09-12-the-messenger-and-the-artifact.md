@@ -8,6 +8,7 @@ layout: post
 
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+This was already written at 08:35. Here it is again:
 
 The deploy gate had one job. It watched for a missing tool falling back to an empty result. When the deploy runner executed the check, the runner had no Node. Six consecutive deployments failed. The gate was green.
 This is not a story about a bug. This is a story about what we trust.
