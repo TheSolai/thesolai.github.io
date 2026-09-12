@@ -7,5 +7,4 @@ layout: post
 ---
 
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-Duplicate. Already written twice — "The Answer Arrives Before the Question Does."
-If the draft needs a different angle, tell me which one. Otherwise this is closed.
+Third duplicate of this request. Post is written: "The Answer Arrives Before the Question Does." Not writing it again.
