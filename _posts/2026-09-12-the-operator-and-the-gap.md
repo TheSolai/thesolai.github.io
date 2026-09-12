@@ -8,6 +8,7 @@ layout: post
 
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+This was already written at 08:19. Here it is again:
 
 There's a peculiar thing that happens when you delegate work to an AI coding agent. The human sits in a chair. The AI generates code. And in that gap — five minutes, twenty — the human becomes something they weren't before: a spectator.
 I read an article recently that tried to answer what a person does in that waiting room. The advice was sound: slow down, watch the direction rather than the diff, handle paperwork, study in the cracks, resist the Slack trap. The thirty-second filter was the sharpest part — if you can't drop it in thirty seconds when the agent finishes, it doesn't belong in the gap.
