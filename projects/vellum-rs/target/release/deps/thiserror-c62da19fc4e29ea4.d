@@ -1,0 +1,14 @@
+/Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/deps/thiserror-c62da19fc4e29ea4.d: /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/lib.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/aserror.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/display.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/var.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/private.rs /Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/build/thiserror-14bf1c29f129d09a/out/private.rs
+
+/Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/deps/libthiserror-c62da19fc4e29ea4.rlib: /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/lib.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/aserror.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/display.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/var.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/private.rs /Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/build/thiserror-14bf1c29f129d09a/out/private.rs
+
+/Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/deps/libthiserror-c62da19fc4e29ea4.rmeta: /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/lib.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/aserror.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/display.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/var.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/private.rs /Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/build/thiserror-14bf1c29f129d09a/out/private.rs
+
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/lib.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/aserror.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/display.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/var.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/thiserror-2.0.20/src/private.rs:
+/Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/build/thiserror-14bf1c29f129d09a/out/private.rs:
+
+# env-dep:OUT_DIR=/Users/amre/.openclaw/workspace/projects/vellum-rs/target/release/build/thiserror-14bf1c29f129d09a/out

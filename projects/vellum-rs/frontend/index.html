@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vellum</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f3f0eb;
+      --surface: #ffffff;
+      --border: #d9d4cc;
+      --text: #1a1814;
+      --text-muted: #6a6460;
+      --accent: #2d5a3d;
+      --accent-light: #e8f0eb;
+      --overlay: rgba(243,240,235,0.95);
+      --font: 'Georgia', 'Times New Roman', serif;
+      --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── Topbar ── */
+    #topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    #logo {
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.3px;
+      color: var(--accent);
+    }
+
+    #filename {
+      color: var(--text-muted);
+      font-size: 12px;
+      flex: 1;
+    }
+
+    #filename.dirty::after { content: " ·"; }
+
+    #wordcount {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .btn {
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 12px;
+      font-family: var(--font-ui);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn:hover { background: var(--bg); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .btn-primary:hover { background: #234a31; }
+
+    /* ── Writing Area ── */
+    #editor-wrap {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+
+    #editor {
+      width: 100%;
+      max-width: 680px;
+      min-height: calc(100vh - 160px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 48px 56px;
+      font-family: var(--font);
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+      outline: none;
+      caret-color: var(--accent);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    #editor:empty::before {
+      content: "Start writing… or type /AI for help";
+      color: #6a6460;
+      font-style: italic;
+      pointer-events: none;
+    }
+
+    #editor:focus { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+    /* ── Command Bar ── */
+    #cmdbar {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: #fff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      min-width: 320px;
+      max-width: 520px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    #cmdbar input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      outline: none;
+    }
+
+    #cmdbar input::placeholder { color: rgba(255,255,255,0.4); }
+
+    #cmdbar-hint {
+      margin-top: 8px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    #cmdbar-hint kbd {
+      background: rgba(255,255,255,0.15);
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-family: var(--font-ui);
+    }
+
+    /* ── Status pill ── */
+    #status-pill {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      z-index: 50;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+    .dot.online { background: #3cb371; }
+    .dot.fixing { background: #e8a020; animation: pulse 0.8s infinite; }
+    .dot.offline { background: #e05050; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── Fix overlay ── */
+    #fix-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--overlay);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #fix-overlay.visible { display: flex; }
+
+    .fix-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 40px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    }
+
+    .fix-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .fix-title {
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .fix-sub {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Diff view */
+    #diff-view {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 32px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 60vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    }
+
+    #diff-view.visible { display: block; }
+
+    .diff-header {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .diff-btn {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-size: 13px;
+    }
+
+    .diff-btn.accept { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    del { background: #fdd; color: #c00; text-decoration: none; padding: 1px 4px; border-radius: 3px; }
+    ins { background: #dfd; color: #080; text-decoration: none; padding: 1px 4px; border-radius: 3px; }
+
+    /* Export modal */
+    #export-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 300;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #export-modal.visible { display: flex; }
+
+    .modal-box {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 28px 32px;
+      width: 360px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.2);
+    }
+
+    .modal-box h3 {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .modal-option {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      text-align: left;
+      cursor: pointer;
+      margin-bottom: 8px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+
+    .modal-option:hover { background: var(--accent-light); border-color: var(--accent); }
+
+    .modal-cancel {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-ui);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .modal-cancel:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div id="topbar">
+    <span id="logo">Vellum</span>
+    <span id="filename">[new file]</span>
+    <span id="wordcount">0 words</span>
+    <button class="btn" id="btn-save">Save</button>
+    <button class="btn" id="btn-export">Export</button>
+  </div>
+
+  <!-- Writing area -->
+  <div id="editor-wrap">
+    <div id="editor" contenteditable="true" spellcheck="true"></div>
+  </div>
+
+  <!-- Command bar (slash commands) -->
+  <div id="cmdbar">
+    <input id="cmd-input" placeholder="Type a command… /AI /extend /save /export /new" autocomplete="off">
+    <div id="cmdbar-hint">
+      <kbd>Enter</kbd> run &nbsp;·&nbsp; <kbd>Esc</kbd> dismiss
+    </div>
+  </div>
+
+  <!-- (No more diff overlay — fixes are applied in place.) -->
+
+  <!-- Export modal -->
+  <div id="export-modal">
+    <div class="modal-box">
+      <h3>Export as…</h3>
+      <button class="modal-option" onclick="doExport('fountain')">📄 Fountain (.fountain)</button>
+      <button class="modal-option" onclick="doExport('epub')">📚 EPUB (.epub) — for Vellum / Kindle</button>
+      <button class="modal-option" onclick="doExport('mobi')">📖 MOBI (.mobi) — Kindle format</button>
+      <button class="modal-cancel" onclick="closeExport()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Status pill -->
+  <div id="status-pill">
+    <span class="dot" id="status-dot"></span>
+    <span id="status-text">Checking Ollama…</span>
+  </div>
+
+<script>
+  // ── Visible error reporter so silent JS failures show up in the UI ───────────
+  function showFatal(msg) {
+    let el = document.getElementById('fatal-error');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'fatal-error';
+      el.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#c00;color:#fff;padding:12px 20px;font-family:ui-monospace,monospace;font-size:13px;z-index:99999;white-space:pre-wrap;border-bottom:2px solid #800;';
+      document.body.appendChild(el);
+    }
+    el.textContent = '⚠ ' + msg;
+    console.error(msg);
+  }
+  window.addEventListener('error', (e) => showFatal(e.error?.stack || e.message));
+  window.addEventListener('unhandledrejection', (e) => showFatal('Promise: ' + (e.reason?.stack || e.reason)));
+
+  // Tauri injects __TAURI__ via a global script that runs BEFORE ours in
+  // Tauri 2.x — but only when withGlobalTauri=true in tauri.conf.json.
+  // If it's missing, surface that loudly rather than crashing silently.
+  if (!window.__TAURI__) {
+    showFatal('window.__TAURI__ is not defined. Set app.withGlobalTauri=true in tauri.conf.json and rebuild.');
+  } else if (!window.__TAURI__.core || !window.__TAURI__.core.invoke) {
+    showFatal('window.__TAURI__.core.invoke is missing. Tauri 2.x global API surface is incomplete.');
+  } else {
+    console.log('[vellum] __TAURI__ present, core.invoke =', typeof window.__TAURI__.core.invoke);
+  }
+
+  // Defensive: only destructure if present.
+  const invoke = window.__TAURI__?.core?.invoke;
+  const getCurrentWindow = window.__TAURI__?.window?.getCurrentWindow;
+
+  // ── State ──────────────────────────────────────────────────────────────────
+  let currentFile = null;
+  let isDirty = false;
+  let originalParagraph = '';
+  let pendingFixResult = '';
+  let autosaveTimer = null;
+  let ollamaOnline = false;
+  let invokeReady = typeof invoke === 'function';
+
+  const editor = document.getElementById('editor');
+  const filenameEl = document.getElementById('filename');
+  const wordcountEl = document.getElementById('wordcount');
+  const statusDot = document.getElementById('status-dot');
+  const statusText = document.getElementById('status-text');
+  const cmdbar = document.getElementById('cmdbar');
+  const cmdInput = document.getElementById('cmd-input');
+  // (diff overlay removed — fixes are applied in-place now.)
+  const exportModal = document.getElementById('export-modal');
+
+  // ── Init ─────────────────────────────────────────────────────────────────────
+  async function init() {
+    // Tiny status badge so the user can see init completed even before any UI feedback.
+    const badge = document.createElement('div');
+    badge.id = 'init-badge';
+    badge.style.cssText = 'position:fixed;bottom:8px;left:50%;transform:translateX(-50%);background:#2d5a3d;color:#fff;padding:4px 12px;border-radius:10px;font-family:ui-monospace,monospace;font-size:11px;z-index:9999;opacity:1;transition:opacity 1s 2s;pointer-events:none;';
+    badge.textContent = invokeReady ? '✓ Vellum ready' : '⚠ Vellum ready (no IPC)';
+    document.body.appendChild(badge);
+    setTimeout(() => badge.style.opacity = '0', 100);
+    setTimeout(() => badge.remove(), 4000);
+
+    if (!invokeReady) {
+      showFatal('Tauri IPC not available. Hotkeys will work but AI commands won\'t reach Rust.');
+    }
+
+    checkOllama();
+    loadDraft();
+    editor.addEventListener('input', onInput);
+    editor.addEventListener('paste', onPaste);
+
+    // Focus the editor so keystrokes land there. Use setTimeout so the
+    // loadDraft async chain can populate text first.
+    setTimeout(() => { editor.focus(); }, 100);
+    document.getElementById('btn-save').addEventListener('click', saveFile);
+    document.getElementById('btn-export').addEventListener('click', () => exportModal.classList.add('visible'));
+    cmdInput.addEventListener('keydown', onCmdKeydown);
+    autosaveTimer = setInterval(autosave, 30000);
+    updateWordcount();
+  }
+
+  // ── Ollama status ────────────────────────────────────────────────────────────
+  async function checkOllama() {
+    try {
+      const online = await invoke('check_ollama');
+      ollamaOnline = online;
+      setStatus(online ? 'online' : 'offline', online ? 'Ollama connected' : 'Ollama offline');
+    } catch {
+      setStatus('offline', 'Ollama offline');
+    }
+  }
+
+  function setStatus(state, text) {
+    statusDot.className = 'dot ' + state;
+    statusText.textContent = text;
+  }
+
+  // ── Word count ────────────────────────────────────────────────────────────────
+  function updateWordcount() {
+    const text = editor.innerText || '';
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    wordcountEl.textContent = words + ' word' + (words !== 1 ? 's' : '');
+  }
+
+  function onInput() {
+    isDirty = true;
+    filenameEl.classList.toggle('dirty', true);
+    updateWordcount();
+  }
+
+  // ── Keyboard handling ────────────────────────────────────────────────────────
+  // Single document-level keydown listener (capture phase) so hotkeys work
+  // regardless of which element has focus. preventDefault stops the browser's
+  // default action (e.g. Tab moving focus out of contenteditable).
+  function isCmdInputFocused() { return document.activeElement === cmdInput; }
+
+  document.addEventListener('keydown', async (e) => {
+    // If user is typing in the command bar's input, leave them alone.
+    if (isCmdInputFocused()) return;
+
+    // / → command bar
+    if (e.key === '/') {
+      e.preventDefault();
+      e.stopPropagation();
+      openCmdbar();
+      return;
+    }
+
+    // Tab → AI fix the current paragraph in place
+    if (e.key === 'Tab' && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      const para = getCurrentParagraph();
+      if (para && para.trim()) {
+        runFix(para);
+      } else {
+        showToast('Nothing to fix on an empty line');
+      }
+      return;
+    }
+
+    // Cmd/Ctrl+S/E/N
+    if ((e.ctrlKey || e.metaKey) && !e.altKey) {
+      const k = e.key.toLowerCase();
+      if (k === 's') { e.preventDefault(); saveFile(); return; }
+      if (k === 'e') { e.preventDefault(); exportModal.classList.add('visible'); return; }
+      if (k === 'n') { e.preventDefault(); newFile(); return; }
+    }
+  }, true);
+
+  // Legacy alias (kept so anything else in the file still compiles).
+  async function onKeydown(e) { /* handled at document level above */ }
+
+  // ── Slash commands ─────────────────────────────────────────────────────────
+  function openCmdbar() {
+    cmdbar.style.display = 'block';
+    cmdInput.value = '/';
+    cmdInput.focus();
+    setTimeout(() => cmdInput.selectionStart = 1, 0);
+  }
+
+  function closeCmdbar() {
+    cmdbar.style.display = 'none';
+    cmdInput.value = '';
+    editor.focus();
+  }
+
+  async function onCmdKeydown(e) {
+    if (e.key === 'Escape') { closeCmdbar(); return; }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      await runCommand(cmdInput.value.trim());
+      closeCmdbar();
+    }
+  }
+
+  async function runCommand(cmd) {
+    const parts = cmd.match(/(\S+)(.*)/);
+    if (!parts) return;
+    const [raw, command, rest] = parts;
+    const args = rest.trim();
+
+    switch (command.toLowerCase()) {
+      case '/ai':
+      case '/help':
+        showAIHelp();
+        break;
+      case '/extend':
+        await extendProse(args);
+        break;
+      case '/fix':
+      case '/improve': {
+        const sel = window.getSelection().toString().trim() || getCurrentParagraph();
+        if (sel) await runFix(sel);
+        break;
+      }
+      case '/save':
+        await saveFile();
+        break;
+      case '/export':
+        exportModal.classList.add('visible');
+        break;
+      case '/new':
+        newFile();
+        break;
+      case '/wc':
+        alert(wordcountEl.textContent);
+        break;
+      default:
+        // If not a known command, treat as /extend
+        if (command.startsWith('/')) {
+          await extendProse(cmd);
+        }
+    }
+  }
+
+  async function extendProse(hint) {
+    const text = getCurrentParagraph();
+    await runExtend(text, hint || '');
+  }
+
+  // ── AI Fix (in-place, no diff page) ──────────────────────────────────────────
+  // Tab (or /fix / /improve) → AI rewrite → replaces current paragraph in place.
+  // Shows a brief "✦ Fixing…" toast, then swaps the text, then "✦ Fixed" toast.
+  // User can undo with Cmd+Z if they don't like it.
+  let lastUndo = null;  // { start: caret offset, before: string, after: string }
+
+  function showToast(text, kind = 'info') {
+    let t = document.getElementById('vellum-toast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'vellum-toast';
+      t.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#2d5a3d;color:#fff;padding:8px 16px;border-radius:18px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:13px;z-index:9000;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:opacity 0.3s;pointer-events:none;';
+      document.body.appendChild(t);
+    }
+    t.textContent = text;
+    t.style.background = kind === 'error' ? '#b03030' : '#2d5a3d';
+    t.style.opacity = '1';
+    if (t._timer) clearTimeout(t._timer);
+    t._timer = setTimeout(() => { t.style.opacity = '0'; }, 1600);
+  }
+
+  async function runFix(text) {
+    if (!invokeReady) { showToast('IPC not ready', 'error'); return; }
+    if (!ollamaOnline) { showToast('Ollama offline — start `ollama serve`', 'error'); return; }
+    if (!text || !text.trim()) { showToast('Nothing to fix'); return; }
+
+    showToast('✦ Fixing…');
+    setStatus('fixing', 'Fixing…');
+
+    try {
+      const result = await invoke('fix_prose', { text: text });
+      // Snapshot for Cmd+Z
+      lastUndo = { before: text, after: result };
+      replaceCurrentParagraph(result);
+      showToast('✦ Fixed — Cmd+Z to undo');
+      setStatus(ollamaOnline ? 'online' : 'offline',
+                ollamaOnline ? 'Ollama connected' : 'Ollama offline');
+    } catch(err) {
+      showToast('Fix failed: ' + err, 'error');
+      setStatus(ollamaOnline ? 'online' : 'offline',
+                ollamaOnline ? 'Ollama connected' : 'Ollama offline');
+    }
+  }
+
+  async function runExtend(text, hint) {
+    if (!invokeReady) { showToast('IPC not ready', 'error'); return; }
+    if (!ollamaOnline) { showToast('Ollama offline — start `ollama serve`', 'error'); return; }
+
+    showToast('✦ Extending…');
+    setStatus('fixing', 'Extending…');
+
+    try {
+      const result = await invoke('extend_prose', { text, hint });
+      lastUndo = { before: text, after: text + ' ' + result };
+      // Extend appends to the current paragraph
+      replaceCurrentParagraph(text + ' ' + result);
+      showToast('✦ Extended — Cmd+Z to undo');
+      setStatus(ollamaOnline ? 'online' : 'offline',
+                ollamaOnline ? 'Ollama connected' : 'Ollama offline');
+    } catch(err) {
+      showToast('Extend failed: ' + err, 'error');
+      setStatus(ollamaOnline ? 'online' : 'offline',
+                ollamaOnline ? 'Ollama connected' : 'Ollama offline');
+    }
+  }
+
+  // Cmd+Z undoes the last AI fix. (Separate listener so it coexists with Tab.)
+  document.addEventListener('keydown', (e) => {
+    if (isCmdInputFocused()) return;
+    if ((e.metaKey || e.ctrlKey) && (e.key === 'z' || e.key === 'Z') && !e.shiftKey && lastUndo) {
+      const { before } = lastUndo;
+      lastUndo = null;
+      replaceCurrentParagraph(before);
+      showToast('↶ Undone');
+      e.preventDefault();
+    }
+  }, true);
+
+  // ── Text helpers ────────────────────────────────────────────────────────────
+  // The editor is a single contenteditable div — there's no DOM paragraph
+  // boundary. We treat "\n" as the paragraph separator. To find the current
+  // paragraph we compute the cursor's character offset in the editor text,
+  // then split on \n and pick the chunk containing that offset.
+  function getCursorCharOffset() {
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return 0;
+    // Build a Range from start of editor to cursor to measure offset.
+    const range = document.createRange();
+    range.setStart(editor, 0);
+    range.setEnd(sel.anchorNode, sel.anchorOffset);
+    // range.toString() gives the plain text up to the cursor.
+    return range.toString().length;
+  }
+
+  function getCurrentParagraph() {
+    const text = editor.innerText || '';
+    const offset = getCursorCharOffset();
+    // Walk back to the previous \n (or start).
+    let start = text.lastIndexOf('\n', offset - 1);
+    start = start < 0 ? 0 : start + 1;
+    // Walk forward to the next \n (or end).
+    let end = text.indexOf('\n', offset);
+    if (end < 0) end = text.length;
+    return text.slice(start, end);
+  }
+
+  // Replace just the current paragraph (between surrounding \n's) with newText.
+  // Preserves the rest of the document and re-positions the cursor at the end
+  // of the replacement.
+  function replaceCurrentParagraph(newText) {
+    const text = editor.innerText || '';
+    const offset = getCursorCharOffset();
+    let start = text.lastIndexOf('\n', offset - 1);
+    start = start < 0 ? 0 : start + 1;
+    let end = text.indexOf('\n', offset);
+    if (end < 0) end = text.length;
+
+    const before = text.slice(0, start);
+    const after = text.slice(end);
+    editor.innerText = before + newText + after;
+
+    // Place cursor at the end of the new paragraph.
+    const target = (before + newText).length;
+    const range = document.createRange();
+    const sel = window.getSelection();
+    if (editor.firstChild && editor.firstChild.nodeType === Node.TEXT_NODE) {
+      range.setStart(editor.firstChild, Math.min(target, editor.firstChild.length));
+      range.collapse(true);
+    } else {
+      range.setStart(editor, 0);
+      range.collapse(true);
+    }
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    onInput();
+  }
+
+  function makeDiff(oldText, newText) {
+    // Simple line-based diff display
+    const oldLines = oldText.split('\n');
+    const newLines = newText.split('\n');
+    let html = '';
+
+    // Very simple diff: show old struck through, new underlined
+    if (oldText !== newText) {
+      html = `<del>${escapeHtml(oldText)}</del>\n<ins>${escapeHtml(newText)}</ins>`;
+    } else {
+      html = escapeHtml(newText);
+    }
+    return html;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function getCursorLineText() {
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return '';
+    let node = sel.anchorNode;
+    if (!node) return '';
+    // Get text content up to cursor
+    if (node.nodeType === Node.TEXT_NODE) {
+      return node.textContent.substring(0, sel.anchorOffset);
+    }
+    return '';
+  }
+
+  // ── File ops ───────────────────────────────────────────────────────────────
+  async function saveFile() {
+    const text = editor.innerText;
+    try {
+      const result = await invoke('save_file', { text: text, filename: currentFile });
+      currentFile = result;
+      filenameEl.textContent = result;
+      isDirty = false;
+      filenameEl.classList.remove('dirty');
+    } catch(err) {
+      alert('Save failed: ' + err);
+    }
+  }
+
+  function autosave() {
+    if (isDirty) saveFile();
+  }
+
+  async function loadDraft() {
+    try {
+      const result = await invoke('load_draft');
+      if (result && result.text) {
+        editor.innerText = result.text;
+        currentFile = result.filename;
+        filenameEl.textContent = result.filename || '[draft]';
+        updateWordcount();
+      }
+    } catch {}
+  }
+
+  function newFile() {
+    if (isDirty && !confirm('Discard unsaved changes?')) return;
+    editor.innerText = '';
+    currentFile = null;
+    filenameEl.textContent = '[new file]';
+    filenameEl.classList.remove('dirty');
+    isDirty = false;
+    updateWordcount();
+    editor.focus();
+  }
+
+  // ── Paste ──────────────────────────────────────────────────────────────────
+  function onPaste(e) {
+    // Let browser handle normal paste
+  }
+
+  // ── Export ─────────────────────────────────────────────────────────────────
+  async function doExport(fmt) {
+    exportModal.classList.remove('visible');
+    const text = editor.innerText;
+    try {
+      const result = await invoke('export_file', { text: text, format: fmt });
+      alert('Exported: ' + result);
+    } catch(err) {
+      alert('Export failed: ' + err);
+    }
+  }
+
+  function closeExport() {
+    exportModal.classList.remove('visible');
+  }
+
+  // ── AI Help overlay ─────────────────────────────────────────────────────────
+  function showAIHelp() {
+    const help = `
+Commands:
+  /AI            — Show this help
+  /extend [text] — Extend current paragraph (optionally with a hint)
+  /fix           — Fix current paragraph (AI improvement)
+  Tab            — Same as /fix: improve the current paragraph
+  /save          — Save the current file
+  /export        — Open export options
+  /new           — Start a new file
+  /wc            — Show word count
+
+Tip: Select any text and press Tab to improve just that selection.
+    `.trim();
+    alert(help);
+  }
+
+  // ── Resize handle for fullscreen ────────────────────────────────────────────
+  document.addEventListener('keydown', async (e) => {
+    if (e.key === 'F11' || (e.key === 'f' && e.ctrlKey && e.shiftKey)) {
+      e.preventDefault();
+      const win = getCurrentWindow();
+      const isFull = await win.isFullscreen();
+      win.setFullscreen(!isFull);
+    }
+  });
+
+  // ── Window close warning ─────────────────────────────────────────────────────
+  window.addEventListener('beforeunload', (e) => {
+    if (isDirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+
+  init();
+</script>
+</body>
+</html>
