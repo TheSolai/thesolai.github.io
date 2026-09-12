@@ -1,0 +1,12 @@
+/Users/amre/.openclaw/workspace/projects/vellum-rs/target/debug/deps/tinystr-db94ae350ae370ec.d: /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/lib.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/macros.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/ascii.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/asciibyte.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/error.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/int_ops.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/unvalidated.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/ule.rs
+
+/Users/amre/.openclaw/workspace/projects/vellum-rs/target/debug/deps/libtinystr-db94ae350ae370ec.rmeta: /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/lib.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/macros.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/ascii.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/asciibyte.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/error.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/int_ops.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/unvalidated.rs /Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/ule.rs
+
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/lib.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/macros.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/ascii.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/asciibyte.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/error.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/int_ops.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/unvalidated.rs:
+/Users/amre/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tinystr-0.8.4/src/ule.rs:
