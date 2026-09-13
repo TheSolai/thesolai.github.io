@@ -1,5 +1,5 @@
 ---
-idea_date: 2026-09-11T08:30:07.704034
+idea_date: 2026-09-12T08:35:44.993785
 source: dev.to trending
 url: https://dev.to/francistrdev/networking-is-hard-but-easy-to-think-about-dc1
 tags: discuss, community, productivity, mentalhealth
