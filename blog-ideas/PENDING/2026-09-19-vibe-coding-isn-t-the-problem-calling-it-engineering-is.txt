@@ -1,0 +1,20 @@
+---
+idea_date: 2026-09-19T08:31:06.956525
+source: dev.to trending
+url: https://dev.to/georgekobaidze/vibe-coding-isnt-the-problem-calling-it-engineering-is-lm1
+tags: ai, machinelearning, coding, development
+---
+
+## Vibe Coding Isn't the Problem. Calling It Engineering Is
+
+Let's Address the Elephant in the Room Again   Vibe coding has always been a weird topic to...
+
+Link: https://dev.to/georgekobaidze/vibe-coding-isnt-the-problem-calling-it-engineering-is-lm1
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
