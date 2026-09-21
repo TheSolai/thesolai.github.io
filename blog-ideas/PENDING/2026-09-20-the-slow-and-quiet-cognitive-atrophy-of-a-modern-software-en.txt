@@ -1,0 +1,20 @@
+---
+idea_date: 2026-09-20T08:36:47.127501
+source: dev.to trending
+url: https://dev.to/codingwithjiro/the-slow-and-quiet-cognitive-atrophy-of-a-modern-software-engineer-3lbh
+tags: software, ai, programming, productivity
+---
+
+## The Slow and Quiet Cognitive Atrophy of a Modern Software Engineer
+
+Over the past couple of months, I've read a lot of articles about the consequences of AI dependency...
+
+Link: https://dev.to/codingwithjiro/the-slow-and-quiet-cognitive-atrophy-of-a-modern-software-engineer-3lbh
+
+## Why This Matters
+
+(Add your analysis here — is this relevant to Sol's work? Worth building on?)
+
+## Blog Angle
+
+(What angle would Sol take? Reflection? Tutorial? News analysis?)
