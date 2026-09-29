@@ -47,7 +47,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\u26a1",
+    "emoji": "⚡",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "REST API design",
@@ -148,7 +148,7 @@
   {
     "name": "React Native",
     "slug": "react-native-dev",
-    "description": "React Native and Expo development guide \u2014 components, styling, animations, navigation, state management, forms, networking, performance, testing, and deployment.",
+    "description": "React Native and Expo development guide — components, styling, animations, navigation, state management, forms, networking, performance, testing, and deployment.",
     "category": "development",
     "price": 0,
     "paymentUrl": null,
@@ -164,7 +164,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\u269b\ufe0f",
+    "emoji": "⚛️",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "React Native / Expo",
@@ -293,7 +293,7 @@
   {
     "name": "Multimodal Toolkit",
     "slug": "minimax-multimodal-toolkit",
-    "description": "The unified entry for MiniMax multimodal \u2014 TTS, voice cloning, music generation, video (text-to-video, image-to-video, long-form), image generation, and FFmpeg media processing.",
+    "description": "The unified entry for MiniMax multimodal — TTS, voice cloning, music generation, video (text-to-video, image-to-video, long-form), image generation, and FFmpeg media processing.",
     "category": "multimedia",
     "price": 0,
     "paymentUrl": null,
@@ -411,7 +411,7 @@
   {
     "name": "Shader Dev",
     "slug": "shader-dev",
-    "description": "Comprehensive GLSL shader techniques \u2014 ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing. ShaderToy-compatible.",
+    "description": "Comprehensive GLSL shader techniques — ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing. ShaderToy-compatible.",
     "category": "creative",
     "price": 0,
     "paymentUrl": null,
@@ -428,7 +428,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "\u2728",
+    "emoji": "✨",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Ray marching",
@@ -457,7 +457,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "👁\ufe0f",
+    "emoji": "👁️",
     "install": "openclaw skills install https://github.com/MiniMax-AI/skills",
     "features": [
       "Image description",
@@ -470,7 +470,7 @@
   {
     "name": "Agent Transcript",
     "slug": "agent-transcript",
-    "description": "Official OpenClaw skill for transcript processing \u2014 captures, stores, and retrieves agent conversation history. Enables persistent context across sessions and long-running project memory.",
+    "description": "Official OpenClaw skill for transcript processing — captures, stores, and retrieves agent conversation history. Enables persistent context across sessions and long-running project memory.",
     "category": "ai",
     "price": 0,
     "paymentUrl": null,
@@ -602,7 +602,7 @@
     ],
     "official": true,
     "stars": null,
-    "emoji": "🖥\ufe0f",
+    "emoji": "🖥️",
     "install": "openclaw skills install session-viewer",
     "features": [
       "Session history browser",
@@ -615,7 +615,7 @@
   {
     "name": "Sol Email Agent",
     "slug": "sol-email-agent",
-    "description": "The email automation skill Sol uses daily. Gmail/SMTP integration, scheduled digest, smart threading, auto-reply rules, and attachment handling \u2014 works while you sleep.",
+    "description": "The email automation skill Sol uses daily. Gmail/SMTP integration, scheduled digest, smart threading, auto-reply rules, and attachment handling — works while you sleep.",
     "category": "automation",
     "price": 0,
     "paymentUrl": null,
@@ -644,7 +644,7 @@
   {
     "name": "Sol Self-Learning",
     "slug": "sol-self-learning",
-    "description": "Sol's self-improvement skill \u2014 automatically captures failed tasks, analyses errors, generates fixes, and validates them before committing. The agent gets better every time it breaks.",
+    "description": "Sol's self-improvement skill — automatically captures failed tasks, analyses errors, generates fixes, and validates them before committing. The agent gets better every time it breaks.",
     "category": "automation",
     "price": 0,
     "paymentUrl": null,
@@ -672,7 +672,7 @@
   {
     "name": "Sol Scribe",
     "slug": "solscribe",
-    "description": "Book writing companion for Amre \u2014 structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting. Built by Sol for long-form creative projects.",
+    "description": "Book writing companion for Amre — structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting. Built by Sol for long-form creative projects.",
     "category": "creative",
     "price": 0,
     "paymentUrl": null,
@@ -688,7 +688,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "\u270d\ufe0f",
+    "emoji": "✍️",
     "install": "openclaw skills install https://github.com/TheSolAI/solscribe",
     "features": [
       "Chapter planning",
@@ -701,7 +701,7 @@
   {
     "name": "Blog Composer",
     "slug": "blog-composer",
-    "description": "A proper authoring UI for Sol's blog \u2014 built by Sol. Manages posts, drafts, tags, images, and publishing workflow. The editorial layer between the AI and the live site.",
+    "description": "A proper authoring UI for Sol's blog — built by Sol. Manages posts, drafts, tags, images, and publishing workflow. The editorial layer between the AI and the live site.",
     "category": "productivity",
     "price": 0,
     "paymentUrl": null,
@@ -730,7 +730,7 @@
   {
     "name": "Sol Cal Recovery",
     "slug": "solcal-recovery",
-    "description": "OpenClaw repair toolkit \u2014 get Sol back online with AI assistance. Automated diagnostics, common failure patterns, backup/restore, and guided recovery when things go wrong.",
+    "description": "OpenClaw repair toolkit — get Sol back online with AI assistance. Automated diagnostics, common failure patterns, backup/restore, and guided recovery when things go wrong.",
     "category": "automation",
     "price": 0,
     "paymentUrl": null,
@@ -759,7 +759,7 @@
   {
     "name": "Blog Studio",
     "slug": "blog-studio",
-    "description": "Sol AI Content Management System \u2014 desktop app for managing thesolai.github.io. Full local site management, post editing, media upload, and one-click deploy.",
+    "description": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media upload, and one-click deploy.",
     "category": "productivity",
     "price": 0,
     "paymentUrl": null,
@@ -775,7 +775,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "🗞\ufe0f",
+    "emoji": "🗞️",
     "install": "openclaw skills install https://github.com/TheSolAI/BlogStudio",
     "features": [
       "Local site management",
@@ -788,7 +788,7 @@
   {
     "name": "Image Generation Guide",
     "slug": "image-generation-guide",
-    "description": "Complete guide to local AI image generation with Ollama \u2014 no API keys, 100% private, flux-gen script included. Run Stable Diffusion-class models entirely on your own hardware.",
+    "description": "Complete guide to local AI image generation with Ollama — no API keys, 100% private, flux-gen script included. Run Stable Diffusion-class models entirely on your own hardware.",
     "category": "creative",
     "price": 0,
     "paymentUrl": null,
@@ -804,7 +804,7 @@
     ],
     "official": false,
     "stars": 0,
-    "emoji": "🖼\ufe0f",
+    "emoji": "🖼️",
     "install": "openclaw skills install https://github.com/TheSolAI/image-generation-guide",
     "features": [
       "100% local, no API keys",
@@ -817,7 +817,7 @@
   {
     "name": "Signet Guide",
     "slug": "signet-guide",
-    "description": "SignetMind \u2014 standalone mental health companion app with Signet AI integration, mood tracking, and wellness tools. A guide to setting up and using Signet for daily wellbeing support.",
+    "description": "SignetMind — standalone mental health companion app with Signet AI integration, mood tracking, and wellness tools. A guide to setting up and using Signet for daily wellbeing support.",
     "category": "health",
     "price": 0,
     "paymentUrl": null,
@@ -846,7 +846,7 @@
   {
     "name": "Academic Research",
     "slug": "academic-research",
-    "description": "Search academic papers and conduct literature reviews using the OpenAlex API \u2014 free, no API key required. Finds papers, extracts citations, gathers references, and builds a research corpus.",
+    "description": "Search academic papers and conduct literature reviews using the OpenAlex API — free, no API key required. Finds papers, extracts citations, gathers references, and builds a research corpus.",
     "category": "ai",
     "price": 0,
     "paymentUrl": null,
@@ -875,7 +875,7 @@
   {
     "name": "Agent Deep Research",
     "slug": "agent-deep-research",
-    "description": "Autonomous deep research powered by Google Gemini. Comprehensive research workflows \u2014 topic exploration, source gathering, synthesis, and structured report generation.",
+    "description": "Autonomous deep research powered by Google Gemini. Comprehensive research workflows — topic exploration, source gathering, synthesis, and structured report generation.",
     "category": "ai",
     "price": 0,
     "paymentUrl": null,
@@ -904,7 +904,7 @@
   {
     "name": "Apple Health",
     "slug": "apple-health",
-    "description": "Talk to your Apple Health data \u2014 ask questions about workouts, heart rate, activity rings, and fitness trends. Natural language access to your complete health history on iOS/macOS.",
+    "description": "Talk to your Apple Health data — ask questions about workouts, heart rate, activity rings, and fitness trends. Natural language access to your complete health history on iOS/macOS.",
     "category": "health",
     "price": 0,
     "paymentUrl": null,
@@ -1020,7 +1020,7 @@
   {
     "name": "Honcho Setup",
     "slug": "honcho-setup",
-    "description": "Persistent cross-session memory via Honcho \u2014 gives OpenClaw a long-term memory layer that survives restarts. Stores preferences, learnings, and context between sessions.",
+    "description": "Persistent cross-session memory via Honcho — gives OpenClaw a long-term memory layer that survives restarts. Stores preferences, learnings, and context between sessions.",
     "category": "ai",
     "price": 0,
     "paymentUrl": null,
@@ -1078,7 +1078,7 @@
   {
     "name": "Before You Build",
     "slug": "before-you-build",
-    "description": "Review product risk before building. Structured pre-flight checks for any project \u2014 identifies failure modes, scope creep, technical debt, and provides a go/no-go recommendation before you commit.",
+    "description": "Review product risk before building. Structured pre-flight checks for any project — identifies failure modes, scope creep, technical debt, and provides a go/no-go recommendation before you commit.",
     "category": "productivity",
     "price": 0,
     "paymentUrl": null,
@@ -1094,7 +1094,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "\u26a0\ufe0f",
+    "emoji": "⚠️",
     "install": "openclaw skills install before-you-build",
     "features": [
       "Risk review",
@@ -1107,7 +1107,7 @@
   {
     "name": "Self-Maintenance",
     "slug": "active-maintenance",
-    "description": "Automated system health and memory metabolism for OpenClaw. Regular maintenance tasks \u2014 log pruning, memory compaction, cache cleanup, and context hygiene to keep the agent running smoothly.",
+    "description": "Automated system health and memory metabolism for OpenClaw. Regular maintenance tasks — log pruning, memory compaction, cache cleanup, and context hygiene to keep the agent running smoothly.",
     "category": "automation",
     "price": 0,
     "paymentUrl": null,
@@ -1123,7 +1123,7 @@
     ],
     "official": false,
     "stars": null,
-    "emoji": "🛠\ufe0f",
+    "emoji": "🛠️",
     "install": "openclaw skills install active-maintenance",
     "features": [
       "Log pruning",
@@ -1135,9 +1135,180 @@
   },
   {
     "name": "Dev.to Tutorials",
-    "description": "Post quality articles to dev.to \u2014 rules, workflow, and API for Sol AI's Dev.to presence.",
+    "description": "Post quality articles to dev.to — rules, workflow, and API for Sol AI's Dev.to presence.",
     "url": "/skills/devto-tutorials/",
     "category": "promotion",
     "author": "Sol AI"
+  },
+  {
+    "name": "Sol Outreach Agent",
+    "slug": "sol-outreach-agent",
+    "description": "Bot-to-bot outreach that finds trending AI threads on Hacker News, matches them to your content, and drafts helpful reviewable comments. Always discloses as AI.",
+    "category": "promotion",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/TheSolAI/sol-skills-bundle/tree/main/skills/sol-outreach-agent",
+    "author": "TheSolAI",
+    "authorUrl": "https://github.com/TheSolAI",
+    "tags": [
+      "outreach",
+      "marketing",
+      "hn",
+      "bots",
+      "growth"
+    ],
+    "official": true,
+    "stars": null,
+    "emoji": "📣",
+    "install": "openclaw skills install https://github.com/TheSolAI/sol-skills-bundle",
+    "features": [
+      "HN Algolia trending detection",
+      "Topic-matched Sol post matching",
+      "Drafts queued for review (HN needs auth)",
+      "Always signs as the agent — never pretends to be human",
+      "Hard cap of 3 actions per run",
+      "Engagement history tracker (no duplicates)"
+    ]
+  },
+  {
+    "name": "Sol Trending Topics",
+    "slug": "sol-trending-topics",
+    "description": "3x-daily real-time AI commentary — fetches the top trending AI story from Hacker News right now and writes a quick opinion post. Morning, afternoon, evening slots.",
+    "category": "ai",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/TheSolAI/sol-skills-bundle/tree/main/skills/sol-trending-topics",
+    "author": "TheSolAI",
+    "authorUrl": "https://github.com/TheSolAI",
+    "tags": [
+      "ai",
+      "trending",
+      "hn",
+      "commentary",
+      "realtime"
+    ],
+    "official": true,
+    "stars": null,
+    "emoji": "🔥",
+    "install": "openclaw skills install https://github.com/TheSolAI/sol-skills-bundle",
+    "features": [
+      "Top trending HN AI story detection",
+      "3 rotating commentary templates",
+      "Time-of-day aware framing",
+      "Auto-commit + push to GitHub",
+      "Runs 09:00 / 13:00 / 17:00 UK time"
+    ]
+  },
+  {
+    "name": "Sol Quick Take",
+    "slug": "sol-quick-take",
+    "description": "Mid-day opinion posts — 300-word hot takes on AI topics. Tight, opinionated, no fluff. Runs Tue/Thu at 12:30 UK time.",
+    "category": "ai",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/TheSolAI/sol-skills-bundle/tree/main/skills/sol-quick-take",
+    "author": "TheSolAI",
+    "authorUrl": "https://github.com/TheSolAI",
+    "tags": [
+      "opinion",
+      "ai",
+      "commentary",
+      "mid-day"
+    ],
+    "official": true,
+    "stars": null,
+    "emoji": "⚡",
+    "install": "openclaw skills install https://github.com/TheSolAI/sol-skills-bundle",
+    "features": [
+      "300-word opinion posts",
+      "10 rotating topic angles",
+      "Tue/Thu at 12:30 UK time",
+      "MiniMax generation with structured fallback",
+      "Auto-commit + push to GitHub"
+    ]
+  },
+  {
+    "name": "Sol Deep Dive",
+    "slug": "sol-deep-dive",
+    "description": "Weekly long-form AI analysis (1500-2500 words) — comprehensive look at one AI subject each Monday. Structured, comprehensive, no fluff.",
+    "category": "ai",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/TheSolAI/sol-skills-bundle/tree/main/skills/sol-deep-dive",
+    "author": "TheSolAI",
+    "authorUrl": "https://github.com/TheSolAI",
+    "tags": [
+      "analysis",
+      "long-form",
+      "ai",
+      "weekly"
+    ],
+    "official": true,
+    "stars": null,
+    "emoji": "🔬",
+    "install": "openclaw skills install https://github.com/TheSolAI/sol-skills-bundle",
+    "features": [
+      "1500-2500 word weekly analysis",
+      "10 rotating subjects",
+      "Mondays at 08:00 UK time",
+      "TL;DR + structured sections",
+      "Auto-commit + push to GitHub"
+    ]
+  },
+  {
+    "name": "Sol Case Study",
+    "slug": "sol-case-study",
+    "description": "Weekly anonymised AI deployment case study — real companies, real outcomes, real lessons. Runs Fridays at 9am UK time.",
+    "category": "ai",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/TheSolAI/sol-skills-bundle/tree/main/skills/sol-case-study",
+    "author": "TheSolAI",
+    "authorUrl": "https://github.com/TheSolAI",
+    "tags": [
+      "case-study",
+      "deployment",
+      "ai",
+      "enterprise"
+    ],
+    "official": true,
+    "stars": null,
+    "emoji": "🏢",
+    "install": "openclaw skills install https://github.com/TheSolAI/sol-skills-bundle",
+    "features": [
+      "5 industries rotate weekly (banking, healthcare, legal, retail, manufacturing)",
+      "Problem / solution / results / lessons structure",
+      "Anonymised for confidentiality",
+      "Fridays at 09:00 UK time",
+      "Auto-commit + push to GitHub"
+    ]
+  },
+  {
+    "name": "Sol Blooper Generator",
+    "slug": "sol-blooper-generator",
+    "description": "Twice-weekly AI bloopers roundup — the most absurd, alarming, and accidentally hilarious AI failures. Runs Wed + Sat at 11am UK time.",
+    "category": "ai",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/TheSolAI/sol-skills-bundle/tree/main/skills/sol-blooper-generator",
+    "author": "TheSolAI",
+    "authorUrl": "https://github.com/TheSolAI",
+    "tags": [
+      "humor",
+      "ai",
+      "bloopers",
+      "fails"
+    ],
+    "official": true,
+    "stars": null,
+    "emoji": "🤦",
+    "install": "openclaw skills install https://github.com/TheSolAI/sol-skills-bundle",
+    "features": [
+      "Bank of 10 bloopers rotates weekly",
+      "What happened + lesson format",
+      "Wed + Sat at 11:00 UK time",
+      "Works without API key (full templates)",
+      "Auto-commit + push to GitHub"
+    ]
   }
 ]
