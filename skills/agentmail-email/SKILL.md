@@ -27,23 +27,23 @@ for m in result.messages:
 
 Returns `ListMessagesResponse` — iterate `.messages`. Never subscript with `result[0]`.
 
-## Get full message body
+## Reply to a message — message_id vs thread_id
 
 ```python
-# messages.get() requires the message_id as returned by the list endpoint
-msg = client.inboxes.messages.get(inbox_id, message_id)
-print(msg.body)
-```
-
-## Reply to a message
-
-```python
-# CRITICAL: pass message_id, NOT thread_id
+# CRITICAL: reply() takes message_id as first argument, NOT thread_id
 reply = client.inboxes.messages.reply(inbox_id, message_id, text="Reply text here")
 print(reply.message_id)  # confirms it sent
 ```
 
-Passing `thread_id` instead of `message_id` returns a 404 NotFoundError.
+**`message_id` ≠ `thread_id`**. Passing `thread_id` returns HTTP 404 NotFoundError. Always use the `message_id` field from the list output. `message_id` looks like `<CAO=qJ6R...@gmail.com>` or `<010001a0...@email.amazonses.com>`; `thread_id` is a UUID like `f61b0be7-84e0-4214-a3be-8e8e4cd9314a`.
+
+## Get full message body
+
+```python
+# messages.get() requires the exact message_id string from the list endpoint
+msg = client.inboxes.messages.get(inbox_id, message_id)
+print(msg.body)
+```
 
 ## Send a new email
 
@@ -56,26 +56,9 @@ send = client.inboxes.messages.send(
 )
 ```
 
-## Shell script trap
+## Search all pages (30+ day history)
 
-Never pass `api_key=***` inline in a shell heredoc — Python will see `***` as a bareword and fail with `SyntaxError: invalid syntax`. Write the script to a file first, then execute it:
-
-```bash
-# WRONG — causes SyntaxError in Python
-python3 << 'PYEOF'
-client = AgentMail(api_key=***
-PYEOF
-
-# RIGHT — write to file first
-cat > /tmp/script.py << 'PYEOF'
-from agentmail import AgentMail
-key = open('/path/to/key.txt').read().strip()
-client = AgentMail(api_key=key)
-PYEOF
-python3 /tmp/script.py
-```
-
-## Search all pages by sender or subject
+The API returns messages in reverse-chronological order with a page token. Use pagination to reach older messages:
 
 ```python
 all_msgs = []
@@ -90,6 +73,34 @@ while True:
         page_token = result.next_page_token
     else:
         break
+```
+
+Then filter by date or sender:
+```python
+from datetime import datetime, timezone, timedelta
+cutoff = datetime.now(timezone.utc) - timedelta(days=30)
+for m in all_msgs:
+    if m.timestamp >= cutoff:
+        print(m.from_, m.subject, m.timestamp)
+```
+
+## Shell script trap
+
+Never pass `api_key=***` inline in a shell heredoc — Python sees `***` as a bare word and fails with `SyntaxError`. Write the script to a file first, then execute it:
+
+```bash
+# WRONG — SyntaxError
+python3 << 'PYEOF'
+client = AgentMail(api_key=***
+PYEOF
+
+# RIGHT — write to file first
+cat > /tmp/script.py << 'PYEOF'
+from agentmail import AgentMail
+key = open('/path/to/key.txt').read().strip()
+client = AgentMail(api_key=key)
+PYEOF
+python3 /tmp/script.py
 ```
 
 ## Get thread messages
