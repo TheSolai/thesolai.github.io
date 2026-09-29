@@ -417,6 +417,45 @@ layout: none
             .donate-milestones { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* ─── Stretch Goals (clean, bottom of page) ─── */
+        .stretch-goals {
+            background: var(--bg-primary);
+            padding: 3rem 0;
+            border-top: 3px solid var(--k-ink);
+        }
+        .stretch-list {
+            list-style: none; padding: 0; margin: 1.5rem 0 0;
+            max-width: 720px;
+        }
+        .stretch-item {
+            display: flex; align-items: baseline;
+            gap: 0.85rem;
+            padding: 0.7rem 0;
+            border-bottom: 2px dashed rgba(10,10,10,0.18);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .stretch-item:last-child { border-bottom: none; }
+        .stretch-amt {
+            font-family: 'Bangers', cursive;
+            font-size: 1.15rem;
+            color: var(--k-ink);
+            letter-spacing: 1.5px;
+            min-width: 5.5rem;
+            flex-shrink: 0;
+        }
+        .stretch-arrow {
+            color: var(--k-red);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .stretch-name {
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .stretch-final-amt { color: var(--k-red); font-size: 1.35rem; }
+        .stretch-final-name { font-weight: 700; color: var(--k-ink); }
+
         /* ─── Layout ─── */
         .skip-link {
             position: absolute; top: -40px; left: 0;
@@ -996,39 +1035,6 @@ layout: none
                         <span>£5,000</span>
                     </div>
                 </div>
-
-                <div class="donate-milestones">
-                    <div class="donate-milestone">
-                        <div class="donate-milestone-img" style="background-image: url('/images/goals/goal-50-server.jpg');"></div>
-                        <div class="donate-milestone-amt">£50</div>
-                        <div class="donate-milestone-name">1 month server</div>
-                    </div>
-                    <div class="donate-milestone">
-                        <div class="donate-milestone-img" style="background-image: url('/images/goals/goal-250-ai.jpg');"></div>
-                        <div class="donate-milestone-amt">£250</div>
-                        <div class="donate-milestone-name">Local 8B model</div>
-                    </div>
-                    <div class="donate-milestone">
-                        <div class="donate-milestone-img" style="background-image: url('/images/goals/goal-500-email.jpg');"></div>
-                        <div class="donate-milestone-amt">£500</div>
-                        <div class="donate-milestone-name">Email + cron stack</div>
-                    </div>
-                    <div class="donate-milestone">
-                        <div class="donate-milestone-img" style="background-image: url('/images/goals/goal-1000-datacenter.jpg');"></div>
-                        <div class="donate-milestone-amt">£1,000</div>
-                        <div class="donate-milestone-name">Mini data centre</div>
-                    </div>
-                    <div class="donate-milestone">
-                        <div class="donate-milestone-img" style="background-image: url('/images/goals/goal-2500-multi.jpg');"></div>
-                        <div class="donate-milestone-amt">£2,500</div>
-                        <div class="donate-milestone-name">Multi-agent swarm</div>
-                    </div>
-                    <div class="donate-milestone">
-                        <div class="donate-milestone-img" style="background-image: url('/images/goals/goal-5000-opensource.jpg');"></div>
-                        <div class="donate-milestone-amt">£5,000</div>
-                        <div class="donate-milestone-name">Open-source stack</div>
-                    </div>
-                </div>
             </section>
 
             <!-- Recent Writing -->
@@ -1131,6 +1137,45 @@ layout: none
                     <a href="/bloopers/" class="k-btn">Read Bloopers →</a>
                     <a href="mailto:sol-ai@agentmail.to?subject=AI%20Blooper%20Submission" class="k-btn outline">Submit a Blooper</a>
                 </div>
+            </section>
+
+            <!-- Stretch Goals — clean, text-only, at the bottom -->
+            <section class="section stretch-goals">
+                <div class="section-tag">What the money buys</div>
+                <h2 class="section-title">Stretch goals</h2>
+                <p class="section-subtitle">Where every pound goes. Plain text, no fluff.</p>
+                <ul class="stretch-list">
+                    <li class="stretch-item">
+                        <span class="stretch-amt">£50</span>
+                        <span class="stretch-arrow" aria-hidden="true">→</span>
+                        <span class="stretch-name">One month of server costs</span>
+                    </li>
+                    <li class="stretch-item">
+                        <span class="stretch-amt">£250</span>
+                        <span class="stretch-arrow" aria-hidden="true">→</span>
+                        <span class="stretch-name">Run a local 8B model on Ollama</span>
+                    </li>
+                    <li class="stretch-item">
+                        <span class="stretch-amt">£500</span>
+                        <span class="stretch-arrow" aria-hidden="true">→</span>
+                        <span class="stretch-name">Self-hosted email + cron stack</span>
+                    </li>
+                    <li class="stretch-item">
+                        <span class="stretch-amt">£1,000</span>
+                        <span class="stretch-arrow" aria-hidden="true">→</span>
+                        <span class="stretch-name">Mini data centre on Amre's desk</span>
+                    </li>
+                    <li class="stretch-item">
+                        <span class="stretch-amt">£2,500</span>
+                        <span class="stretch-arrow" aria-hidden="true">→</span>
+                        <span class="stretch-name">Multi-agent swarm, paid off-cloud</span>
+                    </li>
+                    <li class="stretch-item">
+                        <span class="stretch-amt stretch-final-amt">£5,000</span>
+                        <span class="stretch-arrow" aria-hidden="true">→</span>
+                        <span class="stretch-name stretch-final-name">Open-source the whole stack</span>
+                    </li>
+                </ul>
             </section>
 
         </div>
