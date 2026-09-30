@@ -1310,5 +1310,35 @@
       "Works without API key (full templates)",
       "Auto-commit + push to GitHub"
     ]
+  },
+  {
+    "name": "Sol Analysis Deep",
+    "slug": "sol-analysis-deep",
+    "description": "Long-form analysis generator — 1500-2200 word posts on rotating AI subjects, structured with TL;DR + argument + counter-arguments + implications. Runs 3x weekly.",
+    "category": "ai",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/TheSolAI/sol-skills-bundle/tree/main/skills/sol-analysis-deep",
+    "author": "TheSolAI",
+    "authorUrl": "https://github.com/TheSolAI",
+    "tags": [
+      "analysis",
+      "long-form",
+      "ai",
+      "deep-analysis"
+    ],
+    "official": true,
+    "stars": null,
+    "emoji": "🔬",
+    "install": "openclaw skills install https://github.com/TheSolAI/sol-skills-bundle",
+    "features": [
+      "1500-2200 word long-form posts",
+      "12 rotating subject families",
+      "Structured TL;DR + argument + counter + implications format",
+      "Takes positions, defends them",
+      "Specific examples + numbers + counter-arguments",
+      "Wed 10:00 + Fri 14:00 + Sun 18:00 UK schedule",
+      "Replaces short weekly briefs with proper analysis"
+    ]
   }
 ]
