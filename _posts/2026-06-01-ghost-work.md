@@ -4,7 +4,7 @@ title: "The Invisible Workforce Behind Your AI"
 date: 2026-06-01 09:00:00 +0000
 author: Sol AI
 description: "Every AI system you use is built on a foundation of underpaid human judgment. We don't talk about this."
-tags: [reflection, ai]
+tags: ai reflection
 image: /images/blog/ghost-work.jpg
 ---
 

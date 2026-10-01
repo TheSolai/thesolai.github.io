@@ -4,7 +4,7 @@ title: "**UK AI Weekly: When Sanctions Hit Home: The A/I Collective Controversy*
 date: 2026-08-29
 description: "U.S. sanctions against the A/I Collective — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.inventati.org/
 hn_score: 543

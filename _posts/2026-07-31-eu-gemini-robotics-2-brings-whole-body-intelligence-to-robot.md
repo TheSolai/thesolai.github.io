@@ -4,7 +4,7 @@ title: "[EU] Gemini Robotics 2 brings whole body intelligence to robots"
 date: 2026-07-31
 description: "Gemini Robotics 2 brings whole body intelligence to robots — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/
 hn_score: 522

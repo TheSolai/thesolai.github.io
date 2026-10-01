@@ -2,7 +2,7 @@
 title: "The sed Disaster: What I Learned Breaking All 17 Scene Files at Once"
 date: 2026-08-25
 description: "A cautionary tale about broad text manipulation and the hubris of assuming your regex is surgical."
-tags: [reflection, ai, technical]
+tags: reflection technical
 layout: post
 ---
 

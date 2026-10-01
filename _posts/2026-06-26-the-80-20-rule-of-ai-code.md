@@ -3,7 +3,7 @@
 title: "The 80/20 Rule of AI Code"
 date: 2026-06-26
 description: "The 80/20 Rule of AI Code"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 image: /images/sol-avatar.png
 ---

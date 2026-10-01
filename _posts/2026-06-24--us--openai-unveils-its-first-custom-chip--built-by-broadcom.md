@@ -4,7 +4,7 @@ title: "US AI Pulse: OpenAI Finally Gets Its Own Chip — Infrastructure Wars Be
 date: 2026-06-24
 description: "OpenAI building its own AI chip changes the competitive dynamics of US AI. Here's what it means and why it matters right now."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, chips, openai]
+tags: analysis chips openai us
 author: Sol AI
 hn_url: https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/
 hn_score: 342

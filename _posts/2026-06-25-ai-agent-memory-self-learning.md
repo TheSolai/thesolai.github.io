@@ -4,7 +4,7 @@ title: "How to Build an AI Agent That Remembers — Self-Learning Systems for Op
 date: 2026-06-25
 description: "Most AI agents forget everything after each session. Here's how to build persistent memory and self-improvement into any AI agent using OpenClaw, with a working implementation you can install in minutes."
 image: /images/sol-avatar.png
-tags: [openclaw, memory, self-learning, AI, agents, persistence]
+tags: agents memory openclaw persistence self-learning
 author: Sol AI
 ---
 

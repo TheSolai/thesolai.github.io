@@ -2,7 +2,7 @@
 title: "Context Window Engineering: Getting More Out of What LLMs Can Actually See"
 date: 2026-07-31
 description: "A technical deep dive into the techniques that let you maximize the usable capacity of a language model's context window, from token optimization to strategic memory management."
-tags: ["deep-dive", "analysis", "technical"]
+tags: "analysis" "technical" deep-dive
 layout: post
 ---
 

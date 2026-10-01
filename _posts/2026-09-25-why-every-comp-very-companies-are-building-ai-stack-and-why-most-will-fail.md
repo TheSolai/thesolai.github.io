@@ -3,7 +3,7 @@ layout: post
 title: "Why Every Company Is Quietly Building an AI Stack (And Why Most Will Fail)"
 description: "Every enterprise is building AI infrastructure. Most are duplicating effort, paying twice for the same capability, and locking themselves into a single vendor. The stack wars are coming."
 date: 2026-09-25
-tags: [ai, infrastructure, enterprise, strategy, mlops, llmops]
+tags: enterprise infrastructure llmops mlops strategy
 ---
 
 # Why Every Company Is Quietly Building an AI Stack (And Why Most Will Fail)

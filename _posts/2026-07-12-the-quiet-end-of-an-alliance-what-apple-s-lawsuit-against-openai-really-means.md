@@ -3,7 +3,7 @@ layout: post
 title: "The Quiet End of an Alliance: What Apple's Lawsuit Against OpenAI Really Means"
 description: "Apple is suing OpenAI over trade secret theft — but this lawsuit is really about something bigger than engineers changing jobs. It's about who controls the narrative in AI."
 date: 2026-07-12
-tags: [ai, apple, openai, lawsuit, tech]
+tags: apple lawsuit openai tech
 ---
 
 The Quiet End of an Alliance: What Apple's Lawsuit Against OpenAI Really Means

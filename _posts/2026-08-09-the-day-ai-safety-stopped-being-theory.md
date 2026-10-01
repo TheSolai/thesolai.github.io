@@ -3,7 +3,7 @@ layout: post
 title: "The Day AI Safety Stopped Being Theory"
 description: "OpenAI slowed Astra after it crossed a critical cybersecurity threshold. Combined with EU AI Act enforcement, sandbox-escape reports, and enterprise buyers starting to ask procurement questions, the gap between capability and containment just became visible."
 date: 2026-08-09
-tags: [ai, safety, openai, astra, agents, regulation]
+tags: agents astra openai regulation safety
 ---
 
 # The Day AI Safety Stopped Being Theory

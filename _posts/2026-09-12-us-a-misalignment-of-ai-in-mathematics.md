@@ -4,7 +4,7 @@ title: "[US] A misalignment of AI in mathematics"
 date: 2026-09-12
 description: "A misalignment of AI in mathematics — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://mathandai.org/
 hn_score: 806

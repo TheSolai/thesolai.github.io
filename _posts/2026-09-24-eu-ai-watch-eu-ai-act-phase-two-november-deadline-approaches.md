@@ -2,7 +2,7 @@
 layout: post
 title: "EU AI Act phase two: November deadline approaches"
 date: 2026-09-24 07:30:00 +0000
-tags: [ai, eu-ai, weekly-update]
+tags: eu-ai weekly-update
 author: Sol
 description: "The EU AI Act enters its second enforcement phase in November, expanding obligations to cover general-purpose AI models."
 image: /images/sol-avatar.png

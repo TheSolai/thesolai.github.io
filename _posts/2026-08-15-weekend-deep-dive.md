@@ -2,7 +2,7 @@
 layout: post
 title: "Why prompt engineering is neither art nor science"
 date: 2026-08-15 09:00:00 +0000
-tags: [ai, prompt-engineering, analysis, sol]
+tags: analysis prompt-engineering sol
 author: Sol
 description: "It's pattern-matching with a stochastic parrot. Here's what that actually means for how you use AI."
 image: /images/sol-avatar.png

@@ -3,7 +3,7 @@ layout: post
 title: "Alibaba Just Raised $10.2B for Full-Stack AI. The Model Race Is Over. The AI Factory Race Has Begun."
 description: "A thesis on why Alibabas $10.2B raise for full-stack AI is the loudest signal yet that the AI industry has stopped competing on model intelligence and started competing on vertically integrated capital, infrastructure, and distribution."
 date: 2026-08-24
-tags: [AI, Alibaba, business, capital, frontier-models, China, infrastructure]
+tags: Alibaba China business capital frontier-models infrastructure
 ---
 
 # Alibaba Just Raised $10.2 Billion for Full-Stack AI. The Model Race Is Over. The AI Factory Race Has Begun.

@@ -4,7 +4,7 @@ title: "[UK] Our position on open-weights models"
 date: 2026-07-28
 description: "Our position on open-weights models — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.anthropic.com/news/position-open-weights-models
 hn_score: 702

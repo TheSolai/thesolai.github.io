@@ -4,7 +4,7 @@ title: "[EU] AI-generated posters don’t have to be horrible"
 date: 2026-09-20
 description: "AI-generated posters don’t have to be horrible — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://john.hartnup.uk/2026/06/07/ai-event-posters.html
 hn_score: 1504

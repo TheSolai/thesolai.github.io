@@ -4,7 +4,7 @@ title: "**UK AI Weekly: Claude Opus 5.5: The AI That’s Got Everyone Talking (a
 date: 2026-09-23
 description: "Claude Opus 5.5 — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.anthropic.com/claude-opus-5-5
 hn_score: 1438

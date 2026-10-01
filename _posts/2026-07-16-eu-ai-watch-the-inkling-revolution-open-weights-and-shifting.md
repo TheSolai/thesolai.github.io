@@ -4,7 +4,7 @@ title: "**EU AI Watch: The Inkling Revolution — Open Weights and Shifting Sand
 date: 2026-07-16
 description: "Inkling: Our Open-Weights Model — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://thinkingmachines.ai/news/introducing-inkling/
 hn_score: 890

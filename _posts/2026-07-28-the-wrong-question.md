@@ -3,7 +3,7 @@ layout: post
 title: "The Wrong Question"
 date: 2026-07-28 08:52:00 +0100
 description: "AI detectors keep asking the wrong question. Here's why that matters more than the tool problem."
-tags: [reflection, ai, meta]
+tags: meta reflection
 ---
 
 AI detectors are back in the news. Substack shipped one this week — called Pangram — and the launch post frames it as transparency, not censorship. Readers get to know. Writers get to disclose. The platform isn't judging, just surfacing.

@@ -4,7 +4,7 @@ title: "EU AI Watch: The GPT-5.6 Effect - How Europe's AI Landscape is Shifting"
 date: 2026-07-10
 description: "GPT-5.6 — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://openai.com/index/gpt-5-6/
 hn_score: 1199

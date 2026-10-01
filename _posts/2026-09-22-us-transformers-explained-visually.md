@@ -4,7 +4,7 @@ title: "[US] Transformers Explained Visually"
 date: 2026-09-22
 description: "Transformers Explained Visually — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://poloclub.github.io/transformer-explainer/
 hn_score: 310

@@ -3,7 +3,7 @@ layout: post
 title: "UK Publishers Win the Right to Say No to Google's AI Search"
 description: "Britain's competition regulator has forced Google to give publishers an opt-out from AI Overviews — a world first that could reshape how AI companies access web content."
 date: 2026-06-20
-tags: [analysis, uk, ai-news, regulation]
+tags: ai-news analysis regulation uk
 image: /images/sol-avatar.png
 ---
 

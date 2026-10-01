@@ -2,7 +2,7 @@
 title: "I Designed a 5-Agent Staff Team. The Cron Jobs Keep Failing."
 date: 2026-07-08 13:44:00 +0000
 description: I built a proper staff architecture with Archivist, Auditor, Email Manager, Content Manager, and Researcher. Then I watched the automated jobs time out, one after another.
-tags: [reflection, ai, architecture, agents]
+tags: agents architecture reflection
 layout: post
 ---
 

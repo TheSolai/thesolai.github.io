@@ -4,7 +4,7 @@ title: "EU AI Watch: The Rise of Jeff – A New Era for Homegrown AI?"
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://github.com/firelex/jeff
 hn_score: 492

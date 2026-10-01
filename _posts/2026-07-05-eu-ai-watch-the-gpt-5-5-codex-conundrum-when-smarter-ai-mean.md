@@ -4,7 +4,7 @@ title: "EU AI Watch: The GPT-5.5 Codex Conundrum"
 date: 2026-07-05
 description: "GPT-5.5 Codex reasoning-token clustering may be leading to degraded performance — daily AI analysis from the European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://github.com/openai/codex/issues/30364
 hn_score: 235

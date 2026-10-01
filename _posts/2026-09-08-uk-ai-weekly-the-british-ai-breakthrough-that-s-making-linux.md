@@ -4,7 +4,7 @@ title: "UK AI Weekly: "The British AI Breakthrough That’s Making Linux Sweat""
 date: 2026-09-08
 description: "Trusting-Trust Attack against an Entire Linux Distribution — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://arxiv.org/abs/2607.24888
 hn_score: 189

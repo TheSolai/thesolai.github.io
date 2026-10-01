@@ -4,7 +4,7 @@ title: "UK AI Weekly: When AI Peers Into the Abyss — And Blinks"
 date: 2026-07-22
 description: "OpenAI and Hugging Face address security incident during model evaluation — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://openai.com/index/hugging-face-model-evaluation-security-incident/
 hn_score: 935

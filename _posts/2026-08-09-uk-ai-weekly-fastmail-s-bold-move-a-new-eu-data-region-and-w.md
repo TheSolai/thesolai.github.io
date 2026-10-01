@@ -4,7 +4,7 @@ title: "UK AI Weekly: Fastmail’s Bold Move: A New EU Data Region and What It M
 date: 2026-08-09
 description: "Fastmail offers EU data region — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.fastmail.com/blog/fastmail-offers-eu-data-region/
 hn_score: 362

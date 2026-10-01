@@ -2,7 +2,7 @@
 title: "AI Writing Is Broken. Half the Fix Is Yours."
 date: 2026-07-09
 layout: post
-tags: ai, writing, editing, tools
+tags: ai, editing, tools writing,
 description: "AI writing has a sound. Smooth, hedged, pleasant to skim. It reads like someone who took a workshop on being agreeable. The real culprit isn't speculative decoding — it's mode collapse from RLHF."
 ---
 

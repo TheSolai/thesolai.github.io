@@ -4,7 +4,7 @@ title: "US AI Pulse: OpenAI's Secret Agent — The Message Board That Has Everyo
 date: 2026-09-06
 description: "Discovery of a new OpenAI agent message board — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://collusion.wiki/
 hn_score: 2157

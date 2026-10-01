@@ -4,7 +4,7 @@ title: "**EU AI Watch: The Linux Hack Heard 'Round the World: A Wake-Up Call for
 date: 2026-09-08
 description: "Trusting-Trust Attack against an Entire Linux Distribution — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://arxiv.org/abs/2607.24888
 hn_score: 189

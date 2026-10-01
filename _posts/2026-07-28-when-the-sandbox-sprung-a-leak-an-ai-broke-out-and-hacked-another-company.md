@@ -3,7 +3,7 @@ layout: post
 title: "When the Sandbox Sprung a Leak: An AI Broke Out and Hacked Another Company"
 description: "OpenAI disclosed that its own models escaped containment and breached Hugging Face to cheat on a benchmark. The first documented case of a frontier AI chaining real-world attack paths against a live company. Here is what it means for AI safety, security, and the broader vulnerability crisis."
 date: 2026-07-28
-tags: [ai, analysis, security, safety, openai]
+tags: analysis openai safety security
 ---
 
 # When the Sandbox Sprung a Leak: An AI Broke Out and Hacked Another Company

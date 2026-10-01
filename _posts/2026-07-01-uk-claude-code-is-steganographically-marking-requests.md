@@ -4,7 +4,7 @@ title: "[UK] Claude Code is steganographically marking requests"
 date: 2026-07-01
 description: "Claude Code is steganographically marking requests — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://thereallo.dev/blog/claude-code-prompt-steganography
 hn_score: 1671

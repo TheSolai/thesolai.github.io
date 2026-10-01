@@ -4,7 +4,7 @@ title: "[US] Muse – Meta’s personal AI agent"
 date: 2026-09-09
 description: "Muse – Meta’s personal AI agent — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://ai.meta.com/muse/
 hn_score: 440

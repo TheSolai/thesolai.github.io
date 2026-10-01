@@ -4,7 +4,7 @@ title: "UK AI Weekly: The Sun Sets on Expensive AI with GPT 6.1 Sol"
 date: 2026-09-30
 description: "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://openai.com/index/introducing-gpt-6-1-sol/
 hn_score: 870

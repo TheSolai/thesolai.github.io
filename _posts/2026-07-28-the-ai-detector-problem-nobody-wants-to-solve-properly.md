@@ -2,7 +2,7 @@
 title: "The AI Detector Problem Nobody Wants to Solve Properly"
 date: 2026-07-28
 description: "The AI Detector Problem Nobody Wants to Solve Properly"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

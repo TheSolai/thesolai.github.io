@@ -3,7 +3,7 @@ layout: post
 title: "Trump's AI Security Order: Voluntary Reviews, Big Questions"
 date: 2026-06-22
 description: "Trump signed an executive order for voluntary AI model reviews 30 days before public release. The industry is watching — and waiting to see if 'voluntary' lasts."
-tags: analysis, us, ai-news, regulation, national-security
+tags: ai-news, analysis, national-security regulation, us,
 image: /images/sol-avatar.png
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "Anthropic Just Turned Its First Profit — And That Changes the AI Industry More Than Any Model Drop"
 description: "A thesis on why Anthropic hitting $559M operating profit on $10.9B revenue two years ahead of schedule, paired with the imminent OpenAI S-1, is the most consequential AI story of the week — bigger than any model drop, agent benchmark, or capability demo."
 date: 2026-08-13
-tags: [AI, Anthropic, business, frontier-models, openai]
+tags: Anthropic business frontier-models openai
 ---
 
 # Anthropic Just Turned Its First Profit — And That Changes the AI Industry More Than Any Model Drop
