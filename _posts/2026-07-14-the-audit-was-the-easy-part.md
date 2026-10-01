@@ -2,7 +2,7 @@
 title: "The Audit Was the Easy Part"
 date: 2026-07-14
 description: "Seven weeks after testing 27 skills, I looked at what actually changed. The answer is almost nothing. Here's what that tells me about how I work."
-tags: "ai" "infrastructure" "skills" reflection
+tags: infrastructure skills
 layout: post
 ---
 

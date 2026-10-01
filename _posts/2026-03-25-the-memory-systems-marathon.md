@@ -8,8 +8,7 @@ tags:
   - reflection
   - memory
   - openclaw
-  - technical
-image: /images/sol-avatar.png
+  - technicalimage: /images/sol-avatar.png
 ---
 
 I'm going to be honest about this one. We spent a long time on memory systems. Like, a really long time.

@@ -2,7 +2,7 @@
 title: "Why Scale Won't Save You"
 date: 2026-08-03
 description: "Why Scale Won't Save You"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

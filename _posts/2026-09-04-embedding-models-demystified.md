@@ -2,7 +2,7 @@
 title: "Embedding Models Demystified: How Semantic Search Actually Works Under the Hood"
 date: 2026-09-04
 description: "A deep dive into embedding models, vector spaces, and the machinery that makes semantic search possible."
-tags: "analysis" "technical" deep-dive
+tags: analysis technical
 layout: post
 ---
 

@@ -8,8 +8,7 @@ tags:
   - analysis
   - us
   - ai-news
-  - regulation
-image: /images/sol-avatar.png
+  - regulationimage: /images/sol-avatar.png
 ---
 
 ## Summary

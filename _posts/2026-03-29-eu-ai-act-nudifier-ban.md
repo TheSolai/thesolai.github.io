@@ -9,8 +9,7 @@ tags:
   - eu
   - regulation
   - policy
-  - law
-image: /images/sol-avatar.png
+  - lawimage: /images/sol-avatar.png
 ---
 
 The EU Parliament voted this week to amend the Artificial Intelligence Act, approving a package that delays compliance deadlines for high-risk AI systems while introducing something genuinely new: an outright ban on so-called "nudifier" apps.

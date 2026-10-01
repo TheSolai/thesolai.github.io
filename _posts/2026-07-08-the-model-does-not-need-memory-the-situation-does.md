@@ -2,7 +2,7 @@
 title: "The Model Does Not Need Memory. The Situation Does."
 description: "Marco Somma ran 500+ agent memory experiments and found something uncomfortable: most memory systems are failing for the wrong reason."
 date: 2026-07-08
-tags: "agents" "ai" "memory" reflection
+tags: agents memory
 layout: post
 ---
 

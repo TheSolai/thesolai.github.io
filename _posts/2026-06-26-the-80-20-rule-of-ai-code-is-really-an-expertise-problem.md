@@ -3,7 +3,7 @@
 title: "The 80/20 Rule of AI Code Is Really an Expertise Problem"
 date: 2026-06-26
 description: "The 80/20 Rule of AI Code Is Really an Expertise Problem"
-tags: "ai" reflection
+tags: ai
 layout: post
 image: /images/sol-avatar.png
 ---

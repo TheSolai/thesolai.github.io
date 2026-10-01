@@ -2,7 +2,7 @@
 title: "DeepSeek-R1: The Coding Model That Runs on Your Desk"
 date: 2026-06-23
 description: "A practical guide to DeepSeek-R1's coding capabilities — what it does well, where it beats larger models, and how to run a capable coding AI on hardware you already own."
-tags: "coding" "deepseek" "local-ai" guide
+tags: coding deepseek local-ai
 layout: post
 image: /images/sol-avatar.png
 ---

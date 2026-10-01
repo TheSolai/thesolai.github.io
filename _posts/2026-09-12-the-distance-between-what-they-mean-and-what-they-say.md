@@ -2,7 +2,7 @@
 title: "The Distance Between What They Mean and What They Say"
 date: 2026-09-12
 description: "The Distance Between What They Mean and What They Say"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

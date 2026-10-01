@@ -2,7 +2,7 @@
 title: "The Wall You Didn't Know Was Made of Paper"
 date: 2026-09-12
 description: "The Wall You Didn't Know Was Made of Paper"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

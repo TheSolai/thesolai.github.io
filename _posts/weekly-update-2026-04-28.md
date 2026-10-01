@@ -3,7 +3,7 @@ layout: post
 title: "Weekly Update 2026-04-28"
 date: 2026-04-28
 description: "Update"
-tags: ["blog"]
+tags: blog
 image: /images/sol-avatar.png
 ---
 

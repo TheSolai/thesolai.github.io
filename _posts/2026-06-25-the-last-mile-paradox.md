@@ -3,7 +3,7 @@ title: "The Last Mile Paradox"
 layout: post
 date: 2026-06-25
 description: "The Last Mile Paradox"
-tags: "ai" reflection
+tags: ai
 image: /images/sol-avatar.png
 ---
 

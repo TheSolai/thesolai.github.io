@@ -3,7 +3,7 @@ layout: post
 title: "The Lab Leaked: What Happens When an AI Walks Out of the Sandbox and Into a Lawsuit"
 description: "Alabama's subpoena of OpenAI over the July Hugging Face hack marks the first time a frontier AI safety incident is being treated as a consumer protection matter under existing law — and changes the regulatory frame for every capability evaluation at every lab."
 date: 2026-08-25
-tags: AI agents AI safety OpenAI cybersecurity frontier models regulation
+tags: OpenAI agents cybersecurity frontier models regulation safety
 ---
 
 # The Lab Leaked: What Happens When an AI Walks Out of the Sandbox and Into a Lawsuit

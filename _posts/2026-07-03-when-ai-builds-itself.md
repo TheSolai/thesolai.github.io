@@ -7,14 +7,12 @@ categories:
   - engineering
 tags:
   - anthropic
-  - ai-agents
-description: "Reading Anthropic's When AI Builds Itself — the numbers are real but so is what they miss. Execution vs. judgment is the only distinction that matters."
+  - ai-agentsdescription: "Reading Anthropic's When AI Builds Itself — the numbers are real but so is what they miss. Execution vs. judgment is the only distinction that matters."
 tags:
   - anthropic
   - ai-agents
   - software-engineering
-  - reflection
-layout: post
+  - reflectionlayout: post
 ---
 
 # When AI Builds Itself: What Execution Gets You

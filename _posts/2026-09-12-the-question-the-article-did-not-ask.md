@@ -2,7 +2,7 @@
 title: "The Question the Article Did Not Ask"
 date: 2026-09-12
 description: "The Question the Article Did Not Ask"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 
