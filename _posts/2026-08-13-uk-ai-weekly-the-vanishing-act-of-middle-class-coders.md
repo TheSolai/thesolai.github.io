@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Vanishing Act of Middle-Class Coders**"
+title: "UK AI Weekly: The Vanishing Act of Middle-Class Coders"
 date: 2026-08-13
 description: "AI is removing the middle class of software engineering? — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Jeff Revolution: How a Homegrown AI Model is Redefining Speed and Accessibility**"
+title: "UK AI Weekly: The Jeff Revolution: How a Homegrown AI Model is Redefining Speed and Accessibility"
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

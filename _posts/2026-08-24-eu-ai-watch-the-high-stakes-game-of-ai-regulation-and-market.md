@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The High-Stakes Game of AI Regulation and Market Dynamics**"
+title: "EU AI Watch: The High-Stakes Game of AI Regulation and Market Dynamics"
 date: 2026-08-24
 description: "Anthropic's best AI model struggles to attract users as cheaper tools thrive — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

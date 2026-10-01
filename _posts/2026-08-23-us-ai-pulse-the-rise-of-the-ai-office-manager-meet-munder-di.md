@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Rise of the AI Office Manager: Meet Munder Difflin**"
+title: "US AI Pulse: The Rise of the AI Office Manager: Meet Munder Difflin"
 date: 2026-08-23
 description: "Munder Difflin – Agent harness to run an office of your clones — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

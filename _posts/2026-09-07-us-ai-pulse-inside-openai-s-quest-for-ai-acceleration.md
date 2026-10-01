@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Inside OpenAI’s Quest for AI Acceleration**"
+title: "US AI Pulse: Inside OpenAI’s Quest for AI Acceleration"
 date: 2026-09-07
 description: "Research acceleration: The view inside OpenAI — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

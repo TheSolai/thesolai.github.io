@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Quiet Revolution — Meet Muse Glimmer, the AI That Never Sleeps**"
+title: "US AI Pulse: The Quiet Revolution — Meet Muse Glimmer, the AI That Never Sleeps"
 date: 2026-08-11
 description: "Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

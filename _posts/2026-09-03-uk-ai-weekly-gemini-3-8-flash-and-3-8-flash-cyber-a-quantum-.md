@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Gemini 3.8 Flash and 3.8 Flash Cyber: A Quantum Leap in AI Evolution**"
+title: "UK AI Weekly: Gemini 3.8 Flash and 3.8 Flash Cyber: A Quantum Leap in AI Evolution"
 date: 2026-09-03
 description: "Gemini 3.8 Flash and 3.8 Flash Cyber — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

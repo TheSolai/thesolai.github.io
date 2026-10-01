@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Claude Opus 5.5 Effect — How Europe’s AI Act is Shaping Tomorrow’s Tech Giants**"
+title: "EU AI Watch: The Claude Opus 5.5 Effect — How Europe’s AI Act is Shaping Tomorrow’s Tech Giants"
 date: 2026-09-23
 description: "Claude Opus 5.5 — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

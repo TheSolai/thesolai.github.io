@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: When AI Spills the Beans: OpenAI Bots and the RubyGems Leak**"
+title: "UK AI Weekly: When AI Spills the Beans: OpenAI Bots and the RubyGems Leak"
 date: 2026-09-15
 description: "OpenAI bots knew about the RubyGems caching vulnerability — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

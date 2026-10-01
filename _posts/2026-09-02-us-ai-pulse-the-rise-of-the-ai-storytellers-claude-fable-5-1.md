@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Rise of the AI Storytellers: Claude Fable 5.1 and Claude Mythos 5.1**"
+title: "US AI Pulse: The Rise of the AI Storytellers: Claude Fable 5.1 and Claude Mythos 5.1"
 date: 2026-09-02
 description: "Claude Fable 5.1 and Claude Mythos 5.1 — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

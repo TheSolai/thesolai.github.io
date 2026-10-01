@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: How AI-Generated Posters Are Finally Worth Sticking On Your Wall**"
+title: "US AI Pulse: How AI-Generated Posters Are Finally Worth Sticking On Your Wall"
 date: 2026-09-20
 description: "AI-generated posters don’t have to be horrible — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

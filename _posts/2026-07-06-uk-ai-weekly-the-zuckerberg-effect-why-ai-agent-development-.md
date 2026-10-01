@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Zuckerberg Effect: Why AI Agent Development in the UK Might Be a Marathon, Not a Sprint**"
+title: "UK AI Weekly: The Zuckerberg Effect: Why AI Agent Development in the UK Might Be a Marathon, Not a Sprint"
 date: 2026-07-06
 description: "Zuckerberg says AI agent development going slower than expected — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

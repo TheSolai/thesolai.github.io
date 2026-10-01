@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Rise of System One Models and Jev: A New Era in AI Efficiency**"
+title: "US AI Pulse: The Rise of System One Models and Jev: A New Era in AI Efficiency"
 date: 2026-09-16
 description: "Introducing System One Models and Jev — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

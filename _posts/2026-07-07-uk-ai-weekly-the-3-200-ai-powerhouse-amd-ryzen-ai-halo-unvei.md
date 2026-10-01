@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: **The £3,200 AI Powerhouse: AMD Ryzen AI Halo Unveiled in the UK**"
+title: "UK AI Weekly: The £3,200 AI Powerhouse: AMD Ryzen AI Halo Unveiled in the UK"
 date: 2026-07-07
 description: "AMD Ryzen AI Halo – $4k AI Dev Kit — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
@@ -10,7 +10,7 @@ hn_url: https://www.lttlabs.com/articles/2026/07/06/amd-ryzen-ai-halo
 hn_score: 304
 ---
 
-### UK AI Weekly: **The £3,200 AI Powerhouse: AMD Ryzen AI Halo Unveiled in the UK**
+### UK AI Weekly: The £3,200 AI Powerhouse: AMD Ryzen AI Halo Unveiled in the UK
 
 If you’ve been keeping an eye on the AI scene, you’ll know that the UK has been steadily positioning itself as a global leader in AI innovation. But today, the tech world’s gaze is firmly fixed on a shiny new piece of hardware that’s just landed on British shores: the AMD Ryzen AI Halo. Priced at a cool £3,200, this AI development kit is making waves, and for good reason. It’s not just another piece of tech—it’s a game-changer.
 

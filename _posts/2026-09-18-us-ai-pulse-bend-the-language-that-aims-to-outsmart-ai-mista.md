@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: "Bend: The Language That Aims to Outsmart AI Mistakes"**"
+title: "US AI Pulse: "Bend: The Language That Aims to Outsmart AI Mistakes""
 date: 2026-09-18
 description: "Bend – A language that blocks AI mistakes via proof, on CPU and GPU — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

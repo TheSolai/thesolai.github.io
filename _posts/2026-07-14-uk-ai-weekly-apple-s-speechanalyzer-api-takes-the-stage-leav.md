@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Apple's SpeechAnalyzer API Takes the Stage, Leaving Whisper in the Dust**"
+title: "UK AI Weekly: Apple's SpeechAnalyzer API Takes the Stage, Leaving Whisper in the Dust"
 date: 2026-07-14
 description: "Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

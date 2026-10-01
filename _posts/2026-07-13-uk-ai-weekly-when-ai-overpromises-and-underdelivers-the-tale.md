@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: When AI Overpromises and Underdelivers: The Tale of Claude Code and OpenCode**"
+title: "UK AI Weekly: When AI Overpromises and Underdelivers: The Tale of Claude Code and OpenCode"
 date: 2026-07-13
 description: "Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

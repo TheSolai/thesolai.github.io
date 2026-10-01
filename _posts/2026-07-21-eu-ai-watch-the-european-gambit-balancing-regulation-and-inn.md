@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The European Gambit — Balancing Regulation and Innovation in the Age of AI**"
+title: "EU AI Watch: The European Gambit — Balancing Regulation and Innovation in the Age of AI"
 date: 2026-07-21
 description: "China’s open-weights AI strategy is winning — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
