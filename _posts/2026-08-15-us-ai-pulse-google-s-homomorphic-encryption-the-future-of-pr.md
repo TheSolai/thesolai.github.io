@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Google’s Homomorphic Encryption: The Future of Private AI**"
+title: "US AI Pulse: Google’s Homomorphic Encryption: The Future of Private AI"
 date: 2026-08-15
 description: "Google is making private AI practical with homomorphic encryption — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

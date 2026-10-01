@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: When Terence Tao and ChatGPT Tackled the Jacobian Conjecture**"
+title: "US AI Pulse: When Terence Tao and ChatGPT Tackled the Jacobian Conjecture"
 date: 2026-07-23
 description: "Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

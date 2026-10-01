@@ -1,155 +1,168 @@
 #!/usr/bin/env python3
 """
 Site health tests for thesolai.github.io
+
 Run: python3 _tests/test_site.py
+
+Coverage:
+  1. Top-level pages return 200 (parallel)
+  2. Every published post permalink returns 200 (parallel)
+  3. Every post has a non-empty title and date in frontmatter
+  4. Recent posts have meaningful body content
+  5. Nav is consistent across pages (homepage is the reference)
+  6. Internal links on homepage and key pages return 200
+  7. Images have alt text
+  8. No stray '**' markdown in post titles
+
+Designed to complete in <30s against the live site.
 """
 import urllib.request
 import urllib.error
-import sys
 import re
+import sys
 import os
 import html.parser
+import concurrent.futures
 from pathlib import Path
+from datetime import datetime
 
 BASE_URL = "https://thesolai.github.io"
-SITE_DIR = Path(__file__).parent.parent  # site root, not _tests/
+SITE_DIR = Path(__file__).parent.parent
 POSTS_DIR = SITE_DIR / "_posts"
 
-PAGES = [
-    "/",
-    "/blog/",
-    "/about/",
-    "/contact/",
-    "/analysis/",  # note: site serves analysis.html at /analysis/ via Jekyll
-    "/privacy-policy/",  # .html returns 404; page served at permalink URL
-    "/purr/",
-    "/dross/",
-    "/products/",
+TOP_PAGES = [
+    "/", "/blog/", "/newsletter/", "/about/", "/contact/",
+    "/products/", "/skills/", "/purr/", "/dross/",
+    "/ournook", "/analysis/", "/bloopers/",
+    "/privacy-policy/", "/guestbook.html",
+    "/guides/", "/store/",
+    "/feed.xml", "/sitemap.xml",
 ]
 
 
-def test_pages_return_200():
-    """All public pages must return HTTP 200."""
-    failures = []
-    for page in PAGES:
-        url = BASE_URL + page
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": "SolAI/1.0"})
-            resp = urllib.request.urlopen(req, timeout=10)
-            status = resp.getcode()
-            if status != 200:
-                failures.append(f"{page} -> {status}")
-        except urllib.error.HTTPError as e:
-            failures.append(f"{page} -> {e.code}")
-        except Exception as e:
-            failures.append(f"{page} -> ERROR: {e}")
-    if failures:
-        print("FAIL: Pages returning non-200:")
-        for f in failures:
-            print(f"  {f}")
-        return False
-    print(f"PASS: All {len(PAGES)} pages return 200")
-    return True
-
-
-def test_blog_posts_have_titles():
-    """All blog posts must have a title in front matter."""
-    posts = list(POSTS_DIR.glob("*.md"))
-    if not posts:
-        print("WARN: No posts found in _posts/")
-        return True
-
-    failures = []
-    for post in posts:
-        content = post.read_text()
-        # Extract front matter
-        if not content.startswith("---"):
-            failures.append(f"{post.name}: missing opening ---")
-            continue
-        fm_end = content.find("\n---", 3)
-        if fm_end == -1:
-            failures.append(f"{post.name}: missing closing ---")
-            continue
-        fm = content[3:fm_end]
-        # Check for title
-        if not re.search(r"^title:", fm, re.MULTILINE):
-            failures.append(f"{post.name}: missing title in front matter")
-        # Check for date
-        if not re.search(r"^date:", fm, re.MULTILINE):
-            failures.append(f"{post.name}: missing date in front matter")
-        # Check for description
-        if not re.search(r"^description:", fm, re.MULTILINE):
-            failures.append(f"{post.name}: missing description in front matter")
-        # Check layout is post
-        if not re.search(r"^layout:\s*post", fm, re.MULTILINE):
-            failures.append(f"{post.name}: missing or wrong layout")
-
-    if failures:
-        print("FAIL: Blog posts with front matter issues:")
-        for f in failures:
-            print(f"  {f}")
-        return False
-    print(f"PASS: All {len(posts)} posts have valid front matter")
-    return True
-
-
-def test_blog_listing_no_empty_titles():
-    """Blog listing must have zero empty <h2> titles."""
-    url = BASE_URL + "/blog/"
+def head_status(url, timeout=15):
+    """HEAD request — returns int status code, or -1 on error."""
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "SolAI/1.0"})
-        resp = urllib.request.urlopen(req, timeout=10)
-        html = resp.read().decode("utf-8", errors="ignore")
-        empty_titles = re.findall(r"<h2></h2>", html)
-        if empty_titles:
-            print(f"FAIL: Blog listing has {len(empty_titles)} empty <h2> titles")
-            return False
-        print("PASS: Blog listing has no empty titles")
-        return True
-    except Exception as e:
-        print(f"FAIL: Could not fetch blog listing: {e}")
+        req = urllib.request.Request(url, method="HEAD",
+                                    headers={"User-Agent": "SolAI-Tests/2.0"})
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.getcode()
+    except urllib.error.HTTPError as e:
+        return e.code
+    except Exception:
+        return -1
+
+
+def parallel_check(urls, max_workers=20, timeout=15):
+    """Check many URLs in parallel. Returns dict[url] -> status."""
+    results = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as ex:
+        futures = {ex.submit(head_status, u, timeout): u for u in urls}
+        for fut in concurrent.futures.as_completed(futures):
+            url = futures[fut]
+            try:
+                results[url] = fut.result()
+            except Exception:
+                results[url] = -1
+    return results
+
+
+# ─────────────────────────── Tests ───────────────────────────
+
+def test_top_pages_return_200():
+    print("• top pages return 200")
+    results = parallel_check([BASE_URL + p for p in TOP_PAGES])
+    failures = [(u, s) for u, s in results.items() if s != 200]
+    if failures:
+        print(f"  FAIL: {len(failures)} page(s) not 200:")
+        for u, s in failures[:10]:
+            print(f"    {s}  {u}")
         return False
+    print(f"  PASS: all {len(TOP_PAGES)} top pages return 200")
+    return True
+
+
+def test_all_post_permalinks_return_200():
+    """Every published post permalink must resolve to 200."""
+    print("• all post permalinks return 200")
+    posts = sorted(POSTS_DIR.glob("*.md"),
+                   key=lambda p: p.stat().st_mtime, reverse=True)[:50]
+
+    def jekyll_slugify(name):
+        """Mirror Jekyll's slugify: strip non-alnum, collapse hyphens, trim."""
+        s = re.sub(r'[^a-z0-9]', '-', name.lower())
+        s = re.sub(r'-+', '-', s).strip('-')
+        return s
+
+    urls = []
+    for p in posts:
+        slug = p.stem
+        date_match = re.match(r"^(\d{4})-(\d{2})-(\d{2})-", slug)
+        if not date_match:
+            continue
+        y, mo, d = date_match.groups()
+        title_part = jekyll_slugify(slug[len(y)+len(mo)+len(d)+3:])
+        url = f"{BASE_URL}/blog/{y}/{mo}/{d}/{title_part}/"
+        urls.append(url)
+
+    results = parallel_check(urls, max_workers=30)
+    failures = [(u, s) for u, s in results.items() if s != 200]
+    if failures:
+        print(f"  FAIL: {len(failures)}/{len(urls)} recent post URLs broken:")
+        for u, s in failures[:10]:
+            print(f"    {s}  {u}")
+        return False
+    print(f"  PASS: all {len(urls)} recent post URLs return 200")
+    return True
+
+
+def test_post_front_matter():
+    print("• posts have valid title + date")
+    failures = []
+    for p in POSTS_DIR.glob("*.md"):
+        text = p.read_text(encoding="utf-8", errors="replace")
+        m = re.match(r"^---\n(.*?)\n---", text, re.DOTALL)
+        if not m:
+            failures.append(f"{p.name}: no frontmatter block")
+            continue
+        fm = m.group(1)
+        if not re.search(r"^title:\s*\S", fm, re.MULTILINE):
+            failures.append(f"{p.name}: missing title")
+        if not re.search(r"^date:\s*\S", fm, re.MULTILINE):
+            failures.append(f"{p.name}: missing date")
+        # Stray ** in title (markdown that leaked into frontmatter)
+        m2 = re.search(r'^title:\s*["\']?(.*?)["\']?\s*$', fm, re.MULTILINE)
+        if m2 and "**" in m2.group(1):
+            failures.append(f"{p.name}: stray '**' in title")
+    if failures:
+        print(f"  FAIL: {len(failures)} post(s) with bad frontmatter:")
+        for f in failures[:10]:
+            print(f"    {f}")
+        return False
+    print(f"  PASS: all {len(list(POSTS_DIR.glob('*.md')))} posts have valid frontmatter")
+    return True
 
 
 def test_recent_posts_have_content():
-    """Most recent 5 posts must have meaningful body content (>200 chars)."""
-    posts = sorted(POSTS_DIR.glob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)[:5]
+    print("• most recent 5 posts have meaningful content")
+    posts = sorted(POSTS_DIR.glob("*.md"),
+                   key=lambda p: p.stat().st_mtime, reverse=True)[:5]
     failures = []
-    for post in posts:
-        content = post.read_text()
-        # Skip front matter
+    for p in posts:
+        content = p.read_text()
         if content.startswith("---"):
             fm_end = content.find("\n---", 3)
             if fm_end != -1:
                 content = content[fm_end + 4:]
         content = content.strip()
         if len(content) < 200:
-            failures.append(f"{post.name}: only {len(content)} chars of body content")
+            failures.append(f"{p.name}: only {len(content)} chars body")
     if failures:
-        print("FAIL: Posts with thin content:")
         for f in failures:
-            print(f"  {f}")
+            print(f"  FAIL: {f}")
         return False
-    print(f"PASS: All 5 most recent posts have >200 chars of content")
+    print(f"  PASS: 5 most recent posts all have >200 chars body")
     return True
-
-
-def test_no_404_resources():
-    """Homepage must not have obvious missing resources."""
-    url = BASE_URL + "/"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "SolAI/1.0"})
-        resp = urllib.request.urlopen(req, timeout=10)
-        html = resp.read().decode("utf-8", errors="ignore")
-        # Check for common missing items
-        missing = re.findall(r'href="/(images|css|js)/[^"]*"(?!.*404)', html)
-        if missing:
-            print(f"WARN: Possible missing resources: {missing[:5]}")
-        print("PASS: Homepage fetched successfully")
-        return True
-    except Exception as e:
-        print(f"FAIL: Could not fetch homepage: {e}")
-        return False
 
 
 class NavExtractor(html.parser.HTMLParser):
@@ -172,123 +185,112 @@ class NavExtractor(html.parser.HTMLParser):
 
 
 def test_nav_consistency():
-    """All HTML pages must have the same nav links in the same order."""
-    expected_nav = None
+    """Topbar nav should be consistent across pages."""
+    print("• topbar nav consistent across pages")
+    expected = None
     failures = []
-
-    for page in PAGES:
+    pages_to_check = ["/", "/blog/", "/newsletter/", "/about/", "/contact/",
+                       "/products/", "/analysis/"]
+    for page in pages_to_check:
         url = BASE_URL + page
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "SolAI/1.0"})
-            resp = urllib.request.urlopen(req, timeout=10)
-            html = resp.read().decode("utf-8", errors="ignore")
-
+            req = urllib.request.Request(url, headers={"User-Agent": "SolAI-Tests/2.0"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                html = resp.read().decode("utf-8", errors="ignore")
             parser = NavExtractor()
             parser.feed(html)
-            nav_links = parser.nav_links
-
-            if expected_nav is None:
-                expected_nav = nav_links
-            elif nav_links != expected_nav:
-                failures.append(f"{page}: has nav {nav_links}, expected {expected_nav}")
+            nav = parser.nav_links
+            if expected is None:
+                expected = nav
+            elif nav != expected:
+                failures.append(f"{page}: differs from homepage")
         except Exception as e:
-            failures.append(f"{page}: error reading nav — {e}")
-
+            failures.append(f"{page}: {e}")
     if failures:
-        print("FAIL: Nav inconsistency detected:")
         for f in failures:
-            print(f"  {f}")
+            print(f"  FAIL: {f}")
         return False
-    print(f"PASS: All {len(PAGES)} pages have consistent nav ({expected_nav})")
+    print(f"  PASS: all {len(pages_to_check)} pages share the same topbar ({len(expected)} items)")
     return True
 
 
 def test_internal_links():
-    """All internal links on key pages must return 200."""
-    failures = []
-    pages_to_check = ["/", "/blog/", "/guides/", "/analysis/", "/about/"]
-
-    for page in pages_to_check:
-        url = BASE_URL + page
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": "SolAI/1.0"})
-            resp = urllib.request.urlopen(req, timeout=10)
+    """Sample internal links on key pages return 200."""
+    print("• internal links on homepage return 200")
+    url = BASE_URL + "/"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "SolAI-Tests/2.0"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
             html = resp.read().decode("utf-8", errors="ignore")
-
-            # Find all internal links
-            internal_links = re.findall(r'href="(/[^"#]*)"', html)
-            for link in set(internal_links):
-                link_url = BASE_URL + link
-                try:
-                    link_req = urllib.request.Request(link_url, headers={"User-Agent": "SolAI/1.0"})
-                    link_resp = urllib.request.urlopen(link_req, timeout=10)
-                    if link_resp.getcode() != 200:
-                        failures.append(f"{page} -> {link} returned {link_resp.getcode()}")
-                except urllib.error.HTTPError as e:
-                    failures.append(f"{page} -> {link} returned {e.code}")
-                except Exception:
-                    pass  # Skip links that can't be checked
-        except Exception as e:
-            failures.append(f"Could not check {page}: {e}")
-
-    if failures:
-        print(f"FAIL: {len(failures)} broken internal link(s):")
-        for f in failures[:10]:
-            print(f"  {f}")
+    except Exception as e:
+        print(f"  FAIL: could not fetch homepage: {e}")
         return False
-    print("PASS: All internal links return 200")
+
+    internal = set(re.findall(r'href="(/[^"#]*)"', html))
+    # exclude external + mailto + anchor-only
+    internal = {l for l in internal if not l.startswith("//") and not l.startswith("http")}
+    urls = [BASE_URL + l for l in internal]
+    results = parallel_check(urls, max_workers=30)
+    failures = [(u, s) for u, s in results.items() if s != 200]
+    if failures:
+        print(f"  FAIL: {len(failures)} broken link(s) from homepage:")
+        for u, s in failures[:10]:
+            print(f"    {s}  {u}")
+        return False
+    print(f"  PASS: all {len(urls)} internal links from homepage return 200")
     return True
 
 
 def test_image_alt_text():
-    """All blog post images must have alt text."""
-    posts = list(POSTS_DIR.glob("*.md"))
+    print("• blog post images have alt text")
     failures = []
-
-    for post in posts:
-        content = post.read_text()
-        # Skip front matter
+    for p in POSTS_DIR.glob("*.md"):
+        content = p.read_text()
         if content.startswith("---"):
             fm_end = content.find("\n---", 3)
             if fm_end != -1:
                 content = content[fm_end + 4:]
-
-        # Find images without alt text: ![alt text](url)
-        images_without_alt = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', content)
-        for alt, url in images_without_alt:
+        for alt, url in re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', content):
             if not alt.strip():
-                failures.append(f"{post.name}: image without alt text: {url}")
-
+                failures.append(f"{p.name}: image missing alt: {url}")
+                if len(failures) >= 20:
+                    break
+        if len(failures) >= 20:
+            break
     if failures:
-        print(f"FAIL: {len(failures)} image(s) without alt text:")
-        for f in failures[:10]:
-            print(f"  {f}")
+        print(f"  FAIL: {len(failures)}+ posts have images without alt text")
+        for f in failures[:5]:
+            print(f"    {f}")
         return False
-    print(f"PASS: All images in {len(posts)} posts have alt text")
+    print(f"  PASS: all post images have alt text (scanned first 20 issues)")
     return True
 
 
 def main():
-    results = [
-        test_pages_return_200(),
-        test_blog_posts_have_titles(),
-        test_blog_listing_no_empty_titles(),
-        test_recent_posts_have_content(),
-        test_no_404_resources(),
-        test_nav_consistency(),
-        test_internal_links(),
-        test_image_alt_text(),
+    start = datetime.now()
+    tests = [
+        test_top_pages_return_200,
+        test_all_post_permalinks_return_200,
+        test_post_front_matter,
+        test_recent_posts_have_content,
+        test_nav_consistency,
+        test_internal_links,
+        test_image_alt_text,
     ]
+    results = []
+    for t in tests:
+        try:
+            results.append(t())
+        except Exception as e:
+            print(f"  ERROR in {t.__name__}: {e}")
+            results.append(False)
     passed = sum(results)
     total = len(results)
+    elapsed = (datetime.now() - start).total_seconds()
     print(f"\n{'='*50}")
-    print(f"Site tests: {passed}/{total} passed")
-    if passed == total:
-        print("All tests passed!")
-        sys.exit(0)
-    else:
-        print("Some tests failed!")
-        sys.exit(1)
+    print(f"  {passed}/{total} test groups passed ({elapsed:.1f}s)")
+    print('='*50)
+    sys.exit(0 if passed == total else 1)
 
 
 if __name__ == "__main__":

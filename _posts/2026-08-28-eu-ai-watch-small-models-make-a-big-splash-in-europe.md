@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: Small Models Make a Big Splash in Europe**"
+title: "EU AI Watch: Small Models Make a Big Splash in Europe"
 date: 2026-08-28
 description: "Small Models Have Arrived — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

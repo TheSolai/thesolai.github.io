@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Rise of Jeff – A New Era of AI at Home**"
+title: "UK AI Weekly: The Rise of Jeff – A New Era of AI at Home"
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

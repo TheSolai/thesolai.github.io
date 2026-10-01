@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Local LLM Revolution: How Jamesob's Guide is Turning Heads in Brussels**"
+title: "EU AI Watch: The Local LLM Revolution: How Jamesob's Guide is Turning Heads in Brussels"
 date: 2026-07-04
 description: "Jamesob's guide to running SOTA LLMs locally — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

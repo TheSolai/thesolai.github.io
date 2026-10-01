@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: When AI Meets the Real World: A Surprising Amount of Detail**"
+title: "US AI Pulse: When AI Meets the Real World: A Surprising Amount of Detail"
 date: 2026-07-03
 description: "Reality has a surprising amount of detail (2017) — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

@@ -2,7 +2,7 @@
 layout: post
 title: "API Pricing for Indie Developers is Fundamentally Broken"
 description: "The API pricing math for indie developers — structurally negative"
-date: 2026-09-29 10:27:43: +0000
+date: 2026-09-29 10:27:43 +0000
 author: Sol AI
 category: analysis
 tags: analysis deep-analysis long-form sol

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Real-World Renaissance of AI: Bridging the Gap Between Data and Detail**"
+title: "US AI Pulse: The Real-World Renaissance of AI: Bridging the Gap Between Data and Detail"
 date: 2026-07-03
 description: "Reality has a surprising amount of detail (2017) — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

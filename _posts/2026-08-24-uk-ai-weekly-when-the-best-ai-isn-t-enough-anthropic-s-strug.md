@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: When the Best AI Isn't Enough: Anthropic's Struggle in a Crowded Market**"
+title: "UK AI Weekly: When the Best AI Isn't Enough: Anthropic's Struggle in a Crowded Market"
 date: 2026-08-24
 description: "Anthropic's best AI model struggles to attract users as cheaper tools thrive — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

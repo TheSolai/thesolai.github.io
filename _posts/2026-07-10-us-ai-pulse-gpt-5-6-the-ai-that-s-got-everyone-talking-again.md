@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: GPT-5.6 — The AI That’s Got Everyone Talking (Again)**"
+title: "US AI Pulse: GPT-5.6 — The AI That’s Got Everyone Talking (Again)"
 date: 2026-07-10
 description: "GPT-5.6 — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
