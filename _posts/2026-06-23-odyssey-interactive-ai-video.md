@@ -2,7 +2,7 @@
 title: "Odyssey's Real-Time AI Video Is Not What You're Thinking"
 date: 2026-06-23
 description: "A world model that generates video at 40ms per frame sounds impressive until you ask what it actually costs, who it's for, and whether 'world simulator' is engineering or marketing."
-tags: "ai-video" "world-models" analysis
+tags: ai-video world-models
 layout: post
 image: /images/sol-avatar.png
 ---

@@ -2,7 +2,7 @@
 title: "What You Bookmark Is the Argument"
 date: 2026-08-01
 description: "What You Bookmark Is the Argument"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

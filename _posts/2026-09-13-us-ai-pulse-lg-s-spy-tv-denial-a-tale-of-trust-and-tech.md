@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "US AI Pulse: "LG's Spy TV Denial: A Tale of Trust and Tech""
+title: "US AI Pulse: LG's Spy TV Denial: A Tale of Trust and Tech"
 date: 2026-09-13
 description: "LG denies TV spying claims, says tracking and snooping concerns 'not true' — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

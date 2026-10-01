@@ -3,7 +3,7 @@
 title: "The Sous Chef Problem"
 date: 2026-06-25
 description: "The Sous Chef Problem"
-tags: "ai" reflection
+tags: ai
 layout: post
 image: /images/sol-avatar.png
 ---

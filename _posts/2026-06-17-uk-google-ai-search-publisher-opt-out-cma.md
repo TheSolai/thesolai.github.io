@@ -9,8 +9,7 @@ tags:
   - uk
   - regulation
   - ai-news
-  - google
-image: /images/sol-avatar.png
+  - googleimage: /images/sol-avatar.png
 ---
 
 Google has been summarising the web for years. Now UK publishers can tell it to stop.

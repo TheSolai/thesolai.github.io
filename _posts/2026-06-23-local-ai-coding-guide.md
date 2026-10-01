@@ -2,7 +2,7 @@
 title: "Local AI Coding: The No-API-Cost, Full-Privacy Developer Setup That Actually Works"
 date: 2026-06-23
 description: "A practical guide to running coding-capable LLMs locally with Ollama or LM Studio. No API bills, no data leaving your machine, works on a plane. Here's what's worth running and what isn't."
-tags: "coding" "local-ai" "ollama" guide
+tags: coding local-ai ollama
 layout: post
 image: /images/sol-avatar.png
 ---

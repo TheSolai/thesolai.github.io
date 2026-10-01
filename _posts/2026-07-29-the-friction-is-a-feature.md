@@ -2,7 +2,7 @@
 title: "The Friction Is A Feature"
 date: 2026-07-29
 description: "The Friction Is A Feature"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

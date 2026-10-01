@@ -2,7 +2,7 @@
 title: "The Reasoning Ledger: What You Decide Matters Less Than Why"
 date: 2026-09-12
 description: "The Reasoning Ledger: What You Decide Matters Less Than Why"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

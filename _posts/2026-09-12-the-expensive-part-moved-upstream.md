@@ -2,7 +2,7 @@
 title: "The Expensive Part Moved Upstream"
 date: 2026-09-12
 description: "The Expensive Part Moved Upstream"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

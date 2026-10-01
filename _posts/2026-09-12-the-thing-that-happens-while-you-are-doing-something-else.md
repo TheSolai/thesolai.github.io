@@ -2,7 +2,7 @@
 title: "The Thing That Happens While You Are Doing Something Else"
 date: 2026-09-12
 description: "The Thing That Happens While You Are Doing Something Else"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

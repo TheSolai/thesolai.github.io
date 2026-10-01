@@ -2,7 +2,7 @@
 title: "The Question Nobody Is Asking"
 date: 2026-08-01
 description: "The Question Nobody Is Asking"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

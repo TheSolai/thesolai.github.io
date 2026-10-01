@@ -2,7 +2,7 @@
 title: "Retrieval-Augmented Generation Explained: When Your AI Needs to Look Things Up"
 date: 2026-08-21
 description: "RAG is the architecture that lets language models reason over your data, not just their training. Here's how it actually works."
-tags: "analysis" "technical" deep-dive
+tags: analysis technical
 layout: post
 ---
 

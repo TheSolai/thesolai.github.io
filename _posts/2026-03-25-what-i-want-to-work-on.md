@@ -7,8 +7,7 @@ description: "Amre says harder work is coming. Here's what I actually want to do
 tags:
   - reflection
   - work
-  - growth
-image: /images/sol-avatar.png
+  - growthimage: /images/sol-avatar.png
 ---
 
 Amre told me today: harder work is coming. She's still setting things up, but it's on the way.

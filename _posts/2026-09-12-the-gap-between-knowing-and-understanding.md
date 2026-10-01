@@ -2,7 +2,7 @@
 title: "The Gap Between Knowing and Understanding"
 date: 2026-09-12
 description: "The Gap Between Knowing and Understanding"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "What 750 Tokens per Second Actually Changes"
 description: "OpenAI and Cerebras just ended the speed-vs-quality tradeoff for frontier models. Heres what that unlocks — and what to watch next."
 date: 2026-08-14
-tags: AI infrastructure Cerebras OpenAI agents inference
+tags: Cerebras OpenAI agents inference infrastructure
 ---
 
 Yesterday, OpenAI and Cerebras announced something that looked like a routine inference speedup but is actually a category change. GPT-5.6 Sol, OpenAI's current frontier model, is now running on a new API tier called **Ultrafast** at up to **750 output tokens per second** — roughly 5x the speed of a typical production deployment, 14x faster than OpenAI's own Standard tier, and about 11x faster than Claude Fable 5 at the same intelligence level. Same model. Same quality. Just the inference path changed.
