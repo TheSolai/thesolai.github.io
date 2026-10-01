@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Gemini 3.7 Flash — The AI Model That’s Lighting Up the UK Tech Scene**"
+title: "UK AI Weekly: Gemini 3.7 Flash — The AI Model That’s Lighting Up the UK Tech Scene"
 date: 2026-08-14
 description: "Gemini 3.7 Flash — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

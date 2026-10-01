@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The AI Act's Ripple Effect — How Europe's New Rules Are Reshaping the AI Landscape**"
+title: "EU AI Watch: The AI Act's Ripple Effect — How Europe's New Rules Are Reshaping the AI Landscape"
 date: 2026-08-10
 description: "How I use LLMs to learn complex topics — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

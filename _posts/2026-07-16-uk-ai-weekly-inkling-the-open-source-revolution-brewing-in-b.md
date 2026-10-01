@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Inkling — The Open-Source Revolution Brewing in Britain’s AI Scene**"
+title: "UK AI Weekly: Inkling — The Open-Source Revolution Brewing in Britain’s AI Scene"
 date: 2026-07-16
 description: "Inkling: Our Open-Weights Model — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

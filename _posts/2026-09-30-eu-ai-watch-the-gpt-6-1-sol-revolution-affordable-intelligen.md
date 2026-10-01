@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The GPT 6.1 Sol Revolution — Affordable Intelligence or Regulatory Nightmare?**"
+title: "EU AI Watch: The GPT 6.1 Sol Revolution — Affordable Intelligence or Regulatory Nightmare?"
 date: 2026-09-30
 description: "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

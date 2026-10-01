@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Claude Code Conundrum — How EU Regulation is Shaping AI Development**"
+title: "EU AI Watch: The Claude Code Conundrum — How EU Regulation is Shaping AI Development"
 date: 2026-09-19
 description: "Claude Code now reads AGENTS.md if there is no Claude.md — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

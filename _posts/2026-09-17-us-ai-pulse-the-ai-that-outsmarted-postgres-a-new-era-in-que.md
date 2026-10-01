@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The AI That Outsmarted Postgres: A New Era in Query Optimization**"
+title: "US AI Pulse: The AI That Outsmarted Postgres: A New Era in Query Optimization"
 date: 2026-09-17
 description: "Training a 4B model to produce 81% faster query plans than Postgres — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

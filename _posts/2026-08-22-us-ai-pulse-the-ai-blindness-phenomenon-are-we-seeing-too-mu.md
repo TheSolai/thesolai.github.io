@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The AI Blindness Phenomenon: Are We Seeing Too Much or Too Little?**"
+title: "US AI Pulse: The AI Blindness Phenomenon: Are We Seeing Too Much or Too Little?"
 date: 2026-08-22
 description: "I'm becoming AI-blind — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

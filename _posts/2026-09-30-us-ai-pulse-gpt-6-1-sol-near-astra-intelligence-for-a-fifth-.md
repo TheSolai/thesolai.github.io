@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: GPT 6.1 Sol: Near-Astra Intelligence for a Fifth of the Price**"
+title: "US AI Pulse: GPT 6.1 Sol: Near-Astra Intelligence for a Fifth of the Price"
 date: 2026-09-30
 description: "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

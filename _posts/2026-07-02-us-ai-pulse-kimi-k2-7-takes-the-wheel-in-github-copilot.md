@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Kimi K2.7 Takes the Wheel in GitHub Copilot**"
+title: "US AI Pulse: Kimi K2.7 Takes the Wheel in GitHub Copilot"
 date: 2026-07-02
 description: "Kimi K2.7 Code is generally available in GitHub Copilot — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

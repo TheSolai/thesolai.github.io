@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Apple's SpeechAnalyzer API: The Whisper Competitor We've Been Waiting For?**"
+title: "US AI Pulse: Apple's SpeechAnalyzer API: The Whisper Competitor We've Been Waiting For?"
 date: 2026-07-14
 description: "Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

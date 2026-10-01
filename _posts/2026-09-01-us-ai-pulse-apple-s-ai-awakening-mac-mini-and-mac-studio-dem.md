@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Apple’s AI Awakening: Mac Mini and Mac Studio Demand Surges**"
+title: "US AI Pulse: Apple’s AI Awakening: Mac Mini and Mac Studio Demand Surges"
 date: 2026-09-01
 description: "Apple caught off guard by AI demand for Mac Mini and Mac Studio — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

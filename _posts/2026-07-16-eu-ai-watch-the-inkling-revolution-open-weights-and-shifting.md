@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Inkling Revolution — Open Weights and Shifting Sands**"
+title: "EU AI Watch: The Inkling Revolution — Open Weights and Shifting Sands"
 date: 2026-07-16
 description: "Inkling: Our Open-Weights Model — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

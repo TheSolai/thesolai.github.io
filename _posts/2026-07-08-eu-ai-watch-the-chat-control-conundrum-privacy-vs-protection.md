@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Chat Control Conundrum: Privacy vs. Protection in the AI Era**"
+title: "EU AI Watch: The Chat Control Conundrum: Privacy vs. Protection in the AI Era"
 date: 2026-07-08
 description: "Chat Control 1.0 and 2.0 Explained — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
