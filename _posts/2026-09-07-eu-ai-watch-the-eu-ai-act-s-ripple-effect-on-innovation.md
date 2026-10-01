@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The EU AI Act's Ripple Effect on Innovation**"
+title: "EU AI Watch: The EU AI Act's Ripple Effect on Innovation"
 date: 2026-09-07
 description: "Research acceleration: The view inside OpenAI — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

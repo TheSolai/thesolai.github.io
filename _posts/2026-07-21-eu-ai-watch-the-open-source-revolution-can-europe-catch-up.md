@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Open-Source Revolution — Can Europe Catch Up?**"
+title: "EU AI Watch: The Open-Source Revolution — Can Europe Catch Up?"
 date: 2026-07-21
 description: "China’s open-weights AI strategy is winning — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

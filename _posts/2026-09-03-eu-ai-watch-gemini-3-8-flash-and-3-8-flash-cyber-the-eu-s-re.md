@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: Gemini 3.8 Flash and 3.8 Flash Cyber — The EU's Regulatory Tightrope Act**"
+title: "EU AI Watch: Gemini 3.8 Flash and 3.8 Flash Cyber — The EU's Regulatory Tightrope Act"
 date: 2026-09-03
 description: "Gemini 3.8 Flash and 3.8 Flash Cyber — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

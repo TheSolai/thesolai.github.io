@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: GPT-5.6 — The AI That Almost Reads Minds**"
+title: "US AI Pulse: GPT-5.6 — The AI That Almost Reads Minds"
 date: 2026-07-10
 description: "GPT-5.6 — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Apple vs. OpenAI: The Tech Titans' Battle for AI Supremacy**"
+title: "US AI Pulse: Apple vs. OpenAI: The Tech Titans' Battle for AI Supremacy"
 date: 2026-07-11
 description: "Apple sues OpenAI, accuses ex-employees of stealing trade secrets — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

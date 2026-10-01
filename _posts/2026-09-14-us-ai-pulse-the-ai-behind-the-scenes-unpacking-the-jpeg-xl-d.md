@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The AI Behind the Scenes: Unpacking the JPEG XL Debate**"
+title: "US AI Pulse: The AI Behind the Scenes: Unpacking the JPEG XL Debate"
 date: 2026-09-14
 description: "The case against JPEG XL — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Chat Control — The UK's Bold Step into AI Regulation**"
+title: "UK AI Weekly: Chat Control — The UK's Bold Step into AI Regulation"
 date: 2026-07-08
 description: "Chat Control 1.0 and 2.0 Explained — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

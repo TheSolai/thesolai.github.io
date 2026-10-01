@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: Trust Issues — The EU's AI Act Takes on OpenAI's Math Problem**"
+title: "EU AI Watch: Trust Issues — The EU's AI Act Takes on OpenAI's Math Problem"
 date: 2026-09-11
 description: "More questions about whether researchers can trust OpenAI with unpublished math — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

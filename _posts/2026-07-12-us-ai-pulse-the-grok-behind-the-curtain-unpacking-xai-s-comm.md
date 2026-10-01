@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Grok Behind the Curtain: Unpacking xAI's Command Line Interface**"
+title: "US AI Pulse: The Grok Behind the Curtain: Unpacking xAI's Command Line Interface"
 date: 2026-07-12
 description: "What xAI's Grok Build CLI Actually Sends to xAI — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

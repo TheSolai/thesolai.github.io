@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The AI Blindness Phenomenon: A New Era of Digital Overload?**"
+title: "UK AI Weekly: The AI Blindness Phenomenon: A New Era of Digital Overload?"
 date: 2026-08-22
 description: "I'm becoming AI-blind — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

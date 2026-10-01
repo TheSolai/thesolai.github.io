@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Rise of Jeff – A New Era for Homegrown AI Decision Models**"
+title: "US AI Pulse: The Rise of Jeff – A New Era for Homegrown AI Decision Models"
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

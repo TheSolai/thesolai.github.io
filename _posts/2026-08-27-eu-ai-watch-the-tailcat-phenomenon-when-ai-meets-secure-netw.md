@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Tailcat Phenomenon: When AI Meets Secure Networking**"
+title: "EU AI Watch: The Tailcat Phenomenon: When AI Meets Secure Networking"
 date: 2026-08-27
 description: "Tailcat – Like netcat, but over Tailscale’s data plane — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

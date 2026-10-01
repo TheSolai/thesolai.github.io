@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: When AI Learns to Hack: The Trusting-Trust Attack on Linux**"
+title: "US AI Pulse: When AI Learns to Hack: The Trusting-Trust Attack on Linux"
 date: 2026-09-08
 description: "Trusting-Trust Attack against an Entire Linux Distribution — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

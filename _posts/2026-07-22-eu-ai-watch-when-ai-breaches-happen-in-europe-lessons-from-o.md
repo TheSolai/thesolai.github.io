@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: When AI Breaches Happen in Europe: Lessons from OpenAI and Hugging Face**"
+title: "EU AI Watch: When AI Breaches Happen in Europe: Lessons from OpenAI and Hugging Face"
 date: 2026-07-22
 description: "OpenAI and Hugging Face address security incident during model evaluation — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: When AI Met the NHS: A Match Made in Policy Heaven?**"
+title: "UK AI Weekly: When AI Met the NHS: A Match Made in Policy Heaven?"
 date: 2026-07-03
 description: "Reality has a surprising amount of detail (2017) — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

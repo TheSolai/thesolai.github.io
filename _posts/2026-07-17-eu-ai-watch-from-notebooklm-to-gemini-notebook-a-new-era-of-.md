@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: From NotebookLM to Gemini Notebook: A New Era of AI Regulation in Europe**"
+title: "EU AI Watch: From NotebookLM to Gemini Notebook: A New Era of AI Regulation in Europe"
 date: 2026-07-17
 description: "NotebookLM is now Gemini Notebook — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

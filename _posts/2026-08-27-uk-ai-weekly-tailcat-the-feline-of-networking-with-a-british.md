@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Tailcat: The Feline of Networking with a British Twist**"
+title: "UK AI Weekly: Tailcat: The Feline of Networking with a British Twist"
 date: 2026-08-27
 description: "Tailcat – Like netcat, but over Tailscale’s data plane — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

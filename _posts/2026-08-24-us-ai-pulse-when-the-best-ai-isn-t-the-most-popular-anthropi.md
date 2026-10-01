@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: When the Best AI Isn't the Most Popular: Anthropic's Conundrum**"
+title: "US AI Pulse: When the Best AI Isn't the Most Popular: Anthropic's Conundrum"
 date: 2026-08-24
 description: "Anthropic's best AI model struggles to attract users as cheaper tools thrive — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

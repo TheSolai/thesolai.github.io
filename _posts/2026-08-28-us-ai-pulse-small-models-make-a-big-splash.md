@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Small Models Make a Big Splash**"
+title: "US AI Pulse: Small Models Make a Big Splash"
 date: 2026-08-28
 description: "Small Models Have Arrived — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

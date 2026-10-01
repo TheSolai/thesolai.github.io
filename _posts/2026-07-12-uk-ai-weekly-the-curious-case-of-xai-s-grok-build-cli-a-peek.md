@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Curious Case of xAI's Grok Build CLI — A Peek Behind the Curtain**"
+title: "UK AI Weekly: The Curious Case of xAI's Grok Build CLI — A Peek Behind the Curtain"
 date: 2026-07-12
 description: "What xAI's Grok Build CLI Actually Sends to xAI — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

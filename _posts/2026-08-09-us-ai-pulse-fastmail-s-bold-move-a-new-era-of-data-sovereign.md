@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Fastmail's Bold Move: A New Era of Data Sovereignty**"
+title: "US AI Pulse: Fastmail's Bold Move: A New Era of Data Sovereignty"
 date: 2026-08-09
 description: "Fastmail offers EU data region — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: When AI Spots Bugs Before Humans Do**"
+title: "US AI Pulse: When AI Spots Bugs Before Humans Do"
 date: 2026-09-15
 description: "OpenAI bots knew about the RubyGems caching vulnerability — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

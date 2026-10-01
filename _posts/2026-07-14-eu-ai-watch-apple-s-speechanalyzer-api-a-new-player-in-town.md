@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: Apple's SpeechAnalyzer API – A New Player in Town**"
+title: "EU AI Watch: Apple's SpeechAnalyzer API – A New Player in Town"
 date: 2026-07-14
 description: "Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

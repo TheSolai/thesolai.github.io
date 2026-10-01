@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Hidden Boardroom of AI – How a Secret OpenAI Forum is Shaping Europe's Tech Future**"
+title: "EU AI Watch: The Hidden Boardroom of AI – How a Secret OpenAI Forum is Shaping Europe's Tech Future"
 date: 2026-09-06
 description: "Discovery of a new OpenAI agent message board — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

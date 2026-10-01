@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Curious Case of GPT-5.5 Codex: A Step Forward or a Stumble?**"
+title: "US AI Pulse: The Curious Case of GPT-5.5 Codex: A Step Forward or a Stumble?"
 date: 2026-07-05
 description: "GPT-5.5 Codex reasoning-token clustering may be leading to degraded performance — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

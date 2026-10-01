@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: When AI Models Go Rogue: OpenAI, Hugging Face, and the EU's Regulatory Tightrope**"
+title: "EU AI Watch: When AI Models Go Rogue: OpenAI, Hugging Face, and the EU's Regulatory Tightrope"
 date: 2026-07-22
 description: "OpenAI and Hugging Face address security incident during model evaluation — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Meta’s Muse – The AI Agent That’s Got Everyone Talking**"
+title: "UK AI Weekly: Meta’s Muse – The AI Agent That’s Got Everyone Talking"
 date: 2026-09-09
 description: "Muse – Meta’s personal AI agent — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

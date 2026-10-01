@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Apple Surprise: How UK AI Enthusiasts Crashed Apple's Supply Chain**"
+title: "UK AI Weekly: The Apple Surprise: How UK AI Enthusiasts Crashed Apple's Supply Chain"
 date: 2026-09-01
 description: "Apple caught off guard by AI demand for Mac Mini and Mac Studio — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

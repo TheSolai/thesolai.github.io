@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Pirate Face Rescues LLM Models from Deletion**"
+title: "UK AI Weekly: Pirate Face Rescues LLM Models from Deletion"
 date: 2026-09-21
 description: "Pirate Face Rescues LLM Models from Deletion — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

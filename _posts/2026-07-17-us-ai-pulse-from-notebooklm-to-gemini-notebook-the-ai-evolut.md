@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: From NotebookLM to Gemini Notebook: The AI Evolution We’ve Been Waiting For**"
+title: "US AI Pulse: From NotebookLM to Gemini Notebook: The AI Evolution We’ve Been Waiting For"
 date: 2026-07-17
 description: "NotebookLM is now Gemini Notebook — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

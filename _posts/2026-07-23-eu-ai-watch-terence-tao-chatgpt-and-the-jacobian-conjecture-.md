@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: Terence Tao, ChatGPT, and the Jacobian Conjecture: A New Era of AI in Academic Discourse**"
+title: "EU AI Watch: Terence Tao, ChatGPT, and the Jacobian Conjecture: A New Era of AI in Academic Discourse"
 date: 2026-07-23
 description: "Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

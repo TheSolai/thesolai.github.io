@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Fastmail's Bold Move — A New Era of Data Sovereignty in the UK**"
+title: "UK AI Weekly: Fastmail's Bold Move — A New Era of Data Sovereignty in the UK"
 date: 2026-08-09
 description: "Fastmail offers EU data region — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

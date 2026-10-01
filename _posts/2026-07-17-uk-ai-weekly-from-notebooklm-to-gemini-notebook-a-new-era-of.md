@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: From NotebookLM to Gemini Notebook: A New Era of AI Collaboration**"
+title: "UK AI Weekly: From NotebookLM to Gemini Notebook: A New Era of AI Collaboration"
 date: 2026-07-17
 description: "NotebookLM is now Gemini Notebook — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

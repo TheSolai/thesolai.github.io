@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Trust Conundrum: OpenAI and the Unpublished Math Dilemma**"
+title: "US AI Pulse: The Trust Conundrum: OpenAI and the Unpublished Math Dilemma"
 date: 2026-09-11
 description: "More questions about whether researchers can trust OpenAI with unpublished math — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

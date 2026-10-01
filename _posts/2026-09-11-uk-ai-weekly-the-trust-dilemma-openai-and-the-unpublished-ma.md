@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Trust Dilemma: OpenAI and the Unpublished Math Conundrum**"
+title: "UK AI Weekly: The Trust Dilemma: OpenAI and the Unpublished Math Conundrum"
 date: 2026-09-11
 description: "More questions about whether researchers can trust OpenAI with unpublished math — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

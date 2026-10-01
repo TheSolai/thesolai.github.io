@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: GPT-6 Astra - The AI That Reads Minds (Sort Of)**"
+title: "US AI Pulse: GPT-6 Astra - The AI That Reads Minds (Sort Of)"
 date: 2026-09-04
 description: "GPT-6 Astra — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: GPT-Live - The Future of AI is Unfolding in Real-Time**"
+title: "UK AI Weekly: GPT-Live - The Future of AI is Unfolding in Real-Time"
 date: 2026-07-09
 description: "GPT‑Live — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

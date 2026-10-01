@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Local LLM Revolution: Jamesob's Guide to Running SOTA Models on Your Laptop**"
+title: "UK AI Weekly: The Local LLM Revolution: Jamesob's Guide to Running SOTA Models on Your Laptop"
 date: 2026-07-04
 description: "Jamesob's guide to running SOTA LLMs locally — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

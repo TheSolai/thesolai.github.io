@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Rust Revolution — How Claude Code's Move to Bun is Reshaping European AI**"
+title: "EU AI Watch: The Rust Revolution — How Claude Code's Move to Bun is Reshaping European AI"
 date: 2026-07-20
 description: "Claude Code uses Bun written in Rust now — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

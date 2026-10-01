@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Haiku Heard 'Round the AI World**"
+title: "UK AI Weekly: The Haiku Heard 'Round the AI World"
 date: 2026-08-31
 description: "Haiku R1/beta6 has been released — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

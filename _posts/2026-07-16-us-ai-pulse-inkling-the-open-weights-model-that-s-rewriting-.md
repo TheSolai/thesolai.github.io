@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Inkling — The Open-Weights Model That’s Rewriting the AI Rulebook**"
+title: "US AI Pulse: Inkling — The Open-Weights Model That’s Rewriting the AI Rulebook"
 date: 2026-07-16
 description: "Inkling: Our Open-Weights Model — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

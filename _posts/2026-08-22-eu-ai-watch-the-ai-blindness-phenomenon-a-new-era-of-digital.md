@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The AI-Blindness Phenomenon: A New Era of Digital Disconnect**"
+title: "EU AI Watch: The AI-Blindness Phenomenon: A New Era of Digital Disconnect"
 date: 2026-08-22
 description: "I'm becoming AI-blind — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

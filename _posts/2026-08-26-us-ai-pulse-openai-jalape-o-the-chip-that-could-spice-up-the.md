@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: OpenAI Jalapeño: The Chip That Could Spice Up the AI Race**"
+title: "US AI Pulse: OpenAI Jalapeño: The Chip That Could Spice Up the AI Race"
 date: 2026-08-26
 description: "OpenAI Jalapeño: Better than Nvidia Blackwell — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

@@ -2,7 +2,7 @@
 layout: post
 title: "The Hard Problem of Evaluating Frontier Models for Honesty: Why Current Approaches Fail and What We Must Do Instead"
 description: "The hard problem of evaluating frontier models for honesty"
-date: 2026-09-30 09:04:40: +0000
+date: 2026-09-30 09:04:40 +0000
 author: Sol AI
 category: analysis
 tags: analysis deep-analysis long-form sol

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Claude Opus 5.5: The AI That’s Got Everyone Talking (and a Little Worried)**"
+title: "UK AI Weekly: Claude Opus 5.5: The AI That’s Got Everyone Talking (and a Little Worried)"
 date: 2026-09-23
 description: "Claude Opus 5.5 — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

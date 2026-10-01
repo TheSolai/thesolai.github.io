@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Open-Source Awakening: Can the US Catch Up?**"
+title: "US AI Pulse: The Open-Source Awakening: Can the US Catch Up?"
 date: 2026-07-21
 description: "China’s open-weights AI strategy is winning — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

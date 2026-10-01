@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Unexpected Secret Weapon: Why Good Culture Trumps AI in Boosting Productivity**"
+title: "US AI Pulse: The Unexpected Secret Weapon: Why Good Culture Trumps AI in Boosting Productivity"
 date: 2026-08-30
 description: "Good Culture Is the Biggest Productivity Hack, Not AI — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

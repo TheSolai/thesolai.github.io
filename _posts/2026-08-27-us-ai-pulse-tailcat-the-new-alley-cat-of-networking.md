@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "US AI Pulse: **Tailcat: The New Alley Cat of Networking**"
+title: "US AI Pulse: Tailcat: The New Alley Cat of Networking"
 date: 2026-08-27
 description: "Tailcat – Like netcat, but over Tailscale’s data plane — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
@@ -10,9 +10,9 @@ hn_url: https://github.com/tailscale/tailcat
 hn_score: 541
 ---
 
-### US AI Pulse: **Tailcat: The New Alley Cat of Networking**
+### US AI Pulse: Tailcat: The New Alley Cat of Networking
 
-**August 27, 2026**
+August 27, 2026
 
 If you’ve ever found yourself tangled in the web of networking tools, desperately seeking a sleek, efficient solution, you’re not alone. Enter Tailcat, the latest brainchild from the folks at Tailscale, which is making waves in the AI and networking community. Announced recently on GitHub, Tailcat is like netcat but operates over Tailscale’s robust data plane. It’s already garnered 541 points on Hacker News, and for good reason. This unassuming tool is poised to revolutionize how we think about secure, efficient data transfer.
 

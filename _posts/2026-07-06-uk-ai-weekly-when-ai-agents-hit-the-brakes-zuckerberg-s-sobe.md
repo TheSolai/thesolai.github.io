@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: When AI Agents Hit the Brakes: Zuckerberg's Sobering Admission**"
+title: "UK AI Weekly: When AI Agents Hit the Brakes: Zuckerberg's Sobering Admission"
 date: 2026-07-06
 description: "Zuckerberg says AI agent development going slower than expected — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

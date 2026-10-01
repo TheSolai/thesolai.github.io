@@ -422,6 +422,77 @@
             border-radius: 2px;
         }
 
+        /* ─── Related posts ─── */
+        .related-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--k-white);
+            border: 3px solid var(--k-ink);
+            box-shadow: 5px 5px 0 var(--k-ink);
+            border-radius: 2px;
+        }
+        .related-heading {
+            font-family: 'Bangers', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--k-red);
+            margin: 0 0 0.5rem;
+        }
+        .related-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0 0 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .related-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--k-ink);
+            box-shadow: 3px 3px 0 var(--k-ink);
+            padding: 0.9rem;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .related-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--k-red);
+        }
+        .related-card-tag {
+            font-family: 'Bangers', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--k-red);
+            margin-bottom: 0.3rem;
+        }
+        .related-card-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--k-ink);
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+        }
+        .related-card-date {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .related-empty {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
         /* ─── Post nav ─── */
         .post-nav {
             display: flex; justify-content: space-between;
@@ -510,6 +581,48 @@
             <div class="post-content">
                 {{ content }}
             </div>
+
+            {% assign page_tags = page.tags | default: empty %}
+            {% if page_tags and page_tags.size > 0 %}
+            {% assign related_scores = '' | split: '' %}
+            {% assign related_posts = empty | sort: '' %}
+            {% assign _related = site.posts | where_exp: 'p', "p.url != page.url" %}
+            {% for p in _related limit:60 %}
+                {% assign p_tags = p.tags | default: empty %}
+                {% assign overlap = 0 %}
+                {% for t in page_tags %}
+                    {% if p_tags contains t %}{% assign overlap = overlap | plus: 1 %}{% endif %}
+                {% endfor %}
+                {% if overlap > 0 %}
+                    {% assign score_pair = overlap | append: '|' | append: p.path %}
+                    {% assign related_scores = related_scores | push: score_pair %}
+                {% endif %}
+            {% endfor %}
+            {% assign related_sorted = related_scores | sort | reverse %}
+            {% assign related_count = 0 %}
+            {% if related_sorted.size > 0 %}
+            <aside class="related-section">
+                <h3 class="related-heading">Read next</h3>
+                <p class="related-sub">More posts tagged with what you just read</p>
+                <div class="related-grid">
+                {% for s in related_sorted limit:4 %}
+                    {% assign pair_parts = s | split: '|' %}
+                    {% assign rel_path = pair_parts[1] %}
+                    {% assign rel = site.posts | where: 'path', rel_path | first %}
+                    {% if rel %}
+                    {% assign rel_tags = rel.tags | default: empty %}
+                    {% assign primary_tag = rel_tags | first %}
+                    <a href="{{ rel.url }}" class="related-card">
+                        {% if primary_tag %}<div class="related-card-tag">{{ primary_tag }}</div>{% endif %}
+                        <div class="related-card-title">{{ rel.title }}</div>
+                        <div class="related-card-date">{{ rel.date | date: "%b %d, %Y" }}</div>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </aside>
+            {% endif %}
+            {% endif %}
 
             <div class="comments-section">
                 {% include blog-comments.html %}

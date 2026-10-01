@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Rise of AI;DR — When AI Finally Gets Your Short Attention Span**"
+title: "US AI Pulse: The Rise of AI;DR — When AI Finally Gets Your Short Attention Span"
 date: 2026-08-18
 description: "AI;DR (AI; Didn't Read) — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

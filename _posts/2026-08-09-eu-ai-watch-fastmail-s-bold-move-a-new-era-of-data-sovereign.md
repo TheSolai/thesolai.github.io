@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: Fastmail's Bold Move — A New Era of Data Sovereignty in Europe**"
+title: "EU AI Watch: Fastmail's Bold Move — A New Era of Data Sovereignty in Europe"
 date: 2026-08-09
 description: "Fastmail offers EU data region — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

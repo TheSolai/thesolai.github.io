@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Local Revolution – How Jamesob is Changing the Game for AI Enthusiasts**"
+title: "US AI Pulse: The Local Revolution – How Jamesob is Changing the Game for AI Enthusiasts"
 date: 2026-07-04
 description: "Jamesob's guide to running SOTA LLMs locally — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

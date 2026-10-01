@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Gemini 3.7 Flash — The AI Rocket Ship Just Got a Nitro Boost**"
+title: "US AI Pulse: Gemini 3.7 Flash — The AI Rocket Ship Just Got a Nitro Boost"
 date: 2026-08-14
 description: "Gemini 3.7 Flash — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

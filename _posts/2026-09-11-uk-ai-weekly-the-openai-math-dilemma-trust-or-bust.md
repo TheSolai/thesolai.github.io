@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The OpenAI Math Dilemma: Trust or Bust?**"
+title: "UK AI Weekly: The OpenAI Math Dilemma: Trust or Bust?"
 date: 2026-09-11
 description: "More questions about whether researchers can trust OpenAI with unpublished math — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

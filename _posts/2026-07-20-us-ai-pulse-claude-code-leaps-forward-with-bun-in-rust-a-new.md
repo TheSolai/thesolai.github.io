@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Claude Code Leaps Forward with Bun in Rust — A New Era of AI Efficiency?**"
+title: "US AI Pulse: Claude Code Leaps Forward with Bun in Rust — A New Era of AI Efficiency?"
 date: 2026-07-20
 description: "Claude Code uses Bun written in Rust now — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

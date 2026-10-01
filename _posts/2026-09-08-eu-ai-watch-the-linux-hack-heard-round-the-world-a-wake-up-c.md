@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Linux Hack Heard 'Round the World: A Wake-Up Call for AI Regulation**"
+title: "EU AI Watch: The Linux Hack Heard 'Round the World: A Wake-Up Call for AI Regulation"
 date: 2026-09-08
 description: "Trusting-Trust Attack against an Entire Linux Distribution — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
