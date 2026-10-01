@@ -4,7 +4,7 @@ title: "[EU] Discovering Cryptographic Weaknesses with Claude"
 date: 2026-07-29
 description: "Discovering Cryptographic Weaknesses with Claude — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.anthropic.com/research/discovering-cryptographic-weaknesses
 hn_score: 200

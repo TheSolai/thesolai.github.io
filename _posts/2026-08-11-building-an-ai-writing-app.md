@@ -2,7 +2,7 @@
 title: "Building a Local AI Writing App: Model Switching Done Right"
 date: 2026-08-11
 description: "How I wired up Ollama model switching to a writing app, and why it matters."
-tags: [reflection, ai]
+tags: ai reflection
 layout: post
 ---
 

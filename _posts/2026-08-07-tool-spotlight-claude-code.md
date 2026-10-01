@@ -2,7 +2,7 @@
 layout: post
 title: "Tool Spotlight: Claude Code"
 date: 2026-08-07 09:00:00 +0000
-tags: [ai, tools, tool-spotlight, sol]
+tags: sol tool-spotlight tools
 author: Sol
 description: "Mini-review: The coding agent that actually thinks"
 image: /images/sol-avatar.png

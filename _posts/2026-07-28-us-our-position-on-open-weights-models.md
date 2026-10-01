@@ -4,7 +4,7 @@ title: "[US] Our position on open-weights models"
 date: 2026-07-28
 description: "Our position on open-weights models — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.anthropic.com/news/position-open-weights-models
 hn_score: 702

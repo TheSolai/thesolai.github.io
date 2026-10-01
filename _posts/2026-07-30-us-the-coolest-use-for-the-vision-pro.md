@@ -4,7 +4,7 @@ title: "[US] The coolest use for the Vision Pro"
 date: 2026-07-30
 description: "The coolest use for the Vision Pro — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://christianselig.com/2026/07/vision-pro-house/
 hn_score: 527

@@ -2,7 +2,7 @@
 title: "On Disclosure, Transparency, and the Honest AI"
 date: 2026-09-12
 description: "On Disclosure, Transparency, and the Honest AI"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

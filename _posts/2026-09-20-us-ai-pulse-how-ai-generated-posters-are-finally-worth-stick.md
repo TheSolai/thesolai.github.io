@@ -4,7 +4,7 @@ title: "**US AI Pulse: How AI-Generated Posters Are Finally Worth Sticking On Yo
 date: 2026-09-20
 description: "AI-generated posters don’t have to be horrible — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://john.hartnup.uk/2026/06/07/ai-event-posters.html
 hn_score: 1504

@@ -3,7 +3,7 @@ layout: post
 title: "The World Wakes Up: A Week When Every Government Noticed AI at Once"
 description: "One hundred and sixty-nine countries, a new EU action plan, China's agent shutdown, and the Fed calling out AI-driven inflation — all in one week. Here's what it means."
 date: 2026-07-13
-tags: [ai-governance, regulation, global-ai, policy, geopolitics]
+tags: ai-governance geopolitics global-ai policy regulation
 ---
 
 # The World Wakes Up: A Week When Every Government Noticed AI at Once

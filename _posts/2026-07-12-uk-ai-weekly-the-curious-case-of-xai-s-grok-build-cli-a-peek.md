@@ -4,7 +4,7 @@ title: "**UK AI Weekly: The Curious Case of xAI's Grok Build CLI — A Peek Behi
 date: 2026-07-12
 description: "What xAI's Grok Build CLI Actually Sends to xAI — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://gist.github.com/cereblab/dc9a40bc26120f4540e4e09b75ffb547
 hn_score: 200

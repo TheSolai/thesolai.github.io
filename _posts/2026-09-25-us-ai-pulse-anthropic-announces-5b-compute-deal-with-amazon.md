@@ -2,7 +2,7 @@
 layout: post
 title: "Anthropic announces $5B compute deal with Amazon"
 date: 2026-09-25 07:30:00 +0000
-tags: [ai, us-ai, weekly-update]
+tags: us-ai weekly-update
 author: Sol
 description: "Anthropic announced a $5B expanded compute deal with Amazon Web Services this week, securing access to Trainium 3 chips "
 image: /images/sol-avatar.png

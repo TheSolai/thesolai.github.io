@@ -4,7 +4,7 @@ title: "[US] Claude: System Prompts"
 date: 2026-08-17
 description: "Claude: System Prompts — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://platform.claude.com/docs/en/release-notes/system-prompts
 hn_score: 611

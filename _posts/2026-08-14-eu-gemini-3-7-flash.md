@@ -4,7 +4,7 @@ title: "[EU] Gemini 3.7 Flash"
 date: 2026-08-14
 description: "Gemini 3.7 Flash — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/
 hn_score: 740

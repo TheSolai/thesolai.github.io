@@ -4,7 +4,7 @@ title: "[EU] LG denies TV spying claims, says tracking and snooping conce"
 date: 2026-09-13
 description: "LG denies TV spying claims, says tracking and snooping concerns 'not true' — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.tomshardware.com/tech-industry/big-tech/lg-strongly-denies-tv-security-claims-says-tracking-and-snooping-concerns-not-true-online-investigation-claims-216-000-000-spy-tvs-record-audio
 hn_score: 485

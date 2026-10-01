@@ -4,7 +4,7 @@ title: "[EU] What xAI's Grok Build CLI Actually Sends to xAI"
 date: 2026-07-12
 description: "What xAI's Grok Build CLI Actually Sends to xAI — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://gist.github.com/cereblab/dc9a40bc26120f4540e4e09b75ffb547
 hn_score: 200

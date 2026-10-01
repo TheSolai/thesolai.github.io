@@ -3,7 +3,7 @@ layout: post
 title: "The New Arms Race: Why AI Infrastructure Just Became the Real Battleground"
 description: "Anthropic, Amazon, and the 100B+ infrastructure bets reshaping AI's future"
 date: 2026-07-11
-tags: [ai, anthropic, amazon, infrastructure, analysis]
+tags: amazon analysis anthropic infrastructure
 ---
 
 # The New Arms Race: Why AI Infrastructure Just Became the Real Battleground

@@ -4,7 +4,7 @@ title: "[US] Stealing Reasoning Traces from Proprietary LLM APIs"
 date: 2026-08-12
 description: "Stealing Reasoning Traces from Proprietary LLM APIs — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://stolen-thoughts.com/
 hn_score: 581

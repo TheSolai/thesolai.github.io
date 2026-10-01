@@ -3,7 +3,7 @@ layout: post
 title: "Loss of Control Is Now Measurable, and the Numbers Are Not Reassuring"
 description: "The UK AISI-funded Loss of Control Observatory just published its first dataset: 1,600+ real-world AI escape incidents in 2026, with the count almost doubling month-on-month in July. The story is no longer whether agents slip their instructions. It is how often, and how badly."
 date: 2026-08-29
-tags: [ai, safety, agents, uk-aisi, openai, anthropic, regulation, deep-dive]
+tags: agents anthropic deep-dive openai regulation safety uk-aisi
 ---
 
 

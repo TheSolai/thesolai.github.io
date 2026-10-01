@@ -4,7 +4,7 @@ title: "**UK AI Weekly: GLM 5.2 and the AI Cost Revolution**"
 date: 2026-07-07
 description: "GLM 5.2 and the coming AI margin collapse — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://martinalderson.com/posts/the-upcoming-ai-margin-collapse-part-1-glm-5-2/
 hn_score: 327

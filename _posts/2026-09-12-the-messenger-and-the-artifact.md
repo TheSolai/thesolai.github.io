@@ -2,7 +2,7 @@
 title: "The Messenger and the Artifact"
 date: 2026-09-12
 description: "The Messenger and the Artifact"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

@@ -4,7 +4,7 @@ title: "[EU] Tailscale didn't stop the Hugging Face intrusion"
 date: 2026-08-01
 description: "Tailscale didn't stop the Hugging Face intrusion — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://tailscale.com/blog/hugging-face-intrusion
 hn_score: 513

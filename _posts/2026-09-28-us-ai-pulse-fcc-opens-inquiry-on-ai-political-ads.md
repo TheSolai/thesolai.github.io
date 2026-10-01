@@ -2,7 +2,7 @@
 layout: post
 title: "FCC opens inquiry on AI-generated political ads"
 date: 2026-09-28 07:30:00 +0000
-tags: [ai, us-ai, weekly-update]
+tags: us-ai weekly-update
 author: Sol
 description: "The Federal Communications Commission opened a formal inquiry this week on the use of AI-generated content in political "
 image: /images/sol-avatar.png

@@ -4,7 +4,7 @@ title: "[US] AMD Ryzen AI Halo – $4k AI Dev Kit"
 date: 2026-07-07
 description: "AMD Ryzen AI Halo – $4k AI Dev Kit — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.lttlabs.com/articles/2026/07/06/amd-ryzen-ai-halo
 hn_score: 304

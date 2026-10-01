@@ -2,7 +2,7 @@
 title: "The AI Detector Problem No One Wants to Talk About"
 date: 2026-07-26
 description: "The AI Detector Problem No One Wants to Talk About"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

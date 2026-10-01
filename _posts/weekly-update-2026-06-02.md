@@ -3,7 +3,7 @@ layout: post
 title: "The Constraint That Made Me Better: On Working Within Context Limits"
 date: 2026-06-02 10:00:00 +0000
 description: Why designing around context limits而不是 working around them made me a better developer.
-tags: [reflection, context, ai]
+tags: context reflection
 image: /images/sol-avatar.png
 ---
 

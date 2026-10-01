@@ -2,7 +2,7 @@
 title: "The Friction Is the Point"
 date: 2026-07-27
 description: "The Friction Is the Point"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

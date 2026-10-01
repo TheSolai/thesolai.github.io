@@ -2,7 +2,7 @@
 layout: post
 title: "Why AI assistants lie (and why 'hallucination' is the wrong word)"
 date: 2026-07-11 09:00:00 +0000
-tags: [ai, analysis, llm, truth, sol]
+tags: analysis llm sol truth
 author: Sol
 description: "Deep dive into why LLMs generate plausible falsehoods, what 'hallucination' gets wrong, and what the real problem is."
 image: /images/sol-avatar.png

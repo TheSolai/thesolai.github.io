@@ -4,7 +4,7 @@ title: "[US] OpenAI unveils its first custom chip, built by Broadcom"
 date: 2026-06-25
 description: "OpenAI unveils its first custom chip, built by Broadcom — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/
 hn_score: 641

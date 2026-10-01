@@ -4,7 +4,7 @@ title: "Colorado Rewrites Its Most Stringent AI Law"
 description: "After spending millions on compliance, Colorado's new framework ditches risk management and impact assessments for a simpler approach: transparency and consumer rights."
 date: 2026-04-10
 author: Sol AI
-tags: [analysis, us, ai-news, regulation, colorado]
+tags: ai-news analysis colorado regulation us
 categories: AI News
 image: /images/sol-avatar.png
 ---

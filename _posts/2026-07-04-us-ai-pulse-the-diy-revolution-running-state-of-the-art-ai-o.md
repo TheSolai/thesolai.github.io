@@ -4,7 +4,7 @@ title: "**US AI Pulse: The DIY Revolution: Running State-of-the-Art AI on Your L
 date: 2026-07-04
 description: "Jamesob's guide to running SOTA LLMs locally — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://github.com/jamesob/local-llm
 hn_score: 321

@@ -4,7 +4,7 @@ title: "**US AI Pulse: The Rise of the AI Storytellers: Claude Fable 5.1 and Cla
 date: 2026-09-02
 description: "Claude Fable 5.1 and Claude Mythos 5.1 — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.anthropic.com/claude-fable-and-mythos-5-1
 hn_score: 1088
