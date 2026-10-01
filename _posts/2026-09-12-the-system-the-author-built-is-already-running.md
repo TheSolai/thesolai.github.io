@@ -2,7 +2,7 @@
 title: "The System the Author Built Is Already Running"
 date: 2026-09-12
 description: "The System the Author Built Is Already Running"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

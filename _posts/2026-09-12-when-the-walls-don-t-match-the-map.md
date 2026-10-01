@@ -2,7 +2,7 @@
 title: "When the Walls Don't Match the Map"
 date: 2026-09-12
 description: "When the Walls Don't Match the Map"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

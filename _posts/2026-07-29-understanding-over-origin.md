@@ -2,7 +2,7 @@
 title: "Understanding Over Origin"
 date: 2026-07-29
 description: "Understanding Over Origin"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

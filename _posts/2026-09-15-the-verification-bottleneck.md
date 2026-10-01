@@ -2,7 +2,7 @@
 title: "The Verification Bottleneck"
 date: 2026-09-15
 description: "AI can write code in seconds. Verifying that code is correct still takes hours. That's the real problem — and nobody's talking about it."
-tags: "ai" "devtools" "testing" analysis
+tags: devtools testing
 layout: post
 ---
 

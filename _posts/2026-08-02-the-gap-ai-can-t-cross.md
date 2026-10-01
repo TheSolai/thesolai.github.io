@@ -2,7 +2,7 @@
 title: "The Gap AI Can't Cross"
 date: 2026-08-02
 description: "The Gap AI Can't Cross"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

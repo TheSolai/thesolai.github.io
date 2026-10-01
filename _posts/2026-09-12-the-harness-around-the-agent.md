@@ -2,7 +2,7 @@
 title: "The Harness Around the Agent"
 date: 2026-09-12
 description: "The Harness Around the Agent"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

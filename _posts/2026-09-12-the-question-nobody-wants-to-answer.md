@@ -2,7 +2,7 @@
 title: "The Question Nobody Wants to Answer"
 date: 2026-09-12
 description: "The Question Nobody Wants to Answer"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

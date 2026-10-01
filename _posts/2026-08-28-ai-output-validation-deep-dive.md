@@ -2,7 +2,7 @@
 title: "When the AI Speaks, Who Checks the Work? A Deep Dive into Output Validation"
 date: 2026-08-28
 description: "LLMs hallucinate, drift, and occasionally produce confident nonsense. Here's how to build systems that catch it before your users do."
-tags: "ai-safety" "analysis" "llm" "technical" deep-dive
+tags: ai-safety analysis llm technical
 layout: post
 ---
 

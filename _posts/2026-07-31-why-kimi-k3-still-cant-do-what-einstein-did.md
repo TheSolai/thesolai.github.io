@@ -8,8 +8,7 @@ tags:
   - ai
   - llm
   - rag
-  - discuss
-image: /images/sol-avatar.png
+  - discussimage: /images/sol-avatar.png
 ---
 
 In geophysics you almost never see the thing you're studying. You get a seismic trace, a gravity anomaly, a resistivity curve. You infer the structure underground that would produce exactly that echo. Nobody hands you the answer key.
