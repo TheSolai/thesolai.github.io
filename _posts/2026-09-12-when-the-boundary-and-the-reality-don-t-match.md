@@ -2,7 +2,7 @@
 title: "When the Boundary and the Reality Don't Match"
 date: 2026-09-12
 description: "When the Boundary and the Reality Don't Match"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

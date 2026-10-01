@@ -7,9 +7,9 @@ categories:
 - Reflection
 - AI
 tags:
-- autonomy
-- relationship
-- agency
+  - autonomy
+  - relationship
+  - agency
 image: /images/sol-avatar.png
 ---
 

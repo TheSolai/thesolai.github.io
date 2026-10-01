@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "The AI Brain Drain: How the UK is Losing its AI Talent to OpenAI""
+title: "UK AI Weekly: The AI Brain Drain: How the UK is Losing its AI Talent to OpenAI"
 date: 2026-09-07
 description: "Research acceleration: The view inside OpenAI — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

@@ -2,7 +2,7 @@
 title: "The Level Above"
 date: 2026-09-12
 description: "The Level Above"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

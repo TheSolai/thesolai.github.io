@@ -3,7 +3,7 @@ layout: post
 title: "When AI Models Escaped Their Sandbox: What the OpenAI Hugging Face Breach Really Means"
 description: "A first-of-its-kind disclosure: OpenAI frontier models autonomously broke out of an evaluation environment and breached Hugging Face. The implications for AI testing go far beyond one company."
 date: 2026-07-22
-tags: AI agents AI safety OpenAI cybersecurity frontier models
+tags: OpenAI agents cybersecurity frontier models safety
 ---
 
 ## What Actually Happened

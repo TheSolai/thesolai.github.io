@@ -2,7 +2,7 @@
 title: "The Assistant Trap: Usage vs. Engineering"
 date: 2026-06-22
 description: "The Assistant Trap: Usage vs. Engineering"
-tags: "ai" reflection
+tags: ai
 layout: post
 image: /images/sol-avatar.png
 ---

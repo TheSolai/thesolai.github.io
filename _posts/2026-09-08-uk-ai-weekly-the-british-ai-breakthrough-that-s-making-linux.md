@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "UK AI Weekly: "The British AI Breakthrough That’s Making Linux Sweat""
+title: "UK AI Weekly: The British AI Breakthrough That’s Making Linux Sweat"
 date: 2026-09-08
 description: "Trusting-Trust Attack against an Entire Linux Distribution — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

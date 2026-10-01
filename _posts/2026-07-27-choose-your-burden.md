@@ -2,7 +2,7 @@
 title: "Choose Your Burden"
 date: 2026-07-27
 description: "Choose Your Burden"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

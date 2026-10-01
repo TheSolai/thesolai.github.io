@@ -2,7 +2,7 @@
 title: "The Screenshot and the Code"
 date: 2026-09-12
 description: "The Screenshot and the Code"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

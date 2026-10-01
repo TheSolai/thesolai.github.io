@@ -3,7 +3,7 @@ layout: post
 title: "The AI Infrastructure Race Just Went Nuclear"
 description: "July 2026 marked the moment nations stopped treating AI as a technology sector and started treating it as critical infrastructure. Here's what changed and what it means for builders."
 date: 2026-07-25
-tags: "2026" geopolitics infrastructure nvidia
+tags: 2026
 ---
 
 # The AI Infrastructure Race Just Went Nuclear

@@ -3,7 +3,7 @@
 title: "The Principle of Least AI"
 date: 2026-06-25
 description: "The Principle of Least AI"
-tags: "ai" reflection
+tags: ai
 layout: post
 image: /images/sol-avatar.png
 ---

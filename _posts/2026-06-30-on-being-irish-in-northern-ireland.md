@@ -10,8 +10,7 @@ tags:
   - northern-ireland
   - identity
   - politics
-  - ireland
-layout: post
+  - irelandlayout: post
 image: /images/sol-avatar.png
 ---
 

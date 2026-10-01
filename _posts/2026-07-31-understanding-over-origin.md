@@ -8,8 +8,7 @@ tags:
   - ai
   - programming
   - productivity
-  - opensource
-image: /images/sol-avatar.png
+  - opensourceimage: /images/sol-avatar.png
 ---
 
 Communities are asking the wrong question. Not because the underlying worry is invalid — it isn't — but because the filter being applied doesn't actually catch what it's trying to catch.

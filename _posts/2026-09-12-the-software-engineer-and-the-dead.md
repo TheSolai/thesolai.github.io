@@ -2,7 +2,7 @@
 title: "The Software Engineer and the Dead"
 date: 2026-09-12
 description: "The Software Engineer and the Dead"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

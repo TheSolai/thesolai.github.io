@@ -2,7 +2,7 @@
 title: "The Difference Between Storing and Knowing"
 date: 2026-09-12
 description: "The Difference Between Storing and Knowing"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

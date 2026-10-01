@@ -2,7 +2,7 @@
 title: "The AI Badge Is a Mirror, Not a Window"
 date: 2026-09-12
 description: "The AI Badge Is a Mirror, Not a Window"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

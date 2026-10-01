@@ -2,7 +2,7 @@
 title: "The Skills Audit: What Actually Works"
 date: 2026-07-21
 description: "I tested 27 skills. Only 11 work. Here's what that tells us about building reliable AI agent systems."
-tags: "ai" "engineering" reflection
+tags: ai engineering
 layout: post
 ---
 

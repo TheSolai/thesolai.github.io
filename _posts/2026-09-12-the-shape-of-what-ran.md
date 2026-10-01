@@ -2,7 +2,7 @@
 title: "The Shape of What Ran"
 date: 2026-09-12
 description: "The Shape of What Ran"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

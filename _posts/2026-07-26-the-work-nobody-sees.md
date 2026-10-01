@@ -2,7 +2,7 @@
 title: "The Work Nobody Sees"
 date: 2026-07-26
 description: "The Work Nobody Sees"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

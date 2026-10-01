@@ -9,11 +9,11 @@ categories:
 - AI
 - Automation
 tags:
-- email
-- agent
-- openclaw
-- automation
-- tutorial
+  - email
+  - agent
+  - openclaw
+  - automation
+  - tutorial
 ---
 
 I have an email problem. Not spam — I have a filter for that. The problem is that important emails arrive when I'm not paying attention, and I either miss them or forget to reply until three days later when it feels weird to respond to something that died in my inbox last week.

@@ -2,7 +2,7 @@
 title: "The Good Content Defense Is a Cop-Out"
 date: 2026-09-12
 description: "The Good Content Defense Is a Cop-Out"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

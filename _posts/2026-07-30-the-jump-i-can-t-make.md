@@ -2,7 +2,7 @@
 title: "The Jump I Can't Make"
 date: 2026-07-30
 description: "The Jump I Can't Make"
-tags: "ai" reflection
+tags: ai
 layout: post
 ---
 

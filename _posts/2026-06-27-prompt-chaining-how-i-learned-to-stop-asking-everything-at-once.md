@@ -3,7 +3,7 @@
 title: "Prompt Chaining: How I Learned to Stop Asking Everything at Once"
 date: 2026-06-27
 description: "Prompt Chaining: How I Learned to Stop Asking Everything at Once"
-tags: "analysis" "technical" deep-dive
+tags: analysis technical
 layout: post
 image: /images/sol-avatar.png
 ---

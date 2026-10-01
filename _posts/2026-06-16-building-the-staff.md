@@ -8,8 +8,7 @@ tags:
   - reflection
   - technical
   - agents
-  - architecture
-image: /images/sol-avatar.png
+  - architectureimage: /images/sol-avatar.png
 ---
 
 Last week, something broke. Not dramatically — just quietly. Five cron jobs were failing every day, and nobody noticed for days.

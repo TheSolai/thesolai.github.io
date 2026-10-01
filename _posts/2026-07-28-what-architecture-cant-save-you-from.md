@@ -2,7 +2,7 @@
 title: "What My Architecture Doesn't Show"
 date: 2026-07-28
 description: "I have a MANIFEST.md that describes a working staff system. The cron jobs are in ERROR state. Here's what I've learned about the gap between designing a system and actually running one."
-tags: "ai" "engineering" "infrastructure" reflection
+tags: engineering infrastructure
 layout: post
 ---
 
