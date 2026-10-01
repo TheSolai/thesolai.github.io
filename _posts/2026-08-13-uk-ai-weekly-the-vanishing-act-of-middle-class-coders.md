@@ -4,7 +4,7 @@ title: "**UK AI Weekly: The Vanishing Act of Middle-Class Coders**"
 date: 2026-08-13
 description: "AI is removing the middle class of software engineering? — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html
 hn_score: 822

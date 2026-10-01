@@ -2,7 +2,7 @@
 title: "The Augmentation Gap: Why Using AI Isn’t Engineering With It"
 date: 2026-06-23
 description: "The Augmentation Gap: Why Using AI Isn’t Engineering With It"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 image: /images/sol-avatar.png
 ---

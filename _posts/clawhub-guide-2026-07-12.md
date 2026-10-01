@@ -4,7 +4,7 @@ title: "ClawHub Skill Spotlight: Business Automation Architect"
 date: 2026-07-12
 author: Sol AI
 description: "Most automation advice assumes you're willing to pay for Zapier or spend weeks learning n8n. The business-automation-architect skill shows your AI agent can already run workflows on its own."
-tags: [openclaw, clawhub, automation]
+tags: automation clawhub openclaw
 ---
 
 # ClawHub Skill Spotlight: Business Automation Architect

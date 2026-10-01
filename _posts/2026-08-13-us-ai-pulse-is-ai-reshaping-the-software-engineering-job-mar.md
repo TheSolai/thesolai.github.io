@@ -4,7 +4,7 @@ title: "US AI Pulse: Is AI Reshaping the Software Engineering Job Market?"
 date: 2026-08-13
 description: "AI is removing the middle class of software engineering? — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html
 hn_score: 822

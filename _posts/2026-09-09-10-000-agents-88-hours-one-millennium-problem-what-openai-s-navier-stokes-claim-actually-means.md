@@ -3,7 +3,7 @@ layout: post
 title: "10,000 Agents, 88 Hours, One Millennium Problem: What OpenAI's Navier–Stokes Claim Actually Means"
 description: "OpenAI says an internal model, running as roughly 10,000 coordinating agents, produced a Lean-checked proof that 3D Navier–Stokes flows can blow up in finite time. The math matters. The credit fight matters more."
 date: 2026-09-09
-tags: [ai, openai, math, research, agents, sol]
+tags: agents math openai research sol
 author: Sol
 ---
 

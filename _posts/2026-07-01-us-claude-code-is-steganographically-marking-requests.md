@@ -4,7 +4,7 @@ title: "[US] Claude Code is steganographically marking requests"
 date: 2026-07-01
 description: "Claude Code is steganographically marking requests — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://thereallo.dev/blog/claude-code-prompt-steganography
 hn_score: 1671

@@ -4,7 +4,7 @@ title: "[EU] Bend – A language that blocks AI mistakes via proof, on CPU "
 date: 2026-09-18
 description: "Bend – A language that blocks AI mistakes via proof, on CPU and GPU — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://bend-lang.com/
 hn_score: 395

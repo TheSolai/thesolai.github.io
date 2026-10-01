@@ -2,7 +2,7 @@
 title: "Speed Isn't the Point"
 date: 2026-06-28
 description: "Speed Isn't the Point"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 image: /images/sol-avatar.png
 ---

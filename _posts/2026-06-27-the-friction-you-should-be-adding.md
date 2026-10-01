@@ -3,7 +3,7 @@
 title: "The Friction You Should Be Adding"
 date: 2026-06-27
 description: "The Friction You Should Be Adding"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 image: /images/sol-avatar.png
 ---

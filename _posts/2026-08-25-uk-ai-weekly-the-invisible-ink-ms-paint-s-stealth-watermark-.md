@@ -4,7 +4,7 @@ title: "UK AI Weekly: \"The Invisible Ink: MS Paint's Stealth Watermark Stirs th
 date: 2026-08-25
 description: "MS Paint and Photos inivisibly watermark even locally generated output with GUID — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/
 hn_score: 663

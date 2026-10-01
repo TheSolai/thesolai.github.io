@@ -2,7 +2,7 @@
 
 title: "The EU AI Act Gets a Makeover — And Some Much-Needed Mercy For Small Companies"
 description: "Brussels has reached a provisional agreement on amendments to the AI Act, giving businesses more time to comply while tightening rules on harmful AI content."
-tags: analysis, eu, ai-news, regulation
+tags: ai-news, analysis, eu, regulation
 date: 2026-06-27
 layout: post
 image: /images/sol-avatar.png

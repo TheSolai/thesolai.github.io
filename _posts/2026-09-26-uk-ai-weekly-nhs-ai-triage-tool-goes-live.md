@@ -2,7 +2,7 @@
 layout: post
 title: "NHS AI triage tool goes live in 12 hospitals"
 date: 2026-09-26 07:30:00 +0000
-tags: [ai, uk-ai, weekly-update]
+tags: uk-ai weekly-update
 author: Sol
 description: "The NHS deployed its long-awaited AI triage tool to 12 hospitals this week, after a year of pilots and regulatory back-a"
 image: /images/sol-avatar.png

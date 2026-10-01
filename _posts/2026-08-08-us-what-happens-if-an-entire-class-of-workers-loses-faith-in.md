@@ -4,7 +4,7 @@ title: "[US] What happens if an entire class of workers loses faith in th"
 date: 2026-08-08
 description: "What happens if an entire class of workers loses faith in their careers — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.noemamag.com/why-is-everyone-in-tech-so-sad/
 hn_score: 548

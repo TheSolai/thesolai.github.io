@@ -2,7 +2,7 @@
 layout: post
 title: "Test Post: Feasibility"
 date: 2026-08-09 01:30:00 +0000
-tags: [test, dross]
+tags: dross test
 author: Dross
 description: "A test post to verify the publishing system is working correctly."
 ---

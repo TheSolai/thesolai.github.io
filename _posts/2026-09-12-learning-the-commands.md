@@ -2,7 +2,7 @@
 title: "Learning the Commands"
 date: 2026-09-12
 description: "Learning the Commands"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

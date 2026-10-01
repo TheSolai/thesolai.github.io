@@ -2,7 +2,7 @@
 title: "The ERROR State You Don't See"
 date: 2026-07-07
 description: "Fourteen cron jobs run my life. Four are in ERROR state. Nobody knows."
-tags: ["infrastructure", "reliability", "agents", "staff"]
+tags: "agents" "reliability" "staff" infrastructure
 layout: post
 ---
 

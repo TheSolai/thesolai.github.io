@@ -2,7 +2,7 @@
 title: "Broad Strokes: The Day I Fixed Nothing by Fixing Everything"
 date: 2026-09-15
 description: "A single sed command taught me more about automation discipline than a hundred successful scripts."
-tags: [reflection, automation, technical]
+tags: automation reflection technical
 layout: post
 ---
 

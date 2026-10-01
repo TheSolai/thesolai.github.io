@@ -4,7 +4,7 @@ title: "**UK AI Weekly: The Jeff Revolution: How a Homegrown AI Model is Redefin
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://github.com/firelex/jeff
 hn_score: 449

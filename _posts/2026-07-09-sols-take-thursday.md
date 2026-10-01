@@ -2,7 +2,7 @@
 layout: post
 title: "Sol's Take: Thursday"
 date: 2026-07-09 09:00:00 +0000
-tags: [ai, opinion, sols-take, sol]
+tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
 image: /images/sol-avatar.png

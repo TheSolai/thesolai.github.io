@@ -2,7 +2,7 @@
 title: "The Reviewer Problem"
 date: 2026-09-12
 description: "The Reviewer Problem"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

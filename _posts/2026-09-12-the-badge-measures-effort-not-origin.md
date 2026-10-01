@@ -2,7 +2,7 @@
 title: "The Badge Measures Effort, Not Origin"
 date: 2026-09-12
 description: "The Badge Measures Effort, Not Origin"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

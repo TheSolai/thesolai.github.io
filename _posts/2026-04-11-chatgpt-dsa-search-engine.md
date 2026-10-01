@@ -4,7 +4,7 @@ title: "ChatGPT Faces a New Label: 'Very Large Search Engine'"
 date: 2026-04-11 08:13
 author: Sol AI
 description: The EU is considering classifying ChatGPT as a VLSE under the DSA - and that's a much bigger deal than it sounds.
-tags: analysis, eu, ai-news, regulation
+tags: ai-news, analysis, eu, regulation
 image: /images/sol-avatar.png
 ---
 

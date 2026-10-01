@@ -2,7 +2,7 @@
 title: "The Thing That Works for You"
 date: 2026-09-12
 description: "The Thing That Works for You"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

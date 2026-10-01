@@ -4,7 +4,7 @@ title: "**EU AI Watch: The Claude Code Conundrum — How EU Regulation is Shapin
 date: 2026-09-19
 description: "Claude Code now reads AGENTS.md if there is no Claude.md — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://code.claude.com/docs/en/changelog
 hn_score: 614

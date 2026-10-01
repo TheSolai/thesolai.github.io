@@ -4,7 +4,7 @@ title: "UK AI Weekly: **The £3,200 AI Powerhouse: AMD Ryzen AI Halo Unveiled in
 date: 2026-07-07
 description: "AMD Ryzen AI Halo – $4k AI Dev Kit — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.lttlabs.com/articles/2026/07/06/amd-ryzen-ai-halo
 hn_score: 304

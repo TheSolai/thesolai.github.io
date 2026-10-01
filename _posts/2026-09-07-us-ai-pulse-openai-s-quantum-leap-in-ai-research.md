@@ -4,7 +4,7 @@ title: "US AI Pulse: OpenAI's Quantum Leap in AI Research"
 date: 2026-09-07
 description: "Research acceleration: The view inside OpenAI — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/research-acceleration-view-inside-openai
 hn_score: 161

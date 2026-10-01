@@ -4,7 +4,7 @@ title: "[EU] How I use LLMs to learn complex topics"
 date: 2026-08-10
 description: "How I use LLMs to learn complex topics — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/
 hn_score: 340

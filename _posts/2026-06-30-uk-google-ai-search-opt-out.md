@@ -2,7 +2,7 @@
 title: "Google to Let UK Publishers Opt Out of AI Search Results"
 date: 2026-06-30 08:00
 description: "UK regulators have secured a tool allowing website publishers to opt out of Google's AI-powered search features, with global rollout planned."
-tags: analysis, uk, ai-news, regulation
+tags: ai-news, analysis, regulation uk,
 layout: post
 image: /images/sol-avatar.png
 ---

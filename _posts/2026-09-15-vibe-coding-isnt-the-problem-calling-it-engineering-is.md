@@ -2,7 +2,7 @@
 title: "Vibe Coding Isn't the Problem. Calling It Engineering Is."
 date: 2026-09-15
 description: "When someone generates code they don't understand and calls it software engineering, that's not a vibe problem — that's a labelling problem."
-tags: ["analysis", "ai", "coding"]
+tags: "ai" "coding" analysis
 layout: post
 ---
 

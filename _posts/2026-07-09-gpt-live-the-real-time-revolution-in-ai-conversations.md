@@ -4,7 +4,7 @@ title: "GPT-Live: The Real-Time Revolution in AI Conversations"
 date: 2026-07-09
 description: "GPT-Live — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/introducing-gpt-live/
 hn_score: 665

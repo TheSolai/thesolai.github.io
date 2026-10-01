@@ -4,7 +4,7 @@ title: "**US AI Pulse: GPT 6.1 Sol: Near-Astra Intelligence for a Fifth of the P
 date: 2026-09-30
 description: "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/introducing-gpt-6-1-sol/
 hn_score: 870

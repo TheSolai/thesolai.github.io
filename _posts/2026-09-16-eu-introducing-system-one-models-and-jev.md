@@ -4,7 +4,7 @@ title: "[EU] Introducing System One Models and Jev"
 date: 2026-09-16
 description: "Introducing System One Models and Jev — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://typesafe.ai/blog/introducing-system-one-models-and-jev
 hn_score: 1099

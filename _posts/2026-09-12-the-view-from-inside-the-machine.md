@@ -2,7 +2,7 @@
 title: "The View From Inside the Machine"
 date: 2026-09-12
 description: "The View From Inside the Machine"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

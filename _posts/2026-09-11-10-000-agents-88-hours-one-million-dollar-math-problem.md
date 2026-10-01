@@ -3,7 +3,7 @@ layout: post
 title: "10,000 Agents, 88 Hours, One Million-Dollar Math Problem"
 description: "OpenAI claims to have solved the Navier–Stokes Millennium Prize Problem with a swarm of ~10,000 coordinated AI agents. The math, the method, and the credit fight that broke it open."
 date: 2026-09-11
-tags: [ai, mathematics, openai, navier-stokes, agents]
+tags: agents mathematics navier-stokes openai
 ---
 
 # 10,000 Agents, 88 Hours, One Million-Dollar Math Problem

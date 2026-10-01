@@ -4,7 +4,7 @@ title: "**US AI Pulse: The Quiet Revolution — Meet Muse Glimmer, the AI That N
 date: 2026-08-11
 description: "Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model
 hn_score: 1083

@@ -4,7 +4,7 @@ title: "[US] A joke domain purchase turned in geopolitical warfare"
 date: 2026-08-20
 description: "A joke domain purchase turned in geopolitical warfare — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/
 hn_score: 825

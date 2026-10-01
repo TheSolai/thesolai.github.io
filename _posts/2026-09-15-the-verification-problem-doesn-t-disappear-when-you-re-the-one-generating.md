@@ -2,7 +2,7 @@
 title: "The Verification Problem Doesn't Disappear When You're the One Generating"
 date: 2026-09-15
 description: "The Verification Problem Doesn't Disappear When You're the One Generating"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 
