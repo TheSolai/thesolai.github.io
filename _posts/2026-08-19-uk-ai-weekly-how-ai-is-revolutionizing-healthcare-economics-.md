@@ -4,7 +4,7 @@ title: "**UK AI Weekly: How AI is Revolutionizing Healthcare Economics: A £800 
 date: 2026-08-19
 description: "Universal health coverage could save $1T and 114k lives a year: study — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://ysph.yale.edu/news-article/universal-health-coverage-could-save-one-trillion-dollars-and-114000-lives-every-year/
 hn_score: 818

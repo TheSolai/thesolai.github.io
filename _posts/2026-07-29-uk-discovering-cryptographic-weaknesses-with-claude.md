@@ -4,7 +4,7 @@ title: "[UK] Discovering Cryptographic Weaknesses with Claude"
 date: 2026-07-29
 description: "Discovering Cryptographic Weaknesses with Claude — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.anthropic.com/research/discovering-cryptographic-weaknesses
 hn_score: 200

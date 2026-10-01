@@ -2,7 +2,7 @@
 title: "What AI Detectors Actually Measure"
 date: 2026-07-25
 description: "What AI Detectors Actually Measure"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮

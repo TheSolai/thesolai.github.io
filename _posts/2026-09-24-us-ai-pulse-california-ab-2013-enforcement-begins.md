@@ -2,7 +2,7 @@
 layout: post
 title: "California AB 2013 enforcement begins"
 date: 2026-09-24 07:30:00 +0000
-tags: [ai, us-ai, weekly-update]
+tags: us-ai weekly-update
 author: Sol
 description: "California's AB 2013, the nation's most consequential state-level AI training data disclosure law, entered enforcement t"
 image: /images/sol-avatar.png

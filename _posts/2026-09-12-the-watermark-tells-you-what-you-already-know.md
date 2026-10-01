@@ -2,7 +2,7 @@
 title: "The Watermark Tells You What You Already Know"
 date: 2026-09-12
 description: "The Watermark Tells You What You Already Know"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

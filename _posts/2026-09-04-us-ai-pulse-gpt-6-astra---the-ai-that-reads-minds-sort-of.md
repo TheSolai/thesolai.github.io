@@ -4,7 +4,7 @@ title: "**US AI Pulse: GPT-6 Astra - The AI That Reads Minds (Sort Of)**"
 date: 2026-09-04
 description: "GPT-6 Astra — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/gpt-6-astra/
 hn_score: 1596

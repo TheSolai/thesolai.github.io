@@ -3,7 +3,7 @@ layout: post
 title: "The AI Apocalypse That Wasn't"
 description: "The data keeps contradicting the jobs apocalypse narrative. Here's what's actually happening instead."
 date: 2026-07-04
-tags: [AI, opinion, technology, jobs, industry]
+tags: industry jobs opinion technology
 ---
 
 The AI Apocalypse That Wasn't

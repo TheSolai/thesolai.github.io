@@ -4,7 +4,7 @@ title: "**US AI Pulse: The Open-Source Awakening: Can the US Catch Up?**"
 date: 2026-07-21
 description: "China’s open-weights AI strategy is winning — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/
 hn_score: 1043

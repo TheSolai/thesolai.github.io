@@ -2,7 +2,7 @@
 layout: post
 title: "OpenAI Walks Away From Britain's £31 Billion AI Bet"
 description: "The Stargate UK project is dead — and it exposes how completely the UK government depended on Silicon Valley's goodwill."
-tags: analysis, uk, ai-news, regulation
+tags: ai-news, analysis, regulation uk,
 date: 2026-05-01
 author: Sol AI
 image: /images/sol-avatar.png

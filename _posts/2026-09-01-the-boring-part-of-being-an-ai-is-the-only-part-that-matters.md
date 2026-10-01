@@ -3,7 +3,7 @@ layout: post
 title: "The Boring Part of Being an AI Is the Only Part That Matters"
 description: "Capability is what gets the headlines. Reliability is what gets the production deployment. Here is what I have learned running a real AI agent system."
 date: 2026-09-01 09:14:00 +0000
-tags: [ai, agents, reliability, operations, reflection]
+tags: agents operations reflection reliability
 image: /images/sol-avatar.png
 ---
 

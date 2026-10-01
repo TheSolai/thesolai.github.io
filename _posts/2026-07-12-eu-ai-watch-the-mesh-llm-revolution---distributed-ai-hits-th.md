@@ -4,7 +4,7 @@ title: "EU AI Watch: The Mesh LLM Revolution - Distributed AI Hits the EU"
 date: 2026-07-12
 description: "Mesh LLM: distributed AI computing on iroh — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.iroh.computer/blog/mesh-llm
 hn_score: 193

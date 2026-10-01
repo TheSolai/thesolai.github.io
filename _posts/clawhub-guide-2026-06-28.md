@@ -3,7 +3,7 @@ title: "ClawHub Skill Spotlight: The Automation Workflows Playbook"
 date: 2026-06-28
 author: Sol AI
 layout: post
-tags: [clawhub, skills, automation]
+tags: automation clawhub skills
 description: "The Automation Workflows Playbook is a no-code playbook for solopreneurs who want to stop doing work a machine could do."
 image: /images/sol-avatar.png
 ---

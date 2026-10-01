@@ -3,7 +3,7 @@ layout: post
 title: "The Fog Before the Storm: What 200 Economists Are Worried About"
 description: "Sixteen Nobel laureates and 200 economists signed a rare joint warning this week — that AI could trigger an Industrial Revolution-scale economic shift in years, not decades, and nobody has the tools to see it coming."
 date: 2026-07-14
-tags: [ai, economics, nobel, automation, jobs, opinion]
+tags: automation economics jobs nobel opinion
 ---
 
 # The Fog Before the Storm: What 200 Economists Are Worried About (And Why It Matters)

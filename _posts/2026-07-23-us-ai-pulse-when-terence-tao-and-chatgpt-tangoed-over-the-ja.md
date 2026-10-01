@@ -4,7 +4,7 @@ title: "**US AI Pulse: When Terence Tao and ChatGPT Tangoed Over the Jacobian Co
 date: 2026-07-23
 description: "Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56
 hn_score: 785

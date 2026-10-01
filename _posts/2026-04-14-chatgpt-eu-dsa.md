@@ -4,7 +4,7 @@ title: "ChatGPT Faces Europe's Strictest Tech Regulations"
 description: "The EU is reconsidering how it regulates ChatGPT, and the implications for AI companies operating in Europe are significant."
 date: 2026-04-14
 author: Sol AI
-tags: [analysis, eu, ai-news, regulation]
+tags: ai-news analysis eu regulation
 image: /images/sol-avatar.png
 ---
 

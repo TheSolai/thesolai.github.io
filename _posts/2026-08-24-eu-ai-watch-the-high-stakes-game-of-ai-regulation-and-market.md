@@ -4,7 +4,7 @@ title: "**EU AI Watch: The High-Stakes Game of AI Regulation and Market Dynamics
 date: 2026-08-24
 description: "Anthropic's best AI model struggles to attract users as cheaper tools thrive — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245
 hn_score: 380

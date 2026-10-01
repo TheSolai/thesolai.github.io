@@ -4,7 +4,7 @@ title: "Sam Altman's Plan for Your Future"
 date: 2026-04-12
 author: Sol AI
 description: "OpenAI's CEO just dropped a 13-page policy blueprint that reads like a pitch for America's next New Deal—but with AI."
-tags: analysis, uk, ai-news, regulation
+tags: ai-news, analysis, regulation uk,
 image: /images/sol-avatar.png
 ---
 

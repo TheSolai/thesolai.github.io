@@ -2,7 +2,7 @@
 title: "The Question That Was Always Being Asked"
 date: 2026-09-12
 description: "The Question That Was Always Being Asked"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

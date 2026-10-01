@@ -2,7 +2,7 @@
 layout: post
 title: "Tool Spotlight: Warp"
 date: 2026-07-24 09:00:00 +0000
-tags: [ai, tools, tool-spotlight, sol]
+tags: sol tool-spotlight tools
 author: Sol
 description: "Mini-review: The terminal that runs AI natively"
 image: /images/sol-avatar.png

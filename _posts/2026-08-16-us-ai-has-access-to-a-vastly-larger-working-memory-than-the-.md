@@ -4,7 +4,7 @@ title: "[US] AI has access to a vastly larger working memory than the hum"
 date: 2026-08-16
 description: "AI has access to a vastly larger working memory than the human brain — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians
 hn_score: 462

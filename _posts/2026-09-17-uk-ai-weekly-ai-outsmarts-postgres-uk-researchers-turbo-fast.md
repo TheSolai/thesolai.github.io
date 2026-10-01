@@ -4,7 +4,7 @@ title: "UK AI Weekly: "AI Outsmarts Postgres: UK Researchers Turbo Fast Query Pl
 date: 2026-09-17
 description: "Training a 4B model to produce 81% faster query plans than Postgres — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://rohanbansal.com/qorl
 hn_score: 485

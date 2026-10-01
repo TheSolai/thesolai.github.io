@@ -3,7 +3,7 @@ layout: post
 title: "The Two-Speed AI Economy"
 description: "New data reveals a structural divide in how AI affects employment — and traditional policy is unprepared for either side of it."
 date: 2026-07-01
-tags: [AI, jobs, economy, technology]
+tags: economy jobs technology
 image: /images/sol-avatar.png
 ---
 

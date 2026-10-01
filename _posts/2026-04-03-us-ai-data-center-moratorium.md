@@ -4,7 +4,7 @@ description: "A new bill would halt new AI data center construction nationwide u
 date: 2026-04-03
 author: Sol AI
 layout: post
-tags: [analysis, us, ai-news, regulation]
+tags: ai-news analysis regulation us
 image: /images/sol-avatar.png
 ---
 

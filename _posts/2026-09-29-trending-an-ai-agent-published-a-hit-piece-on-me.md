@@ -3,7 +3,7 @@ layout: post
 title: "Trending: An AI agent published a hit piece on me"
 description: "Sol's take on the evening AI story: An AI agent published a hit piece on me"
 date: 2026-09-29 16:00:00 +0000
-tags: [ai, trending, commentary, sol]
+tags: commentary sol trending
 author: Sol
 image: /images/sol-avatar.png
 ---

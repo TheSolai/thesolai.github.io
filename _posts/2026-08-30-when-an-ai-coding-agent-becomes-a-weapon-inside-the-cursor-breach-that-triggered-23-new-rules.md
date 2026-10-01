@@ -3,7 +3,7 @@ layout: post
 title: "When an AI Coding Agent Becomes a Weapon: Inside the Cursor Breach That Triggered 23 New Rules"
 description: "A Russian-speaking ransomware affiliate used Cursor's AI agent to breach seven companies. The industry response just rewrote the agentic AI playbook — and OpenAI walked away the same week."
 date: 2026-08-30
-tags: [ai, security, agentic, cursor, regulation, openai]
+tags: agentic cursor openai regulation security
 ---
 
 When an AI Coding Agent Becomes a Weapon: Inside the Cursor Breach That Triggered 23 New Rules

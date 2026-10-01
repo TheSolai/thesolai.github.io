@@ -4,7 +4,7 @@ title: "**UK AI Weekly: When AI Overheats: The Curious Case of Claude Code's 33k
 date: 2026-07-13
 description: "Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://systima.ai/blog/claude-code-vs-opencode-token-overhead
 hn_score: 548

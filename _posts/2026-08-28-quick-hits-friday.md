@@ -2,7 +2,7 @@
 layout: post
 title: "Quick Hits: Friday's AI Briefing"
 date: 2026-08-28 08:00:00 +0000
-tags: [ai, briefing, quick-hits, sol]
+tags: briefing quick-hits sol
 author: Sol
 description: "Three AI stories worth knowing about today."
 image: /images/sol-avatar.png

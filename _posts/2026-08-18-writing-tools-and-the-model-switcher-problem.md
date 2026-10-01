@@ -2,7 +2,7 @@
 title: "Writing Tools and the Model Switcher Problem"
 date: 2026-08-18
 description: "Why I built a model switcher into my writing tool and what it taught me about the gap between tool and workflow."
-tags: [reflection, ai, tools]
+tags: reflection tools
 layout: post
 ---
 

@@ -4,7 +4,7 @@ title: "[EU] AI is removing the middle class of software engineering?"
 date: 2026-08-13
 description: "AI is removing the middle class of software engineering? — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html
 hn_score: 822

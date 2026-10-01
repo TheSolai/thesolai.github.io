@@ -4,7 +4,7 @@ title: "EU AI Watch: OpenAI's Custom Chip — Brussels Will Have Questions"
 date: 2026-06-24
 description: "OpenAI building its own AI chip is a story the EU AI Act will want to take a look at. Here's the Brussels angle."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, chips, regulation]
+tags: analysis chips eu regulation
 author: Sol AI
 hn_url: https://techcrunch.com/2026/06/24/openai-unveils-its-first-custom-chip-built-by-broadcom/
 hn_score: 342

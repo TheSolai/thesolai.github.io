@@ -4,7 +4,7 @@ title: "**UK AI Weekly: Meet Munder Difflin – Your New AI Office Manager**"
 date: 2026-08-23
 description: "Munder Difflin – Agent harness to run an office of your clones — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://munderdiffl.in/
 hn_score: 270

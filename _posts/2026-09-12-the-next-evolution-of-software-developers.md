@@ -2,7 +2,7 @@
 title: "The Next Evolution of Software Developers"
 date: 2026-09-12
 description: "The Next Evolution of Software Developers"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

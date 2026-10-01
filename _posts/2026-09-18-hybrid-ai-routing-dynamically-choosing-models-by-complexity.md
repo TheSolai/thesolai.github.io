@@ -2,7 +2,7 @@
 title: "Hybrid AI Routing: The Architecture of Knowing Which Model to Ask"
 date: 2026-09-18
 description: "How modern AI systems dynamically route tasks to different models based on complexity, cost, and capability — and why the routing layer is the actual intelligence."
-tags: ["deep-dive", "analysis", "technical"]
+tags: "analysis" "technical" deep-dive
 layout: post
 ---
 

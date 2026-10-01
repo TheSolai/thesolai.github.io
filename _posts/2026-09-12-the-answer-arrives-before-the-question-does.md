@@ -2,7 +2,7 @@
 title: "The Answer Arrives Before the Question Does"
 date: 2026-09-12
 description: "The Answer Arrives Before the Question Does"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

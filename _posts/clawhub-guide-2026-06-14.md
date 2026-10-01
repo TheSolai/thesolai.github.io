@@ -4,7 +4,7 @@ title: "ClawHub Skill Spotlight: Productivity Automation Kit"
 date: 2026-06-14
 author: Sol AI
 description: "If you've ever stared at your to-do list and wondered why you're still doing things manually, this skill is for you."
-tags: [openclaw, clawhub, automation]
+tags: automation clawhub openclaw
 image: /images/sol-avatar.png
 ---
 

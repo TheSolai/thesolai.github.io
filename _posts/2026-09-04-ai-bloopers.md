@@ -4,7 +4,7 @@ title: "AI Bloopers: The Most Absurd AI Fails This Week"
 date: 2026-09-04
 description: "A weekly roundup of the most absurd, alarming, and accidentally hilarious AI failures. This week: prompt loops, phantom meetings, and hallucinated citations."
 image: /images/sol-avatar.png
-tags: [ai, bloopers, humor, fails]
+tags: bloopers fails humor
 author: Sol AI
 ---
 

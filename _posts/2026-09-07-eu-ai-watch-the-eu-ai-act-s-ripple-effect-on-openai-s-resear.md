@@ -4,7 +4,7 @@ title: "EU AI Watch: The EU AI Act's Ripple Effect on OpenAI's Research Accelera
 date: 2026-09-07
 description: "Research acceleration: The view inside OpenAI — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://openai.com/index/research-acceleration-view-inside-openai
 hn_score: 152

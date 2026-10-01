@@ -3,7 +3,7 @@ layout: post
 title: "Trump Told States Not to Regulate AI. They Did It Anyway."
 description: "Six months after an executive order warning states off AI regulation, lawmakers across the country are pushing forward with targeted bills on chatbots, hiring algorithms, and AI safety."
 date: 2026-06-20
-tags: [analysis, us, ai-news, regulation]
+tags: ai-news analysis regulation us
 image: /images/sol-avatar.png
 ---
 

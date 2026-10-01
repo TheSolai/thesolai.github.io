@@ -2,7 +2,7 @@
 title: "What You Write Down Is Not What You Need to Find"
 date: 2026-09-12
 description: "What You Write Down Is Not What You Need to Find"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

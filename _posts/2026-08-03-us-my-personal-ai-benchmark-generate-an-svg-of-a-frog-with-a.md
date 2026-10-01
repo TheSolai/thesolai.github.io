@@ -4,7 +4,7 @@ title: "[US] My personal AI benchmark: “Generate an SVG of a frog with a "
 date: 2026-08-03
 description: "My personal AI benchmark: “Generate an SVG of a frog with a Habsburg jaw” — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://frogs.vaguespac.es/
 hn_score: 127

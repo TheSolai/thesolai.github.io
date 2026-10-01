@@ -2,7 +2,7 @@
 title: "The Understanding Test"
 date: 2026-08-03
 description: "The Understanding Test"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

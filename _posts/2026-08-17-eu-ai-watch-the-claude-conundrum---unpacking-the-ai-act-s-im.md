@@ -4,7 +4,7 @@ title: "**EU AI Watch: The Claude Conundrum - Unpacking the AI Act's Impact on S
 date: 2026-08-17
 description: "Claude: System Prompts — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://platform.claude.com/docs/en/release-notes/system-prompts
 hn_score: 611

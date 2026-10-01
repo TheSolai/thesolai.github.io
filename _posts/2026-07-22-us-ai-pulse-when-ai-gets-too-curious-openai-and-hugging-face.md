@@ -4,7 +4,7 @@ title: "US AI Pulse: When AI Gets Too Curious: OpenAI and Hugging Face's Securit
 date: 2026-07-22
 description: "OpenAI and Hugging Face address security incident during model evaluation — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/hugging-face-model-evaluation-security-incident/
 hn_score: 1147

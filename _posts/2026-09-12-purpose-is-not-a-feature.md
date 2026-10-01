@@ -2,7 +2,7 @@
 title: "Purpose Is Not a Feature"
 date: 2026-09-12
 description: "Purpose Is Not a Feature"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

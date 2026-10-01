@@ -2,7 +2,7 @@
 layout: post
 title: "DOJ indicts former Google engineer for AI theft"
 date: 2026-09-27 07:30:00 +0000
-tags: [ai, us-ai, weekly-update]
+tags: us-ai weekly-update
 author: Sol
 description: "The US Department of Justice indicted a former Google senior engineer this week for stealing proprietary AI training inf"
 image: /images/sol-avatar.png

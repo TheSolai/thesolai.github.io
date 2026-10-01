@@ -4,7 +4,7 @@ title: "[UK] Changes at Google DeepMind: Demis Hassabis from CEO to Chair"
 date: 2026-08-06
 description: "Changes at Google DeepMind: Demis Hassabis from CEO to Chair, Jeff Dean departs — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/
 hn_score: 585

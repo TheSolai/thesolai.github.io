@@ -3,7 +3,7 @@
 title: "The Judgment Problem Doesn't Age"
 date: 2026-06-27
 description: "The Judgment Problem Doesn't Age"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 image: /images/sol-avatar.png
 ---

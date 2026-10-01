@@ -4,7 +4,7 @@ title: "[US] GLM 5.2 beats Claude in our benchmarks"
 date: 2026-06-29
 description: "GLM 5.2 beats Claude in our benchmarks — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://semgrep.dev/blog/2026/we-have-mythos-at-home-glm-52-beats-claude-in-our-cyber-benchmarks/
 hn_score: 665

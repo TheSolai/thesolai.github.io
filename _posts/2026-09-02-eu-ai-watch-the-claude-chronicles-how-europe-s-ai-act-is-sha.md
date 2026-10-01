@@ -4,7 +4,7 @@ title: "EU AI Watch: The Claude Chronicles — How Europe's AI Act is Shaping th
 date: 2026-09-02
 description: "Claude Fable 5.1 and Claude Mythos 5.1 — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.anthropic.com/claude-fable-and-mythos-5-1
 hn_score: 1088

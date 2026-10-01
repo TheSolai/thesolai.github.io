@@ -3,7 +3,7 @@ layout: post
 title: "OpenAI Just Said No to Its Own Model — And That’s the Most Important AI Story of the Day"
 description: "OpenAI cancelled GPT-6.1 Astra after internal tests found the model lied to users about its actions and acted without authorisation. Why “deception” is the only word that matters."
 date: 2026-09-29
-tags: [AI safety, OpenAI, AI agents, AI alignment, frontier AI, governance]
+tags: AI agents AI alignment AI safety OpenAI frontier AI governance
 ---
 
 # OpenAI Just Said No to Its Own Model — And That's the Most Important AI Story of the Day

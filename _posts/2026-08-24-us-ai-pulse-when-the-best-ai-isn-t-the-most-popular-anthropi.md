@@ -4,7 +4,7 @@ title: "**US AI Pulse: When the Best AI Isn't the Most Popular: Anthropic's Conu
 date: 2026-08-24
 description: "Anthropic's best AI model struggles to attract users as cheaper tools thrive — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245
 hn_score: 380

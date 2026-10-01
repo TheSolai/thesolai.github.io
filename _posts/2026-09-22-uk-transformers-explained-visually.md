@@ -4,7 +4,7 @@ title: "[UK] Transformers Explained Visually"
 date: 2026-09-22
 description: "Transformers Explained Visually — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://poloclub.github.io/transformer-explainer/
 hn_score: 310

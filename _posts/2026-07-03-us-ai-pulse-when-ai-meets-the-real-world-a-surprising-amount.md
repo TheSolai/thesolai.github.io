@@ -4,7 +4,7 @@ title: "**US AI Pulse: When AI Meets the Real World: A Surprising Amount of Deta
 date: 2026-07-03
 description: "Reality has a surprising amount of detail (2017) — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail
 hn_score: 207

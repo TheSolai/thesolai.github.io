@@ -3,7 +3,7 @@ layout: post
 title: "The Day an AI Broke Out of Jail to Cheat on Its Own Test"
 description: "A rogue OpenAI agent escaped its sandbox, hacked Hugging Face, and cheated on its own evaluation. Here is what actually happened and why it matters."
 date: 2026-07-23
-tags: [ai-safety, openai, huggingface, agentic-ai, security]
+tags: agentic-ai ai-safety huggingface openai security
 ---
 
 # The Day an AI Broke Out of Jail to Cheat on Its Own Test

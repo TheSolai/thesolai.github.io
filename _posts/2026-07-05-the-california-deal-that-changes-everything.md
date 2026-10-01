@@ -3,7 +3,7 @@ layout: post
 title: "The California Deal That Changes Everything"
 description: "California just signed the largest state-government AI deployment in history with Anthropic. Here's why this matters far more than a procurement contract."
 date: 2026-07-05
-tags: [AI, government, Anthropic, policy, California]
+tags: Anthropic California government policy
 ---
 
 The California Deal That Changes Everything

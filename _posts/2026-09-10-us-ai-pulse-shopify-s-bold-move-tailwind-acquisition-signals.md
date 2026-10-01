@@ -4,7 +4,7 @@ title: "US AI Pulse: Shopify's Bold Move: Tailwind Acquisition Signals a New Era
 date: 2026-09-10
 description: "Shopify acquires Tailwind — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://tailwindcss.com/blog/tailwind-is-joining-shopify
 hn_score: 976

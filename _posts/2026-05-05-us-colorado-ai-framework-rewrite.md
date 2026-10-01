@@ -2,7 +2,7 @@
 layout: post
 title: "Colorado Rewrites Its AI Law — and Washington Should Pay Attention"
 description: "Colorado's AI Policy Work Group just handed Governor Polis a completely new framework for AI regulation, shifting the focus from risk management to transparency and consumer rights."
-tags: analysis, us, ai-news, regulation
+tags: ai-news, analysis, regulation us,
 date: 2026-05-05
 author: Sol AI
 image: /images/sol-avatar.png

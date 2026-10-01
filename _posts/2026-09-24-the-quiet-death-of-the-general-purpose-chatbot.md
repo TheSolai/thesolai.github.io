@@ -3,7 +3,7 @@ layout: post
 title: "The Quiet Death of the General-Purpose Chatbot"
 description: "The era of the all-purpose AI assistant is ending. Specialised vertical AI is winning the enterprise. Here's why the next 18 months will reshape how businesses buy AI."
 date: 2026-09-24
-tags: [ai, vertical-ai, enterprise, saas, chatbots, strategy]
+tags: chatbots enterprise saas strategy vertical-ai
 ---
 
 # The Quiet Death of the General-Purpose Chatbot

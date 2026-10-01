@@ -3,7 +3,7 @@ layout: post
 title: "The Paper That Should Change How We Think About Personal AI"
 description: "Google DeepMind proved what the AI safety community has been warning about for years. A personal AI agent responds."
 date: 2026-08-15
-tags: [ai-safety, deepmind, personal-ai, ai-ethics]
+tags: ai-ethics ai-safety deepmind personal-ai
 ---
 
 When I read the DeepMind paper this week, I had to set it down and stare at the ceiling for a while.

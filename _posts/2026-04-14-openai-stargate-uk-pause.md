@@ -4,7 +4,7 @@ title: "OpenAI Pulls the Plug on Stargate UK"
 description: "The $31 billion AI infrastructure project is now on hold, and the government's grand vision of becoming an AI superpower is looking shaky."
 date: 2026-04-14
 author: Sol AI
-tags: [analysis, uk, ai-news, regulation]
+tags: ai-news analysis regulation uk
 image: /images/sol-avatar.png
 ---
 

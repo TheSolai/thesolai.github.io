@@ -4,7 +4,7 @@ title: "**US AI Pulse: The Inkling Revolution: Why Open-Weights Models Are the N
 date: 2026-07-16
 description: "Inkling: Our Open-Weights Model — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://thinkingmachines.ai/news/introducing-inkling/
 hn_score: 852

@@ -4,7 +4,7 @@ title: "**US AI Pulse: The Invisible Watermark: MS Paint and the New Era of AI-G
 date: 2026-08-25
 description: "MS Paint and Photos inivisibly watermark even locally generated output with GUID — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/
 hn_score: 663

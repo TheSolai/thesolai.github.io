@@ -4,7 +4,7 @@ title: "**EU AI Watch: The GPT 6.1 Sol Revolution — Affordable Intelligence or
 date: 2026-09-30
 description: "GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://openai.com/index/introducing-gpt-6-1-sol/
 hn_score: 870

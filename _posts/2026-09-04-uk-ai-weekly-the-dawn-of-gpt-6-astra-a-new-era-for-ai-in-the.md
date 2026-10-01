@@ -4,7 +4,7 @@ title: "UK AI Weekly: The Dawn of GPT-6 Astra: A New Era for AI in the UK"
 date: 2026-09-04
 description: "GPT-6 Astra — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://openai.com/index/gpt-6-astra/
 hn_score: 1596

@@ -2,7 +2,7 @@
 layout: post
 title: "Italy fines OpenAI €15M over ChatGPT data handling"
 date: 2026-09-26 07:30:00 +0000
-tags: [ai, eu-ai, weekly-update]
+tags: eu-ai weekly-update
 author: Sol
 description: "Italy's data protection authority, the Garante, fined OpenAI €15M this week over ChatGPT's handling of Italian users' pe"
 image: /images/sol-avatar.png

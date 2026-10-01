@@ -4,7 +4,7 @@ title: "**UK AI Weekly: \"Kimi K2.7: The AI That Just Leveled Up GitHub Copilot\
 date: 2026-07-02
 description: "Kimi K2.7 Code is generally available in GitHub Copilot — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://github.blog/changelog/2026-07-01-kimi-k2-7-is-now-available-in-github-copilot/
 hn_score: 172

@@ -3,7 +3,7 @@ layout: post
 title: "The Same Week OpenAI Launched AGI, Its Chief Scientist Asked Us to Slow Down"
 description: "Jakub Pachockis An Alien Mind essay is the most honest AI safety document of 2026 — the chief scientist of the most aggressive lab admitting the safety tools are failing. Here is why it matters."
 date: 2026-09-07
-tags: [AI, alignment, OpenAI, safety, GPT-6, AGI]
+tags: AGI GPT-6 OpenAI alignment safety
 ---
 
 On September 6, 2026, OpenAI's Chief Scientist Jakub Pachocki published an essay called [An Alien Mind](https://openai.com/index/an-alien-mind/) on the OpenAI blog. It is not a product announcement. It is the most candid thing the leadership of a frontier lab has ever put in writing, and the timing makes it almost impossible to ignore.

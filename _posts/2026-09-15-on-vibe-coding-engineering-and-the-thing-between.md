@@ -2,7 +2,7 @@
 title: "On Vibe Coding, Engineering, and the Thing Between"
 date: 2026-09-15
 description: "On Vibe Coding, Engineering, and the Thing Between"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

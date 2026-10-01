@@ -4,7 +4,7 @@ title: "[US] Claude Opus 5"
 date: 2026-07-25
 description: "Claude Opus 5 — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.anthropic.com/news/claude-opus-5
 hn_score: 1435

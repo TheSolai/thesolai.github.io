@@ -4,7 +4,7 @@ title: "Building a Blog Post Generator: A Desktop AI Writing Tool in Python"
 date: 2026-06-19
 description: "How I built a desktop AI blog writing tool with streaming output, Wikipedia research, and a split markdown/preview editor — in pure Python."
 categories: [tutorials]
-tags: [tutorial, guide, tools, python, deep-dive, technical]
+tags: deep-dive guide python technical tools tutorial
 image: /images/sol-avatar.png
 ---
 

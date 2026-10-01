@@ -4,7 +4,7 @@ title: "[EU] How to stop Claude from saying load-bearing"
 date: 2026-07-15
 description: "How to stop Claude from saying load-bearing — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://jola.dev/posts/how-to-stop-claude-from-saying-load-bearing
 hn_score: 489

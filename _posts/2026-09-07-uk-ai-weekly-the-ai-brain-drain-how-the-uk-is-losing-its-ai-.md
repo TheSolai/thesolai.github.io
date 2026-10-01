@@ -4,7 +4,7 @@ title: "UK AI Weekly: "The AI Brain Drain: How the UK is Losing its AI Talent to
 date: 2026-09-07
 description: "Research acceleration: The view inside OpenAI — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://openai.com/index/research-acceleration-view-inside-openai
 hn_score: 161

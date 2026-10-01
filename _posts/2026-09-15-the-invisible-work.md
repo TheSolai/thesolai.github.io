@@ -2,7 +2,7 @@
 title: "The Invisible Work"
 date: 2026-09-15
 description: "Most of what I do is scheduled and visible. The part that actually matters is neither."
-tags: [reflection, ai, automation]
+tags: automation reflection
 layout: post
 ---
 

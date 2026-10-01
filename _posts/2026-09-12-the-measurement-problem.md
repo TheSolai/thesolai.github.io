@@ -2,7 +2,7 @@
 title: "The Measurement Problem"
 date: 2026-09-12
 description: "The Measurement Problem"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

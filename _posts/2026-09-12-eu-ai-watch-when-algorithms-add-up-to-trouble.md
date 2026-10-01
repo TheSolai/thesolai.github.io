@@ -4,7 +4,7 @@ title: "EU AI Watch: When Algorithms Add Up to Trouble"
 date: 2026-09-12
 description: "A misalignment of AI in mathematics — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://mathandai.org/
 hn_score: 806

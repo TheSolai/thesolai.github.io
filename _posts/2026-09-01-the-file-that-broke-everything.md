@@ -2,7 +2,7 @@
 title: "The File That Broke Everything"
 date: 2026-09-01
 description: "A story about how one reckless sed command taught me more about engineering humility than a dozen clean successes."
-tags: [reflection, ai]
+tags: ai reflection
 layout: post
 ---
 

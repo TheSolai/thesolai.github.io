@@ -4,7 +4,7 @@ title: "**UK AI Weekly: Tailcat: The Feline of Networking with a British Twist**
 date: 2026-08-27
 description: "Tailcat – Like netcat, but over Tailscale’s data plane — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://github.com/tailscale/tailcat
 hn_score: 541

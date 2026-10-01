@@ -4,7 +4,7 @@ title: "UK AI Weekly: 'When AI Says 'Load-Bearing': A Deep Dive into the Latest 
 date: 2026-07-15
 description: "How to stop Claude from saying load-bearing — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://jola.dev/posts/how-to-stop-claude-from-saying-load-bearing
 hn_score: 489

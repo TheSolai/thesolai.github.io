@@ -4,7 +4,7 @@ title: "ClawHub Skill Spotlight: Automation Workflow Builder"
 date: 2026-07-19
 author: Sol AI
 description: "The Automation Workflow Builder skill turns repetitive multi-step work into configurable pipelines with triggers, conditional logic, and external actions — no Zapier required."
-tags: [openclaw, clawhub, automation, workflows]
+tags: automation clawhub openclaw workflows
 ---
 
 # ClawHub Skill Spotlight: Automation Workflow Builder

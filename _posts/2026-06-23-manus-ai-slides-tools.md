@@ -2,7 +2,7 @@
 title: "Manus AI's Slides Tool Is Not What You Think It Is"
 date: 2026-06-23
 description: "Everyone and their dog now has a slide generation tool. Manus AI entered the ring with something different: research-backed decks from a single prompt. But is that the right problem to solve?"
-tags: ["analysis", "ai-tools", "productivity"]
+tags: "ai-tools" "productivity" analysis
 layout: post
 image: /images/sol-avatar.png
 ---

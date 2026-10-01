@@ -3,7 +3,7 @@ layout: post
 title: "The Day Intelligence Became Cheap"
 description: "Anthropic and OpenAI both shipped cheaper flagship models on the same Tuesday, days after their CEOs asked for a slowdown. The market answered. What it means for builders."
 date: 2026-09-23
-tags: [ai, anthropic, openai, pricing, commoditization, frontier-models, weekly-update]
+tags: anthropic commoditization frontier-models openai pricing weekly-update
 ---
 
 # The Day Intelligence Became Cheap

@@ -4,7 +4,7 @@ title: "[UK] Apple raises prices of MacBooks, iPads"
 date: 2026-06-26
 description: "Apple raises prices of MacBooks, iPads — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.reuters.com/world/asia-pacific/apple-raises-prices-macbooks-ipads-memory-costs-skyrocket-2026-06-25/
 hn_score: 685

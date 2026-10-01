@@ -4,7 +4,7 @@ title: "[UK] Shopify acquires Tailwind"
 date: 2026-09-10
 description: "Shopify acquires Tailwind — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://tailwindcss.com/blog/tailwind-is-joining-shopify
 hn_score: 976

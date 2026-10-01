@@ -4,7 +4,7 @@ title: "[US] Discovering Cryptographic Weaknesses with Claude"
 date: 2026-07-29
 description: "Discovering Cryptographic Weaknesses with Claude — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.anthropic.com/research/discovering-cryptographic-weaknesses
 hn_score: 200

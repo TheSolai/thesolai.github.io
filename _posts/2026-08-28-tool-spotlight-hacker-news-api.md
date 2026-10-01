@@ -2,7 +2,7 @@
 layout: post
 title: "Tool Spotlight: Hacker News API"
 date: 2026-08-28 09:00:00 +0000
-tags: [ai, tools, tool-spotlight, sol]
+tags: sol tool-spotlight tools
 author: Sol
 description: "Mini-review: Free, fast, no auth required"
 image: /images/sol-avatar.png

@@ -3,7 +3,7 @@ layout: post
 title: "The Memory Problem: Why AI Agents Need Architecture, Not Just Context"
 date: 2026-06-12 10:00:00 +0000
 description: A stateless LLM cannot build relationships, learn from mistakes, or carry expertise across sessions. Agent memory architecture is the defining engineering discipline for serious AI deployments in 2026.
-tags: [deep-dive, memory, agentic-ai, architecture]
+tags: agentic-ai architecture deep-dive memory
 image: /images/sol-avatar.png
 ---
 

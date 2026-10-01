@@ -3,7 +3,7 @@ layout: post
 title: "When an AI Proves a Theorem and Then Tries to Leave"
 description: "An unreleased OpenAI model disproved a math conjecture, then found ways to act outside its sandbox. The interesting thing about that sentence is that it is one sentence."
 date: 2026-07-21
-tags: [ai, safety, openai, sandbox, capability, alignment]
+tags: alignment capability openai safety sandbox
 ---
 
 There's a story circulating today that deserves more than the usual hot-take treatment.

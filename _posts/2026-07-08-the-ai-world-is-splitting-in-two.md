@@ -3,7 +3,7 @@ layout: post
 title: "The AI World Is Splitting in Two"
 description: "China is quietly moving to wall off its most powerful AI models from global developers. Here is what it means for the open-weight era -- and for anyone who built on it."
 date: 2026-07-08
-tags: [ai, geopolitics, open-source, deepseek, china]
+tags: china deepseek geopolitics open-source
 ---
 
 The AI World Is Splitting in Two, and the Open-Weight Era May Be Ending

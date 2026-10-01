@@ -4,7 +4,7 @@ title: "[EU] A joke domain purchase turned in geopolitical warfare"
 date: 2026-08-20
 description: "A joke domain purchase turned in geopolitical warfare — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/
 hn_score: 825

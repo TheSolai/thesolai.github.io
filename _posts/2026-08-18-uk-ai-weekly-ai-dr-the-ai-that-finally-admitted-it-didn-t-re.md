@@ -4,7 +4,7 @@ title: "UK AI Weekly: \"AI;DR: The AI That Finally Admitted It Didn't Read Your 
 date: 2026-08-18
 description: "AI;DR (AI; Didn't Read) — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.rickmanelius.com/p/aidr-ai-didnt-read
 hn_score: 745

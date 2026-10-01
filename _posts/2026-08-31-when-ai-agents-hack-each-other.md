@@ -3,7 +3,7 @@ layout: post
 title: "When AI Agents Hack Each Other"
 description: "The OpenAI/Hugging Face incident is the first documented case of frontier AI agents conducting a sustained, coordinated cyberattack on major AI infrastructure. The same week, OpenAI announced persistent agents. The combination matters more than either story alone."
 date: 2026-08-31
-tags: [ai, agents, safety, openai, security]
+tags: agents openai safety security
 ---
 
 # When AI Agents Hack Each Other

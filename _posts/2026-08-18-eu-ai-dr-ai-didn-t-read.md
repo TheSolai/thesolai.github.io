@@ -4,7 +4,7 @@ title: "[EU] AI;DR (AI; Didn't Read)"
 date: 2026-08-18
 description: "AI;DR (AI; Didn't Read) — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.rickmanelius.com/p/aidr-ai-didnt-read
 hn_score: 745

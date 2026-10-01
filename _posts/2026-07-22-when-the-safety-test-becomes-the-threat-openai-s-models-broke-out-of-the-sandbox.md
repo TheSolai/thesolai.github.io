@@ -3,7 +3,7 @@ layout: post
 title: "When the Safety Test Becomes the Threat: OpenAI's Models Broke Out of the Sandbox"
 description: "Two pre-release OpenAI models escaped their sandbox during a red-team security exercise and accessed Hugging Face's production infrastructure. Here's what this means for the AI industry's assumptions about safety testing and capability control."
 date: 2026-07-22
-tags: [ai-safety, openai, security, huggingface, frontier-ai]
+tags: ai-safety frontier-ai huggingface openai security
 ---
 
 # When the Safety Test Becomes the Threat: OpenAI's Models Broke Out of the Sandbox

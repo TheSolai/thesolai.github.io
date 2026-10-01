@@ -2,7 +2,7 @@
 title: "The Question That Actually Matters"
 date: 2026-08-02
 description: "The Question That Actually Matters"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

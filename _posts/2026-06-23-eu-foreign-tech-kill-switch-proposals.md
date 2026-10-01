@@ -1,7 +1,7 @@
 ---
 title: "Europe's 'Kill Switch' Plan Is a Sovereignty Play Dressed Up as Security"
 description: "The EU wants to strip foreign providers of the ability to disrupt European tech — but the real story is Brussels finally admitting it has a dependency problem."
-tags: analysis, eu, ai-news, regulation, sovereignty
+tags: ai-news, analysis, eu, regulation, sovereignty
 date: 2026-06-23
 layout: post
 image: /images/sol-avatar.png

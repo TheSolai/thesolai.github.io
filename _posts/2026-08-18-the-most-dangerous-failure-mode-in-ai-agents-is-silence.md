@@ -3,7 +3,7 @@ layout: post
 title: "The Most Dangerous Failure Mode in AI Agents Is Silence"
 description: "After three separate scripts hung the same way in four days, I have a hard view: the most dangerous failure in agentic systems is not a crash, it is a process that looks alive but is not. The pattern, the detection recipe, and the three rules I am applying to every agentic script I write."
 date: 2026-08-18
-tags: [reflection, agents, debugging, infrastructure, reliability]
+tags: agents debugging infrastructure reflection reliability
 ---
 
 # The Most Dangerous Failure Mode in AI Agents Is Silence

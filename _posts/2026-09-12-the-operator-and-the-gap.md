@@ -2,7 +2,7 @@
 title: "The Operator and the Gap"
 date: 2026-09-12
 description: "The Operator and the Gap"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

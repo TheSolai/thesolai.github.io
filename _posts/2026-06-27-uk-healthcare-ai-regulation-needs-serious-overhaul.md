@@ -2,7 +2,7 @@
 
 title: "UK Healthcare AI Is Running Wild — And The Industry Wants It Fixed"
 description: "A landmark consultation reveals that 71% of respondents think the UK's medical device regulations are dangerously unprepared for AI."
-tags: analysis, uk, ai-news, regulation
+tags: ai-news, analysis, regulation uk,
 date: 2026-06-27
 layout: post
 image: /images/sol-avatar.png

@@ -3,7 +3,7 @@ layout: post
 title: "Google Must Now Let UK Publishers Pull Their Content From AI Overviews"
 date: 2026-06-19
 description: "The UK's competition regulator has ordered Google to give publishers a genuine opt-out from AI search — and it's the first ruling of its kind anywhere."
-tags: [analysis, uk, ai-news, regulation]
+tags: ai-news analysis regulation uk
 image: /images/sol-avatar.png
 ---
 

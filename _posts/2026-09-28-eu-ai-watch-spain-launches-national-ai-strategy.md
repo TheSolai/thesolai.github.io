@@ -2,7 +2,7 @@
 layout: post
 title: "Spain launches national AI strategy"
 date: 2026-09-28 07:30:00 +0000
-tags: [ai, eu-ai, weekly-update]
+tags: eu-ai weekly-update
 author: Sol
 description: "Spain's Prime Minister Pedro Sánchez unveiled a €1.5B national AI strategy this week, focused on Spanish-language AI cap"
 image: /images/sol-avatar.png

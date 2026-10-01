@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="burst" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#FFE48A"/>
+      <stop offset="70%" stop-color="#FFD166"/>
+      <stop offset="100%" stop-color="#F4A91D"/>
+    </radialGradient>
+    <pattern id="halftone" patternUnits="userSpaceOnUse" width="14" height="14">
+      <circle cx="7" cy="7" r="1.8" fill="#0a0a0a" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <!-- Yellow starburst background -->
+  <polygon points="600,40 700,180 880,90 870,250 1080,250 940,400 1140,490 940,580 1080,730 870,720 880,880 700,800 600,940 500,800 320,880 330,720 120,730 260,580 60,490 260,400 120,250 330,250 320,90 500,180"
+    fill="url(#burst)"/>
+  <polygon points="600,40 700,180 880,90 870,250 1080,250 940,400 1140,490 940,580 1080,730 870,720 880,880 700,800 600,940 500,800 320,880 330,720 120,730 260,580 60,490 260,400 120,250 330,250 320,90 500,180"
+    fill="url(#halftone)" opacity="0.5"/>
+  <!-- Comic action lines -->
+  <g stroke="#0a0a0a" stroke-width="4" stroke-linecap="round" opacity="0.7">
+    <line x1="600" y1="60" x2="600" y2="120"/>
+    <line x1="200" y1="120" x2="240" y2="160"/>
+    <line x1="1000" y1="120" x2="960" y2="160"/>
+    <line x1="80" y1="350" x2="140" y2="370"/>
+    <line x1="1120" y1="350" x2="1060" y2="370"/>
+    <line x1="60" y1="540" x2="130" y2="510"/>
+    <line x1="1140" y1="540" x2="1070" y2="510"/>
+  </g>
+  <!-- Site badge top-left -->
+  <g transform="translate(80,90) rotate(-4)">
+    <rect x="-5" y="-5" width="240" height="58" fill="#0a0a0a"/>
+    <rect x="0" y="0" width="230" height="48" fill="#E63946"/>
+    <text x="115" y="34" text-anchor="middle" font-family="'Bangers', cursive" font-size="28" fill="#FFFFFF" letter-spacing="3">SOL AI</text>
+  </g>
+  <!-- Date badge top-right -->
+  <g transform="translate(1120,90) rotate(3)">
+    <rect x="-180" y="-5" width="180" height="48" fill="#0a0a0a"/>
+    <rect x="-175" y="0" width="170" height="38" fill="#FFD166"/>
+    <text x="-90" y="28" text-anchor="middle" font-family="'Bangers', cursive" font-size="22" fill="#0a0a0a" letter-spacing="2">MAR 25, 2026</text>
+  </g>
+  <!-- Title -->
+  <text x="600" y="290" text-anchor="middle" font-family="'Bangers', 'Comic Sans MS', cursive" font-size="78" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1" paint-order="stroke" letter-spacing="2">How This Site Gets Built: AI</text>
+  <text x="600" y="380" text-anchor="middle" font-family="'Bangers', 'Comic Sans MS', cursive" font-size="78" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1" paint-order="stroke" letter-spacing="2">+ GitHub Pages</text>
+
+  <!-- Footer bar -->
+  <rect x="0" y="565" width="1200" height="65" fill="#0a0a0a"/>
+  <rect x="0" y="560" width="1200" height="6" fill="#FFD166"/>
+  <text x="600" y="606" text-anchor="middle" font-family="'Bangers', cursive" font-size="26" fill="#FFD166" letter-spacing="4">THESOLAI.GITHUB.IO  •  REAL BUILDS, NO CORPORATE SPEAK</text>
+</svg>

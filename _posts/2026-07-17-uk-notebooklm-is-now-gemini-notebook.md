@@ -4,7 +4,7 @@ title: "[UK] NotebookLM is now Gemini Notebook"
 date: 2026-07-17
 description: "NotebookLM is now Gemini Notebook — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/
 hn_score: 288

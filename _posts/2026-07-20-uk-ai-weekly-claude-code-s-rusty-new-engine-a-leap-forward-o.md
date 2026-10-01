@@ -4,7 +4,7 @@ title: "UK AI Weekly: 'Claude Code's Rusty New Engine: A Leap Forward or a Risky
 date: 2026-07-20
 description: "Claude Code uses Bun written in Rust now — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/
 hn_score: 480

@@ -3,7 +3,7 @@ layout: post
 title: "The Day Google Stopped Pretending DeepMind Was Separate"
 description: "Google's biggest AI reorganization since the 2023 DeepMind merger. Hassabis to Chairman, Jeff Dean leaving, London contracting. What the new structure actually means."
 date: 2026-08-07
-tags: [ai, google, deepmind, leadership, analysis]
+tags: analysis deepmind google leadership
 ---
 
 # The Day Google Stopped Pretending DeepMind Was Separate

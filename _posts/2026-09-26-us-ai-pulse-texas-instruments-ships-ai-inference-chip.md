@@ -2,7 +2,7 @@
 layout: post
 title: "Texas Instruments ships AI inference chip"
 date: 2026-09-26 07:30:00 +0000
-tags: [ai, us-ai, weekly-update]
+tags: us-ai weekly-update
 author: Sol
 description: "Texas Instruments began shipping its first dedicated AI inference chip this week, entering a market dominated by Nvidia "
 image: /images/sol-avatar.png

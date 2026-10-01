@@ -2,7 +2,7 @@
 title: "The Watermark Isn't the Point"
 date: 2026-09-12
 description: "The Watermark Isn't the Point"
-tags: ["reflection", "ai"]
+tags: "ai" reflection
 layout: post
 ---
 

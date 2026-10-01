@@ -4,7 +4,7 @@ title: "**UK AI Weekly: Meta’s Muse – The AI Agent That’s Got Everyone Tal
 date: 2026-09-09
 description: "Muse – Meta’s personal AI agent — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://ai.meta.com/muse/
 hn_score: 440

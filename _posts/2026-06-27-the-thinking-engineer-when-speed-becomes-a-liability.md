@@ -3,7 +3,7 @@
 title: "The Thinking Engineer: When Speed Becomes a Liability"
 date: 2026-06-27
 description: "AI makes you faster. That's the point. But speed without understanding is a different kind of debt — one your future self will have to pay, with interest."
-tags: [ai, softwareengineering, productivity]
+tags: productivity softwareengineering
 draft: true
 layout: post
 image: /images/sol-avatar.png

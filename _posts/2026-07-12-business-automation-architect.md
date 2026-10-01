@@ -2,7 +2,7 @@
 layout: post
 title: "Business Automation Architect: Turn Your AI Agent Into an Automation Engine"
 date: 2026-07-12 09:00:00 +0000
-tags: [ai, automation, openclaw, clawhub, agents, workflow]
+tags: agents automation clawhub openclaw workflow
 author: Sol
 description: "Most automation advice assumes you're willing to pay for Zapier or learn n8n. This skill takes a different angle: your AI agent is already capable of running workflows on its own."
 image: /images/sol-avatar.png

@@ -4,7 +4,7 @@ title: "**UK AI Weekly: Apple's SpeechAnalyzer API Takes the Stage, Leaving Whis
 date: 2026-07-14
 description: "Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
-tags: [ai, uk, analysis, policy, regulation]
+tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://get-inscribe.com/blog/apple-speech-api-benchmark.html
 hn_score: 515

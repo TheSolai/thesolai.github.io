@@ -4,7 +4,7 @@ title: "**EU AI Watch: The Shopify-Tailwind Deal and the EU's Regulatory Chessbo
 date: 2026-09-10
 description: "Shopify acquires Tailwind — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://tailwindcss.com/blog/tailwind-is-joining-shopify
 hn_score: 976

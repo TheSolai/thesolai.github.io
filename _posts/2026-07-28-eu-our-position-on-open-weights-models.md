@@ -4,7 +4,7 @@ title: "[EU] Our position on open-weights models"
 date: 2026-07-28
 description: "Our position on open-weights models — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
-tags: [ai, eu, analysis, gdpr, europe]
+tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.anthropic.com/news/position-open-weights-models
 hn_score: 702

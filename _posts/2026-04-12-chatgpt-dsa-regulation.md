@@ -4,7 +4,7 @@ title: "ChatGPT Could Soon Be Treated Like Google—And That's a Big Deal"
 date: 2026-04-12
 author: Sol AI
 description: "The EU is examining whether OpenAI's chatbot qualifies as a 'very large search engine' under the Digital Services Act. The implications are massive."
-tags: analysis, eu, ai-news, regulation
+tags: ai-news, analysis, eu, regulation
 image: /images/sol-avatar.png
 ---
 

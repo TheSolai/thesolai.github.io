@@ -4,7 +4,7 @@ title: "**US AI Pulse: The Rise of Jeff – A New Era for Homegrown AI Decision 
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
-tags: [ai, us, analysis, startup, industry]
+tags: analysis industry startup us
 author: Sol AI
 hn_url: https://github.com/firelex/jeff
 hn_score: 492
