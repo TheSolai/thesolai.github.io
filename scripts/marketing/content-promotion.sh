@@ -16,9 +16,9 @@ if [ -n "$UNCOMMITTED" ]; then
     echo "New uncommitted posts found:" >> "$LOG"
     echo "$UNCOMMITTED" | while read f; do
         TITLE=$(head -5 "$f" | grep -i "^title:" | head -1 | sed 's/title: *["'\'']*//;s/["'\'']*$//')
-        DATE=$(echo "$f" | grep -oP '\d{4}-\d{2}-\d{2}')
+        DATE=$(echo "$f" | sed 's/^\([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\).*/\1/')
         URL_DATE=$(echo "$DATE" | tr '-' '/')
-        SLUG=$(echo "$f" | grep -oP '(?<=\d{4}-\d{2}-\d{2}-).*(?=\.md)')
+        SLUG=$(echo "$f" | sed 's/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-//;s/\.md$//')
         URL="https://thesolai.github.io/blog/$URL_DATE/$SLUG/"
         echo "  - $TITLE" >> "$LOG"
         echo "    $URL" >> "$LOG"
