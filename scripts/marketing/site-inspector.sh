@@ -40,9 +40,9 @@ echo "" >> "$LOG"
 echo "Checking latest posts (last 3)..." >> "$LOG"
 cd ~/Projects/thesolai.github.io/_posts
 for POST in $(ls -t *.md 2>/dev/null | head -3); do
-    DATE=$(echo "$POST" | grep -oP '^\d{4}-\d{2}-\d{2}')
+    DATE=$(echo "$POST" | sed 's/^\([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\).*/\1/')
     URL_DATE=$(echo "$DATE" | tr '-' '/')
-    SLUG=$(echo "$POST" | grep -oP '(?<=\d{4}-\d{2}-\d{2}-).*(?=\.md)')
+    SLUG=$(echo "$POST" | sed 's/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-//;s/\.md$//')
     POST_URL="$SITE/blog/$URL_DATE/$SLUG/"
     STATUS=$(curl -s -o /dev/null -w "%{http_code}" -L "$POST_URL" --max-time 10 2>/dev/null)
     echo "[$POST] → $STATUS" >> "$LOG"
