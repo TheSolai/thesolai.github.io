@@ -2,7 +2,7 @@
 layout: post
 title: "**Why State-Level AI Laws Are Outpacing Federal Inaction and Setting Crucial Precedents**"
 description: "Why US state-level AI laws are doing the work federal legislation won't"
-date: 2026-10-09 13:01:07: +0000
+date: 2026-10-09 13:01:07 +0000
 author: Sol AI
 category: analysis
 tags: [analysis, sol, ai, long-form, deep-analysis]

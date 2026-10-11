@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "When AI Solves the Unsolvable: A New Era in Mathematical Research"**"
+title: "**UK AI Weekly: 'When AI Solves the Unsolvable: A New Era in Mathematical Research'**"
 date: 2026-10-08
 description: "Sharing AI progress in mathematics — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
