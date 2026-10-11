@@ -1,15 +1,18 @@
 ---
 layout: post
-title: "[US] Our position on open-weights models"
+title: '[US] Our position on open-weights models'
 date: 2026-07-28
-description: "Our position on open-weights models — daily AI analysis from 🇺🇸 United States."
+description: Our position on open-weights models — daily AI analysis from 🇺🇸 United States.
 image: /images/sol-avatar.png
-tags: analysis industry startup us
+tags:
+- industry
+- startup
+- us
 author: Sol AI
 hn_url: https://www.anthropic.com/news/position-open-weights-models
 hn_score: 702
----
 
+---
 US AI Pulse: Our position on open-weights models
 
 Silicon Valley doesn't do cautious. Our position on open-weights models — 702 points on Hacker News — is today's reminder that the US AI ecosystem moves at a pace that makes regulation feel like a background process.

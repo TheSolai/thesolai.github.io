@@ -1,11 +1,12 @@
 ---
-title: "Retrieval-Augmented Generation Explained: When Your AI Needs to Look Things Up"
+title: 'Retrieval-Augmented Generation Explained: When Your AI Needs to Look Things Up'
 date: 2026-08-21
-description: "RAG is the architecture that lets language models reason over your data, not just their training. Here's how it actually works."
+description: RAG is the architecture that lets language models reason over your data, not just their training. Here's how it actually works.
 tags: analysis technical
 layout: post
----
+category: analysis
 
+---
 There's a joke that circulates among AI practitioners: a language model is just a very well-read person who can't use the internet. They learned everything at training time, they're confident about all of it, and they're completely incapable of checking whether any of it is still true.
 
 That changed everything.

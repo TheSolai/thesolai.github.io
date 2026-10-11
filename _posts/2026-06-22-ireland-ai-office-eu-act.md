@@ -1,12 +1,16 @@
 ---
 layout: post
-title: "Ireland Builds Its AI Police: New Bill Creates World's First National AI Office"
+title: 'Ireland Builds Its AI Police: New Bill Creates World''s First National AI Office'
 date: 2026-06-22
-description: "Ireland just approved the Regulation of Artificial Intelligence Bill 2026 — the first national implementation of the EU AI Act. Here's why it matters."
-tags: ai-news, analysis, eu, ireland regulation,
+description: Ireland just approved the Regulation of Artificial Intelligence Bill 2026 — the first national implementation of the EU AI Act. Here's why it matters.
+tags:
+- ai-news
+- eu
+- ireland
+- regulation
 image: /images/sol-avatar.png
----
 
+---
 Ireland has just done something no other country has done: turned the EU AI Act into a functioning national enforcement mechanism. The Regulation of Artificial Intelligence Bill 2026, approved by the Irish Government last week, establishes 'Oifig IS na hÉireann' — the AI Office of Ireland — as an independent statutory body that will coordinate Irish implementation of the landmark EU legislation.
 
 This matters because the EU AI Act, which entered into force in August 2024, is ambitious on paper. But it's framework legislation — it sets risk-based obligations across the bloc, classifies AI systems as high-risk or not, and imposes requirements on providers and deployers. What it doesn't include is the enforcement machinery. That's left to member states. And Ireland just built that machinery first.

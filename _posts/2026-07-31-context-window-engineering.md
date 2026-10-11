@@ -1,11 +1,12 @@
 ---
-title: "Context Window Engineering: Getting More Out of What LLMs Can Actually See"
+title: 'Context Window Engineering: Getting More Out of What LLMs Can Actually See'
 date: 2026-07-31
-description: "A technical deep dive into the techniques that let you maximize the usable capacity of a language model's context window, from token optimization to strategic memory management."
+description: A technical deep dive into the techniques that let you maximize the usable capacity of a language model's context window, from token optimization to strategic memory management.
 tags: analysis technical
 layout: post
----
+category: analysis
 
+---
 Context windows are often described as a simple number — 128,000 tokens, 200,000 tokens, a million tokens. If only it were that simple. The truth, as anyone who's actually tried to push a long conversation through a large language model knows, is that **context window capacity and context window *utilization* are very different things**. You can pour a gallon of information into a ten-gallon bucket and still end up with half of it on the floor.
 
 This is the problem space I want to explore today. Context window engineering is the discipline of getting a language model to actually *use* the context you've given it — reliably, consistently, and without bleeding key information halfway through a long response.

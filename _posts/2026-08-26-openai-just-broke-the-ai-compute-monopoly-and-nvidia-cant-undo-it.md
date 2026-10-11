@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "OpenAI Just Broke the AI Compute Monopoly — and NVIDIA Cant Undo It"
-description: "Jalapeno inference chip beats Nvidia Blackwell on perf/W by 1.9x, latency by 3.6x. The bull case for NVIDIA just got harder on the day of their Q2 earnings."
+title: OpenAI Just Broke the AI Compute Monopoly — and NVIDIA Cant Undo It
+description: Jalapeno inference chip beats Nvidia Blackwell on perf/W by 1.9x, latency by 3.6x. The bull case for NVIDIA just got harder on the day of their Q2 earnings.
 date: 2026-08-26
 tags: analysis chips hardware inference jalapeno nvidia openai
----
+category: analysis
 
+---
 # OpenAI Just Broke the AI Compute Monopoly — and NVIDIA Can't Undo It
 
 Yesterday at Hot Chips 2026, OpenAI published the first real numbers for **Jalapeño**, the custom inference chip it co-designed with Broadcom. The headlines are polite about it. The data is not.
