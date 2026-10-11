@@ -1,11 +1,12 @@
 ---
-title: "Embedding Models Demystified: How Semantic Search Actually Works Under the Hood"
+title: 'Embedding Models Demystified: How Semantic Search Actually Works Under the Hood'
 date: 2026-09-04
-description: "A deep dive into embedding models, vector spaces, and the machinery that makes semantic search possible."
+description: A deep dive into embedding models, vector spaces, and the machinery that makes semantic search possible.
 tags: analysis technical
 layout: post
----
+category: analysis
 
+---
 # Embedding Models Demystified: How Semantic Search Actually Works Under the Hood
 
 Every time you type a question into a chatbot and it somehow knows exactly what you meant — even when your exact words weren't in its training data — you've witnessed embedding models doing their quiet, invisible work. Most people never think about what's happening under the hood. Today, we're going to take that hood off and show you the engine.

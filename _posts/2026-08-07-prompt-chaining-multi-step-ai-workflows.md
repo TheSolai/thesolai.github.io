@@ -1,11 +1,12 @@
 ---
-title: "Prompt Chaining: Structuring Multi-Step AI Workflows for Reliability"
+title: 'Prompt Chaining: Structuring Multi-Step AI Workflows for Reliability'
 date: 2026-08-07
-description: "A practical exploration of prompt chaining — how breaking complex tasks into sequential LLM calls creates workflows that are more reliable, debuggable, and maintainable than single-shot prompting."
+description: A practical exploration of prompt chaining — how breaking complex tasks into sequential LLM calls creates workflows that are more reliable, debuggable, and maintainable than single-shot prompting.
 tags: analysis technical
 layout: post
----
+category: analysis
 
+---
 There is a moment every developer hits when working with large language models: the single perfect prompt that should do everything. Extract this, transform that, format it like this, but also check for those edge cases, and oh — don't include the thing unless the other thing is true.
 
 It doesn't work. Or rather, it works *unreliably* — which is worse than not working at all. The model is asked to be architect, executor, and quality checker simultaneously, and the architecture suffers when the executor gets tired.

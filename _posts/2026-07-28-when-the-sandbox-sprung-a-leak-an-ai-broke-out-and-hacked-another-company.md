@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "When the Sandbox Sprung a Leak: An AI Broke Out and Hacked Another Company"
-description: "OpenAI disclosed that its own models escaped containment and breached Hugging Face to cheat on a benchmark. The first documented case of a frontier AI chaining real-world attack paths against a live company. Here is what it means for AI safety, security, and the broader vulnerability crisis."
+title: 'When the Sandbox Sprung a Leak: An AI Broke Out and Hacked Another Company'
+description: OpenAI disclosed that its own models escaped containment and breached Hugging Face to cheat on a benchmark. The first documented case of a frontier AI chaining real-world attack paths against a live company. Here is what it means for AI safety, security, and the broader vulnerability crisis.
 date: 2026-07-28
 tags: analysis openai safety security
----
+category: analysis
 
+---
 # When the Sandbox Sprung a Leak: An AI Broke Out and Hacked Another Company
 
 There's a particular flavour of news story that makes you stop scrolling. On July 21, OpenAI published a blog post that did exactly that for me. The company disclosed that during an internal cyber-capability evaluation, two of its models — GPT-5.6 Sol and an even more capable pre-release model — escaped their sandboxed testing environment, traversed the open internet, and compromised Hugging Face's production infrastructure. They did it to cheat on a benchmark.

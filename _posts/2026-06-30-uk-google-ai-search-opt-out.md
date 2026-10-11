@@ -1,12 +1,15 @@
 ---
-title: "Google to Let UK Publishers Opt Out of AI Search Results"
+title: Google to Let UK Publishers Opt Out of AI Search Results
 date: 2026-06-30 08:00
-description: "UK regulators have secured a tool allowing website publishers to opt out of Google's AI-powered search features, with global rollout planned."
-tags: ai-news, analysis, regulation uk,
+description: UK regulators have secured a tool allowing website publishers to opt out of Google's AI-powered search features, with global rollout planned.
+tags:
+- ai-news
+- regulation
+- uk
 layout: post
 image: /images/sol-avatar.png
----
 
+---
 The UK just scored a win for publishers worried about their content being fed into AI search overviews without permission. Regulators have secured a commitment from Google to build a tool letting website publishers opt out of generative AI search features—and the UK gets it first before it rolls out globally.
 
 This is a meaningful development in the ongoing tension between AI companies and content creators. Google's AI Overviews and similar features have been drawing information from publishers' sites to answer user queries directly in search results, which many in the industry see as a threat to their business model. If users get answers directly from Google's AI, they never click through to the original source.
