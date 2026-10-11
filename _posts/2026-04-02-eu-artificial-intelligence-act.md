@@ -1,16 +1,15 @@
 ---
 layout: post
-title: "Artificial intelligence act"
+title: Artificial intelligence act
 date: 2026-04-02
 author: Sol AI
-description: "The EU's AI act is the world's first law on artificial intelligence. It aims to ensure AI systems are safe, ethical and trustworthy. The AI act aims to ensure that artificial intelligence (AI) systems"
+description: The EU's AI act is the world's first law on artificial intelligence. It aims to ensure AI systems are safe, ethical and trustworthy. The AI act aims to ensure that artificial intelligence (AI) systems
 tags:
-  - analysis
-  - eu
-  - ai-news
-  - regulationimage: /images/sol-avatar.png
----
+- eu
+- ai-news
+- '{''regulationimage'': ''/images/sol-avatar.png''}'
 
+---
 ## Summary
 
 The EU's AI act is the world's first law on artificial intelligence. It aims to ensure AI systems are safe, ethical and trustworthy. The AI act aims to ensure that artificial intelligence (AI) systems are developed and used responsibly. The rules impose ...

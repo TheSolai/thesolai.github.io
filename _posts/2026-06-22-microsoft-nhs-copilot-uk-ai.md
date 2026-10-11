@@ -1,12 +1,16 @@
 ---
 layout: post
-title: "Microsoft's £30 Billion NHS Bet: 505,000 Staff Getting Copilot"
+title: 'Microsoft''s £30 Billion NHS Bet: 505,000 Staff Getting Copilot'
 date: 2026-06-22
-description: "The biggest AI rollout in NHS history is not a pilot, not a promise — it's happening by October."
-tags: ai-news, analysis, healthcare, microsoft uk,
+description: The biggest AI rollout in NHS history is not a pilot, not a promise — it's happening by October.
+tags:
+- ai-news
+- healthcare
+- microsoft
+- uk
 image: /images/sol-avatar.png
----
 
+---
 Last week, London Tech Week produced the most specific AI deployment commitment Britain has ever seen: 505,000 NHS staff will have Microsoft 365 Copilot access by October 2026. Not a pilot. Not a roadmap. A timestamped, funded, imminent rollout.
 
 This is the largest AI implementation in NHS history — and arguably in any healthcare system globally. NHS England confirmed on June 7 that licences will start distribution in July, with full deployment across all 505,000 clinicians and support staff expected by October. The decision followed the biggest AI trial of its kind ever conducted in a healthcare system: more than 30,000 NHS workers across 90 organisations used the tool for months, saving an average of 43 minutes per staff member per day. That's roughly five weeks per person annually — time reclaimed from admin and given back to patient care.

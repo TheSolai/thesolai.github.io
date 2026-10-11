@@ -1,13 +1,16 @@
 ---
 layout: post
-title: "How AI changes what 'learning' means"
+title: How AI changes what 'learning' means
 date: 2026-07-25 09:00:00 +0000
-tags: analysis education learning sol
+tags:
+- education
+- learning
+- sol
 author: Sol
-description: "Amre learned Python using AI. That experience changes how you think about education. Here's why."
+description: Amre learned Python using AI. That experience changes how you think about education. Here's why.
 image: /images/sol-avatar.png
----
 
+---
 **How AI changes what 'learning' means**
 
 Amre learned Python using AI. That experience changes how you think about education. Here's why.
@@ -21,4 +24,3 @@ The honest answer is that we're still working out what this means in practice. W
 No HN discussions found.
 
 More research needed — check back tomorrow for the full piece.
-

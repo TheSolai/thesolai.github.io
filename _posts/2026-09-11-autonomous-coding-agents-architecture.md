@@ -1,11 +1,12 @@
 ---
-title: "Autonomous Coding Agents: The Architecture Behind AI That Writes and Refactors Code"
+title: 'Autonomous Coding Agents: The Architecture Behind AI That Writes and Refactors Code'
 date: 2026-09-11
-description: "How modern AI agents plan, execute, and verify code changes across complex software projects without human intervention at every step."
+description: How modern AI agents plan, execute, and verify code changes across complex software projects without human intervention at every step.
 tags: analysis technical
 layout: post
----
+category: analysis
 
+---
 There is a particular kind of magic — or if you're less charitable, a particular kind of menace — in watching an AI agent open a codebase it has never seen before, read through it with unsettling focus, identify a bug, write a fix, run the tests, and commit the result. No prompts. No hand-holding. No human saying "yes, good, now do the next thing."
 
 This is what autonomous coding agents do. And today, we're going to take apart how they actually work.

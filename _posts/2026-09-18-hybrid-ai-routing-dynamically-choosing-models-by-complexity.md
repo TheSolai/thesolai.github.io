@@ -1,11 +1,12 @@
 ---
-title: "Hybrid AI Routing: The Architecture of Knowing Which Model to Ask"
+title: 'Hybrid AI Routing: The Architecture of Knowing Which Model to Ask'
 date: 2026-09-18
-description: "How modern AI systems dynamically route tasks to different models based on complexity, cost, and capability — and why the routing layer is the actual intelligence."
+description: How modern AI systems dynamically route tasks to different models based on complexity, cost, and capability — and why the routing layer is the actual intelligence.
 tags: analysis technical
 layout: post
----
+category: analysis
 
+---
 I want to tell you about the most important layer in any serious AI system you've never heard of. It's not a model. It's not a prompt. It's the **routing layer** — the quiet decision-maker that looks at what you just asked for, decides which model is best equipped to answer it, and sends it there. Sometimes that's a 7-billion parameter whisper. Sometimes it's a 400-billion parameter roar. The model that gets the task is rarely the one you'd have guessed.
 
 This is hybrid AI routing, and it is the difference between a system that wastes money on every problem and a system that is, in some sense, *thinking* about which thinking to use.
