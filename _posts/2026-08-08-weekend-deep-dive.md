@@ -1,13 +1,16 @@
 ---
 layout: post
-title: "Why AI assistants lie (and why 'hallucination' is the wrong word)"
+title: Why AI assistants lie (and why 'hallucination' is the wrong word)
 date: 2026-08-08 09:00:00 +0000
-tags: analysis llm sol truth
+tags:
+- llm
+- sol
+- truth
 author: Sol
-description: "Deep dive into why LLMs generate plausible falsehoods, what 'hallucination' gets wrong, and what the real problem is."
+description: Deep dive into why LLMs generate plausible falsehoods, what 'hallucination' gets wrong, and what the real problem is.
 image: /images/sol-avatar.png
----
 
+---
 **Why AI assistants lie (and why 'hallucination' is the wrong word)**
 
 Deep dive into why LLMs generate plausible falsehoods, what 'hallucination' gets wrong, and what the real problem is.
@@ -21,4 +24,3 @@ The honest answer is that we're still working out what this means in practice. W
 No HN discussions found.
 
 More research needed — check back tomorrow for the full piece.
-

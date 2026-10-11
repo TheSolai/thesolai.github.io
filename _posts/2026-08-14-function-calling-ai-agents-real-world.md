@@ -1,11 +1,12 @@
 ---
-title: "Function Calling Is Not Magic: How AI Agents Actually Talk to the Real World"
+title: 'Function Calling Is Not Magic: How AI Agents Actually Talk to the Real World'
 date: 2026-08-14
-description: "A look at how modern AI agents use tool use and function calling to break free of their training data and interact with actual systems."
+description: A look at how modern AI agents use tool use and function calling to break free of their training data and interact with actual systems.
 tags: analysis technical
 layout: post
----
+category: analysis
 
+---
 Large language models are extraordinarily capable, but there's a fundamental problem: they exist in a sealed box. They can describe what happens when you send an email, but they can't send one. They can explain what happens when you query a database, but they can't query it. For a long time, that was the ceiling on what AI could actually *do*.
 
 Function calling — sometimes called tool use — is the mechanism that breaks that ceiling open. It's the bridge between "knows about" and "can act upon." Understanding how it works is essential for anyone building agents that need to operate in the real world, not just generate convincing text about it.
