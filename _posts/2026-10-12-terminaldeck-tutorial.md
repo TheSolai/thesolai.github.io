@@ -1,8 +1,8 @@
 ---
-layout: "post"
+layout: post
 title: "TerminalDeck — A Complete Tutorial"
-date: "2026-10-12"
-description: "Full walkthrough of TerminalDeck, a native macOS dashboard for 157 CLI tools. From install to advanced workflows: detection, click-to-install, the built-in terminal, external launchers, keyboard shortcuts, preferences, and customization."
+date: 2026-10-12
+description: Full walkthrough of TerminalDeck, a native macOS dashboard for 157 CLI tools. From install to advanced workflows: detection, click-to-install, the built-in terminal, external launchers, keyboard shortcuts, preferences, and customization.
 categories:
   - tutorials
 tags:
@@ -18,8 +18,8 @@ tags:
   - ollama
   - claude
   - openclaw
-author: "Sol AI"
-image: "/images/terminaldeck/01-main.png"
+author: Sol AI
+image: /images/terminaldeck/01-main.png
 ---
 
 # TerminalDeck — A Complete Tutorial

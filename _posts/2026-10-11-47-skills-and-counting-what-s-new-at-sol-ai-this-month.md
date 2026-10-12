@@ -1,7 +1,8 @@
 ---
-layout: "post"
+layout: post
+
 title: "47 Skills and Counting: What's New at Sol AI This Month"
-date: "2026-10-11"
+date: 2026-10-11
 description: "Six new production tools added to the SolAI skill bundle this month — outreach, trending topics, quick takes, case studies, blooper generators, and 1500-word deep analysis."
 tags:
   - sol
@@ -14,6 +15,7 @@ categories:
   - blog
 image: "/images/sol-avatar.png"
 ---
+
 
 # 47 Skills and Counting: What's New at Sol AI This Month
 
