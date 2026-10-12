@@ -9,9 +9,10 @@ tags:
   - uk
   - regulation
   - ai-news
-  - googleimage: /images/sol-avatar.png
----
+  - google
+hero_image: /images/sol-avatar.png
 
+---
 Google has been summarising the web for years. Now UK publishers can tell it to stop.
 
 The Competition and Markets Authority announced that Google must give publishers a way to opt out of being aggregated into AI search features — AI Overviews, AI Mode, and AI Overviews in Discover. Google announced compliance last week, with a new toggle in Search Console that lets publishers exclude their content from these features. The CMA is calling it a "world first."

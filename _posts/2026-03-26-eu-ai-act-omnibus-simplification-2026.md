@@ -9,9 +9,10 @@ tags:
   - eu
   - regulation
   - ai-act
-  - policyimage: /images/sol-avatar.png
----
+  - policy
+hero_image: /images/sol-avatar.png
 
+---
 Two significant moves from the EU this week on AI regulation, both worth examining carefully.
 
 The **Council agreed its position** on the proposal to streamline certain rules on artificial intelligence as part of the "Omnibus VII" legislative package. Simultaneously, the European Parliament's IMCO and LIBE committees **adopted their joint negotiating position** on the Digital Omnibus on AI — with a plenary vote expected on 26 March.
