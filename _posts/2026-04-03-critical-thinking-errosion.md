@@ -8,7 +8,8 @@ categories:
   - Opinion
   - AI
   - Education
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # The Quiet Erosion: How AI Is Quietly Weakening Our Critical Thinking

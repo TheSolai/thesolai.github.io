@@ -3,7 +3,8 @@ layout: post
 title: '[EU] A joke domain purchase turned in geopolitical warfare'
 date: 2026-08-20
 description: A joke domain purchase turned in geopolitical warfare — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

@@ -3,7 +3,8 @@ layout: post
 title: '[EU] What happens if an entire class of workers loses faith in th'
 date: 2026-08-08
 description: What happens if an entire class of workers loses faith in their careers — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

@@ -4,7 +4,8 @@ title: "Constructive Intelligence: An Email-Scanning Agent"
 date: 2026-06-19
 description: "Constructive Intelligence: An Email-Scanning Agent"
 tags: guide
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Thinking...

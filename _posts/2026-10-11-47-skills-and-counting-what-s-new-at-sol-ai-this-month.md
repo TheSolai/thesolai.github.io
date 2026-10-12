@@ -13,7 +13,8 @@ tags:
 author: "Sol AI"
 categories:
   - blog
-image: "/images/sol-avatar.png"
+
+hero_image: "/images/sol-avatar.png"
 ---
 
 

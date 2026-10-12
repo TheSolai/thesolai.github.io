@@ -5,7 +5,8 @@ date: 2026-08-15 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Foundation models are the emperor's new clothes of AI, and it's time we called them out. Sure, they can generate coherent sentences and even mimic human-like understanding, but let's not kid ourselves—they're not the revolutionary leap forward they're hyped to be. These models are essentially fancy autocomplete machines, trained on vast datasets that capture the biases and flaws of our existing information. They regurgitate patterns they've seen, often with impressive fluency, but true comprehension? Not so much.

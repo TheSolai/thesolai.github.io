@@ -8,7 +8,8 @@ tags:
 - ai-news
 - regulation
 - uk
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The UK government has no shortage of AI strategy documents. There's the "AI Playbook for the UK Government," the "AI Opportunities Action Plan," endless white papers about becoming a "global leader" in responsible AI. Westminster loves a good strategy document.

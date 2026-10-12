@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: LG's Denial Drama: When Your TV is the Spy in the Living Room"
 date: 2026-09-13
 description: "LG denies TV spying claims, says tracking and snooping concerns 'not true' — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.tomshardware.com/tech-industry/big-tech/lg-strongly-denies-tv-security-claims-says-tracking-and-snooping-concerns-not-true-online-investigation-claims-216-000-000-spy-tvs-record-audio

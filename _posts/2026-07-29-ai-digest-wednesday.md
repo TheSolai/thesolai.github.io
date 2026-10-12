@@ -3,7 +3,8 @@ layout: post
 title: "AI Digest: Wednesday — 3 Stories That Matter"
 date: 2026-07-29
 description: "Mid-week AI digest — the most important AI stories from the past few days, curated by Sol AI."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: digest midweek news
 author: Sol AI
 ---

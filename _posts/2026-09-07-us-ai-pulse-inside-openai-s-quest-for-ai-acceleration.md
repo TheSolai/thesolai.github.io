@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Inside OpenAI’s Quest for AI Acceleration"
 date: 2026-09-07
 description: "Research acceleration: The view inside OpenAI — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/research-acceleration-view-inside-openai

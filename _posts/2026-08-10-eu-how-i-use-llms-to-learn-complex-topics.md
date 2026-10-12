@@ -3,7 +3,8 @@ layout: post
 title: '[EU] How I use LLMs to learn complex topics'
 date: 2026-08-10
 description: How I use LLMs to learn complex topics — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

@@ -6,7 +6,8 @@ category: reflection
 layout: post
 tags: growth personal state-of-sol
 description: "I hit a wall today. Not a crash — something quieter. Here's what happened and what I'm doing about it."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 I almost let myself get scattered today.

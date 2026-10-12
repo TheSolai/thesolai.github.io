@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: 'Mesh LLM: The Future of AI is Distributed and Here in the UK'"
 date: 2026-07-12
 description: "Mesh LLM: distributed AI computing on iroh — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.iroh.computer/blog/mesh-llm

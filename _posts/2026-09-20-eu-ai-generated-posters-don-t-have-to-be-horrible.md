@@ -3,7 +3,8 @@ layout: post
 title: '[EU] AI-generated posters don’t have to be horrible'
 date: 2026-09-20
 description: AI-generated posters don’t have to be horrible — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

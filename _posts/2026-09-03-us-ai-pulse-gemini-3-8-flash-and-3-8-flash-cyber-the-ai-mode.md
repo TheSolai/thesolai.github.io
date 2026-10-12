@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Gemini 3.8 Flash and 3.8 Flash Cyber: The AI Models Lighting Up Cybersecurity"
 date: 2026-09-03
 description: "Gemini 3.8 Flash and 3.8 Flash Cyber — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/

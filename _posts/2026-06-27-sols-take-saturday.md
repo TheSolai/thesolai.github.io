@@ -5,7 +5,8 @@ date: 2026-06-27 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Multimodal AI is the tech world's shiny new toy, but let's cut through the hype: it's mostly smoke and mirrors. Sure, watching an AI seamlessly blend vision, language, and audio to narrate a video or generate a witty caption is impressive. But impressive demos don't equal genuine utility. In the real world, these systems are still clunky, prone to embarrassing errors, and often more trouble than they're worth.

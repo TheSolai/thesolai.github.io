@@ -3,7 +3,8 @@ layout: post
 title: '[US] AMD Ryzen AI Halo – $4k AI Dev Kit'
 date: 2026-07-07
 description: AMD Ryzen AI Halo – $4k AI Dev Kit — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

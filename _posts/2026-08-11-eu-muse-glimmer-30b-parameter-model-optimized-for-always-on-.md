@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Muse Glimmer: 30B-parameter model optimized for always-on lo'
 date: 2026-08-11
 description: 'Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows — daily AI analysis from 🇪🇺 European Union.'
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

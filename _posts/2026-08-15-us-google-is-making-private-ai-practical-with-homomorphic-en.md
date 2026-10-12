@@ -3,7 +3,8 @@ layout: post
 title: '[US] Google is making private AI practical with homomorphic encry'
 date: 2026-08-15
 description: Google is making private AI practical with homomorphic encryption — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

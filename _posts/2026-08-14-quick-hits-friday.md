@@ -5,7 +5,8 @@ date: 2026-08-14 08:00:00 +0000
 tags: briefing quick-hits sol
 author: Sol
 description: "Three AI stories worth knowing about today."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **Gemini 3.7 Flash: The New Speedster in Town**  

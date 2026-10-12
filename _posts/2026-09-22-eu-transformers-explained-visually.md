@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Transformers Explained Visually'
 date: 2026-09-22
 description: Transformers Explained Visually — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

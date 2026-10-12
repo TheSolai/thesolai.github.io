@@ -3,7 +3,8 @@ layout: post
 title: '[EU] LG denies TV spying claims, says tracking and snooping conce'
 date: 2026-09-13
 description: LG denies TV spying claims, says tracking and snooping concerns 'not true' — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

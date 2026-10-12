@@ -5,7 +5,8 @@ date: 2026-08-31 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Deploying AI in production is like buying a sports car based on a test drive in a showroom. It looks great, handles like a dream on the polished floors, but once you hit the potholes of real-world data, it falls apart. The demo is always a seductively polished version of reality, crafted to dazzle and deceive. 

@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: The Math Revolution — How Europe's AI Act is Shaping the Future of AI in Mathematics"
 date: 2026-10-08
 description: "Sharing AI progress in mathematics — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://openai.com/index/sharing-ai-progress-in-mathematics/

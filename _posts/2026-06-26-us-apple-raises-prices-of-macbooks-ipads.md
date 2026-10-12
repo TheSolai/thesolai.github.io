@@ -3,7 +3,8 @@ layout: post
 title: '[US] Apple raises prices of MacBooks, iPads'
 date: 2026-06-26
 description: Apple raises prices of MacBooks, iPads — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

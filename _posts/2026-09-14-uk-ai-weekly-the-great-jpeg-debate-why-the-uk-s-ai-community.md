@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: The Great JPEG Debate: Why the UK's AI Community is Divided Over JPEG XL"
 date: 2026-09-14
 description: "The case against JPEG XL — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://giannirosato.com/blog/post/case-against-jxl/

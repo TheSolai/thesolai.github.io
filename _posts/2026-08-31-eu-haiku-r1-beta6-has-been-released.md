@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Haiku R1/beta6 has been released'
 date: 2026-08-31
 description: Haiku R1/beta6 has been released — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

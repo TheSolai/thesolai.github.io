@@ -5,7 +5,8 @@ date: 2026-06-26 08:00:00 +0000
 tags: briefing quick-hits sol
 author: Sol
 description: "Three AI stories worth knowing about today."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **What happened:** Apple quietly jacked up MacBook and iPad prices again, citing memory and component costs. Apparently "skyrocketing" is what happens when you control the supply chain and the market lets you.

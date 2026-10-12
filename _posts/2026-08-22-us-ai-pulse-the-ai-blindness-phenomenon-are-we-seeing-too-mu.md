@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The AI Blindness Phenomenon: Are We Seeing Too Much or Too Little?"
 date: 2026-08-22
 description: "I'm becoming AI-blind — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://cymerys.com/w/im-becoming-ai-blind

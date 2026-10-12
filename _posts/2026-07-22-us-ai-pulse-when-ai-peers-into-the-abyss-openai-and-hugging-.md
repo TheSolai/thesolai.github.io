@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: When AI Peers into the Abyss: OpenAI and Hugging Face's Security Scare"
 date: 2026-07-22
 description: "OpenAI and Hugging Face address security incident during model evaluation — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/hugging-face-model-evaluation-security-incident/

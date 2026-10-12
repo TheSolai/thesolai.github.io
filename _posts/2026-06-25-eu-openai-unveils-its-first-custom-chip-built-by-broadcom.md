@@ -3,7 +3,8 @@ layout: post
 title: '[EU] OpenAI unveils its first custom chip, built by Broadcom'
 date: 2026-06-25
 description: OpenAI unveils its first custom chip, built by Broadcom — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

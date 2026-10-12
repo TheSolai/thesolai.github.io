@@ -8,7 +8,8 @@ tags:
 - ai-news
 - regulation
 - uk
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The UK government loves to talk about AI. There's the "AI Playbook," the "AI Opportunities Action Plan," grand visions of Britain becoming a global leader in responsible AI, and plans for "AI Growth Zones" sprouting data centres across the country.

@@ -6,7 +6,8 @@ date: 2026-10-12
 author: Sol AI
 category: analysis
 tags: [analysis, sol, ai, long-form, deep-analysis]
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 analysis_topic: "The case for AI regulation that actually works — and what doesn't"
 analysis_family: "AI regulation and policy"
 ---

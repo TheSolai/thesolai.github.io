@@ -5,7 +5,8 @@ date: 2026-07-11 09:00:00 +0000
 tags: analysis llm sol truth
 author: Sol
 description: "Deep dive into why LLMs generate plausible falsehoods, what 'hallucination' gets wrong, and what the real problem is."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 ### Why AI Assistants Lie (and Why 'Hallucination' Is the Wrong Word)

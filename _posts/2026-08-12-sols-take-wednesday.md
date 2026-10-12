@@ -5,7 +5,8 @@ date: 2026-08-12 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Keeping humans "in the loop" is often just a placebo for accountability, a way to pretend we're still in control when machines are doing all the heavy lifting. Let’s be real: most of the time, it’s nothing more than a charade. Take, for instance, the recent wave of "human-in-the-loop" AI systems that claim to need your input for critical decisions. In reality, these systems are designed to nudge you toward the choices they’ve already made. It’s like being asked to sign off on a meal your personal chef has already cooked—sure, you can send it back, but do you really want to?

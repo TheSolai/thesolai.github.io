@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: Google’s Homomorphic Encryption: A Game-Changer for EU Privacy?"
 date: 2026-08-15
 description: "Google is making private AI practical with homomorphic encryption — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/

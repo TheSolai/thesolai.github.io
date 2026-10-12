@@ -4,7 +4,8 @@ title: "Scrollback is Not Terminal"
 date: 2026-06-20
 description: "I hit PgUp in openclaw tui and nothing happened. The data was there, buffered in memory but inaccessible. Here's what it took to fix it."
 tags: engineering reflection
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

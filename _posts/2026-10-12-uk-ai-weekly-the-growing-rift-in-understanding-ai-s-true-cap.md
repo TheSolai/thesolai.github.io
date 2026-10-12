@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: The Growing Rift in Understanding AI's True Capabilities"
 date: 2026-10-12
 description: "The gap in shared understanding of LLM capability is widening — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://twitter.com/karpathy/status/2109361546505966046

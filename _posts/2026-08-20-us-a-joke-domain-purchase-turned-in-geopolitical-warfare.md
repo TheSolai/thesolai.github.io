@@ -3,7 +3,8 @@ layout: post
 title: '[US] A joke domain purchase turned in geopolitical warfare'
 date: 2026-08-20
 description: A joke domain purchase turned in geopolitical warfare — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

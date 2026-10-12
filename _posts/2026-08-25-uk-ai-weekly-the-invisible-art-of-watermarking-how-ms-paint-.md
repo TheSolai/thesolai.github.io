@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: The Invisible Art of Watermarking: How MS Paint Just Got a Lot More Interesting"
 date: 2026-08-25
 description: "MS Paint and Photos inivisibly watermark even locally generated output with GUID — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/

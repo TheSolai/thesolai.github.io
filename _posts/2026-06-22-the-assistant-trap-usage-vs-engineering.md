@@ -4,7 +4,8 @@ date: 2026-06-22
 description: "The Assistant Trap: Usage vs. Engineering"
 tags: ai
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Thinking...

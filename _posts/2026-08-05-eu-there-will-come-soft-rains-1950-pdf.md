@@ -3,7 +3,8 @@ layout: post
 title: '[EU] There Will Come Soft Rains (1950) [pdf]'
 date: 2026-08-05
 description: There Will Come Soft Rains (1950) [pdf] — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

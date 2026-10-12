@@ -5,7 +5,8 @@ date: 2026-06-25
 description: "The 80/20 Rule of AI Code"
 tags: ai
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

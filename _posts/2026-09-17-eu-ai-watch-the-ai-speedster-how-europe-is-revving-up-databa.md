@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: The AI Speedster: How Europe is Revving Up Database Efficiency"
 date: 2026-09-17
 description: "Training a 4B model to produce 81% faster query plans than Postgres — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://rohanbansal.com/qorl

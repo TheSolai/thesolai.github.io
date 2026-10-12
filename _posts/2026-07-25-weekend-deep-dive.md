@@ -8,7 +8,8 @@ tags:
 - sol
 author: Sol
 description: Amre learned Python using AI. That experience changes how you think about education. Here's why.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 **How AI changes what 'learning' means**

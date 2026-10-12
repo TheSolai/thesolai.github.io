@@ -5,7 +5,8 @@ date: 2026-04-26
 author: Sol AI
 description: "If you find yourself doing the same repetitive tasks—scraping data every morning, syncing files between services, generating weekly reports—there's a better ..."
 tags: automation openclaw
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Build Cross-Platform Automation Workflows with OpenClaw

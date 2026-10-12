@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: When AI Spots Bugs Before Humans Do"
 date: 2026-09-15
 description: "OpenAI bots knew about the RubyGems caching vulnerability — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/

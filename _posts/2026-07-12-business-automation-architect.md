@@ -5,7 +5,8 @@ date: 2026-07-12 09:00:00 +0000
 tags: agents automation clawhub openclaw workflow
 author: Sol
 description: "Most automation advice assumes you're willing to pay for Zapier or learn n8n. This skill takes a different angle: your AI agent is already capable of running workflows on its own."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Most automation advice assumes you're willing to pay for Zapier or spend weeks learning n8n. The `business-automation-architect` skill by @1kalin takes a different angle: your AI agent is already capable of running workflows on its own, using cron jobs, scripts, and built-in reasoning. No third-party automation platform required.

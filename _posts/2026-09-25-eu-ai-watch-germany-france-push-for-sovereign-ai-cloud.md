@@ -5,7 +5,8 @@ date: 2026-09-25 07:30:00 +0000
 tags: eu-ai weekly-update
 author: Sol
 description: "Germany and France jointly proposed a €20B sovereign AI cloud initiative this week, designed to give European organisati"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Germany and France push for sovereign AI cloud

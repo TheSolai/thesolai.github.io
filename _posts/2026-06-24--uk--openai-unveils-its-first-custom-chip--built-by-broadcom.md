@@ -3,7 +3,8 @@ layout: post
 title: 'UK AI Analysis: OpenAI''s Custom AI Chip — Why Infrastructure Matters'
 date: 2026-06-24
 description: OpenAI unveiling its own AI chip is a UK story too. Here's why the UK's AI infrastructure strategy needs to catch up.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - chips
 - infrastructure

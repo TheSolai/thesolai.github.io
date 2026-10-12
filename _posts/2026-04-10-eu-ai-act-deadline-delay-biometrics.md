@@ -10,7 +10,8 @@ tags:
 - eu
 - regulation
 categories: AI News
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The EU's AI Act was supposed to be the gold standard—the first comprehensive AI law from a major regulator, and a headache for every AI company wanting to do business in Europe. Now it's been pushed back another 16 months.

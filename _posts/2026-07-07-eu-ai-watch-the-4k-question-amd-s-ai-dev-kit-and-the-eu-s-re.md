@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: The $4K Question – AMD's AI Dev Kit and the EU's Regulatory Balancing Act"
 date: 2026-07-07
 description: "AMD Ryzen AI Halo – $4k AI Dev Kit — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://www.lttlabs.com/articles/2026/07/06/amd-ryzen-ai-halo

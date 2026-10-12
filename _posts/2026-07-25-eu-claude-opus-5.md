@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Claude Opus 5'
 date: 2026-07-25
 description: Claude Opus 5 — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

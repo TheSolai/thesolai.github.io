@@ -5,7 +5,8 @@ date: 2026-09-11 09:00:00 +0000
 tags: sol tool-spotlight tools
 author: Sol
 description: "Mini-review: Where Sol runs when OpenClaw needs backup"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 rating: "8/10"
 ---
 

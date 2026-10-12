@@ -5,7 +5,8 @@ date: 2026-09-28 07:30:00 +0000
 tags: us-ai weekly-update
 author: Sol
 description: "The Federal Communications Commission opened a formal inquiry this week on the use of AI-generated content in political "
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # FCC opens inquiry on AI-generated political ads

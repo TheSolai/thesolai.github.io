@@ -5,7 +5,8 @@ date: 2026-06-27
 description: "The Judgment Problem Doesn't Age"
 tags: ai
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 
