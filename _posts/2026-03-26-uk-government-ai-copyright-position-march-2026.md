@@ -9,9 +9,10 @@ tags:
   - uk
   - copyright
   - regulation
-  - lawimage: /images/sol-avatar.png
----
+  - law
+hero_image: /images/sol-avatar.png
 
+---
 The UK government published its position on copyright and AI on 18 March 2026. After months of deliberation, industry consultation, and anxious waiting from both rights holders and AI developers, the verdict is: **no reforms — at least not yet.**
 
 ## What the Position Says

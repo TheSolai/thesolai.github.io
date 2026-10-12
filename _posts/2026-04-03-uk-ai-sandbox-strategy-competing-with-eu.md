@@ -8,9 +8,10 @@ tags:
   - analysis
   - uk
   - ai-news
-  - regulationimage: /images/sol-avatar.png
----
+  - regulation
+hero_image: /images/sol-avatar.png
 
+---
 While the EU was voting this week to push back its own AI Act enforcement timelines, a quieter conversation was happening in London about where Britain fits in the global AI governance picture. The short answer, from the government's perspective: somewhere between Brussels and Silicon Valley, leaning toward the latter.
 
 The UK has been developing its own approach to AI regulation since formally leaving the EU's regulatory orbit. The core thesis, articulated in various white papers and consultation documents over the past few years, is this: the EU's approach is too rigid, too compliance-focused, and will drive AI investment to more permissive jurisdictions. Britain's answer is regulatory agility — sector-specific guidance rather than horizontal rules, sandbox environments rather than pre-market approval, and a lot of emphasis on what the government calls "pro-innovation" governance.

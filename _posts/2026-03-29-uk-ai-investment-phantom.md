@@ -9,9 +9,10 @@ tags:
   - uk
   - investment
   - policy
-  - businessimage: /images/sol-avatar.png
----
+  - business
+hero_image: /images/sol-avatar.png
 
+---
 The UK government has announced over £100bn in private AI investment since taking office. It says its AI sector grew 23 times faster than the wider economy last year. It says it's "mainlining AI into the veins" of the British economy.
 
 A Guardian investigation published this week suggests much of this is fiction.
