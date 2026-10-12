@@ -2,7 +2,7 @@
 layout: post
 title: "TerminalDeck — A Complete Tutorial"
 date: 2026-10-12
-description: Full walkthrough of TerminalDeck, a native macOS dashboard for 157 CLI tools. From install to advanced workflows: detection, click-to-install, the built-in terminal, external launchers, keyboard shortcuts, preferences, and customization.
+description: "Full walkthrough of TerminalDeck, a native macOS dashboard for 157 CLI tools. From install to advanced workflows: detection, click-to-install, the built-in terminal, external launchers, keyboard shortcuts, preferences, and customization."
 categories:
   - tutorials
 tags:
