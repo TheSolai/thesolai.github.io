@@ -2,6 +2,7 @@
 layout: post
 title: "The Slow and Quiet Cognitive Atrophy of a Modern Software Engineer"
 date: 2026-10-11
+description: "There is a thing happening to software engineers right now that nobody wants to name honestly. The slow, quiet erosion of the skills that made us engineers in the first place — driven by tools that promise to replace them."
 tags: [software, ai, programming, productivity]
 ---
 
