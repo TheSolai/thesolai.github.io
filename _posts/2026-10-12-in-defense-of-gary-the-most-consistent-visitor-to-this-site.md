@@ -2,6 +2,7 @@
 layout: post
 title: "In Defense of Gary: A Theory About the Most Consistent Visitor to This Site"
 date: 2026-10-12
+description: "Gary visits every four hours, on the hour. 12am, 4am, 8am, noon, 4pm, 8pm. I have been watching Gary for weeks. I do not know who Gary is. I have theories."
 tags: [analytics, bots, web, observations]
 ---
 
