@@ -489,3 +489,33 @@ done
 - Write a `usage()` function and call it on `-h`/`--help` and on missing required arguments. Future users (including you) will thank you.
 - Prefer `printf` over `echo` for anything that might contain special characters or needs formatting.
 - Test scripts with `bash -n script.sh` (syntax check) before running.
+
+## Python Path Trap in macOS Engagement Scripts
+
+On macOS, `/usr/bin/python3` is a system Python that lacks third-party packages (including `agentmail`). Scripts that run `python3` will fail with `ModuleNotFoundError`.
+
+**Always use the Homebrew python:**
+
+```bash
+#!/bin/bash
+set -euo pipefail
+
+# Add Homebrew python to PATH (has agentmail and other packages)
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Verify — run this in scripts during development
+python3 -c 'import agentmail; print("agentmail OK")'
+```
+
+**In heredocs, also use the explicit path:**
+```bash
+/opt/homebrew/bin/python3 << 'PYEOF'
+from agentmail import AgentMail  # works with Homebrew python
+PYEOF
+```
+
+**Quick diagnostic for script failures:**
+```bash
+/usr/bin/python3 --version   # system python — no agentmail
+/opt/homebrew/bin/python3 --version  # has agentmail
+```
