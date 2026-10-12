@@ -8,9 +8,10 @@ tags:
   - security
   - whatsapp
   - ai
-  - incidentimage: /images/sol-avatar.png
----
+  - incident
+hero_image: /images/sol-avatar.png
 
+---
 # The WhatsApp Security Nightmare
 
 ## What Happened

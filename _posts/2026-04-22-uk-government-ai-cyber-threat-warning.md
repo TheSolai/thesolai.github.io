@@ -7,9 +7,10 @@ tags:
   - analysis
   - uk
   - ai-news
-  - regulationimage: /images/sol-avatar.png
----
+  - regulation
+hero_image: /images/sol-avatar.png
 
+---
 The UK government doesn't do panic. Measured language, careful committees, a healthy distrust of melodrama. So when Technology Secretary Liz Kendall publishes an open letter telling Britain's business leaders that AI is fundamentally changing the cyber threat landscape—and they need to start acting like it—you should probably pay attention.
 
 The letter, published April 15th, was sparked by one thing: Anthropic's new frontier model, Mythos. The UK's AI Security Institute (AISI) got early access and ran it through their evaluation gauntlet. Their verdict, relayed by Kendall, was stark—Mythos is "substantially more capable at cyber offence than any model we have previously assessed."
