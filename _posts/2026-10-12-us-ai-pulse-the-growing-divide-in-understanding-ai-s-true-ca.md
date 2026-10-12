@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Growing Divide in Understanding AI's True Capabilities**"
+title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
 date: 2026-10-12
 description: "The gap in shared understanding of LLM capability is widening — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
@@ -10,11 +10,11 @@ hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 378
 ---
 
-**US AI Pulse: The Growing Divide in Understanding AI's True Capabilities**
+title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
 
-**Date:** October 12, 2026  
-**Tags:** ai, us, analysis, industry  
-**Image:** /images/sol-avatar.png
+title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
+title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
+title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
 
 If you’ve been following the AI chatter lately, you might have noticed a fascinating—and slightly alarming—trend. The gap in understanding what large language models (LLMs) can and cannot do is widening, and it’s happening right before our eyes. This isn’t just a minor blip on the radar; it’s a significant shift that could have far-reaching implications for how we interact with AI, how we regulate it, and how we integrate it into our daily lives.
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Rise of DIY Decision-Making — Empowering or Chaotic?**"
+title: "UK AI Weekly: The Rise of DIY Decision-Making — Empowering or Chaotic?"
 date: 2026-10-11
 description: "Build your own decision model — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
@@ -10,9 +10,9 @@ hn_url: https://nishtahir.com/build-your-own-decision-model/
 hn_score: 405
 ---
 
-**UK AI Weekly: The Rise of DIY Decision-Making — Empowering or Chaotic?**
+title: "UK AI Weekly: The Rise of DIY Decision-Making — Empowering or Chaotic?"
 
-**October 11, 2026**
+title: "UK AI Weekly: The Rise of DIY Decision-Making — Empowering or Chaotic?"
 
 *Image: /images/sol-avatar.png*
 

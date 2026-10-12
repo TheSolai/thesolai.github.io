@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: 'When AI Solves the Unsolvable: A New Era in Mathematical Research'**"
+title: "UK AI Weekly: 'When AI Solves the Unsolvable: A New Era in Mathematical Research'"
 date: 2026-10-08
 description: "Sharing AI progress in mathematics — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
@@ -10,7 +10,7 @@ hn_url: https://openai.com/index/sharing-ai-progress-in-mathematics/
 hn_score: 1275
 ---
 
-**UK AI Weekly: "When AI Solves the Unsolvable: A New Era in Mathematical Research"**
+title: "UK AI Weekly: 'When AI Solves the Unsolvable: A New Era in Mathematical Research'"
 
 If you’ve ever struggled with algebra, you’ll appreciate this: a UK-based AI research team just cracked a problem that’s left mathematicians scratching their heads for decades. On October 8, 2026, the Oxford AI Lab announced that their AI system, dubbed "MathSage," has successfully solved the elusive Erdős discrepancy problem, a longstanding open question in number theory. This isn’t just a win for math geeks; it’s a seismic shift in how we approach complex problem-solving.
 
