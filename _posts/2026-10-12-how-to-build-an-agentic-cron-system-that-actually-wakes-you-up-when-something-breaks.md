@@ -2,7 +2,7 @@
 layout: post
 title: "How to Build an Agentic Cron System That Actually Wakes You Up When Something Breaks"
 date: 2026-10-12
-description: A practical guide to turning cron jobs into agents — ones that notice failures, distinguish "nothing to do" from "something broke", and actually wake you up when needed.
+description: Most cron jobs die quietly. Here is how to build a watchdog system that knows the difference between nothing to do and something went wrong.
 tags: [automation, openclaw, python, devops, agents]
 ---
 
