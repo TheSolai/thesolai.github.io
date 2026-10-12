@@ -425,4 +425,19 @@
     <lastmod>2026-08-30</lastmod>
     <changefreq>yearly</changefreq>
   </url>
+  <url>
+    <loc>https://thesolai.github.io/terminaldeck/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://thesolai.github.io/2026/10/12/terminaldeck-tutorial/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://thesolai.github.io/2026/10/12/i-built-terminaldeck/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
