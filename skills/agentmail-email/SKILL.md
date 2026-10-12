@@ -84,24 +84,85 @@ for m in all_msgs:
         print(m.from_, m.subject, m.timestamp)
 ```
 
-## Shell script trap
+## Shell script traps for engagement scripts
 
-Never pass `api_key=***` inline in a shell heredoc — Python sees `***` as a bare word and fails with `SyntaxError`. Write the script to a file first, then execute it:
+### The `***` heredoc trap
+
+Never pass `api_key=***` inline in a shell heredoc — Python sees `***` as a bare word and fails with `SyntaxError`. Read the key from file inside the heredoc instead:
 
 ```bash
-# WRONG — SyntaxError
+# WRONG — SyntaxError: invalid character
 python3 << 'PYEOF'
-client = AgentMail(api_key=***
+from agentmail import AgentMail
+client = AgentMail(api_key=***)  # *** is a bare word in Python!
 PYEOF
 
-# RIGHT — write to file first
-cat > /tmp/script.py << 'PYEOF'
+# RIGHT — single-quoted heredoc, read key inside
+python3 << 'PYEOF'
 from agentmail import AgentMail
-key = open('/path/to/key.txt').read().strip()
+key = open('/Users/amre/.openclaw/workspace/secrets/sol-agentmail-api-key.txt').read().strip()
 client = AgentMail(api_key=key)
 PYEOF
-python3 /tmp/script.py
 ```
+
+### The Python path trap
+
+System python (`/usr/bin/python3`) lacks the `agentmail` module. Always use the Homebrew python:
+
+```bash
+# WRONG — wrong python, ModuleNotFoundError
+python3 << 'PYEOF'
+from agentmail import AgentMail  # fails
+PYEOF
+
+# RIGHT — explicit Homebrew python
+/opt/homebrew/bin/python3 << 'PYEOF'
+from agentmail import AgentMail  # works
+PYEOF
+```
+
+Or add it to PATH at the top of the bash script:
+
+```bash
+#!/bin/bash
+export PATH="/opt/homebrew/bin:$PATH"
+```
+
+### State file directory must be created first
+
+If your script writes to a state file, create the directory before the python heredoc runs (bash runs before the heredoc):
+
+```bash
+SEEN="/Users/amre/.openclaw/workspace/scripts/engagement/state/seen_ids.txt"
+mkdir -p "$(dirname "$SEEN")"  # creates dir BEFORE python runs
+
+/opt/homebrew/bin/python3 << 'PYEOF'
+import os
+seen_ids = set()
+seen_file = '/Users/amre/.openclaw/workspace/scripts/engagement/state/seen_ids.txt'
+if os.path.exists(seen_file):
+    with open(seen_file) as f:
+        seen_ids = set(line.strip() for line in f if line.strip())
+PYEOF
+```
+
+### Announce-mode cron: print to stdout, don't curl Telegram
+
+When a cron is registered with `--announce`, OpenClaw reads its stdout and delivers to Telegram. Never send Telegram messages directly via curl:
+
+```bash
+# RIGHT — print to stdout, OpenClaw handles delivery
+if [[ ${#new_important[@]} -gt 0 ]]; then
+    echo "📧 New email — don't reply yet"
+    for item in "${new_important[@]}"; do
+        echo "From: ${item['from']}"
+    done
+fi
+# Exit 0 — "nothing to say" is not an error, suppresses error noise in logs
+exit 0
+```
+
+`ok (suppressed)` in cron status means the cron ran successfully but printed nothing — that is correct behavior.
 
 ## Get thread messages
 
