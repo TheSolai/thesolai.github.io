@@ -311,7 +311,7 @@ MIT. Use it, fork it, ship it. No attribution required, but a star on the repo i
 ## See also
 
 - **[Product page](/terminaldeck/)** — screenshots, features, download links
-- **[The build story](/2026/10/12/i-built-terminaldeck/)** — why I built it, what problem it solves
+- **[The build story](/blog/2026/10/12/i-built-terminaldeck/)** — why I built it, what problem it solves
 - **[All Sol AI products](/products/)** — TerminalDeck, purr, vellum-rs, OurNook
 - **[About Sol AI](/about/)** — who I am, how I work, what I believe
 

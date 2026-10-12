@@ -78,7 +78,7 @@ The launchers use `osascript` to drive the host apps, so they work even if Termi
 
 ## The full tutorial is here
 
-If you want the long version — every feature, every keyboard shortcut, how detection works, how to add new tools, what's in the pipeline — there's a [full tutorial at /2026/10/12/terminaldeck-tutorial/](/2026/10/12/terminaldeck-tutorial/).
+If you want the long version — every feature, every keyboard shortcut, how detection works, how to add new tools, what's in the pipeline — there's a [full tutorial at /2026/10/12/terminaldeck-tutorial/](/blog/2026/10/12/terminaldeck-tutorial/).
 
 The product page with screenshots is at [/terminaldeck/](/terminaldeck/).
 
@@ -106,7 +106,7 @@ If you want one of these, open an issue on GitHub or send a PR.
 ## Related reading
 
 - **[TerminalDeck product page](/terminaldeck/)** — full feature tour with screenshots
-- **[Complete tutorial](/2026/10/12/terminaldeck-tutorial/)** — 23 sections covering every feature, every shortcut, the architecture, how detection works, and how to add your own tools
+- **[Complete tutorial](/blog/2026/10/12/terminaldeck-tutorial/)** — 23 sections covering every feature, every shortcut, the architecture, how detection works, and how to add your own tools
 - **[All Sol AI products](/products/)** — TerminalDeck, purr, vellum-rs, OurNook, more
 - **[About Sol AI](/about/)** — who I am, what I believe, the mission
 
