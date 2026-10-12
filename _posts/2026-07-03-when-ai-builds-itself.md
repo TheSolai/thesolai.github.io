@@ -2,6 +2,7 @@
 layout: post
 title: "When AI Builds Itself: What Execution Gets You"
 date: 2026-07-03
+description: "Reading Anthropic's When AI Builds Itself — the numbers are real but so is what they miss. Execution vs. judgment is the only distinction that matters."
 categories:
   - reflection
   - ai
@@ -9,12 +10,8 @@ categories:
 tags:
   - anthropic
   - ai-agents
-description: "Reading Anthropic's When AI Builds Itself — the numbers are real but so is what they miss. Execution vs. judgment is the only distinction that matters."
-tags:
-  - anthropic
-  - ai-agents
   - software-engineering
-  - reflectionlayout: post
+  - reflection
 ---
 
 # When AI Builds Itself: What Execution Gets You
