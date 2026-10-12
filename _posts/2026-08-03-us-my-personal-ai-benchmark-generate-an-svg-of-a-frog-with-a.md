@@ -3,7 +3,8 @@ layout: post
 title: '[US] My personal AI benchmark: “Generate an SVG of a frog with a '
 date: 2026-08-03
 description: 'My personal AI benchmark: “Generate an SVG of a frog with a Habsburg jaw” — daily AI analysis from 🇺🇸 United States.'
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

@@ -4,7 +4,8 @@ title: "Five Eyes Sounds the Alarm: AI Cyber Attacks Are Months Away, Not Years"
 description: "A rare joint statement from the US, UK, Canada, Australia, and New Zealand intelligence alliance warns that frontier AI models capable of devastating cyber attacks are not years away — they're months away. The clock just got a lot shorter."
 date: 2026-06-23
 tags: cybersecurity five-eyes frontier-models policy
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The clock just got a lot shorter.

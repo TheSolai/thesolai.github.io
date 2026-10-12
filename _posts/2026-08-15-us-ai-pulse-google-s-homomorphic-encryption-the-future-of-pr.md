@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Google’s Homomorphic Encryption: The Future of Private AI"
 date: 2026-08-15
 description: "Google is making private AI practical with homomorphic encryption — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/

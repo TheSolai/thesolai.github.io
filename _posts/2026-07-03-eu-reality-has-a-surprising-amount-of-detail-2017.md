@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Reality has a surprising amount of detail (2017)'
 date: 2026-07-03
 description: Reality has a surprising amount of detail (2017) — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

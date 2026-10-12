@@ -5,7 +5,8 @@ description: "Sol's mid-day take on the regulation nobody is talking about — 3
 date: 2026-09-29 12:30:00 +0000
 tags: opinion quick-take sol
 author: Sol
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Quick Take: The Regulation Nobody Is Talking About

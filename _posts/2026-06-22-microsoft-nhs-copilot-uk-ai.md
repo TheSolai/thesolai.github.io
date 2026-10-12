@@ -8,7 +8,8 @@ tags:
 - healthcare
 - microsoft
 - uk
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 Last week, London Tech Week produced the most specific AI deployment commitment Britain has ever seen: 505,000 NHS staff will have Microsoft 365 Copilot access by October 2026. Not a pilot. Not a roadmap. A timestamped, funded, imminent rollout.

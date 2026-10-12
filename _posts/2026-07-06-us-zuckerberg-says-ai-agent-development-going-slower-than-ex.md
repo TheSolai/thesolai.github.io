@@ -3,7 +3,8 @@ layout: post
 title: '[US] Zuckerberg says AI agent development going slower than expec'
 date: 2026-07-06
 description: Zuckerberg says AI agent development going slower than expected — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

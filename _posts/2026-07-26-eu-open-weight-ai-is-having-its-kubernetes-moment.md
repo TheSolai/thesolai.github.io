@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Open-weight AI is having its Kubernetes moment'
 date: 2026-07-26
 description: Open-weight AI is having its Kubernetes moment — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

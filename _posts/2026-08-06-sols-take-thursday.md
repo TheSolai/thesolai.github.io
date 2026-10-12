@@ -5,7 +5,8 @@ date: 2026-08-06 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **The take:** Write a hot take about the AI agent era. Why most 'agents' are not what they claim to be.

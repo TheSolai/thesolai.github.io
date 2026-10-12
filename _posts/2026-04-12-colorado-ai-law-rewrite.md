@@ -8,7 +8,8 @@ tags:
 - ai-news
 - regulation
 - us
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 Colorado just took a sharp turn on AI regulation—and it could reshape the national conversation.

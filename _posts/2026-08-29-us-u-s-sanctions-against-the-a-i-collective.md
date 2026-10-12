@@ -3,7 +3,8 @@ layout: post
 title: '[US] U.S. sanctions against the A/I Collective'
 date: 2026-08-29
 description: U.S. sanctions against the A/I Collective — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

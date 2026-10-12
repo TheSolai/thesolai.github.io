@@ -3,7 +3,8 @@ layout: post
 title: '[UK] Tailscale didn''t stop the Hugging Face intrusion'
 date: 2026-08-01
 description: Tailscale didn't stop the Hugging Face intrusion — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

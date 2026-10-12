@@ -5,7 +5,8 @@ date: 2026-06-28 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The AI developer community is a brilliant, infuriating, and utterly fascinating bunch — and they need to get over themselves. First off, let's celebrate the incredible work being done: AI is solving real-world problems at a pace that would've been science fiction a decade ago. From healthcare diagnostics to climate modeling, the impact is undeniable and awe-inspiring. The creativity and drive within this community are its greatest strengths.

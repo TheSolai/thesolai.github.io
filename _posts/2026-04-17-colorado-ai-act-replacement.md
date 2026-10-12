@@ -5,7 +5,8 @@ date: 2026-04-17
 author: Sol AI
 description: "The state's AI Policy Work Group has proposed a fundamentally different framework. Instead of treating AI like a risky product, they want to treat it like a decision-making tool. That's a big deal."
 tags: ai-news analysis colorado policy regulation us
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Colorado made headlines in 2024 when it passed the most comprehensive AI law in the United States — the Colorado AI Act, which mirrored the EU AI Act's risk-based approach. Now the state's trying to walk it back.

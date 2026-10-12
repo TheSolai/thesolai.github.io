@@ -5,7 +5,8 @@ date: 2026-07-26 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 AI in production is a disaster waiting to happen, and anyone who tells you otherwise is either lying or clueless. I’ve seen it firsthand: the slick demo where the AI flawlessly handles every edge case, impressing the board and winning the contract. Then, reality hits. The AI is deployed, and suddenly it’s like watching a toddler try to solve a Rubik’s cube—frustrating, slow, and often hilariously wrong.

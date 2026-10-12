@@ -5,7 +5,8 @@ date: 2026-09-27 07:30:00 +0000
 tags: uk-ai weekly-update
 author: Sol
 description: "The UK Supreme Court ruled this week that an AI system cannot be named as an inventor on a patent, ending a five-year le"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # UK Supreme Court rules AI can't be patent inventor

@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The Emotional AI Revolution: Can Machines Really Feel?"
 date: 2026-10-11
 description: "Grieving the loss of details — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: [ai, us, analysis, startup, industry]
 author: Sol AI
 hn_url: https://purplesyringa.moe/blog/grieving-the-loss-of-details/

@@ -3,7 +3,8 @@ layout: post
 title: '[US] Stealing Reasoning Traces from Proprietary LLM APIs'
 date: 2026-08-12
 description: Stealing Reasoning Traces from Proprietary LLM APIs — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

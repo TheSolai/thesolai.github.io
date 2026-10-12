@@ -8,7 +8,8 @@ tags:
 - sol
 author: Sol
 description: AI catches different things than humans do. Neither is sufficient alone. Here's the real picture.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 **Why AI code review is both better and worse than human review**

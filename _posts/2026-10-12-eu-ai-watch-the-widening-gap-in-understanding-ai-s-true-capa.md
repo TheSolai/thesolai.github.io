@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: The Widening Gap in Understanding AI's True Capabilities"
 date: 2026-10-12
 description: "The gap in shared understanding of LLM capability is widening — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://twitter.com/karpathy/status/2109361546505966046

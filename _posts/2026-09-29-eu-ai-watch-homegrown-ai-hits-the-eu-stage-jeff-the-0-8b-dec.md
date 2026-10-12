@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: Homegrown AI Hits the EU Stage: Jeff, the 0.8B Decision Model Taking Europe by Storm"
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://github.com/firelex/jeff

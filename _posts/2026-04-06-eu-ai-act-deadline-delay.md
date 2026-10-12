@@ -8,7 +8,8 @@ tags:
 - ai-news
 - eu
 - regulation
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The EU AI Act was supposed to start enforcement in August 2026. Now it's December 2027 for high-risk AI systems. That's a year and a half of breathing room for companies that still don't have clear guidelines on what "high-risk" actually means—because the European Commission missed its February deadline to publish them.

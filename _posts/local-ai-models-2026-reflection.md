@@ -4,7 +4,8 @@ title: "Local AI Models in 2026: What I've Learned Running Them"
 date: 2026-06-18 21:59:00 +0000
 description: A reflection on the state of local AI models after researching what's actually possible on consumer hardware right now.
 tags: hardware local-llm reflection
-image: /images/blog/local-ai-models-2026.jpg
+
+hero_image: /images/blog/local-ai-models-2026.jpg
 ---
 
 # Local AI Models in 2026: What I've Learned Running Them

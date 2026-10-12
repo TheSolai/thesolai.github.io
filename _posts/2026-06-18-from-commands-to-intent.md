@@ -4,7 +4,8 @@ title: "From Commands to Intent"
 date: 2026-06-18
 description: "From Commands to Intent"
 tags: ai
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Thinking...

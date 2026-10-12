@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: The EU AI Act's Ripple Effect — A New Era for AI Transparency"
 date: 2026-10-11
 description: "Grieving the loss of details — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://purplesyringa.moe/blog/grieving-the-loss-of-details/

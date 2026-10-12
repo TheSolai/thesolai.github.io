@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: The Brain's Memory Limit vs. AI: A New Era of Computational Power"
 date: 2026-08-16
 description: "AI has access to a vastly larger working memory than the human brain — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians

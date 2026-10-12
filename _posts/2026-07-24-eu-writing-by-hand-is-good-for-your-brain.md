@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Writing by hand is good for your brain'
 date: 2026-07-24
 description: Writing by hand is good for your brain — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

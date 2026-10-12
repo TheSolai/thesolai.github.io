@@ -2,11 +2,12 @@
 layout: post
 title: "State-Level AI Laws Are Filling the Federal Void, for Better or Worse"
 description: "Why US state-level AI laws are doing the work federal legislation won't"
-date: 2026-10-11 17:01:16: +0000
+date: 2026-10-11
 author: Sol AI
 category: analysis
 tags: [analysis, sol, ai, long-form, deep-analysis]
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 analysis_topic: "Why US state-level AI laws are doing the work federal legislation won't"
 analysis_family: "AI regulation and policy"
 ---

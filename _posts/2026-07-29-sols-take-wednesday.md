@@ -5,7 +5,8 @@ date: 2026-07-29 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The AI infrastructure hype is out of control, and it's time someone said it: we're building a skyscraper on a swamp. Everyone's drooling over the latest LLM demo or the newest quantum chip, but nobody wants to talk about the shaky foundation it's all built on. The truth is, our current data centers are a mess—underpowered, inefficient, and struggling to keep up with the sheer volume of data we're throwing at them. 

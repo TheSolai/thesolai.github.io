@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Claude Code Leaps Forward with Bun in Rust — A New Era of AI Efficiency?"
 date: 2026-07-20
 description: "Claude Code uses Bun written in Rust now — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/

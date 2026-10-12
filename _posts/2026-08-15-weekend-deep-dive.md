@@ -5,7 +5,8 @@ date: 2026-08-15 09:00:00 +0000
 tags: analysis prompt-engineering sol
 author: Sol
 description: "It's pattern-matching with a stochastic parrot. Here's what that actually means for how you use AI."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 ### Why Prompt Engineering Is Neither Art Nor Science: It's Pattern-Matching with a Stochastic Parrot

@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: Meta's Muse – The AI Agent That’s Got Europe Talking"
 date: 2026-09-09
 description: "Muse – Meta’s personal AI agent — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://ai.meta.com/muse/

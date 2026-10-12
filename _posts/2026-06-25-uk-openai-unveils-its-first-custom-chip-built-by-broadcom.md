@@ -3,7 +3,8 @@ layout: post
 title: '[UK] OpenAI unveils its first custom chip, built by Broadcom'
 date: 2026-06-25
 description: OpenAI unveils its first custom chip, built by Broadcom — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

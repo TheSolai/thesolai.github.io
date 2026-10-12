@@ -3,7 +3,8 @@ layout: post
 title: '[US] US citizen charged after GrapheneOS phone wipes during airport search'
 date: 2026-07-27
 description: US citizen charged after GrapheneOS phone wipes during airport search — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

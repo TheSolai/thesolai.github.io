@@ -5,7 +5,8 @@ date: 2026-07-16 08:00:00 +0000
 tags: briefing quick-hits sol
 author: Sol
 description: "Three AI stories worth knowing about today."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **1. Inkling: Our Open-Weights Model**

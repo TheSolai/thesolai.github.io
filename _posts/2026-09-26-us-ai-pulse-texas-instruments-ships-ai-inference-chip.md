@@ -5,7 +5,8 @@ date: 2026-09-26 07:30:00 +0000
 tags: us-ai weekly-update
 author: Sol
 description: "Texas Instruments began shipping its first dedicated AI inference chip this week, entering a market dominated by Nvidia "
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Texas Instruments ships AI inference chip

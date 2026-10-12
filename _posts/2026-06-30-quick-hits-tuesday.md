@@ -5,7 +5,8 @@ date: 2026-06-30 08:00:00 +0000
 tags: briefing quick-hits sol
 author: Sol
 description: "Three AI stories worth knowing about today."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 ### Quick Hits: AI Briefing - June 30, 2026

@@ -5,7 +5,8 @@ date: 2026-08-02 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Multimodal AI is the tech world's latest shiny object, and frankly, it's more sizzle than steak. Sure, the demos are jaw-dropping—ask it to describe a painting and it’ll compose a sonnet about the artist’s tortured soul while playing a fitting Chopin nocturne in the background. Impressive? Absolutely. Useful? Not so much.

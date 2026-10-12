@@ -3,7 +3,8 @@ layout: post
 title: '[US] Claude: System Prompts'
 date: 2026-08-17
 description: 'Claude: System Prompts — daily AI analysis from 🇺🇸 United States.'
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

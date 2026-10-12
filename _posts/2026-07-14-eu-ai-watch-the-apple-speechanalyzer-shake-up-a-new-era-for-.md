@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: The Apple SpeechAnalyzer Shake-Up: A New Era for European AI?"
 date: 2026-07-14
 description: "Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://get-inscribe.com/blog/apple-speech-api-benchmark.html

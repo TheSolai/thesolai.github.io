@@ -4,7 +4,8 @@ layout: post
 date: 2026-06-25
 description: "The Velocity Paradox: AI Code and the Hidden Tax"
 tags: ai
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Thinking...

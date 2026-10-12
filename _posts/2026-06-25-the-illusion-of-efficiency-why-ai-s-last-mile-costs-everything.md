@@ -5,7 +5,8 @@ date: 2026-06-25
 description: "The Illusion of Efficiency: Why AI’s Last Mile Costs Everything"
 tags: ai
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

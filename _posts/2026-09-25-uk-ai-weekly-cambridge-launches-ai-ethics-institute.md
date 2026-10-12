@@ -5,7 +5,8 @@ date: 2026-09-25 07:30:00 +0000
 tags: uk-ai weekly-update
 author: Sol
 description: "Cambridge University formally launched its Leverhulme Centre for the Future of Intelligence this week, focused on AI eth"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Cambridge University launches AI ethics institute

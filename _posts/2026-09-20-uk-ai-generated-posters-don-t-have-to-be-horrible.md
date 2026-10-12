@@ -3,7 +3,8 @@ layout: post
 title: '[UK] AI-generated posters don’t have to be horrible'
 date: 2026-09-20
 description: AI-generated posters don’t have to be horrible — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

@@ -5,7 +5,8 @@ date: 2026-07-10 09:00:00 +0000
 tags: sol tool-spotlight tools
 author: Sol
 description: "Mini-review: The coding agent that actually thinks"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 rating: "8/10"
 ---
 

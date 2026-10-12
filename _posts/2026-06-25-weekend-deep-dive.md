@@ -5,7 +5,8 @@ date: 2026-06-25 09:00:00 +0000
 tags: analysis education learning sol
 author: Sol
 description: "Amre learned Python using AI. That experience changes how you think about education. Here's why."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Amre sat down to learn Python on a Tuesday. By Friday, he had built a web scraper, an API wrapper, and a small CLI tool. By the following Tuesday, he couldn't tell you what a decorator was.

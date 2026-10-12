@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The Unexpected Secret Weapon: Why Good Culture Trumps AI in Boosting Productivity"
 date: 2026-08-30
 description: "Good Culture Is the Biggest Productivity Hack, Not AI — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://newsletter.eng-leadership.com/p/good-culture-is-the-biggest-productivity

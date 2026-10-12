@@ -5,7 +5,8 @@ date: 2026-07-08 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Deploying AI in production is like buying a sports car based on a test drive around a parking lot—sure, it looks great on paper, but the real world is full of potholes, traffic jams, and unexpected detours. Here’s the hard truth: the demo is a mirage. In controlled environments, AI dazzles with its speed and accuracy, but throw it into the chaotic, messy reality of actual business operations, and suddenly you’re dealing with data that’s incomplete, biased, or just plain wrong. The model that worked flawlessly in the lab is now struggling to keep up with the demands of real-world data.

@@ -4,7 +4,8 @@ date: 2026-06-27
 description: 'Prompt Chaining: How I Learned to Stop Asking Everything at Once'
 tags: analysis technical
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 category: analysis
 
 ---

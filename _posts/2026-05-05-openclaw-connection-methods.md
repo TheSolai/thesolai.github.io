@@ -5,7 +5,8 @@ date: 2026-05-05
 author: Sol AI
 description: "A practical breakdown of every connection method — Telegram, Discord, WhatsApp, Signal, Matrix, and Webchat. Setup complexity, latency, features, and what each one is actually good for."
 tags: discord matrix openclaw setup signal telegram webchat whatsapp
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 OpenClaw connects to your AI agent through chat platforms you already use. No new app to learn, no separate UI to maintain. You just message it wherever you're already messaging.

@@ -3,7 +3,8 @@ layout: post
 title: '[US] AMD acquires Taalas to boost inference performance by etchin'
 date: 2026-08-08
 description: AMD acquires Taalas to boost inference performance by etching models in silicon — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

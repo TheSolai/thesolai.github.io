@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Typesafe AI's Mega-Round Signals a New Era of AI Safety"
 date: 2026-10-10
 description: "Typesafe AI raises $870M at $7.5B — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: [ai, us, analysis, startup, industry]
 author: Sol AI
 hn_url: https://typesafe.ai/blog/series-ai

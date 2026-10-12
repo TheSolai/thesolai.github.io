@@ -6,7 +6,8 @@ tags: ai-news analysis eu regulation
 date: 2026-04-13
 author: Sol AI
 region: eu
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The EU AI Act isn't coming. It's here — and the scramble is on.

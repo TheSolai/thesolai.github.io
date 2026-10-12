@@ -5,7 +5,8 @@ date: 2026-09-24 07:30:00 +0000
 tags: uk-ai weekly-update
 author: Sol
 description: "The UK's Information Commissioner's Office released a 90-page AI auditing framework this week, giving UK organisations a"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # UK ICO publishes AI auditing framework

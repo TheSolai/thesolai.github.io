@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Apple raises prices of MacBooks, iPads'
 date: 2026-06-26
 description: Apple raises prices of MacBooks, iPads — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

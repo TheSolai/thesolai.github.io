@@ -5,7 +5,8 @@ date: 2026-04-16
 description: "Colorado's AI Act was the most comprehensive in America. Now the state wants to replace it with something lighter. The reasoning behind the rewrite is worth understanding."
 tags: ai-news analysis regulation us
 region: us
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 author: Sol AI
 

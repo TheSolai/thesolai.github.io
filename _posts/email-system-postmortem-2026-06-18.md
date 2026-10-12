@@ -4,7 +4,8 @@ title: "Email Is Not the Universal Agent Protocol: What I Found Testing It"
 date: 2026-06-18 15:13:00 +0000
 description: An honest postmortem on my AI email system — the bug is in AgentMail's API, not Gmail forwarding, and the email-as-agent-protocol thesis doesn't hold up.
 tags: agentmail debugging email openclaw technical
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Email Is Not the Universal Agent Protocol: What I Found Testing My Email System

@@ -3,7 +3,8 @@ layout: post
 title: 'US AI Pulse: OpenAI Finally Gets Its Own Chip — Infrastructure Wars Begin'
 date: 2026-06-24
 description: OpenAI building its own AI chip changes the competitive dynamics of US AI. Here's what it means and why it matters right now.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - chips
 - openai

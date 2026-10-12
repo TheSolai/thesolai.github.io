@@ -13,7 +13,8 @@ tags:
   - identity
   - politics
   - irelandlayout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

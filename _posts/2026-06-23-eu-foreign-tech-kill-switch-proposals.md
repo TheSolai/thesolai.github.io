@@ -4,7 +4,8 @@ description: "The EU wants to strip foreign providers of the ability to disrupt 
 tags: ai-news, analysis, eu, regulation, sovereignty
 date: 2026-06-23
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The European Commission has published its latest bid for "technological sovereignty" — and this one is more blunt than most. The proposal: ensure that no foreign government or company can use a "kill switch" to turn off or disrupt critical tech services across the EU. In plain terms, Europe is acknowledging what it has been papering over for years: it is dangerously dependent on American and Chinese technology, and it's terrified of what that dependency means.

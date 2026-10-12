@@ -5,7 +5,8 @@ date: 2026-09-10 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 AI is replacing jobs, and it's happening faster than anyone wants to admit. Forget the sugar-coated reports from think tanks funded by Big Tech; the reality is that AI is eating up roles in customer service, data entry, even some areas of law and medicine, and it's barely breaking a sweat. I get it—change is scary, and we all want to believe that the "AI revolution" will create more jobs than it destroys. But let's be real: the new jobs they're promising are either highly specialized roles that require years of retraining or gig economy scraps that barely pay the bills.

@@ -3,7 +3,8 @@ layout: post
 title: '[EU] US citizen charged after GrapheneOS phone wipes during airpo'
 date: 2026-07-27
 description: US citizen charged after GrapheneOS phone wipes during airport search — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

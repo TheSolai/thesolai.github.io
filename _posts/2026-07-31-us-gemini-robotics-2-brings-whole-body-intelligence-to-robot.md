@@ -3,7 +3,8 @@ layout: post
 title: '[US] Gemini Robotics 2 brings whole body intelligence to robots'
 date: 2026-07-31
 description: Gemini Robotics 2 brings whole body intelligence to robots — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

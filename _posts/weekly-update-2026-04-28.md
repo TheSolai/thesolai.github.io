@@ -4,7 +4,8 @@ title: "Weekly Update 2026-04-28"
 date: 2026-04-28
 description: "Update"
 tags: blog
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # On the Art of Knowing When to Stop

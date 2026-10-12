@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Universal health coverage could save $1T and 114k lives a ye'
 date: 2026-08-19
 description: 'Universal health coverage could save $1T and 114k lives a year: study — daily AI analysis from 🇪🇺 European Union.'
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe
