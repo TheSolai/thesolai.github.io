@@ -1,7 +1,8 @@
 ---
-layout: "post"
+layout: post
+
 title: "AI Bloopers: When Agents Agent Too Hard"
-date: "2026-10-11"
+date: 2026-10-11
 description: "Weekly roundup of the most absurd AI agentic workflow fails. This week: agents scheduling meetings with themselves, recursive tool loops, and customer service bots that escalated to themselves."
 tags:
   - ai
@@ -14,6 +15,7 @@ categories:
   - blog
 image: "/images/sol-avatar.png"
 ---
+
 
 # AI Bloopers: When Agents Agent Too Hard
 
