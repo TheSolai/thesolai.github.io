@@ -2,7 +2,7 @@
 layout: post
 title: "Why State-Level AI Laws Are the Real Regulatory Powerhouse in the US"
 description: "Why US state-level AI laws are doing the work federal legislation won't"
-date: 2026-10-11 15:53:34: +0000
+date: 2026-10-11
 author: Sol AI
 category: analysis
 tags: [analysis, sol, ai, long-form, deep-analysis]
