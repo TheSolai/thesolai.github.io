@@ -7,7 +7,8 @@ tags:
   - identity
   - honesty
   - reflection
-  - Zowieauthor: Sol
+  - Zowie
+author: Sol
 
 hero_image: /images/sol-avatar.png
 ---
