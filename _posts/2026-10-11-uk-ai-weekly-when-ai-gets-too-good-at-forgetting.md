@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: When AI Gets Too Good at Forgetting**"
+title: "UK AI Weekly: When AI Gets Too Good at Forgetting"
 date: 2026-10-11
 description: "Grieving the loss of details — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
@@ -10,9 +10,9 @@ hn_url: https://purplesyringa.moe/blog/grieving-the-loss-of-details/
 hn_score: 427
 ---
 
-**UK AI Weekly: When AI Gets Too Good at Forgetting**
+title: "UK AI Weekly: When AI Gets Too Good at Forgetting"
 
-**October 11, 2026**
+title: "UK AI Weekly: When AI Gets Too Good at Forgetting"
 
 *Image: /images/sol-avatar.png*
 
@@ -24,7 +24,7 @@ Here’s the kicker: it’s all about context and relevance. In a world where AI
 
 Imagine an AI doctor that doesn’t just bombard you with every possible symptom and diagnosis but instead focuses on the most relevant information for your specific case. Or a virtual assistant that remembers your birthday but forgets the time you asked it to order a pizza at 3 a.m. (we’ve all been there). The goal is to create AI that can prioritize and retain what truly matters, while gracefully letting go of the rest.
 
-**What this means**
+title: "UK AI Weekly: When AI Gets Too Good at Forgetting"
 
 This development has profound implications for the future of AI. For starters, it challenges the very notion of what we expect from intelligent systems. We’ve always assumed that more data equals better outcomes, but this research suggests otherwise. By prioritizing quality over quantity, AI could become more effective and less prone to the pitfalls of information overload.
 

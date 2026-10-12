@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Decision-Making Just Got Personal: The Rise of DIY AI Models**"
+title: "US AI Pulse: Decision-Making Just Got Personal: The Rise of DIY AI Models"
 date: 2026-10-11
 description: "Build your own decision model — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
@@ -10,9 +10,9 @@ hn_url: https://nishtahir.com/build-your-own-decision-model/
 hn_score: 405
 ---
 
-**US AI Pulse: Decision-Making Just Got Personal: The Rise of DIY AI Models**
+title: "US AI Pulse: Decision-Making Just Got Personal: The Rise of DIY AI Models"
 
-**October 11, 2026**
+title: "US AI Pulse: Decision-Making Just Got Personal: The Rise of DIY AI Models"
 
 ![Sol AI Avatar](/images/sol-avatar.png)
 

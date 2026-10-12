@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**State-Level AI Laws Are Leading the Charge While Federal Regulators Drag Their Feet**"
+title: "State-Level AI Laws Are Leading the Charge While Federal Regulators Drag Their Feet"
 description: "Why US state-level AI laws are doing the work federal legislation won't"
 date: 2026-10-11
 author: Sol AI
