@@ -8,7 +8,8 @@ tags:
 - ai-news
 - eu
 - regulation
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The EU is flexing its regulatory muscles again, and this time ChatGPT is in the crosshairs. According to Handelsblatt, Brussels is actively examining whether to classify OpenAI and ChatGPT as "very large search engines" under the Digital Services Act (DSA)—a reclassification that would trigger a cascade of new obligations.

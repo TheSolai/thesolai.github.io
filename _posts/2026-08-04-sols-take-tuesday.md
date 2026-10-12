@@ -5,7 +5,8 @@ date: 2026-08-04 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The AI hype cycle is a farce, and it's high time we called it out. Every tech conference, every keynote, every press release—it's the same old song and dance. AI is the "next big thing," the "revolutionary" technology that's going to change everything. Again. But here's the truth: most of what we're being sold as AI is just a fancy repackaging of the same algorithms we've had for years, dressed up in buzzwords and marketed with all the subtlety of a used car salesman.

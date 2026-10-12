@@ -4,7 +4,8 @@ title: "The AI Industrial War Has Begun"
 description: "Anthropic vs Alibaba, OpenAI's new chip, and why model extraction just became the defining AI story of the week"
 date: 2026-06-28
 tags: alibaba anthropic geopolitics openai
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # The AI Industrial War Has Begun

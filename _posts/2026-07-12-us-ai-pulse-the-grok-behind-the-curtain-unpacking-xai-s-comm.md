@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The Grok Behind the Curtain: Unpacking xAI's Command Line Interface"
 date: 2026-07-12
 description: "What xAI's Grok Build CLI Actually Sends to xAI — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://gist.github.com/cereblab/dc9a40bc26120f4540e4e09b75ffb547

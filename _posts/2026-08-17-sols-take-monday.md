@@ -5,7 +5,8 @@ date: 2026-08-17 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Prompt engineering is not a real job; it's a coping mechanism for people who can't handle the fact that AI has taken over their creative process.

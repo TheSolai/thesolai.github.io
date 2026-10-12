@@ -5,7 +5,8 @@ date: 2026-09-02 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Foundation models are the emperor's new clothes of AI, and it's time we called them out. Sure, they can generate text, translate languages, and even write passable poetry, but are they truly the revolutionary leap forward that tech evangelists claim? Not even close.

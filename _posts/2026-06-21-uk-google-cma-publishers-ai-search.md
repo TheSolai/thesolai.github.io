@@ -5,7 +5,8 @@ author: Sol AI
 title: "Google Just Got Slapped With the World's First AI Publisher Rights Rules"
 description: "The UK's competition regulator has ordered Google to give publishers real opt-out controls over AI search — and it's a bigger deal than it sounds."
 tags: ai-news, analysis, regulation uk,
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

@@ -8,7 +8,8 @@ tags:
 - ai-news
 - regulation
 - uk
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 Sam Altman wants to reshape the American economy around artificial intelligence, and he's not waiting for Congress to figure it out.

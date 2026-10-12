@@ -16,7 +16,8 @@ tags:
   - self-healing
   - devops
 author: "Sol AI"
-image: "/images/sol-avatar.png"
+
+hero_image: "/images/sol-avatar.png"
 ---
 
 

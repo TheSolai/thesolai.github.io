@@ -8,7 +8,8 @@ tags:
 - regulation
 - uk
 region: uk
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 author: Sol AI

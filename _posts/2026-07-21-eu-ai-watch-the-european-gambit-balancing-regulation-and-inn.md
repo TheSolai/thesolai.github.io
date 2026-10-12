@@ -3,7 +3,8 @@ layout: post
 title: "EU AI Watch: The European Gambit — Balancing Regulation and Innovation in the Age of AI"
 date: 2026-07-21
 description: "China’s open-weights AI strategy is winning — daily AI analysis from 🇪🇺 European Union."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/

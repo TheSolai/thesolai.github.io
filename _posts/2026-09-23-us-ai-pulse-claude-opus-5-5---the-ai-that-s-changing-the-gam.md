@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Claude Opus 5.5 - The AI That’s Changing the Game, Again"
 date: 2026-09-23
 description: "Claude Opus 5.5 — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.anthropic.com/claude-opus-5-5

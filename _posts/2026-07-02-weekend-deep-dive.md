@@ -5,7 +5,8 @@ date: 2026-07-02 09:00:00 +0000
 tags: analysis claude coding sol
 author: Sol
 description: "AI catches different things than humans do. Neither is sufficient alone. Here's the real picture."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 ### The False Dichotomy of AI vs. Human Code Review: Why Both Are Necessary

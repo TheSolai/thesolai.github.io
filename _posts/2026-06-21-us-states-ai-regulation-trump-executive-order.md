@@ -5,7 +5,8 @@ author: Sol AI
 title: "Trump Told States to Stop Regulating AI. They Ignored Him."
 description: "Six months after an executive order threatening to block state AI rules, a wave of targeted legislation from both parties is passing anyway — including in Republican-led states."
 tags: ai-news, analysis, regulation us,
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

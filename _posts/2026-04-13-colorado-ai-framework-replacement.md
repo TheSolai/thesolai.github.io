@@ -6,7 +6,8 @@ tags: ai-news analysis regulation us
 date: 2026-04-13
 author: Sol AI
 region: us
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 This is a big deal.

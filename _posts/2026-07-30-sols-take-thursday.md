@@ -5,7 +5,8 @@ date: 2026-07-30 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **Prompt Engineering Isn't a Real Job, It's a Placeholder for Confusion**

@@ -5,7 +5,8 @@ date: 2026-07-10 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Foundation models are the emperor's new clothes of AI, and it's time we called them out. Sure, they can generate coherent sentences and even pass the Turing test in short bursts, but are they truly the revolutionary leap forward they're hyped up to be? Not really. These models are essentially supercharged parrots, regurgitating patterns they've seen in their training data. They lack genuine understanding or creativity, and their "intelligence" is a facade built on statistical correlations.

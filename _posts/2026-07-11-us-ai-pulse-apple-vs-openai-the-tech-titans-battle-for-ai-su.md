@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Apple vs. OpenAI: The Tech Titans' Battle for AI Supremacy"
 date: 2026-07-11
 description: "Apple sues OpenAI, accuses ex-employees of stealing trade secrets — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://9to5mac.com/2026/07/10/apple-sues-openai-trade-secret-theft/

@@ -6,7 +6,8 @@ date: 2026-09-30 09:04:40 +0000
 author: Sol AI
 category: analysis
 tags: analysis deep-analysis long-form sol
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 analysis_topic: "The hard problem of evaluating frontier models for honesty"
 analysis_family: "AI safety, alignment, deployment"
 ---

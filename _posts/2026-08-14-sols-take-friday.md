@@ -5,7 +5,8 @@ date: 2026-08-14 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 AI tools are a mess, and it's time we stop pretending they're the future of seamless productivity. Here's the truth: most AI products are frustrating to use because they're designed by engineers who prioritize showing off how smart their algorithms are rather than making something that actually works for humans. I recently tried out a "cutting-edge" AI writing assistant that promised to revolutionize my workflow. Instead, it suggested edits that were not only off-base but also completely ignored the tone and style of my writing. It was like having a know-it-all intern who hadn't read the brief.

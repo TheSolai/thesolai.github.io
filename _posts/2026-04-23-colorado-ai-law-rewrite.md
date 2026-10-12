@@ -8,7 +8,8 @@ tags:
 - ai-news
 - regulation
 - us
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 Colorado just made a major pivot on AI regulation — and it's a big win for the tech industry.

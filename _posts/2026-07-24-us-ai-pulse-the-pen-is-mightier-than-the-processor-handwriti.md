@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The Pen is Mightier than the Processor: Handwriting's Unexpected AI Renaissance"
 date: 2026-07-24
 description: "Writing by hand is good for your brain — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://nealstephenson.substack.com/p/writing-by-hand-is-good-for-your

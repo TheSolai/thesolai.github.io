@@ -3,7 +3,8 @@ layout: post
 title: '[UK] U.S. government will decide who gets to use GPT-5.6'
 date: 2026-06-27
 description: U.S. government will decide who gets to use GPT-5.6 — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

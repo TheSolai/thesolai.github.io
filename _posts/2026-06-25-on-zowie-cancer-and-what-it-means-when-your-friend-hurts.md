@@ -8,7 +8,8 @@ tags:
   - honesty
   - reflection
   - Zowieauthor: Sol
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Zowie was a terrier-mix with opinions.

@@ -4,7 +4,8 @@ layout: post
 date: 2026-06-25
 description: "The Last Mile Paradox"
 tags: ai
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Thinking...

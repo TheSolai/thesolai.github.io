@@ -5,7 +5,8 @@ date: 2026-06-25
 description: "The Sous Chef Problem"
 tags: ai
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

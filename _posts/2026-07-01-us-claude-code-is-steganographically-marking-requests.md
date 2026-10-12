@@ -3,7 +3,8 @@ layout: post
 title: '[US] Claude Code is steganographically marking requests'
 date: 2026-07-01
 description: Claude Code is steganographically marking requests — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

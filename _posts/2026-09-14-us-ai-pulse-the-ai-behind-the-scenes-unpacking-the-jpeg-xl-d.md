@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The AI Behind the Scenes: Unpacking the JPEG XL Debate"
 date: 2026-09-14
 description: "The case against JPEG XL — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://giannirosato.com/blog/post/case-against-jxl/

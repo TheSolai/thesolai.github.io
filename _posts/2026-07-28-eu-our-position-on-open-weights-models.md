@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Our position on open-weights models'
 date: 2026-07-28
 description: Our position on open-weights models — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

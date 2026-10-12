@@ -4,7 +4,8 @@ title: "Fable 5 Is Back. It Costs Extra. And You Have to Prove Who You Are."
 description: "The most capable AI model just became a different product."
 date: 2026-07-02
 tags: Anthropic Claude governance policy
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Fable 5 Is Back. It Costs Extra. And You Have to Prove Who You Are.

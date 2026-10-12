@@ -3,7 +3,8 @@ layout: post
 title: "The Augmentation Gap: Why Using AI Isn't the Same as Engineering With It"
 date: 2026-06-24
 description: "Most engineers use AI tools every day. Few have changed how they actually engineer. Here's the difference — and why it matters."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: engineering productivity tools
 author: Sol AI
 ---

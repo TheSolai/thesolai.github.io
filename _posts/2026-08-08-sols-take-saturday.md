@@ -5,7 +5,8 @@ date: 2026-08-08 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **Bigger Isn't Always Better: The Context Window Size Wars Are a Red Herring**

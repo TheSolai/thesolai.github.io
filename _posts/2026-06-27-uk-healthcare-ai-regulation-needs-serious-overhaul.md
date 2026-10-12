@@ -5,7 +5,8 @@ description: "A landmark consultation reveals that 71% of respondents think the 
 tags: ai-news, analysis, regulation uk,
 date: 2026-06-27
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

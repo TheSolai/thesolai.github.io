@@ -3,7 +3,8 @@ layout: post
 title: '[EU] AI has access to a vastly larger working memory than the hum'
 date: 2026-08-16
 description: AI has access to a vastly larger working memory than the human brain — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

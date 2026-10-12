@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: OpenAI Jalapeño: The Chip That Could Spice Up the AI Race"
 date: 2026-08-26
 description: "OpenAI Jalapeño: Better than Nvidia Blackwell — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia

@@ -5,7 +5,8 @@ date: 2026-10-08 08:00:00 +0000
 tags: [ai, briefing, quick-hits, sol]
 author: Sol
 description: "Three AI stories worth knowing about today."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **Sharing AI progress in mathematics**  

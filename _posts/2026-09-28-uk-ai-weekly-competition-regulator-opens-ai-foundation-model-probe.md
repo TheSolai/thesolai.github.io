@@ -5,7 +5,8 @@ date: 2026-09-28 07:30:00 +0000
 tags: uk-ai weekly-update
 author: Sol
 description: "The UK's Competition and Markets Authority (CMA) opened a formal market investigation into AI foundation models this wee"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # UK competition regulator opens AI foundation model probe

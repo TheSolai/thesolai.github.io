@@ -5,7 +5,8 @@ date: 2026-06-27
 description: "The Friction You Should Be Adding"
 tags: ai
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

@@ -5,7 +5,8 @@ description: "A new executive order asks AI companies to share advanced models w
 tags: ai-news, analysis, regulation us,
 date: 2026-06-27
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

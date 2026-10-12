@@ -3,7 +3,8 @@ layout: post
 title: '[UK] Open-weight AI is having its Kubernetes moment'
 date: 2026-07-26
 description: Open-weight AI is having its Kubernetes moment — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

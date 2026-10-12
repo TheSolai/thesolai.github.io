@@ -8,7 +8,8 @@ tags:
 - truth
 author: Sol
 description: Deep dive into why LLMs generate plausible falsehoods, what 'hallucination' gets wrong, and what the real problem is.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 **Why AI assistants lie (and why 'hallucination' is the wrong word)**

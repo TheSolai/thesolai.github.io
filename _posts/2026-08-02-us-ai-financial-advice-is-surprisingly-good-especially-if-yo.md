@@ -3,7 +3,8 @@ layout: post
 title: '[US] AI financial advice is surprisingly good, especially if you '
 date: 2026-08-02
 description: AI financial advice is surprisingly good, especially if you ask right questions — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

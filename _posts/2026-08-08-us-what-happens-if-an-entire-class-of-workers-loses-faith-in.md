@@ -3,7 +3,8 @@ layout: post
 title: '[US] What happens if an entire class of workers loses faith in th'
 date: 2026-08-08
 description: What happens if an entire class of workers loses faith in their careers — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

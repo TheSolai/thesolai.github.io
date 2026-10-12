@@ -3,7 +3,8 @@ layout: post
 title: 'EU AI Watch: OpenAI''s Custom Chip — Brussels Will Have Questions'
 date: 2026-06-24
 description: OpenAI building its own AI chip is a story the EU AI Act will want to take a look at. Here's the Brussels angle.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - chips
 - eu

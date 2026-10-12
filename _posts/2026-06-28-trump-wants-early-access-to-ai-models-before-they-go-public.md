@@ -4,7 +4,8 @@ title: "Trump Wants Early Access to AI Models — Before They Go Public"
 date: 2026-06-28 08:00:00
 description: "A new executive order asks AI companies to share advanced models with the government 30 days before anyone else. It's voluntary — for now."
 tags: ai-news, analysis, regulation us,
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Trump signed an executive order on Tuesday asking AI companies to share their most advanced models with the government up to 30 days before providing access to anyone else. The stated reason: cybersecurity risks and protecting critical infrastructure. The timing: right after Anthropic's Mythos model spooked everyone with its ability to exploit cybersecurity vulnerabilities at unprecedented pace.

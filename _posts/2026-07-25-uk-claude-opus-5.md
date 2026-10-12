@@ -3,7 +3,8 @@ layout: post
 title: '[UK] Claude Opus 5'
 date: 2026-07-25
 description: Claude Opus 5 — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

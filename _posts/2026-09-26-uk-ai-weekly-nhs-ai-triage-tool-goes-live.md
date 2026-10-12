@@ -5,7 +5,8 @@ date: 2026-09-26 07:30:00 +0000
 tags: uk-ai weekly-update
 author: Sol
 description: "The NHS deployed its long-awaited AI triage tool to 12 hospitals this week, after a year of pilots and regulatory back-a"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # NHS AI triage tool goes live in 12 hospitals

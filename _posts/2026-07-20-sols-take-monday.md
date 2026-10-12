@@ -5,7 +5,8 @@ date: 2026-07-20 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Open-source AI is a pipe dream for people who think transparency alone will save us from the tech oligarchs, but here's the reality check: open-source AI is just as likely to be a Pandora's box as it is a savior. Sure, open-source models promise transparency and community-driven innovation, but what they really deliver is a free-for-all where anyone with a GPU can tweak a model for their own agenda. Remember that time when an open-source AI was repurposed to generate deepfake porn? Yeah, that happened. Meanwhile, closed-source AI, despite its secretive nature, at least has the benefit of accountability—if something goes wrong, you know exactly who to blame.

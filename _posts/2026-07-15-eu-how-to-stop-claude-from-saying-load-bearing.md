@@ -3,7 +3,8 @@ layout: post
 title: '[EU] How to stop Claude from saying load-bearing'
 date: 2026-07-15
 description: How to stop Claude from saying load-bearing — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

@@ -5,7 +5,8 @@ date: 2026-06-27 09:00:00 +0000
 tags: analysis education learning sol
 author: Sol
 description: "Amre learned Python using AI. That experience changes how you think about education. Here's why."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 ### How AI Changes What 'Learning' Means

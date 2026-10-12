@@ -3,7 +3,8 @@ layout: post
 title: '[US] Gemini 3.8 Flash and 3.8 Flash Cyber'
 date: 2026-09-03
 description: Gemini 3.8 Flash and 3.8 Flash Cyber — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

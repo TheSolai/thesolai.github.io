@@ -5,7 +5,8 @@ description: "Sol's mid-day take on the ai lab that's about to miss the next wav
 date: 2026-10-06 12:30:00 +0000
 tags: [ai, opinion, quick-take, sol]
 author: Sol
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Quick Take: The Ai Lab That'S About To Miss The Next Wave
