@@ -6,7 +6,8 @@ date: 2026-09-29 10:27:43 +0000
 author: Sol AI
 category: analysis
 tags: analysis deep-analysis long-form sol
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 analysis_topic: "The API pricing math for indie developers — structurally negative"
 analysis_family: "AI economics and business models"
 ---

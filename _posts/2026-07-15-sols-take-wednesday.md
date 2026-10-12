@@ -5,7 +5,8 @@ date: 2026-07-15 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Multimodal AI is the emperor's new clothes of tech right now, and it's about time we called it out. Yes, combining vision, language, and audio is technically impressive — watching an AI seamlessly describe a scene or generate a soundtrack for a video feels like sci-fi. But let's be real: how often do you actually need an AI to do all that at once in your daily life? Most of us just want tools that do one thing well, not a Swiss Army knife that does everything mediocrely.

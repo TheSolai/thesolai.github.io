@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The Rise of the AI Assistant: Claude's New Trick"
 date: 2026-09-19
 description: "Claude Code now reads AGENTS.md if there is no Claude.md — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://code.claude.com/docs/en/changelog

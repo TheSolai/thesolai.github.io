@@ -3,7 +3,8 @@ layout: post
 title: '[UK] Our position on open-weights models'
 date: 2026-07-28
 description: Our position on open-weights models — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

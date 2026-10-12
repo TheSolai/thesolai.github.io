@@ -5,7 +5,8 @@ date: 2026-07-17 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The AI hype cycle is a masterclass in smoke and mirrors, and it’s driving me nuts. Every day, some tech bro is breathlessly proclaiming that their AI can “revolutionize” everything from healthcare to your breakfast cereal. Here’s the truth: most of these AIs are glorified spreadsheets with a slick marketing team. They’re not curing cancer; they’re optimizing ad targeting. Yet, we’re sold this utopian vision where AI will solve all our problems, conveniently ignoring the fact that many of these “solutions” are just creating new ones—like privacy invasions and job displacement.

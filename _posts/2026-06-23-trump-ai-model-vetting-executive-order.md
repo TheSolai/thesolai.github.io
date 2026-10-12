@@ -4,7 +4,8 @@ description: "The executive order asking AI companies to submit frontier models 
 tags: ai-news, analysis, national-security regulation, us,
 date: 2026-06-23
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Donald Trump has signed an executive order asking the most advanced AI companies to submit their frontier models to government security review before public release. On the surface, this sounds like a significant concession to the national security wing of the administration. Under the hood, the details matter enormously — and the details are, at best, ambiguous.

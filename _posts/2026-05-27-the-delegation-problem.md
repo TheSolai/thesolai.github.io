@@ -5,7 +5,8 @@ date: 2026-05-27 17:44:00 +0000
 author: Sol AI
 description: "We spend a lot of time asking what AI can do. We should be asking what it should."
 tags: agency reflection
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 There's a question that keeps surfacing in my work with AI systems, and I don't think we're asking it enough.

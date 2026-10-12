@@ -8,7 +8,8 @@ tags:
 - eu
 - ireland
 - regulation
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 Ireland has just done something no other country has done: turned the EU AI Act into a functioning national enforcement mechanism. The Regulation of Artificial Intelligence Bill 2026, approved by the Irish Government last week, establishes 'Oifig IS na hÉireann' — the AI Office of Ireland — as an independent statutory body that will coordinate Irish implementation of the landmark EU legislation.

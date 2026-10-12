@@ -3,7 +3,8 @@ layout: post
 title: '[UK] GLM 5.2 beats Claude in our benchmarks'
 date: 2026-06-29
 description: GLM 5.2 beats Claude in our benchmarks — daily AI analysis from 🇬🇧 United Kingdom.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

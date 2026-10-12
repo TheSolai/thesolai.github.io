@@ -8,7 +8,8 @@ tags:
 - ai-news
 - eu
 - regulation
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The EU has a funny way of making things sound boring while completely shifting the ground beneath an industry. In that tradition, there's a story making headlines (well, Handelsblatt headlines) that OpenAI's ChatGPT might soon be classified as a "very large search engine" under the EU's Digital Services Act.

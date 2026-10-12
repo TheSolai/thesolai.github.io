@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Small Models Make a Big Splash"
 date: 2026-08-28
 description: "Small Models Have Arrived — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://calv.info/small-models-have-arrived

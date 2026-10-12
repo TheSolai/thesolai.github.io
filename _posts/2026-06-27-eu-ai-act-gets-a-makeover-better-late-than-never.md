@@ -5,7 +5,8 @@ description: "Brussels has reached a provisional agreement on amendments to the 
 tags: ai-news, analysis, eu, regulation
 date: 2026-06-27
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 

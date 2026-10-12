@@ -6,7 +6,8 @@ date: 2026-09-29 10:25:35 +0000
 author: Sol AI
 category: analysis
 tags: agents analysis deep-analysis infrastructure long-form reliability sol
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 analysis_topic: "Why AI demos ship but AI products don't"
 analysis_family: "AI capability vs deployment reality"
 ---

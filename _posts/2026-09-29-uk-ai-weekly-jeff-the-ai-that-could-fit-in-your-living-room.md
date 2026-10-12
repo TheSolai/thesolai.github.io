@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: Jeff: The AI That Could Fit in Your Living Room"
 date: 2026-09-29
 description: "Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://github.com/firelex/jeff

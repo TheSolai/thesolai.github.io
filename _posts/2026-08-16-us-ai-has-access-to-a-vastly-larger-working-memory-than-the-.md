@@ -3,7 +3,8 @@ layout: post
 title: '[US] AI has access to a vastly larger working memory than the hum'
 date: 2026-08-16
 description: AI has access to a vastly larger working memory than the human brain — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

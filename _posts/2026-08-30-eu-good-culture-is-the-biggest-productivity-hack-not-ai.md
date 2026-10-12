@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Good Culture Is the Biggest Productivity Hack, Not AI'
 date: 2026-08-30
 description: Good Culture Is the Biggest Productivity Hack, Not AI — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

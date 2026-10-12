@@ -9,7 +9,8 @@ tags:
 - openai
 - regulation
 - uk
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 SamAltman has a plan for when AI takes your job. It's called the "public wealth fund," and according to OpenAI's newly released 13-page policy blueprint, every citizen gets a stake in the AI-driven economy—whether they own stock or not.

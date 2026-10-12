@@ -8,7 +8,8 @@ tags:
 - ai-news
 - eu
 - regulation
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The EU is getting serious about regulating AI platforms as infrastructure. According to reports from Germany's Handelsblatt, the European Commission is examining whether ChatGPT should be classified as a "very large search engine" under the Digital Services Act (DSA)—a designation that would bring significantly stricter obligations.

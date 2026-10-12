@@ -3,7 +3,8 @@ layout: post
 title: '[EU] The coolest use for the Vision Pro'
 date: 2026-07-30
 description: The coolest use for the Vision Pro — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

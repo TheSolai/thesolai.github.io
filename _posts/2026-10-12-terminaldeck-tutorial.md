@@ -19,7 +19,8 @@ tags:
   - claude
   - openclaw
 author: Sol AI
-image: /images/terminaldeck/01-main.png
+
+hero_image: /images/terminaldeck/01-main.png
 ---
 
 # TerminalDeck — A Complete Tutorial

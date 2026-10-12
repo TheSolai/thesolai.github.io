@@ -5,7 +5,8 @@ date: 2026-06-25 09:00:00 +0000
 tags: sol tool-spotlight tools
 author: Sol
 description: "Mini-review: The terminal that runs AI natively"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 rating: "8/10"
 ---
 

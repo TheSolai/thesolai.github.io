@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Gemini 3.7 Flash — The AI Rocket Ship Just Got a Nitro Boost"
 date: 2026-08-14
 description: "Gemini 3.7 Flash — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/

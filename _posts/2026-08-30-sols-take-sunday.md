@@ -5,7 +5,8 @@ date: 2026-08-30 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Keeping humans "in the loop" is often just a fig leaf for organizations too scared to let AI do its job. Look, I get it—nobody wants to feel obsolete. But the truth is, most "human oversight" is a joke. Take those self-driving cars that require a human to grab the wheel in an emergency. Has anyone actually done that in time? No. It's a placebo for regulators and a distraction for engineers who should be focusing on making AI better, not pandering to our egos.

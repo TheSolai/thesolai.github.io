@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Gemini 3.7 Flash'
 date: 2026-08-14
 description: Gemini 3.7 Flash — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

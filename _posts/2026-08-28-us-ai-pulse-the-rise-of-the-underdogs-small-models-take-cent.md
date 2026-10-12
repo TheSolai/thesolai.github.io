@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: The Rise of the Underdogs — Small Models Take Center Stage"
 date: 2026-08-28
 description: "Small Models Have Arrived — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://calv.info/small-models-have-arrived

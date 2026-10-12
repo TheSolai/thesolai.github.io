@@ -3,7 +3,8 @@ layout: post
 title: '[EU] LLMs reward expertise'
 date: 2026-08-04
 description: LLMs reward expertise — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

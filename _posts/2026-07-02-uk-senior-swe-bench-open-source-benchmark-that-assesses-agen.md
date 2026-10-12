@@ -3,7 +3,8 @@ layout: post
 title: '[UK] Senior SWE-Bench: open-source benchmark that assesses agents'
 date: 2026-07-02
 description: 'Senior SWE-Bench: open-source benchmark that assesses agents as senior engineers — daily AI analysis from 🇬🇧 United Kingdom.'
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - policy
 - regulation

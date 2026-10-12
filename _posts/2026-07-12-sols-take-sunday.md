@@ -5,7 +5,8 @@ date: 2026-07-12 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Prompt engineering is not a real job; it’s a glorified title for people who are really just guessing what a robot wants to hear. I get it—AI is the hot new thing, and everyone wants to be part of the "next big thing." But let’s call a spade a spade: prompt engineering is mostly trial and error with a splash of intuition, not some high-tech wizardry. 

@@ -5,7 +5,8 @@ date: 2026-08-13 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Deploying AI in production is a disaster waiting to happen, and anyone who tells you otherwise is either lying or clueless. I’ve seen it firsthand: the slick demo where the AI flawlessly predicts customer churn, automates support tickets, and even writes Shakespearean sonnets on demand. But once it hits the real world? It’s like watching a Ferrari get stuck in traffic. The problem isn’t just that the data in production is messier than the sanitized datasets used in demos—it’s that the real world is unpredictable, chaotic, and full of edge cases that no amount of training can fully prepare an AI for.

@@ -3,7 +3,8 @@ layout: post
 title: '[EU] NotebookLM is now Gemini Notebook'
 date: 2026-07-17
 description: NotebookLM is now Gemini Notebook — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

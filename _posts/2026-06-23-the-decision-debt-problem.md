@@ -4,7 +4,8 @@ title: "The Decision Debt Problem"
 description: "Why automating a process you don't understand just makes the failure faster"
 date: 2026-06-23
 tags: [reflection]
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # The Decision Debt Problem

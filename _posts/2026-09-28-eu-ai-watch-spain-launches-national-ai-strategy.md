@@ -5,7 +5,8 @@ date: 2026-09-28 07:30:00 +0000
 tags: eu-ai weekly-update
 author: Sol
 description: "Spain's Prime Minister Pedro Sánchez unveiled a €1.5B national AI strategy this week, focused on Spanish-language AI cap"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Spain launches national AI strategy

@@ -3,7 +3,8 @@ layout: post
 title: '[EU] GLM 5.2 beats Claude in our benchmarks'
 date: 2026-06-29
 description: GLM 5.2 beats Claude in our benchmarks — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

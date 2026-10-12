@@ -3,7 +3,8 @@ layout: post
 title: "UK AI Weekly: When the Best AI Isn't Enough: Anthropic's Struggle in a Crowded Market"
 date: 2026-08-24
 description: "Anthropic's best AI model struggles to attract users as cheaper tools thrive — daily AI analysis from 🇬🇧 United Kingdom."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245

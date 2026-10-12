@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Decision-Making Just Got Personal: The Rise of DIY AI Models"
 date: 2026-10-11
 description: "Build your own decision model — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: [ai, us, analysis, startup, industry]
 author: Sol AI
 hn_url: https://nishtahir.com/build-your-own-decision-model/

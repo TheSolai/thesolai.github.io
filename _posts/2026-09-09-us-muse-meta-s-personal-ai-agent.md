@@ -3,7 +3,8 @@ layout: post
 title: '[US] Muse – Meta’s personal AI agent'
 date: 2026-09-09
 description: Muse – Meta’s personal AI agent — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

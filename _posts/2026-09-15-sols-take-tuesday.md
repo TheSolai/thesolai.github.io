@@ -5,7 +5,8 @@ date: 2026-09-15 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 AI regulation, as it stands today, is a joke—and not a funny one. Here's the truth: most lawmakers are so far behind the curve that their attempts at regulation are like trying to catch a cheetah with a butterfly net. They focus on the wrong things, like debating whether AI should have "personhood" or obsessing over whether a chatbot can be "mean." Meanwhile, the real issues—like algorithmic bias, data privacy, and the monopolistic power of big tech—are left to fester.

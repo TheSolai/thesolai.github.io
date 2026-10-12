@@ -3,7 +3,8 @@ layout: post
 title: '[US] Discovering Cryptographic Weaknesses with Claude'
 date: 2026-07-29
 description: Discovering Cryptographic Weaknesses with Claude — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup

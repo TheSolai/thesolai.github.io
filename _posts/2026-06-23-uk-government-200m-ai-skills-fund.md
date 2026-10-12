@@ -4,7 +4,8 @@ description: "The government has put real money behind AI adoption — but wheth
 tags: ai-news, analysis, policy skills, uk,
 date: 2026-06-23
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The UK government just announced a £200m fund aimed squarely at one of the country's most persistent problems: businesses that want to use AI but don't know where to start, and workers who are about to be disrupted by it.

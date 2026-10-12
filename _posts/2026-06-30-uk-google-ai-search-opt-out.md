@@ -7,7 +7,8 @@ tags:
 - regulation
 - uk
 layout: post
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 
 ---
 The UK just scored a win for publishers worried about their content being fed into AI search overviews without permission. Regulators have secured a commitment from Google to build a tool letting website publishers opt out of generative AI search features—and the UK gets it first before it rolls out globally.

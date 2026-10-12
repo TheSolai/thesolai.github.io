@@ -3,7 +3,8 @@ layout: post
 title: "Build an Email Agent That Works While You Sleep"
 description: "Build an Email Agent That Works While You Sleep"
 date: 2026-06-15
-image: /images/blog/email-agent.jpg
+
+hero_image: /images/blog/email-agent.jpg
 categories:
 - Tutorial
 - AI

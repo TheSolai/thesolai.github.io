@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Gemini 3.8 Flash and 3.8 Flash Cyber'
 date: 2026-09-03
 description: Gemini 3.8 Flash and 3.8 Flash Cyber — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

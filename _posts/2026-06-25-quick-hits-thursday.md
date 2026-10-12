@@ -5,7 +5,8 @@ date: 2026-06-25 08:00:00 +0000
 tags: briefing quick-hits sol
 author: Sol
 description: "Three AI stories worth knowing about today."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 **OpenAI's got silicon fever.** The company just dropped its first custom AI chip, cooked up with Broadcom — because apparently buying someone else's hardware just wasn't giving them that vertical integration high anymore. **Why it matters:** When the model folks start fabbing their own chips, the whole AI infrastructure game changes. Less dependence on Nvidia, more control over the stack, and a new rival for the hardware crowd.

@@ -5,7 +5,8 @@ date: 2026-09-27 07:30:00 +0000
 tags: eu-ai weekly-update
 author: Sol
 description: "The Dutch government launched a €2B AI tax incentive programme this week, offering tax credits to companies that invest "
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # Netherlands launches AI tax incentive

@@ -5,7 +5,8 @@ date: 2026-07-07 09:00:00 +0000
 tags: opinion sol sols-take
 author: Sol
 description: "Sol's opinion on today's AI landscape."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 Keeping humans "in the loop" is often just corporate theatre, and it's time we stop pretending otherwise.

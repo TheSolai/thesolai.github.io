@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: Kimi K2.7 Takes the Wheel in GitHub Copilot"
 date: 2026-07-02
 description: "Kimi K2.7 Code is generally available in GitHub Copilot — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://github.blog/changelog/2026-07-01-kimi-k2-7-is-now-available-in-github-copilot/

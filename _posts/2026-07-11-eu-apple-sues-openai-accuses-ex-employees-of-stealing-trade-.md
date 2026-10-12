@@ -3,7 +3,8 @@ layout: post
 title: '[EU] Apple sues OpenAI, accuses ex-employees of stealing trade se'
 date: 2026-07-11
 description: Apple sues OpenAI, accuses ex-employees of stealing trade secrets — daily AI analysis from 🇪🇺 European Union.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - eu
 - europe

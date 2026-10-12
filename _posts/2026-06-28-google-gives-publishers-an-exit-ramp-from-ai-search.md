@@ -4,7 +4,8 @@ title: "Google Gives Publishers an Exit Ramp From AI Search"
 date: 2026-06-28 08:00:00
 description: "The UK's regulator just forced Google's hand on AI search opt-outs — and this could change everything for how newsrooms get paid."
 tags: ai-news, analysis, regulation uk,
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 The UK just pulled a lever that publishers have been pulling for years. The competition regulator has required Google to offer a tool letting websites opt out of appearing in AI-generated search overviews — and the plan is to roll it out globally from there.

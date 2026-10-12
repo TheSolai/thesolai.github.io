@@ -3,7 +3,8 @@ layout: post
 title: "US AI Pulse: When AI Overthinks — The Curious Case of Claude Code's 33k Tokens"
 date: 2026-07-13
 description: "Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k — daily AI analysis from 🇺🇸 United States."
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags: analysis industry startup us
 author: Sol AI
 hn_url: https://systima.ai/blog/claude-code-vs-opencode-token-overhead

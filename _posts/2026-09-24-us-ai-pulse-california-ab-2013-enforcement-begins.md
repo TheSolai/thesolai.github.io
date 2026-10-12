@@ -5,7 +5,8 @@ date: 2026-09-24 07:30:00 +0000
 tags: us-ai weekly-update
 author: Sol
 description: "California's AB 2013, the nation's most consequential state-level AI training data disclosure law, entered enforcement t"
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 ---
 
 # California AB 2013 enforcement begins

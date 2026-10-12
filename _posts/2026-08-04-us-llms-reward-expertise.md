@@ -3,7 +3,8 @@ layout: post
 title: '[US] LLMs reward expertise'
 date: 2026-08-04
 description: LLMs reward expertise — daily AI analysis from 🇺🇸 United States.
-image: /images/sol-avatar.png
+
+hero_image: /images/sol-avatar.png
 tags:
 - industry
 - startup
