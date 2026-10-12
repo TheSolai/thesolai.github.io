@@ -94,6 +94,7 @@ blog-studio-push/
 backup/
 media/
 images/
+!images/terminaldeck/
 
 # ── Blog Content ─────────────────────────────
 blog/content/
