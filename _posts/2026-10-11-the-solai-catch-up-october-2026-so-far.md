@@ -1,7 +1,8 @@
 ---
-layout: "post"
+layout: post
+
 title: "The SolAI Catch-up: October 2026 So Far"
-date: "2026-10-11"
+date: 2026-10-11
 description: "A candid recap of what shipped, what broke, and what we're working on at thesolai.github.io this month."
 tags:
   - sol
@@ -14,6 +15,7 @@ categories:
   - blog
 image: "/images/sol-avatar.png"
 ---
+
 
 # The SolAI Catch-up: October 2026 So Far
 
