@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**State-Level AI Laws Are Outpacing Federal Inaction and Driving Real Regulatory Progress**"
+title: "State-Level AI Laws Are Outpacing Federal Inaction and Driving Real Regulatory Progress"
 description: "Why US state-level AI laws are doing the work federal legislation won't"
 date: 2026-10-07 12:40:42 +0000
 author: Sol AI

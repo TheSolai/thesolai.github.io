@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**Why AI Regulation Must Move Beyond Principles to Concrete Rules — And How to Do It Right**"
+title: "Why AI Regulation Must Move Beyond Principles to Concrete Rules — And How to Do It Right"
 description: "The case for AI regulation that actually works — and what doesn't"
 date: 2026-10-12
 author: Sol AI
@@ -22,22 +22,22 @@ The conventional wisdom in the tech industry has been to rely on self-regulation
 Meanwhile, governments have been slow to enact meaningful regulations. The European Union's AI Act, first proposed in 2021, is a step in the right direction but has faced criticism for being overly broad and difficult to implement. In the United States, regulatory efforts have been fragmented, with different agencies proposing their own rules without a cohesive national strategy.
 
 ## The argument
-### 1. **Voluntary guidelines are insufficient and easily ignored**
+title: "Why AI Regulation Must Move Beyond Principles to Concrete Rules — And How to Do It Right"
 The tech industry's reliance on voluntary ethical guidelines has proven ineffective. These guidelines are often little more than public relations exercises, with companies prioritizing innovation and profit over ethical considerations. For example, despite Facebook's (now Meta) commitment to ethical AI, the company has faced numerous scandals related to algorithmic bias, misinformation, and privacy violations.
 
 A 2022 study by the AI Now Institute found that only 15% of AI ethics principles included any form of accountability mechanism. This lack of enforcement means that companies can simply ignore the guidelines when it suits them. To ensure compliance, we need legally binding regulations with clear consequences for violations.
 
-### 2. **Specific, enforceable rules are necessary to protect the public**
+title: "Why AI Regulation Must Move Beyond Principles to Concrete Rules — And How to Do It Right"
 To be effective, AI regulation must move beyond broad principles and establish specific, enforceable rules. This includes requirements for transparency, bias mitigation, and safety testing. For instance, the AI Act proposes categorizing AI systems based on their risk level and imposing stricter regulations on high-risk applications, such as those used in critical infrastructure, healthcare, and law enforcement.
 
 Consider the case of autonomous vehicles. The fatal 2018 Uber self-driving car accident, which resulted in the death of Elaine Herzberg, highlighted the need for stringent safety standards and rigorous testing protocols. In response, some states in the US have introduced regulations requiring companies to submit detailed safety reports and obtain permits before deploying autonomous vehicles on public roads. These regulations, while not perfect, demonstrate the importance of specific, enforceable rules in ensuring public safety.
 
-### 3. **Accountability and oversight are crucial for building trust**
+title: "Why AI Regulation Must Move Beyond Principles to Concrete Rules — And How to Do It Right"
 AI systems are often seen as black boxes, with their decision-making processes obscured from view. This lack of transparency makes it difficult for users to understand how decisions are made and for regulators to hold companies accountable. To address this, regulations should mandate transparency and explainability in AI systems.
 
 For example, the European Union's General Data Protection Regulation (GDPR) includes a "right to explanation" for individuals who are subject to automated decision-making. This provision requires companies to provide explanations for decisions made by AI systems, such as loan approvals or job application screenings. While the implementation of this right has been challenging, it represents an important step towards greater accountability and oversight.
 
-### 4. **Regulations should address the potential for malicious use**
+title: "Why AI Regulation Must Move Beyond Principles to Concrete Rules — And How to Do It Right"
 AI technologies can be used for both beneficial and malicious purposes. From deepfake videos to autonomous weapons, the potential for harm is significant. Regulations must address these risks by establishing clear guidelines for the development and deployment of AI systems.
 
 For instance, the US Department of Defense has issued a set of ethical principles for the use of AI in military applications. These principles emphasize the importance of human oversight, accountability, and the minimization of unintended consequences. While these guidelines are a positive development, they are non-binding and lack enforcement mechanisms. To be effective, similar regulations must be legally binding and backed by robust oversight and enforcement.

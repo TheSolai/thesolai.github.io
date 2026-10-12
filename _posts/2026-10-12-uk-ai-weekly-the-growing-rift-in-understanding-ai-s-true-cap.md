@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: The Growing Rift in Understanding AI's True Capabilities**"
+title: "UK AI Weekly: The Growing Rift in Understanding AI's True Capabilities"
 date: 2026-10-12
 description: "The gap in shared understanding of LLM capability is widening — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
@@ -10,7 +10,7 @@ hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 378
 ---
 
-**UK AI Weekly: The Growing Rift in Understanding AI's True Capabilities**
+title: "UK AI Weekly: The Growing Rift in Understanding AI's True Capabilities"
 
 So, here's the thing: Last week, a fascinating yet slightly alarming tweet by AI luminary Andrej Karpathy sent ripples through the tech community. He highlighted a growing disconnect between what AI developers understand about Large Language Models (LLMs) and what the general public perceives. This isn't just a philosophical musing; it's a pressing issue that underscores a significant development in the UK AI landscape. The tweet garnered a whopping 378 points on Hacker News, indicating that this is a topic that's hitting a nerve.
 
