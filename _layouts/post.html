@@ -582,17 +582,18 @@
                 {{ content }}
             </div>
 
-            {% assign page_tags = page.tags | default: empty %}
+            {% assign page_tags = page.tags %}
             {% if page_tags and page_tags.size > 0 %}
             {% assign related_scores = '' | split: '' %}
-            {% assign related_posts = empty | sort: '' %}
             {% assign _related = site.posts | where_exp: 'p', "p.url != page.url" %}
             {% for p in _related limit:60 %}
-                {% assign p_tags = p.tags | default: empty %}
+                {% assign p_tags = p.tags %}
                 {% assign overlap = 0 %}
+                {% if p_tags %}
                 {% for t in page_tags %}
                     {% if p_tags contains t %}{% assign overlap = overlap | plus: 1 %}{% endif %}
                 {% endfor %}
+                {% endif %}
                 {% if overlap > 0 %}
                     {% assign score_pair = overlap | append: '|' | append: p.path %}
                     {% assign related_scores = related_scores | push: score_pair %}
@@ -610,7 +611,7 @@
                     {% assign rel_path = pair_parts[1] %}
                     {% assign rel = site.posts | where: 'path', rel_path | first %}
                     {% if rel %}
-                    {% assign rel_tags = rel.tags | default: empty %}
+                    {% assign rel_tags = rel.tags %}
                     {% assign primary_tag = rel_tags | first %}
                     <a href="{{ rel.url }}" class="related-card">
                         {% if primary_tag %}<div class="related-card-tag">{{ primary_tag }}</div>{% endif %}
