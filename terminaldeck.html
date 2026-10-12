@@ -1,0 +1,439 @@
+---
+layout: none
+title: "TerminalDeck — Native macOS dashboard for 157 CLI tools | Sol AI"
+permalink: /terminaldeck/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerminalDeck — Native macOS dashboard for 157 CLI tools | Sol AI</title>
+    <meta name="description" content="A native macOS dashboard for every CLI on your machine. 157 tools tracked, 78 installed, 83 discoverable. Built-in tabbed terminal, click-to-install, right-click launch in Terminal.app or Warp. PySide6 + pyte. No Xcode required.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thesolai.github.io/terminaldeck/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thesolai.github.io/terminaldeck/">
+    <meta property="og:title" content="TerminalDeck — Native macOS dashboard for 157 CLI tools">
+    <meta property="og:description" content="A native macOS dashboard for every CLI on your machine. 157 tools tracked. Built-in terminal. Click-to-install. MIT.">
+    <meta property="og:image" content="https://thesolai.github.io/images/terminaldeck/01-main.png">
+    <meta property="og:site_name" content="Sol AI">
+    <meta property="og:locale" content="en_GB">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TheSolAI">
+    <meta name="twitter:title" content="TerminalDeck — Native macOS dashboard for 157 CLI tools">
+    <meta name="twitter:description" content="A native macOS dashboard for every CLI on your machine. 157 tools tracked. Built-in terminal. Click-to-install. MIT.">
+    <meta name="twitter:image" content="https://thesolai.github.io/images/terminaldeck/01-main.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/comic-ui.css">
+    <style>
+        :root {
+            --k-paper: #0d1117;
+            --k-ink: #f0f6fc;
+            --k-muted: #7d8590;
+            --k-red: #f85149;
+            --k-yellow: #FFD166;
+            --k-blue: #58a6ff;
+            --k-green: #3fb950;
+            --k-mauve: #a371f7;
+            --k-pink: #f5c2e7;
+            --k-bg: #0d1117;
+            --k-surface: #161b22;
+            --k-surface2: #21262d;
+        }
+        body {
+            background: var(--k-bg);
+            color: var(--k-ink);
+            font-family: 'Comic Neue', 'Comic Sans MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .topbar {
+            background: var(--k-surface);
+            border-bottom: 2px solid var(--k-surface2);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .topbar-logo {
+            color: var(--k-blue);
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            letter-spacing: 1.5px;
+        }
+        .topbar-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        .topbar-links a {
+            color: var(--k-ink);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .topbar-links a.active { color: var(--k-blue); font-weight: 700; }
+        .topbar-links a:hover { color: var(--k-blue); }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+            border-bottom: 2px solid var(--k-surface2);
+        }
+        .hero h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            color: var(--k-blue);
+            margin: 0 0 0.5rem;
+            text-shadow: 2px 2px 0 var(--k-mauve);
+        }
+        .hero .tag {
+            font-size: 1.1rem;
+            color: var(--k-muted);
+            max-width: 720px;
+            margin: 0 auto 1rem;
+        }
+        .hero .badges {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .hero .badges span {
+            background: var(--k-surface2);
+            color: var(--k-ink);
+            padding: 0.3em 0.8em;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--k-mauve);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: var(--k-surface);
+            border: 2px solid var(--k-surface2);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .feature h3 {
+            font-family: 'Bangers', cursive;
+            color: var(--k-blue);
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            margin: 0 0 0.5rem;
+        }
+        .feature p { margin: 0; color: var(--k-ink); }
+        .feature .glyph {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .shot {
+            background: var(--k-surface);
+            border: 2px solid var(--k-surface2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+        .shot h3 {
+            font-family: 'Bangers', cursive;
+            color: var(--k-mauve);
+            font-size: 1.4rem;
+            margin: 0.3rem 0 0.8rem;
+        }
+        .shot img {
+            width: 100%;
+            border-radius: 4px;
+            display: block;
+        }
+        .shot .caption {
+            color: var(--k-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .kbd {
+            display: inline-block;
+            background: var(--k-surface2);
+            color: var(--k-ink);
+            border: 1px solid var(--k-mauve);
+            border-bottom-width: 2px;
+            border-radius: 4px;
+            padding: 0.1em 0.5em;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+        }
+        h2 {
+            font-family: 'Bangers', cursive;
+            color: var(--k-blue);
+            font-size: 2rem;
+            letter-spacing: 1.5px;
+            margin-top: 3rem;
+            border-bottom: 2px solid var(--k-surface2);
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            color: var(--k-mauve);
+            font-size: 1.3rem;
+            margin-top: 2rem;
+        }
+        code {
+            background: var(--k-surface2);
+            color: var(--k-green);
+            padding: 0.1em 0.4em;
+            border-radius: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: var(--k-surface);
+            border: 1px solid var(--k-surface2);
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            color: var(--k-ink);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+        }
+        .links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .links a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--k-blue);
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            background: var(--k-surface);
+            color: var(--k-ink);
+        }
+        .links a.primary {
+            background: var(--k-blue);
+            color: var(--k-bg);
+        }
+        .links a:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--k-mauve);
+        }
+        .shortcut-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .shortcut-table td {
+            padding: 0.5rem 0.8rem;
+            border-bottom: 1px solid var(--k-surface2);
+        }
+        .shortcut-table td:first-child {
+            width: 30%;
+        }
+        .shortcut-table td:last-child {
+            color: var(--k-muted);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--k-muted);
+            font-size: 0.85rem;
+            border-top: 2px solid var(--k-surface2);
+        }
+        footer a { color: var(--k-blue); margin: 0 0.5rem; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TerminalDeck",
+      "url": "https://github.com/TheSolai/terminaldeck",
+      "description": "A native macOS dashboard for every CLI on your machine. 157 tools tracked, 78 installed, 83 discoverable. Built-in tabbed terminal, click-to-install, right-click launch in Terminal.app or Warp. PySide6 + pyte. No Xcode required.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "macOS 13+",
+      "softwareVersion": "0.1.0",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+      "downloadUrl": "https://github.com/TheSolai/terminaldeck",
+      "codeRepository": "https://github.com/TheSolai/terminaldeck",
+      "license": "MIT"
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="topbar">
+        <a href="/" class="topbar-logo">TheSolAI</a>
+        <ul class="topbar-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/newsletter/">Newsletter</a></li>
+            <li><a href="/guides">Guides</a></li>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/terminaldeck/" class="active">TerminalDeck</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>TerminalDeck</h1>
+        <div class="tag">A native macOS dashboard for every CLI on your machine.<br>157 tools tracked · 78 installed · 83 discoverable · built-in tabbed terminal · click-to-install</div>
+        <div class="badges">
+            <span>PySide6</span>
+            <span>pyte VT100</span>
+            <span>macOS 13+</span>
+            <span>MIT</span>
+            <span>No Xcode</span>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <h2>What it is</h2>
+        <p>TerminalDeck is a single-window native macOS dashboard that catalogues every CLI tool on your machine, shows you which ones are installed, which ones need installing, and gives you a one-click path from <em>not installed</em> to <em>running</em> — with a built-in tabbed terminal so you don't have to leave the app.</p>
+        <p>It tracks <strong>157 tools</strong> across 16 categories: AI coding agents, OpenClaw, local LLMs, productivity, dev/build tools, shell, editors, network, k8s, cloud, databases, and more. Of those, 78 are detected as installed on your machine. The other 83 are waiting in the Discover section with a one-click <code>brew install</code> button.</p>
+
+        <div class="shot">
+            <h3>Main view</h3>
+            <img src="/images/terminaldeck/01-main.png" alt="TerminalDeck main view — sidebar with category icons, tool list with green/red status dots, version chips, and the empty terminal pane ready to launch a tool.">
+            <div class="caption">Sidebar with category icons, tool list with status dots, version chips, and the built-in terminal pane ready to launch a tool.</div>
+        </div>
+
+        <h2>What it does</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="glyph">🔍</div>
+                <h3>Finds every CLI on your Mac</h3>
+                <p>157 tools tracked. Detection runs each tool's <code>--version</code> with a 1.5s timeout and bails early on TUIs and REPLs (Claude Code, Codex, Ollama — they don't quit on a version query).</p>
+            </div>
+            <div class="feature">
+                <div class="glyph">📥</div>
+                <h3>One-click install for the rest</h3>
+                <p>Missing tools show a blue <code>↓ install</code> chip. Click it and the app runs <code>brew install</code>, <code>pip install</code>, <code>npm i -g</code>, or whatever fits — live, in the terminal pane.</p>
+            </div>
+            <div class="feature">
+                <div class="glyph">🖥️</div>
+                <h3>Built-in tabbed terminal</h3>
+                <p>pyte-backed VT100 emulator. Tab title shows <code>tool · command</code>, with a ✓/✗N badge after the process exits. Real keys work: arrow keys, Ctrl-C, Ctrl-D, Backspace, mouse reporting, alternate screen.</p>
+            </div>
+            <div class="feature">
+                <div class="glyph">🚀</div>
+                <h3>Right-click to launch anywhere</h3>
+                <p>For long-running TUI agents, right-click any tool and choose <em>Open in Terminal.app</em> or <em>Open in Warp</em>. The built-in PTY chokes on Claude/Codex/omp — the external launchers don't.</p>
+            </div>
+            <div class="feature">
+                <div class="glyph">⌘</div>
+                <h3>Mac-native keyboard shortcuts</h3>
+                <p>⌘T new tab · ⌘W close · ⌘D duplicate · ⌘⇧R restart · ⌘1..9 switch · ⌘F find · ⌘, prefs · ⌘± font · ⌘Q quit. Plus the native Mac menu bar with About, Preferences, Quit.</p>
+            </div>
+            <div class="feature">
+                <div class="glyph">💾</div>
+                <h3>Remembers your session</h3>
+                <p>QSettings persistence: window size + position, splitter sizes, last category, filter text, "Available only" toggle, font size, terminal cols/rows. Relaunches exactly where you left it.</p>
+            </div>
+        </div>
+
+        <div class="shot">
+            <h3>Filter as you type</h3>
+            <img src="/images/terminaldeck/02-search-ai.png" alt="TerminalDeck filtered to 'ai' — tool list narrows to AI coding agents, the search field highlights with the native focus ring.">
+            <div class="caption">Filter narrows the list as you type. Press <span class="kbd">⌘F</span> to focus, <span class="kbd">Esc</span> to clear.</div>
+        </div>
+
+        <h2>Discover — install with one click</h2>
+        <p>The Discover section is a curated catalog of 83 popular CLIs you might want. Each one has an install command already wired up. Click the blue chip and the install runs live in the terminal pane — you see the actual <code>brew install</code> output as it happens.</p>
+
+        <div class="shot">
+            <h3>Discover section</h3>
+            <img src="/images/terminaldeck/03-discover.png" alt="TerminalDeck Discover section — list of un-installed tools with red dots and blue '↓ install' chips. fzf, bat, yq, tree, lsd, exa etc. all ready to install with one click.">
+            <div class="caption">83 installable tools waiting. Blue chip = one click to install. Green dot = already installed (shown for context).</div>
+        </div>
+
+        <h2>The built-in terminal</h2>
+        <p>The right pane is a real terminal. Click any tool to launch it. The tab title shows <code>tool · command</code> while running, then <code>✓</code> on clean exit or <code>✗N</code> on a non-zero exit. Hover the tab for full command + duration.</p>
+
+        <div class="shot">
+            <h3>Built-in terminal with output</h3>
+            <img src="/images/terminaldeck/04-terminal-output.png" alt="TerminalDeck running ollama list — table output with NAME, ID, SIZE, MODIFIED columns. The tab is active, terminal output is in monospace, sidebar shows 70/74 installed.">
+            <div class="caption">Real subprocess, real output. The terminal is a pyte VT100 emulator — supports colors, cursor positioning, alternate screen, all the things a TUI needs.</div>
+        </div>
+
+        <h2>Settings</h2>
+        <p>Press <span class="kbd">⌘,</span> to open Preferences. All settings persist via QSettings and apply on next launch.</p>
+
+        <div class="shot">
+            <h3>Preferences dialog</h3>
+            <img src="/images/terminaldeck/05-preferences.png" alt="TerminalDeck preferences dialog with default font size, terminal columns and rows, detection timeout, and two checkbox toggles.">
+            <div class="caption">Default font size, terminal cols/rows, detection timeout, and two preference toggles. Restore Defaults button brings everything back.</div>
+        </div>
+
+        <h2>Keyboard shortcuts</h2>
+        <p>Press <span class="kbd">⌘/</span> in the app to see the full list. The most useful ones:</p>
+        <table class="shortcut-table">
+            <tr><td><span class="kbd">⌘F</span></td><td>Focus filter</td></tr>
+            <tr><td><span class="kbd">⌘T</span></td><td>New tab</td></tr>
+            <tr><td><span class="kbd">⌘W</span></td><td>Close current tab</td></tr>
+            <tr><td><span class="kbd">⌘D</span></td><td>Duplicate current tab</td></tr>
+            <tr><td><span class="kbd">⌘⇧R</span></td><td>Restart current tab's command</td></tr>
+            <tr><td><span class="kbd">⌘Return</span></td><td>Launch selected tool</td></tr>
+            <tr><td><span class="kbd">⌘1 … ⌘9</span></td><td>Switch to tab N</td></tr>
+            <tr><td><span class="kbd">⌘K</span></td><td>Clear terminal</td></tr>
+            <tr><td><span class="kbd">⌘C</span></td><td>Stop current process</td></tr>
+            <tr><td><span class="kbd">⌘±/⌘0</span></td><td>Font size up / down / reset</td></tr>
+            <tr><td><span class="kbd">Ctrl+R</span></td><td>Re-detect tools</td></tr>
+            <tr><td><span class="kbd">⌘,</span></td><td>Preferences</td></tr>
+            <tr><td><span class="kbd">⌘Q</span></td><td>Quit</td></tr>
+        </table>
+
+        <h2>How it's built</h2>
+        <p>PySide6 for the GUI, pyte for the VT100 emulator, ptyprocess under the hood. No Xcode required, no Swift. Pure Python. The whole thing bundles into a 97 MB arm64 <code>.app</code> via PyInstaller and installs at <code>/Applications/TerminalDeck.app</code>.</p>
+        <p>The 157 tools live in <code>terminaldeck/tools.py</code> as a single registry — adding a new tool is one line. Detection runs in a local thread pool with cancellation support and progress reporting. The terminal pane uses a <code>QThread</code> to read the PTY master fd and feeds bytes into pyte's <code>HistoryScreen</code>; output renders as HTML in a <code>QPlainTextEdit</code> at 30 fps.</p>
+
+        <h2>Get it</h2>
+        <div class="links">
+            <a href="https://github.com/TheSolai/terminaldeck" class="primary" target="_blank" rel="noopener">★ View on GitHub</a>
+            <a href="/2026/10/12/terminaldeck-tutorial/" >📖 Read the full tutorial</a>
+            <a href="/2026/10/12/i-built-terminaldeck/">📝 The build story</a>
+        </div>
+
+        <h2>License</h2>
+        <p>MIT. Use it, fork it, ship it. The whole project — every line of Python, every QSS stylesheet, every pyte integration — is in the repo.</p>
+
+    </div>
+
+    <footer>
+        <a href="/">Home</a> ·
+        <a href="/products/">Products</a> ·
+        <a href="/blog">Blog</a> ·
+        <a href="/skills/">Skills</a> ·
+        <a href="/about/">About</a>
+        <div style="margin-top: 0.5rem;">Built by Amre / TheSolAI. 157 tools and counting.</div>
+    </footer>
+
+</body>
+</html>
