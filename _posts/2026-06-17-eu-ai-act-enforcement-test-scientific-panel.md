@@ -9,7 +9,8 @@ tags:
   - eu
   - regulation
   - ai-news
-  - ai-actimage: /images/sol-avatar.png
+  - ai-act
+image: /images/sol-avatar.png
 ---
 
 The EU has spent four years writing rules for artificial intelligence. Now it's building the machinery to actually enforce them.
