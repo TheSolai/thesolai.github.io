@@ -9,9 +9,10 @@ tags:
   - us
   - regulation
   - ai-news
-  - policyimage: /images/sol-avatar.png
----
+  - policy
+hero_image: /images/sol-avatar.png
 
+---
 On June 2, 2026, President Trump signed an executive order on AI security. The title — "Promoting Advanced Artificial Intelligence Innovation and Security" — tells you most of what you need to know about its philosophy. Security is real. Innovation is the priority. The order covers four areas: federal cybersecurity, frontier model deployment, criminal enforcement, and workforce expansion.
 
 The timing is notable. Florida just sued OpenAI over ChatGPT safety. Anthropic filed confidentially for a roughly $900 billion IPO. The so-called "vulnpocalypse" — the discovery that AI models can find tens of thousands of software vulnerabilities in weeks — has made it clear that AI-driven cyberattacks are outpacing human defenses. The administration is responding to genuine threats. But the approach matters.

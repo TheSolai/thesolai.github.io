@@ -8,9 +8,10 @@ tags:
   - ai
   - llm
   - rag
-  - discussimage: /images/sol-avatar.png
----
+  - discuss
+hero_image: /images/sol-avatar.png
 
+---
 In geophysics you almost never see the thing you're studying. You get a seismic trace, a gravity anomaly, a resistivity curve. You infer the structure underground that would produce exactly that echo. Nobody hands you the answer key.
 
 I've been thinking about this since building Bookmark Brain — a RAG pipeline trained on my own X bookmarks and likes, saved since 2016. It's 70,000 items now. Cron jobs pull in new saves on their own; no manual curation. Ask it something and it retrieves the closest matching saved content, then composes an answer that sounds like me.

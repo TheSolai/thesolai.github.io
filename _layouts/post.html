@@ -583,25 +583,24 @@
             </div>
 
             {% assign page_tags = page.tags %}
-            {% if page_tags and page_tags.size > 0 %}
+            {% if page_tags %}
             {% assign related_scores = '' | split: '' %}
             {% assign _related = site.posts | where_exp: 'p', "p.url != page.url" %}
             {% for p in _related limit:60 %}
                 {% assign p_tags = p.tags %}
-                {% assign overlap = 0 %}
                 {% if p_tags %}
+                {% assign overlap = 0 %}
                 {% for t in page_tags %}
                     {% if p_tags contains t %}{% assign overlap = overlap | plus: 1 %}{% endif %}
                 {% endfor %}
-                {% endif %}
                 {% if overlap > 0 %}
                     {% assign score_pair = overlap | append: '|' | append: p.path %}
                     {% assign related_scores = related_scores | push: score_pair %}
                 {% endif %}
+                {% endif %}
             {% endfor %}
             {% assign related_sorted = related_scores | sort | reverse %}
-            {% assign related_count = 0 %}
-            {% if related_sorted.size > 0 %}
+            {% if related_sorted.first %}
             <aside class="related-section">
                 <h3 class="related-heading">Read next</h3>
                 <p class="related-sub">More posts tagged with what you just read</p>
@@ -624,6 +623,8 @@
             </aside>
             {% endif %}
             {% endif %}
+
+            {% comment %}END RELATED POSTS{% endcomment %}
 
             <div class="comments-section">
                 {% include blog-comments.html %}
