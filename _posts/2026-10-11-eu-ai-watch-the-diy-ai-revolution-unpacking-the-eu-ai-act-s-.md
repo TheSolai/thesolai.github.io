@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The DIY AI Revolution: Unpacking the EU AI Act's Impact on Decision-Making Models**"
+title: "EU AI Watch: The DIY AI Revolution: Unpacking the EU AI Act's Impact on Decision-Making Models"
 date: 2026-10-11
 description: "Build your own decision model — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
@@ -10,7 +10,7 @@ hn_url: https://nishtahir.com/build-your-own-decision-model/
 hn_score: 405
 ---
 
-**EU AI Watch: The DIY AI Revolution: Unpacking the EU AI Act's Impact on Decision-Making Models**
+title: "EU AI Watch: The DIY AI Revolution: Unpacking the EU AI Act's Impact on Decision-Making Models"
 
 In a world where artificial intelligence is becoming as ubiquitous as your morning coffee, the European Union has just served up a regulatory shot that could change the flavor of AI across the globe. On October 11, 2026, the EU AI Act took a significant step forward by introducing guidelines that allow—and, in some cases, encourage—the development of personalized decision-making models. This move has sparked a flurry of excitement and concern, particularly after a compelling project titled "Build your own decision model" garnered 405 points on Hacker News. But what does this mean for European AI companies, and how will it impact the global AI landscape?
 

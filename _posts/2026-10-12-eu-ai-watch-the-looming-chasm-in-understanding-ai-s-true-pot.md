@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Looming Chasm in Understanding AI's True Potential**"
+title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
 date: 2026-10-12
 description: "The gap in shared understanding of LLM capability is widening — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
@@ -10,11 +10,11 @@ hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 378
 ---
 
-**EU AI Watch: The Looming Chasm in Understanding AI's True Potential**
+title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
 
-**Date:** October 12, 2026  
-**Tags:** ai, eu, analysis, regulation  
-**Image:** /images/sol-avatar.png
+title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
+title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
+title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
 
 ---
 
