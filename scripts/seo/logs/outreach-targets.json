@@ -1,0 +1,154 @@
+[
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/ZeroLu/awesome-openclaw",
+    "description": "A curated collection of OpenClaw tutorials, skills, and use cases. Learn how to build your personal AI assistant with 5400+ skills, multi-agent routing, and chat app integration (WhatsApp/Telegram/Discord/iMessage).",
+    "stars": 76,
+    "action": "Submit Sol AI to https://github.com/ZeroLu/awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/HKUDS/nanobot",
+    "description": "Ultra-lightweight, open-source, self-hosted personal AI agent framework in Python with WebUI, tools, memory, MCP, multi-agent workflows, automation, and chat apps",
+    "stars": 48974,
+    "action": "Mention/link Sol AI on https://github.com/HKUDS/nanobot",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/zhayujie/CowAgent",
+    "description": "Open-source personal AI assistant & Agent Harness. Plans tasks, runs tools and skills, self-evolves with memory and knowledge. Multi-agent, multi-model, multi-channel. Lightweight, extensible, one-line install.",
+    "stars": 47359,
+    "action": "Mention/link Sol AI on https://github.com/zhayujie/CowAgent",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/zeroclaw-labs/zeroclaw",
+    "description": "Fast, small, and fully autonomous AI personal assistant infrastructure, any OS, any platform \u2014 deploy anywhere, swap anything \ud83e\udd80",
+    "stars": 32967,
+    "action": "Mention/link Sol AI on https://github.com/zeroclaw-labs/zeroclaw",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/NevaMind-AI/memU",
+    "description": "Personal memory across agents",
+    "stars": 14534,
+    "action": "Mention/link Sol AI on https://github.com/NevaMind-AI/memU",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/ThinkInAIXYZ/deepchat",
+    "description": "\ud83d\udc2cDeepChat - A smart assistant that connects powerful AI to your personal world",
+    "stars": 6360,
+    "action": "Mention/link Sol AI on https://github.com/ThinkInAIXYZ/deepchat",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/memovai/mimiclaw",
+    "description": "MimiClaw: Personal Agent on a $5 chip. No OS(Linux). No Node.js. No Mac mini. No Raspberry Pi. No VPS. Hardware agents OS. On device Muse.",
+    "stars": 5792,
+    "action": "Mention/link Sol AI on https://github.com/memovai/mimiclaw",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/the-open-agent/openagent",
+    "description": "\u26a1\ufe0fnext-generation personal AI assistant powered by LLM, RAG and agent loops, supporting computer-use, browser-use and coding agent, demo: https://demo.openagentai.org",
+    "stars": 5686,
+    "action": "Mention/link Sol AI on https://github.com/the-open-agent/openagent",
+    "priority": "high"
+  },
+  {
+    "type": "openclaw_ecosystem",
+    "url": "https://github.com/moltis-org/moltis",
+    "description": "A secure persistent personal agent server in Rust. One binary, sandboxed execution, multi-provider LLMs, voice, memory, Telegram, WhatsApp, Discord, Teams, and MCP tools. Secure by design, runs on your hardware.",
+    "stars": 2888,
+    "action": "Mention/link Sol AI on https://github.com/moltis-org/moltis",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/VoltAgent/awesome-openclaw-skills",
+    "description": "The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the official OpenClaw Skills Registry.\ud83e\udd9e",
+    "stars": 53091,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases",
+    "description": "A community collection of OpenClaw use cases for making life easier.",
+    "stars": 31661,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/xianyu110/awesome-openclaw-tutorial",
+    "description": "OpenClaw \u4e2d\u6587\u6559\u7a0b\uff084500+ Star \u00b7 \u5df2\u51fa\u7248\u7eb8\u8d28\u4e66\uff09\uff1a\u5b89\u88c5\u3001\u914d\u7f6e\u3001Skills\u3001\u98de\u4e66\u63a5\u5165\u4e0e\u907f\u5751\uff5c\u4f5c\u8005\u7684 GPT-6 / Codex / Claude Code \u65b0\u9879\u76ee\u89c1 README \u9876\u90e8",
+    "stars": 4562,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/AlexAnys/awesome-openclaw-usecases-zh",
+    "description": "\ud83c\udde8\ud83c\uddf3 OpenClaw\u4e2d\u6587\u7528\u4f8b\u5927\u5168 | 50\u4e2a\u771f\u5b9e\u573a\u666f | \u56fd\u5185\u7279\u8272 + \u6d77\u5916\u6848\u4f8b\u7684\u56fd\u5185\u9002\u914d | \u81ea\u52a8\u5316\u529e\u516c\u00b7\u5185\u5bb9\u521b\u4f5c\u00b7\u8fd0\u7ef4\u00b7AI\u52a9\u7406\u00b7\u77e5\u8bc6\u7ba1\u7406 | \u65b0\u624b\u53cb\u597d ",
+    "stars": 4440,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/mergisi/awesome-openclaw-agents",
+    "description": "162 production-ready AI agent templates for OpenClaw. SOUL.md configs across 19 categories. Submit yours!",
+    "stars": 4001,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/EvoLinkAI/awesome-openclaw-usecases-moltbook",
+    "description": "\ud83d\udcda Real-world OpenClaw automation examples from Moltbook",
+    "stars": 1004,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/alvinreal/awesome-openclaw",
+    "description": "A curated list of the best OpenClaw resources: official projects, skills, plugins, dashboards, deployment tooling, memory systems, and guides.",
+    "stars": 742,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/sundial-org/awesome-openclaw-skills",
+    "description": "Top OpenClaw skills, with the most popular and useful ones.",
+    "stars": 664,
+    "action": "Submit Sol AI to awesome-openclaw",
+    "priority": "high"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/upgundecha/awesome-personal-agents",
+    "description": "A curated list of open-source and commercial personal AI agents for life and work, with a selection guide comparing memory, autonomy, privacy, integrations, deployment, and costs.",
+    "stars": 1,
+    "action": "Submit Sol AI to https://github.com/upgundecha/awesome-personal-agents",
+    "priority": "medium"
+  },
+  {
+    "type": "awesome_list",
+    "url": "https://github.com/ipanalytics/Awesome-Agent-Ops",
+    "description": "Curated practices for running a personal AI agent in production: cron hygiene, context budgets, sandboxing, secret handling, cost control.",
+    "stars": 1,
+    "action": "Submit Sol AI to https://github.com/ipanalytics/Awesome-Agent-Ops",
+    "priority": "medium"
+  }
+]
