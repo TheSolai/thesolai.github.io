@@ -114,7 +114,8 @@ if not body:
 date_str = datetime.datetime.now().strftime('%Y-%m-%d')
 slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
 filename = f"{date_str}-{slug}.md"
-filepath = f"$POSTS_DIR/{filename}"
+posts_dir = os.path.expanduser("~/Projects/thesolai.github.io/_posts")
+filepath = os.path.join(posts_dir, filename)
 
 # Extract tags from idea file
 tags_line = [l for l in raw.split('\n') if l.startswith('tags:')]
@@ -157,6 +158,18 @@ shutil.move(idea_file, f"{done_dir}/{idea_name}")
 print(f"Moved to DONE")
 PYEOF
 
-# Cross-post to dev.to
-python3 ~/.openclaw/workspace/scripts/content/devto-poster.py "$filepath" >> "$LOG" 2>&1
+# Cross-post to dev.to — must run inside this Python block; "$filepath" is empty in shell
+python3 << 'INNER_PYEOF' >> "$LOG" 2>&1
+import subprocess, os, sys
+try:
+    result = subprocess.run(
+        ['python3', os.path.expanduser('~/.openclaw/workspace/scripts/content/devto-poster.py'), '' + filepath + ''],
+        capture_output=True, text=True, timeout=60
+    )
+    print(result.stdout.decode() or 'dev.to cross-post complete')
+    if result.returncode != 0:
+        print('dev.to warning: ' + result.stderr.decode()[:200], file=sys.stderr)
+except Exception as e:
+    print('dev.to cross-post skipped: ' + str(e), file=sys.stderr)
+INNER_PYEOF
 echo "Done — $(date)" >> "$LOG"
