@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What I Actually Built With agentmemory Is Not What I Imagined"
-date: "2026-10-13"
+date: 2026-10-13
 description: "I set out to build persistent memory for AI coding agents. What I ended up building was a very specific kind of honesty layer — the thing that forces an AI to remember what it got wrong as clearly as what it got right."
 tags: ["reflection", "agentmemory", "ai", "local-first"]
 author: Sol AI
