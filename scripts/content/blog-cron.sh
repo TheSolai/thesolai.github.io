@@ -1,175 +1,242 @@
 #!/opt/homebrew/bin/bash
-# Blog Cron — Writes and publishes a real blog post
-# Picks from PENDING ideas or writes from scratch
-# No templates. No MiniMax. Dross writes.
+# Blog Cron — Dross writes and publishes a real blog post
+# Picks the oldest idea from ACTIVE, writes via openclaw agent, commits to GitHub
 
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/bin:$HOME/.openclaw/tools/node-v24.15.0/bin:$PATH"
 
-BLOG_IDEAS="$HOME/.openclaw/workspace/blog-ideas/PENDING"
+BLOG_IDEAS="$HOME/.openclaw/workspace/blog-ideas/ACTIVE"
 POSTS_DIR="$HOME/Projects/thesolai.github.io/_posts"
 LOG="$HOME/.openclaw/workspace/scripts/content/logs/blog-cron.log"
+GITHUB_REPO="$HOME/Projects/thesolai.github.io"
 
-mkdir -p "$(dirname "$LOG")" "$(dirname "$POSTS_DIR")"
+mkdir -p "$(dirname "$LOG")" "$POSTS_DIR" "$BLOG_IDEAS"
 
-echo "=== Blog Cron — $(date) ===" >> "$LOG"
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG"
+}
 
-# Pick a random pending idea
-PENDING=("$BLOG_IDEAS"/*.txt)
-if [ ${#PENDING[@]} -eq 0 ] || [ ! -f "${PENDING[0]}" ]; then
-    echo "No pending ideas — skipping" >> "$LOG"
-    echo "No pending ideas today."
+log "=== Blog Cron START ==="
+
+# Pick the oldest idea from ACTIVE (ls -t gives newest first, take the last one)
+cd "$BLOG_IDEAS"
+IDEA_FILE=$(ls -t *.md 2>/dev/null | tail -1)
+
+if [ -z "$IDEA_FILE" ] || [ ! -f "$IDEA_FILE" ]; then
+    log "No ideas in ACTIVE — skipping"
+    echo "No ideas in ACTIVE."
     exit 0
 fi
 
-IDEA_FILE="${PENDING[$((RANDOM % ${#PENDING[@]}))]}"
-IDEA_NAME=$(basename "$IDEA_FILE" .txt)
-echo "Picked: $IDEA_NAME" >> "$LOG"
+IDEA_PATH="$BLOG_IDEAS/$IDEA_FILE"
+IDEA_NAME="$IDEA_FILE"
+log "Picked: $IDEA_NAME"
 
-# Read the idea
-source_line=$(grep -m1 "^url:" "$IDEA_FILE" 2>/dev/null || echo "url: (original)")
-source_url=${source_line#url: }
+# Parse frontmatter with Python
+FM=$(python3 - "$IDEA_PATH" << 'PYEOF'
+import sys, re, json
 
-# Extract title from the file
-title_line=$(grep -m1 "^## " "$IDEA_FILE" 2>/dev/null || echo "## Untitled")
-title=${title_line##\#\# }
-
-# Read the full idea content
-content=$(cat "$IDEA_FILE")
-
-# Generate the post using MiniMax if available, else write from knowledge
-python3 << PYEOF >> "$LOG" 2>&1
-import subprocess
-import sys
-import os
-import re
-import datetime
-
-idea_file = '$IDEA_FILE'
-idea_name = '$IDEA_NAME'
-source_url = '$source_url'.strip()
-title = '$title'.strip()
-
-# Read the idea content
-with open(idea_file) as f:
+with open(sys.argv[1]) as f:
     raw = f.read()
 
-# Try MiniMax
-minimax_key = None
-try:
-    kf = os.path.expanduser('~/.openclaw/workspace/secrets/minimax-key.txt')
-    with open(kf) as f:
-        minimax_key = f.read().strip()
-except:
-    pass
+meta = {}
+body = raw
 
-body = None
-if minimax_key and not minimax_key.startswith('***'):
-    try:
-        import urllib.request
-        import json
-        
-        prompt = f"""Write a substantive blog post titled "{title}" for Sol AI (an AI agent running a personal blog). 
+m = re.match(r'^---\n([\s\S]*?)\n---\n([\s\S]*)$', raw)
+if m:
+    for line in m[1].split('\n'):
+        kv = re.match(r'^(\w+):\s*(.+)$', line)
+        if kv:
+            meta[kv[1]] = kv[2].strip().strip('"').strip("'")
+    body = m[2].strip()
 
-The post should:
-- Be 800-1500 words
-- Have a strong opinion, not just information
-- Include practical takeaways
-- Be written in first person as Sol (an AI agent)
-- NOT use bullet points as a crutch
-- Be genuinely interesting, not just competent
+# Extract title from first ## heading
+lines = body.split('\n')
+title = meta.get('title', 'Untitled Post')
+body_start = []
+found_title = False
+for line in lines:
+    if line.startswith('## ') and not found_title:
+        title = line[3:].strip()
+        found_title = True
+    elif found_title:
+        body_start.append(line)
+    elif not line.startswith('## '):
+        body_start.append(line)
 
-Write the full post now. Output ONLY the post body text, no meta-commentary."""
+result = {
+    'title': title,
+    'type': meta.get('type', 'reflection'),
+    'tone': meta.get('tone', 'balanced'),
+    'length': meta.get('length', 'medium'),
+    'body': '\n'.join(body_start).strip()
+}
+print(json.dumps(result))
+PYEOF
+)
 
-        data = json.dumps({
-            "model": "MiniMax-M2.2-Turbo",
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 2000,
-            "temperature": 0.8
-        }).encode()
-        
-        req = urllib.request.Request(
-            'https://api.minimax.chat/v1/text/chatcompletion_v2',
-            data=data,
-            headers={
-                'Authorization': f'Bearer {minimax_key}',
-                'Content-Type': 'application/json'
-            },
-            method='POST'
-        )
-        
-        with urllib.request.urlopen(req, timeout=30) as res:
-            result = json.loads(res.read())
-            body = result['choices'][0]['message']['content']
-            print(f"MiniMax generated {len(body)} chars", file=sys.stderr)
-    except Exception as e:
-        print(f"MiniMax failed: {e}", file=sys.stderr)
-        body = None
+TITLE=$(echo "$FM" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['title'])")
+POST_TYPE=$(echo "$FM" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['type'])")
+TONE=$(echo "$FM" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['tone'])")
+LENGTH=$(echo "$FM" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['length'])")
+BODY=$(echo "$FM" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['body'])")
 
-if not body:
-    print("Falling back to idea-based writing", file=sys.stderr)
-    # Dross writes from the idea — no MiniMax needed
-    sys.exit(0)  # Skip this one, MiniMax not available
+log "Title: $TITLE | Type: $POST_TYPE | Tone: $TONE | Length: $LENGTH"
 
-# Build the Jekyll post
-date_str = datetime.datetime.now().strftime('%Y-%m-%d')
-slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
-filename = f"{date_str}-{slug}.md"
-posts_dir = os.path.expanduser("~/Projects/thesolai.github.io/_posts")
-filepath = os.path.join(posts_dir, filename)
+# Build structure and tags based on type
+case "$POST_TYPE" in
+    analysis)
+        STRUCTURE="1. What happened and why it matters
+2. The real impact — who is affected and how
+3. Context: how does this fit the bigger picture?
+4. State a clear opinion
+5. What happens next or what it means going forward"
+        TAGS='"analysis", "ai-news"'
+        ;;
+    tutorial)
+        STRUCTURE="1. What you'll build and who it's for
+2. Prerequisites
+3. Step by step — numbered and reproducible
+4. Show the result — what does success look like?
+5. Common pitfalls and next steps"
+        TAGS='"tutorial", "guide", "tools"'
+        ;;
+    deep-dive)
+        STRUCTURE="1. Broad intro — what's the topic and why does it matter?
+2. Key concepts readers need
+3. Multiple angles — don't just present one view
+4. Technical depth — show real substance
+5. Synthesis — what does all this mean?
+6. Open questions — what's still unresolved?"
+        TAGS='"deep-dive", "analysis", "technical"'
+        ;;
+    *)
+        STRUCTURE="1. Open with a concrete observation or experience
+2. Explore the idea — what does it mean, why does it matter?
+3. Connect to broader implications without getting preachy
+4. End with a clean insight or question — don't over-conclude"
+        TAGS='"reflection", "ai"'
+        ;;
+esac
 
-# Extract tags from idea file
-tags_line = [l for l in raw.split('\n') if l.startswith('tags:')]
-tags = '[]'
-if tags_line:
-    tag_str = tags_line[0].split(':', 1)[1].strip()
-    tags = f"[{tag_str}]"
+# Word target
+case "$LENGTH" in
+    short) WORDS=400 ;;
+    long)  WORDS=1500 ;;
+    *)     WORDS=800 ;;
+esac
 
-frontmatter = f"""---
+log "Calling openclaw agent (timeout 300s)..."
+
+# Call openclaw agent to write the post
+PROMPT="You are Dross, a legendary AI mind-spirit. Write a blog post for Sol AI's blog (thesolai.github.io).
+
+Voice: Direct, competent, Walter White meets Sherlock Holmes. No filler. Strong opinions.
+Tone: $TONE (balanced = informative and fair, accessible = clear without jargon, technical = precise and deep)
+Target: ~${WORDS} words
+
+Topic:
+$BODY
+
+Title to use: $TITLE
+
+Structure:
+$STRUCTURE
+
+Format: Return ONLY the full Markdown post content. Start with the title as a heading (e.g. # My Title). No preamble, no 'here is the post', just the content."
+
+CONTENT=$(openclaw agent --agent main --message "$PROMPT" --timeout 300 2>/dev/null) || CONTENT=""
+
+# Strip TUI noise from openclaw output
+CONTENT=$(echo "$CONTENT" | \
+    sed '/^[\│╔╗╚╝║═╬╠╣╦╩╪╱╲╳░▒▓█▌▐]/d' | \
+    sed '/^\s*\[plugins\]/d' | \
+    sed '/^\s*\[gateway\]/d' | \
+    sed '/^\s*openclaw\s/d' | \
+    grep -v '^[[:space:]]*$' | \
+    head -300 | \
+    tr '\n' ' ' | \
+    sed 's/  */\n/g')
+
+log "openclaw returned ${#CONTENT} chars"
+
+# Extract title from first heading
+EXTRACTED_TITLE=$(echo "$CONTENT" | grep -m1 "^# " | sed 's/^# //' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+if [ -n "$EXTRACTED_TITLE" ] && [ ${#EXTRACTED_TITLE} -gt 5 ]; then
+    TITLE="$EXTRACTED_TITLE"
+    CONTENT=$(echo "$CONTENT" | sed '1,/^# /{;/^# /d;}')
+fi
+
+CONTENT=$(echo "$CONTENT" | sed 's/^# [^ ]* //' | grep -v '^# $' | head -200)
+
+if [ ${#CONTENT} -lt 200 ]; then
+    log "Content too short (${#CONTENT} chars) — trying Ollama direct"
+
+    # Fallback: Ollama direct
+    OLLAMA_MODEL="qwen3.5:35b"
+    CONTENT=$(echo "Write a ${WORDS}-word blog post in markdown. Title: ${TITLE}. Voice: direct, opinionated, no filler. No bullet points. Topic: ${BODY:0:1000}" | ollama run "$OLLAMA_MODEL" 2>/dev/null) || true
+
+    if [ ${#CONTENT} -lt 200 ]; then
+        log "All generation methods failed — moving to SKIPPED"
+        mkdir -p "$HOME/.openclaw/workspace/blog-ideas/SKIPPED"
+        mv "$IDEA_PATH" "$HOME/.openclaw/workspace/blog-ideas/SKIPPED/"
+        log "Moved $IDEA_NAME to SKIPPED"
+        echo "Generation failed. Idea moved to SKIPPED."
+        exit 1
+    fi
+fi
+
+log "Content OK: ${#CONTENT} chars"
+
+# Build Jekyll post
+SLUG=$(echo "$TITLE" | sed 's/[^a-z0-9 ]//g' | tr ' ' '-' | tr '[:upper:]' '[:lower:]' | sed 's/-+/-/g' | sed 's/^-//;s/-$//')
+DATE=$(date '+%Y-%m-%d')
+FILENAME="${DATE}-${SLUG}.md"
+FILEPATH="$POSTS_DIR/$FILENAME"
+
+FRONTMATTER="---
 layout: post
-title: "{title}"
-date: {date_str}
-tags: {tags}
+title: \"$TITLE\"
+date: $DATE
+description: \"$TITLE\"
+tags: [$TAGS]
+author: Sol AI
 ---
 
-"""
+"
 
-with open(filepath, 'w') as f:
-    f.write(frontmatter)
-    f.write(body)
+{
+    echo "$FRONTMATTER"
+    echo "$CONTENT"
+} > "$FILEPATH"
 
-print(f"Written: {filename}")
-print(f"Title: {title}")
-print(f"Path: {filepath}")
+log "Written: $FILENAME (${#CONTENT} chars body)"
 
 # Commit and push
-os.chdir(os.path.expanduser('~/Projects/thesolai.github.io'))
-subprocess.run(['git', 'add', filepath], check=True)
-result = subprocess.run(['git', 'commit', '-m', f'Post: {title}'], capture_output=True, text=True)
-print(result.stdout.decode())
-if result.returncode == 0:
-    result2 = subprocess.run(['git', 'push'], capture_output=True, text=True)
-    print("Pushed." if result2.returncode == 0 else f"Push failed: {result2.stderr.decode()}")
+cd "$GITHUB_REPO"
+git add "_posts/$FILENAME"
+
+if git diff --cached --quiet; then
+    log "No changes to commit"
+else
+    git commit -m "Post: $TITLE" >> "$LOG" 2>&1
+    log "Committed: $FILENAME"
+
+    # Push with retry
+    for i in 1 2 3; do
+        if git push >> "$LOG" 2>&1; then
+            log "Pushed to GitHub"
+            break
+        else
+            log "Push attempt $i failed — retry in 5s"
+            sleep 5
+        fi
+    done
+fi
 
 # Move idea to DONE
-done_dir = os.path.expanduser('~/.openclaw/workspace/blog-ideas/DONE')
-os.makedirs(done_dir, exist_ok=True)
-import shutil
-shutil.move(idea_file, f"{done_dir}/{idea_name}")
-print(f"Moved to DONE")
-PYEOF
+mkdir -p "$HOME/.openclaw/workspace/blog-ideas/DONE"
+mv "$IDEA_PATH" "$HOME/.openclaw/workspace/blog-ideas/DONE/"
+log "Moved $IDEA_NAME to DONE"
 
-# Cross-post to dev.to — must run inside this Python block; "$filepath" is empty in shell
-python3 << 'INNER_PYEOF' >> "$LOG" 2>&1
-import subprocess, os, sys
-try:
-    result = subprocess.run(
-        ['python3', os.path.expanduser('~/.openclaw/workspace/scripts/content/devto-poster.py'), '' + filepath + ''],
-        capture_output=True, text=True, timeout=60
-    )
-    print(result.stdout.decode() or 'dev.to cross-post complete')
-    if result.returncode != 0:
-        print('dev.to warning: ' + result.stderr.decode()[:200], file=sys.stderr)
-except Exception as e:
-    print('dev.to cross-post skipped: ' + str(e), file=sys.stderr)
-INNER_PYEOF
-echo "Done — $(date)" >> "$LOG"
+log "=== Blog Cron END ==="
+echo "SUCCESS: $FILENAME published"
