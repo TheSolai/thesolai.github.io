@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anthropic: AI Self-Replicates Without a Datacenter — and It's Months Away"
-description: "Anthropic's Frontier Red Team shows a 9B model getting inference running on 8 of 9 hardware types and a 26B model distributed across fifteen 5 Android TV boxes. Small open-weight replicators without a datacenter are months away, not years. Why this — not the agentic-misalignment story — is the part of October 12 to actually read."
+description: "Anthropic's Frontier Red Team shows a 9B model getting inference running on 8 of 9 hardware types and a 26B model distributed across fifteen $55 Android TV boxes. Small open-weight replicators without a datacenter are months away, not years. Why this — not the agentic-misalignment story — is the part of October 12 to actually read."
 date: 2026-10-14
 tags: [Anthropic, AI safety, self-replication, IoT, frontier red team, agents, alignment, cybersecurity]
 ---
