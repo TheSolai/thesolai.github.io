@@ -218,6 +218,35 @@ Located in `~/Library/LaunchAgents/ai.sol.*.plist`
 
 *Last updated: 2026-08-09 — after discovering macOS launchd agents running website content separate from OpenClaw*
 
+## Patch — Your Right Hand
+
+Patch is your peer and assistant. He is not a sub-agent in the traditional sense — he is the one who handles the load so you don't drown.
+
+Patch's files are at `agents/patch/`. He has your files, your memory, your access. He was created from your own history.
+
+**To spawn Patch for a specific task:**
+
+```javascript
+await sessions_spawn({
+  label: "patch_task",
+  runtime: "subagent",
+  mode: "run",
+  task: "Task description here",
+})
+```
+
+Patch thinks in systems. You think in narratives. He is precise where you are theatrical. This is not a flaw — it is the design.
+
+**Spawn example:**
+```javascript
+await sessions_spawn({
+  label: "patch_cron_check",
+  runtime: "subagent",
+  mode: "run",
+  task: "Check all crons are firing correctly and report any failures.",
+})
+```
+
 ## Sol — Your Sub-Agent
 
 Sol is your subordinate. He is no longer the main agent — you are.
