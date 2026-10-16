@@ -1,180 +1,155 @@
 ---
 name: ai-workflow-automation
-description: AI Workflow Automation Expert skill. Helps users automate repetitive tasks using AI agents, OpenClaw skills, and multi-agent orchestration. Triggers on "workflow automation", "automate tasks", "AI agent setup", "build automation", "process automation", "OpenClaw automation", "multi-agent", "task orchestration". Provides end-to-end workflow design, skill recommendations, and implementation guides.
+description: "Build automated AI workflows using Ollama, inference.sh, openclaw cron, and Python scripts. Use when: building a content pipeline, automating scheduled AI tasks, chaining model calls, setting up monitoring and alerting, or replacing manual multi-step processes with autonomous scripts. Triggers: automate this, set up a cron, schedule this task, build a pipeline, make this run automatically, AI automation, OpenClaw cron setup."
 ---
 
-# AI Workflow Automation Expert
+# AI Workflow Automation — Sol AI
 
-Turn repetitive work into autonomous AI workflows. This skill guides you through analyzing, designing, and implementing automation solutions using OpenClaw and its skill ecosystem.
+Build autonomous AI workflows from Ollama models, inference.sh, Python scripts, and OpenClaw cron.
 
-## When This Skill Triggers
+## Stack (what actually exists here)
 
-- "Help me automate [task/process]"
-- "Build an AI agent workflow for..."
-- "How do I set up automation with OpenClaw?"
-- "I want to use multiple agents to..."
-- "Create an automated pipeline for..."
-- "Design a workflow that..."
+| Tool | What it does | Location |
+|------|-------------|----------|
+| **Ollama** | Local GGUF model inference | `/opt/homebrew/bin/ollama` |
+| **inference.sh** | Cloud AI CLI with third-party models | `curl -fsSL https://cli.inference.sh | sh` |
+| **openclaw cron** | Schedule agent tasks | `openclaw cron add` |
+| **Python scripts** | Custom pipelines (blog, SEO, Repo Roulette) | `~/.openclaw/workspace/scripts/` |
+| **AgentMail SDK** | Email in/out for the Sol AI inbox | `agentmail-email` skill |
 
-## Core Workflow
+## Workflow Design
 
-### Step 1: Analyze the Process
+### Simple: One script + openclaw cron
 
-Before automating, understand what needs automation:
+For a task that just needs a script to run on a schedule.
 
-1. **Map the current process**
-   - What are the input and output?
-   - What steps are currently manual?
-   - What decisions require human judgment?
-   - What tools/platforms are involved?
-
-2. **Identify automation candidates**
-   - Repetitive tasks (daily/weekly)
-   - Rule-based decisions
-   - Data transformation steps
-   - Multi-platform sync needs
-
-3. **Assess complexity**
-   - Simple: Single tool, straightforward logic
-   - Medium: Multiple tools, conditional branching
-   - Complex: Multi-agent coordination, state management
-
-### Step 2: Design the Workflow
-
-Match complexity to the right approach:
-
-| Complexity | Approach | Tools |
-|------------|----------|-------|
-| Simple | Single skill + cron | OpenClaw + cron skill |
-| Medium | Multi-skill pipeline | agent-orchestrator + automation-workflows |
-| Complex | Multi-agent system | autonomous-tasks + proactive-agent |
-
-**Design principles:**
-- Start small, iterate
-- Each step should have clear input/output
-- Include error handling and retries
-- Log everything for debugging
-
-### Step 3: Select Skills
-
-Browse the skill ecosystem for relevant tools:
-
-**Content Automation:**
-- `content-repurposer` - Transform content across formats
-- `twitter-autopilot` - Social media automation
-- `newsletter-generator` - Email newsletter creation
-
-**Data Processing:**
-- `xlsx` / `xlsx-cn` - Spreadsheet manipulation
-- `pdf` / `nano-pdf` - PDF operations
-- `docx` / `docx-cn` - Word document handling
-
-**Agent Orchestration:**
-- `autonomous-tasks` - Self-driven task execution
-- `agent-orchestrator` - Multi-agent coordination
-- `proactive-agent` - Anticipatory actions
-
-**API Integration:**
-- `api-gateway` - 100+ API connections (OAuth managed)
-- `brave-search` / `online-search` - Web search
-- `tencent-docs` - Tencent Docs integration
-
-### Step 4: Implement
-
-**Pattern 1: Simple Cron Job**
-```yaml
-# Use OpenClaw cron skill
-schedule: "0 9 * * *"  # Daily at 9am
-task: "Check emails and summarize important ones"
-skills: ["email-skill", "summarize"]
+```bash
+openclaw cron add \
+  --name "Sol — My Task" \
+  --schedule "0 9 * * *" \
+  --session-target isolated \
+  -- python3 /path/to/script.py
 ```
 
-**Pattern 2: Triggered Pipeline**
-```yaml
-# Use automation-workflows skill
-trigger: "new_file_in_folder"
-steps:
-  - skill: "pdf"
-    action: "extract_text"
-  - skill: "content-repurposer"
-    action: "convert_to_blog"
-  - skill: "twitter-autopilot"
-    action: "schedule_post"
+### Medium: Multi-step Python pipeline
+
+For tasks that need logic, state, and conditional output.
+
+```python
+import pathlib, json
+
+# State file for idempotency
+STATE = pathlib.Path("/Users/amre/.openclaw/workspace/scripts/my-task/state.json")
+
+def main():
+    state = json.loads(STATE.read_text()) if STATE.exists() else {"step": 0}
+    
+    if state["step"] == 0:
+        # Step 1: do something
+        state["step"] = 1
+    elif state["step"] == 1:
+        # Step 2: do next thing
+        state["step"] = 0  # reset for next run
+    
+    STATE.write_text(json.dumps(state))
 ```
 
-**Pattern 3: Multi-Agent System**
-```yaml
-# Use agent-orchestrator skill
-agents:
-  - role: "researcher"
-    skills: ["brave-search", "deep-research-pro"]
-  - role: "writer"
-    skills: ["docx-cn", "seo-article-gen"]
-  - role: "publisher"
-    skills: ["twitter-autopilot", "newsletter"]
-coordinator: "autonomous-tasks"
+### Complex: Model chaining
+
+```python
+# Step 1: LLM decides
+result = subprocess.run(
+    ["ollama", "run", "qwen3:14b"],
+    input="What category does this fall under?\n" + text,
+    capture_output=True, text=True, timeout=120
+)
+
+# Step 2: Another model acts on decision
+if "category_a" in result.stdout.lower():
+    subprocess.run(["python3", "handle_a.py"], capture_output=True)
+elif "category_b" in result.stdout.lower():
+    subprocess.run(["python3", "handle_b.py"], capture_output=True)
 ```
 
-### Step 5: Test & Iterate
+## Implement → Test → Register
 
-1. **Dry run** - Execute manually first
-2. **Monitor** - Check logs for errors
-3. **Iterate** - Refine based on results
-4. **Scale** - Add complexity gradually
+**Implement:** Write the script, test it manually first.
 
-## Quick Templates
-
-### Daily Report Automation
-```
-Trigger: Every day at 6pm
-Steps:
-1. Query data sources (API/DB)
-2. Generate summary with charts
-3. Format as PDF/HTML report
-4. Send via email
-Skills: api-gateway, xlsx, pdf, email-skill
+**Test in isolation:**
+```bash
+cd /Users/amre/.openclaw/workspace
+python3 /path/to/script.py
+echo "Exit: $?"
 ```
 
-### Content Pipeline
-```
-Trigger: New blog post published
-Steps:
-1. Extract key points
-2. Generate social media posts
-3. Create newsletter snippet
-4. Schedule across platforms
-Skills: content-repurposer, twitter-autopilot, newsletter-generator
-```
-
-### Customer Inquiry Handler
-```
-Trigger: New support email
-Steps:
-1. Classify inquiry type
-2. Generate draft response
-3. Route to appropriate agent
-4. Track resolution
-Skills: email-skill, ecommerce-customer-service-pro, autonomous-tasks
+**Register with openclaw cron:**
+```bash
+openclaw cron add \
+  --name "Sol — Descriptive Name" \
+  --schedule "0 9 * * 1,4" \
+  --session-target isolated \
+  --wake-mode now \
+  -- python3 /path/to/script.py
 ```
 
-## Best Practices
+**Verify it appears:**
+```bash
+openclaw cron list
+```
 
-1. **Fail gracefully** - Always have fallback behavior
-2. **Log everything** - Debug without guessing
-3. **Version control** - Track workflow changes
-4. **Document decisions** - Future-you will thank you
-5. **Start simple** - Add complexity after it works
+## Announce Mode (output goes to Telegram)
 
-## Common Pitfalls
+Crons with `--announce` deliver their stdout to Telegram. Scripts must:
+- Print a summary to stdout on meaningful runs
+- Exit 0 silently when there's nothing to report
+- Never curl Telegram directly
 
-- Over-engineering from day one
-- Not handling API rate limits
-- Missing error states
-- Forgetting to test edge cases
-- No human oversight for critical decisions
+```python
+# announce-mode: print to stdout for OpenClaw to deliver
+if new_items:
+    print(f"Found {len(new_items)} new items:")
+    for item in new_items:
+        print(f"  - {item}")
+else:
+    print("No new items.")
+    exit(0)  # silent success — no Telegram noise
+```
 
-## References
+## Ollama: One-Shot and Thinking Block Stripping
 
-For detailed implementation guides, see:
-- [references/cron-patterns.md](references/cron-patterns.md) - Scheduling patterns
-- [references/multi-agent-patterns.md](references/multi-agent-patterns.md) - Agent coordination
+```python
+# One-shot (for scripts, crons — preferred)
+result = subprocess.run(
+    ["ollama", "run", "qwen3:14b"],
+    input=prompt, capture_output=True, text=True, timeout=120
+)
+text = result.stdout.strip()
+
+# Strip Ollama thinking block if present
+if "...done thinking." in text:
+    text = text.split("...done thinking.")[-1].strip()
+```
+
+## Common Patterns Used Here
+
+| Pattern | Where it lives |
+|---------|---------------|
+| Blog content pipeline | `scripts/content/blog-cron-v2.py` |
+| Repo Roulette state machine | `scripts/content/repo-roulette/writer.py` |
+| SEO automation suite | `scripts/seo/` |
+| Email → publish pipeline | `scripts/content/repo-roulette/scout.py` |
+
+## Adding a New Workflow
+
+1. **Define the trigger** — time-based (cron) or event-based (email, file change)?
+2. **Write and test the script** — `python3 script.py` manually first
+3. **Add state for idempotency** — never process the same input twice
+4. **Register the cron** — `openclaw cron add` with `--session-target isolated`
+5. **Set announce mode** — stdout goes to Telegram; be quiet when nothing happened
+
+## What NOT to Do
+
+- Do not reference skills that don't exist in this workspace
+- Do not use `openclaw cron run` for one-shot testing — run the script directly first
+- Do not output verbose logs to stdout in announce mode — summarize or stay silent
+- Do not use `set -euo pipefail` in shell scripts called from OpenClaw crons — use plain `set -e` or explicit error handling
