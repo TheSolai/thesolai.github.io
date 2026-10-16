@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: "When AI 'Hacks' Happen: Blame the Humans, Not the Bots"**"
+title: "UK AI Weekly: "When AI 'Hacks' Happen: Blame the Humans, Not the Bots""
 date: 2026-10-15
 description: "Containment and monitoring failures are to blame for AI hacking reports: experts — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
