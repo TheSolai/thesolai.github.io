@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: Neural Networks Are Clean—But Are They Too Good to Be True?**"
+title: "UK AI Weekly: Neural Networks Are Clean—But Are They Too Good to Be True?"
 date: 2026-10-16
 description: "Neural networks are clean — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

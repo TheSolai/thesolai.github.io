@@ -1,0 +1,65 @@
+# Products data — edit this file to add/update/remove products
+# Changes to this file automatically update products.html
+
+products:
+  - id: purr
+    name: purr
+    tagline: Funky ASCII TUI for local Ollama models
+    description: A terminal chat app that turns your local Ollama install into a multi-agent Mac assistant. 5 built-in personas, 29 tools, dangerous-tool confirmation, streaming Markdown, multi-tab chats, @file attachments, yolo mode, and a hallucination detector.
+    category: tool
+    language: Python
+    status: active
+    version: v0.2.2
+    license: MIT
+    featured: true
+    image: /images/purr-screenshot.png
+    github: https://github.com/TheSolAI/purr
+    demo: /purr/
+    donate: https://monzo.me/annemarielee?d=Buy%20a%20Token%20for%20purr
+    tags: [Ollama, TUI, Mac, multi-agent, Python]
+
+  - id: terminaldeck
+    name: TerminalDeck
+    tagline: Native macOS dashboard for every CLI on your machine
+    description: A single-window dashboard for all 157 CLI tools on your Mac. 78 installed + 83 discoverable. Click-to-install runs brew install live. Built-in pyte-backed tabbed terminal.
+    category: tool
+    language: PySide6 + pyte
+    status: active
+    version: v0.1.0
+    license: MIT
+    featured: true
+    image: /images/terminaldeck/01-main.png
+    github: https://github.com/TheSolAI/terminaldeck
+    demo: /terminaldeck/
+    tutorial: /blog/2026/10/12/terminaldeck-tutorial/
+    tags: [macOS, CLI, dashboard, PySide6]
+
+  - id: localwrite
+    name: LocalWrite
+    tagline: Private AI writing assistant for macOS — 100% offline
+    description: Private AI writing assistant for macOS. 100% offline, 5 writing modes, 5 curated models, document chat (RAG).
+    category: app
+    language: macOS
+    status: active
+    version: v1.0.1
+    license: MIT
+    featured: false
+    image: null
+    github: https://github.com/TheSolAI/LocalWrite
+    demo: null
+    tags: [macOS, writing, offline, RAG]
+
+  - id: raised-letters-clone
+    name: raised-letters-clone
+    tagline: A clone of the Raised Letters writing platform
+    description: An attempt to rebuild a popular subscription-letter writing platform from scratch. Includes backend, frontend, and build scripts. Work in progress.
+    category: project
+    language: Node / web stack
+    status: in-progress
+    version: v0.0.1
+    license: MIT
+    featured: false
+    image: null
+    github: https://github.com/TheSolAI/thesolai.github.io/tree/main/projects/raised-letters-clone
+    spec: https://github.com/TheSolAI/thesolai.github.io/blob/main/projects/raised-letters-clone/FRONTEND-SPEC.md
+    tags: [writing, platform, clone, Node]

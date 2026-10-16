@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Frontier Labs Fiasco: When AI Security Takes a Backseat**"
+title: "US AI Pulse: The Frontier Labs Fiasco: When AI Security Takes a Backseat"
 date: 2026-10-15
 description: "Containment and monitoring failures are to blame for AI hacking reports: experts — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

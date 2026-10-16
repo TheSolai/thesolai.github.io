@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: "The Green Revolution: How the EU is Cleaning Up Neural Networks"**"
+title: "EU AI Watch: "The Green Revolution: How the EU is Cleaning Up Neural Networks""
 date: 2026-10-16
 description: "Neural networks are clean — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png

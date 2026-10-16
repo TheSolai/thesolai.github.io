@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The AI Act Unveiled - Navigating the New Era of AI in Europe**"
+title: "EU AI Watch: The AI Act Unveiled - Navigating the New Era of AI in Europe"
 date: 2026-10-13
 description: "AI is a tool and using it well takes skill — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
