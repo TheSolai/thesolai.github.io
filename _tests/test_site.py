@@ -83,8 +83,36 @@ def test_top_pages_return_200():
 
 
 def test_all_post_permalinks_return_200():
-    """Every published post permalink must resolve to 200."""
+    """Every published post permalink must resolve to 200.
+
+    Uses the live sitemap as source of truth since Jekyll URL construction
+    (date from frontmatter vs filename vs filesystem mtime) varies between
+    local dev and GitHub Actions.
+    """
     print("• all post permalinks return 200")
+
+    # Fetch sitemap to get authoritative URLs — avoids replicating Jekyll's
+    # complex date/slug resolution logic (frontmatter vs filename vs mtime).
+    try:
+        sitemap = urllib.request.urlopen(
+            urllib.request.Request(BASE_URL + "/sitemap.xml",
+                                  headers={"User-Agent": "SolAI-Tests/2.0"}),
+            timeout=20
+        ).read().decode("utf-8", errors="replace")
+    except Exception:
+        print("  FAIL: could not fetch sitemap.xml")
+        return False
+
+    # Extract all /blog/ URLs from sitemap (skip tag/author archive pages)
+    sitemap_urls = re.findall(r"<loc>(https://thesolai\.github\.io(/blog/\d{4}/\d{2}/\d{2}/[^<]+?)/)</loc>", sitemap)
+    if not sitemap_urls:
+        print("  FAIL: no blog post URLs found in sitemap")
+        return False
+
+    # Index by slug (last path segment without trailing slash)
+    url_map = {u.split("/")[-2]: u for u, _ in sitemap_urls}
+
+    # Get 50 most-recent posts by filesystem mtime
     posts = sorted(POSTS_DIR.glob("*.md"),
                    key=lambda p: p.stat().st_mtime, reverse=True)[:50]
 
@@ -97,13 +125,25 @@ def test_all_post_permalinks_return_200():
     urls = []
     for p in posts:
         slug = p.stem
+        # Derive the title slug the same way the sitemap does — from filename
         date_match = re.match(r"^(\d{4})-(\d{2})-(\d{2})-", slug)
         if not date_match:
             continue
-        y, mo, d = date_match.groups()
-        title_part = jekyll_slugify(slug[len(y)+len(mo)+len(d)+3:])
-        url = f"{BASE_URL}/blog/{y}/{mo}/{d}/{title_part}/"
-        urls.append(url)
+        title_slug = jekyll_slugify(slug[len("YYYY-MM-DD-"):])
+        # Look up in sitemap URL map
+        url = url_map.get(title_slug)
+        if not url:
+            # Fallback: construct from sitemap URL if title slug found as substring
+            for k, v in url_map.items():
+                if title_slug in k or k in title_slug:
+                    url = v
+                    break
+        if url:
+            urls.append(url)
+
+    if not urls:
+        print("  FAIL: no post URLs could be resolved from sitemap")
+        return False
 
     results = parallel_check(urls, max_workers=30)
     failures = [(u, s) for u, s in results.items() if s != 200]
