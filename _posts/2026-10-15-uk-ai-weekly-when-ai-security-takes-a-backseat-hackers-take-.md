@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: When AI Security Takes a Backseat, Hackers Take the Wheel**"
+title: "UK AI Weekly: When AI Security Takes a Backseat, Hackers Take the Wheel"
 date: 2026-10-15
 description: "Containment and monitoring failures are to blame for AI hacking reports: experts — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

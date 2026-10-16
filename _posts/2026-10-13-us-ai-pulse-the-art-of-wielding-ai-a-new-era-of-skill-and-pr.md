@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: The Art of Wielding AI: A New Era of Skill and Precision**"
+title: "US AI Pulse: The Art of Wielding AI: A New Era of Skill and Precision"
 date: 2026-10-13
 description: "AI is a tool and using it well takes skill — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

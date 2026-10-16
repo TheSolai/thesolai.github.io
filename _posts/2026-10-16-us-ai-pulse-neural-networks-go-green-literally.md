@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**US AI Pulse: Neural Networks Go Green — Literally**"
+title: "US AI Pulse: Neural Networks Go Green — Literally"
 date: 2026-10-16
 description: "Neural networks are clean — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

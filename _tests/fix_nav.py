@@ -16,7 +16,11 @@ STANDARD_NAV = '''    <nav class="topbar">
                 <li><a href="/">Home</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/guides">Guides</a></li>
+                <li><a href="/skills/">Skills</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="/terminaldeck/">TerminalDeck</a></li>
                 <li><a href="/analysis/">Analysis</a></li>
+                <li><a href="/bloopers/">Bloopers 🤡</a></li>
                 <li><a href="/about/">About</a></li>
                 <li><a href="/guestbook.html">Guestbook</a></li>
                 <li><a href="/contact/">Contact</a></li>
@@ -36,6 +40,10 @@ COMPLETE_REPLACE = {
     "blog.html": "blog.html - no nav at all",
     "guides/sol-recovery-guide.html": "incomplete nav",
     "guides/automation-patterns.html": "incomplete nav - missing Analysis, Guestbook, Contact",
+    "newsletter.html": "missing terminaldeck, skills, products, bloopers",
+    "contact.html": "missing terminaldeck, skills, products, bloopers",
+    "products.html": "missing terminaldeck, skills, products, bloopers",
+    "analysis.html": "missing terminaldeck, skills, products, bloopers",
 }
 
 def set_active(nav_html: str, page_name: str) -> str:
@@ -47,6 +55,11 @@ def set_active(nav_html: str, page_name: str) -> str:
         "analysis.html": ("/analysis/", "Analysis"),
         "guestbook.html": ("/guestbook.html", "Guestbook"),
         "blog.html": ("/blog", "Blog"),
+        "newsletter.html": ("/newsletter/", "Newsletter"),
+        "products.html": ("/products/", "Products"),
+        "terminaldeck.html": ("/terminaldeck/", "TerminalDeck"),
+        "bloopers.html": ("/bloopers/", "Bloopers 🤡"),
+        "skills/index.html": ("/skills/", "Skills"),
         "guides/index.html": ("/guides", "Guides"),
         "guides/email-automation.html": ("/guides", "Guides"),
         "guides/openclaw-skills-guide.html": ("/guides", "Guides"),

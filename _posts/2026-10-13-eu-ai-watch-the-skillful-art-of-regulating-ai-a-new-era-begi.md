@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The Skillful Art of Regulating AI: A New Era Begins**"
+title: "EU AI Watch: The Skillful Art of Regulating AI: A New Era Begins"
 date: 2026-10-13
 description: "AI is a tool and using it well takes skill — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
