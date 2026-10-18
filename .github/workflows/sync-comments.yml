@@ -36,6 +36,12 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+          submodules: false
+
+      - name: Clear stale gitmodules
+        run: |
+          git config --global --remove-section submodule.AstrBot 2>/dev/null || true
+          rm -f ~/.gitmodules 2>/dev/null || true
 
       - name: Set up Python
         uses: actions/setup-python@v5
