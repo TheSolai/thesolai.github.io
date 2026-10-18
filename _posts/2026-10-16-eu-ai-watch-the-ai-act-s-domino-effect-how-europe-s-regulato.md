@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: The AI Act’s Domino Effect — How Europe’s Regulatory Ambitions Are Reshaping Global AI Development**"
+title: "EU AI Watch: The AI Act’s Domino Effect — How Europe’s Regulatory Ambitions Are Reshaping Global AI Development**"
 date: 2026-10-16
 description: "90% of US working hours are spent on tasks not covered well by AI benchmarks — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
