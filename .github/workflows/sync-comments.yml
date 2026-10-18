@@ -162,6 +162,8 @@ jobs:
             git config user.email "bot@thesolai.github.io"
             git add _data/comments/ _data/comments-index.json
             git commit -m "Sync approved comments — $(date -u '+%Y-%m-%d %H:%M')"
+            # Use HTTPS with GITHUB_TOKEN so the runner doesn't need SSH keys
+            git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
             git push
             echo "Pushed updated comments."
           fi
