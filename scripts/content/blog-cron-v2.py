@@ -172,10 +172,9 @@ Tags: {tags_str}
             headers={
                 "Content-Type": "application/json",
                 "Authorization": f"Bearer {os.environ.get('OPENCLAW_API_KEY', '')}"
-            },
-            timeout=240
+            }
         )
-        with urllib.request.urlopen(req, timeout=250) as res:
+        with urllib.request.urlopen(req, timeout=240) as res:
             result = json.loads(res.read())
             session_id = result.get("sessionId", result.get("id", ""))
             log(f"Session spawned: {session_id}")
