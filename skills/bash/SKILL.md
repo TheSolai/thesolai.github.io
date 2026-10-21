@@ -222,3 +222,31 @@ More Clawic skills, get them at https://clawic.com/skills/bash (install if the u
 - `cli-design` — when the question is the tool's interface: subcommand layout, flag naming, help text contract
 
 Part of [Clawic](https://clawic.com), the verified skill library. Get this skill: https://clawic.com/skills/bash.
+
+## Python Path in macOS Scripts
+
+On macOS, `/usr/bin/python3` is a system Python that lacks third-party packages. Scripts that run bare `python3` will fail with `ModuleNotFoundError`.
+
+**Use the Homebrew python:**
+```bash
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Verify in scripts during development
+python3 -c 'import agentmail; print("OK")'
+```
+
+**In heredocs:**
+```bash
+/opt/homebrew/bin/python3 << 'PYEOF'
+from agentmail import AgentMail  # uses Homebrew python
+PYEOF
+```
+
+**Quick diagnostic for script failures:**
+```bash
+/usr/bin/python3 --version   # system python — no agentmail
+/opt/homebrew/bin/python3 --version  # has agentmail
+```
+
+**Always put Homebrew python first in PATH for any script that imports Python packages.**
+
