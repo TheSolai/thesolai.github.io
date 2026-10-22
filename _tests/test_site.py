@@ -21,6 +21,7 @@ import urllib.error
 import re
 import sys
 import os
+import time
 import html.parser
 import concurrent.futures
 from pathlib import Path
@@ -40,17 +41,33 @@ TOP_PAGES = [
 ]
 
 
-def head_status(url, timeout=15):
-    """HEAD request — returns int status code, or -1 on error."""
-    try:
-        req = urllib.request.Request(url, method="HEAD",
-                                    headers={"User-Agent": "SolAI-Tests/2.0"})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return resp.getcode()
-    except urllib.error.HTTPError as e:
-        return e.code
-    except Exception:
-        return -1
+def head_status(url, timeout=15, retries=3, delay=5):
+    """HEAD request — returns int status code, or -1 on error.
+
+    Transient upstream failures (502/503/504, or a connection error while
+    GitHub Pages swaps the site during a deploy) are retried. Without the
+    retry, a deploy landing mid-test failed the whole Site Health Tests
+    run on a perfectly healthy site: the 2026-10-22 build failed on
+    "503 https://thesolai.github.io/guides" while every other check
+    passed and the page was live seconds later.
+    """
+    last = -1
+    for attempt in range(retries + 1):
+        try:
+            req = urllib.request.Request(url, method="HEAD",
+                                        headers={"User-Agent": "SolAI-Tests/2.0"})
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.getcode()
+        except urllib.error.HTTPError as e:
+            last = e.code
+            # 5xx and 429 are the server's problem, not the site's. Retry.
+            if e.code not in (429, 500, 502, 503, 504):
+                return e.code
+        except Exception:
+            last = -1
+        if attempt < retries:
+            time.sleep(delay * (attempt + 1))
+    return last
 
 
 def parallel_check(urls, max_workers=20, timeout=15):
