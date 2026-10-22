@@ -32,6 +32,26 @@ REPO = "TheSolAI/thesolai.github.io"
 POSTS_DIR = "_posts"
 BASE_DIR = Path(__file__).parent
 
+# ─── Content sanitising ─────────────────────────────────────────────────────
+# A generator must publish what the model meant to write, not what it
+# actually emitted. Two defects used to ship straight to main:
+#
+#   1. qwen3.5 writes a "Thinking..." scratchpad before the article. The
+#      old strip regexes expected a fenced block qwen never emits, so the
+#      scratchpad was published as the post body.
+#   2. Output captured from a terminal hard-wraps at ~80 columns and
+#      re-prints the word that straddles the wrap, duplicating it.
+#
+# Both are removed here, before anything is written, so a broken draft can
+# never reach a branch. The helpers live in scripts/content/ beside the
+# rest of the content pipeline so every caller strips identically.
+sys.path.insert(0, str(BASE_DIR.parent / "scripts" / "content"))
+try:
+    from _minimax_helper import strip_thinking, strip_terminal_artifacts
+except ImportError:  # pragma: no cover - helper missing
+    strip_thinking = None
+    strip_terminal_artifacts = None
+
 # ─── Helpers ──────────────────────────────────────────────────────────────
 
 def get_token():
@@ -130,17 +150,75 @@ def get_all_posts_full(max_posts=20):
             recent.append(full)
     return recent
 
+def split_title(content, idea=''):
+    """Split a title off a cleaned article body.
+
+    Preference order:
+      1. An H1 in the cleaned body -- the model's own heading.
+      2. The "## Title" heading of the source idea, which names the post
+         authoritatively and survives even when the model writes no heading.
+      3. The first substantive line of the body.
+
+    The heading is removed from the body so the article never opens by
+    repeating its own title.
+    """
+    m = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
+    if m:
+        title = m.group(1).strip()
+        content = content.replace(m.group(0), '', 1).strip()
+        return title, content
+
+    mi = re.search(r'^##\s+(.+)$', idea or '', re.MULTILINE)
+    if mi:
+        title = mi.group(1).strip()
+        content = re.sub(r'^##\s+.+$', '', content, count=1,
+                         flags=re.MULTILINE).strip()
+        return title, content
+
+    lines = content.split('\n')
+    first = ''
+    for line in lines:
+        line = line.strip()
+        if line and not line.startswith('```') and len(line) > 5:
+            first = line
+            break
+    title = re.sub(r'^#+\s*', '', first).strip() if first else 'Untitled'
+    content = content.replace(first, '', 1).strip() if first else content
+    return title, content
+
+
+def _yaml(value):
+    """Quote a value for YAML, escaping quotes and backslashes.
+
+    Titles and descriptions regularly contain double quotes, colons and
+    backslashes. Interpolating them raw produced unparseable front matter
+    and posts published under garbage URLs.
+    """
+    v = str(value).replace("\\", "\\\\").replace('"', '\\"')
+    v = v.replace("\n", " ").replace("\r", " ").strip()
+    return f'"{v}"'
+
+
 def save_draft(title, content, date, tags, desc=''):
     """Save post as draft to GitHub."""
     slug = slugify(title)
     filename = f"{date}-{slug}.md"
     path = f"{POSTS_DIR}/{filename}"
     tag_list = '[' + ', '.join(f'"{t.strip()}"' for t in tags) + ']' if tags else '["blog"]'
+    if not desc:
+        desc = re.sub(r'\s+', ' ', content).strip()[:155].strip()
+        # The description must not be a copy of the title: the CI gate
+        # rejects a description that is the title with more text after it.
+        if not desc or desc.lower().startswith(title.lower()):
+            desc = title
     body_text = f'''---
-title: "{title}"
+layout: post
+title: {_yaml(title)}
 date: {date}
-description: "{desc or title}"
+description: {_yaml(desc)}
+hero_image: /images/sol-avatar.png
 tags: {tag_list}
+author: Sol AI
 ---
 
 {content}'''
@@ -277,23 +355,17 @@ tags: [{', '.join(template['tags'])}]"""
         raise Exception(f"Generation failed: {result.stderr or 'unknown error'}")
     
     content = result.stdout.strip()
-    
-    # Extract title from content (first # heading or first line)
-    title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
-    if title_match:
-        title = title_match.group(1).strip()
-        content = content.replace(title_match.group(0), '').strip()
-    else:
-        # Use first line as title if no heading
-        lines = content.split('\n')
-        first_text = ''
-        for line in lines:
-            line = line.strip()
-            if line and not line.startswith('```') and len(line) > 5:
-                first_text = line
-                break
-        title = re.sub(r'^#+\s*', '', first_text).strip() if first_text else 'Untitled'
-        content = content.replace(first_text, '', 1).strip() if first_text else content
+
+    # Strip the model's scratchpad and any terminal capture artefacts
+    # before the title is read out of the body.
+    if strip_thinking:
+        content = strip_thinking(content)
+    if strip_terminal_artifacts:
+        content = strip_terminal_artifacts(content)
+    content = content.strip()
+
+    # Extract the title from the cleaned article.
+    title, content = split_title(content, idea)
     
     # Ensure decent length
     word_count = len(content.split())

@@ -22,6 +22,25 @@ import datetime
 REPO = "TheSolAI/thesolai.github.io"
 POSTS_DIR = "_posts"
 GH_TOKEN = None
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# ─── Content sanitising ─────────────────────────────────────────────────────
+# A generator must publish what the model meant to write, not what it
+# actually emitted. Two defects used to ship straight to main:
+#
+#   1. The model writes a "Thinking..." scratchpad before the article.
+#   2. Output captured from a terminal hard-wraps at ~80 columns and
+#      re-prints the word that straddles the wrap, duplicating it.
+#
+# Both are removed before anything is written, so a broken draft can never
+# reach a branch. The helpers live in scripts/content/ beside the rest of
+# the content pipeline so every caller strips identically.
+sys.path.insert(0, os.path.join(BASE_DIR, os.pardir, "scripts", "content"))
+try:
+    from _minimax_helper import strip_thinking, strip_terminal_artifacts
+except ImportError:  # pragma: no cover - helper missing
+    strip_thinking = None
+    strip_terminal_artifacts = None
 
 def get_token():
     global GH_TOKEN
@@ -77,6 +96,55 @@ def create_branch_from_main(branch_name):
     })
     return result is not None
 
+def _yaml(value):
+    """Quote a value for YAML, escaping quotes and backslashes.
+
+    Titles and descriptions regularly contain double quotes, colons and
+    backslashes. Interpolating them raw produced unparseable front matter
+    and posts published under garbage URLs.
+    """
+    v = str(value).replace("\\", "\\\\").replace('"', '\\"')
+    v = v.replace("\n", " ").replace("\r", " ").strip()
+    return f'"{v}"'
+
+
+def split_title(content, idea=''):
+    """Split a title off a cleaned article body.
+
+    Preference order:
+      1. An H1 in the cleaned body -- the model's own heading.
+      2. The "## Title" heading of the source idea, which names the post
+         authoritatively and survives even when the model writes no heading.
+      3. The first substantive line of the body.
+
+    The heading is removed from the body so the article never opens by
+    repeating its own title.
+    """
+    m = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
+    if m:
+        title = m.group(1).strip()
+        content = content.replace(m.group(0), '', 1).strip()
+        return title, content
+
+    mi = re.search(r'^##\s+(.+)$', idea or '', re.MULTILINE)
+    if mi:
+        title = mi.group(1).strip()
+        content = re.sub(r'^##\s+.+$', '', content, count=1,
+                         flags=re.MULTILINE).strip()
+        return title, content
+
+    lines = content.split('\n')
+    first = ''
+    for line in lines:
+        line = line.strip()
+        if line and not line.startswith('```') and len(line) > 5:
+            first = line
+            break
+    title = re.sub(r'^#+\s*', '', first).strip() if first else 'Untitled'
+    content = content.replace(first, '', 1).strip() if first else content
+    return title, content
+
+
 def save_draft(title, content, date, tags, desc='', branch='draft'):
     if branch != 'main':
         create_branch_from_main(branch)
@@ -85,7 +153,23 @@ def save_draft(title, content, date, tags, desc='', branch='draft'):
     filename = f"{date}-{slug}.md"
     path = f"{POSTS_DIR}/{filename}"
     tag_str = '[' + ', '.join(f'"{t.strip()}"' for t in tags) + ']' if tags else '["blog"]'
-    body_text = f'---\ntitle: "{title}"\ndate: {date}\ndescription: "{desc or title}"\ntags: {tag_str}\nlayout: post\n---\n\n{content}'
+    if not desc:
+        desc = re.sub(r'\s+', ' ', content).strip()[:155].strip()
+        # The description must not be a copy of the title: the CI gate
+        # rejects a description that is the title with more text after it.
+        if not desc or desc.lower().startswith(title.lower()):
+            desc = title
+    body_text = f'''---
+layout: post
+title: {_yaml(title)}
+date: {date}
+description: {_yaml(desc)}
+hero_image: /images/sol-avatar.png
+tags: {tag_str}
+author: Sol AI
+---
+
+{content}'''
     
     sha = None
     existing = gh_api(f'contents/{path}', branch=branch)
@@ -177,17 +261,17 @@ Format: Return ONLY the Markdown content. Start with a heading. No preamble.
 """
 
     content = generate_with_openclaw(prompt)
-    
-    # Extract title from first heading
-    title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
-    if title_match:
-        title = title_match.group(1).strip()
-        content = content.replace(title_match.group(0), '', 1).strip()
-    else:
-        lines = [l.strip() for l in content.split('\n') if l.strip() and not l.strip().startswith('```')]
-        first = next((l for l in lines if len(l) > 10), 'Untitled')
-        title = re.sub(r'^#+\s*', '', first).strip()
-        content = content.replace(first, '', 1).strip()
+
+    # Strip the model's scratchpad and any terminal capture artefacts
+    # before the title is read out of the body.
+    if strip_thinking:
+        content = strip_thinking(content)
+    if strip_terminal_artifacts:
+        content = strip_terminal_artifacts(content)
+    content = content.strip()
+
+    # Extract the title from the cleaned article.
+    title, content = split_title(content, idea)
     
     # Derive tags from type
     TAG_MAP = {'analysis': ['analysis', 'ai-news'], 'reflection': ['reflection', 'ai'],

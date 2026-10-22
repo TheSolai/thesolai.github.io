@@ -14,6 +14,12 @@ Usage:
     text = minimax_generate(prompt, api_key=key, max_tokens=600, system="...")
 """
 
+# `str | None` in the minimax_generate signature is PEP 604 syntax, which
+# raises TypeError at import time on Python 3.9 (the system python3 on macOS
+# is still 3.9). Deferring annotation evaluation keeps this module importable
+# on every interpreter the content pipeline might be invoked with.
+from __future__ import annotations
+
 import json
 import re
 import time
