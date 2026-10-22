@@ -79,6 +79,12 @@ exclude:
   - agents/dross/USER.md
   - agents/dross/SUCCESSION-TODO.md
   - agents/sol/USER.md
+  - agents/patch/memory
+  - agents/patch/references
+  - agents/sol/memory
+  - agents/sol/references
+  - data/agent-email-state
+  - data/outreach
   - projects/drosscash
   - node_modules
   - vendor
