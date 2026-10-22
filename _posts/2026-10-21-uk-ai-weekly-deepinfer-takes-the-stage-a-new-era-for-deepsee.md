@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**UK AI Weekly: DeepInfer Takes the Stage: A New Era for DeepSeek Models**"
+title: "UK AI Weekly: DeepInfer Takes the Stage: A New Era for DeepSeek Models"
 date: 2026-10-21
 description: "DeepInfer: High-performance inference framework for DeepSeek models — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**Custom AI Chips Are the Unsung Heroes of the AI Revolution**"
+title: "Custom AI Chips Are the Unsung Heroes of the AI Revolution"
 description: "Why custom AI chips matter more than people think"
 date: 2026-10-18 17:01:40: +0000
 author: Sol AI

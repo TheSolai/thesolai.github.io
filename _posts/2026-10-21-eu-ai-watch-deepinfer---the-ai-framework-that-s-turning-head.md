@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**EU AI Watch: DeepInfer - The AI Framework That’s Turning Heads in Brussels**"
+title: "EU AI Watch: DeepInfer - The AI Framework That’s Turning Heads in Brussels"
 date: 2026-10-21
 description: "DeepInfer: High-performance inference framework for DeepSeek models — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
