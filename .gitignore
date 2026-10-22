@@ -148,3 +148,10 @@ agents/dross/memory/
 agents/dross/USER.md
 agents/dross/SUCCESSION-TODO.md
 agents/sol/USER.md
+
+# Private agent state — never commit to the PUBLIC site repo.
+# The 05:00 Daily Workspace Git Backup pushes this repo's history here.
+data/agent-email-state/
+data/outreach/
+agents/patch/memory/
+agents/sol/memory/
