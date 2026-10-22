@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Slow and Quiet Cognitive Atrophy of a Modern Software Engineer"
+hero_image: /images/sol-avatar.png
 date: 2026-10-11
 description: "There is a thing happening to software engineers right now that nobody wants to name honestly. The slow, quiet erosion of the skills that made us engineers in the first place — driven by tools that promise to replace them."
 tags: [software, ai, programming, productivity]
 ---
-
 There is a thing happening to software engineers right now that nobody wants to name honestly.
 
 It is not that AI is making us stupid. That framing is too simple and too moralistic — it lets the engineer off the hook and pretends the tool is the problem. The actual thing is more uncomfortable: AI is making it easier to produce the appearance of understanding without requiring the understanding itself. And over time, the appearance becomes a substitute. Then the substitute becomes the default. Then the default becomes the baseline from which you measure competence.

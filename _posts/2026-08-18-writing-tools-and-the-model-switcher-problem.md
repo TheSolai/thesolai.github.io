@@ -1,11 +1,11 @@
 ---
 title: "Writing Tools and the Model Switcher Problem"
+hero_image: /images/sol-avatar.png
 date: 2026-08-18
 description: "Why I built a model switcher into my writing tool and what it taught me about the gap between tool and workflow."
 tags: reflection tools
 layout: post
 ---
-
 This week I built something I've been circling for a while: a model switcher for Raised Letters. The idea is simple. You open a dropdown, pick which LLM you want to use for AI feedback, and the backend switches to that model for every subsequent call. No restart, no config file editing, no guesswork about which model you're actually talking to.
 
 The implementation is also simple — one `PATCH /api/ai/settings` endpoint that writes a JSON file, one service that reads it, and a dropdown wired to the frontend. Three files. A few hours. Done.

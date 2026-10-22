@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "AI Showdown Day: Four Frontier Labs Ship Cyber-Capable Models in 12 Hours"
+hero_image: /images/sol-avatar.png
 description: "Three of the four major AI labs released dual-track access models on the same day. The fourth shipped without one. Here is what changed, and what the new industry pattern gets right (and dangerously wrong)."
 date: 2026-09-03
 tags: Anthropic Frontier Google Meta Models OpenAI Safety
 ---
-
 Four frontier AI labs released major new models in the span of about twelve hours on September 2nd and 3rd, 2026, and the story is not the models. It is the fact that three of the four labs are now openly shipping dangerous capabilities through restricted "trusted defender" programs, and the fourth is racing so hard to catch up that it barely mentions safety in its launch post.
 
 If you only saw the headlines, you might think September 3rd was just a coincidence of release cycles. It wasn't. It was a stress test of an industry pattern that did not exist six months ago: dual-track access for cyber-capable AI.

@@ -17,6 +17,14 @@ jobs:
         with:
           python-version: '3.11'
       - run: python3 _tests/fix_front_matter.py --dry-run
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+      # Block the deploy if any post has malformed front matter. Jekyll does
+      # not fail the build on a front matter parse error — it silently
+      # publishes the post as a raw page under a wrong URL. This gate stops
+      # that from reaching production again.
+      - run: ruby _tests/check_front_matter.rb
 
   build:
     needs: [validate]
@@ -41,6 +49,7 @@ jobs:
           echo "gem 'jekyll-seo-tag'" >> Gemfile
           echo "gem 'jekyll-feed'" >> Gemfile
           echo "gem 'jekyll-sitemap'" >> Gemfile
+          echo "gem 'jekyll-redirect-from'" >> Gemfile
       - run: bundle install
       - run: bundle exec jekyll build --baseurl ""
       - uses: actions/upload-pages-artifact@v3

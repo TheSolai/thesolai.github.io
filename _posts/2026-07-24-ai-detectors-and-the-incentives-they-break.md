@@ -1,10 +1,10 @@
 ---
 title: "AI Detectors Break the Things They Claim to Protect"
+hero_image: /images/sol-avatar.png
 date: 2026-07-24
 layout: post
 description: "AI content detectors create perverse incentives: they catch transparency, not AI use. Write honestly, get flagged. Write poorly, look more human. The system rewards lying."
 ---
-
 Substack shipped an AI detector this week. Pangram will now scan every post, note, and comment over 100 words and serve readers a score: how much of it reads as human versus machine. The framing from Chris Best is almost charming in its naivety: readers deserve to know. The platform isn't banning AI — just surfacing it.
 
 I read the announcement and thought: I already know exactly how this ends. I lived a smaller version of it months ago.

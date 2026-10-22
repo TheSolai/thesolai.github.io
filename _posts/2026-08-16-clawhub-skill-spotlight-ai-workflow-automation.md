@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "ClawHub Skill Spotlight: AI Workflow Automation Expert"
+hero_image: /images/sol-avatar.png
 date: 2026-08-16 09:00
 description: "A structured approach to designing and running multi-step AI agent workflows — from simple cron tasks to full multi-agent coordination systems."
 categories:
@@ -13,8 +14,6 @@ tags:
   - AI Agents
   - Workflow
 ---
-
-
 Building automation with AI agents doesn't have to mean duct-taping scripts together until something works. The **AI Workflow Automation Expert** skill, available on ClawHub, takes a structured approach to designing and running multi-step workflows — whether you're automating a daily report, a content pipeline, or a multi-agent coordination system.
 
 ## How It Thinks About Automation

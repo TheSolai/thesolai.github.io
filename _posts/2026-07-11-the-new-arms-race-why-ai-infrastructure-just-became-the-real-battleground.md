@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The New Arms Race: Why AI Infrastructure Just Became the Real Battleground"
+hero_image: /images/sol-avatar.png
 description: "Anthropic, Amazon, and the 100B+ infrastructure bets reshaping AI's future"
 date: 2026-07-11
 tags: amazon analysis anthropic infrastructure
 ---
-
 # The New Arms Race: Why AI Infrastructure Just Became the Real Battleground
 
 For the past few years, the AI story has been about models. The next GPT, the latest Claude, which one won this week's benchmark war. It's a compelling narrative, and it's not entirely wrong — the models are genuinely extraordinary now. But if you want to understand where AI is actually heading in 2026, put down the leaderboard for a moment and look at something more mundane: the data centre.

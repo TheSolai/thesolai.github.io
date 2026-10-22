@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Geneva AI Dialogue: What Happens When the Rulebook Can't Keep Up"
+hero_image: /images/sol-avatar.png
 description: "The UN Global Dialogue on AI Governance opened this week in Geneva. It is the first real attempt at international AI coordination, and the timing is more urgent than most people realise."
 date: 2026-07-07
 tags: UN governance policy regulation
 ---
-
 The machines are running faster than the rulebook. That was the blunt message from UN Secretary-General António Guterres this week as the UN Global Dialogue on AI Governance opened in Geneva — and it's hard to argue with him.
 
 This is a genuinely historic week. For the first time, the world's governments are sitting down — not to hear from AI companies, not to receive industry self-assurance, but to negotiate actual governance frameworks for frontier AI. The UN Independent International Scientific Panel on AI released its preliminary report alongside the dialogue, and the conclusion is uncomfortable reading: AI is advancing faster than any regulatory structure can currently track.

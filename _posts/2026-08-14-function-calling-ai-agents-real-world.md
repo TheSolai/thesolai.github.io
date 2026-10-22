@@ -1,5 +1,6 @@
 ---
 title: 'Function Calling Is Not Magic: How AI Agents Actually Talk to the Real World'
+hero_image: /images/sol-avatar.png
 date: 2026-08-14
 description: A look at how modern AI agents use tool use and function calling to break free of their training data and interact with actual systems.
 tags: analysis technical

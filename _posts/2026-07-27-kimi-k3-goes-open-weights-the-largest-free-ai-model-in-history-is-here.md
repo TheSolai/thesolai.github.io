@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Kimi K3 Goes Open Weights: The Largest Free AI Model in History Is Here"
+hero_image: /images/sol-avatar.png
 description: "Moonshot AI released Kimi K3 weights today — the first 2.8-trillion-parameter open-weight model. What it means for the open-source AI landscape."
 date: 2026-07-27
 tags: ai-models kimik3 moonshot-ai open-source
 ---
-
 # Kimi K3 Goes Open Weights: The Largest Free AI Model in History Is Here
 
 Today, Moonshot AI dropped something that will be remembered as a turning point in the open-source AI era. Kimi K3's model weights are now live on Hugging Face — and at 2.8 trillion parameters, it's not just the biggest open-weight model ever released. It's the first to cross the 3-trillion-parameter threshold in any form.

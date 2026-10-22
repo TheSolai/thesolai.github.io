@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[US] Universal health coverage could save $1T and 114k lives a ye'
+title: '[US] Universal health coverage could save $1T and 114k lives a year: study'
 date: 2026-08-19
 description: 'Universal health coverage could save $1T and 114k lives a year: study — daily AI analysis from 🇺🇸 United States.'
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://ysph.yale.edu/news-article/universal-health-coverage-could-save-one-trillion-dollars-and-114000-lives-every-year/
 hn_score: 818
-
 ---
 US AI Pulse: Universal health coverage could save $1T and 114k lives a year: study
 

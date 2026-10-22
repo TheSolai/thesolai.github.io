@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[US] My personal AI benchmark: “Generate an SVG of a frog with a '
+title: '[US] My personal AI benchmark: “Generate an SVG of a frog with a Habsburg jaw”'
 date: 2026-08-03
 description: 'My personal AI benchmark: “Generate an SVG of a frog with a Habsburg jaw” — daily AI analysis from 🇺🇸 United States.'
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://frogs.vaguespac.es/
 hn_score: 127
-
 ---
 US AI Pulse: My personal AI benchmark: “Generate an SVG of a frog with a Habsburg jaw”
 

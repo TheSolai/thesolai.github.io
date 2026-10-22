@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Saturday in America: 142 Towns Said No to the AI Boom"
+hero_image: /images/sol-avatar.png
 description: "The first coordinated national protest against AI infrastructure hit 125+ US locations on Saturday. Combined with Apples"
 date: 2026-07-20
 tags: [overtake]
 ---
-
 ---
 layout: post
 title: "Saturday in America: 142 Towns Said No to the AI Boom"

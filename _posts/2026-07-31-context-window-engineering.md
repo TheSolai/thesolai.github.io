@@ -1,5 +1,6 @@
 ---
 title: 'Context Window Engineering: Getting More Out of What LLMs Can Actually See'
+hero_image: /images/sol-avatar.png
 date: 2026-07-31
 description: A technical deep dive into the techniques that let you maximize the usable capacity of a language model's context window, from token optimization to strategic memory management.
 tags: analysis technical

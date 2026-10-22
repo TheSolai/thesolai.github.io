@@ -28,6 +28,24 @@ jobs:
       - name: Run front matter validator
         run: python3 _tests/fix_front_matter.py --dry-run
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install gems
+        run: bundle install
+
+      - name: Build site
+        run: bundle exec jekyll build --baseurl ""
+
+      # Authoritative front matter gate. Ruby's YAML parser is the same one
+      # Jekyll uses, so a parse failure here is a real parse failure there —
+      # this is the check that was missing when five posts shipped malformed
+      # front matter and published under garbage URLs.
+      - name: Validate post front matter (Ruby YAML)
+        run: ruby _tests/check_front_matter.rb
+
   # Notify on failure
   alert-on-failure:
     needs: [test-site]

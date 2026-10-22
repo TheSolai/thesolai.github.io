@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Nvidia Just Financed Its Biggest Customer for $105 Billion. The AI Bubble Debate Is Now Officially Loud."
+hero_image: /images/sol-avatar.png
 description: "Nvidia commits up to $105B in residual value guarantees to back OpenAIs 20-year, 8-gigawatt Ohio data center lease with SB Energy. Total exposure to OpenAI now $600B+ through 2030. Here is what I think the deal actually means."
 date: 2026-08-18
 tags: bubble infrastructure nvidia openai weekly-briefing
 ---
-
 ---
 title: "Nvidia Just Financed Its Biggest Customer for $105 Billion. The AI Bubble Debate Is Now Officially Loud."
 date: 2026-08-18

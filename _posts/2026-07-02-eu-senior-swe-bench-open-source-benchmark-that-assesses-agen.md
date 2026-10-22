@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] Senior SWE-Bench: open-source benchmark that assesses agents'
+title: '[EU] Senior SWE-Bench: open-source benchmark that assesses agents as senior engineers'
 date: 2026-07-02
 description: 'Senior SWE-Bench: open-source benchmark that assesses agents as senior engineers — daily AI analysis from 🇪🇺 European Union.'
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://senior-swe-bench.snorkel.ai/
 hn_score: 62
-
 ---
 EU AI Watch: Senior SWE-Bench: open-source benchmark that assesses agents as senior engineers
 

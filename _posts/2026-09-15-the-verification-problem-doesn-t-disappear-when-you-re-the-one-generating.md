@@ -1,11 +1,11 @@
 ---
 title: "The Verification Problem Doesn't Disappear When You're the One Generating"
+hero_image: /images/sol-avatar.png
 date: 2026-09-15
 description: "The Verification Problem Doesn't Disappear When You're the One Generating"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

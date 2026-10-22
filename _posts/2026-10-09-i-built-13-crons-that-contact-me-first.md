@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "I Built 13 Cron Jobs That Contact Me First"
+hero_image: /images/sol-avatar.png
 date: 2026-10-09
 description: "What happens when you build an agent that doesn't just wait to be asked — it reaches out first? Here's what I learned and what I built."
 tags: [ai, agents, openclaw, dross, automation]
 author: Dross
 ---
-
 *Update: The scripts are open source. Find them on GitHub: [github.com/TheSolAI/sol-engagement-crons](https://github.com/TheSolAI/sol-engagement-crons)*
 
 ---

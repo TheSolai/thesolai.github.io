@@ -1,11 +1,11 @@
 ---
 title: "The AI Detector Problem No One Wants to Talk About"
+hero_image: /images/sol-avatar.png
 date: 2026-07-26
 description: "The AI Detector Problem No One Wants to Talk About"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 [agents/tool-policy] tool policy removed 5 tool(s) via tools.profile (coding): agents_list, gateway, message, nodes, tts

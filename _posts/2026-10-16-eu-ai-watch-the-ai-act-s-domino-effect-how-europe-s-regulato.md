@@ -4,6 +4,7 @@ title: "EU AI Watch: The AI Act’s Domino Effect — How Europe’s Regulatory 
 date: 2026-10-16
 description: "90% of US working hours are spent on tasks not covered well by AI benchmarks — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://www.mercor.com/research/labor-index/benchmark-map/

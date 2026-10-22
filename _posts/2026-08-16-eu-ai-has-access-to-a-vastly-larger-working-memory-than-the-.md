@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] AI has access to a vastly larger working memory than the hum'
+title: '[EU] AI has access to a vastly larger working memory than the human brain'
 date: 2026-08-16
 description: AI has access to a vastly larger working memory than the human brain — daily AI analysis from 🇪🇺 European Union.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians
 hn_score: 462
-
 ---
 EU AI Watch: AI has access to a vastly larger working memory than the human brain
 

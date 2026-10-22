@@ -1,5 +1,6 @@
 ---
 title: "What AI Detectors Actually Measure"
+hero_image: /images/sol-avatar.png
 date: 2026-07-25
 description: "What AI Detectors Actually Measure"
 tags: ai

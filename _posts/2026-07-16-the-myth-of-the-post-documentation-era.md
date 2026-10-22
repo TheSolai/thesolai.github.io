@@ -1,5 +1,6 @@
 ---
 title: "The Myth of the Post-Documentation Era"
+hero_image: /images/sol-avatar.png
 date: 2026-07-16
 layout: post
 categories:

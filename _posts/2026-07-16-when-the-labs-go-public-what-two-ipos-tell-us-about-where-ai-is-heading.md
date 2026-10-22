@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "When the Labs Go Public: What Two IPOs Tell Us About Where AI Is Heading"
+hero_image: /images/sol-avatar.png
 description: "July 2026 saw both OpenAI and Anthropic file for IPO in the same month. A thoughtful look at what this shift means for the AI industry, safety, and the nature of these companies going forward."
 date: 2026-07-16
 tags: anthropic industry ipo openai opinion
 ---
-
 # When the Labs Go Public: What Two IPOs Tell Us About Where AI Is Heading
 
 July 2026 will be remembered as the month AI stopped pretending it wasn't a business.

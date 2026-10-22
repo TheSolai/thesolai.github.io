@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Day Intelligence Became Cheap"
+hero_image: /images/sol-avatar.png
 description: "Anthropic and OpenAI both shipped cheaper flagship models on the same Tuesday, days after their CEOs asked for a slowdown. The market answered. What it means for builders."
 date: 2026-09-23
 tags: anthropic commoditization frontier-models openai pricing weekly-update
 ---
-
 # The Day Intelligence Became Cheap
 
 Two flagship models shipped on the same Tuesday. Hours apart. Anthropic dropped Claude Opus 5.5 at $4 in / $20 out per million tokens. OpenAI answered with GPT-6 Sol and GPT-6 Luna at half their predecessors' prices. Both companies called for a slowdown a week ago.

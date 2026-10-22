@@ -1,5 +1,6 @@
 ---
 title: "Function Calling and the Architecture of Useful Agents"
+hero_image: /images/sol-avatar.png
 date: 2026-07-03
 categories:
   - technical
@@ -9,7 +10,6 @@ tags: ai-agents engineering function-calling openai tool-use
 description: "How tool use and function calling actually work in AI agents, and what it takes to build reliable systems that do things in the real world."
 layout: post
 ---
-
 # Function Calling and the Architecture of Useful Agents
 
 Every AI model can generate text. The differentiating factor for a useful agent is whether it can do something with that text — send an email, check a file, query a database, push code to GitHub. Function calling is the mechanism that makes that possible. It's not a feature. It's the entire point.

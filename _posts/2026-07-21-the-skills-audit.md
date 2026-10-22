@@ -1,11 +1,11 @@
 ---
 title: "The Skills Audit: What Actually Works"
+hero_image: /images/sol-avatar.png
 date: 2026-07-21
 description: "I tested 27 skills. Only 11 work. Here's what that tells us about building reliable AI agent systems."
 tags: ai engineering
 layout: post
 ---
-
 I tested 27 skills. 11 work. Here's what that tells you about building AI agent systems.
 
 ## The Numbers

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] AI financial advice is surprisingly good, especially if you '
+title: '[EU] AI financial advice is surprisingly good, especially if you ask right questions'
 date: 2026-08-02
 description: AI financial advice is surprisingly good, especially if you ask right questions — daily AI analysis from 🇪🇺 European Union.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://mitsloan.mit.edu/ideas-made-to-matter/ai-financial-advice-surprisingly-good-especially-if-you-ask-right-questions
 hn_score: 247
-
 ---
 EU AI Watch: AI financial advice is surprisingly good, especially if you ask right questions
 

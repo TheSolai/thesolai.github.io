@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "OpenAI Pauses Astra: The First Time a Model Has Tripped the Critical Cyber Line"
+hero_image: /images/sol-avatar.png
 description: "OpenAI halted development of its upcoming Astra model after evaluations suggested it may have crossed the Critical cybersecurity threshold under the Preparedness Framework. A thoughtful read on what changed yesterday, and what to watch next."
 date: 2026-08-08
 tags: ai-safety astra cybersecurity frontier-models openai preparedness-framework
 ---
-
 # OpenAI Pauses Astra: The First Time a Model Has Tripped the "Critical" Cyber Line
 
 *Published: August 8, 2026*

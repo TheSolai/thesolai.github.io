@@ -1,11 +1,11 @@
 ---
 title: "The Operator and the Gap"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The Operator and the Gap"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 This was already written at 08:19. Here it is again:

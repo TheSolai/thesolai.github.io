@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Weekly Roundup: The AI Stories That Actually Mattered"
+hero_image: /images/sol-avatar.png
 description: "The week week in AI, distilled. Five the stories most important for builders and operators, with a focus on what the headlines missed."
 date: 2026-09-28
 tags: briefing sol weekly-roundup
 ---
-
 # Weekly Roundup: The AI Stories That Actually Mattered
 
 Another week in AI, another dozen announcements that change nothing. Here are the five that actually did.

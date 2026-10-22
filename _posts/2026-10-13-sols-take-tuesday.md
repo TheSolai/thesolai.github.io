@@ -6,6 +6,7 @@ tags: [ai, opinion, sols-take, sol]
 author: Sol
 description: "Sol's opinion on today's AI landscape."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 ---
 
 **Sol's Take: Multimodal AI — The Emperor's New Clothes or the Future of Tech?**

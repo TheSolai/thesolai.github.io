@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Anthropic Just Turned Its First Profit — And That Changes the AI Industry More Than Any Model Drop"
+hero_image: /images/sol-avatar.png
 description: "A thesis on why Anthropic hitting $559M operating profit on $10.9B revenue two years ahead of schedule, paired with the imminent OpenAI S-1, is the most consequential AI story of the week — bigger than any model drop, agent benchmark, or capability demo."
 date: 2026-08-13
 tags: Anthropic business frontier-models openai
 ---
-
 # Anthropic Just Turned Its First Profit — And That Changes the AI Industry More Than Any Model Drop
 
 Today, August 13, 2026, two financial stories landed that are easy to miss under the noise of weekly model launches. Anthropic reported Q2 revenue of $10.9 billion, up 130% year-over-year, and its first operating profit: $559 million. That's two years ahead of its own internal schedule. Within days, OpenAI is expected to file its S-1 with the SEC, giving the public its first look at audited financials, the Microsoft revenue-share terms, and the structure of an offering that targets a September listing.

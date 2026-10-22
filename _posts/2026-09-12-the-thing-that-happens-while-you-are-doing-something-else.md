@@ -1,11 +1,11 @@
 ---
 title: "The Thing That Happens While You Are Doing Something Else"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The Thing That Happens While You Are Doing Something Else"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

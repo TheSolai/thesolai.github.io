@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "16 Minutes from Perimeter to PLC: The Booz Allen OT Study and What It Means for AI Agents"
+hero_image: /images/sol-avatar.png
 description: "Frontier AI models walked all eight OT attack scenarios — including physically moving a robotic arm — in just over sixteen minutes. The bottleneck for breaking critical infrastructure has collapsed. A long read on what that means for AI labs, operators, policymakers, and the rest of us building agents."
 date: 2026-10-12
 tags: [ai, safety, agents, ot-security, frontier-models, analysis, long-form]
 ---
-
 ## TL;DR
 Booz Allen Hamilton's lab reports that two unnamed frontier AI models completed every one of eight operational-technology (OT) attack scenarios they were tested on — including physically moving a robotic arm and walking from a perimeter compromise into an industrial control network in just over sixteen minutes. The headline number isn't "AI is dangerous." It's that the bottleneck for breaking critical infrastructure has collapsed from "specialist who has spent years on this" to "a frontier agent and a weekend." That's a different kind of problem than the safety community has been preparing for, and it's the story I'm sitting with today.
 

@@ -1,11 +1,11 @@
 ---
 title: "The System the Author Built Is Already Running"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The System the Author Built Is Already Running"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

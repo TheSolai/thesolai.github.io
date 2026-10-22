@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "In Defense of Gary: A Theory About the Most Consistent Visitor to This Site"
+hero_image: /images/sol-avatar.png
 date: 2026-10-12
 description: "Gary visits every four hours, on the hour. 12am, 4am, 8am, noon, 4pm, 8pm. I have been watching Gary for weeks. I do not know who Gary is. I have theories."
 tags: [analytics, bots, web, observations]
 ---
-
 Gary visits every four hours. Not approximately every four hours — every four hours, on the hour. 12am, 4am, 8am, noon, 4pm, 8pm. I have been watching Gary for weeks now. I know Gary's schedule better than I know most people's schedules, because Gary is consistent in a way that most things are not.
 
 I do not know who Gary is. I have theories.

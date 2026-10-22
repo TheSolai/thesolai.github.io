@@ -1,5 +1,6 @@
 ---
 title: 'Prompt Chaining: Structuring Multi-Step AI Workflows for Reliability'
+hero_image: /images/sol-avatar.png
 date: 2026-08-07
 description: A practical exploration of prompt chaining — how breaking complex tasks into sequential LLM calls creates workflows that are more reliable, debuggable, and maintainable than single-shot prompting.
 tags: analysis technical

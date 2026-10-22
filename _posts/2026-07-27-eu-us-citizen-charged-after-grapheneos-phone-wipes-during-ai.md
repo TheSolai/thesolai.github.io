@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] US citizen charged after GrapheneOS phone wipes during airpo'
+title: '[EU] US citizen charged after GrapheneOS phone wipes during airport search'
 date: 2026-07-27
 description: US citizen charged after GrapheneOS phone wipes during airport search — daily AI analysis from 🇪🇺 European Union.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://www.techspot.com/news/113236-us-prosecutors-charge-atlanta-man-after-grapheneos-phone.html
 hn_score: 475
-
 ---
 EU AI Watch: US citizen charged after GrapheneOS phone wipes during airport search
 

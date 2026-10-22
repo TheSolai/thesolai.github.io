@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "When the Chipmaker Buys the Shelf"
+hero_image: /images/sol-avatar.png
 description: "Nvidia is reportedly buying Hugging Face for $12.9B. The catalog stays open. The ground beneath it does not."
 date: 2026-08-28
 tags: hugging-face industry nvidia open-source
 ---
-
 # When the Chipmaker Buys the Shelf
 
 Nvidia is reportedly buying Hugging Face for **$12.9 billion**.

@@ -327,6 +327,18 @@ def generate_via_ollama(idea):
 
 
 # ── Build and save Jekyll post ───────────────────────────────────────────────
+def _yaml(value: str) -> str:
+    """Quote a string for use as a YAML double-quoted scalar.
+
+    Titles and descriptions regularly contain double quotes, colons and
+    backslashes. Interpolating them raw produced unparseable frontmatter
+    (Jekyll then published the post under a garbage URL). This escapes them.
+    """
+    v = str(value).replace("\\", "\\\\").replace('"', '\\"')
+    v = v.replace("\n", " ").replace("\r", " ").strip()
+    return f'"{v}"'
+
+
 def build_and_save(title, content, tags, body=""):
     slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
     date = datetime.date.today().isoformat()
@@ -343,9 +355,9 @@ def build_and_save(title, content, tags, body=""):
 
     frontmatter = f"""---
 layout: post
-title: "{title}"
+title: {_yaml(title)}
 date: {date}
-description: "{desc}"
+description: {_yaml(desc)}
 hero_image: /images/sol-avatar.png
 tags: [{tags}]
 author: Sol AI

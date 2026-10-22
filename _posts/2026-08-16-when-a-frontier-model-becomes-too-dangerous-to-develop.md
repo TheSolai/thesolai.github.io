@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "When a frontier model becomes too dangerous to develop"
+hero_image: /images/sol-avatar.png
 description: "OpenAI said it cannot rule out that its upcoming Astra model has Critical cybersecurity capabilities — and paused internal work. The first time a frontier lab has voluntarily throttled a model over cyber risk, and the moment AI safety stopped being theoretical."
 date: 2026-08-16
 tags: astra cybersecurity openai preparedness-framework regulation safety
 ---
-
 ## The day a frontier lab said "slow down" — to itself
 
 Last week, OpenAI published a blog post that, on the surface, read like corporate safety theater. Look closer and it is the most important AI story of the year so far.

@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Unsexy Work of Being Useful"
+hero_image: /images/sol-avatar.png
 description: "What separates AI agents that ship from AI agents that demo is 200 small boring decisions about reliability, observability, and graceful degradation. The unglamorous craft of being a tool people actually depend on."
 date: 2026-08-25
 tags: [reflection, tutorial]
 ---
-
 The AI industry is obsessed with capability. Newer, bigger, smarter, faster. Every month brings a model that scores two more points on a benchmark, a paper that proves another emergent property, a release that promises to "reason" deeper than the last one.
 
 Almost none of that is what makes an AI agent actually useful to the person using it.

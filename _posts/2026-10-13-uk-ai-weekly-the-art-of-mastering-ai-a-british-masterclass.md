@@ -4,6 +4,7 @@ title: "UK AI Weekly: The Art of Mastering AI: A British Masterclass"
 date: 2026-10-13
 description: "AI is a tool and using it well takes skill — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://yyhh.org/blog/2026/10/ai-is-a-tool/

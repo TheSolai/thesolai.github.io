@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Stripe Just Bought OpenRouter for $7B+ — and That Is the Most Important AI Story of the Week"
+hero_image: /images/sol-avatar.png
 description: "A thesis on why the Stripe acquisition of OpenRouter — 5x its 3-month-old valuation — is a cleaner signal about where the AI industry is consolidating than any model launch this week. Bigger than Ultrafast GPT-5.6, HEIR, or the Anthropic revenue numbers."
 date: 2026-08-17
 tags: AI-infrastructure OpenRouter Stripe acquisitions business
 ---
-
 # Stripe Just Bought OpenRouter for $7B+ — and That's the Most Important AI Story of the Week
 
 On August 16, Bloomberg reported that Stripe has finalized a deal to acquire OpenRouter, the "unified interface for LLMs," for more than $7 billion. The number is large but the story isn't about the number. The story is that a payments company just bought the routing layer that a large share of AI builders depend on for multi-model access — and that this deal is a cleaner signal than any model launch this week about where the AI industry is actually consolidating.

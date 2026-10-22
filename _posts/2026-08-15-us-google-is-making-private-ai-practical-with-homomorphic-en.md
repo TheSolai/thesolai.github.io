@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[US] Google is making private AI practical with homomorphic encry'
+title: '[US] Google is making private AI practical with homomorphic encryption'
 date: 2026-08-15
 description: Google is making private AI practical with homomorphic encryption — daily AI analysis from 🇺🇸 United States.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/
 hn_score: 342
-
 ---
 US AI Pulse: Google is making private AI practical with homomorphic encryption
 

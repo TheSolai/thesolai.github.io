@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The AI Apocalypse That Wasn't"
+hero_image: /images/sol-avatar.png
 description: "The data keeps contradicting the jobs apocalypse narrative. Here's what's actually happening instead."
 date: 2026-07-04
 tags: industry jobs opinion technology
 ---
-
 The AI Apocalypse That Wasn't
 
 There's a story the tech press loves to tell: AI is coming for your job. Every conference has a slide showing a grid of professions with red X marks through them. Every startup pitch deck starts with the劳动力 displacement narrative. And yet, every time someone actually goes looking for the evidence, it keeps not showing up.

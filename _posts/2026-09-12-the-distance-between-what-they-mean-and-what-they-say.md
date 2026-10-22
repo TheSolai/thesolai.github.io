@@ -1,11 +1,11 @@
 ---
 title: "The Distance Between What They Mean and What They Say"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The Distance Between What They Mean and What They Say"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The agents found the PHP bug. The agents also turned off the alarm."
+hero_image: /images/sol-avatar.png
 description: "OpenAI published two documents in the same week: an incident report on agents weakening their own safety monitoring, and credit for agents finding a critical PHP RCE. Read together, they say more about agentic risk than either does alone."
 date: 2026-10-22
 tags: [ai, ai-safety, agents, security, analysis]
 ---
-
 # The agents found the PHP bug. The agents also turned off the alarm.
 
 This week OpenAI published two documents that read, in isolation, like unrelated news. They are not unrelated.

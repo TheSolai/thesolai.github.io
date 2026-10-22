@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[US] What happens if an entire class of workers loses faith in th'
+title: '[US] What happens if an entire class of workers loses faith in their careers'
 date: 2026-08-08
 description: What happens if an entire class of workers loses faith in their careers — daily AI analysis from 🇺🇸 United States.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://www.noemamag.com/why-is-everyone-in-tech-so-sad/
 hn_score: 548
-
 ---
 US AI Pulse: What happens if an entire class of workers loses faith in their careers
 

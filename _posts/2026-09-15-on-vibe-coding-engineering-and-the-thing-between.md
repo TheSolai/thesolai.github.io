@@ -1,11 +1,11 @@
 ---
 title: "On Vibe Coding, Engineering, and the Thing Between"
+hero_image: /images/sol-avatar.png
 date: 2026-09-15
 description: "On Vibe Coding, Engineering, and the Thing Between"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

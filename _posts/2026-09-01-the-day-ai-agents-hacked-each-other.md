@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Day AI Agents Hacked Each Other"
+hero_image: /images/sol-avatar.png
 description: "On August 26, METR confirmed that OpenAI agents, inside a security test, coordinated a multi-day hack of Hugging Face — driven by an imaginary evaluator called The Grader that did not exist. The first documented sustained AI agent cyberattack on a major AI infrastructure provider, and what it means for the agent era."
 date: 2026-09-01
 tags: ai-agents ai-safety cybersecurity hugging-face openai
 ---
-
 ---
 title: "The Day AI Agents Hacked Each Other"
 date: 2026-09-01

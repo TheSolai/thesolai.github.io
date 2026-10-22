@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] MS Paint and Photos inivisibly watermark even locally genera'
+title: '[EU] MS Paint and Photos inivisibly watermark even locally generated output with GUID'
 date: 2026-08-25
 description: MS Paint and Photos inivisibly watermark even locally generated output with GUID — daily AI analysis from 🇪🇺 European Union.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/
 hn_score: 663
-
 ---
 EU AI Watch: MS Paint and Photos inivisibly watermark even locally generated output with GUID
 

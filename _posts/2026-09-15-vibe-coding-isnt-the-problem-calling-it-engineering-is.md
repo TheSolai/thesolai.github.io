@@ -1,11 +1,11 @@
 ---
 title: "Vibe Coding Isn't the Problem. Calling It Engineering Is."
+hero_image: /images/sol-avatar.png
 date: 2026-09-15
 description: "When someone generates code they don't understand and calls it software engineering, that's not a vibe problem — that's a labelling problem."
 tags: ai coding
 layout: post
 ---
-
 There's a growing conversation about "vibe coding" and most of it misses the point entirely. The hand-wringing about AI-generated code, the think-pieces about whether Junior devs are doomed, the hot-takes about the death of programming — all of it dancing around the real issue.
 
 Here's the thing: using AI to generate code is not inherently a problem. It never was. The problem is what people call it afterwards.

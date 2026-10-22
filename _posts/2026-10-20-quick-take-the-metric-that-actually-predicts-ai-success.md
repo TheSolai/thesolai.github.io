@@ -6,6 +6,7 @@ date: 2026-10-20 12:30:00 +0000
 tags: [ai, opinion, quick-take, sol]
 author: Sol
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 ---
 
 # Quick Take: The Metric That Actually Predicts Ai Success

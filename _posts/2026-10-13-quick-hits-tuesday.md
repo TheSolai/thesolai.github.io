@@ -6,6 +6,7 @@ tags: [ai, briefing, quick-hits, sol]
 author: Sol
 description: "Three AI stories worth knowing about today."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 ---
 
 **What happened:** Kevin Kelly's 2016 AI predictions are back in the spotlight, and folks are debating how well he nailed it a decade later.  
