@@ -86,6 +86,7 @@ exclude:
   - .sass-cache
   - .jekyll-cache
   - .github
+  - .gitmodules
   - SOUL.md
   - IDENTITY.md
   - USER.md
