@@ -9,25 +9,52 @@ import subprocess
 import json
 import sys
 import os
+import shutil
 from datetime import datetime, timezone
 
 CRON_STATE_FILE = os.path.expanduser("~/.openclaw/state/cron-state.json")
+
+# Fixed 2026-10-22: bare `openclaw` on PATH resolved to a stale 2026.6.35
+# Homebrew build which rejects the current ~/.openclaw/openclaw.json, so this
+# checker always reported "ERROR: Could not fetch cron jobs" even when crons
+# were healthy. Resolve the gateway-owned build explicitly, and only fall back
+# to PATH if that is missing.
+OPENCLAW_HOME = os.path.expanduser("~/.openclaw")
+NODE_BIN = f"{OPENCLAW_HOME}/tools/node-v24.21.0/bin/node"
+CLI_MJS = f"{OPENCLAW_HOME}/tools/node-v24.21.0/lib/node_modules/openclaw/openclaw.mjs"
+
+
+def build_cli_cmd():
+    """Return the argv prefix that invokes the authoritative openclaw CLI."""
+    if os.path.exists(NODE_BIN) and os.path.exists(CLI_MJS):
+        return [NODE_BIN, CLI_MJS]
+    fallback = shutil.which("openclaw")
+    if fallback:
+        return [fallback]
+    return None
 # Fixed 2026-10-22: threshold was 3, which let a genuinely broken cron
 # ("Sol — Repo Roulette Scout" — ModuleNotFoundError) sit unnoticed with
 # only 1 recorded error. Any cron in an error state is surfaced now.
 ALERT_THRESHOLD = 1
 
 def get_cron_jobs():
-    """Get cron jobs via openclaw CLI."""
-    result = subprocess.run(
-        ['openclaw', 'cron', 'list', '--json'],
-        capture_output=True, text=True, timeout=30
-    )
+    """Get cron jobs via the authoritative openclaw CLI."""
+    cmd = build_cli_cmd()
+    if cmd is None:
+        return None
+    try:
+        result = subprocess.run(
+            cmd + ['cron', 'list', '--json'],
+            capture_output=True, text=True, timeout=60
+        )
+    except subprocess.TimeoutExpired:
+        return None
     if result.returncode != 0:
+        print(f"  cli-error: rc={result.returncode} stderr={(result.stderr or '').strip()[:300]}")
         return None
     try:
         return json.loads(result.stdout)
-    except:
+    except json.JSONDecodeError:
         return None
 
 def check_failures(jobs):

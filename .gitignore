@@ -159,3 +159,6 @@ agents/sol/memory/
 agents/sol/references/
 data/agent-email-state/
 data/outreach/
+
+# Local watchdog state file (runtime state, not source)
+scripts/.health-wd-state
