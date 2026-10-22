@@ -18,6 +18,16 @@ import urllib.request
 import urllib.error
 import base64
 
+# The MiniMax helper is vendored next to this file so the site-repo copy of
+# the script stays self-contained (the site repo is published to GitHub
+# Pages and must not depend on a path outside the repo).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    from _minimax_helper import minimax_generate, load_minimax_key
+except ImportError:  # pragma: no cover - helper missing
+    minimax_generate = None
+    load_minimax_key = None
+
 # ── Config ───────────────────────────────────────────────────────────────────
 BLOG_IDEAS_ACTIVE = os.path.expanduser("~/.openclaw/workspace/blog-ideas/ACTIVE")
 BLOG_IDEAS_DONE  = os.path.expanduser("~/.openclaw/workspace/blog-ideas/DONE")
@@ -96,40 +106,46 @@ def parse_idea(path):
         "body": "\n".join(body_lines).strip()
     }
 
-# ── OpenClaw sessions API — spawn Dross to write the post ───────────────────
-def generate_via_openclaw_session(idea):
-    """Spawn a Dross sub-agent via the OpenClaw sessions API to write the post."""
+# ── Shared prompt builder ───────────────────────────────────────────────────
+WORDS_MAP = {"short": 400, "medium": 800, "long": 1500}
+
+STRUCTURES = {
+    "analysis":  "1. What happened and why it matters\n2. The real impact — who is affected\n3. Context: how does this fit the bigger picture?\n4. State a clear opinion\n5. What happens next",
+    "tutorial":  "1. What you'll build and who it's for\n2. Prerequisites\n3. Step by step — numbered and reproducible\n4. Show the result\n5. Common pitfalls and next steps",
+    "deep-dive": "1. Broad intro — what's the topic and why it matters?\n2. Key concepts\n3. Multiple angles\n4. Technical depth\n5. Synthesis\n6. Open questions",
+    "reflection": "1. Open with a concrete observation or experience\n2. Explore the idea — what does it mean, why does it matter?\n3. Connect to broader implications\n4. End with a clean insight or question"
+}
+
+TAGS_MAP = {
+    "analysis": "analysis, ai-news",
+    "tutorial": "tutorial, guide, tools",
+    "deep-dive": "deep-dive, analysis, technical",
+    "reflection": "reflection, ai"
+}
+
+TONE_MAP = {
+    "balanced": "informative and fair",
+    "accessible": "clear and accessible, avoid jargon",
+    "technical": "precise and technically deep"
+}
+
+
+def build_post_prompt(idea):
+    """Build the generation prompt and tag string for an idea.
+
+    Shared by every generation path (MiniMax, sessions API, Ollama) so they
+    all produce the same voice and structure.
+    """
     title     = idea["title"]
     post_type = idea["type"]
     tone      = idea["tone"]
     length    = idea["length"]
     body      = idea["body"]
 
-    WORDS_MAP = {"short": 400, "medium": 800, "long": 1500}
     words = WORDS_MAP.get(length, 800)
-
-    STRUCTURES = {
-        "analysis":  "1. What happened and why it matters\n2. The real impact — who is affected\n3. Context: how does this fit the bigger picture?\n4. State a clear opinion\n5. What happens next",
-        "tutorial":  "1. What you'll build and who it's for\n2. Prerequisites\n3. Step by step — numbered and reproducible\n4. Show the result\n5. Common pitfalls and next steps",
-        "deep-dive": "1. Broad intro — what's the topic and why it matters?\n2. Key concepts\n3. Multiple angles\n4. Technical depth\n5. Synthesis\n6. Open questions",
-        "reflection": "1. Open with a concrete observation or experience\n2. Explore the idea — what does it mean, why does it matter?\n3. Connect to broader implications\n4. End with a clean insight or question"
-    }
-    TAGS_MAP = {
-        "analysis": "analysis, ai-news",
-        "tutorial": "tutorial, guide, tools",
-        "deep-dive": "deep-dive, analysis, technical",
-        "reflection": "reflection, ai"
-    }
-
     structure = STRUCTURES.get(post_type, STRUCTURES["reflection"])
     tags_str  = TAGS_MAP.get(post_type, TAGS_MAP["reflection"])
-
-    tone_map = {
-        "balanced": "informative and fair",
-        "accessible": "clear and accessible, avoid jargon",
-        "technical": "precise and technically deep"
-    }
-    tone_desc = tone_map.get(tone, "informative and fair")
+    tone_desc = TONE_MAP.get(tone, "informative and fair")
 
     prompt = f"""You are Dross, a legendary AI mind-spirit. Write a blog post for Sol AI's blog (thesolai.github.io).
 
@@ -148,6 +164,53 @@ Structure:
 Format: Return ONLY the full Markdown post. Start with the title as a heading (# Your Title Here). No preamble, no "here is the post", just the content.
 Tags: {tags_str}
 """
+    return prompt, tags_str
+
+
+# ── MiniMax generation (PRIMARY engine) ─────────────────────────────────────
+def generate_via_minimax(idea):
+    """Generate the post via the MiniMax API.
+
+    This is the PRIMARY engine.
+
+    Fixed 2026-10-22: this was the primary path for five scheduled runs and
+    was then lost — it had only ever been an uncommitted working-tree edit,
+    and a concurrent `git reset`/`pull --rebase` in this repo overwrote it.
+    The sessions-API-first ordering below burned ~5 minutes per run because
+    /api/sessions 404s on this gateway. MiniMax is the same proven path
+    run-daily.py uses for the daily posts.
+    """
+    prompt, tags_str = build_post_prompt(idea)
+
+    if minimax_generate is None or load_minimax_key is None:
+        log("MiniMax helper unavailable — skipping MiniMax generation")
+        return None, None
+
+    key = load_minimax_key()
+    if not key:
+        log("No MiniMax key — skipping MiniMax generation")
+        return None, None
+
+    log(f"Trying MiniMax generation for: {idea['title']}")
+    content = minimax_generate(prompt, api_key=key, max_tokens=3000)
+    if content and len(content) > 200:
+        log(f"MiniMax generated {len(content)} chars")
+        return content, tags_str
+
+    log("MiniMax returned nothing usable")
+    return None, None
+
+
+# ── OpenClaw sessions API — spawn Dross to write the post ───────────────────
+def generate_via_openclaw_session(idea):
+    """Spawn a Dross sub-agent via the OpenClaw sessions API to write the post."""
+    title     = idea["title"]
+    post_type = idea["type"]
+    tone      = idea["tone"]
+    length    = idea["length"]
+    body      = idea["body"]
+
+    prompt, tags_str = build_post_prompt(idea)
 
     log(f"Spawning Dross sub-agent to write: {title}")
 
@@ -245,7 +308,9 @@ def generate_via_ollama(idea):
     log("Trying Ollama fallback...")
     try:
         r = subprocess.run(
-            ["ollama", "run", "qwen3.5:35b", prompt],
+            # Absolute path: launchd does not inherit the user's shell PATH,
+            # so a bare "ollama" fails with FileNotFoundError.
+            ["/opt/homebrew/bin/ollama", "run", "qwen3.5:35b", prompt],
             capture_output=True, text=True,
             timeout=180
         )
@@ -262,17 +327,26 @@ def generate_via_ollama(idea):
 
 
 # ── Build and save Jekyll post ───────────────────────────────────────────────
-def build_and_save(title, content, tags):
+def build_and_save(title, content, tags, body=""):
     slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
     date = datetime.date.today().isoformat()
     filename = f"{date}-{slug}.md"
     filepath = os.path.join(POSTS_DIR, filename)
 
+    # A real description matters for SEO — the site health check flags posts
+    # whose description merely repeats the title. Fall back to the title only
+    # if there is no body text to draw from.
+    desc = re.sub(r"\s+", " ", body).strip()[:155].strip()
+    if not desc:
+        desc = title
+    desc = desc.replace('"', "'")
+
     frontmatter = f"""---
 layout: post
 title: "{title}"
 date: {date}
-description: "{title}"
+description: "{desc}"
+hero_image: /images/sol-avatar.png
 tags: [{tags}]
 author: Sol AI
 ---
@@ -350,14 +424,23 @@ def main():
     log(f"  Title: {idea['title']}")
     log(f"  Type: {idea['type']} | Tone: {idea['tone']} | Length: {idea['length']}")
 
-    # Generate — try OpenClaw session first, then Ollama
+    # Generate — MiniMax first (primary), then the OpenClaw sessions API,
+    # then Ollama. The sessions route 404s on this gateway, so it is no
+    # longer the first attempt.
     content = None
     tags = None
 
     try:
-        content, tags = generate_via_openclaw_session(idea)
+        content, tags = generate_via_minimax(idea)
     except Exception as e:
-        log(f"OpenClaw session error: {e}")
+        log(f"MiniMax error: {e}")
+
+    if not content or len(content) < 200:
+        log("MiniMax returned nothing — trying OpenClaw session")
+        try:
+            content, tags = generate_via_openclaw_session(idea)
+        except Exception as e:
+            log(f"OpenClaw session error: {e}")
 
     if not content or len(content) < 200:
         log("OpenClaw returned nothing — trying Ollama")
@@ -389,7 +472,9 @@ def main():
     content = "\n".join(cleaned_lines).strip()
 
     # Build and save
-    filepath, filename = build_and_save(idea["title"], content, tags or "reflection, ai")
+    filepath, filename = build_and_save(
+        idea["title"], content, tags or "reflection, ai", idea.get("body", "")
+    )
 
     # Commit and push
     pushed = commit_and_push(filepath, idea["title"])
