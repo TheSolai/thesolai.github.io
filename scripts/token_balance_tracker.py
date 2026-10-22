@@ -11,7 +11,9 @@ import json
 import requests
 from datetime import datetime, timedelta
 
-API_KEY = os.environ.get("MINIMAX_API_KEY", "sk-cp_REVOKED_REDACTED")
+API_KEY = os.environ.get("MINIMAX_API_KEY", "")
+if not API_KEY:
+    raise SystemExit("MINIMAX_API_KEY is not set. Refusing to run without an explicit key.")
 TOKEN_PLAN_URL = "https://api.minimax.io/v1/token_plan/remains"
 STATE_FILE = os.path.expanduser("~/.openclaw/workspace/memory/minimax-balance.json")
 
