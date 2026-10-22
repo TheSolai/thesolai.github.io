@@ -150,8 +150,12 @@ agents/dross/SUCCESSION-TODO.md
 agents/sol/USER.md
 
 # Private agent state — never commit to the PUBLIC site repo.
-# The 05:00 Daily Workspace Git Backup pushes this repo's history here.
+# The 05:00 Daily Workspace Git Backup pushes this workspace into the
+# public thesolai.github.io repo, so anything not ignored here becomes
+# public history even if the Jekyll build excludes it.
+agents/patch/memory/
+agents/patch/references/
+agents/sol/memory/
+agents/sol/references/
 data/agent-email-state/
 data/outreach/
-agents/patch/memory/
-agents/sol/memory/
