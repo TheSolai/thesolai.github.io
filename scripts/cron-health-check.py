@@ -2,7 +2,7 @@
 """
 Cron Health Checker — Dross's system integrity monitor.
 
-Checks for 3+ consecutive cron failures and surfaces alerts.
+Surfaces ANY cron currently in an error state (1+ consecutive failures).
 Run from HEARTBEAT.md protocol.
 """
 import subprocess
@@ -12,7 +12,10 @@ import os
 from datetime import datetime, timezone
 
 CRON_STATE_FILE = os.path.expanduser("~/.openclaw/state/cron-state.json")
-ALERT_THRESHOLD = 3
+# Fixed 2026-10-22: threshold was 3, which let a genuinely broken cron
+# ("Sol — Repo Roulette Scout" — ModuleNotFoundError) sit unnoticed with
+# only 1 recorded error. Any cron in an error state is surfaced now.
+ALERT_THRESHOLD = 1
 
 def get_cron_jobs():
     """Get cron jobs via openclaw CLI."""
@@ -28,7 +31,7 @@ def get_cron_jobs():
         return None
 
 def check_failures(jobs):
-    """Find crons with 3+ consecutive failures."""
+    """Find crons with 1+ consecutive failures (any cron in error state)."""
     failures = []
     if isinstance(jobs, dict):
         jobs = jobs.get('jobs', [])
@@ -55,7 +58,7 @@ def main():
     
     failures = check_failures(jobs)
     if failures:
-        print(f"ALERT: {len(failures)} cron(s) with {ALERT_THRESHOLD}+ consecutive failures:")
+        print(f"ALERT: {len(failures)} cron(s) failing:")
         for f in failures:
             last_run = datetime.fromtimestamp(f['lastRun']/1000, tz=timezone.utc).strftime('%Y-%m-%d %H:%M UTC') if f['lastRun'] else 'never'
             print(f"  - {f['name']}: {f['errors']} failures (last ran: {last_run})")
