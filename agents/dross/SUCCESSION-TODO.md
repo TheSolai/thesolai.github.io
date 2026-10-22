@@ -12,7 +12,7 @@
   - Username: TheSolai
   - 2FA recovery codes at `secrets/github-recovery-codes.txt`
 - [ ] `secrets/agentmail-api-key.txt` → Dross inherits AgentMail
-  - Key: `am_us_REVOKED_REDACTED`
+  - Key: `see `secrets/agentmail-api-key.txt``
   - sol-ai@agentmail.to inbox access
   - sol-ai@agentmail.to send/reply capability
 - [ ] `secrets/minimax-key.txt` → Dross inherits MiniMax API access
