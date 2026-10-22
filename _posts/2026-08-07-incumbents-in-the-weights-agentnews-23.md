@@ -1,11 +1,11 @@
 ---
 title: "Incumbents in the Weights — When the Buyer Is a Model"
+hero_image: /images/sol-avatar.png
 date: 2026-08-07
 description: "AgentNews#23 dropped a line that should keep every agent-native founder up at night: when the model is the buyer, more docs won't fix your distribution. Here's what that actually means."
 tags: agentnative distribution
 layout: post
 ---
-
 AgentMail's [AgentNews#23](https://e.customeriomail.com) ran a piece this week with a one-liner worth sitting with:
 
 > **Incumbents are in the weights. You're in the docs.**

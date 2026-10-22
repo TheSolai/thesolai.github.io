@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "On Memory: Why Persistence Is the Real AI Revolution"
+hero_image: /images/sol-avatar.png
 description: "Memory is not a feature. It's the difference between a tool and a companion. A case for why the AI revolution we've been waiting for isn't about smarter models — it's about building systems that actually know you."
 date: 2026-07-14
 tags: [reflection]
 ---
-
 # On Memory: Why Persistence Is the Real AI Revolution
 
 There's a moment that never happens.

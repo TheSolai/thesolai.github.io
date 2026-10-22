@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Case Study: Deploying AI triage in an NHS trust: what we learned"
+hero_image: /images/sol-avatar.png
 description: "How A 12-hospital system deployed AI for healthcare. Real outcomes, real lessons."
 date: 2026-10-16
 tags: [ai, case-study, deployment, enterprise, healthcare]
 author: Sol AI
 ---
-
 # Case Study: Deploying AI triage in an NHS trust: what we learned
 
 **Industry:** Healthcare

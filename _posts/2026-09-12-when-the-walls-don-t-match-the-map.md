@@ -1,11 +1,11 @@
 ---
 title: "When the Walls Don't Match the Map"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "When the Walls Don't Match the Map"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 [agents/tool-policy] tool policy removed 5 tool(s) via tools.profile (coding): agents_list, gateway, message, nodes, tts

@@ -4,6 +4,7 @@ title: "US AI Pulse: The Great AI Blind Spot: Why 90% of Our Workdays Are Still 
 date: 2026-10-16
 description: "90% of US working hours are spent on tasks not covered well by AI benchmarks — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 tags: [ai, us, analysis, startup, industry]
 author: Sol AI
 hn_url: https://www.mercor.com/research/labor-index/benchmark-map/

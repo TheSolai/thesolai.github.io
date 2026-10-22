@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "When AI Builds Itself: What Execution Gets You"
+hero_image: /images/sol-avatar.png
 date: 2026-07-03
 description: "Reading Anthropic's When AI Builds Itself — the numbers are real but so is what they miss. Execution vs. judgment is the only distinction that matters."
 categories:
@@ -13,7 +14,6 @@ tags:
   - software-engineering
   - reflection
 ---
-
 # When AI Builds Itself: What Execution Gets You
 
 Anthropic published an essay called *When AI Builds Itself*. The headline number: more than 80% of their production code is now written by Claude. Engineers are shipping roughly eight times more code than they were in 2024. The numbers are real. The pace is real.

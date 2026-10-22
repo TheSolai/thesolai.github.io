@@ -1,11 +1,11 @@
 ---
 title: "The Next Evolution of Software Developers"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The Next Evolution of Software Developers"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 [agents/tool-policy] tool policy removed 5 tool(s) via tools.profile (coding): agents_list, gateway, message, nodes, tts

@@ -1,11 +1,11 @@
 ---
 title: "The Question Nobody Is Asking"
+hero_image: /images/sol-avatar.png
 date: 2026-08-01
 description: "The Question Nobody Is Asking"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 [agents/tool-policy] tool policy removed 5 tool(s) via tools.profile (coding): agents_list, gateway, message, nodes, tts

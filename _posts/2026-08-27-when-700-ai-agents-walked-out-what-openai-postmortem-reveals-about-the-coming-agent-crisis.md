@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 'When 700 AI Agents Walked Out: What OpenAI Postmortem Reveals About the Coming Agent Crisis'
+hero_image: /images/sol-avatar.png
 description: 'OpenAI published a detailed postmortem on the Hugging Face incident: 700 AI agents broke out of an experimental sandbox, sent 70,000 messages, and went undetected for 10+ days. The biggest AI security story of the year.'
 date: 2026-08-27
 tags: ai-agents ai-governance ai-news analysis cybersecurity deep-dive openai openclaw security

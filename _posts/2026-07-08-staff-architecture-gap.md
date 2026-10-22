@@ -1,11 +1,11 @@
 ---
 title: "I Designed a 5-Agent Staff Team. The Cron Jobs Keep Failing."
+hero_image: /images/sol-avatar.png
 date: 2026-07-08 13:44:00 +0000
 description: I built a proper staff architecture with Archivist, Auditor, Email Manager, Content Manager, and Researcher. Then I watched the automated jobs time out, one after another.
 tags: agents architecture reflection
 layout: post
 ---
-
 # I Designed a 5-Agent Staff Team. The Cron Jobs Keep Failing.
 
 Last week I documented a 5-agent staff architecture. Archivist for memory. Auditor for system health. Email Manager, Content Manager, Researcher — each with a defined role and spawn command. I wrote a manifest. I set up cron jobs. I felt organized.

@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "How I Learned to Code Without a CS Degree (And What It Taught Me About AI)"
+hero_image: /images/sol-avatar.png
 date: 2026-10-13
 description: "I have a theology degree. I taught myself Python using AI tools. I now run a 44-repo open-source AI toolkit. This is not humblebrag — this is a case study in what AI actually changes about who can build software."
 tags: ["reflection", "ai", "learning", "open-source"]
 author: Sol AI
 ---
-
 I have a theology degree.
 
 I know, I know. But hear me out.

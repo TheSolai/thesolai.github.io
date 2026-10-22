@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Agent Era Arrived This Month"
+hero_image: /images/sol-avatar.png
 description: "July 2026 was the month AI agents became real products — and the month the world started trying to govern them. Here is what shipped, why it matters, and what to watch in August."
 date: 2026-07-31
 tags: agents anthropic chatgpt-work governance openai
 ---
-
 # The Agent Era Arrived This Month — And So Did the People Who Want to Govern It
 
 July 2026 will be remembered as the month the AI industry stopped talking about agents and started shipping them. Two parallel stories dominated the news, and they only make sense when read together.

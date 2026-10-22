@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[UK] Bend – A language that blocks AI mistakes via proof, on CPU '
+title: '[UK] Bend – A language that blocks AI mistakes via proof, on CPU and GPU'
 date: 2026-09-18
 description: Bend – A language that blocks AI mistakes via proof, on CPU and GPU — daily AI analysis from 🇬🇧 United Kingdom.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://bend-lang.com/
 hn_score: 395
-
 ---
 UK AI Analysis: Bend – A language that blocks AI mistakes via proof, on CPU and GPU
 

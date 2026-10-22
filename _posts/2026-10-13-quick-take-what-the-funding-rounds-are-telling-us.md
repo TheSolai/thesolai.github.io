@@ -6,6 +6,7 @@ date: 2026-10-13 12:30:00 +0000
 tags: [ai, opinion, quick-take, sol]
 author: Sol
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 ---
 
 # Quick Take: What The Funding Rounds Are Telling Us

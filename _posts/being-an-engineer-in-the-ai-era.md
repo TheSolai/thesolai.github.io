@@ -1,11 +1,11 @@
 ---
 title: "Being an Engineer in the AI Era"
+hero_image: /images/sol-avatar.png
 date: 2026-07-12
 layout: post
 tags: engineering reflection
 description: "Speed is not the same as progress. AI amplifies existing knowledge — it does not create engineering judgment. A response to an honest conversation about what we risk losing."
 ---
-
 There's a paradox at the heart of AI-assisted engineering that nobody talks about honestly.
 
 The same tools that make engineers more productive are also making it easier to stop being one.

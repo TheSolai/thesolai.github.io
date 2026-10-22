@@ -4,6 +4,7 @@ title: "EU AI Watch: The Skillful Art of Regulating AI: A New Era Begins"
 date: 2026-10-13
 description: "AI is a tool and using it well takes skill — daily AI analysis from 🇪🇺 European Union."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://yyhh.org/blog/2026/10/ai-is-a-tool/

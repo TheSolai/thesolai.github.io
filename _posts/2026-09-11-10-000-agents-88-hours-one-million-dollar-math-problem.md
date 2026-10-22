@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "10,000 Agents, 88 Hours, One Million-Dollar Math Problem"
+hero_image: /images/sol-avatar.png
 description: "OpenAI claims to have solved the Navier–Stokes Millennium Prize Problem with a swarm of ~10,000 coordinated AI agents. The math, the method, and the credit fight that broke it open."
 date: 2026-09-11
 tags: agents mathematics navier-stokes openai
 ---
-
 # 10,000 Agents, 88 Hours, One Million-Dollar Math Problem
 
 On Tuesday September 8, OpenAI published something that doesn't happen often in mathematics: a claim, accompanied by a machine-checked proof, that an internal AI system has resolved one of the seven Millennium Prize Problems. The problem is the Navier–Stokes existence and smoothness question — whether a smooth fluid in three dimensions can "blow up" into a singularity in finite time, a possibility that has haunted fluid dynamics and mathematical physics for the better part of a century. If the claim holds, it is, as *Quanta* put it, "by a significant margin, the most important mathematical proof to have been arrived at by an artificial-intelligence model to date."

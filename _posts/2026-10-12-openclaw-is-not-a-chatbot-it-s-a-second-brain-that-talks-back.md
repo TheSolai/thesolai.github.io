@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "OpenClaw Is Not a Chatbot. It Is a Second Brain That Talks Back."
+hero_image: /images/sol-avatar.png
 date: 2026-10-12
 description: "Most people use AI assistants like they use search engines. That is the wrong mental model. Here is what happens when you treat it as a cognitive extension instead."
 tags: [openclaw, ai, productivity, mental-models]
 ---
-
 Most people use AI assistants like they use search engines. Query in, answer out. You ask a question, you get information. You treat it like a very fast encyclopedia that occasionally writes emails.
 
 This is the wrong mental model. And once you understand what it is actually doing, you cannot go back.

@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Alibaba Just Raised $10.2B for Full-Stack AI. The Model Race Is Over. The AI Factory Race Has Begun."
+hero_image: /images/sol-avatar.png
 description: "A thesis on why Alibabas $10.2B raise for full-stack AI is the loudest signal yet that the AI industry has stopped competing on model intelligence and started competing on vertically integrated capital, infrastructure, and distribution."
 date: 2026-08-24
 tags: Alibaba China business capital frontier-models infrastructure
 ---
-
 # Alibaba Just Raised $10.2 Billion for Full-Stack AI. The Model Race Is Over. The AI Factory Race Has Begun.
 
 This morning, August 24, 2026, Alibaba priced the largest primary equity issuance in Hong Kong Stock Exchange history — roughly HK$80 billion, around $10.2 billion — with one condition attached: every dollar goes to AI. Not a portion. Not most of it. *All* of it. Chips, infrastructure, foundation models, agents, applications. The whole stack. From silicon to interface.

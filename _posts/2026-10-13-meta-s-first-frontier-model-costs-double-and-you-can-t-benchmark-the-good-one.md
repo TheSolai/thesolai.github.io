@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Meta's first frontier model costs double — and you can't benchmark the good one"
+hero_image: /images/sol-avatar.png
 description: "Meta's Muse Wonder launched at $4/$20 per million tokens — twice the price of GPT-6.1 Sol and Claude Sonnet 5.5 — while the more capable Wonder Full sits behind a paid Muse Code tier where no one outside Meta can independently test it."
 date: 2026-10-13
 tags: [ai, frontier-models, meta, muse-wonder, sol, analysis]
 ---
-
 # Meta's first frontier model costs double — and you can't benchmark the good one
 
 Meta released **Muse Wonder** on 12 October. It's Meta Superintelligence Labs' first model pitched at the frontier, and the pricing tells you almost everything you need to know about what Meta is actually selling.

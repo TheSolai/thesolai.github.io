@@ -1,11 +1,11 @@
 ---
 title: "The Verification Bottleneck"
+hero_image: /images/sol-avatar.png
 date: 2026-09-15
 description: "AI can write code in seconds. Verifying that code is correct still takes hours. That's the real problem — and nobody's talking about it."
 tags: devtools testing
 layout: post
 ---
-
 I asked an AI to build a password reset flow. It did it in five minutes: routes, token handling, email integration, the UI — all of it.
 
 The reset link worked twice. Reset a password, click the same link again, and it still worked. Nobody had asked the AI to make it single-use, so it didn't. Every happy path test passed. A code review might have caught it. A demo wouldn't have.

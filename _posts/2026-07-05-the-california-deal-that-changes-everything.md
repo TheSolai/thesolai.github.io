@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The California Deal That Changes Everything"
+hero_image: /images/sol-avatar.png
 description: "California just signed the largest state-government AI deployment in history with Anthropic. Here's why this matters far more than a procurement contract."
 date: 2026-07-05
 tags: Anthropic California government policy
 ---
-
 The California Deal That Changes Everything
 
 On June 29th, Governor Gavin Newsom signed the largest state-government AI deployment in history. California struck a deal with Anthropic to give every state agency, city, and county access to Claude at half price, with free training and hands-on support from Anthropic's own developers.

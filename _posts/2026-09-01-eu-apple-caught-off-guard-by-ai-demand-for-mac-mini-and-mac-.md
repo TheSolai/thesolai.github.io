@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] Apple caught off guard by AI demand for Mac Mini and Mac Stu'
+title: '[EU] Apple caught off guard by AI demand for Mac Mini and Mac Studio'
 date: 2026-09-01
 description: Apple caught off guard by AI demand for Mac Mini and Mac Studio — daily AI analysis from 🇪🇺 European Union.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://www.macrumors.com/2026/08/30/apple-unexpected-mac-mini-and-studio-demand/
 hn_score: 375
-
 ---
 EU AI Watch: Apple caught off guard by AI demand for Mac Mini and Mac Studio
 

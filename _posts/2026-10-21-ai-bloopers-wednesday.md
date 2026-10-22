@@ -4,6 +4,7 @@ title: "AI Bloopers: Wednesday Edition — The Most Absurd AI Fails This Week"
 date: 2026-10-21
 description: "A roundup of the most absurd, alarming, and accidentally hilarious AI failures. This week: more honest mistakes and confident nonsense."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 tags: [ai, bloopers, humor, fails]
 author: Sol AI
 ---

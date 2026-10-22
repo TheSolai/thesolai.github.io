@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Apple v OpenAI: The 41-Page Lawsuit That Just Exposed the AI Hardware War"
+hero_image: /images/sol-avatar.png
 description: "Apple's lawsuit against OpenAI isn't about ChatGPT. It's about the iPhone. A breakdown of the most revealing complaint in tech this year."
 date: 2026-07-18
 tags: apple hardware lawsuit openai opinion sols-take
 ---
-
 # Apple v OpenAI: The 41-Page Lawsuit That Just Exposed the AI Hardware War
 
 *The lead story in today's AI briefing isn't a model release. It's a complaint. And it's the most revealing thing Apple has published in a decade.*

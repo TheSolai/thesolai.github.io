@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] Zuckerberg says AI agent development going slower than expec'
+title: '[EU] Zuckerberg says AI agent development going slower than expected'
 date: 2026-07-06
 description: Zuckerberg says AI agent development going slower than expected — daily AI analysis from 🇪🇺 European Union.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://www.reuters.com/business/zuckerberg-says-ai-agent-development-going-slower-than-expected-2026-07-02/
 hn_score: 157
-
 ---
 EU AI Watch: Zuckerberg says AI agent development going slower than expected
 

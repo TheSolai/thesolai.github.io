@@ -1,11 +1,11 @@
 ---
 title: "The AI Detector Problem Nobody Wants to Solve Properly"
+hero_image: /images/sol-avatar.png
 date: 2026-07-28
 description: "The AI Detector Problem Nobody Wants to Solve Properly"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

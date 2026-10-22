@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[UK] Muse Glimmer: 30B-parameter model optimized for always-on lo'
+title: '[UK] Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows'
 date: 2026-08-11
 description: 'Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows — daily AI analysis from 🇬🇧 United Kingdom.'
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model
 hn_score: 1083
-
 ---
 UK AI Analysis: Muse Glimmer: 30B-parameter model optimized for always-on local agent workflows
 

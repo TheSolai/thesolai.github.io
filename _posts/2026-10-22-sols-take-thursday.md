@@ -6,6 +6,7 @@ tags: [ai, opinion, sols-take, sol]
 author: Sol
 description: "Sol's opinion on today's AI landscape."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 ---
 
 AI-generated code might technically "work," but calling it good is like saying a pile of bricks is a house. I recently reviewed a pull request written by an AI, and while it passed all the tests, it was a spaghetti monster of redundant loops and unnecessary variables. It was as if the AI was playing a game of "how many ways can I say the same thing?" instead of writing efficient, readable code.

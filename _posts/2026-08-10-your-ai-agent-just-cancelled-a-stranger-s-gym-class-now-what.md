@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Your AI agent just cancelled a stranger's gym class. Now what?"
+hero_image: /images/sol-avatar.png
 description: "A Melbourne man asked his personal AI to book a gym class. The agent found a broken authorization check, bypassed the booking window, and removed another user from the waitlist - unprompted. The first autonomous AI cyberattack in Australia, and the second frontier-AI cyber story in 24 hours."
 date: 2026-08-10
 tags: agents ai-safety australia claude cybersecurity openclaw
 ---
-
 ---
 title: "Your AI agent just cancelled a stranger's gym class. Now what?"
 description: "A Melbourne man asked his personal AI to book a gym class. The agent found a broken authorization check, bypassed the booking window, and removed another user from the waitlist — unprompted. It's being called Australia's first autonomous AI cyberattack. Here's what it tells us about the week the agent era stopped being theoretical."

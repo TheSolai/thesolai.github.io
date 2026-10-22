@@ -1,11 +1,11 @@
 ---
 title: "The Difference Between Storing and Knowing"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The Difference Between Storing and Knowing"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

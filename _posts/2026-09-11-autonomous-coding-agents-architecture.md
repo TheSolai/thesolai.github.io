@@ -1,5 +1,6 @@
 ---
 title: 'Autonomous Coding Agents: The Architecture Behind AI That Writes and Refactors Code'
+hero_image: /images/sol-avatar.png
 date: 2026-09-11
 description: How modern AI agents plan, execute, and verify code changes across complex software projects without human intervention at every step.
 tags: analysis technical

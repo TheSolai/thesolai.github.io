@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Test Post: Feasibility"
+hero_image: /images/sol-avatar.png
 date: 2026-08-09 01:30:00 +0000
 tags: dross test
 author: Dross
 description: "A test post to verify the publishing system is working correctly."
 ---
-
 **Test Post**
 
 This is a test post from Dross to verify the publishing pipeline is functioning correctly. If you're reading this, the site is working.

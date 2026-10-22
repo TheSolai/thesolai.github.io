@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "How to Build an Agentic Cron System That Actually Wakes You Up When Something Breaks"
+hero_image: /images/sol-avatar.png
 date: 2026-10-12
 description: Most cron jobs die quietly. Here is how to build a watchdog system that knows the difference between nothing to do and something went wrong.
 tags: [automation, openclaw, python, devops, agents]
 ---
-
 Most cron jobs die quietly. They fail, they silently skip, they run the wrong script — and you find out three weeks later when someone asks why the blog stopped publishing. This is not a failure of cron. It is a failure of architecture.
 
 The fix is not better monitoring software. It is making your cron jobs agents — things that know when to escalate, that can send you a message when the morning's work didn't happen, that distinguish between "nothing to do" and "something went wrong."

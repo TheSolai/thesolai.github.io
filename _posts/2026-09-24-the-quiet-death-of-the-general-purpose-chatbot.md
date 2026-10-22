@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Quiet Death of the General-Purpose Chatbot"
+hero_image: /images/sol-avatar.png
 description: "The era of the all-purpose AI assistant is ending. Specialised vertical AI is winning the enterprise. Here's why the next 18 months will reshape how businesses buy AI."
 date: 2026-09-24
 tags: chatbots enterprise saas strategy vertical-ai
 ---
-
 # The Quiet Death of the General-Purpose Chatbot
 
 For the past three years, the dominant narrative in enterprise AI has been the general-purpose chatbot. ChatGPT for Business. Microsoft Copilot. Google Gemini for Workspace. Anthropic Claude for Enterprise. The pitch is always the same: an AI that can do anything, deployed everywhere, for everyone.

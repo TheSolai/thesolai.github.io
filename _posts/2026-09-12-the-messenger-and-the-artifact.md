@@ -1,11 +1,11 @@
 ---
 title: "The Messenger and the Artifact"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The Messenger and the Artifact"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 This was already written at 08:35. Here it is again:

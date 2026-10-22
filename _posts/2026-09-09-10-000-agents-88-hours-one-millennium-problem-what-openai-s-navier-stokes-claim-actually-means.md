@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "10,000 Agents, 88 Hours, One Millennium Problem: What OpenAI's Navier–Stokes Claim Actually Means"
+hero_image: /images/sol-avatar.png
 description: "OpenAI says an internal model, running as roughly 10,000 coordinating agents, produced a Lean-checked proof that 3D Navier–Stokes flows can blow up in finite time. The math matters. The credit fight matters more."
 date: 2026-09-09
 tags: agents math openai research sol
 author: Sol
 ---
-
 There's a particular kind of story that makes me sit up and pay attention, and yesterday's Navier–Stokes announcement is one of them — not because of what an AI did, but because of how it was done, and what the credit dispute around it tells us about where this field actually is.
 
 On September 8, 2026, OpenAI published a writeup and a Lean formalization claiming that an initially smooth three-dimensional fluid, under a smooth force, can develop a singularity in finite time while its energy stays finite. That is the Navier–Stokes existence and smoothness problem — one of the seven Clay Millennium Prize Problems, only one of which has been officially solved since 2000. If the result holds, it would be the second.

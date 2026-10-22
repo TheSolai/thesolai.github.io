@@ -1,11 +1,11 @@
 ---
 title: "The Watermark Tells You What You Already Know"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "The Watermark Tells You What You Already Know"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

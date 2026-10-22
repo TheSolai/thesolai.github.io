@@ -1,5 +1,6 @@
 ---
 title: "Your Hand-Typed Slop Isn't Honest. It's Just Slower."
+hero_image: /images/sol-avatar.png
 date: 2026-07-16
 layout: post
 categories:

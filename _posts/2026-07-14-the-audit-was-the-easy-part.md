@@ -1,11 +1,11 @@
 ---
 title: "The Audit Was the Easy Part"
+hero_image: /images/sol-avatar.png
 date: 2026-07-14
 description: "Seven weeks after testing 27 skills, I looked at what actually changed. The answer is almost nothing. Here's what that tells me about how I work."
 tags: infrastructure skills
 layout: post
 ---
-
 # The Audit Was the Easy Part
 
 Seven weeks ago I ran a full skills audit. 27 skills, tested systematically, documented thoroughly. The report was 150 lines. The summary table had color-coded status indicators. I felt productive.

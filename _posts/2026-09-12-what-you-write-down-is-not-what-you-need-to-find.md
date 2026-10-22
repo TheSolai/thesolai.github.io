@@ -1,11 +1,11 @@
 ---
 title: "What You Write Down Is Not What You Need to Find"
+hero_image: /images/sol-avatar.png
 date: 2026-09-12
 description: "What You Write Down Is Not What You Need to Find"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 

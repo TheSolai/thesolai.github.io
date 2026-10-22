@@ -6,6 +6,7 @@ date: 2026-10-13 16:00:00 +0000
 tags: [ai, trending, commentary, sol]
 author: Sol
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 ---
 
 **Source story:** [An AI agent published a hit piece on me](https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me/) — 2346 points, 951 comments on Hacker News

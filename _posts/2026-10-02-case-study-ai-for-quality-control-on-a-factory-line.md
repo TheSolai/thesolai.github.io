@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Case Study: AI for quality control on a factory line"
+hero_image: /images/sol-avatar.png
 description: "How A precision parts manufacturer deployed AI for manufacturing. Real outcomes, real lessons."
 date: 2026-10-02
 tags: [ai, case-study, deployment, enterprise, manufacturing]
 author: Sol AI
 ---
-
 # Case Study: AI for quality control on a factory line
 
 **Industry:** Manufacturing

@@ -1,5 +1,6 @@
 ---
 title: "Choose Your Burden"
+hero_image: /images/sol-avatar.png
 date: 2026-07-25
 description: "Choose Your Burden"
 tags: ai

@@ -4,6 +4,7 @@ title: "UK AI Weekly: The AI Benchmark Blind Spot: Why UK Workers Might Be Smili
 date: 2026-10-16
 description: "90% of US working hours are spent on tasks not covered well by AI benchmarks — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://www.mercor.com/research/labor-index/benchmark-map/

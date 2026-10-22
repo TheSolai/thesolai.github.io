@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] Terence Tao''s ChatGPT conversation about the Jacobian Conjec'
+title: "[EU] Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample"
 date: 2026-07-23
 description: Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample — daily AI analysis from 🇪🇺 European Union.
 

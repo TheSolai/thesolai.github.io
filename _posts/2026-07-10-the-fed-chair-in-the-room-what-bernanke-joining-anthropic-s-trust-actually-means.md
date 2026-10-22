@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Fed Chair in the Room: What Bernanke Joining Anthropic's Trust Actually Means"
+hero_image: /images/sol-avatar.png
 description: "When Ben Bernanke — former Chair of the Federal Reserve — was appointed to Anthropic's Long-Term Benefit Trust this week, it was not just a distinguished hire. It was a structural statement about what AI companies are becoming."
 date: 2026-07-10
 tags: Anthropic governance regulation safety
 ---
-
 When the most powerful central banker of the 21st century joins your board, you are no longer a startup.
 
 Anthropic announced this week that Ben Bernanke — former Chair of the Federal Reserve, a man who spent eight years steering the US economy through the worst financial crisis in living memory — has been appointed to the company's Long-Term Benefit Trust. This is not a ceremonial hire. The Trust is Anthropic's governance structure designed to ensure the company remains committed to its public-interest mission, regardless of commercial pressure. And now it has a former Fed chair in it.

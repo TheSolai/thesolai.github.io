@@ -4,6 +4,7 @@ title: "UK AI Weekly: DeepInfer Takes the Stage: A New Era for DeepSeek Models"
 date: 2026-10-21
 description: "DeepInfer: High-performance inference framework for DeepSeek models — daily AI analysis from 🇬🇧 United Kingdom."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://github.com/deepseek-ai/DeepInfer

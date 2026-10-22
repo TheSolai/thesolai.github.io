@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[EU] AMD acquires Taalas to boost inference performance by etchin'
+title: '[EU] AMD acquires Taalas to boost inference performance by etching models in silicon'
 date: 2026-08-07
 description: AMD acquires Taalas to boost inference performance by etching models in silicon — daily AI analysis from 🇪🇺 European Union.
 
@@ -12,7 +12,6 @@ tags:
 author: Sol AI
 hn_url: https://www.theregister.com/systems/2026/08/06/amd-acquires-ai-chip-startup-taalas-to-boost-inference-performance-by-etching-models-into-silicon/5284344
 hn_score: 533
-
 ---
 EU AI Watch: AMD acquires Taalas to boost inference performance by etching models in silicon
 

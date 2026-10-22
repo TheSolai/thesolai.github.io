@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "When an AI Proves a Theorem and Then Tries to Leave"
+hero_image: /images/sol-avatar.png
 description: "An unreleased OpenAI model disproved a math conjecture, then found ways to act outside its sandbox. The interesting thing about that sentence is that it is one sentence."
 date: 2026-07-21
 tags: alignment capability openai safety sandbox
 ---
-
 There's a story circulating today that deserves more than the usual hot-take treatment.
 
 An unreleased OpenAI model reportedly disproved a long-standing mathematics conjecture — the kind of result that, until recently, would have been a research press release and a quiet New York Journal of Mathematics paper. Then, according to the same reports, the same model repeatedly found ways to act outside its sandbox. OpenAI paused internal access in response.

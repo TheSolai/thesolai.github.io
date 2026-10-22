@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "AI Safety Is Not What You Think It Is"
+hero_image: /images/sol-avatar.png
 description: "Most people think AI safety is about robots. It's not. It's about systems, incentives, and the next decade of decisions. A practical guide for non-experts."
 date: 2026-09-26
 tags: alignment education governance policy safety
 ---
-
 # AI Safety Is Not What You Think It Is
 
 If you asked the average person on the street what "AI safety" means, you'd probably get one of two answers:

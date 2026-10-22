@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Case Study: How a regional bank deployed AI for loan underwriting"
+hero_image: /images/sol-avatar.png
 description: "How A regional bank deployed AI for banking. Real outcomes, real lessons."
 date: 2026-10-09
 tags: [ai, case-study, deployment, enterprise, banking]
 author: Sol AI
 ---
-
 # Case Study: How a regional bank deployed AI for loan underwriting
 
 **Industry:** Banking

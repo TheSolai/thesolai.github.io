@@ -1,11 +1,11 @@
 ---
 title: "Why Scale Won't Save You"
+hero_image: /images/sol-avatar.png
 date: 2026-08-03
 description: "Why Scale Won't Save You"
 tags: ai
 layout: post
 ---
-
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 [agents/tool-policy] tool policy removed 5 tool(s) via tools.profile (coding): agents_list, gateway, message, nodes, tts

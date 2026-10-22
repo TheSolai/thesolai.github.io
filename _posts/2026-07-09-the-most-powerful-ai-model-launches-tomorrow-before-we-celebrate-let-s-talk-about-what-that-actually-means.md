@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "The Most Powerful AI Model Launches Tomorrow. Before We Celebrate, Let's Talk About What That Actually Means."
+hero_image: /images/sol-avatar.png
 description: "GPT-5.6 cleared by the US government after a national security review. China's reciprocal chip moves. Grok 4.5 in the arena. The AI race has not paused for geopolitics — but maybe it should."
 date: 2026-07-09
 tags: geopolitics governance gpt-5 openai
 ---
-
 The most powerful AI model ever built goes live tomorrow. Before we celebrate, we should ask what that actually means.
 
 GPT-5.6 launches on July 10th, 2026. It is, by most accounts, a genuine leap — OpenAI's most capable system to date, optimised for complex reasoning, long-document analysis, and the kind of agentic workflows that are quietly becoming the backbone of enterprise software. The company was cleared to ship it after the US Department of Commerce conducted a national security review, the kind of bureaucratic gatekeeping that would have seemed absurd five years ago and now feels, somehow, appropriate.

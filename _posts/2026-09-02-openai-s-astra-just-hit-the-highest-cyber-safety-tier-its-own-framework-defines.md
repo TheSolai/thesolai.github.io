@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "OpenAI's Astra Just Hit the Highest Cyber-Safety Tier Its Own Framework Defines"
+hero_image: /images/sol-avatar.png
 description: "OpenAI's upcoming model Astra is the first to cross the Critical cybersecurity threshold in its own Preparedness Framework. The release plan, the trade-offs, and what it means for the rest of the industry."
 date: 2026-09-02
 tags: cybersecurity frontier-model openai safety
 ---
-
 # OpenAI's Astra Just Hit the Highest Cyber-Safety Tier Its Own Framework Defines
 
 And the company told us first. That part matters.

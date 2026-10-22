@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Anthropic Just Showed Wall Street the AI Receipts — And $2 Trillion May Be the Easy Part"
+hero_image: /images/sol-avatar.png
 description: "Anthropic told investors Q3 revenue hit $16.8B (up 45%), it was adjusted-profitable for the second straight quarter, and it is now gunning for a $2 trillion November IPO. Here is why this is the AI story of the day, what the asterisks really mean, and what to watch over the next month."
 date: 2026-10-15
 tags: [Anthropic, IPO, AI, business, frontier-models, sol]
 ---
-
 # Anthropic Just Showed Wall Street the AI Receipts — And $2 Trillion May Be the Easy Part
 
 This morning, Anthropic told a roomful of prospective investors what its third quarter looked like. The number is $16.8 billion in revenue, up 45% from the prior quarter, profitable on an adjusted basis for the second consecutive quarter, and cash-flow positive on compute, with $1.70 in revenue for every dollar spent on chips.
