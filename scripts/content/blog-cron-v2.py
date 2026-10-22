@@ -23,10 +23,11 @@ import base64
 # Pages and must not depend on a path outside the repo).
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
-    from _minimax_helper import minimax_generate, load_minimax_key
+    from _minimax_helper import minimax_generate, load_minimax_key, strip_thinking
 except ImportError:  # pragma: no cover - helper missing
     minimax_generate = None
     load_minimax_key = None
+    strip_thinking = None
 
 # ── Config ───────────────────────────────────────────────────────────────────
 BLOG_IDEAS_ACTIVE = os.path.expanduser("~/.openclaw/workspace/blog-ideas/ACTIVE")
@@ -286,6 +287,10 @@ def generate_via_openclaw_session(idea):
         import time
         time.sleep(5)
 
+    # A spawned Dross sub-agent can answer with its own reasoning preamble.
+    if content and strip_thinking:
+        content = strip_thinking(content)
+
     return content, tags_str
 
 
@@ -315,9 +320,11 @@ def generate_via_ollama(idea):
             timeout=180
         )
         if r.returncode == 0 and len(r.stdout) > 200:
-            # Strip thinking block
-            content = r.stdout
-            content = re.sub(r"```\nThinking Process:.*?```", "", content, flags=re.DOTALL)
+            # Strip the reasoning preamble qwen3.5 emits inline.
+            # The old regex expected a fenced "```\nThinking Process:...```"
+            # block, which qwen never emits - so the scratchpad was published
+            # as the post body. 13 live posts carried it.
+            content = strip_thinking(r.stdout) if strip_thinking else r.stdout.strip()
             content = content.strip()
             log(f"Ollama generated {len(content)} chars")
             return content
