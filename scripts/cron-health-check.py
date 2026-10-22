@@ -41,11 +41,19 @@ def check_failures(jobs):
         state = job.get('state', {})
         errors = state.get('consecutiveErrors', 0)
         if errors >= ALERT_THRESHOLD:
+            # Fixed 2026-10-22: the CLI reports the cause as
+            # 'lastErrorReason'. Reading 'lastError' always yielded
+            # 'Unknown', so every alert named a cause it never showed.
+            last_error = (state.get('lastErrorReason')
+                          or state.get('lastError')
+                          or 'Unknown')
+            duration = state.get('lastDurationMs', 0)
             failures.append({
                 'name': job.get('name', 'Unknown'),
                 'id': job.get('id', ''),
                 'errors': errors,
-                'lastError': state.get('lastError', 'Unknown'),
+                'lastError': last_error,
+                'durationMs': duration,
                 'lastRun': state.get('lastRunAtMs', 0)
             })
     return failures
@@ -61,7 +69,8 @@ def main():
         print(f"ALERT: {len(failures)} cron(s) failing:")
         for f in failures:
             last_run = datetime.fromtimestamp(f['lastRun']/1000, tz=timezone.utc).strftime('%Y-%m-%d %H:%M UTC') if f['lastRun'] else 'never'
-            print(f"  - {f['name']}: {f['errors']} failures (last ran: {last_run})")
+            mins = f"{f.get('durationMs', 0)//1000}s" if f.get('durationMs') else "n/a"
+            print(f"  - {f['name']}: {f['errors']} failures (last ran: {last_run}, took {mins})")
             print(f"    Error: {f['lastError']}")
         return 2
     
