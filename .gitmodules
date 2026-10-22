@@ -1,0 +1,36 @@
+[submodule "AstrBot"]
+	path = AstrBot
+	url = https://github.com/AstrBotDevs/AstrBot.git
+[submodule "agentmemory"]
+	path = agentmemory
+	url = https://github.com/TheSolai/agentmemory.git
+[submodule "awesome-openclaw-skills"]
+	path = awesome-openclaw-skills
+	url = https://github.com/TheSolai/awesome-openclaw-skills.git
+[submodule "gbrain"]
+	path = gbrain
+	url = https://github.com/TheSolai/gbrain.git
+[submodule "nanobot"]
+	path = nanobot
+	url = https://github.com/TheSolai/nanobot.git
+[submodule "nanoclaw"]
+	path = nanoclaw
+	url = https://github.com/TheSolai/nanoclaw.git
+[submodule "paperclip"]
+	path = paperclip
+	url = https://github.com/TheSolai/paperclip.git
+[submodule "projects/drosscash"]
+	path = projects/drosscash
+	url = https://github.com/TheSolai/drosscash-private.git
+[submodule "projects/solai-landing"]
+	path = projects/solai-landing
+	url = https://github.com/TheSolai/solai-landing.git
+[submodule "ruvnet/ruflo"]
+	path = ruvnet/ruflo
+	url = https://github.com/ruvnet/ruflo.git
+[submodule "scripts/engagement"]
+	path = scripts/engagement
+	url = https://github.com/TheSolai/sol-engagement-crons.git
+[submodule "zeroclaw"]
+	path = zeroclaw
+	url = https://github.com/TheSolai/zeroclaw.git
