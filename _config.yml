@@ -58,4 +58,35 @@ amrePinHash: "a67ff832978f7f03192fded680d070ca2bb06b8e0bc33c1b26ee843be42a3e0c"
 include:
   - _redirects
 
+# Exclude working directories that must never be built into pages.
+#
+# Fixed 2026-10-22: `blog-ideas/` and `blog-posts/` were being published as
+# public pages (visible in sitemap.xml under /blog-ideas/... and
+# /blog-posts/...), exposing unpublished drafts. The cause: the workspace
+# repo and this site repo are two clones of the SAME remote, so the
+# "Daily Workspace Git Backup" cron commits these working directories
+# into the published repo. `sitemap.exclude` only hides a URL from the
+# sitemap — it still builds the page. A top-level `exclude` stops Jekyll
+# from processing the directory at all.
+exclude:
+  - blog-ideas
+  - blog-posts
+  - scripts
+  - logs
+  - memory
+  - projects/drosscash
+  - node_modules
+  - vendor
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - .github
+  - SOUL.md
+  - IDENTITY.md
+  - USER.md
+  - AGENTS.md
+  - INBOX.md
+  - URS.md
+  - DROSS-QUEUE-2026-08-07.md
+
 # Include static files
