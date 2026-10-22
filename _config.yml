@@ -74,6 +74,11 @@ exclude:
   - scripts
   - logs
   - memory
+  - agents/dross/references
+  - agents/dross/memory
+  - agents/dross/USER.md
+  - agents/dross/SUCCESSION-TODO.md
+  - agents/sol/USER.md
   - projects/drosscash
   - node_modules
   - vendor

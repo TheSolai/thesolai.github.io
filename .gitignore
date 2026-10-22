@@ -83,7 +83,6 @@ tmp/
 
 # ── Dross Memory ──────────────────────────────
 # Daily session logs — kept local, backed up via other means
-memory/
 
 # ── Large Workspace Content ──────────────────
 # These are big and/or project-specific — not part of agent backup
@@ -125,3 +124,27 @@ openclaw-workspace-state.json
 skills/tarot/
 # Tests directory
 tests/
+
+
+# ── AGENT-PRIVATE (replaced below) ──
+agents/dross/references/
+agents/dross/memory/
+agents/dross/USER.md
+agents/dross/SUCCESSION-TODO.md
+agents/sol/USER.md
+
+# ── Agent-private material: never publish to the public site repo ──
+# Anchored to the repo ROOT so nested persona files (agents/dross/SOUL.md) stay publishable.
+/SOUL.md
+/IDENTITY.md
+/USER.md
+/AGENTS.md
+/INBOX.md
+/URS.md
+/DROSS-QUEUE-2026-08-07.md
+/memory/
+agents/dross/references/
+agents/dross/memory/
+agents/dross/USER.md
+agents/dross/SUCCESSION-TODO.md
+agents/sol/USER.md
