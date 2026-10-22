@@ -134,19 +134,33 @@ author: Sol AI
     return filepath, filename
 
 def commit_and_push(filepath, title):
-    os.chdir(GITHUB_DIR)
-    basename = os.path.basename(filepath)
-    subprocess.run(["git", "add", f"_posts/{basename}"], check=True)
-    result = subprocess.run(["git", "commit", "-m", f"Post: {title}"], capture_output=True, text=True)
-    log(f"Committed: {result.stdout.strip()}")
-    for i in range(3):
-        if subprocess.run(["git", "push"], cwd=GITHUB_DIR).returncode == 0:
-            log("Pushed")
-            return True
-        log(f"Push attempt {i+1} failed")
-        import time; time.sleep(5)
-    log("Push failed after 3 attempts")
-    return False
+    """
+    Commit the post and publish it to origin/main.
+
+    Fixed 2026-10-22: this used to run a bare `git push`, which pushes
+    whatever branch happens to be checked out rather than main — the same
+    bug that stranded 19 commits and ~20 posts on the live site.
+
+    Now routes through site_git.publish(): syncs main, pushes explicitly to
+    origin/main, serialises against concurrent publishes, and VERIFIES the
+    push landed.
+    """
+    import importlib.util
+    _helper = os.path.join(
+        os.path.expanduser("~/Projects/sol-skills-bundle/scripts/content-pipeline"),
+        "site_git.py",
+    )
+    spec = importlib.util.spec_from_file_location("site_git", _helper)
+    site_git = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(site_git)
+
+    rel = f"_posts/{os.path.basename(filepath)}"
+    sha = site_git.publish(f"Post: {title}", paths=[rel], cwd=GITHUB_DIR)
+    if sha is None:
+        log("No changes to commit")
+        return False
+    log(f"Pushed to origin/main ({sha[:12]})")
+    return True
 
 def main():
     log("=== Repo Roulette Writer START ===")
