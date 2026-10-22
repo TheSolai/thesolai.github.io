@@ -23,11 +23,13 @@ import base64
 # Pages and must not depend on a path outside the repo).
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
-    from _minimax_helper import minimax_generate, load_minimax_key, strip_thinking
+    from _minimax_helper import (minimax_generate, load_minimax_key,
+                                 strip_thinking, strip_terminal_artifacts)
 except ImportError:  # pragma: no cover - helper missing
     minimax_generate = None
     load_minimax_key = None
     strip_thinking = None
+    strip_terminal_artifacts = None
 
 # ── Config ───────────────────────────────────────────────────────────────────
 BLOG_IDEAS_ACTIVE = os.path.expanduser("~/.openclaw/workspace/blog-ideas/ACTIVE")
@@ -474,6 +476,13 @@ def main():
         os.makedirs(BLOG_IDEAS_SKIP, exist_ok=True)
         shutil.move(idea_path, os.path.join(BLOG_IDEAS_SKIP, idea_name))
         sys.exit(1)
+
+    # Strip terminal capture artefacts (hard-wrap escape sequences) and
+    # re-flow the wrapped paragraphs. The sessions API path captures PTY
+    # output, which carries these; without this the published page shows
+    # doubled words because a browser never executes the escapes.
+    if content and strip_terminal_artifacts:
+        content = strip_terminal_artifacts(content)
 
     # Clean content: extract title from first heading
     lines = content.split("\n")
