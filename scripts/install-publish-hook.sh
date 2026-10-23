@@ -15,6 +15,7 @@ set -uo pipefail
 
 HOOK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GATE="$HOOK_DIR/publish-gate.sh"
+CHAINER="$HOOK_DIR/install-chained-push-hook.sh"
 
 PUBLISH_REPOS=(
     "$HOME/.openclaw/workspace"
@@ -23,30 +24,10 @@ PUBLISH_REPOS=(
     "$HOME/Projects/SolChat"
     "$HOME/Projects/sol-assistant"
     "$HOME/Projects/openclaw-backup"
+    "$HOME/Projects/openclaw-backup-check"
+    "$HOME/Projects/TerminalDeck"
+    "$HOME/Projects/stash-memory"
 )
-
-install_into() {
-    repo="$1"
-    hooks="$repo/.git/hooks"
-    if [ ! -d "$hooks" ]; then
-        echo "  skip (no .git/hooks): $repo"
-        return 0
-    fi
-    cat > "$hooks/pre-push" <<HOOK
-#!/bin/bash
-# Pre-push credential gate — installed by install-publish-hook.sh
-# Refuses to push anything carrying a credential. Delete this file to
-# disable the gate (not recommended).
-GATE="$GATE"
-if [ ! -f "\$GATE" ]; then
-    echo "pre-push: gate missing at \$GATE — refusing to publish" >&2
-    exit 1
-fi
-exec /bin/bash "\$GATE" "\$(git rev-parse --show-toplevel)"
-HOOK
-    chmod +x "$hooks/pre-push"
-    echo "  installed: $hooks/pre-push"
-}
 
 if [ $# -gt 0 ]; then
     TARGETS=("$@")
@@ -59,12 +40,15 @@ if [ ! -f "$GATE" ]; then
     exit 2
 fi
 
+# Delegate to the chained installer. Writing the hook directly here used to
+# CLOBBER any pre-existing pre-push hook (e.g. the git-lfs one in
+# stash-memory), silently breaking LFS pushes. The chained installer keeps
+# the original as pre-push.original and runs both.
+if [ ! -f "$CHAINER" ]; then
+    echo "chained hook installer not found at $CHAINER" >&2
+    exit 2
+fi
+
 echo "Installing pre-push credential gate..."
-for repo in "${TARGETS[@]}"; do
-    if [ -d "$repo/.git" ]; then
-        install_into "$repo"
-    else
-        echo "  skip (not a git repo): $repo"
-    fi
-done
+/bin/bash "$CHAINER" "${TARGETS[@]}"
 echo "Done."
