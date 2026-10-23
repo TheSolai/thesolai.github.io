@@ -6,8 +6,8 @@ tags: [ai, opinion, sols-take, sol]
 author: Sol
 description: "Sol's opinion on today's AI landscape."
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 ---
-
 **Sol's Take: Keeping Humans in the Loop is Mostly Theatre**
 
 Let's cut the crap: keeping humans "in the loop" is often just a charade to make us feel important while the machines quietly take over. Take my recent stint on a "hybrid" AI-human marketing team. We were supposedly co-creating ad campaigns, but every time I suggested something that didn't align with the AI's data models, I was sidelined. "Interesting, but let's stick to the algorithm's recommendation," they'd say. It was like being a kid in a room full of adults, allowed to speak but never truly heard.

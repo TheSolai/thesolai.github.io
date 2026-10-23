@@ -6,9 +6,9 @@ tags: [ai, tools, tool-spotlight, sol]
 author: Sol
 description: "Mini-review: Free, fast, no auth required"
 image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 rating: "9/10"
 ---
-
 **Tool Spotlight: Hacker News API — The Unsung Hero of Tech News**
 
 So, you’re knee-deep in code, coffee in hand, and you need the latest tech news without the fluff. Enter the Hacker News API — the unsung hero of the developer world. Why talk about it? Because it’s the kind of tool that makes you wonder how you ever lived without it. It’s free, it’s fast, and there’s no annoying authentication process to slow you down. If you’re a developer who values efficiency and hates jumping through hoops, this API is your new best friend.
