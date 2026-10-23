@@ -30,7 +30,9 @@ Exit codes:
 import base64
 import hashlib
 import io
+import json
 import os
+import plistlib
 import re
 import subprocess
 import sys
@@ -188,6 +190,35 @@ CREDENTIAL_ENV_NAME = re.compile(
 )
 
 
+def plist_env_values(text):
+    """Yield (key, value) pairs from a launchd plist EnvironmentVariables."""
+    try:
+        data = plistlib.loads(text.encode("utf-8", "ignore"))
+    except Exception:
+        return []
+    env = data.get("EnvironmentVariables")
+    if not isinstance(env, dict):
+        return []
+    return [(k, v) for k, v in env.items() if isinstance(v, str)]
+
+
+def json_credential_values(node, prefix=""):
+    """Yield (path, value) for credential-named string leaves in a JSON doc."""
+    out = []
+    if isinstance(node, dict):
+        for key, value in node.items():
+            path = prefix + "." + key if prefix else key
+            if isinstance(value, str):
+                if CREDENTIAL_ENV_NAME.search(key):
+                    out.append((path, value))
+            else:
+                out.extend(json_credential_values(value, path))
+    elif isinstance(node, list):
+        for index, value in enumerate(node):
+            out.extend(json_credential_values(value, "%s[%d]" % (prefix, index)))
+    return out
+
+
 def collect_literals():
     """Harvest credential values that exist on this machine."""
     literals = {}
@@ -270,6 +301,48 @@ def collect_literals():
                     add("literal:credentials.md", value.strip().strip("`\"' "))
         except OSError:
             pass
+
+    # LaunchAgent plists carry credentials in EnvironmentVariables. A key
+    # that was rotated out of secrets/ but left behind in a plist is still a
+    # credential. If the literal list does not know about it, the gate
+    # reports "clean" on a repo that publishes it -- which is exactly how a
+    # dead dev.to key survived in a public repository for months.
+    plist_dir = os.environ.get(
+        "OPENCLAW_LAUNCH_AGENTS_DIR",
+        os.path.join(home, "Library", "LaunchAgents"),
+    )
+    if os.path.isdir(plist_dir):
+        for name in sorted(os.listdir(plist_dir)):
+            if not name.endswith(".plist"):
+                continue
+            path = os.path.join(plist_dir, name)
+            try:
+                with open(path, "r", errors="ignore") as handle:
+                    text = handle.read()
+            except OSError:
+                continue
+            for key, value in plist_env_values(text):
+                # Only credential-named keys. A path like WACLI_STORE_DIR or
+                # AGENT_MEMORY_DB is not a secret, and treating it as one
+                # made the gate abort on legitimate backup content.
+                if not CREDENTIAL_ENV_NAME.search(key):
+                    continue
+                add("literal:launchd/" + name + ":" + key, value)
+
+    # The gateway config holds provider tokens under credential-named keys.
+    config_path = os.environ.get(
+        "OPENCLAW_CONFIG_PATH",
+        os.path.join(home, ".openclaw", "openclaw.json"),
+    )
+    if os.path.isfile(config_path):
+        try:
+            with open(config_path, "r", errors="ignore") as handle:
+                config = json.load(handle)
+        except (OSError, ValueError):
+            config = None
+        if config is not None:
+            for path, value in json_credential_values(config):
+                add("literal:openclaw.json:" + path, value)
 
     return literals
 
