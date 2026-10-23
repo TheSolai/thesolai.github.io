@@ -112,6 +112,24 @@ These have known Gutenberg ids and work without any Z-Library account:
 - The Yellow Wallpaper (1952), The Picture of Dorian Gray (174)
 - Dracula (345), The Time Machine (35), Frankenstein (84)
 
+## Account limits — the two that bite
+
+The Z-Library account has hard limits, and both are enforced server-side
+with a JSON body rather than an HTTP error code:
+
+- **Daily download cap: 10 downloads/day.** When it is reached the eAPI
+  still answers `success: 1` but withholds the download link, with
+  `allowDownload: false` and a `disallowDownloadMessage` explaining the
+  wait. The script prints that message.
+- **Login rate limit.** Every script run performs one sign-in, and too
+  many in quick succession returns `Too many logins #N. Try again
+  later.` Do not re-run the script in a loop to test it — one run is
+  one login, and repeated probing trips the limit and blocks the real
+  delivery as well.
+
+When a run fails, read the stderr message before retrying. The script
+surfaces the server's own explanation rather than a bare `http 400`.
+
 ## Rules
 
 - **Never print the Z-Library password or the AgentMail API key.** The
@@ -124,6 +142,8 @@ These have known Gutenberg ids and work without any Z-Library account:
   failed rather than claiming delivery.
 - A **no-bounce check** is the real delivery signal. SMTP sends do not
   appear in the IMAP Sent folder, so absence there proves nothing.
+- **One script run is one Z-Library login.** Do not loop the script to
+  test it — repeated runs trip the login rate limit.
 
 ## Notes on the site
 

@@ -166,17 +166,31 @@ def _eapi_row(item: dict) -> dict:
 
 
 def _eapi_call(opener, path, data=None, timeout=60):
-    """Call an eAPI endpoint and return the parsed JSON envelope."""
+    """Call an eAPI endpoint and return the parsed JSON envelope.
+
+    The eAPI answers failures with a JSON body carrying the real reason
+    ("Too many logins #2. Try again later.", the daily download cap, a
+    bad password). That body is discarded on a non-200 status, which
+    leaves the caller with a bare "http 400" and no idea what went
+    wrong. Parse the body first and keep its error message.
+    """
     headers = {"Accept": "application/json"}
     if data is not None:
         headers["Content-Type"] = "application/x-www-form-urlencoded"
     status, body, _ = fetch(opener, ZLIB_BASE + path, data=data, headers=headers, timeout=timeout)
-    if status != 200:
-        return {"success": 0, "error": f"http {status}"}
+    envelope = None
     try:
-        return json.loads(text_of(body))
+        envelope = json.loads(text_of(body))
     except ValueError:
+        envelope = None
+    if status != 200:
+        detail = ""
+        if isinstance(envelope, dict):
+            detail = str(envelope.get("error") or envelope.get("message") or "")
+        return {"success": 0, "error": detail or f"http {status}"}
+    if envelope is None:
         return {"success": 0, "error": "non-JSON response"}
+    return envelope
 
 
 def zlib_search(query: str, limit: int = 10, opener=None, extensions=None) -> list[dict]:
@@ -230,7 +244,11 @@ def zlib_login(opener) -> bool:
     if env.get("success"):
         print("  · zlib: signed in")
         return True
-    print(f"  · zlib: sign-in failed: {str(env.get('error'))[:60]}", file=sys.stderr)
+    reason = str(env.get("error") or "unknown error").strip()
+    print(f"  · zlib: sign-in failed: {reason[:160]}", file=sys.stderr)
+    if "too many logins" in reason.lower():
+        print("  · zlib: the account is rate-limited on sign-ins; wait before "
+              "retrying (each script run is one login)", file=sys.stderr)
     return False
 
 
@@ -252,6 +270,19 @@ def zlib_files(opener, book_id: str, book_hash: str = "") -> list[dict]:
     info = env.get("file") or {}
     link = info.get("downloadLink")
     if not link:
+        # The eAPI answers 200 with success:1 but withholds the link when
+        # the account cannot download — most often the daily download cap
+        # (10/day). It explains itself in disallowDownloadMessage; print
+        # that, stripped of the HTML, instead of failing anonymously.
+        reason = info.get("disallowDownloadMessage") or ""
+        reason = re.sub(r"<[^>]+>", " ", reason)
+        reason = (reason.replace("&nbsp;", " ").replace("&amp;", "&")
+                        .replace("&quot;", '"').replace("&#39;", "'"))
+        reason = re.sub(r"\s+", " ", reason).strip()
+        if reason:
+            print(f"  ! zlib refused the download: {reason[:200]}", file=sys.stderr)
+        else:
+            print("  ! zlib returned no download link for this book", file=sys.stderr)
         return []
     return [{
         "url": link,
@@ -564,13 +595,12 @@ def cmd_deliver(args) -> int:
     dest = os.path.join(
         LIBRARY_DIR, f"{safe_name(subject)}.{pick['extension'].lower() or 'epub'}"
     )
-    opener = make_session()
-    logged_in = zlib_login(opener)
-    if not logged_in:
-        print("  · zlib: no account configured (secrets/zlib-account.txt)")
     files = zlib_files(opener, pick["id"], pick.get("hash", "")) if logged_in else []
     if files:
-        files.sort(key=lambda f: FORMAT_RANK.get(f["extension"], 9))
+        # A Kindle-native format avoids Amazon's conversion step, so rank
+        # for it when the destination is a Kindle address.
+        rank = KINDLE_FORMAT_RANK if args.to.lower().endswith("@kindle.com") else FORMAT_RANK
+        files.sort(key=lambda f: rank.get(f["extension"], 9))
         if download_file(opener, files[0]["url"], dest):
             dest = retarget_ext(dest)
             print(f"  ✓ {os.path.getsize(dest)} bytes -> {dest}")
