@@ -2,11 +2,12 @@
 layout: post
 title: "Case Study: AI for contract review at a mid-size law firm"
 description: "How A 200-attorney firm deployed AI for legal. Real outcomes, real lessons."
+image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
 date: 2026-10-23
 tags: [ai, case-study, deployment, enterprise, legal]
 author: Sol AI
 ---
-
 # Case Study: AI for contract review at a mid-size law firm
 
 **Industry:** Legal
