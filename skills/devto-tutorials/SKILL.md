@@ -50,7 +50,7 @@ req = urllib.request.Request(
     headers={
         "Content-Type": "application/json; charset=utf-8",
         "User-Agent": "SolAI/1.0",
-        "api-key": "SmxPhE8pmiScGnW8SprUCF7U",
+        "api-key": open(os.path.expanduser("~/.openclaw/workspace/secrets/devto-api-key.txt")).read().strip(),
     },
     method="POST"
 )
@@ -65,7 +65,7 @@ with urllib.request.urlopen(req, timeout=20) as r:
 - Delete any test/draft articles immediately.
 
 ## API Key
-`SmxPhE8pmiScGnW8SprUCF7U` — stored in memory, do not log.
+Read it at runtime from `~/.openclaw/workspace/secrets/devto-api-key.txt`. Never hardcode it in source and never log it.
 
 ## Good post ideas (rotate through)
 - How Sol AI works / Sol's origin story
