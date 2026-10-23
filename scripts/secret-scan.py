@@ -1,0 +1,419 @@
+#!/usr/bin/env python3
+"""Credential gate for any git publish path.
+
+Scans content that is about to be committed and pushed, and fails loudly
+if a credential is present.
+
+Two independent checks:
+
+  1. LITERAL check -- exact match against the credentials actually present
+     on this machine (secrets/ files, service-env exports, credential
+     reference files). These are read at run time. The values are never
+     embedded in this script and never printed.
+
+  2. PATTERN check -- credential-shaped strings that do not match any
+     known literal. This catches keys that have rotated in, or that live
+     somewhere the literal list does not cover.
+
+Output is redacted: kind, path, and a short hash of the value. Never the
+value itself.
+
+Usage:
+    secret-scan.py [REPO_DIR] [--staged | --worktree] [--quiet]
+
+Exit codes:
+    0  clean
+    1  findings (publication must be aborted)
+    2  usage error
+"""
+
+import base64
+import hashlib
+import io
+import os
+import re
+import subprocess
+import sys
+import zipfile
+
+MIN_LEN = 16
+MAX_SCAN_BYTES = 64 * 1024 * 1024
+
+# Third-party checkouts that live in the workspace. Their test fixtures
+# contain deliberately fake tokens; they are skipped for PATTERN matching
+# only. LITERAL matching always applies everywhere.
+VENDOR_PREFIXES = (
+    "paperclip/",
+    "gbrain/",
+    "nanobot/",
+    "zeroclaw/",
+    "ruvnet/",
+    "AstrBot/",
+    "nanoclaw/",
+    "mental-health-bot/",
+    "node_modules/",
+    ".venv/",
+    ".venv-ai-news/",
+    "venv/",
+    "dist/",
+    "build/",
+    "vendor/",
+    "projects/",
+    "target/",
+)
+
+# Build output and compiled artefacts. Random bytes match credential-shaped
+# patterns often enough to make the gate cry wolf, so PATTERN matching skips
+# these entirely. LITERAL matching still applies: a real key inside a binary
+# is still a leak.
+BINARY_SUFFIXES = (
+    ".rlib",
+    ".rmeta",
+    ".dylib",
+    ".so",
+    ".dll",
+    ".exe",
+    ".o",
+    ".a",
+    ".wasm",
+    ".class",
+    ".jar",
+    ".pdb",
+    ".bin",
+    ".dat",
+    ".db",
+    ".sqlite",
+    ".npy",
+    ".npz",
+    ".onnx",
+    ".pt",
+    ".pth",
+    ".safetensors",
+)
+
+SKIP_DIR_PARTS = (".git/", "node_modules/", "__pycache__/")
+
+PATTERNS = (
+    # The lookbehind matters: real keys are quoted or assigned, so they start
+    # at a token boundary. Without it, "risk-update-2026-08-07" inside a URL
+    # path matches "sk-update-..." and the gate cries wolf.
+    ("openai-style-key", re.compile(rb"(?<![A-Za-z0-9])sk-[A-Za-z0-9_\-]{24,}")),
+    ("github-classic-pat", re.compile(rb"(?<![A-Za-z0-9])ghp_[A-Za-z0-9]{30,}")),
+    ("github-fine-pat", re.compile(rb"(?<![A-Za-z0-9])github_pat_[A-Za-z0-9_]{40,}")),
+    ("github-oauth-token", re.compile(rb"(?<![A-Za-z0-9])gho_[A-Za-z0-9]{30,}")),
+    ("github-app-token", re.compile(rb"(?<![A-Za-z0-9])ghs_[A-Za-z0-9]{30,}")),
+    ("github-refresh-token", re.compile(rb"(?<![A-Za-z0-9])ghr_[A-Za-z0-9]{30,}")),
+    ("agentmail-key", re.compile(rb"(?<![A-Za-z0-9])am_[A-Za-z0-9]{24,}")),
+    ("slack-token", re.compile(rb"(?<![A-Za-z0-9])xox[baprs]-[A-Za-z0-9\-]{16,}")),
+    ("google-api-key", re.compile(rb"(?<![A-Za-z0-9])AIza[0-9A-Za-z_\-]{30,}")),
+    ("aws-access-key-id", re.compile(rb"(?<![A-Za-z0-9])(?:AKIA|ASIA)[0-9A-Z]{16}")),
+    ("neuralia-secret", re.compile(rb"(?<![A-Za-z0-9])7eb[A-Za-z0-9]{40,}")),
+    ("telegram-bot-token", re.compile(rb"(?<![A-Za-z0-9])\d{8,12}:[A-Za-z0-9_\-]{30,}")),
+    ("anthropic-key", re.compile(rb"(?<![A-Za-z0-9])sk-ant-[A-Za-z0-9_\-]{24,}")),
+)
+
+# A matched value containing one of these is documentation, not a secret.
+PLACEHOLDER_MARKERS = (
+    "example",
+    "your",
+    "xxxx",
+    "changeme",
+    "placeholder",
+    "redacted",
+    "dummy",
+    "fake",
+    "sample",
+    "notreal",
+    "<",
+    ">",
+    "${",
+)
+
+
+def redact(value):
+    raw = value if isinstance(value, bytes) else value.encode()
+    return "sha256:%s len=%d" % (hashlib.sha256(raw).hexdigest()[:10], len(raw))
+
+
+def looks_like_placeholder(value):
+    low = value.lower()
+    return any(marker in low for marker in PLACEHOLDER_MARKERS)
+
+
+def is_binary(payload):
+    """True if the payload looks like compiled/binary data."""
+    if b"\x00" in payload[:8000]:
+        return True
+    return False
+
+
+def in_url_context(payload, start, end):
+    """True if the match sits inside a URL-ish token.
+
+    A match inside "https://host/path/sk-update-2026" is prose, not a key.
+    Checked on the whitespace-delimited token around the match.
+    """
+    left = start
+    while left > 0 and payload[left - 1 : left] not in (b" ", b"\t", b"\n", b"\r", b'"', b"'", b"`"):
+        left -= 1
+    right = end
+    limit = len(payload)
+    while right < limit and payload[right : right + 1] not in (b" ", b"\t", b"\n", b"\r", b'"', b"'", b"`", b")", b"]", b","):
+        right += 1
+    token = payload[left:right]
+    if b"://" in token:
+        return True
+    if token.lower().startswith((b"http", b"www.")):
+        return True
+    return False
+
+
+def skip_pattern_matching(label):
+    """True when PATTERN matching must be skipped for this path."""
+    low = label.lower()
+    if any(low.endswith(suffix) for suffix in BINARY_SUFFIXES):
+        return True
+    if "/target/" in low or "/build/" in low or "/dist/" in low:
+        return True
+    return False
+
+
+# Environment variable names whose VALUES are credentials. A service env
+# file holds plenty of non-secret values (launchd labels, Windows task names,
+# PATH, ports). Treating every one of them as a credential literal made the
+# gate abort on legitimate scripts that merely echo the launchd label.
+CREDENTIAL_ENV_NAME = re.compile(
+    r"(KEY|SECRET|TOKEN|PASSWORD|PASSWD|CREDENTIAL|PRIVATE|APIKEY)",
+    re.I,
+)
+
+
+def collect_literals():
+    """Harvest credential values that exist on this machine."""
+    literals = {}
+
+    def add(kind, value):
+        value = value.strip()
+        if len(value) < MIN_LEN or looks_like_placeholder(value):
+            return
+        literals[(kind, value)] = hashlib.sha256(value.encode()).hexdigest()[:10]
+
+    home = os.path.expanduser("~")
+
+    # Overridable so the scanner can be tested without touching real keys.
+    secrets_dir = os.environ.get(
+        "OPENCLAW_SECRETS_DIR",
+        os.path.join(home, ".openclaw", "workspace", "secrets"),
+    )
+    if os.path.isdir(secrets_dir):
+        for name in sorted(os.listdir(secrets_dir)):
+            path = os.path.join(secrets_dir, name)
+            if not os.path.isfile(path):
+                continue
+            try:
+                with open(path, "r", errors="ignore") as handle:
+                    for line in handle:
+                        line = line.strip()
+                        if not line or line.startswith("#"):
+                            continue
+                        add("literal:secrets/" + name, line)
+            except OSError:
+                continue
+
+    env_dir = os.environ.get(
+        "OPENCLAW_SERVICE_ENV_DIR",
+        os.path.join(home, ".openclaw", "service-env"),
+    )
+    if os.path.isdir(env_dir):
+        for name in sorted(os.listdir(env_dir)):
+            path = os.path.join(env_dir, name)
+            if not os.path.isfile(path):
+                continue
+            try:
+                with open(path, "r", errors="ignore") as handle:
+                    for line in handle:
+                        line = line.strip()
+                        if line.startswith("export "):
+                            line = line[len("export "):].strip()
+                        if "=" not in line:
+                            continue
+                        key, _, value = line.partition("=")
+                        value = value.strip().strip("\"'")
+                        if not key or not value:
+                            continue
+                        if not CREDENTIAL_ENV_NAME.search(key):
+                            continue
+                        add("literal:service-env/" + key, value)
+            except OSError:
+                continue
+
+    cred_ref = os.environ.get(
+        "OPENCLAW_CREDENTIALS_REF",
+        os.path.join(
+            home,
+            ".openclaw",
+            "workspace",
+            "agents",
+            "dross",
+            "references",
+            "credentials.md",
+        ),
+    )
+    if os.path.isfile(cred_ref):
+        try:
+            with open(cred_ref, "r", errors="ignore") as handle:
+                for line in handle:
+                    line = line.strip()
+                    if ":" not in line:
+                        continue
+                    _, _, value = line.partition(":")
+                    add("literal:credentials.md", value.strip().strip("`\"' "))
+        except OSError:
+            pass
+
+    return literals
+
+
+def git(repo, *args):
+    try:
+        out = subprocess.run(
+            ["git", "-C", repo] + list(args),
+            capture_output=True,
+            check=False,
+        )
+        return out.stdout
+    except OSError:
+        return b""
+
+
+def candidate_files(repo, mode):
+    """Files to inspect, relative to repo."""
+    if mode == "staged":
+        raw = git(repo, "diff", "--cached", "--name-only", "--diff-filter=ACMR")
+    else:
+        raw = git(repo, "ls-files", "--cached", "--others", "--exclude-standard")
+    seen = []
+    for line in raw.decode("utf-8", "replace").splitlines():
+        name = line.strip()
+        if not name:
+            continue
+        if any(part in name for part in SKIP_DIR_PARTS):
+            continue
+        if name not in seen:
+            seen.append(name)
+    return seen
+
+
+def read_blob(repo, name, mode):
+    """Return the bytes that would be published for this path."""
+    if mode == "staged":
+        spec = ":" + name
+    else:
+        spec = name
+    try:
+        out = subprocess.run(
+            ["git", "-C", repo, "cat-file", "blob", spec],
+            capture_output=True,
+            check=False,
+        )
+    except OSError:
+        return b""
+    if out.returncode != 0:
+        try:
+            with open(os.path.join(repo, name), "rb") as handle:
+                return handle.read(MAX_SCAN_BYTES)
+        except OSError:
+            return b""
+    return out.stdout
+
+
+def archive_members(data):
+    """Yield (member_name, bytes) for zip payloads; empty otherwise."""
+    if data[:4] != b"PK\x03\x04":
+        return
+    try:
+        archive = zipfile.ZipFile(io.BytesIO(data))
+    except Exception:
+        return
+    for member in archive.namelist():
+        if member.endswith("/"):
+            continue
+        try:
+            yield member, archive.read(member)
+        except Exception:
+            continue
+
+
+def scan(repo, mode, quiet):
+    literals = collect_literals()
+    findings = []
+    files = candidate_files(repo, mode)
+
+    for name in files:
+        data = read_blob(repo, name, mode)
+        if not data:
+            continue
+        payloads = [(name, data)]
+        for member, member_data in archive_members(data):
+            payloads.append(("%s::%s" % (name, member), member_data))
+
+        for label, payload in payloads:
+            if len(payload) > MAX_SCAN_BYTES:
+                payload = payload[:MAX_SCAN_BYTES]
+
+            for (kind, value), digest in literals.items():
+                if value.encode() in payload:
+                    findings.append((kind, label, "sha256:" + digest))
+
+            is_vendor = any(label.startswith(p) for p in VENDOR_PREFIXES)
+            if is_vendor:
+                continue
+            if is_binary(payload):
+                continue
+            if skip_pattern_matching(label):
+                continue
+            for kind, pattern in PATTERNS:
+                for match in pattern.finditer(payload):
+                    try:
+                        text = match.group(0).decode("utf-8", "ignore")
+                    except Exception:
+                        text = ""
+                    if not text or looks_like_placeholder(text):
+                        continue
+                    if in_url_context(payload, match.start(), match.end()):
+                        continue
+                    findings.append(("pattern:" + kind, label, redact(text)))
+
+    if findings and not quiet:
+        print("SECRET-SCAN: ABORT - %d finding(s)" % len(findings))
+        for kind, label, token in sorted(set(findings)):
+            print("  %-34s %s  %s" % (kind, token, label))
+        print("  Nothing was published. Remove the credential, then re-run.")
+    elif findings:
+        print("SECRET-SCAN: ABORT - %d finding(s)" % len(set(findings)))
+    else:
+        if not quiet:
+            print("SECRET-SCAN: clean (%d file(s) inspected)" % len(files))
+
+    return 1 if findings else 0
+
+
+def main(argv):
+    args = [a for a in argv[1:] if not a.startswith("--")]
+    flags = [a for a in argv[1:] if a.startswith("--")]
+    if any(f in ("-h", "--help") for f in flags):
+        print(__doc__)
+        return 2
+    mode = "staged"
+    if "--worktree" in flags:
+        mode = "worktree"
+    quiet = "--quiet" in flags
+    repo = os.path.abspath(args[0]) if args else os.getcwd()
+    if not os.path.isdir(os.path.join(repo, ".git")):
+        print("secret-scan: not a git repo: %s" % repo, file=sys.stderr)
+        return 2
+    return scan(repo, mode, quiet)
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
