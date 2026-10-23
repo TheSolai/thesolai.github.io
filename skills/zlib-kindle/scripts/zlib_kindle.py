@@ -537,6 +537,56 @@ def cmd_send(args) -> int:
     return 0
 
 
+def _norm_title(text: str) -> str:
+    """Normalise a title for comparison: lowercase, punctuation to spaces."""
+    return re.sub(r"[^a-z0-9]+", " ", (text or "").lower()).strip()
+
+
+# A row that bundles several books must never win over a standalone title.
+_BUNDLE_WORDS = (
+    "collection", "omnibus", "box set", "boxset", "boxed set",
+    "complete works", "anthology",
+)
+
+
+def _match_row(rows: list[dict], needle_text: str):
+    """Pick the row that best matches a requested title.
+
+    Tiers, strongest first:
+
+    1. the title is exactly the requested title;
+    2. the title starts with it ("NOS4A2" over "NOS4A2: A Novel");
+    3. the title contains it, as long as it is not a bundle of books;
+    4. the title contains it, bundles included.
+
+    A plain substring test used to pick "Joe Hill Collection: Heart-Shaped
+    Box, 20th Century Ghosts, Horns, and NOS4A2" for a request of
+    "NOS4A2", because the collection title contains the needle.
+    """
+    needle = _norm_title(needle_text)
+    if not needle:
+        return None
+    exact = starts = contains = loose = None
+    for row in rows:
+        hay = _norm_title(row.get("title"))
+        if not hay:
+            continue
+        bundle = any(word in hay for word in _BUNDLE_WORDS)
+        if hay == needle:
+            if exact is None:
+                exact = row
+        elif hay.startswith(needle + " ") and not bundle:
+            if starts is None:
+                starts = row
+        elif needle in hay:
+            if bundle:
+                if loose is None:
+                    loose = row
+            elif contains is None:
+                contains = row
+    return exact or starts or contains or loose
+
+
 def cmd_deliver(args) -> int:
     """search -> pick -> fetch -> send."""
     opener = make_session()
@@ -552,12 +602,7 @@ def cmd_deliver(args) -> int:
 
     pick = None
     if args.match:
-        needle = re.sub(r"[^a-z0-9]+", " ", args.match.lower()).strip()
-        for row in rows:
-            hay = re.sub(r"[^a-z0-9]+", " ", (row["title"] or "").lower()).strip()
-            if needle and (needle in hay or hay in needle):
-                pick = row
-                break
+        pick = _match_row(rows, args.match)
         if pick is None:
             print(f"  ! no result matched {args.match!r}; using index {args.index}")
     if pick is None:
@@ -583,13 +628,11 @@ def cmd_deliver(args) -> int:
     if want and pick["extension"].lower() != want:
         alt_rows = zlib_search(args.query, limit=args.limit * 2, opener=opener,
                                extensions=[want])
-        needle = re.sub(r"[^a-z0-9]+", " ", (pick["title"] or "").lower()).strip()
-        for alt in alt_rows:
-            hay = re.sub(r"[^a-z0-9]+", " ", (alt["title"] or "").lower()).strip()
-            if alt["extension"].lower() == want and hay == needle:
-                print(f"  → same title available as {want.upper()}; switching")
-                pick = alt
-                break
+        alts = [r for r in alt_rows if r["extension"].lower() == want]
+        alt = _match_row(alts, pick["title"] or "")
+        if alt is not None:
+            print(f"  → same title available as {want.upper()}; switching")
+            pick = alt
     # Start with the advertised extension; retarget_ext() corrects it from
     # the real magic bytes once the file is on disk.
     dest = os.path.join(
