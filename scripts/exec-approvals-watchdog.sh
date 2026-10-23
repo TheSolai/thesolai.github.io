@@ -25,6 +25,8 @@ HEALTHZ="http://127.0.0.1:18789/healthz"
 NODE="/Users/amre/.openclaw/tools/node-v24.21.0/bin/node"
 OC_MJS="${STATE_DIR}/tools/node-v24.21.0/lib/node_modules/openclaw/openclaw.mjs"
 MAX_DB_BYTES=$((150 * 1024 * 1024))   # 150MB
+MAX_SESSION_EVENTS=20000     # transcript events before a session is "oversized"
+LIVE_SESSION_IDLE_MS=1800000 # 30 min — never touch a session still in active use
 
 log() { echo "$(date '+%Y-%m-%d %H:%M:%S') [health-wd] $*" | tee -a "$LOG" >/dev/null; }
 bounced=0
@@ -205,32 +207,41 @@ fi
 # `visible channel turn dispatched with no queued reply payloads:
 #  cause=skipped:reply_operation_aborted`. Detect an oversized session and
 # reset it so the channel recovers without manual intervention.
+#
+# HISTORY (2026-10-24): this guard used to DELETE the transcript of the largest
+# session and bounce the gateway. Two defects made it actively harmful:
+#   1. It routinely picked the LIVE Telegram session (that one grows fastest),
+#      so it wiped the real conversation and bounced the gateway mid-turn —
+#      the cause of the "interrupted by a gateway restart" turns and the
+#      apparent slowness (a 80MB VACUUM with the gateway down).
+#   2. Deleting a transcript discards history instead of compacting it.
+# OpenClaw's own compaction (agents.defaults.compaction) now handles context
+# overflow. This guard should COMPACT a stale runaway session and must never
+# touch a session that is still in active use.
 if gateway_alive; then
     big_sid=$(sqlite3 "$AGENT_DB" "
         SELECT session_id FROM transcript_events
         GROUP BY session_id
-        HAVING COUNT(*) > 4000
+        HAVING COUNT(*) > $MAX_SESSION_EVENTS
         ORDER BY COUNT(*) DESC LIMIT 1;" 2>/dev/null)
     if [ -n "$big_sid" ]; then
         cnt=$(sqlite3 "$AGENT_DB" "SELECT COUNT(*) FROM transcript_events WHERE session_id='$big_sid';" 2>/dev/null)
-        log "session ${big_sid:0:12}... has $cnt events (>4000) -> context overflow risk, resetting session"
-        launchctl bootout gui/501/"$LABEL" 2>/dev/null || true
-        sleep 3
-        sqlite3 "$AGENT_DB" <<SQL >>"$LOG" 2>&1
-PRAGMA busy_timeout = 30000;
-PRAGMA foreign_keys = ON;
-DELETE FROM session_transcript_active_events WHERE session_id = '$big_sid';
-DELETE FROM transcript_event_identities    WHERE session_id = '$big_sid';
-DELETE FROM transcript_events             WHERE session_id = '$big_sid';
-DELETE FROM session_windows               WHERE session_id = '$big_sid';
-INSERT INTO session_transcript_fts(session_transcript_fts) VALUES('rebuild');
-PRAGMA wal_checkpoint(TRUNCATE);
-VACUUM;
-SQL
-        launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true
-        sleep 6
-        gateway_alive || { launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true; sleep 5; }
-        log "  session reset; gateway $(gateway_alive && echo up || echo DOWN)"
+        last_act=$(sqlite3 "$AGENT_DB" "SELECT COALESCE(MAX(created_at),0) FROM transcript_events WHERE session_id='$big_sid';" 2>/dev/null)
+        now_ms=$(( $(date +%s) * 1000 ))
+        idle_ms=$(( now_ms - ${last_act:-0} ))
+        if [ "$idle_ms" -lt "$LIVE_SESSION_IDLE_MS" ]; then
+            log "session ${big_sid:0:12}... has $cnt events (> $MAX_SESSION_EVENTS) but is ACTIVE (idle ${idle_ms}ms) -> skipping"
+        else
+            log "session ${big_sid:0:12}... has $cnt events (> $MAX_SESSION_EVENTS), idle ${idle_ms}ms -> compacting (history preserved)"
+            ckey=$(sqlite3 "$AGENT_DB" "SELECT session_key FROM session_nodes WHERE current_session_id='$big_sid' LIMIT 1;" 2>/dev/null)
+            if [ -n "$ckey" ]; then
+                "$NODE" "$OC_MJS" sessions compact "$ckey" --max-lines 200 >>"$LOG" 2>&1 \
+                    && log "  compacted $ckey" \
+                    || log "  !! compact failed for $ckey"
+            else
+                log "  no session_key maps to $big_sid -> skipping"
+            fi
+        fi
     fi
 fi
 
