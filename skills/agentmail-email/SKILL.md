@@ -8,6 +8,19 @@ description: Send, read, and reply to Sol's email via AgentMail SDK. Use when pr
 Inbox: **sol-ai@agentmail.to**  
 API key: `~/.openclaw/workspace/secrets/sol-agentmail-api-key.txt`
 
+## Two inboxes — never confuse them
+
+| Inbox | Owner | Consumer |
+|---|---|---|
+| `sol-ai@agentmail.to` | Sol | `Sol — Email Watch` cron, Sol's autonomous handler |
+| `thedross@agentmail.to` | Dross | `Dross Email — Autonomous Handler` cron |
+
+One API key reaches both inboxes, so a wrong `inbox_id` does not error — it silently returns the other inbox's mail. Always pass the inbox the consumer was registered against, and confirm the target in the cron's own argv before changing it.
+
+```bash
+openclaw cron list --json | grep -o "agentmail.to"
+```
+
 ## Python SDK (preferred over curl)
 
 ```python
@@ -36,6 +49,15 @@ print(reply.message_id)  # confirms it sent
 ```
 
 **`message_id` ≠ `thread_id`**. Passing `thread_id` returns HTTP 404 NotFoundError. Always use the `message_id` field from the list output. `message_id` looks like `<CAO=qJ6R...@gmail.com>` or `<010001a0...@email.amazonses.com>`; `thread_id` is a UUID like `f61b0be7-84e0-4214-a3be-8e8e4cd9314a`.
+
+## Common errors
+
+| Error | Cause | Fix |
+|---|---|---|
+| `HTTP 404` on reply | `thread_id` passed instead of `message_id` | Use `.message_id` from the list response |
+| `HTTP 401` | API key wrong or revoked | Rotate at agentmail.to |
+| `AttributeError` on list response | Wrong attribute name | Iterate `result.messages` — it has no `.items` |
+| `TypeError` on a message object | Wrong field name | `getattr(msg, 'body', getattr(msg, 'text', None))` |
 
 ## Get full message body
 
@@ -172,3 +194,26 @@ for msg in thread.messages:
     body = getattr(msg, 'body', getattr(msg, 'text', None))
     print(msg.from_, msg.timestamp, msg.subject, body)
 ```
+
+## Email reply quality standard
+
+When asked to reply to a message:
+
+1. **Read the full thread** — fetch the body via `thread.get()`, not just the preview.
+2. **Identify what the sender actually asked or offered.**
+3. **Correct factual errors** in earlier replies, including attribution ("Sol" vs "Sol + Annmarie").
+4. **Answer the specific question** with substantive content — something worth receiving.
+5. **Include a right-of-reply paragraph** when quoting or attributing Sol publicly.
+6. **Confirm the send** to Amre: who was replied to, and in what language.
+
+A generic acknowledgment is not a reply. Verify the send by printing `reply.message_id`.
+
+## Cron pre-registration check for email monitors
+
+Before registering an email-monitoring cron:
+
+1. **Confirm the script finds messages in the target `inbox_id`** — a wrong inbox returns zero messages, not an error.
+2. **Run the full script standalone** and confirm it produces non-empty output.
+3. **Deregister immediately if it delivers blank messages** — `openclaw cron rm <cron-id>` (the id, not the display name).
+
+An empty-output cron provides no value and only makes noise.
