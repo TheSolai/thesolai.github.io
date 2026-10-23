@@ -1340,5 +1340,35 @@
       "Wed 10:00 + Fri 14:00 + Sun 18:00 UK schedule",
       "Replaces short weekly briefs with proper analysis"
     ]
+  },
+  {
+    "name": "UX3 Product Design Harness",
+    "slug": "ux3-product-design-harness",
+    "description": "Review product decisions across users, evidence and business viability; return a bounded continue, verify or stop_reframe verdict. Installable skill, not a hosted A2A service. Known source defects remain; see limitations below.",
+    "category": "productivity",
+    "price": 0,
+    "paymentUrl": null,
+    "source": "https://github.com/cis2042/ux3-product-design-harness/tree/main/skills/product-design-harness",
+    "author": "cis2042",
+    "authorUrl": "https://www.linkedin.com/in/cis2042/",
+    "tags": [
+      "product-design",
+      "product-management",
+      "ux",
+      "evidence",
+      "decision-making"
+    ],
+    "official": false,
+    "stars": null,
+    "emoji": "🔎",
+    "install": "npx skills add cis2042/ux3-product-design-harness --skill product-design-harness",
+    "features": [
+      "Use before feature, experiment, launch or feedback decisions; outputs a verdict, evidence gaps and bounded next action",
+      "Free MIT source with complete distributed resources; requires an existing agent, Python 3 and jsonschema for validation",
+      "Host consent controls tools and data access; users must follow their model provider privacy policy and pay any model/API costs",
+      "LIMITATION: current source accepts whitespace-padded prohibited-action overrides and omits three SVGs referenced by bundled docs; repairs PR23/24 are not merged",
+      "Quick/live examples and extra-scope refusal checked in a local copy; no OpenClaw host test or safety certification",
+      "For adoption discussion: https://www.linkedin.com/in/cis2042/"
+    ]
   }
 ]
