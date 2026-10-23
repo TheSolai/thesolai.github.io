@@ -42,7 +42,15 @@ LIBRARY_DIR = os.path.join(HOME, "Downloads", "dross-books")
 KINDLE_ADDR = "amrekin@kindle.com"
 AGENTMAIL_INBOX = "thedross@agentmail.to"
 
-ZLIB_BASE = "https://z-lib.id"
+# Z-Library's authenticated eAPI. The public HTML pages on the "z-lib.id"
+# family now render a "Lifetime Premium" upsell instead of a download
+# button and their /papi/ endpoints 404, so the web path is a dead end.
+# The eAPI on z-lib.by is the working route: log in, POST /eapi/book/search,
+# then GET /eapi/book/<id>/<hash>/file which returns a signed CDN link.
+ZLIB_BASE = "https://z-lib.by"
+EAPI_LOGIN = "/eapi/user/login"
+EAPI_SEARCH = "/eapi/book/search"
+EAPI_FILE = "/eapi/book/{id}/{hash}/file"
 GUTENBERG = "https://www.gutenberg.org"
 
 UA = (
@@ -75,6 +83,10 @@ GUTENBERG_IDS = {
 }
 
 FORMAT_RANK = {"epub": 0, "epub3": 0, "mobi": 1, "azw3": 2, "pdf": 3, "djvu": 4, "txt": 5}
+
+# Kindle reads AZW3 natively and needs no conversion, so a Kindle-bound
+# fetch prefers it over EPUB even though EPUB is the better general format.
+KINDLE_FORMAT_RANK = {"azw3": 0, "epub": 1, "epub3": 1, "mobi": 2, "pdf": 3, "txt": 4, "djvu": 5}
 
 
 # --------------------------------------------------------------------------
@@ -115,92 +127,74 @@ def text_of(body: bytes) -> str:
 
 
 # --------------------------------------------------------------------------
-# Z-Library: search
+# Z-Library: search (eAPI)
 # --------------------------------------------------------------------------
-def _parse_row(book_id: str, chunk: str) -> dict:
-    """Pull title/author/format/year out of one Z-Library search row.
-
-    The live markup uses schema.org attributes: itemprop="name" for the
-    title link, itemprop="author" for the author, and a
-    property__file / property_year block for the format and year.
-    """
-    def prop(pattern, group=1):
-        m = re.search(pattern, chunk, re.S)
-        return re.sub(r"\s+", " ", m.group(group)).strip() if m else ""
-
-    title = prop(r'<h3[^>]*itemprop="name"[^>]*>\s*<a[^>]*>([^<]{1,200})</a>')
-    if not title:
-        title = prop(r'<a href="/book/[^"]*"[^>]*>([^<]{1,200})</a>')
-    author = prop(r'itemprop="author"[^>]*>([^<]{1,120})</a>')
-    publisher = prop(r'itemprop="publisher"[^>]*>([^<]{1,120})</a>')
-    # Each property block is: <div class="bookProperty property_X"> <div
-    # class="property_label">Label:</div> <div class="property_value ">VALUE</div>
-    # so the value div is not adjacent to the property name.
-    ext = prop(r'property__file".*?property_value[^"]*"[^>]*>([^<]{1,12})<')
-    year = prop(r'property_year".*?property_value[^"]*"[^>]*>([^<]{1,12})<')
-    language = prop(r'property_language".*?property_value[^"]*"[^>]*>([^<]{1,24})<')
-    size = prop(r'([\d.]+\s?(?:KB|MB|GB))')
+def _eapi_row(item: dict) -> dict:
+    """Normalise one eAPI search result into the shared book-row shape."""
+    title = (item.get("title") or "").strip()
+    author = (item.get("author") or "").strip()
+    # eAPI titles arrive as "Author - Title"; split them so the row reads
+    # "Title by Author" like every other source in this script. The author
+    # field often carries a bracketed duplicate ("Hill, Joe [Hill, Joe]"),
+    # so match the head against it before trusting the split.
+    if " - " in title:
+        head, _, tail = title.partition(" - ")
+        head, tail = head.strip(), tail.strip()
+        head_norm = re.sub(r"\s*\[[^\]]*\]\s*$", "", head).strip().lower()
+        author_norm = re.sub(r"\s*\[[^\]]*\]\s*$", "", author).strip().lower()
+        if tail and (head_norm == author_norm or len(tail) > len(head)):
+            title, author = tail, head
+        elif head and not author:
+            author = head
+    ext = (item.get("extension") or "").strip().lower()
     return {
-        "id": book_id,
+        "id": str(item.get("id") or ""),
+        "hash": (item.get("hash") or "").strip(),
         "title": title,
         "author": author,
-        "publisher": publisher,
+        "publisher": (item.get("publisher") or "").strip(),
         "extension": ext.upper(),
-        "size": size,
-        "year": year,
-        "language": language,
-        # "archive/" ids are bibliographic-only records with no file list.
-        "has_files": not book_id.startswith("archive/"),
-        "url": f"{ZLIB_BASE}/book/{book_id}",
+        "size": (item.get("filesizeString") or "").strip(),
+        "bytes": item.get("filesize"),
+        "year": str(item.get("year") or ""),
+        "language": (item.get("language") or "").strip(),
+        "md5": (item.get("md5") or "").strip(),
+        "has_files": bool(item.get("hash")),
+        "url": (item.get("href") or f"{ZLIB_BASE}/book/{item.get('id')}").strip(),
         "source": "zlib",
     }
 
 
-def _row_blocks(html: str) -> list[tuple[str, str]]:
-    """Split a search page into per-result (book_id, markup) chunks.
-
-    A result row nests a table inside the outer <tr>, so a non-greedy
-    </tr> match truncates before the format/year property block. Slice
-    between successive row starts instead.
-    """
-    starts = [m.start() for m in re.finditer(r'<tr[^>]*class="bookRow"', html)]
-    out: list[tuple[str, str]] = []
-    for i, start in enumerate(starts):
-        end = starts[i + 1] if i + 1 < len(starts) else min(len(html), start + 9000)
-        chunk = html[start:end]
-        bid = re.search(r'data-book_id="([^"]+)"', chunk)
-        if bid:
-            out.append((bid.group(1), chunk))
-    return out
-
-
-def zlib_search(query: str, limit: int = 10) -> list[dict]:
-    """Search Z-Library and return parsed book rows."""
-    opener = make_session()
-    url = f"{ZLIB_BASE}/s/?q={urllib.parse.quote(query)}"
-    status, body, _ = fetch(opener, url)
+def _eapi_call(opener, path, data=None, timeout=60):
+    """Call an eAPI endpoint and return the parsed JSON envelope."""
+    headers = {"Accept": "application/json"}
+    if data is not None:
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
+    status, body, _ = fetch(opener, ZLIB_BASE + path, data=data, headers=headers, timeout=timeout)
     if status != 200:
-        print(f"  ! zlib search failed: http={status}", file=sys.stderr)
+        return {"success": 0, "error": f"http {status}"}
+    try:
+        return json.loads(text_of(body))
+    except ValueError:
+        return {"success": 0, "error": "non-JSON response"}
+
+
+def zlib_search(query: str, limit: int = 10, opener=None, extensions=None) -> list[dict]:
+    """Search Z-Library via the authenticated eAPI and return book rows."""
+    own = opener is None
+    opener = opener or make_session()
+    if own and not zlib_login(opener):
+        print("  ! zlib: no usable account; search will be unauthenticated",
+              file=sys.stderr)
+    payload = [("message", query), ("page", "1"), ("limit", str(max(1, limit)))]
+    for ext in extensions or []:
+        payload.append(("extensions[]", ext))
+    env = _eapi_call(opener, EAPI_SEARCH, urllib.parse.urlencode(payload).encode())
+    if not env.get("success"):
+        print(f"  ! zlib search failed: {str(env.get('error'))[:80]}", file=sys.stderr)
         return []
-    html = text_of(body)
-
-    rows: list[dict] = []
-    for book_id, chunk in _row_blocks(html):
-        rows.append(_parse_row(book_id, chunk))
-        if len(rows) >= limit:
-            break
-
-    # Z-Library paginates; the second page uses ?page=
-    if len(rows) < limit:
-        status2, body2, _ = fetch(opener, f"{url}&page=2")
-        if status2 == 200:
-            for book_id, chunk in _row_blocks(text_of(body2)):
-                if any(r["id"] == book_id for r in rows):
-                    continue
-                rows.append(_parse_row(book_id, chunk))
-                if len(rows) >= limit:
-                    break
-    return rows
+    rows = [_eapi_row(item) for item in env.get("books", [])]
+    return rows[:limit]
 
 
 # --------------------------------------------------------------------------
@@ -226,73 +220,52 @@ def read_zlib_creds():
 
 
 def zlib_login(opener) -> bool:
-    """Sign in to Z-Library. Returns True on success."""
+    """Sign in to Z-Library's eAPI. Returns True on success."""
     creds = read_zlib_creds()
     if not creds:
         return False
     email, password = creds
-    status, body, _ = fetch(opener, f"{ZLIB_BASE}/login")
-    if status != 200:
-        return False
-    token = ""
-    m = re.search(r'name="_token"\s+value="([^"]+)"', text_of(body))
-    if m:
-        token = m.group(1)
-    data = urllib.parse.urlencode(
-        {"_token": token, "email": email, "password": password, "remember": "1"}
-    ).encode()
-    status, _, _ = fetch(
-        opener,
-        f"{ZLIB_BASE}/login",
-        data=data,
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-    )
-    status, body, _ = fetch(
-        opener, f"{ZLIB_BASE}/api/auth-status", headers={"Accept": "application/json"}
-    )
-    if status == 200 and '"authenticated":true' in text_of(body).replace(" ", ""):
+    payload = urllib.parse.urlencode({"email": email, "password": password}).encode()
+    env = _eapi_call(opener, EAPI_LOGIN, payload)
+    if env.get("success"):
         print("  · zlib: signed in")
         return True
-    print("  · zlib: sign-in did not take", file=sys.stderr)
+    print(f"  · zlib: sign-in failed: {str(env.get('error'))[:60]}", file=sys.stderr)
     return False
 
 
-def zlib_files(opener, book_id: str) -> list[dict]:
-    """Return the downloadable file list for a book id (needs a session)."""
-    status, body, final = fetch(opener, f"{ZLIB_BASE}/book/{book_id}")
-    if status != 200:
+def zlib_files(opener, book_id: str, book_hash: str = "") -> list[dict]:
+    """Return downloadable file entries for a book id (needs a session).
+
+    The eAPI resolves a book by the pair (id, hash). Search results carry
+    both; a bare id is looked up by trying the book detail endpoint.
+    """
+    if not book_hash:
+        env = _eapi_call(opener, f"/eapi/book/{book_id}")
+        book = env.get("book") or {}
+        book_hash = (book.get("hash") or "").strip()
+    if not book_hash:
         return []
-    html = text_of(body)
-    if 'href="/login"' in html and "dlButton" in html:
-        return []  # not signed in
-    found = []
-    for m in re.finditer(
-        r'<a[^>]+href="([^"]+)"[^>]*class="[^"]*addDownloadedBook[^"]*"[^>]*'
-        r'(?:.*?book-property__extension[^>]*>([^<]{1,12})<)?',
-        html,
-        re.S,
-    ):
-        href = m.group(1)
-        if not any(href.lower().endswith(ext) for ext in (".epub", ".mobi", ".pdf", ".azw3", ".djvu")):
-            continue
-        ext = (m.group(2) or href.rsplit(".", 1)[-1]).strip().lower()
-        found.append({"url": urllib.parse.urljoin(final, href), "extension": ext})
-    if not found:
-        # Fall back to any direct file hrefs in the page.
-        for m in re.finditer(r'href="([^"]+\.(?:epub|mobi|pdf|azw3|djvu)[^"]*)"', html):
-            found.append(
-                {
-                    "url": urllib.parse.urljoin(final, m.group(1)),
-                    "extension": m.group(1).rsplit(".", 1)[-1].lower(),
-                }
-            )
-    return found
+    env = _eapi_call(opener, EAPI_FILE.format(id=book_id, hash=book_hash))
+    if not env.get("success"):
+        return []
+    info = env.get("file") or {}
+    link = info.get("downloadLink")
+    if not link:
+        return []
+    return [{
+        "url": link,
+        "extension": (info.get("extension") or "").lower(),
+        "description": info.get("description") or "",
+        "author": info.get("author") or "",
+        "allow_download": info.get("allowDownload", True),
+    }]
 
 
 def download_file(opener, url: str, dest: str) -> bool:
     status, body, _ = fetch(opener, url, timeout=300)
     if status != 200 or not body:
-        print(f"  ! download failed http={status}: {url}", file=sys.stderr)
+        print(f"  ! download failed http={status}: {url[:120]}", file=sys.stderr)
         return False
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     with open(dest, "wb") as fh:
@@ -423,10 +396,16 @@ def sniff_ext(path: str) -> str:
         except Exception:
             return "epub"
         return "zip"
-    if head[:4] == b"BOOKMOBI":
+    # MOBI/AZW3 are PalmDB containers: the "BOOKMOBI" or "TPZ3" marker
+    # lives at offset 60, NOT at byte 0. Byte 0 holds the title/creator
+    # string. Checking byte 0 makes every MOBI look like plain text.
+    if head[60:68] == b"BOOKMOBI":
         return "mobi"
-    if head[58:62] == b"TPZ3" or head[60:64] == b"TPZ3":
+    if head[60:64] in (b"TPZ3", b"TPZ2", b"TPZ1"):
         return "azw3"
+    # PalmDOC without the MOBI wrapper, and the old PalmDoc format.
+    if head[60:68] == b"TEXtREAd":
+        return "mobi"
     if head[:5] == b"{\\rtf":
         return "rtf"
     if head[:3] == b"\xef\xbb\xbf" or head[:5].lower() in (b"<!doc", b"<html"):
@@ -440,7 +419,7 @@ def retarget_ext(path: str) -> str:
     stem, _, ext = path.rpartition(".")
     if ext.lower() == real.lower():
         return path
-    if ext.lower() in ("epub", "pdf", "mobi", "azw3", "djvu", "zip", "txt", "html"):
+    if ext.lower() in ("epub", "pdf", "mobi", "azw3", "djvu", "zip", "txt", "html", "epub3"):
         new = f"{stem}.{real}"
         try:
             os.rename(path, new)
@@ -451,10 +430,15 @@ def retarget_ext(path: str) -> str:
 
 
 def cmd_search(args) -> int:
-    rows = zlib_search(args.query, limit=args.limit)
+    opener = make_session()
+    zlib_login(opener)
+    rows = zlib_search(args.query, limit=args.limit, opener=opener)
     if not rows:
         print("  no zlib results")
         return 1
+    if args.json:
+        print(json.dumps(rows, indent=2))
+        return 0
     for i, row in enumerate(rows, 1):
         bits = [f"{i:>2}.", row["title"] or "(untitled)"]
         if row["author"]:
@@ -465,16 +449,20 @@ def cmd_search(args) -> int:
             meta += f"  {row['year']}"
         if row["size"]:
             meta += f"  {row['size']}"
-        print(f"      {meta}  {row['id']}")
+        print(f"      {meta}  id={row['id']} hash={row['hash']}")
         print(f"      {row['url']}")
     return 0
 
 
 def cmd_fetch(args) -> int:
     book_id = args.book_id
+    book_hash = args.hash or ""
     if "z-lib." in book_id or book_id.startswith("http"):
         parsed = urllib.parse.urlparse(book_id)
         book_id = parsed.path.rstrip("/").split("/book/")[-1]
+    # The eAPI ids are bare numerics; the old web ids carried a slug.
+    if "-" in book_id:
+        book_id = book_id.split("-", 1)[0]
     title = args.title or book_id
     dest = args.out or os.path.join(LIBRARY_DIR, f"{safe_name(title)}.epub")
     opener = make_session()
@@ -483,7 +471,7 @@ def cmd_fetch(args) -> int:
     if not zlib_login(opener):
         print("  · zlib: no account configured (secrets/zlib-account.txt)")
     else:
-        files = zlib_files(opener, book_id)
+        files = zlib_files(opener, book_id, book_hash)
         if not files:
             print("  · zlib: no file list returned (login may have failed)")
 
@@ -520,7 +508,11 @@ def cmd_send(args) -> int:
 
 def cmd_deliver(args) -> int:
     """search -> pick -> fetch -> send."""
-    rows = zlib_search(args.query, limit=args.limit)
+    opener = make_session()
+    logged_in = zlib_login(opener)
+    if not logged_in:
+        print("  · zlib: no account configured (secrets/zlib-account.txt)")
+    rows = zlib_search(args.query, limit=args.limit, opener=opener)
     if not rows:
         print("  ! nothing found on zlib", file=sys.stderr)
         return 1
@@ -548,6 +540,25 @@ def cmd_deliver(args) -> int:
     # lookup needs the bare book title, the subject may carry the author.
     lookup_title = pick["title"] or args.query
     subject = args.title or lookup_title
+
+    # Kindle wants AZW3 when the same edition exists in it, so look for a
+    # better format of the *same* title before settling for the first hit.
+    if args.format:
+        want = args.format.lower()
+    elif args.to.lower().endswith("@kindle.com"):
+        want = "azw3"
+    else:
+        want = ""
+    if want and pick["extension"].lower() != want:
+        alt_rows = zlib_search(args.query, limit=args.limit * 2, opener=opener,
+                               extensions=[want])
+        needle = re.sub(r"[^a-z0-9]+", " ", (pick["title"] or "").lower()).strip()
+        for alt in alt_rows:
+            hay = re.sub(r"[^a-z0-9]+", " ", (alt["title"] or "").lower()).strip()
+            if alt["extension"].lower() == want and hay == needle:
+                print(f"  → same title available as {want.upper()}; switching")
+                pick = alt
+                break
     # Start with the advertised extension; retarget_ext() corrects it from
     # the real magic bytes once the file is on disk.
     dest = os.path.join(
@@ -557,7 +568,7 @@ def cmd_deliver(args) -> int:
     logged_in = zlib_login(opener)
     if not logged_in:
         print("  · zlib: no account configured (secrets/zlib-account.txt)")
-    files = zlib_files(opener, pick["id"]) if logged_in else []
+    files = zlib_files(opener, pick["id"], pick.get("hash", "")) if logged_in else []
     if files:
         files.sort(key=lambda f: FORMAT_RANK.get(f["extension"], 9))
         if download_file(opener, files[0]["url"], dest):
@@ -601,10 +612,12 @@ def main() -> int:
     p = sub.add_parser("search", help="search Z-Library")
     p.add_argument("query")
     p.add_argument("--limit", type=int, default=10)
+    p.add_argument("--json", action="store_true", help="emit JSON rows")
     p.set_defaults(func=cmd_search)
 
     p = sub.add_parser("fetch", help="download one book to the local library")
     p.add_argument("book_id")
+    p.add_argument("--hash", default="", help="eAPI book hash (from search output)")
     p.add_argument("--title")
     p.add_argument("--out")
     p.add_argument("--gutenberg-id", type=int)
@@ -621,6 +634,7 @@ def main() -> int:
     p.add_argument("--index", type=int, default=1)
     p.add_argument("--match", help="pick the result whose title best matches this")
     p.add_argument("--title", help="override the email subject / filename")
+    p.add_argument("--format", help="prefer this extension (default: azw3 for Kindle)")
     p.add_argument("--limit", type=int, default=8)
     p.add_argument("--to", default=KINDLE_ADDR)
     p.set_defaults(func=cmd_deliver)

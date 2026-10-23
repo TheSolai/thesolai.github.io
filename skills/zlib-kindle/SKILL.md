@@ -35,12 +35,17 @@ cd {baseDir}/scripts
 
 | Command | What it does |
 |---|---|
-| `python3 zlib_kindle.py search "<query>"` | List Z-Library matches with format, year, id, URL |
-| `python3 zlib_kindle.py fetch <book-id-or-url>` | Download one book to `~/Downloads/dross-books/` |
+| `python3 zlib_kindle.py search "<query>"` | List Z-Library matches with format, year, id, hash, URL |
+| `python3 zlib_kindle.py search "<query>" --json` | Same, as JSON rows |
+| `python3 zlib_kindle.py fetch <book-id> --hash <hash>` | Download one book to `~/Downloads/dross-books/` |
 | `python3 zlib_kindle.py send <file> --title "..."` | Email a file to the Kindle address |
 | `python3 zlib_kindle.py deliver "<query>"` | **The whole pipeline** — search → fetch → send |
 | `python3 zlib_kindle.py account` | Check whether Z-Library credentials are configured |
 | `python3 zlib_kindle.py books` | List curated titles with their Project Gutenberg ids |
+
+`search` prints the **hash** next to each id. Pass it to `fetch` with
+`--hash` — the eAPI resolves a book by the (id, hash) pair, so a bare id
+is not enough.
 
 ## Typical flow
 
@@ -54,12 +59,23 @@ python3 zlib_kindle.py deliver "The Fisherman John Langan" --index 1
 `amrekin@kindle.com`. Use `--index N` to choose a different hit and
 `--to <address>` to override the destination.
 
+**Kindle prefers AZW3/MOBI.** When the destination is a `@kindle.com`
+address, `deliver` looks for the same title in a Kindle-native format and
+switches to it automatically. Override with `--format azw3|mobi|epub`.
+
+**Trust the bytes, not the label.** Z-Library's advertised extension is
+often wrong — an "AZW3" row can serve MOBI bytes, and a MOBI downloaded
+as `.txt` is exactly what Amazon refuses to convert. `sniff_ext()` reads
+magic bytes and `retarget_ext()` renames the file to match, so check the
+printed filename after every download. MOBI/AZW3 are PalmDB containers:
+the `BOOKMOBI`/`TPZ3` marker sits at **byte 60**, not byte 0.
+
 ## Z-Library needs an account
 
-Z-Library serves its **file list only to signed-in users** — the download
-button on a book page reads "Login to Z-lib" and
-`/api/auth-status` returns `{"authenticated":false}` for anonymous
-visitors. Search and metadata work without an account; downloading does not.
+Z-Library serves its **file list only to signed-in users**. Search works
+without an account, but resolving a download link does not: the eAPI
+`/eapi/book/<id>/<hash>/file` call only returns a link for a session that
+signed in. The script signs in on every run, before searching.
 
 To enable downloads, put the account in:
 
@@ -111,13 +127,19 @@ These have known Gutenberg ids and work without any Z-Library account:
 
 ## Notes on the site
 
-- Search results mix two id shapes: `archive/<id>/<slug>` (bibliographic
-  records, no file list) and plain `<id>-<slug>` (live entries with files).
-  The parser flags this as `has_files`.
-- Book pages are server-rendered, but a result row nests a table inside the
-  outer `<tr>`, so the row must be sliced between successive row starts —
-  a non-greedy `</tr>` match truncates before the format/year block.
-- The live domains are `z-lib.id`, `zlibrary.sk`, `zlibrary.in`, `z-lib.is`.
-  Others (`z-lib.gs`, `z-library.rs`, `zlib.vg`, `z-library.lv`) are dead.
+- **The eAPI on `z-lib.by` is the working route.** The public HTML pages
+  now render a "Lifetime Premium" upsell instead of a download button,
+  and their `/papi/` endpoints 404. The eAPI is a JSON API:
+  `POST /eapi/user/login` (email + password) → `POST /eapi/book/search`
+  (`message`, `page`, `limit`, optional `extensions[]`) →
+  `GET /eapi/book/<id>/<hash>/file`, which returns a signed CDN link.
+- eAPI titles arrive as `"Author - Title"`. The script splits them back
+  into title/author, and the author field often carries a bracketed
+  duplicate (`Hill, Joe [Hill, Joe]`).
+- **A book's file is addressed by (id, hash), never by id alone.**
+- The advertised extension and the served bytes can disagree — an "AZW3"
+  row has been seen serving MOBI. Always let `retarget_ext()` have the
+  last word on the filename.
 - The `ego-browser` skill exists but the binary is not installed, so
-  browser-driven login is not currently available.
+  browser-driven login is not available. It is not needed: the eAPI
+  signs in with the stored credentials directly.

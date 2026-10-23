@@ -30,17 +30,25 @@ python3 zlib_kindle.py deliver "<title> <author>" --index 1
 
 # Or step by step
 python3 zlib_kindle.py search "<title> <author>" --limit 6
-python3 zlib_kindle.py fetch <book-id-or-url>
-python3 zlib_kindle.py send ~/Downloads/dross-books/<file>.epub --title "<Title> by <Author>"
+python3 zlib_kindle.py fetch <book-id> --hash <hash-from-search>
+python3 zlib_kindle.py send ~/Downloads/dross-books/<file> --title "<Title> by <Author>"
 ```
 
 ## What it does
 
-1. Searches Z-Library for the title.
+1. Searches Z-Library for the title through the eAPI on `z-lib.by`.
 2. Picks the requested result (default: the first).
-3. Downloads it to `~/Downloads/dross-books/`.
-4. Emails it to `amrekin@kindle.com` as an attachment, via the AgentMail
+3. For a `@kindle.com` destination, switches to the same title in a
+   Kindle-native format (AZW3/MOBI) when one exists.
+4. Downloads it to `~/Downloads/dross-books/`, renaming the file to match
+   its real bytes.
+5. Emails it to `amrekin@kindle.com` as an attachment, via the AgentMail
    inbox `thedross@agentmail.to`.
+
+**Check the printed filename after the download.** Z-Library's advertised
+extension is unreliable, and a file with the wrong extension is exactly
+what Amazon will refuse to convert. MOBI/AZW3 carry their `BOOKMOBI`/
+`TPZ3` marker at byte 60, not byte 0.
 
 ## Before you start
 
@@ -55,6 +63,10 @@ fail. Amre needs to create `~/.openclaw/workspace/secrets/zlib-account.txt`
 containing `email:password` (mode `600`, inside a git-ignored directory).
 Public-domain titles still work without an account — the script falls back
 to Project Gutenberg.
+
+The account is currently configured and the eAPI sign-in works, so the
+download step should succeed. If it does not, report the failing step
+rather than retrying blindly.
 
 ## Rules
 
