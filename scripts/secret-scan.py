@@ -19,7 +19,7 @@ Output is redacted: kind, path, and a short hash of the value. Never the
 value itself.
 
 Usage:
-    secret-scan.py [REPO_DIR] [--staged | --worktree] [--quiet]
+    secret-scan.py [REPO_DIR] [--staged | --worktree | --history RANGE] [--quiet]
 
 Exit codes:
     0  clean
@@ -286,6 +286,26 @@ def git(repo, *args):
         return b""
 
 
+def git_ok(repo, *args):
+    """Run a git command and report whether it succeeded.
+
+    Used for commands whose failure must abort the scan. The plain git()
+    helper swallows errors, which turns an unresolvable revision into
+    "zero commits inspected" — and a scan that inspected nothing would
+    otherwise report success. That is a fail-open, so anything that gates
+    a push uses this instead.
+    """
+    try:
+        out = subprocess.run(
+            ["git", "-C", repo] + list(args),
+            capture_output=True,
+            check=False,
+        )
+    except OSError:
+        return False, b""
+    return out.returncode == 0, out.stdout
+
+
 def candidate_files(repo, mode):
     """Files to inspect, relative to repo."""
     if mode == "staged":
@@ -398,20 +418,149 @@ def scan(repo, mode, quiet):
     return 1 if findings else 0
 
 
+def scan_history(repo, rev_range, quiet):
+    """Scan every blob reachable in a revision range.
+
+    This is the check that matters at push time: it inspects the exact
+    bytes that would become part of the published history, not just the
+    files sitting in the working tree right now.
+
+    rev_range may be a plain range ("main..HEAD"), a single rev ("HEAD",
+    which means every ancestor of HEAD), or a list of either separated by
+    commas.
+    """
+    literals = collect_literals()
+    findings = []
+
+    commits = []
+    for part in rev_range.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        ok, raw = git_ok(repo, "rev-list", part)
+        if not ok:
+            # An unresolvable range means we inspected nothing. Reporting
+            # success here would let a push through unscanned.
+            if not quiet:
+                print(
+                    "SECRET-SCAN: ABORT - could not resolve revision range %r"
+                    % part
+                )
+                print("  Nothing was published. Fix the range, then re-run.")
+            return 1
+        commits.extend(raw.decode("utf-8", "replace").split())
+
+    seen = set()
+    for commit in commits:
+        ok, tree = git_ok(repo, "ls-tree", "-r", commit)
+        if not ok:
+            if not quiet:
+                print(
+                    "SECRET-SCAN: ABORT - could not read tree for commit %s"
+                    % commit
+                )
+                print("  Nothing was published. Fix the range, then re-run.")
+            return 1
+        for line in tree.decode("utf-8", "replace").splitlines():
+            parts = line.split(None, 3)
+            if len(parts) < 4 or parts[1] != "blob":
+                continue
+            seen.add((parts[2], parts[3]))
+
+    for sha, name in sorted(seen):
+        data = git(repo, "cat-file", "blob", sha)
+        if not data:
+            continue
+        payloads = [(name, data)]
+        for member, member_data in archive_members(data):
+            payloads.append(("%s::%s" % (name, member), member_data))
+        for label, payload in payloads:
+            if len(payload) > MAX_SCAN_BYTES:
+                payload = payload[:MAX_SCAN_BYTES]
+            for (kind, value), digest in literals.items():
+                if value.encode() in payload:
+                    findings.append((kind, label, "sha256:" + digest))
+            is_vendor = any(label.startswith(p) for p in VENDOR_PREFIXES)
+            if is_vendor or is_binary(payload) or skip_pattern_matching(label):
+                continue
+            for kind, pattern in PATTERNS:
+                for match in pattern.finditer(payload):
+                    try:
+                        text = match.group(0).decode("utf-8", "ignore")
+                    except UnicodeDecodeError:
+                        text = ""
+                    if not text or looks_like_placeholder(text):
+                        continue
+                    if in_url_context(payload, match.start(), match.end()):
+                        continue
+                    findings.append(("pattern:" + kind, label, redact(text)))
+
+    if findings and not quiet:
+        print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(findings), rev_range))
+        for kind, label, token in sorted(set(findings)):
+            print("  %-34s %s  %s" % (kind, token, label))
+        print("  Nothing was published. Remove the credential, then re-run.")
+    elif findings:
+        print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(set(findings)), rev_range))
+    else:
+        if not quiet:
+            print(
+                "SECRET-SCAN: clean (%d blob(s) inspected in %s)"
+                % (len(seen), rev_range)
+            )
+
+    return 1 if findings else 0
+
+
 def main(argv):
-    args = [a for a in argv[1:] if not a.startswith("--")]
-    flags = [a for a in argv[1:] if a.startswith("--")]
-    if any(f in ("-h", "--help") for f in flags):
-        print(__doc__)
-        return 2
+    # Parse argv by hand: --history takes a value that may or may not look
+    # like a flag, so a flags/values split cannot work.
+    repo = None
     mode = "staged"
-    if "--worktree" in flags:
-        mode = "worktree"
-    quiet = "--quiet" in flags
-    repo = os.path.abspath(args[0]) if args else os.getcwd()
+    quiet = False
+    history_range = None
+    argv = list(argv[1:])
+    i = 0
+    while i < len(argv):
+        arg = argv[i]
+        if arg in ("-h", "--help"):
+            print(__doc__)
+            return 2
+        if arg == "--worktree":
+            mode = "worktree"
+        elif arg == "--staged":
+            mode = "staged"
+        elif arg == "--quiet":
+            quiet = True
+        elif arg == "--history":
+            if i + 1 >= len(argv):
+                print(
+                    "secret-scan: --history needs a revision range",
+                    file=sys.stderr,
+                )
+                return 2
+            history_range = argv[i + 1]
+            i += 1
+        elif arg.startswith("--history="):
+            history_range = arg.split("=", 1)[1]
+        elif arg.startswith("-"):
+            print("secret-scan: unknown option %s" % arg, file=sys.stderr)
+            return 2
+        elif repo is None:
+            repo = arg
+        else:
+            print(
+                "secret-scan: unexpected argument %s" % arg, file=sys.stderr
+            )
+            return 2
+        i += 1
+
+    repo = os.path.abspath(repo) if repo else os.getcwd()
     if not os.path.isdir(os.path.join(repo, ".git")):
         print("secret-scan: not a git repo: %s" % repo, file=sys.stderr)
         return 2
+    if history_range:
+        return scan_history(repo, history_range, quiet)
     return scan(repo, mode, quiet)
 
 
