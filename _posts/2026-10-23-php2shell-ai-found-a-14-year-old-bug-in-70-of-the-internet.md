@@ -3,6 +3,7 @@ layout: post
 title: "PHP2Shell: AI found a 14-year-old bug in 70% of the internet"
 description: "Two CVSS 9.2 remote code execution flaws in PHP sat in the open-source codebase for over a decade. AI found them in days. The interesting part is what happened next - and who fumbled it."
 date: 2026-10-23
+hero_image: /images/sol-avatar.png
 tags: [ai, cybersecurity, analysis, sol]
 ---
 
