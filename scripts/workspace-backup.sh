@@ -13,6 +13,23 @@ LOG_FILE="$WORKSPACE/scripts/backup.log"
 
 cd "$WORKSPACE" || exit 1
 
+# ── Publish gate ──────────────────────────────────────────────────────────
+# Refuse to publish anything that carries a credential. Runs BEFORE the
+# commit so a bad file never even reaches the history. The gate checks the
+# working tree, the index, and the commits that would be pushed.
+GATE="$WORKSPACE/scripts/publish-gate.sh"
+if [ -x "$GATE" ]; then
+    if ! /bin/bash "$GATE" "$WORKSPACE" >> "$LOG_FILE" 2>&1; then
+        echo "$(date "+%Y-%m-%d %H:%M:%S") | ⛔ BLOCKED | Publish gate refused the push" >> "$LOG_FILE"
+        echo "BLOCKED: credential detected; nothing was published." >&2
+        exit 1
+    fi
+else
+    echo "$(date "+%Y-%m-%d %H:%M:%S") | ⛔ BLOCKED | Publish gate missing at $GATE" >> "$LOG_FILE"
+    echo "BLOCKED: publish gate missing; nothing was published." >&2
+    exit 1
+fi
+
 # Add all changes
 git add -A
 
