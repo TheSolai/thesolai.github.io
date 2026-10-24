@@ -471,8 +471,12 @@ def last_knob_change(events):
 def check_truncation(events, window_hours):
     """
     Lossy compaction — a SEPARATE axis from overflow. Tuning the overflow
-    knobs does not remove it. Lowering keepRecentTokens makes it WORSE,
-    because less content stays verbatim and more is pushed into the summary.
+    knobs does not remove it.
+
+    The loss axis is NOT tunable by keepRecentTokens/recentTurnsPreserve.
+    Verified 2026-10-24: it fired at 8000/2 (08:40, 08:59) AND again at
+    the restored defaults 20000/3 (09:52, 10:17, 10:34) — i.e. after the
+    hot reload at 09:19:40. Both directions lose, so neither knob is a fix.
     """
     trunc = [e for e in events if e["kind"] == "truncation"]
 
@@ -506,13 +510,16 @@ def check_truncation(events, window_hours):
           f"loss={field(e['text'], 'loss')}" for e in trunc[-8:]]
     ev.append("loss kinds: " + ", ".join(f"{k}={v}" for k, v in kinds.items()))
     return Check(
-        "truncation", "Compaction artifacts are intact", "WARN",
+        "truncation", "Compaction artifact loss detected", "WARN",
         f"{len(trunc)} lossy compaction(s) since the last compaction config "
         f"change — the artifact was cut, so content was silently dropped. "
         f"This is NOT the overflow axis and the overflow knobs do not fix it",
         ev,
-        f"raise keepRecentTokens toward {EXPECTED_COMPACTION['keepRecentTokens']} "
-        f"(less content is pushed into the summary); if it persists, read the "
+        f"keepRecentTokens is already {EXPECTED_COMPACTION['keepRecentTokens']} "
+        f"(the runtime default) and the loss persisted after the reload, so "
+        f"raising or lowering it is not the fix; this axis is budget "
+        f"competition between the summary body, the retained suffix and the "
+        f"preserved turn inside one char budget (cap 16000) — read the "
         f"compaction module's summary/suffix budget split")
 
 

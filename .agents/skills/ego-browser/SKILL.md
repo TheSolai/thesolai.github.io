@@ -24,6 +24,11 @@ line is missing, the output was truncated: save it to a file and read the file
 in parts, for example `ego-browser skill > "$TMPDIR/ego-browser-skill.md"`, or
 `ego-browser skill > "$env:TEMP\ego-browser-skill.md"` in PowerShell.
 
+Note that the guide printing successfully does **not** mean the browser can
+drive a page: `ego-browser skill` exits 0 even while onboarding is
+incomplete, and so does a blocked `ego-browser nodejs` script. See
+[the onboarding reference](references/headless-fallback.md).
+
 ## References
 
 - [Install or upgrade ego lite](references/install.md) — read when
@@ -31,3 +36,6 @@ in parts, for example `ego-browser skill > "$TMPDIR/ego-browser-skill.md"`, or
 - [Clearing cookies, cache, and storage](references/clearing-state.md) — read
   before clearing any cookie, cache, or storage; some clears reach the whole
   browser profile.
+- [When ego-browser is blocked by onboarding](references/headless-fallback.md) —
+  read when a script exits 0 but does nothing, or prints a message about
+  onboarding. Covers the sentinel probe and a raw-CDP fallback.
