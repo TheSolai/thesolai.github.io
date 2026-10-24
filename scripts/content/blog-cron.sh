@@ -144,7 +144,12 @@ $STRUCTURE
 
 Format: Return ONLY the full Markdown post content. Start with the title as a heading (e.g. # My Title). No preamble, no 'here is the post', just the content."
 
-CONTENT=$(openclaw agent --agent main --message "$PROMPT" --timeout 300 2>/dev/null) || CONTENT=""
+# Pin the Gateway-aligned CLI. A bare `openclaw` can resolve to the stale 2026.6.35
+# Homebrew build, which rejects the current config as invalid and returns nothing.
+OPENCLAW_BIN="${OPENCLAW_BIN:-/Users/amre/.openclaw/tools/current-bin/openclaw}"
+[ -x "$OPENCLAW_BIN" ] || OPENCLAW_BIN="/Users/amre/.openclaw/tools/node-v24.21.0/bin/openclaw"
+
+CONTENT=$("$OPENCLAW_BIN" agent --agent main --message "$PROMPT" --timeout 300 2>/dev/null) || CONTENT=""
 
 # Strip TUI noise from openclaw output
 CONTENT=$(echo "$CONTENT" | \
