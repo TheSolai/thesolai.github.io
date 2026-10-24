@@ -74,12 +74,10 @@ GUTENBERG_IDS = {
     "The War of the Worlds": 36,
     "Frankenstein": 84,
     "The Metamorphosis": 5200,
-    "The Canterville Ghost": 158,
-    "The Woman in White": 653,
-    "The Moonstone": 645,
-    "The Invisible Man": 35,
-    "The Time Being": 35,
-    "The Haunting of Hill House": 3,
+    "The Canterville Ghost": 14522,
+    "The Woman in White": 583,
+    "The Moonstone": 155,
+    "The Invisible Man": 5230,
 }
 
 FORMAT_RANK = {"epub": 0, "epub3": 0, "mobi": 1, "azw3": 2, "pdf": 3, "djvu": 4, "txt": 5}
