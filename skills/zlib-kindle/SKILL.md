@@ -42,6 +42,7 @@ cd {baseDir}/scripts
 | `python3 zlib_kindle.py deliver "<query>"` | **The whole pipeline** — search → fetch → send |
 | `python3 zlib_kindle.py account` | Check whether Z-Library credentials are configured |
 | `python3 zlib_kindle.py books` | List curated titles with their Project Gutenberg ids |
+| `python3 zlib_kindle.py verify <file> --title "..."` | Check that an EPUB is the book that was requested |
 
 `search` prints the **hash** next to each id. Pass it to `fetch` with
 `--hash` — the eAPI resolves a book by the (id, hash) pair, so a bare id
@@ -69,6 +70,29 @@ as `.txt` is exactly what Amazon refuses to convert. `sniff_ext()` reads
 magic bytes and `retarget_ext()` renames the file to match, so check the
 printed filename after every download. MOBI/AZW3 are PalmDB containers:
 the `BOOKMOBI`/`TPZ3` marker sits at **byte 60**, not byte 0.
+
+**The extension also picks the MIME type, and Python's `mimetypes` does
+not know the ebook formats Kindle cares about.** It returns `None` for
+`.azw3` and `.epub3`, so a naive send goes out as
+`application/octet-stream`. Amazon's reply to that is `E009 - No
+Attachment` — which reads like a missing file but is really a mislabelled
+or empty attachment. The script maps the extensions explicitly and
+refuses an empty file locally, before anything is sent:
+
+| Extension | Content type |
+|---|---|
+| `.azw3` | `application/vnd.amazon.ebook` |
+| `.mobi` | `application/x-mobipocket-ebook` |
+| `.epub`, `.epub3` | `application/epub+zip` |
+| `.pdf` | `application/pdf` |
+| `.txt` | `text/plain` |
+
+Verified 2026-09-29: the Amazon rejection dated `Tue, 29 Sep 2026
+19:59:52 +0000`, subject "There was a problem with the document(s) that
+you sent to Kindle", carried `E009 - No Attachment`. That is an
+attachment-labelling failure, not an invalid book format — when you see
+E009, look at the content type and the file size, not at the book's
+format.
 
 ## Z-Library needs an account
 
@@ -101,6 +125,72 @@ Titles in `GUTENBERG_IDS` map to numeric Gutenberg ids and are fetched
 directly from `gutenberg.org`. The script also queries `gutendex.com` to
 resolve ids it does not know. EPUB is preferred; the fetch verifies the
 file starts with the `PK` zip magic bytes before saving.
+
+**Verify the book's content, not just its bytes.** The `PK` check proves
+the file is a zip; it does not prove it is the book that was requested. A
+wrong Gutenberg id resolves to a real EPUB of a completely different
+book. Four curated ids did exactly that before the fix — Canterville
+Ghost, Woman in White, Moonstone and Invisible Man each pointed at an
+unrelated title.
+
+`deliver` and `fetch` now check the title inside the EPUB before sending
+it, and `verify` runs the same check on demand:
+
+```bash
+python3 zlib_kindle.py verify ~/Downloads/dross-books/BOOK.epub \
+  --title "The Great God Pan" --author "Arthur Machen"
+```
+
+The check reads `dc:title` and `dc:creator` out of the EPUB's OPF file.
+Two traps in that:
+
+- The `.opf` path is not fixed. It is `content.opf` at the archive root in
+  some books and `OEBPS/content.opf` in others, so locate it with
+  `unzip -l` instead of hardcoding a path.
+- `<dc:creator>` usually carries attributes — `<dc:creator
+  opf:file-as="Langan, John" opf:role="aut">` or `<dc:creator
+  id="author_0">`. The pattern has to tolerate them. A bare `<dc:creator>`
+  pattern matches nothing and silently hides the author.
+
+Compare names by token set, not by substring: Z-Library stores `Hill, Joe`
+where the request says `Joe Hill`, and the eAPI packs title and author
+together as `Hill, Joe - NOS4A2`. A check that rejects a correct book is
+worse than no check, so the comparison accepts either ordering.
+
+If the title inside the file is not the book that was requested, treat
+the fallback as failed — do not send it.
+
+## The Friday horror cron — the standing contract
+
+The weekly book delivery is a scheduled job, not a manual run. Its
+contract, verified against the live cron on 2026-10-24:
+
+| Field | Required value |
+|---|---|
+| Command | `horror-book.sh --send` |
+| Session | `isolated` |
+| Enabled | yes |
+| Command timeout | 300 seconds |
+| Schedule | `0 18 * * 5` Europe/London |
+
+`--send` is what makes the cron download the book and email it to
+`amrekin@kindle.com`; without it the script only prints a
+recommendation and delivers nothing.
+
+**The weekly book announcement is the only cron permitted to deliver
+user-facing Telegram output.** Other engagement crons may announce, but
+if book delivery and another announcement job both speak for the books,
+the pipeline starts talking over itself.
+
+When the cron fires, the delivery is still only complete once the
+attachment is right. The Friday job runs unattended, so the
+content checks matter more there than anywhere else: a wrong book in the
+Gutenberg fallback would go out silently, once a week, to the Kindle
+address. `deliver` verifies the title inside the EPUB before sending.
+
+If the Friday run fails, report the failing step rather than retrying
+the script in a loop — each run is a Z-Library login, and the login
+rate limit will block the next attempt as well as the real delivery.
 
 ## Books that are public domain
 
@@ -144,6 +234,34 @@ surfaces the server's own explanation rather than a bare `http 400`.
   appear in the IMAP Sent folder, so absence there proves nothing.
 - **One script run is one Z-Library login.** Do not loop the script to
   test it — repeated runs trip the login rate limit.
+- **A fallback must never silently substitute a different book.** Confirm
+  the EPUB's `dc:title` matches the title that was requested before
+  sending it.
+- **The AgentMail sent record is the receipt.** A script that printed
+  "sent" is not proof. Read the sent record and check the attachment's
+  filename, content type and byte count:
+
+  ```bash
+  ~/.openclaw/tools/node-v24.21.0/bin/openclaw agentmail inboxes:messages list \
+    --inbox-id thedross@agentmail.to --subject "<title>" --format json
+  ```
+
+  Use the **gateway's own binary**, not `openclaw` from `PATH`. The
+  `agentmail` command is provided by a plugin that only exists in the
+  gateway build (2026.9.6). The `openclaw` first on `PATH`
+  (`/opt/homebrew/bin/openclaw`, 2026.6.35) is stale: it rejects the
+  live config as invalid *and* has no `agentmail` command at all, so it
+  fails with `Unknown command: openclaw agentmail`. The Python SDK
+  path in the `agentmail-email` skill avoids this entirely.
+
+  The JSON output carries an `attachments` array with `filename`,
+  `content_type` and `size` — read those three, not just the subject
+  line, to confirm what actually went out.
+
+  A sent record carrying the right `content_type` proves the attachment
+  went out labelled correctly. The absence of a bounce then proves Amazon
+  accepted it — and absence of a bounce, not presence in a Sent folder,
+  is the delivery signal.
 
 ## Notes on the site
 

@@ -43,12 +43,18 @@ Returns `ListMessagesResponse` — iterate `.messages`. Never subscript with `re
 ## Reply to a message — message_id vs thread_id
 
 ```python
-# CRITICAL: reply() takes message_id as first argument, NOT thread_id
+# CRITICAL: the signature is reply(inbox_id, message_id, ...) — message_id
+# is the SECOND positional argument, and it must be a message_id, not a thread_id.
 reply = client.inboxes.messages.reply(inbox_id, message_id, text="Reply text here")
 print(reply.message_id)  # confirms it sent
 ```
 
 **`message_id` ≠ `thread_id`**. Passing `thread_id` returns HTTP 404 NotFoundError. Always use the `message_id` field from the list output. `message_id` looks like `<CAO=qJ6R...@gmail.com>` or `<010001a0...@email.amazonses.com>`; `thread_id` is a UUID like `f61b0be7-84e0-4214-a3be-8e8e4cd9314a`.
+
+Verified against the installed SDK: `reply(self, inbox_id: str, message_id: str, *, ...)`.
+`inbox_id` comes first and `message_id` second, so the argument pair must be
+passed in that order. Do not describe `message_id` as the first argument —
+it is the second, and the first is the inbox.
 
 ## Common errors
 

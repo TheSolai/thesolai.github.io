@@ -32,6 +32,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+import zipfile
 from http.cookiejar import CookieJar
 
 HOME = os.path.expanduser("~")
@@ -349,6 +350,110 @@ def gutenberg_fetch(gid, dest: str) -> bool:
 
 
 # --------------------------------------------------------------------------
+# EPUB content verification
+# --------------------------------------------------------------------------
+def epub_metadata(path):
+    """Return (title, creator) from an EPUB's OPF metadata.
+
+    The .opf path is not fixed across books: it is content.opf at the
+    archive root in some and OEBPS/content.opf in others, so locate it.
+    dc:creator often carries attributes (opf:file-as=, opf:role=, id=),
+    so the tag pattern must tolerate them or the author silently
+    disappears from the result.
+    """
+    try:
+        with zipfile.ZipFile(path) as zf:
+            opf = None
+            for name in zf.namelist():
+                if name.lower().endswith(".opf"):
+                    opf = name
+                    break
+            if not opf:
+                return None, None
+            data = zf.read(opf).decode("utf-8", "replace")
+    except (OSError, zipfile.BadZipFile):
+        return None, None
+
+    def _grab(tag):
+        m = re.search(r"<dc:%s\b[^>]*>(.*?)</dc:%s>" % (tag, tag), data, re.S)
+        if not m:
+            return None
+        text = re.sub(r"<[^>]+>", "", m.group(1))
+        return re.sub(r"\s+", " ", text).strip() or None
+
+    return _grab("title"), _grab("creator")
+
+
+def _tokens(text):
+    """Lowercase word tokens, for order-insensitive name comparison."""
+    return set(re.findall(r"[a-z0-9]+", (text or "").lower()))
+
+
+def _title_candidates(raw_title):
+    """Plausible titles for an EPUB, given how sources store them.
+
+    A Z-Library EPUB carries the eAPI's combined form in dc:title, so
+    "NOS4A2" arrives as "Hill, Joe - NOS4A2". Offer the whole string and
+    each side of the separator as candidates.
+    """
+    cands = [raw_title]
+    if " - " in raw_title:
+        head, _, tail = raw_title.partition(" - ")
+        if tail.strip():
+            cands.append(tail.strip())
+        if head.strip():
+            cands.append(head.strip())
+    return [c for c in cands if c]
+
+
+def _names_match(want, got):
+    """True when two names denote the same thing, ignoring order.
+
+    "Joe Hill" and "Hill, Joe" are the same author, so compare token
+    sets rather than substrings.
+    """
+    a, b = _tokens(want), _tokens(got)
+    if not a or not b:
+        return False
+    return a == b or a <= b or b <= a
+
+
+def verify_book(path, expect_title=None, expect_author=None):
+    """Check that an EPUB is the book that was requested.
+
+    The zip magic bytes prove the file is an archive, not that it is the
+    right book. A wrong Project Gutenberg id resolves to a real EPUB of
+    a completely different title, so the title inside the file is the
+    only reliable check.
+    """
+    title, creator = epub_metadata(path)
+    if title is None:
+        print(f"  ! no readable EPUB metadata in {os.path.basename(path)}")
+        return False
+    print(f"  · title:  {title}")
+    print(f"  · author: {creator or '(none)'}")
+
+    ok = True
+    if expect_title:
+        want = _tokens(expect_title)
+        matched = any(
+            want == _tokens(c) or want <= _tokens(c) or _tokens(c) <= want
+            for c in _title_candidates(title)
+        )
+        if not matched:
+            print(f"  ! title mismatch: wanted {expect_title!r}, file says {title!r}",
+                  file=sys.stderr)
+            ok = False
+    if expect_author and creator:
+        if not _names_match(expect_author, creator):
+            print(f"  ! author mismatch: wanted {expect_author!r}, file says {creator!r}",
+                  file=sys.stderr)
+            ok = False
+    print("  ✓ metadata matches" if ok else "  ! metadata does not match")
+    return ok
+
+
+# --------------------------------------------------------------------------
 # AgentMail delivery
 # --------------------------------------------------------------------------
 def agentmail_key():
@@ -398,14 +503,20 @@ def send_to_kindle(path: str, title: str, to_addr: str = KINDLE_ADDR) -> bool:
         content=payload,
     )
     client = AgentMail(api_key=agentmail_key())
-    client.inboxes.messages.send(
+    resp = client.inboxes.messages.send(
         AGENTMAIL_INBOX,
         to=[to_addr],
         subject=title,
         text=f"{title}\n\nSent from the Dross library desk. Enjoy it.\n",
         attachments=[attachment],
     )
+    # Keep the message id: it is the receipt. The sent record can be read
+    # back with it to confirm the attachment left with the right
+    # filename, content type and size.
+    message_id = getattr(resp, "message_id", None)
     print(f"  · sent {os.path.basename(path)} ({len(payload)} b64 chars) to {to_addr}")
+    if message_id:
+        print(f"  · message_id: {message_id}")
     return True
 
 
@@ -543,16 +654,27 @@ def cmd_fetch(args) -> int:
     if gutenberg_fetch(gid, dest):
         dest = retarget_ext(dest)
         print(f"  ✓ downloaded {os.path.getsize(dest)} bytes -> {dest}")
+        if dest.lower().endswith(".epub") and args.title:
+            if not verify_book(dest, args.title):
+                print("  ! fallback file is not the requested book", file=sys.stderr)
+                return 1
         return 0
     print("  ! Gutenberg fetch failed", file=sys.stderr)
     return 1
+
+
+def cmd_verify(args) -> int:
+    if not os.path.isfile(args.file):
+        raise SystemExit(f"no such file: {args.file}")
+    return 0 if verify_book(args.file, args.title, args.author) else 1
 
 
 def cmd_send(args) -> int:
     if not os.path.isfile(args.file):
         raise SystemExit(f"no such file: {args.file}")
     title = args.title or os.path.splitext(os.path.basename(args.file))[0]
-    send_to_kindle(args.file, title, args.to)
+    if not send_to_kindle(args.file, title, args.to):
+        return 1
     return 0
 
 
@@ -666,14 +788,22 @@ def cmd_deliver(args) -> int:
         if download_file(opener, files[0]["url"], dest):
             dest = retarget_ext(dest)
             print(f"  ✓ {os.path.getsize(dest)} bytes -> {dest}")
-            send_to_kindle(dest, subject, args.to)
+            if not send_to_kindle(dest, subject, args.to):
+                return 1
             return 0
 
     gid = gutenberg_lookup(lookup_title)
     if gid and gutenberg_fetch(gid, dest):
         dest = retarget_ext(dest)
         print(f"  ✓ Gutenberg id {gid}: {os.path.getsize(dest)} bytes -> {dest}")
-        send_to_kindle(dest, subject, args.to)
+        # A wrong Gutenberg id resolves to a real EPUB of a different book.
+        # The zip magic bytes cannot catch that; the title inside can.
+        if dest.lower().endswith(".epub") and not verify_book(dest, lookup_title):
+            print("  ! fallback file is not the requested book; not sending it",
+                  file=sys.stderr)
+            return 1
+        if not send_to_kindle(dest, subject, args.to):
+            return 1
         return 0
     print("  ! could not obtain a downloadable file", file=sys.stderr)
     return 1
@@ -730,6 +860,12 @@ def main() -> int:
     p.add_argument("--limit", type=int, default=8)
     p.add_argument("--to", default=KINDLE_ADDR)
     p.set_defaults(func=cmd_deliver)
+
+    p = sub.add_parser("verify", help="check that an EPUB is the book that was requested")
+    p.add_argument("file")
+    p.add_argument("--title", help="the title the book should have")
+    p.add_argument("--author", help="the author the book should have")
+    p.set_defaults(func=cmd_verify)
 
     p = sub.add_parser("account", help="check whether zlib credentials are configured")
     p.set_defaults(func=cmd_account)
