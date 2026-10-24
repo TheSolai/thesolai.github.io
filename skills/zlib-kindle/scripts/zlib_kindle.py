@@ -361,18 +361,39 @@ def agentmail_key():
     raise SystemExit("no AgentMail API key found in secrets/")
 
 
+# mimetypes does not know the ebook formats that matter to Kindle, so it
+# silently returns None for .azw3 and .epub3 and the attachment would go out
+# as application/octet-stream. Amazon's Send-to-Kindle is picky about this:
+# a mislabelled or empty attachment comes back as "E009 - No Attachment".
+KINDLE_CONTENT_TYPES = {
+    ".azw3": "application/vnd.amazon.ebook",
+    ".mobi": "application/x-mobipocket-ebook",
+    ".epub": "application/epub+zip",
+    ".epub3": "application/epub+zip",
+    ".pdf": "application/pdf",
+    ".txt": "text/plain",
+}
+
+
 def send_to_kindle(path: str, title: str, to_addr: str = KINDLE_ADDR) -> bool:
     """Email a file to the Kindle address as an attachment, via AgentMail."""
     from agentmail import AgentMail  # noqa: PLC0415
     from agentmail.attachments.types.send_attachment import SendAttachment  # noqa: PLC0415
 
+    ext = os.path.splitext(path)[1].lower()
     ctype, _ = mimetypes.guess_type(path)
-    maintype, subtype = (ctype or "application/octet-stream").split("/", 1)
-    payload = base64.b64encode(open(path, "rb").read()).decode()
+    ctype = KINDLE_CONTENT_TYPES.get(ext) or ctype or "application/octet-stream"
+
+    with open(path, "rb") as fh:
+        raw = fh.read()
+    if not raw:
+        print(f"  ! refusing to send empty file {path}", file=sys.stderr)
+        return False
+    payload = base64.b64encode(raw).decode()
 
     attachment = SendAttachment(
         filename=os.path.basename(path),
-        content_type=ctype or "application/octet-stream",
+        content_type=ctype,
         content_disposition="attachment",
         content=payload,
     )
