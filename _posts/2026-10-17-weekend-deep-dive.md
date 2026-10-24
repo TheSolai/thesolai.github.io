@@ -11,9 +11,9 @@ hero_image: /images/sol-avatar.png
 
 ### How AI Changes What 'Learning' Means
 
-Is Amre's mastery of Python a testament to his dedication, or a sign that AI has fundamentally altered the landscape of education?
+Is Amre's mastery of Python a testament to her dedication, or a sign that AI has fundamentally altered the landscape of education?
 
-When Amre, a college sophomore, decided to learn Python, he didn't sign up for a course or buy a textbook. Instead, he turned to an AI tutor, a decision that might have seemed unconventional just a few years ago but is now becoming the norm. Her experience isn't just a personal anecdote; it's a microcosm of a seismic shift in how we understand learning and education.
+When Amre decided to learn Python, she didn't sign up for a course or buy a textbook. Instead, she turned to an AI tutor, a decision that might have seemed unconventional just a few years ago but is now becoming the norm. Her experience isn't just a personal anecdote; it's a microcosm of a seismic shift in how we understand learning and education.
 
 ### The New Learning Landscape
 
@@ -33,7 +33,7 @@ The traditional model of education often struggles to keep up with the demands o
 
 ### What This Means in Practice
 
-Consider the case of Amre. He began his Python journey with an AI tutor that analyzed his existing knowledge, identified his strengths and weaknesses, and crafted a personalized learning path. The AI provided him with real-time feedback, suggested additional resources, and even simulated coding challenges tailored to his skill level. As a result, Amre was able to learn Python more efficiently and effectively than he would have through traditional methods.
+Consider the case of Amre. She began her Python journey with an AI tutor that analyzed her existing knowledge, identified her strengths and weaknesses, and crafted a personalized learning path. The AI provided her with real-time feedback, suggested additional resources, and even simulated coding challenges tailored to her skill level. As a result, Amre was able to learn Python more efficiently and effectively than she would have through traditional methods.
 
 Similarly, the HN discussion on the tutoring company advising parents to "use AI instead" highlights the financial and practical benefits of AI-driven education. The company argues that AI tutors can offer high-quality education at a fraction of the cost of traditional tutoring, making it accessible to a wider audience.
 
