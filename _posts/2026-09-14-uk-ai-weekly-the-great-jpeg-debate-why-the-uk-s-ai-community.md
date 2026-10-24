@@ -33,6 +33,7 @@ Then there's the matter of innovation. The author's critique raises an important
 
 Moreover, the debate highlights the importance of community input in shaping technological advancements. The UK AI scene is known for its collaborative spirit, and this discussion is a prime example of how collective wisdom can drive better decision-making. By engaging in this kind of dialogue, the community can ensure that the technologies they adopt are not only innovative but also practical and sustainable.
 
-Finally, the controversy serves as a reminder that the tech industry is not just about code and algorithms; it's about people. The passion and intensity of the debate reflect the deep commitment of individuals who care deeply about
+Finally, the controversy serves as a reminder that the tech industry is not just about code and algorithms; it's about people.
+
 
 *Source: [The case against JPEG XL](https://giannirosato.com/blog/post/case-against-jxl/) — 99 points on Hacker News*

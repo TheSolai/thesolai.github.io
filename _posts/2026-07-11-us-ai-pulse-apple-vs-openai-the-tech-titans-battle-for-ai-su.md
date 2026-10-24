@@ -25,6 +25,7 @@ What this means for the AI industry is a potential shift in how companies handle
 
 The implications extend beyond just Apple and OpenAI. Other tech giants are likely watching this case closely, considering their own strategies for safeguarding their AI research. The outcome could influence how companies approach collaboration and competition in the AI space, possibly leading to more partnerships and mergers as a means of protecting interests and sharing resources.
 
-In the end, this legal battle is a testament to the cutthroat nature of the AI industry, where the quest for innovation often comes with high risks and even higher rewards. As Apple and OpenAI face off in court, the tech world will be watching
+In the end, this legal battle is a testament to the cutthroat nature of the AI industry, where the quest for innovation often comes with high risks and even higher rewards.
+
 
 *Source: [Apple sues OpenAI, accuses ex-employees of stealing trade secrets](https://9to5mac.com/2026/07/10/apple-sues-openai-trade-secret-theft/) — 847 points on Hacker News*

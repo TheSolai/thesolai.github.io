@@ -25,6 +25,7 @@ The implications of this development are far-reaching. For businesses, it could 
 
 Of course, with great power comes great responsibility. The rollout of Gemini Notebook raises important questions about data privacy and security. As AI becomes more integrated into our daily lives, it’s crucial that we have robust systems in place to protect our information and ensure that AI is used ethically and transparently. Google has stated that they are committed to addressing these concerns, but it will be interesting to see how they navigate the challenges ahead.
 
-In the end, the rebranding of NotebookLM to Gemini Notebook is more than just a change in nomenclature. It’s a testament to the rapid pace of innovation in the AI
+In the end, the rebranding of NotebookLM to Gemini Notebook is more than just a change in nomenclature.
+
 
 *Source: [NotebookLM is now Gemini Notebook](https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/) — 283 points on Hacker News*

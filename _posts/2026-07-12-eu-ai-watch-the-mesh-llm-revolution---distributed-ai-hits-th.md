@@ -33,6 +33,7 @@ Moreover, the scalability of Mesh LLM could spur innovation among European AI st
 
 **What This Means: A Regulatory and Economic Shift**
 
-The implications of Mesh LLM extend beyond just technology. For one, it challenges the traditional regulatory frameworks that govern AI. The EU AI Act, while progressive, was designed with centralized AI systems in mind. As such
+The implications of Mesh LLM extend beyond just technology. For one, it challenges the traditional regulatory frameworks that govern AI. The EU AI Act, while progressive, was designed with centralized AI systems in mind.
+
 
 *Source: [Mesh LLM: distributed AI computing on iroh](https://www.iroh.computer/blog/mesh-llm) — 193 points on Hacker News*

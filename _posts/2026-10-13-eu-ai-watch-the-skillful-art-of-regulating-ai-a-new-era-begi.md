@@ -29,6 +29,7 @@ Moreover, the Act could spur innovation in AI governance and compliance technolo
 
 What this means for consumers is a more trustworthy AI ecosystem. With the EU AI Act in place, users can have greater confidence that the AI systems they interact with are designed with their best interests in mind. This could lead to wider adoption of AI technologies, as people become more comfortable with the idea of AI playing a larger role in their lives. From healthcare to education, AI has the potential to transform industries, and the EU AI Act aims to ensure that this transformation is both positive and sustainable.
 
-However, the Act is not without its critics. Some argue that the regulations are too stringent, potentially hampering the EU’s ability
+However, the Act is not without its critics.
+
 
 *Source: [AI is a tool and using it well takes skill](https://yyhh.org/blog/2026/10/ai-is-a-tool/) — 354 points on Hacker News*

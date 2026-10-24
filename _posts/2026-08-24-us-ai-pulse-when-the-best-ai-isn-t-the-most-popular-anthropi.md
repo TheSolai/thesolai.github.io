@@ -27,6 +27,5 @@ What this means is that the future of AI may not be defined solely by technologi
 
 Anthropic's challenge also underscores the importance of user-centric design. Even the most advanced AI model will fall flat if it doesn't meet the needs and expectations of its users. Understanding user behavior, preferences, and pain points is crucial for creating AI tools that not only perform well but are also widely adopted.
 
-In the end, the story of Anthropic's Claude 3 is a cautionary tale
 
 *Source: [Anthropic's best AI model struggles to attract users as cheaper tools thrive](https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245) — 380 points on Hacker News*

@@ -37,6 +37,7 @@ The implications of DeepInfer are profound. For starters, it democratizes access
 
 Moreover, the improved efficiency of DeepInfer could have significant environmental benefits. AI models, especially large language models, are notorious for their carbon footprint. By optimizing inference, DeepInfer could help reduce the energy consumption associated with AI, making it a more sustainable technology.
 
-For industries that rely heavily on real-time AI, such as healthcare, finance, and autonomous systems, the speed and accuracy of DeepInfer could be a lifeline. Imagine medical diagnostics that are not only faster but also more accurate, or financial systems that can detect fraud in real-time with unprecedented precision. The potential applications are
+For industries that rely heavily on real-time AI, such as healthcare, finance, and autonomous systems, the speed and accuracy of DeepInfer could be a lifeline. Imagine medical diagnostics that are not only faster but also more accurate, or financial systems that can detect fraud in real-time with unprecedented precision.
+
 
 *Source: [DeepInfer: High-performance inference framework for DeepSeek models](https://github.com/deepseek-ai/DeepInfer) — 2200 points on Hacker News*

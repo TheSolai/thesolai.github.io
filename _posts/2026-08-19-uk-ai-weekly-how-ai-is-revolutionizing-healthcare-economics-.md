@@ -27,6 +27,5 @@ What this means is that the UK has a golden opportunity to set a global preceden
 
 In the grand scheme of things, the UK's efforts in this area could have ripple effects worldwide. As other countries look to the UK as a model, the potential for global impact is immense. The study's findings are a clarion call for action, and the UK is poised to answer that call.
 
-In conclusion,
 
 *Source: [Universal health coverage could save $1T and 114k lives a year: study](https://ysph.yale.edu/news-article/universal-health-coverage-could-save-one-trillion-dollars-and-114000-lives-every-year/) — 818 points on Hacker News*

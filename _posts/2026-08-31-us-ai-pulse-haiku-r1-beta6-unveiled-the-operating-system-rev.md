@@ -31,6 +31,7 @@ Moreover, Haiku R1/beta6 includes a new AI-driven file system that optimizes dat
 
 ### What this means
 
-The release of Haiku R1/beta6 signifies a broader trend in the tech industry: the fusion of AI with everyday tools. As AI becomes more accessible and open-source, we're likely to see a surge in innovation across all sectors. For US-based AI startups, this is both a challenge and an opportunity. On one hand, established players like Haiku are raising the bar for what AI can do. On the other hand, the open-source nature of Haiku's AI components means that startups can build upon and customize the technology
+The release of Haiku R1/beta6 signifies a broader trend in the tech industry: the fusion of AI with everyday tools. As AI becomes more accessible and open-source, we're likely to see a surge in innovation across all sectors. For US-based AI startups, this is both a challenge and an opportunity. On one hand, established players like Haiku are raising the bar for what AI can do.
+
 
 *Source: [Haiku R1/beta6 has been released](https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6) — 284 points on Hacker News*

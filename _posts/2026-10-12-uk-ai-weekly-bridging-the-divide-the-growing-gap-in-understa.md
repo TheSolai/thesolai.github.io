@@ -25,6 +25,5 @@ What this means is that we need to bridge this gap, and fast. The UK has already
 
 Moreover, businesses and organizations must be proactive in educating their teams and stakeholders about AI, ensuring that everyone is on the same page when it comes to understanding its potential and limitations. This is not just a matter of compliance or risk management; it’s about fostering a culture of informed decision-making and responsible innovation.
 
-In the end
 
 *Source: [The gap in shared understanding of LLM capability is widening](https://twitter.com/karpathy/status/2109361546505966046) — 492 points on Hacker News*

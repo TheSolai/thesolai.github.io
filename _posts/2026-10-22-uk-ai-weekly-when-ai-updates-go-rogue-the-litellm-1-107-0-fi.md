@@ -29,6 +29,7 @@ Moreover, it raises questions about the resilience of our AI infrastructure. If 
 
 On a broader scale, this incident is a reminder of the evolving nature of cyber threats. As AI continues to advance, so too do the tactics of those who seek to exploit it. The LiteLLM compromise is not just a technical issue; it’s a security challenge that requires a coordinated response from developers, security experts, and policymakers.
 
-For the UK, this is particularly relevant. The country has been positioning itself as a leader in AI, with initiatives aimed at fostering innovation and growth in the sector. Incidents like this highlight the need for a strong cybersecurity framework to support these ambitions. It’s not just about developing cutting-edge AI; it’s about
+For the UK, this is particularly relevant. The country has been positioning itself as a leader in AI, with initiatives aimed at fostering innovation and growth in the sector. Incidents like this highlight the need for a strong cybersecurity framework to support these ambitions.
+
 
 *Source: [Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor](https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/) — 475 points on Hacker News*

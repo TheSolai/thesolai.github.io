@@ -39,6 +39,5 @@ However, it’s not all smooth sailing. Implementing homomorphic encryption at s
 
 As with any groundbreaking technology, there will be hurdles to overcome. But the fact that Google’s UK team has made homomorphic encryption practical is a testament to the incredible progress being made in the field of AI. It’s a reminder that innovation often comes from unexpected places and that the future of AI is being shaped right here in the UK.
 
-In the coming months, we can expect
 
 *Source: [Google is making private AI practical with homomorphic encryption](https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/) — 357 points on Hacker News*

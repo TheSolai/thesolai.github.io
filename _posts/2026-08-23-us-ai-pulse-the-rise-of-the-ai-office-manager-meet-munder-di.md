@@ -31,6 +31,5 @@ Of course, with any groundbreaking technology, there are concerns. Privacy is a 
 
 What this means is that we’re on the cusp of a new era in AI-driven productivity. Munder Difflin is just the beginning. As AI technology continues to evolve, we can expect to see more innovations that challenge the traditional notions of work and productivity. The future of work is here, and it’s more personalized, efficient, and flexible than ever before.
 
-In the end, Munder Difflin
 
 *Source: [Munder Difflin – Agent harness to run an office of your clones](https://munderdiffl.in/) — 270 points on Hacker News*

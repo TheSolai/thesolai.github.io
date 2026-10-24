@@ -33,6 +33,7 @@ Their campaign highlighted the potential for a more balanced approach to AI regu
 
 What this means is that the EU AI Act, while well-intentioned, may need to evolve to accommodate the fast-paced world of AI development. The Pirate Face incident has sparked a broader debate about the role of regulation in fostering innovation. It's a delicate balance, to be sure, but one that needs to be struck if Europe is to remain a leader in AI.
 
-The implications are significant. If the EU adopts a more nuanced approach, it could set a precedent for other regions grappling with similar issues. On the flip side, if the current regulatory framework
+The implications are significant. If the EU adopts a more nuanced approach, it could set a precedent for other regions grappling with similar issues.
+
 
 *Source: [Pirate Face Rescues LLM Models from Deletion](https://pirateface.co/) — 505 points on Hacker News*

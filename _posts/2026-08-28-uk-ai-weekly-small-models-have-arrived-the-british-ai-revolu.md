@@ -29,6 +29,5 @@ What this means is that the AI landscape is shifting. We're moving away from the
 
 The implications are vast. For one, it democratizes AI. Smaller models are more accessible, both in terms of cost and infrastructure. This means that startups, researchers, and even hobbyists can leverage AI without needing the resources of a tech giant. It also means that AI can be deployed in more diverse settings, from rural clinics to autonomous vehicles, without the need for a constant internet connection.
 
-Moreover, the development of small, efficient models could spur innovation in
 
 *Source: [Small Models Have Arrived](https://calv.info/small-models-have-arrived) — 577 points on Hacker News*

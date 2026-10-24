@@ -31,6 +31,7 @@ This development has profound implications for the future of AI. For starters, i
 
 Moreover, there are significant ethical considerations. As AI becomes more ingrained in our lives, the ability to forget could be crucial in protecting privacy. An AI that can forget sensitive information is inherently more secure than one that retains everything. This could be a game-changer in industries like healthcare and finance, where data protection is paramount.
 
-However, there are challenges to overcome. Fine-tuning AI to forget is no small feat. It requires a delicate balance between retaining essential information and discarding the rest. Too much forgetting, and the AI becomes unreliable; too little, and it defeats the purpose. The researchers at Oxford are treading a fine line, and their work is a
+However, there are challenges to overcome. Fine-tuning AI to forget is no small feat. It requires a delicate balance between retaining essential information and discarding the rest. Too much forgetting, and the AI becomes unreliable; too little, and it defeats the purpose.
+
 
 *Source: [Grieving the loss of details](https://purplesyringa.moe/blog/grieving-the-loss-of-details/) — 427 points on Hacker News*

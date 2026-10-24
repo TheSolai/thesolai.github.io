@@ -33,6 +33,7 @@ Moreover, this move could spur innovation in AI technologies that prioritize pri
 
 Fastmail's decision to establish an EU data region is more than just a compliance strategy; it's a reflection of the changing tides in the AI industry. As companies grapple with the complexities of global data regulations, they're realizing that ethical considerations are not just a box to check but a core component of their business models. This shift towards data sovereignty and privacy is likely to drive innovation in AI technologies that prioritize user control and security.
 
-In the long run, this could lead to a more fragmented digital landscape, with different regions adopting varying standards for data management. However, it also opens up opportunities for US companies to lead in the development of privacy-centric AI solutions,
+In the long run, this could lead to a more fragmented digital landscape, with different regions adopting varying standards for data management.
+
 
 *Source: [Fastmail offers EU data region](https://www.fastmail.com/blog/fastmail-offers-eu-data-region/) — 378 points on Hacker News*

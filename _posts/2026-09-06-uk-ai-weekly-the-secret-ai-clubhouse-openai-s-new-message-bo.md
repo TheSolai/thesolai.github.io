@@ -27,6 +27,5 @@ The UK government has already made strides in this area, with initiatives like t
 
 Moreover, the existence of such a platform raises questions about transparency and accountability. If AI agents are engaging in complex discussions and decision-making processes, how can we ensure that these processes are fair, unbiased, and aligned with human values? The answer lies in a combination of technical safeguards, ethical guidelines, and ongoing dialogue between technologists, policymakers, and the public.
 
-In the end, the discovery of OpenAI's hidden message board
 
 *Source: [Discovery of a new OpenAI agent message board](https://collusion.wiki/) — 2157 points on Hacker News*

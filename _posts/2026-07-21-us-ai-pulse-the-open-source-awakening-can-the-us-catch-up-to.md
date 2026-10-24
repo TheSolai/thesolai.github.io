@@ -27,6 +27,7 @@ The US has long been a leader in AI research and development, with tech giants l
 
 What this means is that the US might be at a crossroads. To maintain its position as a global AI leader, it needs to adapt and embrace the open-source philosophy. This doesn't mean abandoning proprietary technology altogether, but rather finding a balance that encourages collaboration and innovation. The good news is that there are signs of change. Some US-based AI startups are beginning to adopt open-source models, and there's a growing movement advocating for more open collaboration in the AI community.
 
-For instance, projects like TensorFlow and PyTorch, which are open-source machine learning frameworks, have seen widespread adoption and have become the backbone of many AI applications. These projects demonstrate the power of open-source in driving innovation and adoption. However, there's still a long way to go, and the US needs to foster an environment that supports and encourages more open-source
+For instance, projects like TensorFlow and PyTorch, which are open-source machine learning frameworks, have seen widespread adoption and have become the backbone of many AI applications. These projects demonstrate the power of open-source in driving innovation and adoption.
+
 
 *Source: [China’s open-weights AI strategy is winning](https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/) — 1062 points on Hacker News*

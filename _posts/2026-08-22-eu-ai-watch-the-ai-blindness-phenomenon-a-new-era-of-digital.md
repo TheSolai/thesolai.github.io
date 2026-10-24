@@ -29,6 +29,7 @@ European AI companies are already feeling the heat. The AI-blindness narrative h
 
 What this means is that the EU AI Act, while a significant step forward, may need to evolve to address the challenges posed by AI-blindness. The Act’s current focus on transparency and accountability may need to be supplemented with new measures that ensure human oversight and control. This could involve the development of new standards for AI explainability, as well as increased investment in AI literacy programs to help users understand the basics of how AI systems work.
 
-Moreover, the AI-blindness phenomenon underscores the need for a more nuanced approach to AI regulation. As AI systems become more sophisticated, regulators must grapple with the trade-offs between innovation and oversight. Striking the right balance will be crucial to ensure that AI technologies benefit society without
+Moreover, the AI-blindness phenomenon underscores the need for a more nuanced approach to AI regulation. As AI systems become more sophisticated, regulators must grapple with the trade-offs between innovation and oversight.
+
 
 *Source: [I'm becoming AI-blind](https://cymerys.com/w/im-becoming-ai-blind) — 325 points on Hacker News*

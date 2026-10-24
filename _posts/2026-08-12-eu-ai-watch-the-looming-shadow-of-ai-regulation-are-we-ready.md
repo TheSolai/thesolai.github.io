@@ -29,6 +29,7 @@ Enter the EU AI Act. This comprehensive legislation is designed to address these
 
 But what does this mean for European AI companies? On the one hand, compliance with the EU AI Act will require significant investment in infrastructure, personnel, and processes. Companies will need to overhaul their development and deployment practices to meet the new standards. This could be a daunting task, especially for smaller firms with limited resources. On the other hand, those who adapt quickly will find themselves at a competitive advantage. The EU AI Act is not just about compliance; it's about building trust with users and stakeholders. Companies that can demonstrate the safety and reliability of their AI systems will be better positioned to win contracts, attract investment, and gain market share.
 
-Moreover, the EU AI Act sets a precedent that other regions are likely to follow. As the first major regulatory framework of its kind, it will influence AI governance worldwide. This could lead to a more harmonized global approach to AI regulation, reducing the complexity and cost of compliance for multinational companies. However, it also raises the stakes for the EU. If the AI Act is seen as too burdensome or ineffective, it
+Moreover, the EU AI Act sets a precedent that other regions are likely to follow. As the first major regulatory framework of its kind, it will influence AI governance worldwide. This could lead to a more harmonized global approach to AI regulation, reducing the complexity and cost of compliance for multinational companies.
+
 
 *Source: [Stealing Reasoning Traces from Proprietary LLM APIs](https://stolen-thoughts.com/) — 581 points on Hacker News*

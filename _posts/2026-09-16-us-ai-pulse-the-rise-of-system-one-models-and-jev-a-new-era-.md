@@ -27,6 +27,5 @@ What this means for the broader AI landscape is a shift towards more efficient, 
 
 Moreover, the modular nature of System One Models' approach opens up exciting possibilities for customization. Businesses can tailor Jev to their specific needs, creating AI solutions that are as unique as their operations. This flexibility could lead to more innovative applications of AI, pushing the boundaries of what's possible.
 
-In the grand scheme of things, the introduction of System One Models and Jev marks
 
 *Source: [Introducing System One Models and Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) — 1099 points on Hacker News*

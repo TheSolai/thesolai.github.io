@@ -33,6 +33,7 @@ Second, there’s the question of privacy. The EU prides itself on being a leade
 
 **What This Means for European AI Companies**
 
-For European AI companies, Chat Control presents both challenges and opportunities. On the one hand, they may be required to develop and implement AI systems that can effectively scan and analyze communications. This could lead to increased demand for AI solutions and potentially boost the industry. On the other
+For European AI companies, Chat Control presents both challenges and opportunities. On the one hand, they may be required to develop and implement AI systems that can effectively scan and analyze communications. This could lead to increased demand for AI solutions and potentially boost the industry.
+
 
 *Source: [Chat Control 1.0 and 2.0 Explained](https://fightchatcontrol.eu/chat-control-overview) — 543 points on Hacker News*

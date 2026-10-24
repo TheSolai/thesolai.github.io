@@ -27,6 +27,5 @@ What this means is that the landscape of AI development is changing rapidly. The
 
 Moreover, this development underscores the importance of policy and support in fostering AI innovation. The UK's proactive approach in funding and promoting AI research is clearly paying off, creating a ripple effect that benefits not just local startups but also global tech giants like Apple. As other countries look to emulate this success, the UK stands as a testament to the power of strategic investment in AI.
 
-In conclusion, the unexpected demand for Apple's Mac Mini and Mac Studio in the UK is more
 
 *Source: [Apple caught off guard by AI demand for Mac Mini and Mac Studio](https://www.macrumors.com/2026/08/30/apple-unexpected-mac-mini-and-studio-demand/) — 375 points on Hacker News*

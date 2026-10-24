@@ -37,8 +37,5 @@ The EU AI Act, set to be one of the most comprehensive AI regulations in the wor
 
 By adopting Bun, Claude Code is not only improving its technology but also potentially making it easier to comply with EU regulations. The language's built-in safety features could help prevent some of the common pitfalls that lead to regulatory issues, such as data breaches and algorithmic bias.
 
-### What this means
-
-The shift to Bun and Rust by Claude Code is more than just a technical upgrade; it's a strategic move that could reshape the European AI
 
 *Source: [Claude Code uses Bun written in Rust now](https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/) — 480 points on Hacker News*

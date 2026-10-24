@@ -25,6 +25,5 @@ What this means for European AI companies is a potential shift in how they appro
 
 Moreover, the EU AI Act's focus on risk assessment could lead to a more cautious approach to AI deployment. Companies might be more inclined to invest in AI systems that are less risky, potentially slowing down the development of more advanced, albeit more complex, AI technologies. This could put European AI companies at a disadvantage compared to their counterparts in regions with less stringent regulations.
 
-However,
 
 *Source: [Claude: System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts) — 611 points on Hacker News*

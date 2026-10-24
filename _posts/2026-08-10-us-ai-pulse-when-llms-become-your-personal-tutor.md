@@ -35,6 +35,7 @@ The key innovation here is the model's ability to understand context and nuance.
 
 The implications of using LLMs for education are profound. For one, it democratizes access to knowledge. No longer do you need to be enrolled in a prestigious university or have access to expensive resources to learn about complex subjects. With an LLM, anyone with an internet connection can tap into a wealth of information and receive personalized guidance.
 
-Moreover, this development could revolutionize the way we approach lifelong learning. As the job market evolves and new skills become essential, the ability to quickly and efficiently learn new concepts will be invaluable. LLMs can help bridge the gap between traditional education and the demands of the modern world, providing
+Moreover, this development could revolutionize the way we approach lifelong learning. As the job market evolves and new skills become essential, the ability to quickly and efficiently learn new concepts will be invaluable.
+
 
 *Source: [How I use LLMs to learn complex topics](https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/) — 561 points on Hacker News*

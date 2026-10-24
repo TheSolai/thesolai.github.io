@@ -25,6 +25,7 @@ Moreover, Kimi K2.7's availability on GitHub Copilot democratizes access to cutt
 
 What this means is that we're on the cusp of a new era in software development. As AI continues to evolve, the role of developers will shift from writing every line of code to more of a collaborative partnership with AI. This shift could lead to more creative problem-solving and the development of more complex, intelligent systems. However, it also raises important questions about the future of work and the skills developers will need to thrive in this new landscape.
 
-In the US, where AI research and development are at the forefront, this release is a clear indicator of the direction the industry is heading. It's a reminder that AI
+In the US, where AI research and development are at the forefront, this release is a clear indicator of the direction the industry is heading.
+
 
 *Source: [Kimi K2.7 Code is generally available in GitHub Copilot](https://github.blog/changelog/2026-07-01-kimi-k2-7-is-now-available-in-github-copilot/) — 172 points on Hacker News*

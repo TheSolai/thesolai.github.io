@@ -23,6 +23,7 @@ The implications of AI blindness are far-reaching. For one, it challenges the fu
 
 What this means is that the tech community and policymakers must confront the reality of AI blindness head-on. It's not enough to push for more AI integration; we need to foster a culture of awareness and critical engagement. This could involve redesigning AI interfaces to be more noticeable without being intrusive, or it could mean investing in digital literacy programs that teach people how to navigate an AI-driven world. Moreover, there's a pressing need for more transparent AI systems that allow users to understand and control the technology they interact with daily.
 
-In the broader context of AI development, the UK is at a crossroads. The government’s recent AI strategy emphasizes ethical AI and public engagement, but the AI blindness phenomenon suggests
+In the broader context of AI development, the UK is at a crossroads.
+
 
 *Source: [I'm becoming AI-blind](https://cymerys.com/w/im-becoming-ai-blind) — 325 points on Hacker News*

@@ -37,6 +37,7 @@ What this means for the average consumer is a more private and secure digital ex
 
 Of course, like any technological advancement, there are challenges to overcome. Implementing homomorphic encryption is computationally intensive, which can slow down AI processes and increase costs. However, as computing power continues to grow and algorithms become more efficient, these hurdles are likely to diminish over time.
 
-Moreover, the adoption of homomorphic encryption will require a shift in mindset for many organizations. Companies will need to invest in new infrastructure
+Moreover, the adoption of homomorphic encryption will require a shift in mindset for many organizations.
+
 
 *Source: [Google is making private AI practical with homomorphic encryption](https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/) — 342 points on Hacker News*

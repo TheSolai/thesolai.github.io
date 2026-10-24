@@ -25,6 +25,5 @@ Moreover, Jeff’s efficiency in terms of resource usage and speed opens up new 
 
 What this means is that we’re witnessing the dawn of a new era in AI development. The barriers to entry are lowering, and the potential for innovation is skyrocketing. As more developers and entrepreneurs get their hands on tools like Jeff, we can expect a wave of novel applications and solutions that we haven’t even imagined yet. This is not just a step forward in technology; it’s a leap towards a more inclusive and innovative AI landscape.
 
-In the end, Jeff is more than just a decision model; it’s a symbol of the changing tides in AI. It’s a reminder that innovation often thrives in the most unexpected
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 492 points on Hacker News*

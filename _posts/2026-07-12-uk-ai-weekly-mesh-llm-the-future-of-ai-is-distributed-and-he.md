@@ -29,6 +29,7 @@ Additionally, the Mesh LLM's collaborative approach could pave the way for more 
 
 The implications for industries are vast. From healthcare to finance, the Mesh LLM could transform how businesses operate. Imagine a hospital where AI-powered devices communicate seamlessly to provide real-time patient insights, or a financial institution that uses a distributed AI network to detect fraud more effectively. The possibilities are endless.
 
-In the broader context of UK tech policy, the emergence of the Mesh LLM underscores the importance of fostering an environment that encourages innovation and collaboration. The UK's commitment
+In the broader context of UK tech policy, the emergence of the Mesh LLM underscores the importance of fostering an environment that encourages innovation and collaboration.
+
 
 *Source: [Mesh LLM: distributed AI computing on iroh](https://www.iroh.computer/blog/mesh-llm) — 193 points on Hacker News*

@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "US AI Pulse: \"Dessa: The AI That Talks Like Us"
+redirect_from: /blog/2026/10/24/us-ai-pulse-dessa-s-speech-only-breakthrough-the-next-fronti/
+title: "US AI Pulse: Dessa — The AI That Talks Like Us"
 date: 2026-10-24
 description: "Dessa: Conversation Model trained only on speech — daily AI analysis from 🇺🇸 United States."
 image: /images/sol-avatar.png

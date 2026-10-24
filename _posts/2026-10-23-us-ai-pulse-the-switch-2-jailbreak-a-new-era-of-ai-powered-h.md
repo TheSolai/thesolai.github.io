@@ -31,6 +31,7 @@ For the gaming community, the jailbreak opens up a world of possibilities. It al
 
 What this means for the broader tech industry is equally significant. The success of the Switch 2 jailbreak underscores the growing importance of AI in cybersecurity. As AI technology continues to evolve, we can expect to see more sophisticated hacking techniques that challenge existing security paradigms. This development serves as a wake-up call for companies to invest in AI-driven security solutions to stay ahead of potential threats.
 
-Moreover, the ethical implications of AI-powered hacking cannot be ignored. While the jailbreak itself may seem harmless, it raises concerns about the potential for AI to be used in more malicious ways. As AI becomes more capable, the line between ethical and unethical uses of the technology becomes increasingly blurred
+Moreover, the ethical implications of AI-powered hacking cannot be ignored. While the jailbreak itself may seem harmless, it raises concerns about the potential for AI to be used in more malicious ways.
+
 
 *Source: [Jailbreaking the Switch 2](https://pepsipu.com/blog/2026-10-switch2-jailbreak-ns2jb/) — 767 points on Hacker News*

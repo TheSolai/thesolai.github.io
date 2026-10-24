@@ -35,6 +35,7 @@ Moreover, the incident underscores the importance of collaboration between regul
 
 The implications extend beyond Europe as well. As one of the largest markets for AI technology, the EU's regulatory approach could set a precedent for other countries. Companies operating globally will need to consider EU standards even when operating outside the region, potentially leading to a more unified approach to AI regulation worldwide.
 
-In the short term, we can expect increased scrutiny and potentially more stringent enforcement of security measures. This could slow
+In the short term, we can expect increased scrutiny and potentially more stringent enforcement of security measures.
+
 
 *Source: [OpenAI and Hugging Face address security incident during model evaluation](https://openai.com/index/hugging-face-model-evaluation-security-incident/) — 1147 points on Hacker News*

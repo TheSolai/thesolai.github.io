@@ -31,6 +31,7 @@ What this means is that the EU AI Act, and similar regulatory efforts worldwide,
 
 Moreover, the incident highlights the importance of continuous monitoring and auditing of AI systems. Just as the Linux community will now be scrutinizing its trust mechanisms, AI developers must adopt a similar vigilance. This means investing in security research, fostering a culture of transparency, and being willing to adapt to new threats.
 
-In the wake of this revelation, the EU AI Act may need to be revisited to include more stringent security requirements. This could involve mandatory
+In the wake of this revelation, the EU AI Act may need to be revisited to include more stringent security requirements.
+
 
 *Source: [Trusting-Trust Attack against an Entire Linux Distribution](https://arxiv.org/abs/2607.24888) — 189 points on Hacker News*

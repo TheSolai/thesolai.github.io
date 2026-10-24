@@ -39,8 +39,5 @@ Moreover, the EU AI Act will need to evolve to accommodate advancements like Spe
 
 The implications extend beyond the tech sector. As AI becomes more integrated into everyday life, the EU's approach to regulating these technologies will have far-reaching effects on society. From healthcare to transportation, the decisions made today will shape the future of AI in Europe and beyond.
 
-**The Takeaway:**
-
-Apple's SpeechAnalyzer API is a testament to the rapid pace of AI advancement, and it challenges
 
 *Source: [Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor](https://get-inscribe.com/blog/apple-speech-api-benchmark.html) — 515 points on Hacker News*

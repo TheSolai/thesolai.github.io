@@ -31,6 +31,7 @@ Anthropic has made strides in addressing these concerns, emphasizing their commi
 
 ### The Human Touch
 
-What's particularly fascinating about Claude 5.1 is its ability to mimic human-like interactions. This isn't just about
+What's particularly fascinating about Claude 5.1 is its ability to mimic human-like interactions.
+
 
 *Source: [Claude Fable 5.1 and Claude Mythos 5.1](https://www.anthropic.com/claude-fable-and-mythos-5-1) — 1088 points on Hacker News*

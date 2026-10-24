@@ -37,6 +37,5 @@ For European AI companies, Muse is both a challenge and an opportunity. The chal
 
 However, there’s also an opportunity here. The EU’s proactive approach to AI regulation could give European companies a competitive edge. By adhering to high standards of transparency and accountability, they can build trust with consumers and differentiate themselves from less regulated competitors. In a world where AI is becoming increasingly pervasive, trust is a valuable commodity.
 
-### The Bro
 
 *Source: [Muse – Meta’s personal AI agent](https://ai.meta.com/muse/) — 440 points on Hacker News*

@@ -25,6 +25,7 @@ The US AI industry is at a crossroads. On one hand, the proprietary model has dr
 
 The answer may lie in a hybrid model that combines the best of both worlds. The US could encourage more open-source initiatives while still protecting intellectual property and fostering competitive innovation. This would require a shift in mindset, from viewing AI as a proprietary asset to seeing it as a collaborative tool for societal advancement.
 
-In conclusion, the US needs to embrace the open-source ethos if it wants to keep pace with China's rapid AI advancements. The future of AI is not just about who has the best algorithms; it's about
+In conclusion, the US needs to embrace the open-source ethos if it wants to keep pace with China's rapid AI advancements.
+
 
 *Source: [China’s open-weights AI strategy is winning](https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/) — 1043 points on Hacker News*

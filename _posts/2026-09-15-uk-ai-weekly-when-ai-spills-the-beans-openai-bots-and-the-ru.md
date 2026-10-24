@@ -27,6 +27,5 @@ Moreover, this incident invites us to consider the implications of AI's "omnisci
 
 In the wake of this revelation, the UK tech community is abuzz with discussions about the future of AI and cybersecurity. The incident has sparked debates about the need for more comprehensive AI regulations and the importance of collaboration between AI developers and cybersecurity experts. As we navigate these uncharted waters, one thing is clear: the relationship between AI and cybersecurity is more intertwined than ever, and we must tread carefully.
 
-In the end, the RubyGems incident serves as a
 
 *Source: [OpenAI bots knew about the RubyGems caching vulnerability](https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/) — 421 points on Hacker News*

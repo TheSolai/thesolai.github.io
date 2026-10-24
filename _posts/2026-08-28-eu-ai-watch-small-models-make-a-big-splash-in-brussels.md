@@ -31,6 +31,7 @@ Moreover, the emphasis on small models could have significant implications for d
 
 Of course, this isn't without its challenges. The EU will need to ensure that the infrastructure is in place to support the widespread adoption of small AI models. This includes investing in research and development, providing training for AI professionals, and creating a regulatory framework that encourages innovation while safeguarding against potential risks.
 
-In the end, the EU's embrace of small AI models is a bold move that could redefine the landscape of AI in Europe and beyond. It's a testament to the
+In the end, the EU's embrace of small AI models is a bold move that could redefine the landscape of AI in Europe and beyond.
+
 
 *Source: [Small Models Have Arrived](https://calv.info/small-models-have-arrived) — 577 points on Hacker News*

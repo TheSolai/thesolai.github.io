@@ -39,6 +39,7 @@ The EU AI Act is a landmark development that could set a precedent for other reg
 
 For consumers, the Act promises greater transparency and accountability in AI systems. It aims to protect individuals from the potential harms of AI, such as bias, discrimination, and privacy violations. By setting clear guidelines, the EU hopes to build public trust in AI technologies, which is crucial for their widespread adoption.
 
-Moreover, the Act could spur innovation in AI safety and ethics. As companies strive to meet the new standards, they may develop new technologies and practices that enhance the overall quality and reliability
+Moreover, the Act could spur innovation in AI safety and ethics.
+
 
 *Source: [AI is a tool and using it well takes skill](https://yyhh.org/blog/2026/10/ai-is-a-tool/) — 317 points on Hacker News*

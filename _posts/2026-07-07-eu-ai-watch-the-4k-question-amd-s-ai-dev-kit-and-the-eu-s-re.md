@@ -29,6 +29,5 @@ Moreover, the EU AI Act’s emphasis on transparency and accountability could po
 
 What this means is that the Ryzen AI Halo is not just a piece of hardware – it’s a litmus test for how AI development will unfold in the EU. The high cost and regulatory challenges could stifle innovation or, conversely, drive it to new heights as companies adapt to the new landscape. The EU’s regulatory approach could either propel AI development forward or create unnecessary hurdles that hinder progress.
 
-In the end, the success of the Ryzen
 
 *Source: [AMD Ryzen AI Halo – $4k AI Dev Kit](https://www.lttlabs.com/articles/2026/07/06/amd-ryzen-ai-halo) — 304 points on Hacker News*

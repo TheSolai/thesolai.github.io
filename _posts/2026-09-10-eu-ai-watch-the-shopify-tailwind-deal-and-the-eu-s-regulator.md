@@ -31,6 +31,7 @@ Moreover, the Act emphasizes transparency. Users must be informed when they’re
 
 But it’s not all doom and gloom. The EU AI Act also presents opportunities. By adhering to its guidelines, Shopify can position itself as a leader in ethical AI, a move that could pay dividends in terms of consumer trust and brand reputation. Plus, the Act’s emphasis on transparency could lead to more robust, reliable AI systems—something that benefits everyone in the long run.
 
-What this means is that the Shopify-Tailwind deal is more than just a strategic business move; it’s a case study for how companies will need to adapt to the EU’s AI regulations. It’s
+What this means is that the Shopify-Tailwind deal is more than just a strategic business move; it’s a case study for how companies will need to adapt to the EU’s AI regulations.
+
 
 *Source: [Shopify acquires Tailwind](https://tailwindcss.com/blog/tailwind-is-joining-shopify) — 976 points on Hacker News*

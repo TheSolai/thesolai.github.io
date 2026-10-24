@@ -29,6 +29,7 @@ The implications are profound. For one, OpenAI's research acceleration is likely
 
 What this means for European AI companies is equally significant. The EU AI Act is not just a regulatory framework; it's a competitive advantage. By setting high standards for AI development, the EU is positioning itself as a leader in responsible AI. Companies that can navigate these regulations effectively will not only gain access to the lucrative European market but also build a reputation for trustworthiness and reliability. This could attract talent, investment, and partnerships, further boosting the European AI ecosystem.
 
-On the flip side, smaller AI companies may struggle to keep up with the regulatory burden. The cost
+On the flip side, smaller AI companies may struggle to keep up with the regulatory burden.
+
 
 *Source: [Research acceleration: The view inside OpenAI](https://openai.com/index/research-acceleration-view-inside-openai) — 152 points on Hacker News*

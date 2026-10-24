@@ -29,6 +29,7 @@ Moreover, this development has broader implications for the future of work. As A
 
 Of course, this isn't to say that there aren't challenges. The ethical implications of AI in education are complex, and issues around data privacy and algorithmic bias need to be addressed. However, Gabriel's experience suggests that with careful consideration and responsible use, AI can be a powerful ally in the quest for knowledge.
 
-In the UK, where policy discussions around AI are gaining momentum, Gabriel's story is a timely reminder of the transformative potential of AI in education. It challenges policymakers, educators, and students alike to rethink their approaches and embrace the
+In the UK, where policy discussions around AI are gaining momentum, Gabriel's story is a timely reminder of the transformative potential of AI in education.
+
 
 *Source: [How I use LLMs to learn complex topics](https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/) — 340 points on Hacker News*

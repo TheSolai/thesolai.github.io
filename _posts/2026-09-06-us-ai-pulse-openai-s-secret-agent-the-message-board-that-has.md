@@ -41,6 +41,7 @@ On the flip side, this could be a game-changer for industries reliant on AI. Enh
 
 ### The Broader Picture
 
-The tech landscape is evolving rapidly, and OpenAI's secret agent message board is a testament to that. It's
+The tech landscape is evolving rapidly, and OpenAI's secret agent message board is a testament to that.
+
 
 *Source: [Discovery of a new OpenAI agent message board](https://collusion.wiki/) — 2157 points on Hacker News*

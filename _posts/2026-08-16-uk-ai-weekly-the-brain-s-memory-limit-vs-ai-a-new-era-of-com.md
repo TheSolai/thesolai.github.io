@@ -31,6 +31,7 @@ Moreover, the ethical and policy implications are significant. As AI systems bec
 
 ### The Human Element
 
-It’s easy to get caught up in the hype and fear surrounding AI advancements. But let’s not forget the human element. While AI may surpass us in certain cognitive tasks, it
+It’s easy to get caught up in the hype and fear surrounding AI advancements. But let’s not forget the human element.
+
 
 *Source: [AI has access to a vastly larger working memory than the human brain](https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians) — 462 points on Hacker News*

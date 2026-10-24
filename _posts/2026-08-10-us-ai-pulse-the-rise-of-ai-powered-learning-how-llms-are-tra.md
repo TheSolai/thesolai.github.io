@@ -31,6 +31,7 @@ What this means is that we're on the cusp of a major shift in how knowledge is d
 
 However, it's not all smooth sailing. There are challenges to consider, such as the digital divide and the need for robust AI ethics frameworks. Not everyone has equal access to the technology, and there's a risk of exacerbating existing inequalities if these issues aren't addressed. Additionally, while LLMs are incredibly powerful, they aren't infallible. There's a need for critical thinking and human oversight to ensure that the information provided is accurate and unbiased.
 
-Despite these challenges, the potential benefits are too significant to ignore. The rise of AI-powered learning could redefine education as we know it, making it more accessible, personalized, and effective. It's a development that could
+Despite these challenges, the potential benefits are too significant to ignore. The rise of AI-powered learning could redefine education as we know it, making it more accessible, personalized, and effective.
+
 
 *Source: [How I use LLMs to learn complex topics](https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/) — 340 points on Hacker News*

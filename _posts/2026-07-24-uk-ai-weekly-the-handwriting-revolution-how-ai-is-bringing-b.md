@@ -25,6 +25,7 @@ What this means is that AI is not just about automating tasks or making our live
 
 But perhaps the most intriguing aspect is the cultural shift this could inspire. In a world where digital communication often feels impersonal, the resurgence of handwriting could lead to a more connected, thoughtful society. Imagine a future where handwritten letters are not just a relic of the past but a symbol of cognitive vitality and emotional connection.
 
-In the end, this development is a reminder that AI can be a force for good, not just in terms of efficiency but in enriching our lives in meaningful ways. As we continue to integrate AI into various aspects of our
+In the end, this development is a reminder that AI can be a force for good, not just in terms of efficiency but in enriching our lives in meaningful ways.
+
 
 *Source: [Writing by hand is good for your brain](https://nealstephenson.substack.com/p/writing-by-hand-is-good-for-your) — 1161 points on Hacker News*

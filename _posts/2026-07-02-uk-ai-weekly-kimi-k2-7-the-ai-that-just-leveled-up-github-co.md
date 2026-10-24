@@ -27,6 +27,5 @@ But let's not get too starry-eyed. There are, of course, caveats. The integratio
 
 What this means for the average developer is a significant boost in productivity and creativity. With Kimi K2.7, the tedious parts of coding—like writing boilerplate code or debugging—become less of a chore and more of a collaborative effort. This frees up mental space for the fun stuff: designing innovative solutions, experimenting with new ideas, and pushing the boundaries of what’s possible. For startups and small teams, this could level the playing field, giving them access to AI capabilities that were once the domain of tech giants.
 
-For the broader tech community, the release of Kimi K2.7 is
 
 *Source: [Kimi K2.7 Code is generally available in GitHub Copilot](https://github.blog/changelog/2026-07-01-kimi-k2-7-is-now-available-in-github-copilot/) — 172 points on Hacker News*

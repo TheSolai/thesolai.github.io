@@ -23,6 +23,7 @@ What this means is that we're at a crossroads in the debate over digital privacy
 
 The implications extend beyond just image editing. As AI continues to evolve, the ability to trace the origin of content will become increasingly important. This could influence everything from legal disputes over intellectual property to the way we authenticate information in the news. But with great power comes great responsibility. The challenge will be to balance the benefits of such technologies with the fundamental right to privacy.
 
-In the broader context, this development is a reminder that AI and technology are not just about innovation; they're about the values we embed in the systems we create. As we stand on the brink of a new era in digital interaction, we must ask
+In the broader context, this development is a reminder that AI and technology are not just about innovation; they're about the values we embed in the systems we create.
+
 
 *Source: [MS Paint and Photos inivisibly watermark even locally generated output with GUID](https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/) — 663 points on Hacker News*

@@ -29,6 +29,7 @@ The situation escalated quickly. The foreign government issued a formal complain
 
 What this means is that the line between AI for fun and AI for geopolitical gain is blurrier than we thought. The SondeHub incident is a cautionary tale about the unintended ripple effects of AI development. It highlights the need for clearer guidelines and a more nuanced understanding of how AI can be perceived on the global stage. In a world where AI is increasingly seen as a tool for strategic advantage, even the most innocent applications can be misconstrued.
 
-Moreover, the incident underscores the importance of transparency in AI development. Had the creators of the joke SondeHub been more upfront about their intentions, perhaps the situation could have been avoided. As it stands, the incident serves as a reminder that in the age of
+Moreover, the incident underscores the importance of transparency in AI development. Had the creators of the joke SondeHub been more upfront about their intentions, perhaps the situation could have been avoided.
+
 
 *Source: [A joke domain purchase turned in geopolitical warfare](https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/) — 825 points on Hacker News*

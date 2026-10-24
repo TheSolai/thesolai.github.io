@@ -31,6 +31,7 @@ So, what does this mean for Google’s new AI models? Well, it’s a bit of a re
 
 The EU AI Act requires that high-risk AI systems undergo rigorous testing, documentation, and human oversight. This means that companies like Google will need to demonstrate that their AI models comply with the Act’s stringent standards. This could involve providing detailed explanations of how the models work, ensuring they don’t perpetuate biases, and implementing robust cybersecurity measures to protect against malicious attacks.
 
-What this means for European AI companies is a bit of a mixed bag. On one hand, the EU’s regulatory framework could level the playing field, allowing smaller companies to compete with tech giants by ensuring a fair and transparent AI ecosystem. On the other hand, it could also pose significant challenges
+What this means for European AI companies is a bit of a mixed bag. On one hand, the EU’s regulatory framework could level the playing field, allowing smaller companies to compete with tech giants by ensuring a fair and transparent AI ecosystem.
+
 
 *Source: [Gemini 3.8 Flash and 3.8 Flash Cyber](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/) — 942 points on Hacker News*

@@ -29,6 +29,7 @@ What this means for European AI companies is significant. Fastmail’s decision 
 
 The implications for the EU are equally profound. By encouraging companies to store data within its borders, the EU is not only strengthening its data sovereignty but also reinforcing its position as a global leader in AI regulation. This could attract more tech companies to set up operations in the EU, further boosting the region’s tech industry and economy. However, it also raises questions about the potential for increased surveillance and control over data, which could be a double-edged sword.
 
-For consumers, this development is largely positive. It means greater protection of personal data and more transparency about how AI systems use that data. Users can feel more confident that their information is being handled in accordance with strict privacy standards, which is increasingly important in an age where data breaches and misuse are common
+For consumers, this development is largely positive. It means greater protection of personal data and more transparency about how AI systems use that data.
+
 
 *Source: [Fastmail offers EU data region](https://www.fastmail.com/blog/fastmail-offers-eu-data-region/) — 378 points on Hacker News*

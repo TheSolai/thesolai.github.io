@@ -25,6 +25,7 @@ The EU AI Act, set to be one of the most comprehensive AI regulations globally, 
 
 What this means is that the EU is at a crossroads. On one hand, AI has the potential to revolutionize industries and drive economic growth. On the other hand, without proper regulation, there's a risk of misuse and unintended consequences. The Tao-ChatGPT interaction highlights the delicate balance that the EU must strike. It must encourage the development of AI technologies that can contribute to fields like mathematics and science while ensuring that these technologies are used responsibly.
 
-European AI companies, in particular, will feel the impact of the AI Act. They will need to adapt to new compliance requirements, which could be both a challenge and an opportunity. By adhering to stringent standards, these companies can build trust with consumers and stakeholders, potentially giving them a competitive edge in the global market. Moreover, the Act could spur innovation in AI ethics and
+European AI companies, in particular, will feel the impact of the AI Act. They will need to adapt to new compliance requirements, which could be both a challenge and an opportunity. By adhering to stringent standards, these companies can build trust with consumers and stakeholders, potentially giving them a competitive edge in the global market.
+
 
 *Source: [Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample](https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56) — 785 points on Hacker News*

@@ -29,6 +29,7 @@ Think about it: if researchers can't trust AI systems with their unpublished wor
 
 But here's the twist: while the Act is a step in the right direction, it also presents challenges for European AI companies. Complying with the Act's requirements won't be easy, especially for smaller firms that may not have the resources to navigate the regulatory landscape. On the flip side, this could be a boon for companies that prioritize ethical AI practices, as they'll be better positioned to meet the Act's standards.
 
-What this means is that the EU AI Act could reshape the AI landscape, not just in Europe but globally. As companies scramble to comply with the new regulations, we could see a shift towards more ethical AI practices. But there's a catch: the Act's success will depend on how
+What this means is that the EU AI Act could reshape the AI landscape, not just in Europe but globally. As companies scramble to comply with the new regulations, we could see a shift towards more ethical AI practices.
+
 
 *Source: [More questions about whether researchers can trust OpenAI with unpublished math](https://mathstodon.xyz/@andreasthom/117240535270608201) — 769 points on Hacker News*

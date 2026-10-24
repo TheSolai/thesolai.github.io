@@ -25,6 +25,7 @@ Now, you might be wondering, "Why should I care?" Well, for starters, this devel
 
 Moreover, this isn’t just about speed. It’s about efficiency. By optimizing queries more effectively, Qorl can reduce the computational resources needed to process data. This could lead to significant cost savings for businesses and a smaller carbon footprint for data centers. In an age where sustainability is more important than ever, that’s a big deal.
 
-What this means is that we’re witnessing the dawn of a new era in AI-driven data management. Qorl’s success is a clear indicator that AI is not just a tool but a transformative force that can redefine the boundaries of
+What this means is that we’re witnessing the dawn of a new era in AI-driven data management.
+
 
 *Source: [Training a 4B model to produce 81% faster query plans than Postgres](https://rohanbansal.com/qorl) — 485 points on Hacker News*

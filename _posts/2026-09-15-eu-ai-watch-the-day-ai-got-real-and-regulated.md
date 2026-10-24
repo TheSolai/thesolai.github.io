@@ -33,6 +33,7 @@ For consumers, this is a win. The AI Act ensures that AI systems are subject to 
 
 Of course, regulation is only part of the puzzle. The real challenge lies in implementation. How do you enforce rules on something as dynamic and complex as AI? The EU is betting on a combination of technical standards, certification processes, and ongoing monitoring. It's a mammoth task, but one that could set a precedent for the rest of the world.
 
-What this means is that the AI landscape is shifting. The days of AI operating in a regulatory vacuum are numbered. As the
+What this means is that the AI landscape is shifting. The days of AI operating in a regulatory vacuum are numbered.
+
 
 *Source: [OpenAI bots knew about the RubyGems caching vulnerability](https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/) — 421 points on Hacker News*

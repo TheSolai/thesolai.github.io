@@ -37,6 +37,7 @@ But here's the twist: the EU isn't just playing defense. By setting stringent st
 
 The implications are profound. For starters, GPT-5.6's rollout will likely be met with a barrage of compliance checks and potential delays. OpenAI will need to demonstrate that its model meets the EU's stringent safety and ethical guidelines. This could involve tweaking the model, implementing new safeguards, or even restricting its use in certain applications.
 
-Moreover, the EU AI Act could set a precedent for other regions. As the world grapples with the challenges of AI governance, the EU's approach could become a
+Moreover, the EU AI Act could set a precedent for other regions.
+
 
 *Source: [GPT-5.6](https://openai.com/index/gpt-5-6/) — 1171 points on Hacker News*

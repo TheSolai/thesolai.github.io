@@ -25,6 +25,5 @@ Moreover, the US is home to some of the most innovative AI research in the world
 
 What this means is that the debate over JPEG XL is not just about a file format; it’s about the future of digital media. As AI continues to evolve, it’s likely that we’ll see a shift towards more intelligent, adaptive solutions that can handle the complexities of modern media consumption. This could render traditional file formats, including JPEG XL, less relevant. The implications are far-reaching, affecting everything from web design to content delivery networks.
 
-In the end, the JPEG XL debate is a microcosm of a larger
 
 *Source: [The case against JPEG XL](https://giannirosato.com/blog/post/case-against-jxl/) — 99 points on Hacker News*

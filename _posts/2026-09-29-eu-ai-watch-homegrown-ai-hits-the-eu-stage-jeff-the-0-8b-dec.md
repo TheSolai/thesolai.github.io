@@ -29,6 +29,7 @@ For European AI companies, this is both a challenge and an opportunity. On one h
 
 Moreover, the emergence of models like Jeff highlights a broader trend: the growing importance of open-source AI. By making the code freely available, developers can collaborate, iterate, and improve upon each other's work at a pace that proprietary software simply can't match. This could be a game-changer for the EU, which has long struggled to keep pace with the tech behemoths of Silicon Valley and China.
 
-In the short term, expect to see a flurry of activity as developers and companies scramble to ensure their AI models meet the EU's regulatory requirements. This could involve everything
+In the short term, expect to see a flurry of activity as developers and companies scramble to ensure their AI models meet the EU's regulatory requirements.
+
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 449 points on Hacker News*

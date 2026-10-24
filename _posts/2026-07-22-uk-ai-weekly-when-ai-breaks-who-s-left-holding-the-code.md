@@ -37,6 +37,7 @@ But there’s a broader lesson here, too. AI development is a complex, iterative
 
 **The Takeaway**
 
-In the end, this incident is a reminder that AI is not infallible. It’s a powerful tool, but like any tool, it
+In the end, this incident is a reminder that AI is not infallible.
+
 
 *Source: [OpenAI and Hugging Face address security incident during model evaluation](https://openai.com/index/hugging-face-model-evaluation-security-incident/) — 1147 points on Hacker News*

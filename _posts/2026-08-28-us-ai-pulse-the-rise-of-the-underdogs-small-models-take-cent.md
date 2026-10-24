@@ -27,6 +27,5 @@ Moreover, the environmental impact cannot be overstated. As the world grapples w
 
 What this means is that the AI landscape is evolving. The era of "bigger is better" is giving way to a more nuanced understanding of what makes an AI model effective. It's not just about the number of parameters; it's about efficiency, adaptability, and real-world applicability. The success of small models is a testament to the ingenuity of AI researchers and the growing demand for practical, scalable solutions.
 
-In conclusion
 
 *Source: [Small Models Have Arrived](https://calv.info/small-models-have-arrived) — 577 points on Hacker News*

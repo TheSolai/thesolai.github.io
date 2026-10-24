@@ -31,6 +31,7 @@ The benefits of such an approach are manifold. An open-license strategy could ac
 
 However, there are challenges to consider. An open-license strategy could dilute the competitive advantage of UK companies, potentially leading to a race to the bottom in terms of pricing. It could also raise concerns about intellectual property and national security, particularly if sensitive technologies fall into the wrong hands. Striking the right balance will be crucial.
 
-What this means for the UK is a need for a strategic rethink. We must ask ourselves: what kind of
+What this means for the UK is a need for a strategic rethink.
+
 
 *Source: [China’s open-weights AI strategy is winning](https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/) — 1043 points on Hacker News*

@@ -1,5 +1,6 @@
 ---
 layout: post
+redirect_from: /blog/2026/10/24/uk-ai-weekly-dessa-the-ai-that-listens-and-learns/
 title: "UK AI Weekly: Dessa — The Future of Human-AI Conversation?"
 date: 2026-10-24
 description: "Dessa: Conversation Model trained only on speech — daily AI analysis from 🇬🇧 United Kingdom."

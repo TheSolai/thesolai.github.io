@@ -25,6 +25,7 @@ What this means is that while AI can certainly augment certain aspects of work, 
 
 Moreover, this revelation underscores the need for a more holistic approach to AI development. The UK, with its diverse economy and strong emphasis on innovation, is well-positioned to lead the charge in developing AI that addresses the complexities of real-world tasks. This could involve rethinking how we benchmark AI performance, moving beyond narrow metrics to encompass a broader range of capabilities.
 
-In terms of policy, the UK government might consider investing in AI research that focuses on these “blind spot” tasks. By doing so, the UK could not only enhance its competitive edge but also ensure that AI development aligns with the needs of its workforce. Additionally, there’s an opportunity to rethink education and training programs, equipping workers with the skills needed to thrive alongside AI
+In terms of policy, the UK government might consider investing in AI research that focuses on these “blind spot” tasks. By doing so, the UK could not only enhance its competitive edge but also ensure that AI development aligns with the needs of its workforce.
+
 
 *Source: [90% of US working hours are spent on tasks not covered well by AI benchmarks](https://www.mercor.com/research/labor-index/benchmark-map/) — 280 points on Hacker News*

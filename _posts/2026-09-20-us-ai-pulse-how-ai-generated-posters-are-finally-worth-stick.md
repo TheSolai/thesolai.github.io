@@ -31,6 +31,7 @@ What this means is that we're on the cusp of a new era where AI can be a genuine
 
 Moreover, the implications for accessibility are profound. High-quality design tools have traditionally been expensive and required a steep learning curve. By lowering the barrier to entry, AI-generated posters can empower a new generation of creators who might not have had the resources or skills to participate in the past. This could lead to a more diverse and vibrant visual culture.
 
-In the grand scheme of AI developments, this might seem like a small step. But it's a step that resonates with the everyday needs of people and businesses. It's a reminder that
+In the grand scheme of AI developments, this might seem like a small step. But it's a step that resonates with the everyday needs of people and businesses.
+
 
 *Source: [AI-generated posters don’t have to be horrible](https://john.hartnup.uk/2026/06/07/ai-event-posters.html) — 1504 points on Hacker News*

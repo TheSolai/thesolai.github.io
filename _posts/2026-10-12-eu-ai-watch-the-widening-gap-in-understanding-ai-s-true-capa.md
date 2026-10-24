@@ -32,8 +32,5 @@ European AI companies are already feeling the ripple effects of this uncertainty
 
 Moreover, the Act's emphasis on transparency and explainability could pose challenges for companies that rely on proprietary or complex AI models. Explaining how an LLM arrives at a particular decision is no small feat, and the burden of doing so could be significant. This is especially true for smaller companies that may not have the resources to invest in compliance and transparency measures.
 
-**What this means**
-
-The widening gap in understanding AI's true capabilities is not just a technical or academic issue; it's a regulatory and business challenge that could
 
 *Source: [The gap in shared understanding of LLM capability is widening](https://twitter.com/karpathy/status/2109361546505966046) — 492 points on Hacker News*

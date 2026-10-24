@@ -25,6 +25,7 @@ The UK has always been a hub for tech innovation, but Haiku’s rise is particul
 
 What this means is that AI is becoming more accessible and democratic. With Haiku’s open-source AI framework, developers and users alike can experiment with AI without the need for expensive hardware or restrictive software licenses. This democratization of AI could lead to a new wave of innovation, as more people are empowered to create and explore. It also raises important questions about data privacy and security, as users now have the option to keep their data local rather than entrusting it to third-party servers.
 
-Moreover, Haiku’s AI capabilities could have significant implications for industries such as healthcare, education, and finance. Imagine a world where medical professionals can analyze patient data in real
+Moreover, Haiku’s AI capabilities could have significant implications for industries such as healthcare, education, and finance.
+
 
 *Source: [Haiku R1/beta6 has been released](https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6) — 303 points on Hacker News*

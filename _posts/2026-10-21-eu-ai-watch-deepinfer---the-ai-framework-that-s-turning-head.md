@@ -39,6 +39,7 @@ The implications of DeepInfer’s rise are significant. For one, it signals a sh
 
 Moreover, the success of DeepInfer could inspire other tech companies to develop similar tools, fostering a competitive environment that drives further innovation. This is crucial for the EU, which has long sought to position itself as a leader in AI ethics and regulation.
 
-Furthermore, the adoption of frameworks like DeepInfer could help standardize AI development practices across the continent. This standardization could make it easier
+Furthermore, the adoption of frameworks like DeepInfer could help standardize AI development practices across the continent.
+
 
 *Source: [DeepInfer: High-performance inference framework for DeepSeek models](https://github.com/deepseek-ai/DeepInfer) — 2200 points on Hacker News*

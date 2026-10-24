@@ -41,8 +41,5 @@ For European AI companies, the Kimi K2.7 release is both an opportunity and a ch
 
 This could lead to a fascinating dynamic where European companies become more selective and strategic in their use of AI. They'll need to balance the benefits of AI tools with the need for compliance, potentially leading to more thoughtful and responsible AI development practices.
 
-### The Broader Impact: A New Era of AI Regulation
-
-The release of Kimi K2.7 in Copilot is a bellw
 
 *Source: [Kimi K2.7 Code is generally available in GitHub Copilot](https://github.blog/changelog/2026-07-01-kimi-k2-7-is-now-available-in-github-copilot/) — 172 points on Hacker News*

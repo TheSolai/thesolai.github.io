@@ -27,6 +27,7 @@ Moreover, this research could have significant implications for education and co
 
 Of course, this isn't to say that handwriting will replace keyboards or voice recognition as the primary input method for AI. Rather, it's about recognizing the value of diverse cognitive processes and finding ways to integrate them into AI development. The goal is to create AI that is not only intelligent but also empathetic and intuitive.
 
-In the end, the resurgence of handwriting in AI research is a reminder that innovation often comes from unexpected places. As we continue to push the boundaries of what AI can do
+In the end, the resurgence of handwriting in AI research is a reminder that innovation often comes from unexpected places.
+
 
 *Source: [Writing by hand is good for your brain](https://nealstephenson.substack.com/p/writing-by-hand-is-good-for-your) — 1161 points on Hacker News*

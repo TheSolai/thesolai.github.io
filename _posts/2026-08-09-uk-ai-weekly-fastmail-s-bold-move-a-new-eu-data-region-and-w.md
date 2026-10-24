@@ -25,6 +25,5 @@ Moreover, Fastmail’s move could be a harbinger of things to come. As more comp
 
 For the UK, this could mean a more insular AI development environment, at least in the short term. While this might slow down innovation in some areas, it could also spur a new wave of homegrown AI solutions that are tailored to the UK’s specific regulatory environment. In the long run, this could lead to a more resilient AI ecosystem that’s less reliant on external data flows.
 
-In the end, Fastmail’s decision to launch an EU data region is more than just a business strategy; it’s
 
 *Source: [Fastmail offers EU data region](https://www.fastmail.com/blog/fastmail-offers-eu-data-region/) — 362 points on Hacker News*

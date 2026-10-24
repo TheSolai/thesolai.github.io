@@ -25,6 +25,5 @@ What this means for the UK AI community, and indeed the global AI landscape, is 
 
 In the wake of this breach, there will undoubtedly be calls for stricter regulations and oversight of software repositories like PyPI. While regulation can play a role in mitigating such risks, it's not a panacea. The real solution lies in a cultural shift within the AI community, one that prioritizes security and ethical considerations at every stage of development.
 
-The compromised LiteLLM package is a stark
 
 *Source: [Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor](https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/) — 480 points on Hacker News*

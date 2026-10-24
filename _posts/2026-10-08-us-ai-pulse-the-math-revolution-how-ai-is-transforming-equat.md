@@ -31,6 +31,5 @@ What this means is a paradigm shift in how we approach mathematical research and
 
 Moreover, the implications extend beyond academia. Industries ranging from finance to healthcare stand to benefit from these advancements. For instance, AI-driven mathematical models can enhance risk assessment in financial markets, while in healthcare, they can improve diagnostic accuracy and treatment planning. The potential applications are vast and varied, promising to reshape the landscape of numerous sectors.
 
-In conclusion, the MathAI initiative represents a significant
 
 *Source: [Sharing AI progress in mathematics](https://openai.com/index/sharing-ai-progress-in-mathematics/) — 1275 points on Hacker News*

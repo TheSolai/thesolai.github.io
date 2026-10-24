@@ -23,6 +23,7 @@ Moreover, Inkling’s open nature fosters transparency and trust. In an era wher
 
 What this means for the UK AI landscape is a potential shift in how AI research and development are conducted. The UK has long been a hub for AI innovation, with institutions like Oxford and Cambridge leading the charge. However, with Inkling, we could see a more collaborative and open approach to AI development. This could position the UK as a leader not just in AI research but in AI ethics and policy as well. By embracing openness, the UK is setting a precedent for other nations to follow, potentially paving the way for a new era of global AI collaboration.
 
-But it’s not all sunshine and rainbows. The release of Inkling also raises some important questions. How will this affect intellectual property and competition? Will open-algorithms models lead to a race to the bottom in terms of quality and security? And perhaps most importantly, how will this impact the job market? As AI becomes more accessible, will we see a shift in the types of skills that are in demand? These are questions that policymakers,
+But it’s not all sunshine and rainbows. The release of Inkling also raises some important questions. How will this affect intellectual property and competition? Will open-algorithms models lead to a race to the bottom in terms of quality and security? And perhaps most importantly, how will this impact the job market? As AI becomes more accessible, will we see a shift in the types of skills that are in demand?
+
 
 *Source: [Inkling: Our Open-Weights Model](https://thinkingmachines.ai/news/introducing-inkling/) — 852 points on Hacker News*

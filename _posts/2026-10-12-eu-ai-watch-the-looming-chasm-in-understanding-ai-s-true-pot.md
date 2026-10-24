@@ -37,6 +37,7 @@ This gap in understanding isn't just a European issue, but the EU's proactive ap
 
 The implications of this growing divide are far-reaching. For European AI companies, it means navigating a regulatory landscape that might not fully appreciate the nuances of their technology. For regulators, it means a steeper learning curve and the need for continuous dialogue with the tech community. For the public, it means a potential mismatch between expectations and reality when it comes to AI's capabilities and limitations.
 
-Moreover, this gap could exacerbate existing tensions between innovation and regulation. As AI continues to evolve at a breakneck pace, the regulatory framework must keep up. This requires not just technical expertise but also a willingness to engage in ongoing, meaningful dialogue with AI developers
+Moreover, this gap could exacerbate existing tensions between innovation and regulation. As AI continues to evolve at a breakneck pace, the regulatory framework must keep up.
+
 
 *Source: [The gap in shared understanding of LLM capability is widening](https://twitter.com/karpathy/status/2109361546505966046) — 378 points on Hacker News*

@@ -37,6 +37,7 @@ Moreover, the AI Act's emphasis on transparency could spur innovation. By requir
 
 ### What This Means for You
 
-If you're an EU citizen, GPT-6 Astra's release under the AI Act is a sign that your government is taking AI safety seriously. The Act's
+If you're an EU citizen, GPT-6 Astra's release under the AI Act is a sign that your government is taking AI safety seriously.
+
 
 *Source: [GPT-6 Astra](https://openai.com/index/gpt-6-astra/) — 1596 points on Hacker News*

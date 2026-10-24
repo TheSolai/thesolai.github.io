@@ -41,6 +41,7 @@ Smaller AI firms might struggle with the compliance costs, but they also have th
 
 The introduction of Gemini Notebook in the context of the EU AI Act highlights the global nature of AI development and regulation. As the EU sets a precedent with its stringent regulations, other countries may follow suit, leading to a more standardized approach to AI governance worldwide.
 
-This could mean that AI companies will need to adopt a more global mindset, tailoring their products to meet the requirements of different regulatory environments. It also raises questions about the future of AI innovation: will regulation slow down progress, or will it drive companies to develop safer, more ethical
+This could mean that AI companies will need to adopt a more global mindset, tailoring their products to meet the requirements of different regulatory environments.
+
 
 *Source: [NotebookLM is now Gemini Notebook](https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/) — 288 points on Hacker News*

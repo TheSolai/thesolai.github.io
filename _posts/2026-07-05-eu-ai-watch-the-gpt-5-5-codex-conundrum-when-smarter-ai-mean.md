@@ -21,6 +21,7 @@ What this means for European AI companies is twofold. First, it emphasizes the i
 
 Moreover, the GPT-5.5 Codex issue raises questions about the broader implications of AI development. As AI systems become more integrated into our daily lives, the stakes are higher than ever. The EU's approach to AI regulation could set a precedent for other regions, influencing global standards and practices. It's a delicate balancing act, requiring careful consideration of both the opportunities and the risks associated with AI.
 
-In the grand scheme of things, the GPT-5.5 Codex conundrum is a microcosm of the larger AI landscape. It encapsulates the challenges and dilemmas that come with the rapid pace of technological advancement. As the EU continues to refine its AI Act, the key will be to strike a balance between
+In the grand scheme of things, the GPT-5.5 Codex conundrum is a microcosm of the larger AI landscape. It encapsulates the challenges and dilemmas that come with the rapid pace of technological advancement.
+
 
 *Source: [GPT-5.5 Codex reasoning-token clustering may be leading to degraded performance](https://github.com/openai/codex/issues/30364) — 235 points on Hacker News*

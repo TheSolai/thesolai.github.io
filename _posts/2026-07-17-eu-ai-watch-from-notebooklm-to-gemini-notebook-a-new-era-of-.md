@@ -25,6 +25,7 @@ What this means is that European AI companies and tech giants like Google will n
 
 Moreover, the EU's regulatory approach could set a precedent for other regions around the world. As the first major jurisdiction to implement a comprehensive AI regulatory framework, the EU has the potential to influence global standards for AI development and deployment. This could lead to a more harmonized approach to AI regulation, making it easier for companies to operate across different markets while ensuring that AI technologies are developed and used responsibly.
 
-In the short term, the rebranding of NotebookLM to Gemini Notebook might not seem like a big deal. However, it represents a broader trend of AI integration into everyday tools, which will inevitably be subject
+In the short term, the rebranding of NotebookLM to Gemini Notebook might not seem like a big deal.
+
 
 *Source: [NotebookLM is now Gemini Notebook](https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/) — 283 points on Hacker News*

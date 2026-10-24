@@ -25,6 +25,7 @@ What this means is that we’re on the cusp of a new era in research and develop
 
 Furthermore, the UK’s investment in AI research is clearly paying off. The Oxford AI Lab’s achievement is a feather in the cap for British innovation, showcasing the country’s commitment to leading the charge in AI development. It also underscores the need for continued investment in AI research and education, as the demand for skilled AI professionals is only going to grow.
 
-In the grand scheme of things, MathSage’s triumph is a reminder that AI is not just about creating smarter machines; it’s about augmenting human capabilities and expanding the horizons of what’s possible. As we stand
+In the grand scheme of things, MathSage’s triumph is a reminder that AI is not just about creating smarter machines; it’s about augmenting human capabilities and expanding the horizons of what’s possible.
+
 
 *Source: [Sharing AI progress in mathematics](https://openai.com/index/sharing-ai-progress-in-mathematics/) — 1275 points on Hacker News*

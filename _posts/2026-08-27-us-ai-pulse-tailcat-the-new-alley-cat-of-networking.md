@@ -27,6 +27,5 @@ What this means is that we’re witnessing a shift in the networking landscape. 
 
 In the grand scheme of AI development, Tailcat might seem like a small player. But its impact could be profound. By simplifying secure data transfer, it frees up time and resources for more creative and innovative work. It’s a testament to the power of open-source collaboration and the potential for simple, elegant solutions to have far-reaching effects.
 
-In conclusion, Tailcat is more than just a new tool
 
 *Source: [Tailcat – Like netcat, but over Tailscale’s data plane](https://github.com/tailscale/tailcat) — 541 points on Hacker News*

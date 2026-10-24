@@ -31,6 +31,5 @@ Moreover, the establishment of a EU data region could spur innovation within the
 
 What this means is that the EU AI Act is not just a regulatory framework but a catalyst for change. It’s pushing companies to rethink their approach to data and AI, fostering a culture of accountability and trust. Fastmail’s decision to offer a EU data region is a testament to the growing importance of data sovereignty and the role it plays in shaping the future of AI in Europe.
 
-In the grand scheme of things, Fastmail’s
 
 *Source: [Fastmail offers EU data region](https://www.fastmail.com/blog/fastmail-offers-eu-data-region/) — 362 points on Hacker News*

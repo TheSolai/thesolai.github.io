@@ -25,6 +25,7 @@ Moreover, Haiku’s approach challenges the status quo of operating systems domi
 
 What this means is that we’re on the cusp of a new era where AI is not just an add-on but a core component of our digital infrastructure. As AI becomes more integrated into our operating systems, we can expect a more personalized, efficient, and intuitive computing experience. This could lead to a new wave of applications and services that we can’t even imagine yet. For businesses, this means new opportunities and challenges as they navigate this evolving landscape. For consumers, it means a more seamless and intelligent interaction with technology.
 
-In the broader context, Haiku’s release is a microcosm of the larger AI revolution happening in the US. It reflects a trend towards democratizing AI, making it accessible to a wider audience and fostering a culture of innovation. As AI continues
+In the broader context, Haiku’s release is a microcosm of the larger AI revolution happening in the US. It reflects a trend towards democratizing AI, making it accessible to a wider audience and fostering a culture of innovation.
+
 
 *Source: [Haiku R1/beta6 has been released](https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6) — 303 points on Hacker News*

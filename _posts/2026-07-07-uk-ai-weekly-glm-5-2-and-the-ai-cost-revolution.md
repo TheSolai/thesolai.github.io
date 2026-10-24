@@ -29,6 +29,5 @@ For businesses, the implications are even more profound. The cost of developing 
 
 What this means is that we’re on the cusp of an AI cost revolution. The days of AI being a luxury item are numbered. As GLM 5.2 and similar models become more widely adopted, we’ll see a shift in the AI landscape. The focus will no longer be on who can build the biggest, most expensive model, but on who can use AI most effectively to solve real-world problems.
 
-Of course, there
 
 *Source: [GLM 5.2 and the coming AI margin collapse](https://martinalderson.com/posts/the-upcoming-ai-margin-collapse-part-1-glm-5-2/) — 327 points on Hacker News*

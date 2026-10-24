@@ -33,8 +33,5 @@ The implications of Bend are profound. For one, it could accelerate the adoption
 
 Moreover, Bend’s emphasis on formal verification could set a new standard for AI development. As more developers become familiar with this approach, we could see a shift in how AI systems are designed and implemented. This could lead to a new generation of AI that’s not only more reliable but also more transparent and accountable.
 
-### The Road Ahead
-
-Of course, Bend is not without
 
 *Source: [Bend – A language that blocks AI mistakes via proof, on CPU and GPU](https://bend-lang.com/) — 395 points on Hacker News*

@@ -25,6 +25,5 @@ Moreover, the development of these models highlights a growing trend in AI resea
 
 What this means is that we're on the cusp of a new era in AI, one where machines can not only process information but also create and engage with human narratives in ways that were previously unimaginable. This has profound implications for how we interact with technology, how we learn, and how we tell our stories. As AI becomes more integrated into our daily lives, the ability to communicate and connect through storytelling could be a game-changer.
 
-In the grand tapestry of AI development,
 
 *Source: [Claude Fable 5.1 and Claude Mythos 5.1](https://www.anthropic.com/claude-fable-and-mythos-5-1) — 1088 points on Hacker News*

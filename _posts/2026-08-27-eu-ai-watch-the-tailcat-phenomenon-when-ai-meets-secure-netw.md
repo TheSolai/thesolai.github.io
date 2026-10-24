@@ -25,6 +25,7 @@ Second, Tailcat's emergence underscores the role of open-source projects in driv
 
 What this means is that the EU AI landscape is undergoing a transformation. As regulations tighten and public awareness of AI-related risks grows, companies are being forced to rethink their approach to AI development. Tailcat is a prime example of how innovation can flourish within a framework of privacy and security. It serves as a reminder that compliance with the EU AI Act doesn't have to stifle creativity; rather, it can inspire new ways of thinking and problem-solving.
 
-In the grand scheme of things, Tailcat is just one piece of the puzzle. However, its success highlights a broader trend: the convergence of AI and privacy. As the EU
+In the grand scheme of things, Tailcat is just one piece of the puzzle. However, its success highlights a broader trend: the convergence of AI and privacy.
+
 
 *Source: [Tailcat – Like netcat, but over Tailscale’s data plane](https://github.com/tailscale/tailcat) — 541 points on Hacker News*

@@ -35,6 +35,5 @@ But it’s not just about raw power. Anthropic has also focused on improving the
 
 What this means is that we’re on the cusp of a new era in AI, one where machines can truly understand and interact with us in ways that were previously unimaginable. This isn’t just about making our lives easier; it’s about creating a future where AI can be a true partner in our endeavors. Whether it’s helping doctors diagnose diseases, assisting researchers in scientific breakthroughs, or simply making our daily interactions with technology more seamless, Claude Opus 5.5 is a glimpse into what’s possible.
 
-Of course, with great
 
 *Source: [Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5) — 1438 points on Hacker News*

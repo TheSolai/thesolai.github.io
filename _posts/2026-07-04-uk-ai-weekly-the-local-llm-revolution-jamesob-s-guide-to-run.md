@@ -33,6 +33,7 @@ But what really sets this guide apart is its focus on optimization. Jamesob delv
 
 The implications of Jamesob's guide are profound. For one, it challenges the traditional model of AI deployment, where cloud services dominate the landscape. By enabling individuals to run LLMs locally, it opens up new avenues for innovation and experimentation. Imagine a world where AI is not just a tool for big corporations, but a resource available to anyone with a laptop and an internet connection.
 
-Moreover, the guide underscores the growing importance of open-source software in the AI ecosystem. As more developers contribute to open-source projects, the quality and accessibility of AI tools continue to improve. This, in
+Moreover, the guide underscores the growing importance of open-source software in the AI ecosystem. As more developers contribute to open-source projects, the quality and accessibility of AI tools continue to improve.
+
 
 *Source: [Jamesob's guide to running SOTA LLMs locally](https://github.com/jamesob/local-llm) — 321 points on Hacker News*

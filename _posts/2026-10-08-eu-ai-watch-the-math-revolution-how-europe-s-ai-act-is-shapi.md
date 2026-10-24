@@ -41,8 +41,5 @@ Moreover, this development underscores the importance of interdisciplinary colla
 
 For consumers and businesses, it means that AI systems will become more reliable and trustworthy. The EU’s focus on ethical AI ensures that these technologies will be developed with societal impact in mind, rather than just profit.
 
-title: "EU AI Watch: The Math Revolution — How Europe's AI Act is Shaping the Future of AI in Mathematics"
-
-As the EU continues to refine
 
 *Source: [Sharing AI progress in mathematics](https://openai.com/index/sharing-ai-progress-in-mathematics/) — 1275 points on Hacker News*

@@ -23,6 +23,7 @@ Moreover, Jeff's speed is nothing to scoff at. With a decision-making time of ar
 
 What this means is that AI is becoming more accessible and versatile than ever before. The days of needing a supercomputer to train AI models are fading, and with it, the barriers to entry are lowering. This could lead to a surge in AI applications across various industries, as more minds are free to experiment and innovate. However, with this newfound accessibility comes the responsibility to ensure ethical AI development. As more people can create and deploy AI, the need for robust ethical guidelines and regulations becomes even more critical.
 
-The UK has always been at the forefront of AI research and policy, and Jeff is a testament to this leadership. It challenges the status quo and pushes the boundaries of what we thought possible with AI. As we move forward, it will be interesting to see how this
+The UK has always been at the forefront of AI research and policy, and Jeff is a testament to this leadership.
+
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 492 points on Hacker News*

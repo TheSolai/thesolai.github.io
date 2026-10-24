@@ -27,6 +27,5 @@ What this means is that we’re on the cusp of a new era in AI-human interaction
 
 As we stand on the brink of this new frontier, it’s important to remember that technology is only as good as the people who use it. GPT-6 Astra is a remarkable achievement, but it’s up to us to ensure that it’s used to uplift and empower, rather than exploit or manipulate.
 
-In the end, GPT-6
 
 *Source: [GPT-6 Astra](https://openai.com/index/gpt-6-astra/) — 1596 points on Hacker News*

@@ -29,6 +29,7 @@ So, what does this mean for the UK AI landscape? For one, it underscores the imp
 
 Moreover, this incident highlights the need for a more nuanced conversation about AI efficiency. While raw processing power and model size often dominate discussions, the ability to deliver concise, relevant responses is equally crucial. In a world where AI is increasingly integrated into everyday life, the cost of inefficiency is not just financial; it's environmental and ethical as well.
 
-Finally, the Claude Code saga serves as a reminder of the unpredictable nature of AI. Despite our best efforts, these systems can still surprise us in unexpected ways. This is both a challenge and an opportunity. By embracing the quirks and idiosync
+Finally, the Claude Code saga serves as a reminder of the unpredictable nature of AI. Despite our best efforts, these systems can still surprise us in unexpected ways. This is both a challenge and an opportunity.
+
 
 *Source: [Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k](https://systima.ai/blog/claude-code-vs-opencode-token-overhead) — 548 points on Hacker News*

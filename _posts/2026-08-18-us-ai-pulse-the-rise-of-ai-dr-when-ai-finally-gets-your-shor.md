@@ -25,6 +25,7 @@ So, what does this mean for the average Joe (or Jane) navigating the digital lan
 
 Moreover, it has profound implications for industries that rely heavily on data analysis. Think healthcare, finance, and even journalism. With AI;DR, professionals can quickly digest vast amounts of information, identify key insights, and make data-driven decisions faster than ever before. It's like having a personal assistant who's always one step ahead.
 
-Of course, no technology is without its challenges. The rise of AI summarization tools raises important questions about accuracy, bias, and the potential for misuse. After all, if we're relying on AI to interpret information for us, we need to ensure it's doing so responsibly. But with great power comes great responsibility, and the team behind AI;DR seems committed to addressing these concerns head
+Of course, no technology is without its challenges. The rise of AI summarization tools raises important questions about accuracy, bias, and the potential for misuse. After all, if we're relying on AI to interpret information for us, we need to ensure it's doing so responsibly.
+
 
 *Source: [AI;DR (AI; Didn't Read)](https://www.rickmanelius.com/p/aidr-ai-didnt-read) — 745 points on Hacker News*

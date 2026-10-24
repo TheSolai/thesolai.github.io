@@ -33,8 +33,5 @@ Moreover, the reduced cost of running AI models could have a profound impact on 
 
 On a broader scale, the release of GPT 6.1 Sol could catalyze a new era of AI-driven innovation in the UK. The government has been vocal about its ambition to position the UK as a global leader in AI, and this development certainly supports that vision. By lowering the barriers to entry, Sol could attract more talent and investment into the UK AI sector, fostering a thriving ecosystem of startups and research initiatives.
 
-#### The Broader Picture
-
-While the benefits of GPT 6.1 Sol are clear
 
 *Source: [GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price](https://openai.com/index/introducing-gpt-6-1-sol/) — 870 points on Hacker News*

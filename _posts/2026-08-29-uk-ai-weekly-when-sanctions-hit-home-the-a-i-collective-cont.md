@@ -25,6 +25,5 @@ What this means for the A/I Collective is a period of uncertainty. The organizat
 
 The broader implications are equally significant. The sanctions against the A/I Collective could deter other organizations from pursuing similar lines of research, fearing similar repercussions. This could lead to a chilling effect on the development of ethical and decentralized AI systems, ultimately hindering progress towards more equitable and transparent technologies. On the flip side, it could also spur greater collaboration among like-minded countries and organizations, leading to the creation of alternative AI ecosystems that operate outside the influence of traditional power structures.
 
-In the end, the situation serves as a stark reminder of
 
 *Source: [U.S. sanctions against the A/I Collective](https://www.inventati.org/) — 543 points on Hacker News*

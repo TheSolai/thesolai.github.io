@@ -29,6 +29,5 @@ Moreover, while the platform is designed to be user-friendly, there's still a le
 
 What this means is that the launch of "Build Your Own Decision Model" is not just a technological milestone; it's a societal one. It challenges us to rethink our relationship with AI and consider how we can harness its potential while mitigating its risks. The platform is a bold experiment in digital democracy, and its success will depend on how well we navigate the complexities it introduces.
 
-In the end, the rise of DIY decision-making in the UK is a
 
 *Source: [Build your own decision model](https://nishtahir.com/build-your-own-decision-model/) — 405 points on Hacker News*

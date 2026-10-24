@@ -33,6 +33,5 @@ What this means is that the UK is positioning itself as a leader in ethical AI d
 
 Of course, the framework isn’t without its challenges. Implementing such a comprehensive regulatory system will require significant resources and cooperation from both the public and private sectors. There will be growing pains, and it remains to be seen how effectively the government can enforce these new rules. But the ambition is commendable, and the potential benefits are enormous.
 
-In the end, the UK’s new AI Governance Framework is a testament to the
 
 *Source: [Reality has a surprising amount of detail (2017)](https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail) — 232 points on Hacker News*

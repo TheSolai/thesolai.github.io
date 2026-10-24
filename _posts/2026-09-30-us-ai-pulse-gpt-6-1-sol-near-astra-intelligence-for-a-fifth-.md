@@ -35,6 +35,7 @@ The implications for industries are vast. In healthcare, for example, GPT 6.1 So
 
 ### The Broader Context
 
-It’s important to note that while GPT 6.1 Sol represents a significant advancement, it’s not without its challenges. The ethical considerations surrounding AI, such
+It’s important to note that while GPT 6.1 Sol represents a significant advancement, it’s not without its challenges.
+
 
 *Source: [GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price](https://openai.com/index/introducing-gpt-6-1-sol/) — 870 points on Hacker News*

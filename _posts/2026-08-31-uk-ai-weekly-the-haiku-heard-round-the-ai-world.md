@@ -27,6 +27,5 @@ But why is this happening in the UK, you ask? The UK has long been a hub for AI 
 
 What this means is that we’re witnessing a shift in how AI is being developed and deployed. Traditionally, AI systems have been built on proprietary platforms that are often opaque and inaccessible. Haiku R1/beta6 challenges this model by providing an open, transparent, and efficient platform for AI development. This could lead to more collaborative and inclusive AI projects, where diverse voices and ideas are welcomed and valued.
 
-Moreover, the emphasis on efficiency and simplicity in Haiku’s design could have far-reaching implications for the
 
 *Source: [Haiku R1/beta6 has been released](https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6) — 284 points on Hacker News*

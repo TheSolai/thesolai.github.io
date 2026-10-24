@@ -33,6 +33,7 @@ What this means for the AI industry is potentially seismic. For startups and res
 
 However, it’s not all smooth sailing. The introduction of such a powerful tool also raises questions about regulation and oversight. How do we ensure that this technology isn’t misused? What safeguards need to be in place? These are issues that will need to be addressed as homomorphic encryption becomes more widespread.
 
-In the broader context, Google’s announcement is a reminder of the rapid pace of AI development. It’s a field that’s evolving faster
+In the broader context, Google’s announcement is a reminder of the rapid pace of AI development.
+
 
 *Source: [Google is making private AI practical with homomorphic encryption](https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/) — 357 points on Hacker News*

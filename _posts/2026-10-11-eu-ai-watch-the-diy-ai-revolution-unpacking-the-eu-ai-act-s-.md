@@ -25,6 +25,5 @@ What this means for European AI companies is a landscape ripe for disruption. Tr
 
 The EU's decision to allow personalized decision-making models also raises questions about the future of AI regulation. As more entities gain the ability to create AI systems, the need for robust oversight becomes even more critical. The EU AI Act's framework provides a blueprint for balancing innovation with responsibility, but it will require vigilant enforcement and continuous adaptation to keep pace with technological advancements.
 
-In the end, the EU's move to allow DIY AI is a bold step that reflects a growing recognition of AI's
 
 *Source: [Build your own decision model](https://nishtahir.com/build-your-own-decision-model/) — 405 points on Hacker News*

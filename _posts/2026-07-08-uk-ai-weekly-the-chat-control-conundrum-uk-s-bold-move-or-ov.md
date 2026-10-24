@@ -29,6 +29,5 @@ The tech community is particularly vocal about the implications of Chat Control 
 
 Moreover, the success of Chat Control 2.0 hinges on the effectiveness of its AI tools. Can they truly differentiate between harmless banter and genuine threats? And even if they can, what safeguards are in place to prevent misuse or bias? These are the questions that keep policymakers, technologists, and civil rights advocates up at night.
 
-In the midst of this, the UK government insists that Chat Control 2.0 is a balanced approach, one
 
 *Source: [Chat Control 1.0 and 2.0 Explained](https://fightchatcontrol.eu/chat-control-overview) — 596 points on Hacker News*

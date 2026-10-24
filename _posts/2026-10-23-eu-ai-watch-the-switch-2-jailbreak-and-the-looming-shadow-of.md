@@ -33,6 +33,7 @@ For European AI companies, this development is both a challenge and an opportuni
 
 What this means is that the AI landscape in the EU is set to become more complex and competitive. Companies will need to invest in cutting-edge security technologies and adopt a proactive approach to risk management. The days of reactive, patch-based security solutions are numbered. Instead, we can expect a new era of AI systems that are not only intelligent but also resilient and trustworthy.
 
-Moreover, the EU's AI Act could serve as a model for other regions, influencing global standards for AI regulation. As the world becomes more interconnected, the need for harmon
+Moreover, the EU's AI Act could serve as a model for other regions, influencing global standards for AI regulation.
+
 
 *Source: [Jailbreaking the Switch 2](https://pepsipu.com/blog/2026-10-switch2-jailbreak-ns2jb/) — 767 points on Hacker News*

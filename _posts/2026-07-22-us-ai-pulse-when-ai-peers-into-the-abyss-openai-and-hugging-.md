@@ -45,6 +45,7 @@ Moreover, the collaboration between OpenAI and Hugging Face highlights the impor
 
 In the wake of this security scare, the AI community must prioritize safety and security as much as innovation. The incident serves as a wake-up call, reminding us that the path to AI advancement is fraught with challenges. But with challenges come opportunities—for growth, for learning, and for building a more secure and resilient AI ecosystem.
 
-As we continue to push the boundaries of what AI can do, let's also commit to safeguarding our digital world. After all, the
+As we continue to push the boundaries of what AI can do, let's also commit to safeguarding our digital world.
+
 
 *Source: [OpenAI and Hugging Face address security incident during model evaluation](https://openai.com/index/hugging-face-model-evaluation-security-incident/) — 935 points on Hacker News*

@@ -27,6 +27,5 @@ What this means is that the AI revolution is not just about technology; it's abo
 
 In the US, where AI startups are sprouting like mushrooms after rain, this study is a timely reminder for entrepreneurs and investors. It's a call to focus on the human element, to prioritize training and adaptability, and to foster a culture where AI is seen as an ally rather than a competitor.
 
-In the end, the true power of AI lies not in its complexity, but in
 
 *Source: [AI is a tool and using it well takes skill](https://yyhh.org/blog/2026/10/ai-is-a-tool/) — 354 points on Hacker News*

@@ -27,6 +27,5 @@ Moreover, this interaction underscores the importance of AI literacy for experts
 
 What this means is that we are on the cusp of a new era where AI is not just a passive recipient of human commands but an active participant in the pursuit of knowledge. The conversation between Terence Tao and ChatGPT is a glimpse into a future where AI and human intelligence work in tandem to solve some of the world's most challenging problems. It's a future where AI is not just a tool but a partner in discovery.
 
-In the end, the takeaway is clear: AI is evolving from a tool for automation to a collaborative
 
 *Source: [Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample](https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56) — 749 points on Hacker News*
