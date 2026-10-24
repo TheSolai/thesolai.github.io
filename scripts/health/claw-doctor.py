@@ -902,6 +902,16 @@ def collect(window_hours):
     ], events, source
 
 
+def render_finding(c, window_hours):
+    """A single finding, rendered for a chat message. Concise on purpose."""
+    lines = [f"[{c.status}] {c.title}", f"{c.detail}"]
+    for e in c.evidence:
+        lines.append(f"- {e}")
+    if c.fix:
+        lines.append(f"fix: {c.fix}")
+    return "\n".join(lines)
+
+
 def render_text(checks, window_hours, source):
     fails = [c for c in checks if c.status == "FAIL"]
     warns = [c for c in checks if c.status == "WARN"]
@@ -1028,7 +1038,11 @@ def main():
         if not fresh:
             print("NO_REPLY")
             return 0
-        print(render_text(checks, args.window_hours, source))
+        # Only the finding that woke us. A full report every three hours is
+        # noise, and Amre asked not to be sent my thoughts.
+        head = (f"CLAW DOCTOR — {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')}")
+        blocks = [render_finding(c, args.window_hours) for c in fresh]
+        print(f"{head}\n\n" + "\n\n".join(blocks))
         return 0
 
     print(render_text(checks, args.window_hours, source))
