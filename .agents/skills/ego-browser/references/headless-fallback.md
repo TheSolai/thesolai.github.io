@@ -1,4 +1,9 @@
-# When ego-browser is blocked by onboarding
+# Fallback: when ego-browser is blocked
+
+**Onboarding on this machine was completed on 2026-10-24, so ego-browser now
+works and is the default browser tool.** Read this reference only if a script
+is blocked again — it covers the onboarding trap and a raw-CDP fallback for
+headless Chrome.
 
 Read this when an `ego-browser nodejs` script appears to succeed but does
 nothing, or when it prints a message about onboarding.
@@ -55,10 +60,12 @@ Upgrading is a separate action and needs the user's approval first; see
 
 ## Fallback: drive headless Chrome over raw CDP
 
-When onboarding cannot be completed right now, drive Chrome directly. This
-bypasses ego lite entirely, so it does **not** have ego lite's logged-in
-session — use a persistent `--user-data-dir` if you need cookies to persist
-between runs.
+**This is a fallback, not the default.** Use ego-browser whenever it works.
+
+When onboarding genuinely cannot be completed right now, drive Chrome
+directly. This bypasses ego lite entirely, so it does **not** have ego lite's
+logged-in session — use a persistent `--user-data-dir` if you need cookies to
+persist between runs.
 
 Verified end to end on 2026-10-24: launch, navigate, read the title, and
 capture a screenshot, with no npm dependencies (Node's built-in `WebSocket`).

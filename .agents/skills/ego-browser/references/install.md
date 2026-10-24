@@ -48,6 +48,12 @@ Onboarding is a step the user completes in the GUI, on either platform:
 
 After the app opens, wait for the user to confirm they've finished onboarding before continuing. On Windows the PATH entry only reaches processes started afterwards, so open a new terminal before checking for the command.
 
+**On this machine, onboarding was completed by Amre on 2026-10-24.** The
+`ego-browser` command is at `~/.local/bin/ego-browser` and scripts run
+normally. If a future script is blocked again, re-run onboarding in the ego
+lite app and open a **new terminal window** before retrying — a shell keeps
+its stale environment.
+
 ## After installing: confirm `ego-browser` is available
 
 Once the user has finished onboarding, confirm the command is ready.
