@@ -50,6 +50,42 @@ extension is unreliable, and a file with the wrong extension is exactly
 what Amazon will refuse to convert. MOBI/AZW3 carry their `BOOKMOBI`/
 `TPZ3` marker at byte 60, not byte 0.
 
+**The extension also picks the MIME type, and Python's `mimetypes` does
+not know the ebook formats Kindle cares about.** It returns `None` for
+`.azw3` and `.epub3`, so a naive send goes out as
+`application/octet-stream` and Amazon replies `E009 - No Attachment` —
+which reads like a missing file but is really a mislabelled or empty
+attachment. The script maps the extensions explicitly and refuses an
+empty file locally, before anything is sent.
+
+**The `PK` zip check does not prove the file is the right book.** A wrong
+Gutenberg id resolves to a real EPUB of a completely different book.
+`deliver` and `fetch` check `dc:title`/`dc:creator` inside the EPUB
+before sending, and `verify` runs the same check on demand:
+
+```bash
+python3 zlib_kindle.py verify ~/Downloads/dross-books/BOOK.epub \
+  --title "The Great God Pan" --author "Arthur Machen"
+```
+
+If the title inside the file is not the book that was requested, treat
+the fallback as failed — do not send it, and do not quietly substitute a
+different book with the same title.
+
+**The sent record is the receipt.** A script that printed "sent" is not
+proof. Read the sent record and check the attachment's filename,
+content type and byte count:
+
+```bash
+~/.openclaw/tools/node-v24.21.0/bin/openclaw agentmail inboxes:messages list \
+  --inbox-id thedross@agentmail.to --subject "<title>" --format json
+```
+
+Use the **gateway's own binary**, not `openclaw` from `PATH` — the
+`agentmail` command does not exist in the stale PATH build
+(`/opt/homebrew/bin/openclaw`, 2026.6.35), which fails with
+`Unknown command: openclaw agentmail`.
+
 ## Before you start
 
 Z-Library serves file lists only to signed-in accounts. Check:
@@ -74,6 +110,10 @@ rather than retrying blindly.
 - Use `/opt/homebrew/bin/python3` (Homebrew); system python lacks the
   `agentmail` module.
 - Do not email a file that failed to download. The script verifies EPUB
-  zip magic bytes before saving.
+  zip magic bytes before saving, and verifies the title inside the EPUB
+  before sending.
+- Never print the Z-Library password or the AgentMail API key.
+- Do not loop the script to test it — one run is one Z-Library login, and
+  repeated runs trip the login rate limit.
 - Report which step failed if anything breaks — do not claim a delivery
   that did not happen.

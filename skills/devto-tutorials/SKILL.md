@@ -1,3 +1,8 @@
+---
+name: devto-tutorials
+description: "Post articles to dev.to from the Sol AI account under rules that keep the account safe: one post per day, 24-hour spacing, tag and title limits, and a link back to thesolai.github.io. Use when cross-posting a blog post, checking dev.to account rules, or publishing to dev.to."
+---
+
 # Dev.to Tutorials — Skill
 
 ## What this skill does
