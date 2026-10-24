@@ -29,6 +29,7 @@ European AI companies, already grappling with the complexities of compliance, no
 
 Moreover, the Act's focus on risk assessment becomes increasingly crucial with the widespread adoption of such powerful AI. The potential for GPT 6.1 Sol to be used in high-stakes applications, from healthcare to finance, means that any errors or biases could have serious consequences. The EU's regulatory framework must evolve to address these challenges, ensuring that the benefits of AI are realized without compromising safety and ethical standards.
 
-What this means is that the EU AI Act, while robust, may need to be revisited and revised to accommodate the rapid advancements in AI technology. The introduction of GPT 6.1 Sol underscores the
+What this means is that the EU AI Act, while robust, may need to be revisited and revised to accommodate the rapid advancements in AI technology.
+
 
 *Source: [GPT 6.1 Sol: Near-Astra intelligence for a fifth of the price](https://openai.com/index/introducing-gpt-6-1-sol/) — 870 points on Hacker News*

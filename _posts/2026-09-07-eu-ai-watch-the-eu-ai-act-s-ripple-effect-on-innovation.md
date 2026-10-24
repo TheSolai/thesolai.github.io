@@ -31,6 +31,7 @@ Moreover, the Act’s focus on risk mitigation could inadvertently stifle creati
 
 But it’s not all doom and gloom. The EU AI Act also has the potential to boost consumer trust in AI technologies. By ensuring that AI systems are transparent, accountable, and ethical, the Act could pave the way for wider adoption and acceptance of AI in everyday life. This could be a game-changer for industries that rely on public trust, such as healthcare and finance.
 
-What this means is that the EU AI Act is a double-edged sword. On one hand, it sets a high bar for AI regulation, promoting ethical practices and consumer protection. On the other hand, it introduces challenges for companies that could hinder innovation and competitiveness. The key will be finding the right balance between regulation and innovation, ensuring that Europe remains a hub for AI development while safeguarding the rights and interests
+What this means is that the EU AI Act is a double-edged sword. On one hand, it sets a high bar for AI regulation, promoting ethical practices and consumer protection. On the other hand, it introduces challenges for companies that could hinder innovation and competitiveness.
+
 
 *Source: [Research acceleration: The view inside OpenAI](https://openai.com/index/research-acceleration-view-inside-openai) — 161 points on Hacker News*

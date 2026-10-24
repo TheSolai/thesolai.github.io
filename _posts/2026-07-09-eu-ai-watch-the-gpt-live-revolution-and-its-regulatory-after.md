@@ -31,6 +31,5 @@ Regulatory bodies are also in a tizzy. The EU AI Act, while comprehensive, wasn'
 
 So, what does this all boil down to? For consumers, it means a more dynamic and responsive AI experience. For businesses, it's a wake-up call to innovate responsibly. And for regulators, it's a reminder that the pace of technological change often outstrips the speed of legislation.
 
-In the end, the GPT-Live saga is a microcosm of the broader AI revolution unfolding across the EU. It's
 
 *Source: [GPT‑Live](https://openai.com/index/introducing-gpt-live/) — 665 points on Hacker News*

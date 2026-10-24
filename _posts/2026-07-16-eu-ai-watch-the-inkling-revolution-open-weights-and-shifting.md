@@ -25,6 +25,7 @@ But let’s not kid ourselves; this isn’t purely altruistic. In a market where
 
 What this means for European AI companies is a bit of a mixed bag. On one hand, Inkling’s open-weights model could spur a wave of innovation as developers and researchers tinker with the model, find new applications, and improve its capabilities. On the other hand, it could also ratchet up the pressure on other companies to follow suit, potentially leading to a more competitive and, some might argue, cutthroat landscape. After all, not every company has the resources or inclination to make their models open-source.
 
-For consumers and businesses alike, the implications are largely positive. Greater transparency means more accountability, which in turn fosters trust. It also opens the door to more collaborative innovation, as the AI community can collectively work on refining and expanding the capabilities of models like Inkling. This could lead to faster advancements and more robust
+For consumers and businesses alike, the implications are largely positive. Greater transparency means more accountability, which in turn fosters trust. It also opens the door to more collaborative innovation, as the AI community can collectively work on refining and expanding the capabilities of models like Inkling.
+
 
 *Source: [Inkling: Our Open-Weights Model](https://thinkingmachines.ai/news/introducing-inkling/) — 890 points on Hacker News*

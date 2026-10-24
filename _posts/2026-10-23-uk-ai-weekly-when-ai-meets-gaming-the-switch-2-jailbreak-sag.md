@@ -35,6 +35,5 @@ For Nintendo, this is a critical moment. The company will need to act swiftly to
 
 For consumers, the jailbreak offers a glimpse into a more open and customizable gaming experience. It empowers users to take control of their devices and explore new possibilities, from homebrew games to innovative mods. However, it also raises concerns about the potential for piracy and the impact on the gaming industry.
 
-For the AI community, this is a landmark achievement that showcases the potential of AI in breaking down barriers
 
 *Source: [Jailbreaking the Switch 2](https://pepsipu.com/blog/2026-10-switch2-jailbreak-ns2jb/) — 767 points on Hacker News*

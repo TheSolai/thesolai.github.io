@@ -25,6 +25,5 @@ The implications extend beyond just cost and time. The way these AI models handl
 
 In the end, the tale of Claude Code and OpenCode is a reminder that AI, like any tool, is not one-size-fits-all. It's about finding the right fit for the task at hand. As we continue to explore the vast potential of AI, we must remain mindful of the trade-offs involved and strive to make informed decisions that align with our goals.
 
-So, what's the
 
 *Source: [Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k](https://systima.ai/blog/claude-code-vs-opencode-token-overhead) — 533 points on Hacker News*

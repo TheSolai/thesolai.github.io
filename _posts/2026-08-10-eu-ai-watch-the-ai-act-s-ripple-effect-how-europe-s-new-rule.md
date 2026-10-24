@@ -29,6 +29,7 @@ This is where things get interesting. The Berlin startup, which we'll call "Lear
 
 What this means for the broader AI industry is a shift towards a more responsible and sustainable approach to AI development. Companies that once raced to be the first to market with the latest AI gimmick are now being encouraged — or, more accurately, compelled — to take a step back and consider the ethical implications of their work. This is a significant cultural shift, and it's not without its challenges. Some companies may struggle to adapt, while others will see it as an opportunity to differentiate themselves in a crowded market.
 
-Moreover, the EU AI Act is likely to influence AI regulations worldwide. As Europe sets a new standard for AI governance, other countries may follow suit,
+Moreover, the EU AI Act is likely to influence AI regulations worldwide.
+
 
 *Source: [How I use LLMs to learn complex topics](https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/) — 589 points on Hacker News*

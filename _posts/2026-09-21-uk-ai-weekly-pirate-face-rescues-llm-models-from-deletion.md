@@ -33,6 +33,5 @@ The UK government, traditionally a proponent of strong intellectual property pro
 
 Moreover, the rescue of these LLMs raises important questions about the lifecycle of AI models. In a field where innovation moves at breakneck speed, what responsibility do organizations have to preserve and maintain their creations? The Pirate Face intervention serves as a reminder that the deletion of AI models is not just a technical issue but a societal one, with implications for knowledge preservation and technological continuity.
 
-In the aftermath of this digital drama, one thing is clear
 
 *Source: [Pirate Face Rescues LLM Models from Deletion](https://pirateface.co/) — 505 points on Hacker News*

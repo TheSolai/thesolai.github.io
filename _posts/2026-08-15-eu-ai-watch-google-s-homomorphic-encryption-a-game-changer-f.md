@@ -35,7 +35,5 @@ However, it’s not all smooth sailing. Implementing homomorphic encryption is n
 
 The regulatory landscape will also need to adapt. The EU AI Act is still in flux, and how it will accommodate technologies like homomorphic encryption remains to be seen. Policymakers will need to ensure that regulations are flexible enough to encourage innovation while still protecting citizens’ rights.
 
-**What this means for the future:**  
-As the EU AI Act moves closer to implementation, Google’s homomorphic encryption offers a
 
 *Source: [Google is making private AI practical with homomorphic encryption](https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/) — 357 points on Hacker News*

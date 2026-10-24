@@ -25,6 +25,7 @@ What this means for you and me is a bit more complicated. On one hand, if Chat C
 
 Moreover, the effectiveness of AI in detecting nuanced content like hate speech is still debatable. AI systems can struggle with context, cultural nuances, and the ever-evolving nature of language. False positives are a real concern, and the potential for overreach is significant. The UK government insists that safeguards are in place, but the devil, as always, is in the implementation.
 
-What this means for businesses is another layer of complexity. Companies will need to adapt to new regulations, potentially investing in AI systems to comply with Chat Control requirements. This could
+What this means for businesses is another layer of complexity. Companies will need to adapt to new regulations, potentially investing in AI systems to comply with Chat Control requirements.
+
 
 *Source: [Chat Control 1.0 and 2.0 Explained](https://fightchatcontrol.eu/chat-control-overview) — 575 points on Hacker News*

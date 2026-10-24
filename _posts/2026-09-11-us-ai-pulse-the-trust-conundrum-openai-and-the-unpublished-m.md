@@ -33,8 +33,5 @@ For researchers, this is a reminder to tread carefully. While collaboration is e
 
 For the wider AI community, this is a moment of reflection. How do we balance the need for collaboration with the need for protection? How do we ensure that innovation continues to thrive without compromising the rights of individual researchers? These are not easy questions, but they are ones that we must address if we are to maintain the vibrant, dynamic ecosystem that has characterized AI development thus far.
 
-### One-Sentence Takeaway
-
-In the high-stakes world of AI, trust is the most valuable currency, and it's time for OpenAI and the community to reaffirm their commitment to safeguarding
 
 *Source: [More questions about whether researchers can trust OpenAI with unpublished math](https://mathstodon.xyz/@andreasthom/117240535270608201) — 769 points on Hacker News*

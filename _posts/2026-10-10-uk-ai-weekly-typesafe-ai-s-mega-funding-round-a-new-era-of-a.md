@@ -31,6 +31,7 @@ The UK government's recent AI regulatory framework also stands to benefit from T
 
 ### The Road Ahead
 
-While the future looks bright for Typesafe AI, the company faces significant challenges. Ensuring AI safety is a complex and
+While the future looks bright for Typesafe AI, the company faces significant challenges.
+
 
 *Source: [Typesafe AI raises $870M at $7.5B](https://typesafe.ai/blog/series-ai) — 389 points on Hacker News*

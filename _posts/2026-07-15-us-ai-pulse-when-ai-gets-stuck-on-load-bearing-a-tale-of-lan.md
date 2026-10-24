@@ -31,6 +31,7 @@ What this means for the AI industry is a renewed focus on refining the training 
 
 In the case of Claude, Anthropic has likely already begun the process of addressing this issue, diving deep into the model’s training data and algorithms to identify why "load-bearing" became such a persistent phrase. This kind of troubleshooting is part and parcel of AI development, but it also highlights the need for more robust testing and validation processes.
 
-The broader implication is that as AI continues to evolve, so too must our approaches to managing and interacting with these systems. It’s not enough to create AI that can perform tasks; we must also ensure that these systems can do so in a way that is aligned with human values
+The broader implication is that as AI continues to evolve, so too must our approaches to managing and interacting with these systems.
+
 
 *Source: [How to stop Claude from saying load-bearing](https://jola.dev/posts/how-to-stop-claude-from-saying-load-bearing) — 489 points on Hacker News*

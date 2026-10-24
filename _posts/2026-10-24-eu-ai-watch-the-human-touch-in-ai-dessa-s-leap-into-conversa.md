@@ -1,5 +1,6 @@
 ---
 layout: post
+redirect_from: /blog/2026/10/24/eu-ai-watch-the-rise-of-dessa-and-the-future-of-conversation/
 title: "EU AI Watch: The Human Touch in AI – Dessa's Leap into Conversational Realism"
 date: 2026-10-24
 description: "Dessa: Conversation Model trained only on speech — daily AI analysis from 🇪🇺 European Union."

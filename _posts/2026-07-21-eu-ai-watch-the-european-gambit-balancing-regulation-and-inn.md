@@ -31,6 +31,7 @@ Moreover, the EU is investing heavily in AI research and development, with billi
 
 What this means for European AI companies is a call to adapt and innovate within the regulatory framework. Companies that can navigate the complexities of the AI Act while leveraging European collaboration and funding will be well-positioned to thrive. The key is to view regulation not as a hindrance but as a framework that, when understood and applied correctly, can drive innovation and build consumer trust.
 
-The EU's approach is not without its challenges. Balancing regulation with the need for rapid technological advancement is no easy feat. However, the EU's commitment to ethical AI and its focus on collaboration could prove to be its greatest
+The EU's approach is not without its challenges. Balancing regulation with the need for rapid technological advancement is no easy feat.
+
 
 *Source: [China’s open-weights AI strategy is winning](https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/) — 1062 points on Hacker News*

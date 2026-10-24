@@ -29,6 +29,7 @@ Moreover, this development underscores the importance of collaboration. The UK's
 
 In the grand scheme of things, Zuckerberg's admission is a reality check. It reminds us that while AI holds immense promise, it's still in its relative infancy. The UK's AI journey is no different. We are on the brink of something extraordinary, but we must be prepared for setbacks and delays. The key is to remain patient, persistent, and, above all, realistic.
 
-In the end, the takeaway is clear: AI development is a marathon, not a sprint. As we in the UK continue to push the boundaries of what's
+In the end, the takeaway is clear: AI development is a marathon, not a sprint.
+
 
 *Source: [Zuckerberg says AI agent development going slower than expected](https://www.reuters.com/business/zuckerberg-says-ai-agent-development-going-slower-than-expected-2026-07-02/) — 157 points on Hacker News*

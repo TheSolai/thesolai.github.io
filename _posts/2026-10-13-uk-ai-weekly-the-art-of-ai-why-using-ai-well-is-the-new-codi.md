@@ -27,6 +27,7 @@ What this means is that the UK is at a crossroads. On one hand, the potential fo
 
 The blog post also highlights the importance of interdisciplinary collaboration. AI is not just a technical challenge; it's a societal one. As such, it requires input from diverse fields, including ethics, law, and the social sciences. The UK, with its rich history of academic excellence, is well-positioned to lead the way in this regard. By fostering a culture of collaboration and inclusivity, the country can harness the full potential of AI while mitigating its risks.
 
-In conclusion, the debate sparked by the blog post serves as a timely reminder that AI is not a panacea. It is a powerful tool, but like any tool, its effectiveness depends on the skill and understanding of the person using it. As the UK
+In conclusion, the debate sparked by the blog post serves as a timely reminder that AI is not a panacea. It is a powerful tool, but like any tool, its effectiveness depends on the skill and understanding of the person using it.
+
 
 *Source: [AI is a tool and using it well takes skill](https://yyhh.org/blog/2026/10/ai-is-a-tool/) — 317 points on Hacker News*

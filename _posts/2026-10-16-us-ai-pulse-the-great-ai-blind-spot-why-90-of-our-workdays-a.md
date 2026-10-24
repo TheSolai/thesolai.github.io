@@ -35,6 +35,7 @@ Moreover, this revelation underscores the importance of developing AI that can b
 
 **What This Means: A New Frontier for AI**
 
-This isn't just a challenge; it's an opportunity. The fact that 90% of our workdays are still dominated by tasks that AI can't handle well means there's a huge potential for innovation. We're on the cusp of a new frontier in AI development, one that requires a deeper understanding of human behavior,
+This isn't just a challenge; it's an opportunity. The fact that 90% of our workdays are still dominated by tasks that AI can't handle well means there's a huge potential for innovation.
+
 
 *Source: [90% of US working hours are spent on tasks not covered well by AI benchmarks](https://www.mercor.com/research/labor-index/benchmark-map/) — 280 points on Hacker News*

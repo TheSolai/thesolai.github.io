@@ -35,6 +35,5 @@ What this means for European AI companies is a potential game-changer. The EU AI
 
 Moreover, Jeff's homegrown status is a testament to the power of the European tech community. In a world where AI development is often dominated by big tech giants, Jeff represents a grassroots movement that is gaining momentum. The EU has long prided itself on its collaborative spirit and commitment to open-source principles, and Jeff is a shining example of what can be achieved when these values are put into practice.
 
-The implications of Jeff's success extend
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 492 points on Hacker News*

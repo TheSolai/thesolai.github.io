@@ -33,6 +33,5 @@ The implications of this research extend beyond just speed. It opens up a whole 
 
 However, it's not all smooth sailing. As with any AI advancement, there are challenges to consider. Training such a large model requires significant computational resources, which raises concerns about energy consumption and environmental impact. Additionally, the transition from traditional methods to AI-driven solutions will require a shift in mindset and skill sets within the tech community.
 
-### The Takeaway: AI is Redefining
 
 *Source: [Training a 4B model to produce 81% faster query plans than Postgres](https://rohanbansal.com/qorl) — 485 points on Hacker News*

@@ -31,6 +31,7 @@ What this means is that the AI landscape is shifting. We're moving away from the
 
 Furthermore, this development has implications for the ethical considerations surrounding AI. As we become more aware of the environmental and social impacts of AI, the ability to reuse and repurpose models becomes increasingly important. It aligns with the growing call for responsible AI development, where sustainability and ethical considerations are at the forefront.
 
-In the end, Pirate Face's rescue operation is more than just a clever hack; it's a statement. It's a reminder that innovation can be found in unexpected places and that sometimes, the best solutions are the ones that make the most of what we already have. As the AI industry
+In the end, Pirate Face's rescue operation is more than just a clever hack; it's a statement. It's a reminder that innovation can be found in unexpected places and that sometimes, the best solutions are the ones that make the most of what we already have.
+
 
 *Source: [Pirate Face Rescues LLM Models from Deletion](https://pirateface.co/) — 505 points on Hacker News*

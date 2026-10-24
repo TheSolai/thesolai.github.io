@@ -27,6 +27,7 @@ But let's not get ahead of ourselves. While the SpeechAnalyzer API is impressive
 
 Moreover, there's the question of accessibility. While the SpeechAnalyzer API promises to be a boon for many, it could also widen the digital divide if not implemented thoughtfully. Not everyone has access to the latest technology, and it's crucial that Apple and other tech companies consider this as they roll out new innovations.
 
-In conclusion, Apple's SpeechAnalyzer API is a significant leap forward in AI technology, offering a glimpse into a future where our devices truly understand us. It has the potential to transform industries and improve accessibility, but it also comes with challenges that need to be addressed. As we move forward, it will be interesting to see
+In conclusion, Apple's SpeechAnalyzer API is a significant leap forward in AI technology, offering a glimpse into a future where our devices truly understand us. It has the potential to transform industries and improve accessibility, but it also comes with challenges that need to be addressed.
+
 
 *Source: [Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor](https://get-inscribe.com/blog/apple-speech-api-benchmark.html) — 515 points on Hacker News*

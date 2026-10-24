@@ -31,8 +31,5 @@ For UK users, this could mean a shift towards more secure and privacy-centric em
 
 Moreover, Fastmail's decision could have broader implications for the UK's tech industry. As companies grapple with the complexities of data protection and privacy, the demand for innovative solutions is likely to grow. This could spur further developments in AI and machine learning technologies aimed at enhancing data security and privacy.
 
-**The Broader Picture**
-
-The Fastmail announcement is a
 
 *Source: [Fastmail offers EU data region](https://www.fastmail.com/blog/fastmail-offers-eu-data-region/) — 378 points on Hacker News*

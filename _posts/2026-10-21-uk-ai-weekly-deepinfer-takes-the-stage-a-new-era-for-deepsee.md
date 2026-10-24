@@ -23,6 +23,7 @@ What’s particularly impressive is the open-source nature of DeepInfer. In a wo
 
 What this means for the average person is a bit more nuanced. On one hand, the advancements brought about by DeepInfer could lead to more efficient services and products, ultimately improving our quality of life. On the other hand, it raises important questions about data privacy and security. As AI systems become more powerful, the need for robust ethical guidelines and regulations becomes even more critical. The UK government will need to keep a close eye on how DeepInfer and similar technologies are deployed, ensuring that they are used responsibly and for the greater good.
 
-The release of DeepInfer also highlights the importance of continued investment in AI research and development. The UK has a rich history of scientific innovation, and DeepSeek AI’s success is a testament to the talent and dedication of its researchers. However, to maintain this momentum, it
+The release of DeepInfer also highlights the importance of continued investment in AI research and development. The UK has a rich history of scientific innovation, and DeepSeek AI’s success is a testament to the talent and dedication of its researchers.
+
 
 *Source: [DeepInfer: High-performance inference framework for DeepSeek models](https://github.com/deepseek-ai/DeepInfer) — 2200 points on Hacker News*

@@ -31,6 +31,7 @@ The study highlights several key factors that contribute to a positive work cult
 
 Interestingly, the study also found that companies that invested in AI without addressing cultural issues often faced resistance from employees. This isn't surprising. If employees feel that AI is being used to replace them rather than enhance their work, they're likely to push back. On the other hand, when AI is introduced as a tool to support and empower employees, the response is much more positive.
 
-So, what can companies do to cultivate a culture that supports productivity and AI integration? It starts with leadership. Leaders need
+So, what can companies do to cultivate a culture that supports productivity and AI integration? It starts with leadership.
+
 
 *Source: [Good Culture Is the Biggest Productivity Hack, Not AI](https://newsletter.eng-leadership.com/p/good-culture-is-the-biggest-productivity) — 330 points on Hacker News*

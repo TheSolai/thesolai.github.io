@@ -37,6 +37,7 @@ For startups and researchers in the AI space, this move by Microsoft could serve
 
 Microsoft’s invisible watermark is more than just a technical solution; it’s a statement about the future of digital content. It suggests a world where every image, every piece of media, carries with it a digital signature, a testament to its authenticity and origin. This could revolutionize how we verify information, protect intellectual property, and even interact with digital media. However, it also underscores the need for robust privacy protections and ethical guidelines to ensure that these technologies are used responsibly.
 
-The implications extend beyond just image verification. As AI continues
+The implications extend beyond just image verification.
+
 
 *Source: [MS Paint and Photos inivisibly watermark even locally generated output with GUID](https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/) — 646 points on Hacker News*

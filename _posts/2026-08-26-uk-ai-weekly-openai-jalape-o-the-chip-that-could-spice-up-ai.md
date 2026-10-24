@@ -25,6 +25,7 @@ Moreover, the Jalapeño’s energy efficiency is not just a cost-saving measure;
 
 What this means for the UK is a potential shift in the AI landscape. With the Jalapeño, the UK could become a hub for AI innovation, attracting talent and investment from around the world. It could also lead to a more competitive market, driving down costs and encouraging further advancements in AI technology. The Jalapeño is not just a chip; it’s a catalyst for change.
 
-Of course, challenges remain. The Jalapeño will need to prove itself in real-world applications, and there will be hurdles to overcome in terms of production, distribution, and adoption. But
+Of course, challenges remain. The Jalapeño will need to prove itself in real-world applications, and there will be hurdles to overcome in terms of production, distribution, and adoption.
+
 
 *Source: [OpenAI Jalapeño: Better than Nvidia Blackwell](https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia) — 410 points on Hacker News*

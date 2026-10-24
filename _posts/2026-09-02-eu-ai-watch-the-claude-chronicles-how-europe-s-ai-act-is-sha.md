@@ -27,6 +27,7 @@ What this means is that we're witnessing a shift in how AI companies operate. Th
 
 For European AI companies, this is both a challenge and an opportunity. On one hand, they need to navigate the complexities of the AI Act, which can be daunting. On the other hand, those who embrace these regulations can differentiate themselves in the market by offering AI solutions that are not only cutting-edge but also ethically sound. This could potentially give European AI companies a competitive edge, as they are seen as leaders in responsible AI development.
 
-Moreover, the implications extend beyond Europe. As other regions look to regulate AI, the EU AI Act is likely to serve as a model. This means that the innovations driven by the Act could have a global impact, influencing how AI is developed and deployed worldwide. In this way, the EU is not just regulating AI; it's setting a standard
+Moreover, the implications extend beyond Europe. As other regions look to regulate AI, the EU AI Act is likely to serve as a model. This means that the innovations driven by the Act could have a global impact, influencing how AI is developed and deployed worldwide.
+
 
 *Source: [Claude Fable 5.1 and Claude Mythos 5.1](https://www.anthropic.com/claude-fable-and-mythos-5-1) — 1088 points on Hacker News*

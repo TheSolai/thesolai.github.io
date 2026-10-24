@@ -31,6 +31,5 @@ Moreover, the sanctions could spur innovation within the EU. As the A/I Collecti
 
 In the broader context, the U.S. sanctions and the EU's response highlight the growing global divide on AI governance. While some countries are pushing for rapid, unregulated development, the EU is championing a more cautious, ethical approach. This divergence could have significant implications for international cooperation and the future of AI on a global scale.
 
-In the end, the
 
 *Source: [U.S. sanctions against the A/I Collective](https://www.inventati.org/) — 543 points on Hacker News*

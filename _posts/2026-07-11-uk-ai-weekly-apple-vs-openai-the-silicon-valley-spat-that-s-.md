@@ -35,6 +35,7 @@ On the flip side, this could be a wake-up call for the UK to strengthen its own 
 
 Beyond the legal and regulatory aspects, there’s a cultural shift happening here. The tech industry has long prided itself on a culture of collaboration and openness. But as AI becomes more valuable and competitive, we’re seeing a rise in secrecy and protectionism. This lawsuit is a symptom of that trend, and it raises important questions about the future of AI development.
 
-For instance, how do we balance the need for innovation with the protection of intellectual property? How do we ensure that AI benefits society as a whole,
+For instance, how do we balance the need for innovation with the protection of intellectual property?
+
 
 *Source: [Apple sues OpenAI, accuses ex-employees of stealing trade secrets](https://9to5mac.com/2026/07/10/apple-sues-openai-trade-secret-theft/) — 915 points on Hacker News*

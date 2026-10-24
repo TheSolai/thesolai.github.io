@@ -23,6 +23,5 @@ What’s particularly interesting is the timing of Inkling’s release. The UK h
 
 What this means is a seismic shift in the way AI is developed and deployed. With Inkling, the barriers to entry for AI research and development have been significantly lowered. This opens up a world of possibilities for startups, academics, and independent developers who can now experiment with advanced AI without the need for massive financial resources. It also fosters a more diverse and inclusive AI community, as individuals from different backgrounds and regions can contribute to the field. The ripple effects could be profound, leading to innovative solutions to some of the world’s most pressing challenges, from climate change to healthcare.
 
-Moreover, the open nature of Inkling encourages transparency
 
 *Source: [Inkling: Our Open-Weights Model](https://thinkingmachines.ai/news/introducing-inkling/) — 890 points on Hacker News*

@@ -29,6 +29,7 @@ So, what does this mean for European AI companies? Well, it’s a mixed bag. On 
 
 On the other hand, the AI Act could be a boon for European AI companies. By setting a clear regulatory framework, the EU is creating a level playing field where companies can compete on quality and compliance rather than cutting corners. This could lead to a more sustainable and trustworthy AI ecosystem, where consumers and businesses alike can have confidence in the AI systems they use. Moreover, the Act could spur innovation in areas like AI ethics and bias mitigation, areas where European companies could take a leading role.
 
-What this means for the broader AI landscape is that the EU is positioning itself as a leader in responsible AI. While other regions might be racing to outdo each other with the latest and greatest AI technologies, the EU is taking a more measured approach, prioritizing safety, transparency, and accountability. This could attract companies and researchers who are committed to these principles, fostering a unique
+What this means for the broader AI landscape is that the EU is positioning itself as a leader in responsible AI. While other regions might be racing to outdo each other with the latest and greatest AI technologies, the EU is taking a more measured approach, prioritizing safety, transparency, and accountability.
+
 
 *Source: [GPT-5.6](https://openai.com/index/gpt-5-6/) — 1199 points on Hacker News*

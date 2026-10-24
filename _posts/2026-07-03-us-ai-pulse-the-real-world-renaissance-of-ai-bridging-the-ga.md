@@ -39,6 +39,5 @@ The ramifications of this development are vast and varied. For one, it opens up 
 
 In the realm of autonomous vehicles, this means safer, more reliable transportation. The AI can now better understand and respond to the myriad of variables encountered on the road, from weather conditions to erratic driver behavior.
 
-Moreover, this advancement could revolutionize
 
 *Source: [Reality has a surprising amount of detail (2017)](https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail) — 232 points on Hacker News*

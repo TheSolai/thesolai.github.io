@@ -37,6 +37,5 @@ Moreover, running models locally addresses some of the pressing concerns around 
 
 Jamesob’s guide is more than just a technical tutorial; it’s a catalyst for change. It challenges the status quo and opens up new possibilities for how we think about and use AI. By making these powerful tools accessible to a broader audience, it empowers individuals and small teams to compete with tech giants, fostering a more inclusive and diverse AI ecosystem.
 
-Furthermore, this development could have
 
 *Source: [Jamesob's guide to running SOTA LLMs locally](https://github.com/jamesob/local-llm) — 316 points on Hacker News*

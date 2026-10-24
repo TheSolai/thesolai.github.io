@@ -29,6 +29,7 @@ Moreover, the guide could spur a new wave of innovation among European startups 
 
 What this means is that the EU AI Act will need to adapt to this new reality. Regulators will have to find a balance between encouraging innovation and ensuring compliance. This could involve developing new tools and frameworks for auditing locally-run AI models, or it could mean revising certain aspects of the Act to accommodate the changing technological landscape. Either way, the conversation around AI regulation in Europe is about to get a lot more interesting.
 
-In the broader context, Jamesob's guide is a reminder that technology often moves faster than legislation. As
+In the broader context, Jamesob's guide is a reminder that technology often moves faster than legislation.
+
 
 *Source: [Jamesob's guide to running SOTA LLMs locally](https://github.com/jamesob/local-llm) — 321 points on Hacker News*

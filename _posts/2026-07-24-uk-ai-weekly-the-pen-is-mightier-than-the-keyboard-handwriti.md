@@ -27,6 +27,5 @@ What this means is that the UK is not just reviving a lost art; it's redefining 
 
 The implications extend beyond the classroom. As AI continues to evolve, we can expect to see more innovations that blend the best of human capabilities with the power of technology. ScriptAI is a prime example of how AI can be harnessed to support and enhance our natural abilities, rather than overshadow them. It's a reminder that in our quest to advance technologically, we should not lose sight of the value of human-centric practices.
 
-In conclusion, the launch of ScriptAI marks a
 
 *Source: [Writing by hand is good for your brain](https://nealstephenson.substack.com/p/writing-by-hand-is-good-for-your) — 1213 points on Hacker News*

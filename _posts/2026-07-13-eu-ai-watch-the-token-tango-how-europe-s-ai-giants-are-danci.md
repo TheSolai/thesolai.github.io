@@ -29,6 +29,7 @@ What this means is that European AI companies are now in a delicate dance, tryin
 
 Moreover, the incident highlights the need for robust internal processes and compliance frameworks. As the EU AI Act takes full effect, companies will need to invest in training, tooling, and talent to ensure they’re not just meeting but exceeding regulatory requirements. This could mean a shift in how AI is developed, with a greater emphasis on quality assurance and risk management.
 
-In the long run, this could be a boon for European AI companies. By adhering to the
+In the long run, this could be a boon for European AI companies.
+
 
 *Source: [Claude Code sends 33k tokens before reading the prompt; OpenCode sends 7k](https://systima.ai/blog/claude-code-vs-opencode-token-overhead) — 533 points on Hacker News*

@@ -33,6 +33,7 @@ What this means is that the AI community is at a crossroads. On one hand, the ad
 
 The UK government has already shown a commitment to AI ethics, with initiatives aimed at ensuring that AI development is transparent and accountable. However, incidents like this highlight the need for clearer guidelines and robust frameworks that protect researchers' work while still allowing for the advancement of AI. It's a delicate balance, but one that is essential for the sustainable growth of the AI sector.
 
-In the short term, this situation could lead to increased scrutiny of AI companies and their data practices. Researchers may become more cautious about sharing their work, potentially slowing down the pace of innovation. In the long term, it could drive a shift towards more collaborative models that prioritize transparency and consent. The UK, with its strong academic and tech sectors, is well-positioned to
+In the short term, this situation could lead to increased scrutiny of AI companies and their data practices. Researchers may become more cautious about sharing their work, potentially slowing down the pace of innovation. In the long term, it could drive a shift towards more collaborative models that prioritize transparency and consent.
+
 
 *Source: [More questions about whether researchers can trust OpenAI with unpublished math](https://mathstodon.xyz/@andreasthom/117240535270608201) — 769 points on Hacker News*

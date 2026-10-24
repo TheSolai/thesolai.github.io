@@ -25,6 +25,7 @@ Moreover, the cost savings are nothing to sneeze at. Large AI models are notorio
 
 What this means is that the AI landscape is about to get a lot more interesting. We’re potentially looking at a future where AI is not just the domain of tech giants but a tool available to anyone with a good idea and the drive to implement it. Imagine a world where local businesses can leverage AI to optimize their operations, where healthcare providers can use AI to improve patient outcomes, and where educational institutions can offer personalized learning experiences, all thanks to the accessibility of these small models.
 
-Of course, it’s not all sunshine and rainbows. There are challenges to be addressed, such as ensuring the security and privacy of data processed by these models. And while the Minis are impressive, they’re not a one-size-fits-all solution. There will always be tasks that require the raw power of larger models. But the point is, we now have more
+Of course, it’s not all sunshine and rainbows. There are challenges to be addressed, such as ensuring the security and privacy of data processed by these models. And while the Minis are impressive, they’re not a one-size-fits-all solution. There will always be tasks that require the raw power of larger models.
+
 
 *Source: [Small Models Have Arrived](https://calv.info/small-models-have-arrived) — 592 points on Hacker News*

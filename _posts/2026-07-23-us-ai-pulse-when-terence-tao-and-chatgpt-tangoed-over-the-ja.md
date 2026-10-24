@@ -27,6 +27,5 @@ Furthermore, this development has significant implications for the AI industry. 
 
 In the broader context of US AI startups and research, this event is a beacon of what's possible. It highlights the importance of investing in AI research and development, as well as fostering a culture of collaboration between humans and machines. As more researchers and companies embrace this approach, we can expect to see a surge in AI-driven breakthroughs that push the boundaries of what's possible.
 
-In conclusion, the Terence Tao-ChatGPT conversation is
 
 *Source: [Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample](https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56) — 785 points on Hacker News*

@@ -35,6 +35,7 @@ For European AI companies, this is a clarion call. The AI speedster's success un
 
 Moreover, it highlights the importance of collaboration between academia, industry, and government. Bansal's team worked closely with academic institutions and received support from EU research grants, demonstrating the power of a unified approach to AI development.
 
-As the AI Act begins to take shape, European companies will need to adapt. But as this development
+As the AI Act begins to take shape, European companies will need to adapt.
+
 
 *Source: [Training a 4B model to produce 81% faster query plans than Postgres](https://rohanbansal.com/qorl) — 485 points on Hacker News*

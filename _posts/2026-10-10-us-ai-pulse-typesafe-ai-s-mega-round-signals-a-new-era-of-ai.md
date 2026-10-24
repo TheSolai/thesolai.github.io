@@ -25,6 +25,7 @@ What this means is that we're on the cusp of a new era in AI development. Invest
 
 Moreover, Typesafe AI's success could inspire other startups to focus on AI safety, leading to a surge in innovation and competition in this space. This is crucial because, as we all know, AI is not a one-size-fits-all solution. Different industries and applications will require different safety measures, and having a diverse range of solutions will be key to ensuring that AI is used responsibly and effectively.
 
-In a world where AI is becoming ubiquitous, the importance of AI safety cannot be overstated. Typesafe AI's $870 million raise is a testament to the growing awareness and urgency of this issue. It's a bold move that could set a new standard for the industry and pave the way for a safer
+In a world where AI is becoming ubiquitous, the importance of AI safety cannot be overstated. Typesafe AI's $870 million raise is a testament to the growing awareness and urgency of this issue.
+
 
 *Source: [Typesafe AI raises $870M at $7.5B](https://typesafe.ai/blog/series-ai) — 389 points on Hacker News*

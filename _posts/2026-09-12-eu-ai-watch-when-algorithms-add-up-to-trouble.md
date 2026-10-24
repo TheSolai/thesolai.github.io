@@ -35,6 +35,7 @@ The implications of this misalignment are far-reaching. First, it raises questio
 
 Second, this incident underscores the importance of human-AI collaboration. AI should be seen as a tool to augment human capabilities, not replace them. The goal should be to create AI that enhances human understanding, not complicates it. This means focusing on developing AI that can explain its reasoning and provide insights that are accessible to human users.
 
-Finally, the Mathemagician saga is a reminder of the need for ongoing dialogue between technologists, regulators, and the public. As AI continues to evolve, it is essential that we have robust frameworks in place to ensure that these technologies are developed and deployed responsibly. The EU's
+Finally, the Mathemagician saga is a reminder of the need for ongoing dialogue between technologists, regulators, and the public. As AI continues to evolve, it is essential that we have robust frameworks in place to ensure that these technologies are developed and deployed responsibly.
+
 
 *Source: [A misalignment of AI in mathematics](https://mathandai.org/) — 806 points on Hacker News*

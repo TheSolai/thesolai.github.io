@@ -31,6 +31,7 @@ Moreover, the tech community has a responsibility to bridge this gap. Researcher
 
 In the end, the growing divide in understanding AI’s true capabilities is a call to action. It’s a reminder that as we push the boundaries of what technology can do, we must also prioritize clarity and understanding. After all, the goal is not just to create powerful AI, but to ensure that it serves humanity in meaningful and responsible ways.
 
-The takeaway? As AI continues to evolve, so too must our understanding
+The takeaway?
+
 
 *Source: [The gap in shared understanding of LLM capability is widening](https://twitter.com/karpathy/status/2109361546505966046) — 378 points on Hacker News*

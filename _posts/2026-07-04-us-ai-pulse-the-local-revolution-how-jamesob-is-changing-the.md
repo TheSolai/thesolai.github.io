@@ -27,6 +27,7 @@ What this means is a shift in the AI landscape. The traditional model of AI deve
 
 Of course, there are challenges to this local AI approach. Running sophisticated models locally requires a certain level of technical expertise and access to adequate hardware. Not everyone has the skills or resources to set up and maintain such systems. However, as more people become interested in this approach, we can expect a growing community of support and resources to help newcomers get started.
 
-In conclusion, Jamesob's guide is more than just a technical document; it's a catalyst for change in the AI industry. It empowers individuals, enhances privacy, and fosters innovation. As we
+In conclusion, Jamesob's guide is more than just a technical document; it's a catalyst for change in the AI industry. It empowers individuals, enhances privacy, and fosters innovation.
+
 
 *Source: [Jamesob's guide to running SOTA LLMs locally](https://github.com/jamesob/local-llm) — 316 points on Hacker News*

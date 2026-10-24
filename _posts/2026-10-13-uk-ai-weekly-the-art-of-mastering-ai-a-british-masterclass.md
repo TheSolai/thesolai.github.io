@@ -31,6 +31,7 @@ What this means is that the UK is not just reacting to the AI revolution—it's 
 
 Moreover, this initiative addresses a critical gap in AI adoption: the human element. While AI can process data at lightning speed, it lacks the nuanced understanding that humans bring to the table. By training public sector workers to use AI effectively, the UK is fostering a symbiotic relationship between human intuition and machine precision. This balance is essential for ethical AI deployment, ensuring that technology serves the public good rather than undermining it.
 
-In a world where AI is often seen as a silver bullet, the UK's approach is a welcome dose of realism. It acknowledges that AI is not a panacea but a powerful tool that, when used correctly, can drive significant change. The program's success hinges on its ability to instill a mindset shift, encouraging participants
+In a world where AI is often seen as a silver bullet, the UK's approach is a welcome dose of realism. It acknowledges that AI is not a panacea but a powerful tool that, when used correctly, can drive significant change.
+
 
 *Source: [AI is a tool and using it well takes skill](https://yyhh.org/blog/2026/10/ai-is-a-tool/) — 354 points on Hacker News*

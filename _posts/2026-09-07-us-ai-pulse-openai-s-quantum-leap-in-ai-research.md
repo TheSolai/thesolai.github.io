@@ -33,6 +33,5 @@ What’s particularly intriguing is the emphasis on ethical considerations. Open
 
 **What this means:** The implications of this initiative are profound. For one, it could dramatically accelerate the pace of AI advancements, leading to breakthroughs that were previously thought to be years away. This could have ripple effects across industries, from healthcare to transportation, as AI systems become more capable and versatile. However, it also raises important questions about the ethical and societal impacts of such rapid progress. How do we ensure that these powerful systems are used responsibly? How do we mitigate the risks of unintended consequences?
 
-Moreover, Open
 
 *Source: [Research acceleration: The view inside OpenAI](https://openai.com/index/research-acceleration-view-inside-openai) — 161 points on Hacker News*

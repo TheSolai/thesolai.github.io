@@ -25,6 +25,7 @@ What this means is that the EU must urgently re-evaluate its approach to AI secu
 
 Moreover, the incident underscores the need for greater collaboration between the public and private sectors in combating AI-related cyber threats. European AI companies, in particular, must be proactive in adopting best practices for cybersecurity and share intelligence on potential vulnerabilities. The EU can play a pivotal role in facilitating this collaboration, perhaps by establishing a dedicated task force or advisory board to address AI security challenges.
 
-In the wake of the LiteLLM breach, the EU AI Act may need to be amended to include more stringent cybersecurity provisions. This could involve mand
+In the wake of the LiteLLM breach, the EU AI Act may need to be amended to include more stringent cybersecurity provisions.
+
 
 *Source: [Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor](https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/) — 480 points on Hacker News*

@@ -31,6 +31,7 @@ Moreover, the emphasis on ethical AI development is a crucial step forward. As A
 
 However, it’s not all smooth sailing. The initiative also raises questions about the potential for increased competition and the risk of monopolization. As OpenAI pushes the boundaries of AI research, other companies may struggle to keep up, potentially leading to a concentration of power and influence. This is a challenge that the industry will need to address as it moves forward.
 
-In the grand scheme of things, OpenAI’s "Research Acceleration" initiative is a testament to the relentless pace of innovation in the AI field. It’s a reminder that while
+In the grand scheme of things, OpenAI’s "Research Acceleration" initiative is a testament to the relentless pace of innovation in the AI field.
+
 
 *Source: [Research acceleration: The view inside OpenAI](https://openai.com/index/research-acceleration-view-inside-openai) — 152 points on Hacker News*

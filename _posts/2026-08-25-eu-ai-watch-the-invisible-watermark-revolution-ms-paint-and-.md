@@ -25,6 +25,7 @@ What this means is that we're entering a new era of AI regulation, where even th
 
 The implications extend beyond just compliance. For instance, the ability to trace AI-generated content could help combat deepfakes and other forms of digital manipulation. It could also provide a framework for resolving disputes over intellectual property and copyright. However, it also poses challenges for user privacy and data protection, as the potential for tracking and surveillance increases.
 
-In the grand scheme of things, this development is a microcosm of the broader debate surrounding AI regulation. It highlights the tension between the need for oversight and the
+In the grand scheme of things, this development is a microcosm of the broader debate surrounding AI regulation.
+
 
 *Source: [MS Paint and Photos inivisibly watermark even locally generated output with GUID](https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/) — 646 points on Hacker News*

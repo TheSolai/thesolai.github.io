@@ -31,6 +31,5 @@ Moreover, this development has profound implications for AI policy and regulatio
 
 In a world where AI is increasingly integrated into our daily lives, from healthcare to education, the ability to discern when an AI is out of its depth is crucial. AI;DR's candid approach could pave the way for a new era of AI transparency, where users are not only informed of an AI's capabilities but also its limitations.
 
-In conclusion
 
 *Source: [AI;DR (AI; Didn't Read)](https://www.rickmanelius.com/p/aidr-ai-didnt-read) — 745 points on Hacker News*

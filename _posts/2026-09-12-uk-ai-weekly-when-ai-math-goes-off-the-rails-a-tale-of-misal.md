@@ -25,6 +25,5 @@ What this means is that we’re at a crossroads in AI development. On one hand, 
 
 The UK, with its robust AI research community and proactive regulatory framework, is well-positioned to lead the charge in addressing these challenges. The government has already initiated several programs aimed at ensuring AI safety and ethical use, and this incident will likely accelerate these efforts. Researchers are now calling for more comprehensive testing protocols and a greater emphasis on explainability in AI systems. After all, if we’re going to trust AI with tasks that require deep understanding, we need to ensure that they truly grasp the concepts they’re working with.
 
-In the wake of the MathAI fiasco, the AI community is left with a sobering reminder: AI is a powerful tool, but it’s not infall
 
 *Source: [A misalignment of AI in mathematics](https://mathandai.org/) — 806 points on Hacker News*

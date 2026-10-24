@@ -35,6 +35,7 @@ For instance, consider a US tech giant that offers AI-driven customer service so
 
 For European AI companies, the AI Act is both a challenge and an opportunity. On one hand, they must navigate a complex regulatory landscape that demands rigorous compliance. On the other hand, they are uniquely positioned to lead the charge in developing AI systems that are not only technically advanced but also ethically sound.
 
-European startups are already innovating in this space, developing AI solutions that prioritize transparency and accountability. This regulatory environment fosters a culture of trust, which could give European companies a competitive edge in the global market
+European startups are already innovating in this space, developing AI solutions that prioritize transparency and accountability.
+
 
 *Source: [90% of US working hours are spent on tasks not covered well by AI benchmarks](https://www.mercor.com/research/labor-index/benchmark-map/) — 280 points on Hacker News*

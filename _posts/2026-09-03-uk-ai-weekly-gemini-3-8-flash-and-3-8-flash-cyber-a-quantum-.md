@@ -27,6 +27,5 @@ What this means for the UK is profound. As a global leader in AI research and de
 
 Moreover, the introduction of Gemini 3.8 Flash Cyber underscores the UK's commitment to cybersecurity. As more of our lives move online, the need for robust security measures has never been greater. This model offers a glimpse into a future where cyber threats are a thing of the past, ensuring that our digital lives remain safe and secure.
 
-In essence, the launch of Gemini 3.8 Flash and 3.8
 
 *Source: [Gemini 3.8 Flash and 3.8 Flash Cyber](https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/) — 942 points on Hacker News*

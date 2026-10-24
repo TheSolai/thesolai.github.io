@@ -33,6 +33,5 @@ What this means for the UK is a bit of a wake-up call. The UK has always prided 
 
 But it’s not all doom and gloom. The UK has some serious strengths to leverage. Its world-class universities and vibrant tech scene are fertile ground for AI innovation. By embracing a more open approach, the UK could position itself as a global leader in AI, not just a follower. Imagine a future where UK AI is not only cutting-edge but also a catalyst for global collaboration.
 
-In the end
 
 *Source: [China’s open-weights AI strategy is winning](https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/) — 1062 points on Hacker News*

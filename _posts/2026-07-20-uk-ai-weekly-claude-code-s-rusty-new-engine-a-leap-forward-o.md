@@ -27,6 +27,5 @@ However, it's not all smooth sailing. The transition to a new runtime is fraught
 
 Despite these hurdles, the potential benefits are significant. By adopting Bun, Claude Code is not only enhancing its own capabilities but also contributing to the collective knowledge of the AI community. This move could inspire further research and development into Rust-based solutions, ultimately leading to more robust and efficient AI systems.
 
-In conclusion, Claude Code's decision to
 
 *Source: [Claude Code uses Bun written in Rust now](https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/) — 480 points on Hacker News*

@@ -27,6 +27,5 @@ The arrival of the AMD Ryzen AI Halo in the UK is a significant development for 
 
 Second, the Ryzen AI Halo could help the UK solidify its position as a hub for AI research and development. The UK has long been a leader in AI, with world-class universities and a thriving tech ecosystem. By providing researchers and developers with powerful, affordable tools, the Ryzen AI Halo could accelerate the pace of AI innovation in the country, attracting more talent and investment.
 
-Finally, the dev kit’s emphasis on scalability and efficiency aligns with the growing
 
 *Source: [AMD Ryzen AI Halo – $4k AI Dev Kit](https://www.lttlabs.com/articles/2026/07/06/amd-ryzen-ai-halo) — 304 points on Hacker News*

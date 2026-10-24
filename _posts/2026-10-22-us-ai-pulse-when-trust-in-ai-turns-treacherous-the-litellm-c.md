@@ -35,6 +35,7 @@ For startups and enterprises alike, this incident underscores the importance of 
 
 The LiteLLM compromise is a wake-up call for the AI industry. It highlights the need for robust security measures and a shift in how we approach AI development. Developers must adopt a security-first mindset, prioritizing thorough vetting of third-party packages and continuous monitoring for suspicious activity.
 
-Moreover, this incident emphasizes the importance of transparency and collaboration within the AI community. Sharing information about vulnerabilities and breaches can help prevent similar incidents in the future. It's a collective responsibility to ensure that the AI
+Moreover, this incident emphasizes the importance of transparency and collaboration within the AI community. Sharing information about vulnerabilities and breaches can help prevent similar incidents in the future.
+
 
 *Source: [Compromised LiteLLM 1.107.0 on PyPI Installs a Credential Stealer and Backdoor](https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/) — 475 points on Hacker News*

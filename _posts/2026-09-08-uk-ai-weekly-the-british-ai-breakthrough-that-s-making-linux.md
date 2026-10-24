@@ -25,6 +25,7 @@ The UK government, known for its proactive stance on AI and cybersecurity, is al
 
 The timing of this revelation couldn’t be more critical. As AI continues to permeate every aspect of our lives, the need for secure, trustworthy software has never been greater. The Cambridge team’s research underscores the importance of treating cybersecurity as a foundational element of AI development, not just an afterthought.
 
-In the wake of this groundbreaking (or should I say ground-shaking?) research, the tech community is left with a stark choice: adapt or face the consequences. The Trust
+In the wake of this groundbreaking (or should I say ground-shaking?) research, the tech community is left with a stark choice: adapt or face the consequences.
+
 
 *Source: [Trusting-Trust Attack against an Entire Linux Distribution](https://arxiv.org/abs/2607.24888) — 189 points on Hacker News*

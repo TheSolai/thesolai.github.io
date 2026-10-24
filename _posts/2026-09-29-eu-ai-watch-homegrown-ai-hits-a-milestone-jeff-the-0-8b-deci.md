@@ -35,6 +35,7 @@ Jeff’s success highlights a potential gap in the AI Act’s framework. On one 
 
 The implications of Jeff’s emergence are twofold. Firstly, it underscores the need for the EU to strike a balance between regulation and innovation. The AI Act must be flexible enough to accommodate diverse development models, including those that are open-source and community-driven. This could involve creating exemptions or streamlined compliance processes for smaller projects, ensuring that regulatory burdens don’t disproportionately affect them.
 
-Secondly, Jeff serves as a wake-up call for European AI companies. It demonstrates that there’s a vibrant ecosystem of developers eager to push the boundaries of what’s possible. For these companies, embracing and supporting such initiatives could be a strategic move. By fostering a
+Secondly, Jeff serves as a wake-up call for European AI companies. It demonstrates that there’s a vibrant ecosystem of developers eager to push the boundaries of what’s possible. For these companies, embracing and supporting such initiatives could be a strategic move.
+
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 477 points on Hacker News*

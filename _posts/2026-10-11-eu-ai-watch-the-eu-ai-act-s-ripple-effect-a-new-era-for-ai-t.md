@@ -29,6 +29,7 @@ What this means is that the EU is setting a new standard for AI regulation. Othe
 
 The implications are vast. For one, we can expect a surge in demand for AI compliance experts and ethicists. Companies will need to invest in new processes and technologies to meet the Act’s requirements. And consumers will become more aware of the AI systems they interact with, demanding greater transparency and accountability.
 
-Moreover, the Act could spur innovation in AI governance and compliance tools. We might see the rise of new startups focused on helping companies navigate the complex regulatory landscape. And as AI systems become more transparent, we could also see advancements in AI explainability and interpret
+Moreover, the Act could spur innovation in AI governance and compliance tools. We might see the rise of new startups focused on helping companies navigate the complex regulatory landscape.
+
 
 *Source: [Grieving the loss of details](https://purplesyringa.moe/blog/grieving-the-loss-of-details/) — 427 points on Hacker News*

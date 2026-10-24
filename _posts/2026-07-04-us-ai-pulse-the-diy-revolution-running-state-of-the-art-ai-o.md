@@ -31,6 +31,5 @@ The guide also highlights a growing trend towards decentralization in AI. As mor
 
 The ramifications of this development extend beyond just the technical realm. It represents a potential power shift in the AI industry, empowering individuals and small teams to compete with larger players. This could lead to a more diverse and inclusive AI ecosystem, where a wider range of voices and perspectives can contribute to the development of new technologies. It also raises important questions about the future of AI regulation and governance, as the ability to run powerful models locally could complicate efforts to monitor and control AI applications.
 
-Moreover,
 
 *Source: [Jamesob's guide to running SOTA LLMs locally](https://github.com/jamesob/local-llm) — 321 points on Hacker News*

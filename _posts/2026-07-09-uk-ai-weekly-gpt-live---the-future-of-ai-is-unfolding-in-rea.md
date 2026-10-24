@@ -29,6 +29,7 @@ However, as with any technological advancement, there are challenges to consider
 
 Additionally, there’s the question of job displacement. While GPT-Live could create new opportunities in AI development and data analysis, it could also render certain roles obsolete. The UK will need to invest in reskilling and upskilling programs to prepare its workforce for this transition.
 
-What this means is that GPT-Live is not just a tool; it’s a catalyst for change. It challenges us to rethink how we interact with technology and how we
+What this means is that GPT-Live is not just a tool; it’s a catalyst for change.
+
 
 *Source: [GPT‑Live](https://openai.com/index/introducing-gpt-live/) — 665 points on Hacker News*

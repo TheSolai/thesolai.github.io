@@ -35,6 +35,7 @@ This is a game-changer for developers who have been frustrated by the slow pace 
 
 The emergence of Jeff signals a shift in the AI landscape. It represents a move towards more democratized, accessible AI tools that empower individuals and small teams. This could lead to a more diverse range of AI applications, as people from different backgrounds and industries bring their unique perspectives to the table. Imagine AI models tailored for niche markets, or solutions designed to address specific local challenges.
 
-Moreover, the efficiency of Jeff could have significant implications for sustainability. As AI models grow in complexity, their environmental impact has become a growing concern. By
+Moreover, the efficiency of Jeff could have significant implications for sustainability. As AI models grow in complexity, their environmental impact has become a growing concern.
+
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 449 points on Hacker News*

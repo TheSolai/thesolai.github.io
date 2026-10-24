@@ -27,6 +27,5 @@ For European AI companies, this is both a challenge and an opportunity. On one h
 
 What this means is that AI development in Europe is undergoing a transformation. The days of black-box AI systems are numbered. Instead, we’re moving towards a future where AI is not only powerful but also understandable and trustworthy. This is crucial for gaining public acceptance and ensuring that AI technologies are used responsibly. The Claude Code update is just one example of how companies are responding to this shift. It’s a sign that the EU’s regulatory approach is having a tangible impact on the industry.
 
-In the grand scheme of things, the Claude Code change might seem like a small ripple in the vast
 
 *Source: [Claude Code now reads AGENTS.md if there is no Claude.md](https://code.claude.com/docs/en/changelog) — 614 points on Hacker News*

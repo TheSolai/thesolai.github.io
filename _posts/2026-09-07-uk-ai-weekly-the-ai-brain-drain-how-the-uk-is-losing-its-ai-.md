@@ -31,6 +31,5 @@ On the other hand, this situation presents an opportunity for the UK to rethink 
 
 Moreover, the UK could use this as a catalyst to invest in local talent, creating more opportunities for homegrown researchers and entrepreneurs. By fostering a culture of innovation and providing the necessary support and resources, the UK can ensure that it remains a hub of AI excellence.
 
-In the grand scheme of things, the AI brain drain is a symptom of a larger trend: the
 
 *Source: [Research acceleration: The view inside OpenAI](https://openai.com/index/research-acceleration-view-inside-openai) — 161 points on Hacker News*

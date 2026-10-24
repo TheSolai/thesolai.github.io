@@ -27,6 +27,7 @@ What this means is a shift in how we perceive and engage with education. We're m
 
 Of course, there are challenges to consider. The ethical implications of AI in education, such as data privacy and algorithmic bias, need to be addressed. Additionally, while LLMs are incredibly powerful, they are not a substitute for human interaction and guidance. The role of educators will likely evolve, focusing more on mentorship and less on rote instruction.
 
-In the end, Laurentiu's experiment is a testament to the transformative power of AI in education. It's a reminder that technology, when used thoughtfully, can open up new possibilities and democratise access to
+In the end, Laurentiu's experiment is a testament to the transformative power of AI in education.
+
 
 *Source: [How I use LLMs to learn complex topics](https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/) — 561 points on Hacker News*

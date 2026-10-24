@@ -29,6 +29,7 @@ What this means is a potential shift in the skillsets demanded by the industry. 
 
 The implications extend beyond individual careers. Companies, too, will need to adapt. Those that embrace AI and integrate it into their workflows will likely see increased efficiency and innovation. However, they’ll also need to manage the transition carefully, ensuring that their workforce is equipped with the necessary skills and that the human touch isn’t lost in the process.
 
-In the broader context, this shift could have significant economic impacts. If AI does indeed thin out the middle tier of software engineering, it could lead to a more polarized job market
+In the broader context, this shift could have significant economic impacts.
+
 
 *Source: [AI is removing the middle class of software engineering?](https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html) — 822 points on Hacker News*

@@ -31,6 +31,5 @@ But let’s not write off the EU just yet. The AI Act, for all its complexities,
 
 One potential solution is for the EU to embrace a more nuanced approach to open-source AI. This doesn’t mean abandoning the AI Act, but rather, finding ways to integrate open-source principles into its framework. By fostering a collaborative environment that encourages sharing and collaboration, the EU can tap into the same innovative spirit that’s driving progress in China.
 
-Moreover, European companies can leverage the AI
 
 *Source: [China’s open-weights AI strategy is winning](https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/) — 1043 points on Hacker News*

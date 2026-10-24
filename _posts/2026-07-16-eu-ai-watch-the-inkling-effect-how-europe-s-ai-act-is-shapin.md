@@ -31,6 +31,5 @@ Inkling's release also highlights a broader trend: the democratization of AI. By
 
 What this means is that the AI landscape in Europe is evolving. The EU AI Act is not just a set of rules; it's a catalyst for change. Companies like Thinking Machines are responding by rethinking their approach to AI development. They're embracing openness, transparency, and collaboration, which could lead to a more ethical and innovative AI future.
 
-In
 
 *Source: [Inkling: Our Open-Weights Model](https://thinkingmachines.ai/news/introducing-inkling/) — 852 points on Hacker News*

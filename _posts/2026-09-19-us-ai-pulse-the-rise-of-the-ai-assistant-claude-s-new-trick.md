@@ -23,6 +23,7 @@ What this means is that AI is becoming more of a partner than a tool. Instead of
 
 Moreover, this development highlights the growing importance of documentation in AI systems. The fact that Claude can now read `AGENTS.md` suggests a recognition of the need for clear, comprehensive documentation that can guide AI behavior in complex environments. This is a nod to the developers and engineers who work tirelessly to ensure that AI systems are not only functional but also transparent and accountable. As AI continues to integrate into various aspects of our lives, the role of documentation will only become more critical.
 
-In essence, Claude's new ability to read `AGENTS.md` is a small change with big implications. It underscores the trend towards more adaptable, context-aware AI systems that can seamlessly integrate into diverse workflows. For startups and enterprises alike, this means having access to AI
+In essence, Claude's new ability to read `AGENTS.md` is a small change with big implications. It underscores the trend towards more adaptable, context-aware AI systems that can seamlessly integrate into diverse workflows.
+
 
 *Source: [Claude Code now reads AGENTS.md if there is no Claude.md](https://code.claude.com/docs/en/changelog) — 614 points on Hacker News*

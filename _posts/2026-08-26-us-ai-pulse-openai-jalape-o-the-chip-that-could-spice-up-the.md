@@ -25,6 +25,7 @@ What this means for the AI industry is potentially seismic. For starters, it cou
 
 Moreover, OpenAI’s move into hardware could signal a broader trend of AI companies taking control of their own infrastructure. As AI models become increasingly complex, the need for specialized hardware will only grow. By designing their own chips, companies like OpenAI can ensure that their models run as efficiently as possible, giving them a competitive edge. This could lead to a more fragmented landscape, with different companies developing their own hardware solutions tailored to their specific needs.
 
-Of course, there are challenges ahead. Designing and manufacturing chips is a complex and expensive endeavor, and OpenAI will need to scale up production to make a real impact. Additionally, the company will need to convince other players in the industry
+Of course, there are challenges ahead. Designing and manufacturing chips is a complex and expensive endeavor, and OpenAI will need to scale up production to make a real impact.
+
 
 *Source: [OpenAI Jalapeño: Better than Nvidia Blackwell](https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia) — 410 points on Hacker News*

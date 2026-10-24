@@ -33,6 +33,5 @@ What this means for the average consumer is a call to vigilance. As we embrace t
 
 In the broader context, this incident is a reminder of the challenges facing the AI and tech industries. As these technologies evolve, so too must our understanding and regulation of them. It's a delicate balance between innovation and responsibility, and finding that balance is essential for maintaining public trust.
 
-In the end, the LG spy TV saga is a cautionary
 
 *Source: [LG denies TV spying claims, says tracking and snooping concerns 'not true'](https://www.tomshardware.com/tech-industry/big-tech/lg-strongly-denies-tv-security-claims-says-tracking-and-snooping-concerns-not-true-online-investigation-claims-216-000-000-spy-tvs-record-audio) — 485 points on Hacker News*

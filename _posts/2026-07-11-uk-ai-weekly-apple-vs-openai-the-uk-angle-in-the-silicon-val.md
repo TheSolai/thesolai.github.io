@@ -33,6 +33,5 @@ Furthermore, the UK's position as a global tech hub means that it has a vested i
 
 In the short term, this lawsuit is likely to create ripples throughout the AI community, both in the UK and beyond. Companies will be watching closely to see how the legal battle unfolds and what it means for their own operations. For UK-based AI firms, the outcome could have significant implications for how they manage their talent and protect their innovations.
 
-In the longer term, this case could influence the development of AI policy and regulation in the UK. As the government seeks to strike a
 
 *Source: [Apple sues OpenAI, accuses ex-employees of stealing trade secrets](https://9to5mac.com/2026/07/10/apple-sues-openai-trade-secret-theft/) — 847 points on Hacker News*

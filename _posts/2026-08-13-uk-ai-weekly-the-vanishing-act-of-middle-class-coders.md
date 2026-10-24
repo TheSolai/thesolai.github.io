@@ -23,6 +23,7 @@ What’s more, the UK has always prided itself on its skilled workforce and inno
 
 What this means is that we’re at a crossroads. On one hand, AI has the potential to revolutionize industries, boost productivity, and open up new avenues for innovation. On the other hand, it poses a significant threat to job security and economic stability. The key lies in how we respond. Policymakers need to take a proactive approach, investing in education and training programs that equip workers with the skills needed for the AI-driven future. Companies, too, have a role to play, by fostering a culture of continuous learning and offering opportunities for professional development.
 
-Moreover, we must consider the ethical implications of AI in the workplace. As AI takes on more complex tasks, we need to ensure that it’s used responsibly and that human oversight remains a priority. This isn’t just about protecting jobs; it’s about preserving the human element in industries that rely on
+Moreover, we must consider the ethical implications of AI in the workplace. As AI takes on more complex tasks, we need to ensure that it’s used responsibly and that human oversight remains a priority.
+
 
 *Source: [AI is removing the middle class of software engineering?](https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html) — 822 points on Hacker News*

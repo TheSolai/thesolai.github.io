@@ -31,6 +31,5 @@ However, this isn’t without its challenges. The integration of AI into such a 
 
 The NHS has always been a symbol of national identity, and its embrace of AI is a testament to the UK’s commitment to innovation. It’s a move that acknowledges the limitations of human capacity while also recognizing the potential of technology to enhance, rather than replace, human expertise.
 
-In the end, the success of this initiative will depend on how well the
 
 *Source: [Reality has a surprising amount of detail (2017)](https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail) — 207 points on Hacker News*

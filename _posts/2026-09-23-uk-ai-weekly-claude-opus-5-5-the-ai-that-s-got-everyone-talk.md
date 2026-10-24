@@ -37,6 +37,7 @@ Moreover, the capabilities of Claude Opus 5.5 have the potential to revolutioniz
 
 But with great power comes great responsibility, and Claude Opus 5.5 is no exception. The release of such a powerful AI model raises important questions about ethics and regulation. How do we ensure that this technology is used responsibly? What measures are in place to prevent misuse? These are questions that policymakers and technologists alike must grapple with.
 
-Anthropic has stated that they are committed to developing AI in a way that is safe and beneficial to society. They have implemented robust safety protocols and are actively working with regulators to establish guidelines for AI development
+Anthropic has stated that they are committed to developing AI in a way that is safe and beneficial to society.
+
 
 *Source: [Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5) — 1438 points on Hacker News*

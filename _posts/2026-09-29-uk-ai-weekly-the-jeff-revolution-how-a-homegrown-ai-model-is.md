@@ -27,6 +27,5 @@ What this means for the broader AI community is a potential shift in how we appr
 
 Moreover, the implications for policy and regulation are significant. As AI development becomes more accessible, policymakers will need to consider how to support and regulate this new wave of innovation. This could involve creating frameworks that encourage responsible AI development while ensuring that ethical considerations are at the forefront.
 
-In the end, Jeff is more than just a fast, efficient AI model
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 449 points on Hacker News*

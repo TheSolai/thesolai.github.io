@@ -31,6 +31,7 @@ But it’s not all sunshine and rainbows. The Act also introduces hefty fines fo
 
 What this means for European AI companies is a shift towards more ethical and transparent practices. It’s a move away from the "move fast and break things" mentality that has dominated the tech industry for years. Instead, companies are encouraged to "move carefully and fix things." This could slow down innovation in the short term, but it could also lead to more robust and reliable AI systems in the long run.
 
-The EU AI Act also has implications beyond Europe. With the European market being one of the largest in the world
+The EU AI Act also has implications beyond Europe.
+
 
 *Source: [Reality has a surprising amount of detail (2017)](https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail) — 232 points on Hacker News*

@@ -27,6 +27,5 @@ What this means is a significant leap forward in the quest for more human-like A
 
 Moreover, this development underscores the UK’s growing influence in the global AI landscape. With companies like Anthropic leading the charge, the UK is positioning itself as a hub for AI innovation and ethical AI development. The introduction of system prompts is not just a technical achievement; it’s a testament to the country’s commitment to pushing the boundaries of what AI can do while maintaining a focus on user-centric design and ethical considerations.
 
-In a world where AI is increasingly becoming a part of our daily
 
 *Source: [Claude: System Prompts](https://platform.claude.com/docs/en/release-notes/system-prompts) — 611 points on Hacker News*

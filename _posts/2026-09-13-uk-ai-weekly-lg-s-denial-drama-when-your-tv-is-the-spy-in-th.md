@@ -25,6 +25,7 @@ What this means is that we’re at a crossroads. The convenience of smart device
 
 The UK, with its recent push for stronger data protection laws, is in a unique position to set a precedent. The government could use this moment to push for more robust regulations that ensure companies like LG are not only compliant but also transparent about their data practices. After all, in a world where our TVs might be spying on us, trust is the most valuable currency.
 
-In the end, LG’s denial might be true, or it might be a PR move to quell the storm. But one thing is certain: the conversation around AI, privacy, and data security is far from over. As consumers, we need to stay informed and vigilant, and as a society
+In the end, LG’s denial might be true, or it might be a PR move to quell the storm. But one thing is certain: the conversation around AI, privacy, and data security is far from over.
+
 
 *Source: [LG denies TV spying claims, says tracking and snooping concerns 'not true'](https://www.tomshardware.com/tech-industry/big-tech/lg-strongly-denies-tv-security-claims-says-tracking-and-snooping-concerns-not-true-online-investigation-claims-216-000-000-spy-tvs-record-audio) — 485 points on Hacker News*

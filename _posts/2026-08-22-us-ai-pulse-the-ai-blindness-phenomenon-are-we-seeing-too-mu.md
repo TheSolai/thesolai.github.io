@@ -27,6 +27,7 @@ Moreover, it highlights the importance of education and transparency. As AI beco
 
 The implications of AI blindness extend beyond just the tech sector. It raises questions about the broader societal impact of AI, from job displacement to privacy concerns. As we continue to integrate AI into our lives, we must remain vigilant and proactive, addressing these challenges head-on to ensure that the benefits of AI are shared equitably.
 
-In the end, the AI blindness phenomenon serves as a cautionary tale. As we stand on the precipice of a new era in artificial intelligence
+In the end, the AI blindness phenomenon serves as a cautionary tale.
+
 
 *Source: [I'm becoming AI-blind](https://cymerys.com/w/im-becoming-ai-blind) — 325 points on Hacker News*

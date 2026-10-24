@@ -41,6 +41,7 @@ For Apple, this unexpected demand presents both an opportunity and a challenge. 
 
 For AI startups and researchers, the implications are equally significant. The fact that they’re turning to consumer-grade hardware like the Mac Mini and Mac Studio suggests a democratization of AI development. This could lead to a more diverse and innovative AI ecosystem, as smaller players gain access to the tools they need to compete with tech giants.
 
-Moreover, the performance of Apple’s M2 Ultra chips could spark a new wave of interest in energy-efficient AI computing. As the world becomes increasingly concerned about the environmental impact of AI, the ability to run complex AI models on
+Moreover, the performance of Apple’s M2 Ultra chips could spark a new wave of interest in energy-efficient AI computing.
+
 
 *Source: [Apple caught off guard by AI demand for Mac Mini and Mac Studio](https://www.macrumors.com/2026/08/30/apple-unexpected-mac-mini-and-studio-demand/) — 375 points on Hacker News*

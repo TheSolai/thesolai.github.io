@@ -41,6 +41,5 @@ The Act's focus on risk assessment and mitigation means that companies will need
 
 The rise of small models in Europe signifies a broader trend towards more sustainable and inclusive AI development. As the EU AI Act comes into force, it will likely accelerate this trend, pushing companies to rethink their strategies and priorities. This could lead to a more balanced AI ecosystem, where power and efficiency coexist, and innovation thrives.
 
-Moreover, the emphasis on smaller models could have global
 
 *Source: [Small Models Have Arrived](https://calv.info/small-models-have-arrived) — 592 points on Hacker News*

@@ -33,6 +33,7 @@ title: "US AI Pulse: The Emotional AI Revolution: Can Machines Really Feel?"
 
 The rise of emotional AI marks a new era in human-computer interaction. It challenges our perceptions of what AI can do and forces us to confront the emotional capabilities of machines. As this technology develops, it will be crucial to establish ethical guidelines and ensure that emotional AI is used responsibly.
 
-Moreover, the success of EmpathAI could inspire other startups and researchers to explore similar avenues, leading to a surge in emotional AI applications across various industries. This could result in a more empathetic and understanding digital world, but it also
+Moreover, the success of EmpathAI could inspire other startups and researchers to explore similar avenues, leading to a surge in emotional AI applications across various industries.
+
 
 *Source: [Grieving the loss of details](https://purplesyringa.moe/blog/grieving-the-loss-of-details/) — 427 points on Hacker News*

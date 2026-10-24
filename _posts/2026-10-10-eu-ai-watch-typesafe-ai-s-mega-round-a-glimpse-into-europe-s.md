@@ -27,6 +27,7 @@ Now, let's talk about the EU AI Act. If you're not familiar, this is the Europea
 
 What this means is that we're likely to see more European AI companies following in TypeSafe's footsteps. As the EU AI Act comes into full force, companies that can demonstrate a commitment to safety and compliance will be better positioned to navigate the regulatory landscape. This could lead to a new wave of innovation in AI, one that balances the drive for technological advancement with a strong emphasis on ethical considerations and risk management.
 
-Moreover, the influx of capital into TypeSafe AI is a clear signal to investors that the European AI market is ripe for investment. As more investors look to Europe, we can expect to see increased competition, which in turn will drive further innovation and growth. This is a positive development for the European tech scene, which has long
+Moreover, the influx of capital into TypeSafe AI is a clear signal to investors that the European AI market is ripe for investment. As more investors look to Europe, we can expect to see increased competition, which in turn will drive further innovation and growth.
+
 
 *Source: [Typesafe AI raises $870M at $7.5B](https://typesafe.ai/blog/series-ai) — 389 points on Hacker News*

@@ -37,6 +37,7 @@ The release of GPT-5.6 signals a new era in AI development, one where machines a
 
 Moreover, this development puts pressure on other tech giants to step up their game. Google, Microsoft, and others will likely accelerate their research to catch up, leading to a faster of innovation and competition. This could drive rapid advancements but also raise concerns about monopolies and ethical oversight.
 
-On the flip side, the tech community is buzzing with both awe and apprehension. While the possibilities are exhilarating, there’s a palpable fear of the unknown. How do we ensure that these powerful tools are
+On the flip side, the tech community is buzzing with both awe and apprehension. While the possibilities are exhilarating, there’s a palpable fear of the unknown.
+
 
 *Source: [GPT-5.6](https://openai.com/index/gpt-5-6/) — 1171 points on Hacker News*

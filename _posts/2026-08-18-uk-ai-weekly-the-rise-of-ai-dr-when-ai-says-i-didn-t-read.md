@@ -25,6 +25,5 @@ What this means is a paradigm shift in how we approach AI development. AI;DR is 
 
 The reception to AI;DR has been mixed, as one might expect. On one hand, it’s been hailed as a game-changer, a necessary step towards more reliable AI. On the other hand, some critics argue that it’s a cop-out, a way for AI to shirk responsibility. However, the team behind AI;DR is quick to point out that their system is not about avoiding responsibility but about embracing it. By acknowledging when it hasn’t read something, AI;DR is taking responsibility for its limitations and encouraging users to do the same.
 
-In a world where AI is often seen as a black box, AI;DR
 
 *Source: [AI;DR (AI; Didn't Read)](https://www.rickmanelius.com/p/aidr-ai-didnt-read) — 791 points on Hacker News*

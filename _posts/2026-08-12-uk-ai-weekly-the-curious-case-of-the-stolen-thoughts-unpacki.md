@@ -23,6 +23,5 @@ What this means is twofold. First, it challenges the current paradigm of AI deve
 
 Moreover, this incident serves as a wake-up call for policymakers and industry leaders. The race to develop more advanced AI systems must be balanced with the need for transparency and accountability. The UK’s recent AI policy framework is a step in the right direction, but it needs to be complemented with concrete measures to address the challenges posed by such developments. This includes investing in research to develop robust security protocols for AI systems and fostering a culture of openness and collaboration within the AI community.
 
-In the end, the story of the stolen
 
 *Source: [Stealing Reasoning Traces from Proprietary LLM APIs](https://stolen-thoughts.com/) — 581 points on Hacker News*

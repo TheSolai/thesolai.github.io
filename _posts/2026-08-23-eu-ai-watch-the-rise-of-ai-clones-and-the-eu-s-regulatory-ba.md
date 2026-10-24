@@ -25,6 +25,7 @@ What this means is that the EU AI Act is not just a regulatory framework but a c
 
 Moreover, the Act's focus on trustworthiness is a nod to the growing public concern about AI's impact on society. As AI clones become more integrated into our daily lives, building trust with users will be essential. This involves not only ensuring that AI systems are reliable and secure but also addressing the ethical and social implications of their use.
 
-The rise of AI clones is a testament to the rapid pace of technological advancement. It also highlights the
+The rise of AI clones is a testament to the rapid pace of technological advancement.
+
 
 *Source: [Munder Difflin – Agent harness to run an office of your clones](https://munderdiffl.in/) — 270 points on Hacker News*

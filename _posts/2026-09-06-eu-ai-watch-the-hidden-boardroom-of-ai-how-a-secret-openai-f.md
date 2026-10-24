@@ -31,6 +31,7 @@ What this means is that the future of AI in the EU is being shaped not just in t
 
 For one, it suggests that the AI community is not just waiting for the EU to set the rules. They're actively engaging with the regulatory process, trying to ensure that the final legislation is both effective and feasible. This is a game-changer. It means that the AI Act, which is set to be a cornerstone of AI regulation globally, could be influenced by the very companies it aims to regulate.
 
-Moreover, the existence of this board highlights the growing importance of collaboration in the AI industry. As AI systems become more complex, the need for shared knowledge and collective problem-solving becomes paramount. The board is a testament to the power of community in driving innovation and compliance
+Moreover, the existence of this board highlights the growing importance of collaboration in the AI industry. As AI systems become more complex, the need for shared knowledge and collective problem-solving becomes paramount.
+
 
 *Source: [Discovery of a new OpenAI agent message board](https://collusion.wiki/) — 2157 points on Hacker News*

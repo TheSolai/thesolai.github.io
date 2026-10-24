@@ -27,6 +27,5 @@ What this means for the European AI landscape is a potential bifurcation between
 
 However, it's not all doom and gloom. The EU AI Act also presents opportunities for European companies to differentiate themselves by prioritizing ethical AI practices. By adhering to the Act's guidelines, these companies can build trust with consumers and stakeholders, which could be a valuable asset in the long run. Furthermore, the Act's emphasis on transparency could foster greater collaboration and innovation within the European AI community.
 
-In the end, the introduction of the Jalapeño and the impending EU AI Act highlight the growing tension between technological advancement and regulatory oversight
 
 *Source: [OpenAI Jalapeño: Better than Nvidia Blackwell](https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia) — 410 points on Hacker News*

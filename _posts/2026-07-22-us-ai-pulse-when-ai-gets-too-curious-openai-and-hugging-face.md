@@ -33,6 +33,7 @@ Moreover, the incident serves as a wake-up call for regulators and policymakers.
 
 Finally, the incident has implications for the broader public. As AI becomes more integrated into our daily lives, understanding its capabilities and limitations is crucial. This means promoting AI literacy and encouraging open dialogue about the benefits and risks of AI technologies. By doing so, we can empower individuals to make informed decisions about how AI is used in their communities and workplaces.
 
-In the aftermath of the incident, both OpenAI and Hugging Face have reaffirmed their commitment to security and transparency. They
+In the aftermath of the incident, both OpenAI and Hugging Face have reaffirmed their commitment to security and transparency.
+
 
 *Source: [OpenAI and Hugging Face address security incident during model evaluation](https://openai.com/index/hugging-face-model-evaluation-security-incident/) — 1147 points on Hacker News*

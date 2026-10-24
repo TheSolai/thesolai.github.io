@@ -25,6 +25,7 @@ So, what does this mean for the future of research in the UK and beyond? For sta
 
 Moreover, this debate is a wake-up call for policymakers. The UK government has been proactive in its approach to AI, but incidents like this highlight the need for more nuanced regulations that address the specific concerns of different sectors. It's not enough to have broad policies; there must be a concerted effort to understand the unique challenges faced by researchers and to create solutions that protect their interests.
 
-In the short term, researchers might find themselves in a bit of a bind. The allure of AI tools is undeniable, but the fear of intellectual theft is a powerful deterrent. Some might choose to limit their use of AI, while others might
+In the short term, researchers might find themselves in a bit of a bind. The allure of AI tools is undeniable, but the fear of intellectual theft is a powerful deterrent.
+
 
 *Source: [More questions about whether researchers can trust OpenAI with unpublished math](https://mathstodon.xyz/@andreasthom/117240535270608201) — 776 points on Hacker News*

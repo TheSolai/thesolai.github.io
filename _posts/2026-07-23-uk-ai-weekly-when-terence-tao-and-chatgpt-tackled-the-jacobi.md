@@ -27,6 +27,5 @@ Moreover, the conversation underscores the importance of interdisciplinary colla
 
 The Tao-ChatGPT dialogue also raises important questions about the future of AI in academia and research. How should institutions integrate AI into their research methodologies? What ethical considerations should guide the use of AI in sensitive areas like mathematics and science? These are questions that policymakers and researchers will need to address as AI becomes more entrenched in various fields.
 
-In the end, the conversation between Terence Tao and
 
 *Source: [Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample](https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56) — 749 points on Hacker News*

@@ -43,6 +43,7 @@ The EU AI Act will likely necessitate a shift in how these companies approach AI
 
 ### The Road Ahead
 
-The OpenAI and Hugging Face incident is a cautionary tale, but it’s also a call to action. As the EU AI Act comes into effect, companies will need to adapt and
+The OpenAI and Hugging Face incident is a cautionary tale, but it’s also a call to action.
+
 
 *Source: [OpenAI and Hugging Face address security incident during model evaluation](https://openai.com/index/hugging-face-model-evaluation-security-incident/) — 999 points on Hacker News*

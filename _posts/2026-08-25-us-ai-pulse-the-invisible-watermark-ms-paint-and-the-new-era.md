@@ -21,6 +21,7 @@ So, why is Microsoft doing this? The answer lies in the growing concerns around 
 
 What this means for users is a bit of a mixed bag. On one hand, the introduction of invisible watermarks can be seen as a positive step towards creating a more secure and accountable digital environment. It adds a layer of transparency and traceability that can help in verifying the authenticity of images and combating deepfakes. On the other hand, it raises important questions about privacy and user control. The idea of every image being marked with a unique identifier, even those created locally, might leave some users feeling uneasy. It's a delicate balance between security and privacy, and Microsoft's approach is sure to be scrutinized closely.
 
-For the AI industry, this development is a clear signal that the era of unregulated, untraceable AI-generated content is coming to an end. As more companies adopt similar measures, the landscape of digital content creation is set to change dramatically. This could lead to increased trust in AI-generated content, as users and platforms have more tools to verify authenticity. However, it
+For the AI industry, this development is a clear signal that the era of unregulated, untraceable AI-generated content is coming to an end. As more companies adopt similar measures, the landscape of digital content creation is set to change dramatically. This could lead to increased trust in AI-generated content, as users and platforms have more tools to verify authenticity.
+
 
 *Source: [MS Paint and Photos inivisibly watermark even locally generated output with GUID](https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/) — 663 points on Hacker News*

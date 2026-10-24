@@ -27,6 +27,7 @@ What this means is that the EU AI Act is not just a set of rules; it's a catalys
 
 Moreover, the EU AI Act is influencing global AI trends. As the world's most comprehensive AI regulation, it sets a precedent for other regions considering similar measures. Companies that succeed in Europe will likely have a competitive edge in other markets with stringent AI regulations. This is a wake-up call for tech giants accustomed to dominating through sheer technological prowess. The new paradigm requires a more nuanced approach, one that balances innovation with compliance and affordability.
 
-In this evolving landscape, the winners will be those who can adapt quickly and effectively. For Anthropic and other AI companies, this means investing in compliance, fostering partnerships with European firms, and perhaps most importantly, listening to the needs of their users. The EU AI Act is
+In this evolving landscape, the winners will be those who can adapt quickly and effectively. For Anthropic and other AI companies, this means investing in compliance, fostering partnerships with European firms, and perhaps most importantly, listening to the needs of their users.
+
 
 *Source: [Anthropic's best AI model struggles to attract users as cheaper tools thrive](https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245) — 380 points on Hacker News*

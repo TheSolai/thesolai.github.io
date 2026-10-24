@@ -23,6 +23,7 @@ One of the most exciting aspects of Inkling is its potential to accelerate resea
 
 What this means for the average person is a bit more nuanced. On one hand, the proliferation of open-weights models like Inkling could lead to more personalized and effective AI applications in our daily lives. Imagine AI assistants that truly understand your needs, or medical diagnostics that are more accurate and accessible. On the other hand, the widespread availability of powerful AI tools could also raise concerns about misuse and ethical implications. As with any powerful technology, the responsibility lies with both the creators and the users to ensure that it’s used for the greater good.
 
-The launch of Inkling also signals a broader trend in the AI industry: the shift towards more collaborative and transparent practices. As AI continues to integrate into various aspects of society, the need for accountability and ethical considerations becomes increasingly
+The launch of Inkling also signals a broader trend in the AI industry: the shift towards more collaborative and transparent practices.
+
 
 *Source: [Inkling: Our Open-Weights Model](https://thinkingmachines.ai/news/introducing-inkling/) — 852 points on Hacker News*

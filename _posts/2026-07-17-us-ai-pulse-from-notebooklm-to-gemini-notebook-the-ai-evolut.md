@@ -25,6 +25,7 @@ But here’s the real kicker: the implications for productivity and creativity a
 
 What this means is that we’re on the cusp of a new era in human-AI collaboration. As AI systems become more sophisticated, they’re not just tools anymore; they’re companions in our creative and intellectual pursuits. This shift has the potential to revolutionize industries, from education and research to media and entertainment. The possibilities are endless, and the future is looking brighter (and smarter) than ever.
 
-Of course, with great power comes great responsibility. As AI becomes more integrated into our lives, it’s crucial that we continue to address ethical considerations, such as bias, privacy, and the potential for misuse. But if we can navigate these challenges
+Of course, with great power comes great responsibility. As AI becomes more integrated into our lives, it’s crucial that we continue to address ethical considerations, such as bias, privacy, and the potential for misuse.
+
 
 *Source: [NotebookLM is now Gemini Notebook](https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/) — 288 points on Hacker News*

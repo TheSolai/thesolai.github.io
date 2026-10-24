@@ -31,6 +31,7 @@ What this means is that we’re on the cusp of a new era in human-computer inter
 
 Moreover, the release of SpeechAnalyzer could spur a wave of innovation across the AI industry. Startups and developers will likely rush to integrate this technology into their products, leading to a new wave of applications and services. We could see a surge in AI-driven solutions for education, entertainment, and beyond. The ripple effects could be profound, transforming how we interact with technology and each other.
 
-Apple’s move also underscores the growing competition in the AI space. With tech giants like Google, Amazon
+Apple’s move also underscores the growing competition in the AI space.
+
 
 *Source: [Apple's new SpeechAnalyzer API, benchmarked against Whisper and its predecessor](https://get-inscribe.com/blog/apple-speech-api-benchmark.html) — 515 points on Hacker News*

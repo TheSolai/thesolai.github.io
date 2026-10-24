@@ -27,6 +27,7 @@ What this means is that AI development is no longer the exclusive domain of big 
 
 Moreover, Jeff’s open-source nature means that it can be continuously improved and adapted by the community. This collaborative approach is at the heart of the open-source movement and has the potential to accelerate AI development in ways that traditional, closed systems cannot. As more people contribute to Jeff, the model will become more robust, versatile, and powerful.
 
-Of course, with great power comes great responsibility. The rise of Jeff also raises important questions about the ethical implications of AI and the need for robust frameworks to guide its development and use. As AI becomes more accessible, it’s crucial
+Of course, with great power comes great responsibility. The rise of Jeff also raises important questions about the ethical implications of AI and the need for robust frameworks to guide its development and use.
+
 
 *Source: [Jeff – Jev-compatible 0.8B decision models, trained at home, ~30 ms](https://github.com/firelex/jeff) — 477 points on Hacker News*

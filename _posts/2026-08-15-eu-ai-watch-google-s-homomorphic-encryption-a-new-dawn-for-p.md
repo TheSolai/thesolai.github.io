@@ -31,6 +31,7 @@ Moreover, this development could position Europe as a leader in the field of pri
 
 Of course, it’s not all smooth sailing. Implementing homomorphic encryption is no small feat. It requires significant computational resources and a deep understanding of both cryptography and AI. But with Google’s research paving the way, we can expect to see more tools and frameworks emerge to make this technology accessible to a wider range of companies.
 
-In the grand scheme of things, Google’s homomorphic encryption is a shot in the arm for the EU’s AI ambitions. It offers
+In the grand scheme of things, Google’s homomorphic encryption is a shot in the arm for the EU’s AI ambitions.
+
 
 *Source: [Google is making private AI practical with homomorphic encryption](https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/) — 342 points on Hacker News*

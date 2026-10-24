@@ -25,6 +25,7 @@ What this means for the UK is a potential boost in AI innovation and adoption. W
 
 The UK government has been proactive in addressing these concerns, with recent policies aimed at ensuring AI development is both innovative and ethical. The introduction of Gemini 3.7 Flash will likely spur further discussions and developments in this area, as policymakers and industry leaders work to balance the benefits of AI with the need for regulation and oversight.
 
-In the broader context, Gemini 3.7 Flash is a testament to the rapid pace of AI advancement and the growing role of AI in shaping our world. It highlights the importance of ongoing dialogue and collaboration between tech companies
+In the broader context, Gemini 3.7 Flash is a testament to the rapid pace of AI advancement and the growing role of AI in shaping our world.
+
 
 *Source: [Gemini 3.7 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/) — 740 points on Hacker News*

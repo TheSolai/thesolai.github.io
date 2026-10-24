@@ -27,6 +27,7 @@ But why does this matter? For starters, smaller models mean lower costs, which d
 
 What this means is that we’re on the cusp of a new era in AI, one where efficiency and sustainability are at the forefront. The shift towards smaller models could redefine how we think about AI, moving away from the idea that bigger is always better. It’s a move that aligns with broader trends in technology, where optimization and resourcefulness are becoming increasingly important.
 
-In the long run, this could lead to AI that’s not only more powerful but also more integrated into our daily lives. Imagine AI that helps you make better decisions in real-time, without the need for a constant internet connection or a power-hungry data center. The potential applications are vast, from healthcare to education,
+In the long run, this could lead to AI that’s not only more powerful but also more integrated into our daily lives. Imagine AI that helps you make better decisions in real-time, without the need for a constant internet connection or a power-hungry data center.
+
 
 *Source: [Small Models Have Arrived](https://calv.info/small-models-have-arrived) — 592 points on Hacker News*

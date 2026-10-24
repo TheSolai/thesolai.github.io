@@ -29,6 +29,7 @@ The UK government's role in this development cannot be overstated. Recognizing t
 
 What this means is that the UK is not just a player in the AI field; it is now a leader. Astra's release marks a new chapter in the AI narrative, one where the UK is setting the pace and direction. This could have profound implications for the global AI landscape. As other countries and companies look to the UK for inspiration, we could see a shift in how AI is developed and deployed worldwide. The emphasis on ethical AI and societal impact, which is at the core of Astra's development, could become a benchmark for future AI projects.
 
-Moreover, Astra's capabilities could drive significant economic growth. By enhancing productivity and enabling new business models, AI has the potential to create new industries and transform existing ones. The UK's early adoption and development of advanced AI technologies like Astra could give it a competitive edge in the global market. This could attract investment, spur innovation, and create jobs, contributing to the country's economic prosperity
+Moreover, Astra's capabilities could drive significant economic growth. By enhancing productivity and enabling new business models, AI has the potential to create new industries and transform existing ones. The UK's early adoption and development of advanced AI technologies like Astra could give it a competitive edge in the global market.
+
 
 *Source: [GPT-6 Astra](https://openai.com/index/gpt-6-astra/) — 1596 points on Hacker News*

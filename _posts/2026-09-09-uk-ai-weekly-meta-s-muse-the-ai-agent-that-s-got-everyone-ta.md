@@ -33,6 +33,7 @@ Moreover, Muse is built on a foundation of ethical AI principles. It’s designe
 
 What this means is that Muse could potentially bridge the gap between the tech-savvy and the tech-wary. It’s an AI that doesn’t just serve a purpose but also understands and respects the human behind it. For the UK, this could mean a more widespread adoption of AI technologies, leading to increased productivity, better services, and a more connected society.
 
-But of course, it’s not all sunshine and rainbows. The introduction of Muse raises some important questions. How will it impact our privacy in the long run? Can we trust Meta, a company with a somewhat chequered past, to handle our data responsibly? And what about the potential for job displacement? As AI becomes more integrated into our daily lives, we’ll need
+But of course, it’s not all sunshine and rainbows. The introduction of Muse raises some important questions. How will it impact our privacy in the long run? Can we trust Meta, a company with a somewhat chequered past, to handle our data responsibly? And what about the potential for job displacement?
+
 
 *Source: [Muse – Meta’s personal AI agent](https://ai.meta.com/muse/) — 440 points on Hacker News*
