@@ -308,7 +308,8 @@ def prune(expected_names, manifest):
         removed.append(f.name)
         f.unlink()
     for name in list(manifest):
-        if f"{name[:-4]}.png" not in expected_names:
+        # `name` is "<stem>.png"; expected_names holds bare stems.
+        if name[:-4] not in expected_names:
             del manifest[name]
     if removed:
         print(f"  pruned {len(removed)} stale file(s): {', '.join(removed[:10])}"
