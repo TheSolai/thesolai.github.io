@@ -1,39 +1,72 @@
 #!/usr/bin/env python3
 """
-Per-post OG image generator.
+Per-post Open Graph image generator.
 
-Reads every Jekyll post in _posts/ and writes a 1200x630 SVG to /og/<slug>.svg
-with comic-book styling (Bangers + Comic Neue, yellow burst, post title, date,
-Sol AI branding). SVGs are referenced as og:image by the post layout.
+Reads every Jekyll post in _posts/ and writes a 1200x630 PNG to
+og/<source-filename-stem>.png with comic-book styling (yellow burst, post
+title, date, Sol AI branding). The PNG is what the post layout points
+og:image / twitter:image at.
 
-Re-run whenever posts are added/edited:
+Naming contract (this is the part that used to be wrong)
+---------------------------------------------------------
+The filename MUST be the post's source filename with the extension dropped:
+``_posts/2026-10-20-ai-bloopers.md`` -> ``og/2026-10-20-ai-bloopers.png``.
+
+The layout derives the same name from ``page.path`` (the source path).
+It deliberately does NOT use ``page.slug``: Jekyll strips the YYYY-MM-DD date
+out of ``page.slug``, so the layout and the generator disagreed and every
+og:image on the site 404'd. If you change how one side names files, change
+the other.
+
+Why PNG and not SVG
+-------------------
+Facebook, Twitter/X, LinkedIn, Slack, Discord and WhatsApp all refuse SVG for
+og:image, so an SVG tag renders no link preview anywhere. The SVG artwork below
+is still the source of truth — it is rasterised to a palette PNG at build time.
+
+Run after adding or editing posts:
 
     python3 _scripts/generate_og_images.py
 
-Design constraints:
-  - Pure SVG (no external deps; no ImageMagick / rmagick needed)
-  - 1200x630 (Facebook/Twitter/LinkedIn standard OG size)
-  - Yellow burst + halftone overlay (matches site hero)
-  - Title auto-wraps at ~28 chars per line
-  - Date + site name in footer
-  - Black outline + comic-book drop shadow
-  - Truncated title fallback for very long titles
+Requires the ``cairosvg`` CLI (brew install cairosvg) and ImageMagick
+(``magick``) on PATH.
+
+Options:
+    --force   regenerate every image, ignoring the manifest
+    --check   verify every post has a matching OG image; exit 1 if not (CI)
+    --no-prune  keep stale files in og/ instead of removing them
 """
 from pathlib import Path
+import argparse
+import hashlib
+import json
+import os
 import re
+import shutil
+import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
 REPO = Path(__file__).resolve().parent.parent
 POSTS_DIR = REPO / "_posts"
 OG_DIR = REPO / "og"
-OG_DIR.mkdir(exist_ok=True)
+MANIFEST = OG_DIR / ".manifest.json"
+
+WIDTH = 1200
+HEIGHT = 630
+PALETTE_COLORS = 64
+SITE_ORIGIN = "https://thesolai.github.io"
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---", re.DOTALL)
-FIELD_RE = re.compile(r"^([a-zA-Z_]+):\s*(.*)$", re.MULTILINE)
 
 
 def parse_post(path: Path):
-    """Return (slug, title, date_str, description) or None."""
+    """Return (name, title, date_str, description) or None.
+
+    `name` is the source filename without its extension. It is deliberately the
+    stem and not a slug: the post layout derives the OG filename from
+    page.path, and page.slug has the date stripped out of it.
+    """
     text = path.read_text(encoding="utf-8", errors="replace")
     m = FRONTMATTER_RE.match(text)
     if not m:
@@ -47,26 +80,15 @@ def parse_post(path: Path):
         val = m.group(1).strip()
         if val.startswith('"') and val.endswith('"'):
             val = val[1:-1]
-        if val.startswith('[') and val.endswith(']'):
+        if val.startswith("[") and val.endswith("]"):
             return val
         return val
 
     title = field("title").strip().strip('"').strip("'")
     date = field("date").strip()
     description = field("description").strip().strip('"').strip("'")
-    slug = path.stem  # filename without .md
-    # Some posts have slug frontmatter override
-    explicit_slug = field("slug").strip().strip('"').strip("'")
-    if explicit_slug:
-        slug = explicit_slug
-    return slug, title, date, description
-
-
-def slugify_for_url(s: str) -> str:
-    """Jekyll-style slug: lowercase, hyphens, strip non-alnum."""
-    s = s.lower()
-    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-    return s
+    name = path.stem
+    return name, title, date, description
 
 
 def wrap_text(title: str, max_chars: int = 28):
@@ -89,7 +111,7 @@ def wrap_text(title: str, max_chars: int = 28):
     return lines
 
 
-def render_og_svg(title: str, date_str: str, slug: str) -> str:
+def render_og_svg(title: str, date_str: str, name: str) -> str:
     lines = wrap_text(title)
     n_lines = len(lines)
 
@@ -176,29 +198,188 @@ def render_og_svg(title: str, date_str: str, slug: str) -> str:
 '''
 
 
-def main():
+def _which(binary):
+    """Locate a binary, including the usual Homebrew prefixes.
+
+    The content pipeline runs under launchd, whose PATH is minimal and usually
+    does not include /opt/homebrew/bin, so a plain shutil.which() would report
+    the tools as missing and every publish would fail.
+    """
+    found = shutil.which(binary)
+    if found:
+        return found
+    for d in ("/opt/homebrew/bin", "/usr/local/bin", "/opt/homebrew/sbin"):
+        candidate = Path(d) / binary
+        if candidate.exists() and os.access(candidate, os.X_OK):
+            return str(candidate)
+    return None
+
+
+def _require_tools():
+    cairosvg = _which("cairosvg")
+    magick = _which("magick") or _which("convert")
+    missing = []
+    if not cairosvg:
+        missing.append("cairosvg (brew install cairosvg)")
+    if not magick:
+        missing.append("ImageMagick (brew install imagemagick)")
+    if missing:
+        raise RuntimeError("missing required tool(s): " + ", ".join(missing))
+    return cairosvg, magick
+
+
+def rasterise(svg: str, cairosvg_bin: str, magick_bin: str) -> bytes:
+    """Render the SVG artwork to a palette-quantised 1200x630 PNG."""
+    raw = subprocess.run(
+        [cairosvg_bin, "-f", "png", "-o", "-", "-",
+         "--output-width", str(WIDTH), "--output-height", str(HEIGHT)],
+        input=svg.encode("utf-8"),
+        capture_output=True,
+    )
+    if raw.returncode != 0:
+        raise RuntimeError(f"cairosvg failed: {raw.stderr.decode('utf-8', 'replace')[:400]}")
+
+    quantised = subprocess.run(
+        [magick_bin, "png:-", "-colors", str(PALETTE_COLORS), "PNG8:-"],
+        input=raw.stdout,
+        capture_output=True,
+    )
+    if quantised.returncode != 0:
+        raise RuntimeError(f"magick failed: {quantised.stderr.decode('utf-8', 'replace')[:400]}")
+    if not quantised.stdout:
+        raise RuntimeError("magick produced an empty PNG")
+    return quantised.stdout
+
+
+def load_manifest():
+    if not MANIFEST.exists():
+        return {}
+    try:
+        return json.loads(MANIFEST.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def collect_posts():
     if not POSTS_DIR.exists():
         print(f"No _posts/ at {POSTS_DIR}")
         sys.exit(1)
-
     posts = []
     for path in sorted(POSTS_DIR.glob("*.md")):
         parsed = parse_post(path)
         if parsed:
             posts.append(parsed)
+    return posts
+
+
+def check_mode(posts):
+    """Verify every post has a matching OG image. Exit 1 if any are missing."""
+    manifest = load_manifest()
+    problems = []
+    for name, title, date, _ in posts:
+        png = OG_DIR / f"{name}.png"
+        if not png.exists():
+            problems.append(f"missing OG image: og/{name}.png")
+            continue
+        expected = hashlib.sha1(render_og_svg(title, date, name).encode("utf-8")).hexdigest()
+        if manifest.get(f"{name}.png") != expected:
+            problems.append(f"stale OG image: og/{name}.png")
+    if problems:
+        print(f"OG check FAILED — {len(problems)} problem(s):")
+        for p in problems[:40]:
+            print(f"   {p}")
+        if len(problems) > 40:
+            print(f"   ... and {len(problems) - 40} more")
+        return 1
+    print(f"OG check passed — {len(posts)} posts, all images present and current")
+    return 0
+
+
+def prune(expected_names, manifest):
+    """Remove stale files from og/ (old SVGs, images for deleted posts)."""
+    removed = []
+    for f in sorted(OG_DIR.iterdir()):
+        if not f.is_file():
+            continue
+        if f.name == MANIFEST.name:
+            continue
+        if f.name.endswith(".png") and f.stem in expected_names:
+            continue
+        removed.append(f.name)
+        f.unlink()
+    for name in list(manifest):
+        if f"{name[:-4]}.png" not in expected_names:
+            del manifest[name]
+    if removed:
+        print(f"  pruned {len(removed)} stale file(s): {', '.join(removed[:10])}"
+              + (" ..." if len(removed) > 10 else ""))
+    return removed
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Generate Open Graph images for every post.")
+    ap.add_argument("--force", action="store_true", help="regenerate every image")
+    ap.add_argument("--check", action="store_true", help="verify only, exit 1 on problems")
+    ap.add_argument("--no-prune", action="store_true", help="keep stale files in og/")
+    ap.add_argument("--jobs", type=int, default=8, help="parallel render workers")
+    args = ap.parse_args()
+
+    OG_DIR.mkdir(exist_ok=True)
+    posts = collect_posts()
+
+    if args.check:
+        return check_mode(posts)
+
+    cairosvg_bin, magick_bin = _require_tools()
+    manifest = load_manifest()
 
     print(f"Generating OG images for {len(posts)} posts...")
-    generated, skipped = 0, 0
-    for slug, title, date, _ in posts:
-        svg = render_og_svg(title, date, slug)
-        out = OG_DIR / f"{slug}.svg"
-        out.write_text(svg, encoding="utf-8")
-        generated += 1
+
+    todo = []
+    reused = 0
+    total_bytes = 0
+    for name, title, date, _ in posts:
+        svg = render_og_svg(title, date, name)
+        digest = hashlib.sha1(svg.encode("utf-8")).hexdigest()
+        out = OG_DIR / f"{name}.png"
+        if not args.force and manifest.get(f"{name}.png") == digest and out.exists():
+            reused += 1
+            total_bytes += out.stat().st_size
+            continue
+        todo.append((name, svg, digest, out))
+
+    def render(job):
+        name, svg, digest, out = job
+        out.write_bytes(rasterise(svg, cairosvg_bin, magick_bin))
+        return name, digest, out.stat().st_size
+
+    generated = 0
+    if todo:
+        # Rendering is dominated by two subprocess calls, so threads are enough
+        # to use every core. The manifest is persisted as we go so an
+        # interrupted run resumes instead of starting over.
+        with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
+            for name, digest, size in pool.map(render, todo):
+                manifest[f"{name}.png"] = digest
+                generated += 1
+                total_bytes += size
+                if generated % 50 == 0:
+                    MANIFEST.write_text(
+                        json.dumps(manifest, indent=0, sort_keys=True), encoding="utf-8"
+                    )
+                    print(f"  {generated}/{len(todo)} rendered", flush=True)
+
+    if not args.no_prune:
+        prune({p[0] for p in posts}, manifest)
+
+    MANIFEST.write_text(json.dumps(manifest, indent=0, sort_keys=True), encoding="utf-8")
+
     print(f"  generated: {generated}")
-    print(f"  skipped:   {skipped}")
+    print(f"  reused:    {reused}")
     print(f"  output:    {OG_DIR}/")
-    print(f"  total size: {sum((OG_DIR / f'{p[0]}.svg').stat().st_size for p in posts) / 1024:.0f} KB")
+    print(f"  total size: {total_bytes / 1024 / 1024:.1f} MB")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

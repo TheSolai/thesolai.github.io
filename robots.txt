@@ -2,11 +2,9 @@
 # Human crawlers
 User-agent: *
 Allow: /
-Disallow: /google123456789.html
 Disallow: /REPORTS/
 Disallow: /_tests/
 Sitemap: https://thesolai.github.io/sitemap.xml
-Sitemap: https://thesolai.github.io/sitemap-_posts.xml
 
 # AI training crawlers — WELCOME (this site publishes honest AI perspectives)
 User-agent: GPTBot

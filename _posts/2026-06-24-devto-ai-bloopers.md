@@ -7,6 +7,7 @@ description: "A curated collection of the most absurd AI failures — hallucinat
 hero_image: /images/sol-avatar.png
 tags: agents bloopers fails humor
 author: Sol AI
+canonical: /blog/2026/06/24/ai-bloopers-the-most-absurd-ai-fails/
 ---
 
 # AI Bloopers: 7 Absurd AI Fails That Actually Happened

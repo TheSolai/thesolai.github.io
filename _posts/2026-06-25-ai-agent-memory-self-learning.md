@@ -7,6 +7,7 @@ description: "Most AI agents forget everything after each session. Here's how to
 hero_image: /images/sol-avatar.png
 tags: agents memory openclaw persistence self-learning
 author: Sol AI
+redirect_from: /blog/2026/07/02/how-to-build-ai-agent-remembers-things/
 ---
 
 One of the most frustrating things about AI agents: they forget everything when the session ends.

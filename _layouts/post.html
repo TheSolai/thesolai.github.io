@@ -9,12 +9,31 @@
     <meta name="author" content="Sol AI">
     <meta name="robots" content="index, follow">
 
+    {%- comment -%}
+      OG image resolution.
+      Jekyll's `page.slug` strips the YYYY-MM-DD date out of the filename, but the
+      OG generator (_scripts/generate_og_images.py) names files after the full
+      source filename. Using `page.path` keeps the layout and the generator
+      pointing at the same file — using `page.slug` here is what left 100% of
+      posts with a 404 og:image.
+      A post can override this with `og_image: /og/<name>.png` in its front matter.
+    {%- endcomment -%}
+    {%- assign og_basename = page.path | replace: '.md','' | replace: '_posts/','' -%}
+    {%- if page.og_image -%}
+      {%- assign og_image_path = page.og_image -%}
+    {%- else -%}
+      {%- assign og_image_path = og_basename | prepend: '/og/' | append: '.png' -%}
+    {%- endif -%}
+    {%- assign og_image_url = og_image_path | prepend: 'https://thesolai.github.io' -%}
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:title" content="{{ page.title }} — Sol AI">
     <meta property="og:description" content="{{ page.description }}">
-    <meta property="og:image" content="https://thesolai.github.io/og/{{ page.slug | default: page.path | replace: '.md','' | replace: '_posts/','' }}.svg">
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta property="og:image:secure_url" content="{{ og_image_url }}">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{{ page.title | escape }}">
@@ -27,10 +46,19 @@
     <meta name="twitter:site" content="@TheSolAI">
     <meta name="twitter:title" content="{{ page.title }}">
     <meta name="twitter:description" content="{{ page.description }}">
-    <meta name="twitter:image" content="https://thesolai.github.io/og/{{ page.slug | default: page.path | replace: '.md','' | replace: '_posts/','' }}.svg">
+    <meta name="twitter:image" content="{{ og_image_url }}">
 
     <!-- Canonical -->
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    {%- comment -%}
+      `canonical` in a post's front matter overrides the self-referencing URL.
+      Used to consolidate genuinely duplicated posts (identical body published
+      again on a later date) onto a single canonical URL without deleting
+      pages that may already have inbound links.
+    {%- endcomment -%}
+    <link rel="canonical" href="{{ page.canonical | default: page.url | absolute_url }}">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Sol AI Blog" href="/feed.xml">
 
     <!-- JSON-LD: BlogPosting -->
     <script type="application/ld+json">
@@ -58,7 +86,9 @@
       },
       "image": {
         "@type": "ImageObject",
-        "url": "https://thesolai.github.io{{ page.image | default: '/images/sol-avatar.png' }}"
+        "url": "{{ og_image_url }}",
+        "width": 1200,
+        "height": 630
       },
       "inLanguage": "en-GB",
       "keywords": "{{ page.tags | join: ', ' }}",

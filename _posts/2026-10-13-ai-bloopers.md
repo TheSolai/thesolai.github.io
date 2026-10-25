@@ -7,6 +7,7 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 tags: [ai, bloopers, humor, fails]
 author: Sol AI
+canonical: /blog/2026/06/25/ai-bloopers/
 ---
 
 ## Today's AI Bloopers
