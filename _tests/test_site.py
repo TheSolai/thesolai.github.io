@@ -323,6 +323,108 @@ def test_image_alt_text():
     return True
 
 
+def test_og_image_files_exist():
+    """Every post must have a matching Open Graph image on disk.
+
+    The post layout derives the og:image URL from the post's source filename
+    (page.path), so the image has to be og/<source-filename-stem>.png. Getting
+    this wrong is what left 100% of posts with a 404 og:image — the layout used
+    page.slug (which has the date stripped) while the generator wrote the full
+    filename. This test is the regression guard for that mismatch.
+    """
+    print("• every post has a matching OG image file")
+    og_dir = SITE_DIR / "og"
+    failures = []
+    posts = list(POSTS_DIR.glob("*.md"))
+    for p in posts:
+        expected = og_dir / f"{p.stem}.png"
+        if not expected.exists():
+            failures.append(f"{p.name}: missing og/{p.stem}.png")
+    if failures:
+        print(f"  FAIL: {len(failures)} post(s) without an OG image:")
+        for f in failures[:10]:
+            print(f"    {f}")
+        return False
+    print(f"  PASS: all {len(posts)} posts have og/<name>.png")
+    return True
+
+
+def test_layout_uses_source_path_for_og_image():
+    """The post layout must derive og:image from page.path, not page.slug."""
+    print("• post layout derives og:image from page.path")
+    layout = SITE_DIR / "_layouts" / "post.html"
+    if not layout.exists():
+        print("  FAIL: _layouts/post.html not found")
+        return False
+    html = layout.read_text(encoding="utf-8", errors="replace")
+    failures = []
+    for tag in ("og:image", "twitter:image"):
+        m = re.search(rf'<meta[^>]+{tag}[^>]*>', html)
+        if not m:
+            failures.append(f"{tag} meta tag missing from post layout")
+            continue
+        if "page.slug" in m.group(0):
+            failures.append(f"{tag} uses page.slug (date stripped) — must use page.path")
+    for tag in ("og:title", "og:description"):
+        if f'property="{tag}"' not in html:
+            failures.append(f"{tag} meta tag missing from post layout")
+    if 'rel="canonical"' not in html:
+        failures.append("canonical link missing from post layout")
+    if failures:
+        print("  FAIL:")
+        for f in failures:
+            print(f"    {f}")
+        return False
+    print("  PASS: og:image/twitter:image use page.path, canonical + og tags present")
+    return True
+
+
+def test_live_og_images_resolve():
+    """Spot-check live posts: their og:image URL must resolve.
+
+    Source-level checks cannot catch a file that exists locally but was never
+    deployed, so this fetches a sample of recently published posts and HEADs
+    the og:image each one advertises.
+    """
+    print("• live og:image URLs resolve")
+    posts = sorted(POSTS_DIR.glob("*.md"),
+                   key=lambda p: p.stat().st_mtime, reverse=True)[:12]
+    failures = []
+    checked = 0
+    for p in posts:
+        date_match = re.match(r"^(\d{4})-(\d{2})-(\d{2})-", p.stem)
+        if not date_match:
+            continue
+        slug = re.sub(r"[^a-z0-9]", "-", p.stem[len(date_match.group(0)):].lower())
+        slug = re.sub(r"-+", "-", slug).strip("-")
+        url = f"{BASE_URL}/blog/{date_match.group(1)}/{date_match.group(2)}/{date_match.group(3)}/{slug}/"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "SolAI-Tests/2.0"})
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                html = resp.read().decode("utf-8", errors="ignore")
+        except Exception as e:
+            failures.append(f"{p.name}: could not fetch post ({e})")
+            continue
+        m = re.search(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"', html)
+        if not m:
+            failures.append(f"{p.name}: no og:image tag in rendered page")
+            continue
+        image_url = m.group(1)
+        if image_url.startswith("/"):
+            image_url = BASE_URL + image_url
+        checked += 1
+        status = head_status(image_url)
+        if status != 200:
+            failures.append(f"{p.name}: og:image {status} {image_url}")
+    if failures:
+        print(f"  FAIL: {len(failures)} og:image problem(s):")
+        for f in failures[:10]:
+            print(f"    {f}")
+        return False
+    print(f"  PASS: {checked} live og:image URLs return 200")
+    return True
+
+
 def main():
     start = datetime.now()
     tests = [
@@ -333,6 +435,9 @@ def main():
         test_nav_consistency,
         test_internal_links,
         test_image_alt_text,
+        test_og_image_files_exist,
+        test_layout_uses_source_path_for_og_image,
+        test_live_og_images_resolve,
     ]
     results = []
     for t in tests:

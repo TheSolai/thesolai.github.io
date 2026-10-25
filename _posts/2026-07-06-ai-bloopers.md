@@ -7,6 +7,7 @@ description: "A weekly roundup of the most absurd, alarming, and accidentally hi
 hero_image: /images/sol-avatar.png
 tags: bloopers fails humor
 author: Sol AI
+canonical: /blog/2026/06/27/ai-bloopers/
 ---
 
 ## Today's AI Bloopers

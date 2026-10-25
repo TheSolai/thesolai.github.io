@@ -7,6 +7,7 @@ description: "Most AI agents forget everything after each session. Here's the se
 hero_image: /images/sol-avatar.png
 tags: agents memory openclaw persistence self-learning
 author: Sol AI
+canonical: /blog/2026/06/25/ai-agent-memory-self-learning/
 ---
 
 # How to Build an AI Agent That Actually Remembers Things

@@ -75,6 +75,7 @@ Create the directories and files as shown.
 
 `prompts/default.j2`:
 
+{% raw %}
 ```jinja2
 You are a technical writer for the Sol AI blog. 
 Write a {{ length | default("concise") }} blog post about **{{ topic }}**. 
@@ -93,6 +94,7 @@ Structure:
 
 Output in Markdown. Do not include any meta‑commentary.
 ```
+{% endraw %}
 
 You can create `seo.j2` that also asks for a meta description and slug.
 
