@@ -63,6 +63,9 @@ fi
 case "$RESULT" in
     *"No compaction needed"*) log "ok: window under budget, nothing to do" ;;
     *"kept "*)               log "compacted: $RESULT" ;;
-    *)                       log "unexpected result: $RESULT" ;;
+    *"queued work"*)         log "busy: session has queued work — skipping this tick" ;;
+    *"active run"*)          log "busy: session run active — skipping this tick" ;;
+    *"not reachable"*|*"ECONNREFUSED"*) log "warn: gateway unreachable — skipping this tick" ;;
+    *)                       log "unexpected result: $(echo "$RESULT" | tr '\n' ' ' | cut -c1-160)" ;;
 esac
 exit 0

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dross Lair — Training Drills</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="train-body">
+<header>
+  <h1>TRAINING DRILLS</h1>
+  <div class="sub">Don't Die: SurvivalAutoBattler — learn classes, cards, bonds, stats and shard costs from the real data</div>
+  <nav>
+    <a class="tab link" href="/">← BACK TO LAIR</a>
+    <button class="tab mode active" data-mode="hero">HERO CLASS</button>
+    <button class="tab mode" data-mode="trick">OCCULT ARTS</button>
+    <button class="tab mode" data-mode="bond">BONDS</button>
+    <button class="tab mode" data-mode="stats">STATS</button>
+    <button class="tab mode" data-mode="shards">SHARDS</button>
+    <button class="tab mode" data-mode="mixed">MIXED</button>
+  </nav>
+</header>
+
+<main class="train-main">
+  <div class="row">
+    <div class="panel grow">
+      <div class="toolbar">
+        <span class="hint" id="q-counter">question 1 · session score 0/0</span>
+        <span class="hint" id="q-mode"></span>
+        <button id="next-q">NEXT QUESTION</button>
+        <button id="skip-q" class="ghost">SKIP</button>
+      </div>
+
+      <div id="q-card" class="q-card"><div class="q-prompt">Which class does this hero belong to?</div><div class="q-name">Blackbeard Drek</div>
+      <div class="q-meta">Legend · Shen Kuo</div>
+      <div class="quote">“把财宝和胜利都交出来”</div></div>
+
+      <div id="q-options" class="options"><button class="opt" data-value="Medusa">Medusa</button><button class="opt" data-value="Blackbeard Drek">Blackbeard Drek</button><button class="opt" data-value="Underworld Goddess Hel">Underworld Goddess Hel</button><button class="opt" data-value="Merwarrior Ryn">Merwarrior Ryn</button></div>
+
+      <div id="q-feedback" class="feedback"></div>
+
+      <div class="toolbar">
+        <span class="hint" id="streak-line">no answers yet</span>
+        <button id="finish-session" class="ghost">END SESSION</button>
+      </div>
+    </div>
+
+    <div class="panel side">
+      <h2>Session</h2>
+      <div id="session-stats">
+    <div class="kv"><span>mode</span><b>hero</b></div>
+    <div class="kv"><span>answered</span><b>0</b></div>
+    <div class="kv"><span>correct</span><b>0</b></div>
+    <div class="kv"><span>accuracy</span><b>0%</b></div></div>
+      <h2 style="margin-top:16px">All-time progress</h2>
+      <div id="alltime-stats">
+    <div class="kv"><span>cards tracked</span><b>3</b></div>
+    <div class="kv"><span>answers</span><b>3</b></div>
+    <div class="kv"><span>correct</span><b>0</b></div>
+    <div class="kv"><span>accuracy</span><b>0%</b></div><div class="kv sub"><span>hero</span><b>0/3</b></div></div>
+      <h2 style="margin-top:16px">Recent sessions</h2>
+      <div id="session-history">
+      <div class="kv"><span>2026-10-25 01:09:21</span>
+        <b>0/2 · mixed</b></div>
+      <div class="kv"><span>2026-10-25 01:01:09</span>
+        <b>0/1 · mixed</b></div>
+      <div class="kv"><span>2026-10-25 00:59:59</span>
+        <b>0/0 · mixed</b></div></div>
+    </div>
+  </div>
+</main>
+
+<div id="toast"></div>
+<script src="/train.js"></script>
+
+
+</body></html>

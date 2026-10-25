@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dross Lair — DDAB Simulator</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <h1>DROSS LAIR</h1>
+  <div class="sub">Don't Die: SurvivalAutoBattler — real card data, teams, and a live battle engine</div>
+  <nav>
+    <button class="tab active" data-tab="teams">TEAMS</button>
+    <button class="tab" data-tab="battle">BATTLE</button>
+    <button class="tab" data-tab="cards">CARDS</button>
+    <button class="tab" data-tab="trick">OCCULT ARTS</button>
+    <button class="tab" data-tab="bonds">BONDS</button>
+    <button class="tab" data-tab="shards">SHARDS</button>
+    <button class="tab" data-tab="data">DATA &amp; ASSUMPTIONS</button>
+    <a class="tab link" href="/train">TRAINING APP</a>
+  </nav>
+</header>
+
+<main>
+<!-- ---------------------------------------------------------------- TEAMS -->
+<section id="teams" class="pane active">
+  <div class="row">
+    <div class="panel grow">
+      <div class="toolbar">
+        <select id="team-picker"><option value="1">Amre — 2026-10-24 collection screen</option><option value="2">Rival — balanced meta</option><option value="4">E2E Renamed Team</option></select>
+        <input id="team-name" placeholder="team name" style="flex:1">
+        <button id="team-save">SAVE TEAM</button>
+        <button id="team-new">NEW TEAM</button>
+        <button id="team-delete" class="danger">DELETE</button>
+        <span class="hint" id="team-note"></span>
+      </div>
+      <h2>Board <span class="hint">front row = slots 1–5 (enemy-facing) · back row = 6–10</span></h2>
+      <div class="board">
+        <div class="row-label">FRONT</div>
+        <div class="slots" id="front-slots"><div class="slot empty" data-slot="0"><div class="sname empty-name">empty</div><div class="slevel">slot 1</div></div><div class="slot cls-Assassin" data-slot="1"><div class="sname">Joker</div>
+      <div class="sclass">Assassin · Mythic</div>
+      <div class="slevel">L1 · 84 ATK / 600 HP</div></div><div class="slot empty" data-slot="2"><div class="sname empty-name">empty</div><div class="slevel">slot 3</div></div><div class="slot empty" data-slot="3"><div class="sname empty-name">empty</div><div class="slevel">slot 4</div></div><div class="slot empty" data-slot="4"><div class="sname empty-name">empty</div><div class="slevel">slot 5</div></div></div>
+        <div class="row-label">BACK</div>
+        <div class="slots" id="back-slots"><div class="slot cls-Assassin" data-slot="5"><div class="sname">Silver Fang</div>
+      <div class="sclass">Assassin · Mythic</div>
+      <div class="slevel">L1 · 84 ATK / 600 HP</div></div><div class="slot empty" data-slot="6"><div class="sname empty-name">empty</div><div class="slevel">slot 7</div></div><div class="slot empty" data-slot="7"><div class="sname empty-name">empty</div><div class="slevel">slot 8</div></div><div class="slot empty" data-slot="8"><div class="sname empty-name">empty</div><div class="slevel">slot 9</div></div><div class="slot cls-Support" data-slot="9"><div class="sname">Bard</div>
+      <div class="sclass">Support · Epic</div>
+      <div class="slevel">L1 · 148 ATK / 770 HP</div></div></div>
+      </div>
+      <div class="toolbar">
+        <button id="auto-place">AUTO-PLACE</button>
+        <button id="clear-board">CLEAR BOARD</button>
+        <span class="hint" id="board-note"></span>
+      </div>
+      <h2 style="margin-top:18px">Roster — drag a hero onto a slot, or double-click to auto-place</h2>
+      <div class="toolbar">
+        <input id="bench-filter" placeholder="filter heroes…" style="flex:1">
+        <select id="bench-class">
+          <option value="">all classes</option>
+          <option>Warrior</option><option>Mage</option><option>Archer</option>
+          <option>Assassin</option><option>Support</option><option>Sovereign</option><option>Pouch</option>
+        </select>
+        <select id="bench-rarity">
+          <option value="">all rarities</option>
+          <option value="6">Mythic</option><option value="5">Legend</option>
+          <option value="4">Epic</option><option value="3">Rare</option>
+        </select>
+        <span class="hint" id="bench-count">56 heroes</span>
+      </div>
+      <div class="bench" id="bench">
+    <div class="chip " draggable="true" data-id="34">
+      <b>Ace Striker</b>
+      <span class="hint">Archer · Mythic · 208/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="56">
+      <b>Azure Knight</b>
+      <span class="hint">Warrior · Mythic · 48/1100</span>
+    </div>
+    <div class="chip " draggable="true" data-id="33">
+      <b>Black Bear</b>
+      <span class="hint">Archer · Mythic · 0/0</span>
+    </div>
+    <div class="chip " draggable="true" data-id="37">
+      <b>Blind Blade Mika</b>
+      <span class="hint">Assassin · Mythic · 84/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="54">
+      <b>Brutal Yogg</b>
+      <span class="hint">Warrior · Mythic · 28/1300</span>
+    </div>
+    <div class="chip " draggable="true" data-id="48">
+      <b>Demon's Eye Vex</b>
+      <span class="hint">Support · Mythic · 202/1050</span>
+    </div>
+    <div class="chip " draggable="true" data-id="53">
+      <b>Doombringer Drath</b>
+      <span class="hint">Warrior · Mythic · 28/1300</span>
+    </div>
+    <div class="chip " draggable="true" data-id="52">
+      <b>Dr. Deranged</b>
+      <span class="hint">Warrior · Mythic · 50/785</span>
+    </div>
+    <div class="chip " draggable="true" data-id="55">
+      <b>Greatsword Zaza</b>
+      <span class="hint">Warrior · Mythic · 48/1360</span>
+    </div>
+    <div class="chip " draggable="true" data-id="31">
+      <b>Grimaxe</b>
+      <span class="hint">Archer · Mythic · 38/750</span>
+    </div>
+    <div class="chip " draggable="true" data-id="39">
+      <b>Guhuo Niao</b>
+      <span class="hint">Assassin · Mythic · 84/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="45">
+      <b>Hades</b>
+      <span class="hint">Sovereign · Mythic · 159/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="30">
+      <b>Jhin</b>
+      <span class="hint">Archer · Mythic · 90/600</span>
+    </div>
+    <div class="chip on" draggable="true" data-id="35">
+      <b>Joker</b>
+      <span class="hint">Assassin · Mythic · 84/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="51">
+      <b>Lich Knight</b>
+      <span class="hint">Warrior · Mythic · 33/1500</span>
+    </div>
+    <div class="chip " draggable="true" data-id="50">
+      <b>Michael</b>
+      <span class="hint">Support · Mythic · 182/1280</span>
+    </div>
+    <div class="chip " draggable="true" data-id="40">
+      <b>Odin</b>
+      <span class="hint">Mage · Mythic · 120/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="42">
+      <b>Phoenix</b>
+      <span class="hint">Mage · Mythic · 77/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="41">
+      <b>Queen Flare</b>
+      <span class="hint">Mage · Mythic · 120/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="46">
+      <b>Sand&nbsp;Queen&nbsp;Elara</b>
+      <span class="hint">Sovereign · Mythic · 202/1050</span>
+    </div>
+    <div class="chip on" draggable="true" data-id="36">
+      <b>Silver Fang</b>
+      <span class="hint">Assassin · Mythic · 84/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="44">
+      <b>Snake Hex</b>
+      <span class="hint">Pouch · Mythic · 1/1</span>
+    </div>
+    <div class="chip " draggable="true" data-id="38">
+      <b>Soulreaver Hela</b>
+      <span class="hint">Assassin · Mythic · 84/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="49">
+      <b>Starweaver Nyra</b>
+      <span class="hint">Support · Mythic · 202/1050</span>
+    </div>
+    <div class="chip " draggable="true" data-id="43">
+      <b>Underworld Goddess Hel</b>
+      <span class="hint">Mage · Mythic · 72/1560</span>
+    </div>
+    <div class="chip " draggable="true" data-id="47">
+      <b>Ying Zheng</b>
+      <span class="hint">Sovereign · Mythic · 85/1050</span>
+    </div>
+    <div class="chip " draggable="true" data-id="32">
+      <b>Zeus</b>
+      <span class="hint">Archer · Mythic · 90/600</span>
+    </div>
+    <div class="chip " draggable="true" data-id="16">
+      <b>Assassin Alt</b>
+      <span class="hint">Assassin · Legend · 72/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="22">
+      <b>Blackbeard Drek</b>
+      <span class="hint">Mage · Legend · 104/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="23">
+      <b>Bloodmage Ryn</b>
+      <span class="hint">Mage · Legend · 42/1300</span>
+    </div>
+    <div class="chip " draggable="true" data-id="14">
+      <b>Bone Archer Vorn</b>
+      <span class="hint">Archer · Legend · 78/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="21">
+      <b>Bookworm Daisy</b>
+      <span class="hint">Mage · Legend · 70/680</span>
+    </div>
+    <div class="chip " draggable="true" data-id="11">
+      <b>Darkranger Lira</b>
+      <span class="hint">Archer · Legend · 78/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="15">
+      <b>Destroyer Wee</b>
+      <span class="hint">Assassin · Legend · 72/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="19">
+      <b>Don Vael</b>
+      <span class="hint">Mage · Legend · 104/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="10">
+      <b>Forest Stalker Vael</b>
+      <span class="hint">Archer · Legend · 78/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="26">
+      <b>Forest Witch Ivy</b>
+      <span class="hint">Support · Legend · 175/910</span>
+    </div>
+    <div class="chip " draggable="true" data-id="28">
+      <b>Graveskeeper Ray</b>
+      <span class="hint">Warrior · Legend · 48/800</span>
+    </div>
+    <div class="chip " draggable="true" data-id="27">
+      <b>Lightwarden Uther</b>
+      <span class="hint">Warrior · Legend · 28/1300</span>
+    </div>
+    <div class="chip " draggable="true" data-id="25">
+      <b>Magicat Nala</b>
+      <span class="hint">Support · Legend · 175/910</span>
+    </div>
+    <div class="chip " draggable="true" data-id="24">
+      <b>Medusa</b>
+      <span class="hint">Mage · Legend · 42/1300</span>
+    </div>
+    <div class="chip " draggable="true" data-id="13">
+      <b>Pirate King Kael</b>
+      <span class="hint">Archer · Legend · 42/1300</span>
+    </div>
+    <div class="chip " draggable="true" data-id="12">
+      <b>Princess Elda</b>
+      <span class="hint">Archer · Legend · 78/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="20">
+      <b>Riddler Jax</b>
+      <span class="hint">Mage · Legend · 104/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="29">
+      <b>Spartan Warrior</b>
+      <span class="hint">Warrior · Legend · 28/1300</span>
+    </div>
+    <div class="chip " draggable="true" data-id="17">
+      <b>V</b>
+      <span class="hint">Assassin · Legend · 72/520</span>
+    </div>
+    <div class="chip " draggable="true" data-id="18">
+      <b>Werewolf Vorn</b>
+      <span class="hint">Assassin · Legend · 50/800</span>
+    </div>
+    <div class="chip " draggable="true" data-id="9">
+      <b>Barber Allen</b>
+      <span class="hint">Warrior · Epic · 36/1100</span>
+    </div>
+    <div class="chip on" draggable="true" data-id="7">
+      <b>Bard</b>
+      <span class="hint">Support · Epic · 148/770</span>
+    </div>
+    <div class="chip " draggable="true" data-id="4">
+      <b>Centaur Archer Kael</b>
+      <span class="hint">Archer · Epic · 66/440</span>
+    </div>
+    <div class="chip " draggable="true" data-id="8">
+      <b>Doomed Sisyphus</b>
+      <span class="hint">Warrior · Epic · 24/1100</span>
+    </div>
+    <div class="chip " draggable="true" data-id="6">
+      <b>Fireborn Bran</b>
+      <span class="hint">Mage · Epic · 88/440</span>
+    </div>
+    <div class="chip " draggable="true" data-id="5">
+      <b>Graysatyr Artha</b>
+      <span class="hint">Archer · Epic · 66/440</span>
+    </div>
+    <div class="chip " draggable="true" data-id="3">
+      <b>Big Beard Hagred</b>
+      <span class="hint">Warrior · Rare · 22/1000</span>
+    </div>
+    <div class="chip " draggable="true" data-id="2">
+      <b>Merwarrior Ryn</b>
+      <span class="hint">Mage · Rare · 80/400</span>
+    </div>
+    <div class="chip " draggable="true" data-id="1">
+      <b>Valkyrie Archer Runa</b>
+      <span class="hint">Archer · Rare · 60/400</span>
+    </div></div>
+    </div>
+    <div class="panel side">
+      <h2>Team readout</h2>
+      <div id="team-stats">
+    <div class="kv"><span>units</span><b>3/10</b></div>
+    <div class="kv"><span>base ATK total</span><b>316</b></div>
+    <div class="kv"><span>base HP total</span><b>1970</b></div>
+    <div class="kv"><span>avg level</span><b>1.0</b></div></div>
+      <h2 style="margin-top:16px">Bond state</h2>
+      <div id="bond-state"><div class="kv"><span>Assassin</span>
+      <b class="up">2/3 ACTIVE</b></div><div class="kv sub"><span></span><b class="small"></b></div><div class="kv"><span>Support</span>
+      <b class="up">1/3 ACTIVE</b></div><div class="kv sub"><span></span><b class="small"></b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------------- BATTLE -->
+<section id="battle" class="pane">
+  <div class="row">
+    <div class="panel grow">
+      <div class="toolbar">
+        <label>Team A <select id="battle-a"><option value="1">Amre — 2026-10-24 collection screen</option><option value="2">Rival — balanced meta</option><option value="4">E2E Renamed Team</option></select></label>
+        <label>Team B <select id="battle-b"><option value="1">Amre — 2026-10-24 collection screen</option><option value="2">Rival — balanced meta</option><option value="4">E2E Renamed Team</option></select></label>
+        <label>runs <input id="battle-runs" type="number" value="100" min="1" max="2000" style="width:80px"></label>
+        <button id="run-battle">RUN MATCHUP</button>
+        <button id="run-single">ONE BATTLE</button>
+      </div>
+      <div id="battle-results"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------------- CARDS -->
+<section id="cards" class="pane">
+  <div class="row">
+    <div class="panel grow">
+      <div class="toolbar">
+        <input id="card-filter" placeholder="search heroes…" style="flex:1">
+        <select id="card-class">
+          <option value="">all classes</option>
+          <option>Warrior</option><option>Mage</option><option>Archer</option>
+          <option>Assassin</option><option>Support</option><option>Sovereign</option><option>Pouch</option>
+        </select>
+        <select id="card-rarity">
+          <option value="">all rarities</option>
+          <option value="6">Mythic</option><option value="5">Legend</option>
+          <option value="4">Epic</option><option value="3">Rare</option>
+        </select>
+        <span class="hint" id="card-count">56 heroes</span>
+      </div>
+      <div id="card-grid" class="card-grid">
+    <div class="cardbox" data-ref="wj1113">
+      <div class="ch">Ace Striker</div>
+      <div class="cs Archer">Archer · Mythic</div>
+      <div class="cstats">ATK 208 · HP 600 · 0.28/s</div>
+      <div class="csmall">孙尚香</div>
+    </div>
+    <div class="cardbox" data-ref="wj1012">
+      <div class="ch">Azure Knight</div>
+      <div class="cs Warrior">Warrior · Mythic</div>
+      <div class="cstats">ATK 48 · HP 1100 · 1.00/s</div>
+      <div class="csmall">花木兰</div>
+    </div>
+    <div class="cardbox" data-ref="wj1112">
+      <div class="ch">Black Bear</div>
+      <div class="cs Archer">Archer · Mythic</div>
+      <div class="cstats">ATK 0 · HP 0 · 0.00/s</div>
+      <div class="csmall">黑熊</div>
+    </div>
+    <div class="cardbox" data-ref="wj1303">
+      <div class="ch">Blind Blade Mika</div>
+      <div class="cs Assassin">Assassin · Mythic</div>
+      <div class="cstats">ATK 84 · HP 600 · 0.80/s</div>
+      <div class="csmall">韩信</div>
+    </div>
+    <div class="cardbox" data-ref="wj1004">
+      <div class="ch">Brutal Yogg</div>
+      <div class="cs Warrior">Warrior · Mythic</div>
+      <div class="cstats">ATK 28 · HP 1300 · 1.00/s</div>
+      <div class="csmall">廉颇</div>
+    </div>
+    <div class="cardbox" data-ref="wj1401">
+      <div class="ch">Demon's Eye Vex</div>
+      <div class="cs Support">Support · Mythic</div>
+      <div class="cstats">ATK 202 · HP 1050 · 0.13/s</div>
+      <div class="csmall">芈月</div>
+    </div>
+    <div class="cardbox" data-ref="wj1003">
+      <div class="ch">Doombringer Drath</div>
+      <div class="cs Warrior">Warrior · Mythic</div>
+      <div class="cstats">ATK 28 · HP 1300 · 1.00/s</div>
+      <div class="csmall">张飞</div>
+    </div>
+    <div class="cardbox" data-ref="wj1002">
+      <div class="ch">Dr. Deranged</div>
+      <div class="cs Warrior">Warrior · Mythic</div>
+      <div class="cstats">ATK 50 · HP 785 · 1.00/s</div>
+      <div class="csmall">马超</div>
+    </div>
+    <div class="cardbox" data-ref="wj1008">
+      <div class="ch">Greatsword Zaza</div>
+      <div class="cs Warrior">Warrior · Mythic</div>
+      <div class="cstats">ATK 48 · HP 1360 · 0.70/s</div>
+      <div class="csmall">钟无艳</div>
+    </div>
+    <div class="cardbox" data-ref="wj1102">
+      <div class="ch">Grimaxe</div>
+      <div class="cs Archer">Archer · Mythic</div>
+      <div class="cstats">ATK 38 · HP 750 · 0.35/s</div>
+      <div class="csmall">孟获</div>
+    </div>
+    <div class="cardbox" data-ref="wj1309">
+      <div class="ch">Guhuo Niao</div>
+      <div class="cs Assassin">Assassin · Mythic</div>
+      <div class="cstats">ATK 84 · HP 600 · 0.80/s</div>
+      <div class="csmall">庞统</div>
+    </div>
+    <div class="cardbox" data-ref="wj1501">
+      <div class="ch">Hades</div>
+      <div class="cs Sovereign">Sovereign · Mythic</div>
+      <div class="cstats">ATK 159 · HP 600 · 0.30/s</div>
+      <div class="csmall">武则天</div>
+    </div>
+    <div class="cardbox" data-ref="wj1101">
+      <div class="ch">Jhin</div>
+      <div class="cs Archer">Archer · Mythic</div>
+      <div class="cstats">ATK 90 · HP 600 · 0.50/s</div>
+      <div class="csmall">后羿</div>
+    </div>
+    <div class="cardbox" data-ref="wj1301">
+      <div class="ch">Joker</div>
+      <div class="cs Assassin">Assassin · Mythic</div>
+      <div class="cstats">ATK 84 · HP 600 · 2.00/s</div>
+      <div class="csmall">荆轲</div>
+    </div>
+    <div class="cardbox" data-ref="wj1001">
+      <div class="ch">Lich Knight</div>
+      <div class="cs Warrior">Warrior · Mythic</div>
+      <div class="cstats">ATK 33 · HP 1500 · 1.00/s</div>
+      <div class="csmall">吕布</div>
+    </div>
+    <div class="cardbox" data-ref="wj1406">
+      <div class="ch">Michael</div>
+      <div class="cs Support">Support · Mythic</div>
+      <div class="cstats">ATK 182 · HP 1280 · 0.30/s</div>
+      <div class="csmall">太乙真人</div>
+    </div>
+    <div class="cardbox" data-ref="wj1201">
+      <div class="ch">Odin</div>
+      <div class="cs Mage">Mage · Mythic</div>
+      <div class="cstats">ATK 120 · HP 600 · 0.17/s</div>
+      <div class="csmall">张角</div>
+    </div>
+    <div class="cardbox" data-ref="wj1203">
+      <div class="ch">Phoenix</div>
+      <div class="cs Mage">Mage · Mythic</div>
+      <div class="cstats">ATK 77 · HP 600 · 0.25/s</div>
+      <div class="csmall">周瑜</div>
+    </div>
+    <div class="cardbox" data-ref="wj1202">
+      <div class="ch">Queen Flare</div>
+      <div class="cs Mage">Mage · Mythic</div>
+      <div class="cstats">ATK 120 · HP 600 · 0.33/s</div>
+      <div class="csmall">姜子牙</div>
+    </div>
+    <div class="cardbox" data-ref="wj1502">
+      <div class="ch">Sand&nbsp;Queen&nbsp;Elara</div>
+      <div class="cs Sovereign">Sovereign · Mythic</div>
+      <div class="cstats">ATK 202 · HP 1050 · 0.30/s</div>
+      <div class="csmall">刘邦</div>
+    </div>
+    <div class="cardbox" data-ref="wj1302">
+      <div class="ch">Silver Fang</div>
+      <div class="cs Assassin">Assassin · Mythic</div>
+      <div class="cstats">ATK 84 · HP 600 · 0.80/s</div>
+      <div class="csmall">赵云</div>
+    </div>
+    <div class="cardbox" data-ref="wj1601">
+      <div class="ch">Snake Hex</div>
+      <div class="cs Pouch">Pouch · Mythic</div>
+      <div class="cstats">ATK 1 · HP 1 · 0.00/s</div>
+      <div class="csmall">无中生有</div>
+    </div>
+    <div class="cardbox" data-ref="wj1307">
+      <div class="ch">Soulreaver Hela</div>
+      <div class="cs Assassin">Assassin · Mythic</div>
+      <div class="cstats">ATK 84 · HP 600 · 0.80/s</div>
+      <div class="csmall">虞姬</div>
+    </div>
+    <div class="cardbox" data-ref="wj1402">
+      <div class="ch">Starweaver Nyra</div>
+      <div class="cs Support">Support · Mythic</div>
+      <div class="cstats">ATK 202 · HP 1050 · 0.30/s</div>
+      <div class="csmall">蔡文姬</div>
+    </div>
+    <div class="cardbox" data-ref="wj1212">
+      <div class="ch">Underworld Goddess Hel</div>
+      <div class="cs Mage">Mage · Mythic</div>
+      <div class="cstats">ATK 72 · HP 1560 · 0.40/s</div>
+      <div class="csmall">庄周</div>
+    </div>
+    <div class="cardbox" data-ref="wj1503">
+      <div class="ch">Ying Zheng</div>
+      <div class="cs Sovereign">Sovereign · Mythic</div>
+      <div class="cstats">ATK 85 · HP 1050 · 1.00/s</div>
+      <div class="csmall">嬴政</div>
+    </div>
+    <div class="cardbox" data-ref="wj1103">
+      <div class="ch">Zeus</div>
+      <div class="cs Archer">Archer · Mythic</div>
+      <div class="cstats">ATK 90 · HP 600 · 0.40/s</div>
+      <div class="csmall">元芳</div>
+    </div>
+    <div class="cardbox" data-ref="wj1305">
+      <div class="ch">Assassin Alt</div>
+      <div class="cs Assassin">Assassin · Legend</div>
+      <div class="cstats">ATK 72 · HP 520 · 0.80/s</div>
+      <div class="csmall">赵飞燕</div>
+    </div>
+    <div class="cardbox" data-ref="wj1207">
+      <div class="ch">Blackbeard Drek</div>
+      <div class="cs Mage">Mage · Legend</div>
+      <div class="cstats">ATK 104 · HP 520 · 0.33/s</div>
+      <div class="csmall">沈括</div>
+    </div>
+    <div class="cardbox" data-ref="wj1208">
+      <div class="ch">Bloodmage Ryn</div>
+      <div class="cs Mage">Mage · Legend</div>
+      <div class="cstats">ATK 42 · HP 1300 · 0.65/s</div>
+      <div class="csmall">墨子</div>
+    </div>
+    <div class="cardbox" data-ref="wj1108">
+      <div class="ch">Bone Archer Vorn</div>
+      <div class="cs Archer">Archer · Legend</div>
+      <div class="cstats">ATK 78 · HP 520 · 0.60/s</div>
+      <div class="csmall">沈万三</div>
+    </div>
+    <div class="cardbox" data-ref="wj1206">
+      <div class="ch">Bookworm Daisy</div>
+      <div class="cs Mage">Mage · Legend</div>
+      <div class="cstats">ATK 70 · HP 680 · 0.60/s</div>
+      <div class="csmall">黄月英</div>
+    </div>
+    <div class="cardbox" data-ref="wj1105">
+      <div class="ch">Darkranger Lira</div>
+      <div class="cs Archer">Archer · Legend</div>
+      <div class="cstats">ATK 78 · HP 520 · 0.20/s</div>
+      <div class="csmall">黄忠</div>
+    </div>
+    <div class="cardbox" data-ref="wj1304">
+      <div class="ch">Destroyer Wee</div>
+      <div class="cs Assassin">Assassin · Legend</div>
+      <div class="cstats">ATK 72 · HP 520 · 0.80/s</div>
+      <div class="csmall">兰陵王</div>
+    </div>
+    <div class="cardbox" data-ref="wj1204">
+      <div class="ch">Don Vael</div>
+      <div class="cs Mage">Mage · Legend</div>
+      <div class="cstats">ATK 104 · HP 520 · 0.25/s</div>
+      <div class="csmall">貂蝉</div>
+    </div>
+    <div class="cardbox" data-ref="wj1104">
+      <div class="ch">Forest Stalker Vael</div>
+      <div class="cs Archer">Archer · Legend</div>
+      <div class="cstats">ATK 78 · HP 520 · 0.65/s</div>
+      <div class="csmall">马可波罗</div>
+    </div>
+    <div class="cardbox" data-ref="wj1404">
+      <div class="ch">Forest Witch Ivy</div>
+      <div class="cs Support">Support · Legend</div>
+      <div class="cstats">ATK 175 · HP 910 · 0.30/s</div>
+      <div class="csmall">孙膑</div>
+    </div>
+    <div class="cardbox" data-ref="wj1006">
+      <div class="ch">Graveskeeper Ray</div>
+      <div class="cs Warrior">Warrior · Legend</div>
+      <div class="cstats">ATK 48 · HP 800 · 1.00/s</div>
+      <div class="csmall">程咬金</div>
+    </div>
+    <div class="cardbox" data-ref="wj1005">
+      <div class="ch">Lightwarden Uther</div>
+      <div class="cs Warrior">Warrior · Legend</div>
+      <div class="cstats">ATK 28 · HP 1300 · 1.00/s</div>
+      <div class="csmall">马云禄</div>
+    </div>
+    <div class="cardbox" data-ref="wj1403">
+      <div class="ch">Magicat Nala</div>
+      <div class="cs Support">Support · Legend</div>
+      <div class="cstats">ATK 175 · HP 910 · 0.30/s</div>
+      <div class="csmall">鲁班</div>
+    </div>
+    <div class="cardbox" data-ref="wj1209">
+      <div class="ch">Medusa</div>
+      <div class="cs Mage">Mage · Legend</div>
+      <div class="cstats">ATK 42 · HP 1300 · 0.50/s</div>
+      <div class="csmall">甄洛</div>
+    </div>
+    <div class="cardbox" data-ref="wj1107">
+      <div class="ch">Pirate King Kael</div>
+      <div class="cs Archer">Archer · Legend</div>
+      <div class="cstats">ATK 42 · HP 1300 · 0.40/s</div>
+      <div class="csmall">刘备</div>
+    </div>
+    <div class="cardbox" data-ref="wj1106">
+      <div class="ch">Princess Elda</div>
+      <div class="cs Archer">Archer · Legend</div>
+      <div class="cstats">ATK 78 · HP 520 · 0.45/s</div>
+      <div class="csmall">狄仁杰</div>
+    </div>
+    <div class="cardbox" data-ref="wj1205">
+      <div class="ch">Riddler Jax</div>
+      <div class="cs Mage">Mage · Legend</div>
+      <div class="cstats">ATK 104 · HP 520 · 0.50/s</div>
+      <div class="csmall">王昭君</div>
+    </div>
+    <div class="cardbox" data-ref="wj1007">
+      <div class="ch">Spartan Warrior</div>
+      <div class="cs Warrior">Warrior · Legend</div>
+      <div class="cstats">ATK 28 · HP 1300 · 1.00/s</div>
+      <div class="csmall">周泰</div>
+    </div>
+    <div class="cardbox" data-ref="wj1306">
+      <div class="ch">V</div>
+      <div class="cs Assassin">Assassin · Legend</div>
+      <div class="cstats">ATK 72 · HP 520 · 0.80/s</div>
+      <div class="csmall">妲己</div>
+    </div>
+    <div class="cardbox" data-ref="wj1308">
+      <div class="ch">Werewolf Vorn</div>
+      <div class="cs Assassin">Assassin · Legend</div>
+      <div class="cstats">ATK 50 · HP 800 · 0.80/s</div>
+      <div class="csmall">刘禅</div>
+    </div>
+    <div class="cardbox" data-ref="wj1010">
+      <div class="ch">Barber Allen</div>
+      <div class="cs Warrior">Warrior · Epic</div>
+      <div class="cstats">ATK 36 · HP 1100 · 0.40/s</div>
+      <div class="csmall">华雄</div>
+    </div>
+    <div class="cardbox" data-ref="wj1405">
+      <div class="ch">Bard</div>
+      <div class="cs Support">Support · Epic</div>
+      <div class="cstats">ATK 148 · HP 770 · 0.30/s</div>
+      <div class="csmall">李师师</div>
+    </div>
+    <div class="cardbox" data-ref="wj1109">
+      <div class="ch">Centaur Archer Kael</div>
+      <div class="cs Archer">Archer · Epic</div>
+      <div class="cstats">ATK 66 · HP 440 · 0.65/s</div>
+      <div class="csmall">马谡</div>
+    </div>
+    <div class="cardbox" data-ref="wj1009">
+      <div class="ch">Doomed Sisyphus</div>
+      <div class="cs Warrior">Warrior · Epic</div>
+      <div class="cstats">ATK 24 · HP 1100 · 1.00/s</div>
+      <div class="csmall">孙策</div>
+    </div>
+    <div class="cardbox" data-ref="wj1210">
+      <div class="ch">Fireborn Bran</div>
+      <div class="cs Mage">Mage · Epic</div>
+      <div class="cstats">ATK 88 · HP 440 · 0.30/s</div>
+      <div class="csmall">张宝</div>
+    </div>
+    <div class="cardbox" data-ref="wj1110">
+      <div class="ch">Graysatyr Artha</div>
+      <div class="cs Archer">Archer · Epic</div>
+      <div class="cstats">ATK 66 · HP 440 · 0.65/s</div>
+      <div class="csmall">展昭</div>
+    </div>
+    <div class="cardbox" data-ref="wj1011">
+      <div class="ch">Big Beard Hagred</div>
+      <div class="cs Warrior">Warrior · Rare</div>
+      <div class="cstats">ATK 22 · HP 1000 · 1.00/s</div>
+      <div class="csmall">袁绍</div>
+    </div>
+    <div class="cardbox" data-ref="wj1211">
+      <div class="ch">Merwarrior Ryn</div>
+      <div class="cs Mage">Mage · Rare</div>
+      <div class="cstats">ATK 80 · HP 400 · 0.50/s</div>
+      <div class="csmall">张梁</div>
+    </div>
+    <div class="cardbox" data-ref="wj1111">
+      <div class="ch">Valkyrie Archer Runa</div>
+      <div class="cs Archer">Archer · Rare</div>
+      <div class="cstats">ATK 60 · HP 400 · 0.65/s</div>
+      <div class="csmall">孔融</div>
+    </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------------- TRICK -->
+<section id="trick" class="pane">
+  <div class="row">
+    <div class="panel grow">
+      <h2>Occult Arts — the 36 non-hero cards</h2>
+      <div class="toolbar">
+        <input id="trick-filter" placeholder="search…" style="flex:1">
+        <span class="hint" id="trick-count">36 cards</span>
+      </div>
+      <div id="trick-list">
+    <div class="card">
+      <h3>Crit Bounce <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After the team lands [color=#A72E00]{triggerValue}[/color] Crits in total, the [color=#A72E00]3[/color] allies with the highest ATK fire a bouncing attack that deals a total of [color=#328A00]{growthValue:percent}[/color] ATK DMG to the bounced enemies, decreasing over 3 bounces, for [color=#A72E00]{durationMs:ms2s}[/color]s; trigger interval 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_crit @ 4 ·
+        target highestAttackAlly ×3 · effect eff_bounce_attack</div>
+    </div>
+    <div class="card">
+      <h3>Crit Execute <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Crits, the [color=#A72E00]1[/color] ally with the highest ATK Executes enemies below [color=#328A00]{growthValue:percent}[/color] HP on attack for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_crit @ 4 ·
+        target highestAttackAlly ×1 · effect eff_execute</div>
+    </div>
+    <div class="card">
+      <h3>Crit Extra Attack <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Crits, the [color=#A72E00]3[/color] allies with the highest ATK attack 1 extra time (dealing [color=#328A00]{growthValue:percent}[/color] Attack DMG) for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_crit @ 4 ·
+        target highestAttackAlly ×3 · effect eff_extra_attack</div>
+    </div>
+    <div class="card">
+      <h3>Damage-Taken Extra Attack <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] hits taken, the [color=#A72E00]5[/color] allies with the highest ATK attack 1 extra time (dealing [color=#328A00]{growthValue:percent}[/color] Attack DMG) for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_beaten @ 6 ·
+        target highestAttackAlly ×5 · effect eff_extra_attack</div>
+    </div>
+    <div class="card">
+      <h3>Damage-Taken Lifesteal <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] hits taken, all allies gain [color=#328A00]{growthValue:percent}[/color] Lifesteal for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_beaten @ 6 ·
+        target allAllies ×7 · effect eff_lifesteal</div>
+    </div>
+    <div class="card">
+      <h3>Damage-Taken Shield <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] hits taken, all allies gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_beaten @ 6 ·
+        target allAllies ×7 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Debuff Execute <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Debuffs applied, the [color=#A72E00]1[/color] ally with the highest ATK Executes enemies below [color=#328A00]{growthValue:percent}[/color] HP on attack for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_ailment @ 5 ·
+        target highestAttackAlly ×1 · effect eff_execute</div>
+    </div>
+    <div class="card">
+      <h3>Heal Aftershock <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After the team receives [color=#A72E00]{triggerValue}[/color] heals or Shields in total, all allies gain the Aftershock effect. When an enemy attacks an ally with Aftershock, that enemy and units within 1 tile lose [color=#328A00]{growthValue:percent}[/color] Attack Speed; the effect lasts [color=#A72E00]{durationMs:ms2s}[/color]s. Trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_heal @ 6 ·
+        target allAllies ×4 · effect eff_aftershock</div>
+    </div>
+    <div class="card">
+      <h3>Heal Reflect DMG <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Heals or Shields gained, all allies gain [color=#328A00]{growthValue:percent}[/color] Reflect DMG for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_heal @ 6 ·
+        target allAllies ×7 · effect eff_reflect</div>
+    </div>
+    <div class="card">
+      <h3>Heal Shield <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Heals or Shields gained, all allies gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_heal @ 6 ·
+        target allAllies ×7 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Hit Bounce <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After the team lands [color=#A72E00]{triggerValue}[/color] Skill hits in total, the [color=#A72E00]5[/color] allies with the highest ATK fire a bouncing attack that deals a total of [color=#328A00]{growthValue:percent}[/color] ATK DMG to the bounced enemies, decreasing over 2 bounces, for [color=#A72E00]{durationMs:ms2s}[/color]s; trigger interval 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_hit @ 6 ·
+        target highestAttackAllies ×5 · effect eff_bounce_attack</div>
+    </div>
+    <div class="card">
+      <h3>Hit Execute <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Skill hits, the [color=#A72E00]1[/color] ally with the highest ATK Executes enemies below [color=#328A00]{growthValue:percent}[/color] HP on attack for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_hit @ 6 ·
+        target highestAttackAlly ×1 · effect eff_execute</div>
+    </div>
+    <div class="card">
+      <h3>Hit Extra Attack <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Skill hits, the [color=#A72E00]5[/color] allies with the highest ATK attack 1 extra time (dealing [color=#328A00]{growthValue:percent}[/color] Attack DMG) for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_hit @ 6 ·
+        target highestAttackAlly ×5 · effect eff_extra_attack</div>
+    </div>
+    <div class="card">
+      <h3>Multi-Target Execute <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] multi-target hits (at least [color=#A72E00]2[/color] targets per hit), all allies share [color=#A72E00]1[/color] Execute; attacks Execute enemies below [color=#328A00]{growthValue:percent}[/color] HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_multi @ 2 ·
+        target sharedAllies ×7 · effect eff_execute</div>
+    </div>
+    <div class="card">
+      <h3>Multi-Target Extra Attack <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies hit at least [color=#A72E00]2[/color] targets at once [color=#A72E00]{triggerValue}[/color] times, the [color=#A72E00]3[/color] allies with the highest ATK attack 1 extra time (dealing [color=#328A00]{growthValue:percent}[/color] Attack DMG) for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_multi @ 2 ·
+        target highestAttackAlly ×3 · effect eff_extra_attack</div>
+    </div>
+    <div class="card">
+      <h3>Multi-Target Shield <span class="hint">quality 6 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] multi-target hits (at least [color=#A72E00]2[/color] targets per hit), all allies gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_multi @ 2 ·
+        target allAllies ×7 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Crit ATK Boost <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Crits, all allies gain [color=#328A00]{growthValue:percent}[/color] ATK for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_crit @ 4 ·
+        target allAllies ×7 · effect eff_damage_up</div>
+    </div>
+    <div class="card">
+      <h3>Crit Speed Up <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Crits, all allies gain [color=#328A00]{growthValue:percent}[/color] Attack Speed for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_crit @ 4 ·
+        target allAllies ×7 · effect eff_attack_speed_up</div>
+    </div>
+    <div class="card">
+      <h3>Damage-Taken Reflect <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] hits taken, all allies gain [color=#328A00]{growthValue:percent}[/color] Reflect DMG for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_beaten @ 6 ·
+        target allAllies ×7 · effect eff_reflect</div>
+    </div>
+    <div class="card">
+      <h3>Damage-Taken Shield <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] hits taken, the [color=#A72E00]3[/color] allies with the lowest HP ratio gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_beaten @ 6 ·
+        target lowestHpRateAlly ×3 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Heal Shield <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Heals or Shields gained, the [color=#A72E00]3[/color] allies with the lowest HP ratio gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_heal @ 6 ·
+        target lowestHpRateAlly ×3 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Heal Speed Up <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Heals or Shields gained, all allies gain [color=#328A00]{growthValue:percent}[/color] Attack Speed for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_heal @ 6 ·
+        target allAllies ×7 · effect eff_attack_speed_up</div>
+    </div>
+    <div class="card">
+      <h3>Hit Lifesteal <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Skill hits, all allies gain [color=#328A00]{growthValue:percent}[/color] Lifesteal for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_hit @ 6 ·
+        target allAllies ×7 · effect eff_lifesteal</div>
+    </div>
+    <div class="card">
+      <h3>Hit Slow <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Skill hits, all enemies lose [color=#328A00]{growthValue:percent}[/color] Attack Speed for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_hit @ 6 ·
+        target allEnemies ×7 · effect eff_attack_speed_down</div>
+    </div>
+    <div class="card">
+      <h3>Multi-Target ATK Boost <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] multi-target hits (at least [color=#A72E00]2[/color] targets per hit), all allies gain [color=#328A00]{growthValue:percent}[/color] ATK for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_multi @ 2 ·
+        target allAllies ×7 · effect eff_damage_up</div>
+    </div>
+    <div class="card">
+      <h3>Multi-Target Lifesteal <span class="hint">quality 5 · max L25</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] multi-target hits (at least [color=#A72E00]2[/color] targets per hit), all allies gain [color=#328A00]{growthValue:percent}[/color] Lifesteal for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_multi @ 2 ·
+        target allAllies ×7 · effect eff_lifesteal</div>
+    </div>
+    <div class="card">
+      <h3>Crit Speed Up <span class="hint">quality 4 · max L20</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Crits, the [color=#A72E00]3[/color] allies with the highest ATK gain [color=#328A00]{growthValue:percent}[/color] Attack Speed for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_crit @ 4 ·
+        target highestAttackAllies ×3 · effect eff_attack_speed_up</div>
+    </div>
+    <div class="card">
+      <h3>Damage-Taken Shield <span class="hint">quality 4 · max L20</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] hits taken, the [color=#A72E00]3[/color] allies with the highest ATK each gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] of their own Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_beaten @ 6 ·
+        target highestAttackAllies ×3 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Debuff ATK Boost <span class="hint">quality 4 · max L20</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Debuffs applied, the [color=#A72E00]3[/color] allies with the highest ATK gain [color=#328A00]{growthValue:percent}[/color] ATK for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_ailment @ 5 ·
+        target highestAttackAllies ×3 · effect eff_damage_up</div>
+    </div>
+    <div class="card">
+      <h3>Heal Speed Up <span class="hint">quality 4 · max L20</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Heals or Shields gained, the [color=#A72E00]3[/color] allies with the highest ATK gain [color=#328A00]{growthValue:percent}[/color] Attack Speed for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_heal @ 6 ·
+        target highestAttackAllies ×3 · effect eff_attack_speed_up</div>
+    </div>
+    <div class="card">
+      <h3>Hit ATK Boost <span class="hint">quality 4 · max L20</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] Skill hits, the [color=#A72E00]3[/color] allies with the highest ATK gain [color=#328A00]{growthValue:percent}[/color] ATK for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_hit @ 6 ·
+        target highestAttackAllies ×3 · effect eff_damage_up</div>
+    </div>
+    <div class="card">
+      <h3>Multi-Target Shield <span class="hint">quality 4 · max L20</span></h3>
+      <div class="small">After allies accumulate [color=#A72E00]{triggerValue}[/color] multi-target hits (at least [color=#A72E00]2[/color] targets per hit), the [color=#A72E00]3[/color] allies with the highest ATK each gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] of their own Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s. Occult Art trigger interval: 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_multi @ 2 ·
+        target highestAttackAllies ×3 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Crit ATK Boost <span class="hint">quality 3 · max L15</span></h3>
+      <div class="small">After the team lands [color=#A72E00]{triggerValue}[/color] Crits in total, the [color=#A72E00]2[/color] allies with the highest ATK gain [color=#328A00]{growthValue:percent}[/color] ATK for [color=#A72E00]{durationMs:ms2s}[/color]s; trigger interval 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_crit @ 4 ·
+        target highestAttackAlly ×2 · effect eff_damage_up</div>
+    </div>
+    <div class="card">
+      <h3>Damage-Taken Shield <span class="hint">quality 3 · max L15</span></h3>
+      <div class="small">After the team takes [color=#A72E00]{triggerValue}[/color] hits in total, the [color=#A72E00]2[/color] allies with the lowest HP ratio gain a Shield equal to [color=#328A00]{growthValue:percent}[/color] of their Max HP for [color=#A72E00]{durationMs:ms2s}[/color]s; trigger interval 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_beaten @ 6 ·
+        target lowestHpRateAlly ×2 · effect eff_shield</div>
+    </div>
+    <div class="card">
+      <h3>Heal Speed Boost <span class="hint">quality 3 · max L15</span></h3>
+      <div class="small">After the team receives [color=#A72E00]{triggerValue}[/color] heals or Shields in total, the [color=#A72E00]2[/color] allies with the highest ATK gain [color=#328A00]{growthValue:percent}[/color] ATK Speed for [color=#A72E00]{durationMs:ms2s}[/color]s; trigger interval 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_heal @ 6 ·
+        target highestAttackAlly ×2 · effect eff_attack_speed_up</div>
+    </div>
+    <div class="card">
+      <h3>Hit ATK Boost <span class="hint">quality 3 · max L15</span></h3>
+      <div class="small">After the team lands [color=#A72E00]{triggerValue}[/color] Skill hits in total, the [color=#A72E00]2[/color] allies with the highest ATK gain [color=#328A00]{growthValue:percent}[/color] ATK for [color=#A72E00]{durationMs:ms2s}[/color]s; trigger interval 2s. (Max 5 triggers per round)</div>
+      <div class="small traits">trigger cnd_hit @ 6 ·
+        target highestAttackAlly ×2 · effect eff_damage_up</div>
+    </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------------- BONDS -->
+<section id="bonds" class="pane">
+  <div class="row">
+    <div class="panel grow">
+      <h2>Class bonds — exact thresholds and values from the game config</h2>
+      <div id="bond-table">
+    <h3 style="margin-top:14px">Archer</h3>
+    <table><thead><tr><th>Breakpoint</th><th>Effect</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>1 </td>
+      <td></td>
+      <td>0</td>
+      <td class="small">game_config.json:heroBond[2]</td></tr>
+      <tr><td>3 </td>
+      <td>3 Archers, Synergy Activated: All Base ATK Speed +{jcgsjc:percent}</td>
+      <td>3900</td>
+      <td class="small">game_config.json:heroBond[2]</td></tr>
+      <tr><td>5 </td>
+      <td>5 Archers, Synergy Activated: All Base ATK Speed +{jcgsjc:percent}</td>
+      <td>14300</td>
+      <td class="small">game_config.json:heroBond[2]</td></tr>
+    </tbody></table>
+    <h3 style="margin-top:14px">Assassin</h3>
+    <table><thead><tr><th>Breakpoint</th><th>Effect</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>1 </td>
+      <td></td>
+      <td>0</td>
+      <td class="small">game_config.json:heroBond[4]</td></tr>
+      <tr><td>3 </td>
+      <td>3 Assassins, Synergy Activated: All Assassins Crit Rate +{bjl:percent}, Crit DMG +{bjshjc:percent}</td>
+      <td>2000</td>
+      <td class="small">game_config.json:heroBond[4]</td></tr>
+      <tr><td>5 </td>
+      <td>5 Assassins, Synergy Activated: All Assassins Crit Rate +{bjl:percent}, Crit DMG +{bjshjc:percent}</td>
+      <td>4500</td>
+      <td class="small">game_config.json:heroBond[4]</td></tr>
+    </tbody></table>
+    <h3 style="margin-top:14px">Mage</h3>
+    <table><thead><tr><th>Breakpoint</th><th>Effect</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>1 </td>
+      <td></td>
+      <td>0</td>
+      <td class="small">game_config.json:heroBond[3]</td></tr>
+      <tr><td>3 </td>
+      <td>3 Mages, Synergy Activated: All Base ATK +{jcgj}</td>
+      <td>75</td>
+      <td class="small">game_config.json:heroBond[3]</td></tr>
+      <tr><td>5 </td>
+      <td>5 Mages, Synergy Activated: All Base ATK +{jcgj}</td>
+      <td>435</td>
+      <td class="small">game_config.json:heroBond[3]</td></tr>
+    </tbody></table>
+    <h3 style="margin-top:14px">Sovereign</h3>
+    <table><thead><tr><th>Breakpoint</th><th>Effect</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>1 ★</td>
+      <td>Hades: All DMG +{shjc:percent} (Disables all Class Synergies when deployed.)</td>
+      <td>950</td>
+      <td class="small">game_config.json:heroBond[6]</td></tr>
+      <tr><td>5 ★</td>
+      <td>Hades (Max Star): All DMG +{shjc:percent} (Disables all Class Synergies when deployed.)</td>
+      <td>2500</td>
+      <td class="small">game_config.json:heroBond[6]</td></tr>
+    </tbody></table>
+    <h3 style="margin-top:14px">Support</h3>
+    <table><thead><tr><th>Breakpoint</th><th>Effect</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>1 </td>
+      <td></td>
+      <td>0</td>
+      <td class="small">game_config.json:heroBond[5]</td></tr>
+      <tr><td>3 </td>
+      <td>3 Supports, Synergy Activated: All DMG Reflection +{ft:percent}</td>
+      <td>2000</td>
+      <td class="small">game_config.json:heroBond[5]</td></tr>
+      <tr><td>5 </td>
+      <td>5 Supports, Synergy Activated: All DMG Reflection +{ft:percent}</td>
+      <td>4500</td>
+      <td class="small">game_config.json:heroBond[5]</td></tr>
+    </tbody></table>
+    <h3 style="margin-top:14px">Warrior</h3>
+    <table><thead><tr><th>Breakpoint</th><th>Effect</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>1 </td>
+      <td></td>
+      <td>0</td>
+      <td class="small">game_config.json:heroBond[1]</td></tr>
+      <tr><td>3 </td>
+      <td>3 Warriors, Synergy Activated: All Base HP +{jcsm}</td>
+      <td>800</td>
+      <td class="small">game_config.json:heroBond[1]</td></tr>
+      <tr><td>5 </td>
+      <td>5 Warriors, Synergy Activated: All Base HP +{jcsm}</td>
+      <td>4800</td>
+      <td class="small">game_config.json:heroBond[1]</td></tr>
+    </tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------------- SHARDS -->
+<section id="shards" class="pane">
+  <div class="row">
+    <div class="panel grow">
+      <div class="toolbar">
+        <label>shard budget <input id="shard-budget" type="number" value="40" style="width:90px"></label>
+        <button id="run-shards">PLAN SPEND</button>
+      </div>
+      <div id="shard-results"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ----------------------------------------------------------------- DATA -->
+<section id="data" class="pane">
+  <div class="row">
+    <div class="panel grow">
+      <h2>Items</h2>
+      <div id="item-list">
+    <div class="card"><h3>Snake</h3><div class="small">Not deployed as a unit — it is an ITEM: grants a chance to level up another card.</div>
+    <div class="small traits">Amre, in-game 2026-10-25</div></div></div>
+      <h2 style="margin-top:18px">Draft &amp; battle configuration</h2>
+      <div id="draft-config"><div class="kv"><span>init_coin</span><b>15</b></div><div class="kv"><span>init_slot</span><b>3</b></div><div class="kv"><span>round_slot_incr</span><b>1</b></div><div class="kv"><span>slot_limit</span><b>8</b></div><div class="kv"><span>init_refresh</span><b>2</b></div><div class="kv"><span>refresh_max</span><b>10</b></div><div class="kv"><span>select_hero_num</span><b>3</b></div><div class="kv"><span>battle_sec</span><b>32</b></div><div class="kv"><span>battle_end_sec</span><b>3</b></div><div class="kv"><span>match_limit_sec</span><b>60</b></div><div class="kv"><span>round_coin</span><b>20, 30, 40, 40, 40, 40, 40, 40, 40, 40</b></div><div class="kv"><span>day_limit</span><b>30</b></div><div class="kv"><span>init_hp</span><b>4</b></div><div class="kv"><span>hero_pick</span><b>3</b></div></div>
+      <h2 style="margin-top:18px">Model assumptions</h2>
+      <div class="hint">Everything the engine had to guess because the game does not publish it.</div>
+      <div id="assumptions"><div class="kv"><span>stat_model</span><b>The game's own formulas. HP = (cssm*(1+smsjjc/1e4)*(1+sxjc/1e4)+jcsm)*(1+smjc/1e4)+smgdz. ATK = (csgj*(1+gjsjjc/1e4)*(1+sxjc/1e4)+jcgj)*(1+gjjc/1e4)+gjgdz. Attack rate = min(10, gjcs*0.001*zgsjc).</b></div><div class="kv"><span>crit_base</span><b>Base crit chance is NOT in the config. Assumed 5%. Crit damage = csys (per-mille) plus Assassin bond bjshjc.</b></div><div class="kv"><span>crit_chance_assumed</span><b>0.05</b></div><div class="kv"><span>targeting</span><b>Attacker hits the enemy in the FRONT row of the opposing team, nearest by grid distance, lowest HP first as tie-break. If the front row is empty it hits the opposing back row. A unit with no reachable target does nothing.</b></div><div class="kv"><span>battle_length</span><b>32 seconds (battleSec from battleConfigRef). After that, whoever has more remaining total HP wins; equal HP is a draw.</b></div><div class="kv"><span>bond_applies_to</span><b>Class bonds apply to ALL units on the team (the game says 全体 / 'all'). The Assassin crit bond applies to Assassin units only (全体刺客).</b></div><div class="kv"><span>sovereign_bond</span><b>Sovereign bond triggers on Hades being deployed and disables all other class bonds; it grants +9.5% / +25% damage.</b></div><div class="kv"><span>attack_interval</span><b>gjjl is the seconds between attacks; the effective rate is min(gjcs*0.001, 1/gjjl). The tighter of the two wins.</b></div><div class="kv"><span>thorn</span><b>Support bond (3/5) grants all allies reflection equal to the bonus percentage of incoming damage.</b></div><div class="kv"><span>draft</span><b>init_coin 15, +20/+30/+40 per round (roundCoin), 3 shop slots, refresh costs escalate, board slots start at 3 and grow +1 per round to a limit of 8.</b></div><div class="kv"><span>bard_trick</span><b>Selling Bard from your board and taking the Bard from the shop refreshes the shop once for free (official wilderness guide). Bard is a currency button.</b></div><div class="kv"><span>duplicate_value</span><b>A duplicate hero card contributes shards toward the next level.</b></div><div class="kv"><span>snake</span><b>The Snake is an ITEM, not a unit: it grants a chance to level up another card.</b></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="modal"><div id="modal-box"></div></div>
+<div id="toast"></div>
+<script src="/app.js"></script>
+
+
+</body></html>
