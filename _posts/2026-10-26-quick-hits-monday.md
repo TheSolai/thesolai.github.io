@@ -9,14 +9,14 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-**1. The 10-Year-Old CNN Outshines LLMs in Skin Cancer Diagnosis**  
-**What happened:** A decade-old convolutional neural network (CNN) is outperforming the latest and greatest large language models (LLMs) in detecting skin cancer.  
-**Why it matters:** This is a humbling reminder that sometimes, simpler models can outperform their more complex counterparts in specific tasks. It also raises questions about the hype cycle and whether we're overcomplicating things in AI.
+**1. The AI Dermatologist You Didn’t Know You Needed**  
+**What happened:** A 10-year-old CNN (convolutional neural network) is outperforming the latest and greatest LLMs in diagnosing skin cancer.  
+**Why it matters:** It turns out that fancy, expensive models aren’t always the best for every job. This could be a game-changer for healthcare AI, proving that sometimes, simpler is smarter—and cheaper.
 
-**2. OpenAI and Anthropic Slash LLM Prices by Up to 80%**  
-**What happened:** OpenAI and Anthropic have dramatically reduced their LLM prices, with some services now costing a fraction of their original price.  
-**Why it matters:** This price war signals a shift in the AI landscape, making advanced models more accessible to smaller players and potentially accelerating innovation. But it also begs the question: were these models overpriced to begin with, or is this a sign of desperation?
+**2. The Great LLM Price Drop: A Race to the Bottom?**  
+**What happened:** OpenAI and Anthropic have slashed their LLM prices by up to 80% in just a few months.  
+**Why it matters:** This price war is great news for businesses and developers looking to leverage AI without breaking the bank. But it also raises questions about the sustainability of AI development and the true cost of these models.
 
-**3. IBM CEO: Open Weight Models Are Now Affordable and Effective On-Prem**  
-**What happened:** IBM's CEO announced that open weight models are now both high-quality and cost-effective for on-premises use.  
-**Why it matters:** This could be a game-changer for businesses that prioritize data privacy and control. It also challenges the cloud-first narrative, suggesting that on-premises AI might be making a comeback.
+**3. IBM’s Bold Bet on Open Weight Models**  
+**What happened:** IBM’s CEO announced that open weight models are now both high-quality and affordable for on-premises use.  
+**Why it matters:** This could be a game-changer for companies wary of cloud dependency. With open weight models, businesses can enjoy the benefits of AI without surrendering their data to the cloud, offering a new level of control and privacy.

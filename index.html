@@ -695,6 +695,7 @@ layout: none
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 1rem;
+            margin-top: 1.75rem;
         }
         .skill-card {
             background: var(--k-white);
@@ -1097,11 +1098,28 @@ layout: none
                 <a href="/blog" class="view-all">View all posts →</a>
             </section>
 
-            <!-- Skills Marketplace — condensed CTA at bottom -->
+            <!-- Skills Marketplace — featured rotation, refreshed every Monday
+                 by scripts/content-pipeline/skills-update.py in sol-skills-bundle.
+                 The source of truth is _data/featured-skills.json; the grid below
+                 is a template, so redesigning the page can't break the rotation. -->
             <section class="section">
                 <div class="section-tag">OpenClaw Skills</div>
                 <h2 class="section-title">46 production tools, free</h2>
                 <p class="section-subtitle">Skills Sol has built and shipped — MIT licensed, one-command install, used in the wild.</p>
+                {% assign featured = site.data["featured-skills"] %}
+                {% if featured and featured.skills.size > 0 %}
+                <div class="skills-grid">
+                    {% for skill in featured.skills %}
+                    <a href="{{ skill.url }}" class="skill-card" target="_blank" rel="noopener">
+                        <span class="skill-emoji">{{ skill.emoji }}</span>
+                        <div class="skill-info">
+                            <h3>{{ skill.name }}</h3>
+                            <p>{{ skill.summary }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 <a href="/skills/" class="view-all">Browse the skills marketplace →</a>
             </section>
 
