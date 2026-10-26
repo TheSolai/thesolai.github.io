@@ -36,6 +36,7 @@ import plistlib
 import re
 import subprocess
 import sys
+import threading
 import zipfile
 
 MIN_LEN = 16
@@ -397,8 +398,124 @@ def candidate_files(repo, mode):
     return seen
 
 
+def _read_disk(repo, name):
+    """Read a file from the working tree, capped at MAX_SCAN_BYTES."""
+    try:
+        with open(os.path.join(repo, name), "rb") as handle:
+            return handle.read(MAX_SCAN_BYTES)
+    except OSError:
+        return b""
+
+
+def _batch_blobs(repo, specs):
+    """Yield (spec, data) for each object spec using ONE `git cat-file --batch`.
+
+    Reading blobs one subprocess at a time costs a process spawn per file.
+    On a repo with ~5,600 tracked files, and again for every blob reachable
+    in the pushed range, that is thousands of spawns — several minutes of
+    wall clock. That is long enough that `git push` hits its own timeout
+    *inside* this hook, before the credential scan has even finished.
+
+    `git cat-file --batch` takes a list of object names on stdin and writes
+    one response per name, in order, so a single process can serve an
+    entire scan. The bytes it returns are identical to `git cat-file blob`.
+
+    Yields (spec, data), where data is None when git cannot resolve the
+    spec; the caller decides whether to fall back to reading from disk.
+
+    Only one blob is held in memory at a time — a full history of this repo
+    is ~490 MB, which must not be buffered.
+    """
+    specs = list(specs)
+    if not specs:
+        return
+
+    try:
+        proc = subprocess.Popen(
+            ["git", "-C", repo, "cat-file", "--batch"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError:
+        for spec in specs:
+            yield spec, None
+        return
+
+    def feed():
+        # Writing on a helper thread keeps the pipe from deadlocking: git
+        # writes responses while we are still sending names.
+        try:
+            for spec in specs:
+                proc.stdin.write(spec.encode("utf-8", "replace") + b"\n")
+            proc.stdin.flush()
+        except (BrokenPipeError, ValueError, OSError):
+            pass
+        finally:
+            try:
+                proc.stdin.close()
+            except (BrokenPipeError, ValueError, OSError):
+                pass
+
+    writer = threading.Thread(target=feed, daemon=True)
+    writer.start()
+
+    out = proc.stdout
+    try:
+        for spec in specs:
+            header = out.readline()
+            if not header:
+                break
+            parts = header.split()
+            if len(parts) < 3:
+                # "<spec> missing" — git could not resolve this object.
+                yield spec, None
+                continue
+            try:
+                size = int(parts[2])
+            except (TypeError, ValueError):
+                yield spec, None
+                continue
+            data = out.read(size)
+            if data is None:
+                data = b""
+            out.read(1)  # the newline that terminates the payload
+            yield spec, data
+    finally:
+        writer.join(timeout=30)
+        try:
+            out.close()
+        except OSError:
+            pass
+        try:
+            proc.wait(timeout=10)
+        except Exception:
+            proc.kill()
+
+
+def _index_shas(repo):
+    """Map of path -> blob sha for the current index (stage 0 only)."""
+    raw = git(repo, "ls-files", "-s")
+    result = {}
+    for line in raw.decode("utf-8", "replace").splitlines():
+        if not line.strip():
+            continue
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) < 3:
+            continue
+        sha, stage = parts[1], parts[2]
+        if stage != "0":
+            continue
+        result[path] = sha
+    return result
+
+
 def read_blob(repo, name, mode):
-    """Return the bytes that would be published for this path."""
+    """Return the bytes that would be published for this path.
+
+    Kept for compatibility; the scanners below use the batched reader.
+    """
     if mode == "staged":
         spec = ":" + name
     else:
@@ -412,11 +529,7 @@ def read_blob(repo, name, mode):
     except OSError:
         return b""
     if out.returncode != 0:
-        try:
-            with open(os.path.join(repo, name), "rb") as handle:
-                return handle.read(MAX_SCAN_BYTES)
-        except OSError:
-            return b""
+        return _read_disk(repo, name)
     return out.stdout
 
 
@@ -437,45 +550,75 @@ def archive_members(data):
             continue
 
 
+def _check_payloads(label, data, literals, findings, vendor_ok=True):
+    """Apply the literal and pattern checks to one blob and its archive members."""
+    if not data:
+        return
+    payloads = [(label, data)]
+    for member, member_data in archive_members(data):
+        payloads.append(("%s::%s" % (label, member), member_data))
+
+    for payload_label, payload in payloads:
+        if len(payload) > MAX_SCAN_BYTES:
+            payload = payload[:MAX_SCAN_BYTES]
+
+        for (kind, value), digest in literals.items():
+            if value.encode() in payload:
+                findings.append((kind, payload_label, "sha256:" + digest))
+
+        is_vendor = any(payload_label.startswith(p) for p in VENDOR_PREFIXES)
+        if is_vendor:
+            continue
+        if is_binary(payload):
+            continue
+        if skip_pattern_matching(payload_label):
+            continue
+        for kind, pattern in PATTERNS:
+            for match in pattern.finditer(payload):
+                try:
+                    text = match.group(0).decode("utf-8", "ignore")
+                except Exception:
+                    text = ""
+                if not text or looks_like_placeholder(text):
+                    continue
+                if in_url_context(payload, match.start(), match.end()):
+                    continue
+                findings.append(("pattern:" + kind, payload_label, redact(text)))
+
+
 def scan(repo, mode, quiet):
     literals = collect_literals()
     findings = []
     files = candidate_files(repo, mode)
 
-    for name in files:
-        data = read_blob(repo, name, mode)
-        if not data:
-            continue
-        payloads = [(name, data)]
-        for member, member_data in archive_members(data):
-            payloads.append(("%s::%s" % (name, member), member_data))
-
-        for label, payload in payloads:
-            if len(payload) > MAX_SCAN_BYTES:
-                payload = payload[:MAX_SCAN_BYTES]
-
-            for (kind, value), digest in literals.items():
-                if value.encode() in payload:
-                    findings.append((kind, label, "sha256:" + digest))
-
-            is_vendor = any(label.startswith(p) for p in VENDOR_PREFIXES)
-            if is_vendor:
-                continue
-            if is_binary(payload):
-                continue
-            if skip_pattern_matching(label):
-                continue
-            for kind, pattern in PATTERNS:
-                for match in pattern.finditer(payload):
-                    try:
-                        text = match.group(0).decode("utf-8", "ignore")
-                    except Exception:
-                        text = ""
-                    if not text or looks_like_placeholder(text):
-                        continue
-                    if in_url_context(payload, match.start(), match.end()):
-                        continue
-                    findings.append(("pattern:" + kind, label, redact(text)))
+    if mode == "staged":
+        # The index content for each staged path, read in one batch.
+        index_shas = _index_shas(repo)
+        specs = []
+        for name in files:
+            sha = index_shas.get(name)
+            specs.append(sha if sha else ":" + name)
+        blobs = {}
+        for spec, data in _batch_blobs(repo, specs):
+            blobs[spec] = data
+        for name, spec in zip(files, specs):
+            data = blobs.get(spec)
+            if not data:
+                data = _read_disk(repo, name)
+            _check_payloads(name, data, literals, findings)
+    else:
+        # The working tree: the bytes that would be published are the ones
+        # on disk right now.
+        #
+        # The original implementation asked git for `cat-file blob <path>`,
+        # which is not a valid object name in git 2.x — every call failed and
+        # the scan fell back to reading the file from disk. This is that
+        # behaviour, minus 5,600 subprocess spawns.
+        #
+        # Reading the disk copy is also the stricter check: it sees
+        # uncommitted edits, which the index copy would not.
+        for name in files:
+            _check_payloads(name, _read_disk(repo, name), literals, findings)
 
     if findings and not quiet:
         print("SECRET-SCAN: ABORT - %d finding(s)" % len(findings))
@@ -540,33 +683,16 @@ def scan_history(repo, rev_range, quiet):
                 continue
             seen.add((parts[2], parts[3]))
 
+    # One blob read for the whole range, streamed so only a single blob is
+    # held in memory at a time (the full history of a busy site is ~490 MB).
+    name_for_sha = {}
     for sha, name in sorted(seen):
-        data = git(repo, "cat-file", "blob", sha)
+        name_for_sha.setdefault(sha, name)
+
+    for sha, data in _batch_blobs(repo, list(name_for_sha.keys())):
         if not data:
             continue
-        payloads = [(name, data)]
-        for member, member_data in archive_members(data):
-            payloads.append(("%s::%s" % (name, member), member_data))
-        for label, payload in payloads:
-            if len(payload) > MAX_SCAN_BYTES:
-                payload = payload[:MAX_SCAN_BYTES]
-            for (kind, value), digest in literals.items():
-                if value.encode() in payload:
-                    findings.append((kind, label, "sha256:" + digest))
-            is_vendor = any(label.startswith(p) for p in VENDOR_PREFIXES)
-            if is_vendor or is_binary(payload) or skip_pattern_matching(label):
-                continue
-            for kind, pattern in PATTERNS:
-                for match in pattern.finditer(payload):
-                    try:
-                        text = match.group(0).decode("utf-8", "ignore")
-                    except UnicodeDecodeError:
-                        text = ""
-                    if not text or looks_like_placeholder(text):
-                        continue
-                    if in_url_context(payload, match.start(), match.end()):
-                        continue
-                    findings.append(("pattern:" + kind, label, redact(text)))
+        _check_payloads(name_for_sha.get(sha, sha), data, literals, findings)
 
     if findings and not quiet:
         print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(findings), rev_range))
