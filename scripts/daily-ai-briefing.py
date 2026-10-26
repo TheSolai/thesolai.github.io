@@ -107,7 +107,12 @@ def main():
         
         client.inboxes.messages.send(
             inbox_id='sol-ai@agentmail.to',
-            to=['[REDACTED-RECIPIENT]'],
+        # Amre's replies all come from [REDACTED-RECIPIENT]. The old
+        # [REDACTED-RECIPIENT] address accepted mail but she never replies from
+        # there, so anything needing a reply stalled silently (see
+        # repo-roulette, which sat 11 days waiting for a verdict).
+        # Send to both so the briefing reaches whichever inbox she reads.
+        to=['[REDACTED-RECIPIENT]', '[REDACTED-RECIPIENT]'],
             subject=f'AI/RAG/Memory Briefing — {datetime.now().strftime("%Y-%m-%d")}',
             text=body
         )

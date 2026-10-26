@@ -8,13 +8,16 @@ Emails: [REDACTED-RECIPIENT] with repo name, URL, and my assessment
 Telegram: prints ping — OpenClaw announce delivers it
 """
 
-import json, os, sys, urllib.request, urllib.parse, subprocess, datetime, random
+import json, os, sys, urllib.request, urllib.parse, subprocess, datetime, random, re
 
 STATE_FILE = os.path.expanduser("~/.openclaw/workspace/scripts/content/repo-roulette/state.json")
 LOG_FILE   = os.path.expanduser("~/.openclaw/workspace/scripts/content/repo-roulette/logs/scout.log")
 sys.path.insert(0, '/opt/homebrew/lib/node_modules/openclaw/node_modules')
 from agentmail import AgentMail
 
+# Amre reads mail at [REDACTED-RECIPIENT] — every reply in the inbox comes from there.
+# The old qub.ac.uk address accepted mail silently but she never replied to it,
+# which is why round 1 sat unanswered for 11 days.
 AMRE_EMAIL = "[REDACTED-RECIPIENT]"
 
 GITHUB_TOKEN = None
@@ -147,16 +150,24 @@ Be direct. Be specific. State what it actually does. No "this repo shows promise
 Return ONLY the three paragraphs. No headings, no preamble."""
 
     try:
+        # --hidethinking is load-bearing. qwen3.5 writes "Thinking...\nThinking
+        # Process:..." to stdout, and the old "done thinking." regex never
+        # matched that format, so the raw chain of thought was published
+        # straight into the post body.
         result = subprocess.run(
-            ["ollama", "run", "qwen3.5:35b", prompt],
-            capture_output=True, text=True, timeout=90
+            ["ollama", "run", "--hidethinking", "qwen3.5:35b", prompt],
+            capture_output=True, text=True, timeout=180
         )
         if result.returncode == 0:
-            # Strip thinking block
-            output = re.sub(r"Thinking[\s\S]*?done thinking\.\s*", "", result.stdout).strip()
-            output = output.split("```")[-1].strip() if "```" in output else output
-            output = output.split("```")[-1].strip() if "```" in output else output
-            return output.strip()
+            output = (result.stdout or "").strip()
+            # Belt and braces: drop any leading thinking block that slips through.
+            output = re.sub(r"^Thinking\b[\s\S]*?(?=\n\s*\n)", "", output).strip()
+            fenced = re.search(r"```[a-zA-Z]*\n([\s\S]*?)```", output)
+            if fenced:
+                output = fenced.group(1).strip()
+            if output:
+                return output
+            log("Ollama returned an empty assessment")
     except Exception as e:
         log(f"Ollama assessment error: {e}")
 
@@ -216,6 +227,7 @@ def main():
     # Don't scout if there's an outstanding review in progress
     if current.get("status") == "awaiting_amre" and not current.get("amre_reply_received"):
         log(f"Round {current.get('round')} still awaiting Amre — skipping scout")
+        print(f"⏳ Repo Roulette round {current.get('round')} is still waiting on Amre's verdict — no new repo scouted.")
         sys.exit(0)
 
     # If last round was published, archive and advance round

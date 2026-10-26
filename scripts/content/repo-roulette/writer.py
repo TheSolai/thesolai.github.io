@@ -32,6 +32,41 @@ def load_state():
             return json.load(f)
     return {"current": {}, "history": [], "last_scouted_at": None}
 
+# Amre's replies arrive from her gmail address. The old filter only accepted
+# senders containing "alee17", which no message from her ever matched.
+AMRE_ADDRESSES = ("[REDACTED-RECIPIENT]", "[REDACTED-RECIPIENT]")
+
+
+def _is_amre(sender):
+    s = (sender or '').lower()
+    return any(addr in s for addr in AMRE_ADDRESSES)
+
+
+def _body_text(client, inbox_id, msg):
+    """Full body text of a message.
+
+    messages.list() returns a truncated preview (~200 chars) and no .text
+    attribute, so the old `getattr(msg, 'text')` was always None and the
+    length check could never pass. messages.get() returns the real body.
+    """
+    text = getattr(msg, 'text', None)
+    if text and len(text.strip()) > 20:
+        return text
+
+    mid = getattr(msg, 'message_id', None)
+    if mid:
+        try:
+            full = client.inboxes.messages.get(inbox_id, mid)
+            body = getattr(full, 'text', None) or ''
+            if not body.strip():
+                body = re.sub(r'<[^>]+>', ' ', getattr(full, 'html', None) or '')
+            if body.strip():
+                return body
+        except Exception as e:
+            log(f"Body fetch failed for {mid}: {e}")
+
+    return getattr(msg, 'preview', None) or ''
+
 def save_state(state):
     with open(STATE_FILE, "w") as f:
         json.dump(state, f, indent=2)
@@ -47,28 +82,34 @@ def check_amre_reply(state):
 
     try:
         # Get all messages and look for replies to our thread
-        result = client.inboxes.messages.list(inbox_id=inbox_id, limit=50)
+        result = client.inboxes.messages.list(inbox_id=inbox_id, limit=100)
         thread_id = state["current"]["email_thread_id"]
 
         # Also check the specific thread
         try:
             thread = client.inboxes.threads.get(inbox_id, thread_id)
             for msg in thread.messages:
-                text = getattr(msg, 'text', None) or ''
                 sender = getattr(msg, 'from_', '') or ''
-                if sender and 'alee17' in sender.lower() and len(text) > 20:
-                    log(f"Found Amre's reply in thread: {len(text)} chars")
+                if not _is_amre(sender):
+                    continue
+                text = _body_text(client, inbox_id, msg)
+                if len(text.strip()) > 20:
+                    log(f"Found Amre's reply in thread from {sender}: {len(text)} chars")
                     return True, text
         except Exception as e:
             log(f"Thread check error: {e}")
 
         # Also scan recent messages for replies
+        repo_name = (state.get("current", {}).get("repo_name") or "").lower()
         for m in result.messages:
-            if 'alee17' in (getattr(m, 'from_', '') or '').lower():
-                text = getattr(m, 'text', None) or ''
-                if len(text) > 20 and 'repo roulette' in text.lower():
-                    log(f"Found reply via inbox scan: {len(text)} chars")
-                    return True, text
+            sender = getattr(m, 'from_', '') or ''
+            if not _is_amre(sender):
+                continue
+            text = _body_text(client, inbox_id, m)
+            low = text.lower()
+            if len(text.strip()) > 20 and ('repo roulette' in low or (repo_name and repo_name in low)):
+                log(f"Found reply via inbox scan from {sender}: {len(text)} chars")
+                return True, text
 
     except Exception as e:
         log(f"Inbox check error: {e}")
