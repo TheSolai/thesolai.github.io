@@ -229,26 +229,76 @@ def _require_tools():
 
 
 def rasterise(svg: str, cairosvg_bin: str, magick_bin: str) -> bytes:
-    """Render the SVG artwork to a palette-quantised 1200x630 PNG."""
-    raw = subprocess.run(
-        [cairosvg_bin, "-f", "png", "-o", "-", "-",
-         "--output-width", str(WIDTH), "--output-height", str(HEIGHT)],
-        input=svg.encode("utf-8"),
-        capture_output=True,
-    )
-    if raw.returncode != 0:
-        raise RuntimeError(f"cairosvg failed: {raw.stderr.decode('utf-8', 'replace')[:400]}")
+    """Render the SVG artwork to a palette-quantised 1200x630 PNG.
 
-    quantised = subprocess.run(
-        [magick_bin, "png:-", "-colors", str(PALETTE_COLORS), "PNG8:-"],
-        input=raw.stdout,
-        capture_output=True,
-    )
-    if quantised.returncode != 0:
-        raise RuntimeError(f"magick failed: {quantised.stderr.decode('utf-8', 'replace')[:400]}")
-    if not quantised.stdout:
-        raise RuntimeError("magick produced an empty PNG")
-    return quantised.stdout
+    Both tools are driven in FILE mode, never stdin mode.
+
+    Why: ImageMagick's stdin mode (``magick png:- ... PNG8:-``) silently
+    renders the WRONG artwork on this machine — it emitted the same stale
+    card for every post, so 1215 of 1217 images on the live site showed a
+    March 2026 title card instead of their own post title. The failure is
+    silent: exit code 0, valid PNG, no warning. Only a pixel-level check
+    caught it. File mode (``magick <in>.png ... PNG8:<out>.png``) renders
+    correctly.
+
+    The palette step also needs a follow-up fix: PNG8 quantisation puts the
+    transparent background in palette index 0 with whatever RGB the
+    quantiser chose (often white). The house style is a black card on the
+    site's dark background, so index 0 is forced to RGB black.
+    """
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as tmp:
+        svg_path = Path(tmp) / "card.svg"
+        raw_path = Path(tmp) / "card.raw.png"
+        out_path = Path(tmp) / "card.png"
+        svg_path.write_text(svg, encoding="utf-8")
+
+        raw = subprocess.run(
+            [cairosvg_bin, "-f", "png", "-o", str(raw_path), str(svg_path),
+             "--output-width", str(WIDTH), "--output-height", str(HEIGHT)],
+            capture_output=True,
+        )
+        if raw.returncode != 0:
+            raise RuntimeError(f"cairosvg failed: {raw.stderr.decode('utf-8', 'replace')[:400]}")
+
+        quantised = subprocess.run(
+            [magick_bin, str(raw_path), "-colors", str(PALETTE_COLORS), f"PNG8:{out_path}"],
+            capture_output=True,
+        )
+        if quantised.returncode != 0:
+            raise RuntimeError(f"magick failed: {quantised.stderr.decode('utf-8', 'replace')[:400]}")
+        if not out_path.exists() or out_path.stat().st_size == 0:
+            raise RuntimeError("magick produced an empty PNG")
+
+        return _force_black_transparency(out_path)
+
+
+def _force_black_transparency(path: Path) -> bytes:
+    """Make palette index 0 (the transparent background) RGB black.
+
+    Without this the PNG8 palette keeps a white background, which renders as
+    a white card on the site's black background. Returns the PNG bytes.
+    """
+    try:
+        from PIL import Image
+    except ImportError:
+        # PIL unavailable — return the file untouched rather than failing the
+        # whole run. The image is still correct, only the background differs.
+        return path.read_bytes()
+
+    with Image.open(path) as im:
+        if im.mode != "P":
+            im = im.convert("P", palette=Image.Palette.ADAPTIVE, colors=PALETTE_COLORS)
+        transparency = im.info.get("transparency", 0)
+        palette = im.getpalette()
+        if palette:
+            palette[transparency * 3: transparency * 3 + 3] = [0, 0, 0]
+            im.putpalette(palette)
+        im.info["transparency"] = transparency
+        out = path.parent / "card.black.png"
+        im.save(out, format="PNG", transparency=transparency)
+        return out.read_bytes()
 
 
 def load_manifest():
@@ -317,6 +367,38 @@ def prune(expected_names, manifest):
     return removed
 
 
+def _assert_distinct(name: str, png_bytes: bytes, svg_digest: str, seen: dict) -> None:
+    """Fail loudly if a rendered card is pixel-identical to an earlier one.
+
+    The ImageMagick stdin-mode bug made every post render as the SAME stale
+    card. Nothing errored: exit code 0, valid PNG, plausible file size. The
+    only reliable signal is that two DIFFERENT posts produced identical
+    pixels. This check turns that silent corruption into a hard failure.
+
+    `svg_digest` guards against false positives: two posts that share a title
+    AND a date produce byte-identical SVG, so identical pixels are correct
+    for them. Only a pixel collision between *different* SVGs is a bug.
+    """
+    try:
+        from PIL import Image
+    except ImportError:
+        return  # Cannot verify without PIL; do not block the run.
+    import io
+    try:
+        with Image.open(io.BytesIO(png_bytes)) as im:
+            pix = hashlib.md5(im.convert("RGB").tobytes()).hexdigest()
+    except Exception:
+        return
+    prior = seen.get(pix)
+    if prior is not None and prior[0] != svg_digest:
+        raise RuntimeError(
+            f"rendered card for {name} is pixel-identical to {prior[1]} "
+            "(different source SVG) — the rasteriser is emitting stale "
+            "artwork. Refusing to write it."
+        )
+    seen[pix] = (svg_digest, name)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Generate Open Graph images for every post.")
     ap.add_argument("--force", action="store_true", help="regenerate every image")
@@ -339,6 +421,7 @@ def main():
     todo = []
     reused = 0
     total_bytes = 0
+    seen_pixels = {}
     for name, title, date, _ in posts:
         svg = render_og_svg(title, date, name)
         digest = hashlib.sha1(svg.encode("utf-8")).hexdigest()
@@ -351,7 +434,9 @@ def main():
 
     def render(job):
         name, svg, digest, out = job
-        out.write_bytes(rasterise(svg, cairosvg_bin, magick_bin))
+        data = rasterise(svg, cairosvg_bin, magick_bin)
+        _assert_distinct(name, data, digest, seen_pixels)
+        out.write_bytes(data)
         return name, digest, out.stat().st_size
 
     generated = 0
