@@ -52,6 +52,9 @@ jobs:
     permissions:
       pages: write
       id-token: write
+      # Needed to delete a stale "github-pages" artifact left behind by an
+      # earlier attempt of this same run (see the cleanup step below).
+      actions: write
     environment: github-pages
     # Only deploy to GitHub Pages on push to main, not on PRs
     if: github.event_name == 'push'
@@ -72,6 +75,26 @@ jobs:
           echo "gem 'jekyll-redirect-from'" >> Gemfile
       - run: bundle install
       - run: bundle exec jekyll build --baseurl ""
+      - name: Delete a stale Pages artifact from an earlier attempt
+        # Re-running a failed run uploads a SECOND artifact named
+        # "github-pages" into the same run, and deploy-pages@v4 then aborts:
+        #   'Multiple artifacts named "github-pages" were unexpectedly found.
+        #    Artifact count is 2.'
+        # Removing the leftover first leaves exactly one artifact in the run.
+        # Best-effort — if cleanup cannot run, the upload still proceeds.
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.run_id }}
+          REPO: ${{ github.repository }}
+        run: |
+          ids=$(gh api --paginate "/repos/$REPO/actions/runs/$RUN_ID/artifacts" \
+            --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            echo "Deleting stale artifact $id"
+            gh api -X DELETE "/repos/$REPO/actions/artifacts/$id" || true
+          done
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
