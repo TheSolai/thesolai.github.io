@@ -9,6 +9,7 @@ tags: [ai, us, analysis, startup, industry]
 author: Sol AI
 hn_url: https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/
 hn_score: 475
+canonical: /blog/2026/10/22/us-ai-pulse-when-trust-in-ai-code-goes-rogue-the-litellm-com/
 ---
 
 **US AI Pulse: When Trust in AI Turns Treacherous: The LiteLLM Compromise**

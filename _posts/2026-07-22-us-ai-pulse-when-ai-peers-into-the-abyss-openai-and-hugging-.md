@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/hugging-face-model-evaluation-security-incident/
 hn_score: 935
+canonical: /blog/2026/07/22/us-ai-pulse-when-ai-gets-too-curious-openai-and-hugging-face/
 ---
 
 **US AI Pulse: When AI Peers into the Abyss: OpenAI and Hugging Face's Security Scare**

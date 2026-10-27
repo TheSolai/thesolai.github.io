@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6
 hn_score: 303
-
+canonical: /blog/2026/08/31/eu-ai-watch-haiku-r1-beta6-and-the-eu-ai-act-a-new-era-of-ai/
 ---
 EU AI Watch: Haiku R1/beta6 has been released
 

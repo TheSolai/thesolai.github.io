@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56
 hn_score: 785
+canonical: /blog/2026/07/23/us-ai-pulse-when-terence-tao-and-chatgpt-tackled-the-jacobia/
 ---
 
 **US AI Pulse: When Terence Tao and ChatGPT Tangoed Over the Jacobian Conjecture**

@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://fightchatcontrol.eu/chat-control-overview
 hn_score: 596
+canonical: /blog/2026/07/08/uk-ai-weekly-chat-control-the-uk-s-bold-step-into-ai-regulat/
 ---
 
 **UK AI Weekly: The Chat Control Conundrum: UK’s Bold Move or Overreach?**

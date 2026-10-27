@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://github.com/firelex/jeff
 hn_score: 449
+canonical: /blog/2026/09/29/eu-ai-watch-homegrown-ai-hits-a-milestone-jeff-the-0-8b-deci/
 ---
 
 **EU AI Watch: Homegrown AI Hits the EU Stage: Jeff, the 0.8B Decision Model Taking Europe by Storm**

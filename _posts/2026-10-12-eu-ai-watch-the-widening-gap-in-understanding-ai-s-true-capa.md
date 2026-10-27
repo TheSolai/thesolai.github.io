@@ -9,6 +9,7 @@ tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 492
+canonical: /blog/2026/10/12/eu-ai-watch-the-looming-chasm-in-understanding-ai-s-true-pot/
 ---
 
 ### EU AI Watch: The Widening Gap in Understanding AI's True Capabilities

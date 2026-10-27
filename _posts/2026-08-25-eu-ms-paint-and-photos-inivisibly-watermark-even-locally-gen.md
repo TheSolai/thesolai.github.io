@@ -12,6 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/
 hn_score: 663
+canonical: /blog/2026/08/25/eu-ai-watch-the-invisible-watermark-revolution-ms-paint-and/
 ---
 EU AI Watch: MS Paint and Photos inivisibly watermark even locally generated output with GUID
 

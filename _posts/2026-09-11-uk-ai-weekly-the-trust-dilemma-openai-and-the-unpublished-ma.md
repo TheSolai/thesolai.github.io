@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://mathstodon.xyz/@andreasthom/117240535270608201
 hn_score: 769
+canonical: /blog/2026/09/11/uk-ai-weekly-the-openai-math-dilemma-trust-or-bust/
 ---
 
 **UK AI Weekly: The Trust Dilemma: OpenAI and the Unpublished Math Conundrum**

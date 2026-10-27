@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://get-inscribe.com/blog/apple-speech-api-benchmark.html
 hn_score: 515
+canonical: /blog/2026/07/14/eu-ai-watch-apple-s-speechanalyzer-api-a-new-player-in-town/
 ---
 
 # EU AI Watch: The Apple SpeechAnalyzer Shake-Up: A New Era for European AI?

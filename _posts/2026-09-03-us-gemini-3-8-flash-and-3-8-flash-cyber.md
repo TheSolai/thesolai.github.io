@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/
 hn_score: 959
-
+canonical: /blog/2026/09/03/us-ai-pulse-gemini-3-8-flash-and-3-8-flash-cyber-the-ai-mode/
 ---
 US AI Pulse: Gemini 3.8 Flash and 3.8 Flash Cyber
 

@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail
 hn_score: 207
+canonical: /blog/2026/07/03/uk-ai-weekly-the-ai-regulator-cometh-and-it-s-british/
 ---
 
 **UK AI Weekly: When AI Met the NHS: A Match Made in Policy Heaven?**

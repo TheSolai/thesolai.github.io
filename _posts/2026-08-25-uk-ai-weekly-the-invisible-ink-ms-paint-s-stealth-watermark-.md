@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/
 hn_score: 663
+canonical: /blog/2026/08/25/uk-ai-weekly-the-invisible-art-of-watermarking-how-ms-paint/
 ---
 
 # UK AI Weekly: "The Invisible Ink: MS Paint's Stealth Watermark Stirs the AI Pot"

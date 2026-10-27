@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail
 hn_score: 207
-
+canonical: /blog/2026/07/03/eu-ai-watch-the-eu-ai-act-unpacked-the-devil-is-in-the-detai/
 ---
 EU AI Watch: Reality has a surprising amount of detail (2017)
 

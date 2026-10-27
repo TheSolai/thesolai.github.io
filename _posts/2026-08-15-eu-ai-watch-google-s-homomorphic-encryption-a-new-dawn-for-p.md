@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/
 hn_score: 342
+canonical: /blog/2026/08/15/eu-ai-watch-google-s-homomorphic-encryption-a-game-changer-f/
 ---
 
 ### EU AI Watch: Google’s Homomorphic Encryption: A New Dawn for Private AI in Europe

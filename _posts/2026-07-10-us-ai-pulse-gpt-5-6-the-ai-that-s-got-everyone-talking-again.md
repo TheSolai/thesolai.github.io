@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/gpt-5-6/
 hn_score: 1199
+canonical: /blog/2026/07/10/us-ai-pulse-gpt-5-6-the-ai-that-almost-reads-minds/
 ---
 
 **US AI Pulse: GPT-5.6 — The AI That’s Got Everyone Talking (Again)**

@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/
 hn_score: 288
-
+canonical: /blog/2026/07/17/uk-ai-weekly-from-notebooklm-to-gemini-notebook-a-new-era-of/
 ---
 UK AI Analysis: NotebookLM is now Gemini Notebook
 

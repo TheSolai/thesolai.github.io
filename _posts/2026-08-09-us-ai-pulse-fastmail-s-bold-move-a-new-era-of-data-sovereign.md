@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.fastmail.com/blog/fastmail-offers-eu-data-region/
 hn_score: 378
+canonical: /blog/2026/08/09/us-ai-pulse-fastmail-s-bold-move-a-glimpse-into-the-future-o/
 ---
 
 **US AI Pulse: Fastmail's Bold Move: A New Era of Data Sovereignty**

@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://get-inscribe.com/blog/apple-speech-api-benchmark.html
 hn_score: 511
+canonical: /blog/2026/07/14/uk-ai-weekly-apple-s-speechanalyzer-api-takes-the-stage-leav/
 ---
 
 ### UK AI Weekly: "Apple's SpeechAnalyzer API: The New Kid on the Block, and It's British"

@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://openai.com/index/research-acceleration-view-inside-openai
 hn_score: 152
+canonical: /blog/2026/09/07/eu-ai-watch-the-eu-ai-act-s-ripple-effect-on-innovation/
 ---
 
 ### EU AI Watch: The EU AI Act's Ripple Effect on OpenAI's Research Acceleration

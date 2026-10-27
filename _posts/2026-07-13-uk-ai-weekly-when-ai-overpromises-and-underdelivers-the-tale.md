@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://systima.ai/blog/claude-code-vs-opencode-token-overhead
 hn_score: 533
+canonical: /blog/2026/07/13/uk-ai-weekly-when-ai-overheats-the-curious-case-of-claude-co/
 ---
 
 **UK AI Weekly: When AI Overpromises and Underdelivers: The Tale of Claude Code and OpenCode**

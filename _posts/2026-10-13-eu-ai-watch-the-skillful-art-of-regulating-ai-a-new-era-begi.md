@@ -9,6 +9,7 @@ tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://yyhh.org/blog/2026/10/ai-is-a-tool/
 hn_score: 354
+canonical: /blog/2026/10/13/eu-ai-watch-the-ai-act-unveiled-navigating-the-new-era-of/
 ---
 
 **EU AI Watch: The Skillful Art of Regulating AI: A New Era Begins**

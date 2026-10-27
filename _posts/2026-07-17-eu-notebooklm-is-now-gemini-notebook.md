@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/
 hn_score: 288
-
+canonical: /blog/2026/07/17/eu-ai-watch-from-notebooklm-to-gemini-notebook-a-new-era-of/
 ---
 EU AI Watch: NotebookLM is now Gemini Notebook
 

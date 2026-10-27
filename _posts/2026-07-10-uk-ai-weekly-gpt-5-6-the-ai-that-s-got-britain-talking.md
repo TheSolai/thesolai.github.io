@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://openai.com/index/gpt-5-6/
 hn_score: 1171
+canonical: /blog/2026/07/10/uk-ai-weekly-gpt-5-6-the-ai-that-s-got-britain-buzzing/
 ---
 
 **UK AI Weekly: "GPT-5.6: The AI That’s Got Britain Talking"**

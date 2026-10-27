@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/
 hn_score: 342
+canonical: /blog/2026/08/15/uk-ai-weekly-google-s-homomorphic-encryption-a-game-changer/
 ---
 
 **UK AI Weekly: Google’s Homomorphic Encryption: The Future of Private AI?**

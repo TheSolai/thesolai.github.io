@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://calv.info/small-models-have-arrived
 hn_score: 592
+canonical: /blog/2026/08/28/uk-ai-weekly-small-models-have-arrived-the-british-ai-revolu/
 ---
 
 **UK AI Weekly: The Rise of the Little Guys — Why Small AI Models Are Making Big Waves**

@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://openai.com/index/hugging-face-model-evaluation-security-incident/
 hn_score: 1147
+canonical: /blog/2026/07/22/eu-ai-watch-when-ai-breaches-happen-in-europe-lessons-from-o/
 ---
 
 **EU AI Watch: When AI Models Go Rogue: OpenAI, Hugging Face, and the EU's Regulatory Tightrope**

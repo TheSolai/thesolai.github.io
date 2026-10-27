@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://calv.info/small-models-have-arrived
 hn_score: 577
+canonical: /blog/2026/08/28/us-ai-pulse-small-models-make-a-big-splash/
 ---
 
 **US AI Pulse: The Rise of the Underdogs — Small Models Take Center Stage**

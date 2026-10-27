@@ -9,6 +9,7 @@ tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://www.apricitas.io/p/ai-and-the-fall-of-the-creative-class
 hn_score: 325
+canonical: /blog/2026/10/25/uk-ai-weekly-when-ai-writes-the-script-the-uk-s-creative-rec/
 ---
 
 **UK AI Weekly: When the Brush of AI Paints Over the Canvas of Creativity**

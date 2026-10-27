@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/
 hn_score: 1043
+canonical: /blog/2026/07/21/uk-ai-weekly-open-arms-vs-closed-doors-the-uk-s-ai-conundrum/
 ---
 
 **UK AI Weekly: The Open Arms of AI — Why the UK Should Take Note**

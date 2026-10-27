@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/
 hn_score: 561
+canonical: /blog/2026/08/10/us-ai-pulse-the-rise-of-ai-powered-learning-how-llms-are-tra/
 ---
 
 # US AI Pulse: When LLMs Become Your Personal Tutor

@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://github.com/firelex/jeff
 hn_score: 449
+canonical: /blog/2026/09/29/us-ai-pulse-the-rise-of-jeff-a-new-era-for-homegrown-ai-deci/
 ---
 
 ### US AI Pulse: The Rise of Jeff – AI's New Homegrown Hero

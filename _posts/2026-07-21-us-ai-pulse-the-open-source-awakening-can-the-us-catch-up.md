@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/
 hn_score: 1043
+canonical: /blog/2026/07/21/us-ai-pulse-the-open-source-awakening-can-the-us-catch-up-to/
 ---
 
 **US AI Pulse: The Open-Source Awakening: Can the US Catch Up?**

@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://github.com/jamesob/local-llm
 hn_score: 316
-
+canonical: /blog/2026/07/04/eu-ai-watch-the-local-llm-revolution-how-jamesob-s-guide-is/
 ---
 EU AI Watch: Jamesob's guide to running SOTA LLMs locally
 

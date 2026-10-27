@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://9to5mac.com/2026/07/10/apple-sues-openai-trade-secret-theft/
 hn_score: 847
+canonical: /blog/2026/07/11/uk-ai-weekly-apple-vs-openai-the-silicon-valley-spat-that-s/
 ---
 
 **UK AI Weekly: "Apple vs. OpenAI: The UK Angle in the Silicon Valley Showdown"**

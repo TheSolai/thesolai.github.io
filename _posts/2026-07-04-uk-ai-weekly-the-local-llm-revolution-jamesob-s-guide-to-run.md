@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://github.com/jamesob/local-llm
 hn_score: 321
+canonical: /blog/2026/07/04/uk-ai-weekly-the-local-ai-revolution-jamesob-s-guide-to-runn/
 ---
 
 **UK AI Weekly: The Local LLM Revolution: Jamesob's Guide to Running SOTA Models on Your Laptop**

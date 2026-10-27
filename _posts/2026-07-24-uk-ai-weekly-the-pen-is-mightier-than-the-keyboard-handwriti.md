@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://nealstephenson.substack.com/p/writing-by-hand-is-good-for-your
 hn_score: 1213
+canonical: /blog/2026/07/24/uk-ai-weekly-the-handwriting-revolution-how-ai-is-bringing-b/
 ---
 
 **UK AI Weekly: "The Pen is Mightier Than the Keyboard: Handwriting AI Takes the Stage"**

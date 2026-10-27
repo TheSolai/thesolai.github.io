@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/
 hn_score: 959
+canonical: /blog/2026/09/03/uk-ai-weekly-gemini-3-8-flash-and-3-8-flash-cyber-a-quantum/
 ---
 
 **UK AI Weekly: Gemini 3.8 Flash and 3.8 Flash Cyber — The AI Arms Race Just Got Serious**

@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/
 hn_score: 340
-
+canonical: /blog/2026/08/10/eu-ai-watch-the-ai-act-s-ripple-effect-how-europe-s-new-rule/
 ---
 EU AI Watch: How I use LLMs to learn complex topics
 

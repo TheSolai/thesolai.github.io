@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.rickmanelius.com/p/aidr-ai-didnt-read
 hn_score: 791
+canonical: /blog/2026/08/18/uk-ai-weekly-ai-dr-the-ai-that-finally-admitted-it-didn-t-re/
 ---
 
 **UK AI Weekly: The Rise of AI;DR — When AI Says "I Didn't Read"**

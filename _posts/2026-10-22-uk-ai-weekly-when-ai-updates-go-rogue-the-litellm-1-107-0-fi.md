@@ -9,6 +9,7 @@ tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/
 hn_score: 475
+canonical: /blog/2026/10/22/uk-ai-weekly-when-ai-goes-rogue-the-litellm-1-107-0-pypi-deb/
 ---
 
 ### UK AI Weekly: When AI Updates Go Rogue: The LiteLLM 1.107.0 Fiasco

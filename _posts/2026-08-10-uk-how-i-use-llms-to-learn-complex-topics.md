@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/
 hn_score: 589
-
+canonical: /blog/2026/08/10/uk-ai-weekly-how-a-uk-student-s-ai-study-hack-went-viral-the/
 ---
 UK AI Analysis: How I use LLMs to learn complex topics
 

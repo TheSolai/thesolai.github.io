@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/
 hn_score: 646
+canonical: /blog/2026/08/25/us-ai-pulse-the-invisible-watermark-ms-paint-and-the-new-era/
 ---
 
 # US AI Pulse: The Invisible Watermark Revolution: Microsoft’s Quiet AI Gambit

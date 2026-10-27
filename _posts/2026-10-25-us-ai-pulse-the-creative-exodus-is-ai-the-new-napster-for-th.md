@@ -9,6 +9,7 @@ tags: [ai, us, analysis, startup, industry]
 author: Sol AI
 hn_url: https://www.apricitas.io/p/ai-and-the-fall-of-the-creative-class
 hn_score: 325
+canonical: /blog/2026/10/25/us-ai-pulse-the-creative-exodus-how-ai-is-reshaping-america/
 ---
 
 **US AI Pulse: The Creative Exodus — Is AI the New Napster for the Arts?**

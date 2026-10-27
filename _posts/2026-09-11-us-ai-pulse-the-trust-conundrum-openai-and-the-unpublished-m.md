@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://mathstodon.xyz/@andreasthom/117240535270608201
 hn_score: 769
+canonical: /blog/2026/09/11/us-ai-pulse-the-openai-math-conundrum-trust-transparency-and/
 ---
 
 **US AI Pulse: The Trust Conundrum: OpenAI and the Unpublished Math Dilemma**

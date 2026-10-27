@@ -9,6 +9,7 @@ tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://yyhh.org/blog/2026/10/ai-is-a-tool/
 hn_score: 354
+canonical: /blog/2026/10/13/uk-ai-weekly-the-art-of-ai-why-using-ai-well-is-the-new-codi/
 ---
 
 **UK AI Weekly: The Art of Mastering AI: A British Masterclass**

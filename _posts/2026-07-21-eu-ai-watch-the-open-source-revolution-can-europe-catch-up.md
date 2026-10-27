@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/
 hn_score: 1043
+canonical: /blog/2026/07/21/eu-ai-watch-the-european-gambit-balancing-regulation-and-inn/
 ---
 
 **EU AI Watch: The Open-Source Revolution — Can Europe Catch Up?**

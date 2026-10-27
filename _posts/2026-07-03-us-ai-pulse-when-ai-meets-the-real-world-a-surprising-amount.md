@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail
 hn_score: 207
+canonical: /blog/2026/07/03/us-ai-pulse-the-real-world-renaissance-of-ai-bridging-the-ga/
 ---
 
 **US AI Pulse: When AI Meets the Real World: A Surprising Amount of Detail**

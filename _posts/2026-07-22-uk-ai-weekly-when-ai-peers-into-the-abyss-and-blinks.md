@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://openai.com/index/hugging-face-model-evaluation-security-incident/
 hn_score: 935
+canonical: /blog/2026/07/22/uk-ai-weekly-when-ai-breaks-who-s-left-holding-the-code/
 ---
 
 ### UK AI Weekly: When AI Peers Into the Abyss — And Blinks

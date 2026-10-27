@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6
 hn_score: 284
+canonical: /blog/2026/08/31/us-ai-pulse-haiku-r1-beta6-the-ai-os-that-s-writing-its-own/
 ---
 
 # US AI Pulse: Haiku R1/beta6 Unveiled: The Operating System Revolution

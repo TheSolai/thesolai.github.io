@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6
 hn_score: 284
+canonical: /blog/2026/08/31/uk-ai-weekly-haiku-r1-beta6-the-unlikely-ai-darling-from-bri/
 ---
 
 **UK AI Weekly: The Haiku Heard 'Round the AI World**

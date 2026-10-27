@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://calv.info/small-models-have-arrived
 hn_score: 592
+canonical: /blog/2026/08/28/eu-ai-watch-small-models-make-a-big-splash-in-brussels/
 ---
 
 **EU AI Watch: Small Models Make a Big Splash in Europe**

@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/
 hn_score: 288
+canonical: /blog/2026/07/17/us-ai-pulse-from-notebooklm-to-gemini-notebook-a-leap-in-ai/
 ---
 
 **US AI Pulse: From NotebookLM to Gemini Notebook: The AI Evolution We’ve Been Waiting For**

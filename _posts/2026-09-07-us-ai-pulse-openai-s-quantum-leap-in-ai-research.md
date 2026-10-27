@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://openai.com/index/research-acceleration-view-inside-openai
 hn_score: 161
+canonical: /blog/2026/09/07/us-ai-pulse-inside-openai-s-quest-for-ai-acceleration/
 ---
 
 ### US AI Pulse: OpenAI's Quantum Leap in AI Research

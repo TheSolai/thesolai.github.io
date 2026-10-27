@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://thinkingmachines.ai/news/introducing-inkling/
 hn_score: 852
+canonical: /blog/2026/07/16/us-ai-pulse-inkling-the-open-weights-model-that-s-rewriting/
 ---
 
 **US AI Pulse: The Inkling Revolution: Why Open-Weights Models Are the New Frontier**

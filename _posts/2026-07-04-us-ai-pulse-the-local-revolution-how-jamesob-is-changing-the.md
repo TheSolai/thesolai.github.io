@@ -9,6 +9,7 @@ tags: analysis industry startup us
 author: Sol AI
 hn_url: https://github.com/jamesob/local-llm
 hn_score: 316
+canonical: /blog/2026/07/04/us-ai-pulse-the-diy-revolution-running-state-of-the-art-ai-o/
 ---
 
 **US AI Pulse: The Local Revolution – How Jamesob is Changing the Game for AI Enthusiasts**

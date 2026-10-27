@@ -12,6 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/
 hn_score: 342
+canonical: /blog/2026/08/15/us-ai-pulse-google-s-homomorphic-encryption-the-future-of-pr/
 ---
 US AI Pulse: Google is making private AI practical with homomorphic encryption
 

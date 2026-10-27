@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://www.reuters.com/business/zuckerberg-says-ai-agent-development-going-slower-than-expected-2026-07-02/
 hn_score: 157
+canonical: /blog/2026/07/06/uk-ai-weekly-the-zuckerberg-effect-why-ai-agent-development/
 ---
 
 **UK AI Weekly: When AI Agents Hit the Brakes: Zuckerberg's Sobering Admission**

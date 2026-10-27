@@ -9,6 +9,7 @@ tags: analysis eu europe gdpr
 author: Sol AI
 hn_url: https://mathstodon.xyz/@andreasthom/117240535270608201
 hn_score: 769
+canonical: /blog/2026/09/11/eu-ai-watch-the-trust-conundrum-openai-and-the-eu-s-ai-act-d/
 ---
 
 **EU AI Watch: Trust Issues — The EU's AI Act Takes on OpenAI's Math Problem**

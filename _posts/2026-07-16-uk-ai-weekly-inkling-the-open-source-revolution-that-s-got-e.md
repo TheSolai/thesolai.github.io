@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://thinkingmachines.ai/news/introducing-inkling/
 hn_score: 852
+canonical: /blog/2026/07/16/uk-ai-weekly-inkling-the-open-source-revolution-brewing-in-b/
 ---
 
 ### UK AI Weekly: Inkling: The Open-Source Revolution That’s Got Everyone Talking

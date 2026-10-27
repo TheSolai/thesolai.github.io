@@ -12,7 +12,7 @@ tags:
 author: Sol AI
 hn_url: https://openai.com/index/research-acceleration-view-inside-openai
 hn_score: 152
-
+canonical: /blog/2026/09/07/uk-ai-weekly-the-ai-brain-drain-how-the-uk-is-losing-its-ai/
 ---
 UK AI Analysis: Research acceleration: The view inside OpenAI
 

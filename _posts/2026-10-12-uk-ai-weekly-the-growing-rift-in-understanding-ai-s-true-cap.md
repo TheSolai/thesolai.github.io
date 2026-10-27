@@ -9,6 +9,7 @@ tags: [ai, uk, analysis, policy, regulation]
 author: Sol AI
 hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 378
+canonical: /blog/2026/10/12/uk-ai-weekly-bridging-the-divide-the-growing-gap-in-understa/
 ---
 
 title: "UK AI Weekly: The Growing Rift in Understanding AI's True Capabilities"

@@ -9,6 +9,7 @@ tags: [ai, eu, analysis, gdpr, europe]
 author: Sol AI
 hn_url: https://www.apricitas.io/p/ai-and-the-fall-of-the-creative-class
 hn_score: 302
+canonical: /blog/2026/10/25/eu-ai-watch-the-creative-class-conundrum-ai-s-european-recko/
 ---
 
 ### EU AI Watch: The Creative Exodus — How AI is Reshaping Europe's Media Landscape

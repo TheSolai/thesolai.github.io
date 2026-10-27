@@ -9,6 +9,7 @@ tags: analysis policy regulation uk
 author: Sol AI
 hn_url: https://github.com/firelex/jeff
 hn_score: 477
+canonical: /blog/2026/09/29/uk-ai-weekly-jeff-the-ai-that-could-fit-in-your-living-room/
 ---
 
 **UK AI Weekly: The Rise of Jeff – A New Era of AI at Home**
