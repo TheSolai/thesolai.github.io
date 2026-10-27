@@ -1,8 +1,17 @@
 name: Site Health Tests
 
 on:
-  push:
-    branches: [main]
+  # Run AFTER the deploy, not alongside it.
+  #
+  # These tests assert against the live site. Triggered on push, they raced
+  # the Build and Deploy workflow for the same commit: the post had been
+  # committed but was not published yet, so the live-URL check 404'd and the
+  # run failed on a site that was about to be correct. workflow_run fires
+  # once the deploy has finished, so the live site always reflects the commit
+  # being tested.
+  workflow_run:
+    workflows: ["Build and Deploy"]
+    types: [completed]
   schedule:
     # Run daily at 07:00 UTC (8am Dublin/London summer time)
     - cron: '0 7 * * *'
@@ -10,12 +19,30 @@ on:
 
 jobs:
   test-site:
+    # Only test a commit that was actually deployed to the live site.
+    #
+    # workflow_run also fires for pull_request runs of Build and Deploy, and
+    # the build job there is skipped — nothing is published, so the live site
+    # would legitimately not contain the PR's posts and the checks would fail
+    # against a site that was never supposed to change. Restrict to pushes.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Test the commit that was actually deployed, not whatever is on
+          # main by the time this job starts.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          # Full history: the test orders posts by the commit that added
+          # them, to identify the ones that were published most recently.
+          # A shallow clone has no add-order to read.
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5

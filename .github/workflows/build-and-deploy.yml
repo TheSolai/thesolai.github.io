@@ -5,6 +5,26 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+# GitHub Pages allows exactly ONE deployment at a time. Two pushes landing
+# seconds apart (the content pipeline publishes several posts in a morning
+# window) produced two concurrent runs, and the second one died with:
+#
+#   "Deployment request failed ... due to in progress deployment.
+#    Please cancel <sha> first or wait for it to complete."
+#
+# Serialise the deploys so each one waits for the previous to finish.
+#
+# cancel-in-progress is deliberately FALSE. Cancelling a run mid-deploy can
+# leave a Pages deployment stuck "in progress", which blocks the very next
+# deploy with the same error. With false, GitHub keeps at most one pending
+# run per group: a burst of five pushes ends up as "run 1 deploying, run 5
+# queued", and the queued run is always the newest commit — so no content is
+# lost and no deploy is interrupted.
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   validate:

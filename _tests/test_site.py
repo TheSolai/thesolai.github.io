@@ -24,6 +24,7 @@ import os
 import time
 import html.parser
 import concurrent.futures
+import subprocess
 from pathlib import Path
 from datetime import datetime
 
@@ -86,6 +87,87 @@ def parallel_check(urls, max_workers=20, timeout=15):
 
 # ─────────────────────────── Tests ───────────────────────────
 
+def _sitemap_post_urls():
+    """Return the published post paths from the live sitemap, oldest first.
+
+    The sitemap is the source of truth for what is actually published. Using
+    it — rather than the local _posts directory — is what keeps this module
+    race-free. On a push, the working tree contains posts that were committed
+    seconds ago and are not live until the deploy finishes; the sitemap
+    contains exactly what has been published.
+    """
+    try:
+        sitemap = urllib.request.urlopen(
+            urllib.request.Request(BASE_URL + "/sitemap.xml",
+                                  headers={"User-Agent": "SolAI-Tests/2.0"}),
+            timeout=20
+        ).read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"  FAIL: could not fetch sitemap.xml ({e})")
+        return None
+
+    urls = re.findall(
+        r"<loc>https://thesolai\.github\.io(/blog/\d{4}/\d{2}/\d{2}/[^<]+?)</loc>",
+        sitemap)
+    if not urls:
+        print("  FAIL: no blog post URLs found in sitemap")
+        return None
+    return urls
+
+
+def _post_path_sort_key(path):
+    """Sort key for a /blog/YYYY/MM/DD/slug/ path — oldest first."""
+    m = re.match(r"^/blog/(\d{4})/(\d{2})/(\d{2})/(.*)$", path)
+    if not m:
+        return ("", "", "", path)
+    return (m.group(1), m.group(2), m.group(3), m.group(4))
+
+
+def _local_posts_by_date(limit=None):
+    """Local posts, newest first, ordered by when they were committed.
+
+    The previous implementation sorted by filesystem mtime. That is
+    meaningless in CI: actions/checkout writes files in path order, so every
+    post gets roughly the same mtime and "most recently modified" collapses
+    to "alphabetically last" — which is precisely the set of posts that were
+    just committed and are not live yet.
+
+    Git knows the real order. `git log --diff-filter=A` lists post files in
+    the order they were first added, newest commit first, which is exactly
+    "the most recently published posts" — and it is identical locally and in
+    CI. Filenames are date-prefixed as a fallback for the rare case where
+    git history is unavailable (a shallow clone with no additions recorded).
+    """
+    posts = list(POSTS_DIR.glob("*.md"))
+
+    added = []
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(SITE_DIR), "log", "--diff-filter=A", "--name-only",
+             "--pretty=format:", "-n", "200", "--", "_posts/"],
+            capture_output=True, text=True, timeout=60)
+        if out.returncode == 0:
+            for line in out.stdout.splitlines():
+                line = line.strip()
+                if line.startswith("_posts/") and line.endswith(".md"):
+                    p = SITE_DIR / line
+                    if p.exists() and p not in added:
+                        added.append(p)
+    except Exception:
+        pass
+
+    if added:
+        # Anything git did not report (added before the history window)
+        # follows, newest date first.
+        rest = sorted((p for p in posts if p not in added),
+                      key=lambda p: (p.stem[:10], p.stem), reverse=True)
+        ordered = added + rest
+    else:
+        ordered = sorted(posts, key=lambda p: (p.stem[:10], p.stem), reverse=True)
+
+    return ordered[:limit] if limit else ordered
+
+
 def test_top_pages_return_200():
     print("• top pages return 200")
     results = parallel_check([BASE_URL + p for p in TOP_PAGES])
@@ -129,9 +211,8 @@ def test_all_post_permalinks_return_200():
     # Index by slug (last path segment without trailing slash)
     url_map = {u.split("/")[-2]: u for u, _ in sitemap_urls}
 
-    # Get 50 most-recent posts by filesystem mtime
-    posts = sorted(POSTS_DIR.glob("*.md"),
-                   key=lambda p: p.stat().st_mtime, reverse=True)[:50]
+    # Get 50 most-recently-committed posts
+    posts = _local_posts_by_date(limit=50)
 
     def jekyll_slugify(name):
         """Mirror Jekyll's slugify: strip non-alnum, collapse hyphens, trim."""
@@ -202,8 +283,7 @@ def test_post_front_matter():
 
 def test_recent_posts_have_content():
     print("• most recent 5 posts have meaningful content")
-    posts = sorted(POSTS_DIR.glob("*.md"),
-                   key=lambda p: p.stat().st_mtime, reverse=True)[:5]
+    posts = _local_posts_by_date(limit=5)
     failures = []
     for p in posts:
         content = p.read_text()
@@ -385,29 +465,38 @@ def test_live_og_images_resolve():
     Source-level checks cannot catch a file that exists locally but was never
     deployed, so this fetches a sample of recently published posts and HEADs
     the og:image each one advertises.
+
+    The sample is drawn from the live sitemap, NOT from the local _posts
+    directory. A post that was pushed a moment ago is committed but not yet
+    deployed, so fetching it here returned 404 and failed the whole run — on
+    2026-10-27 this alone failed the Site Health Tests for two commits in a
+    row while every other check passed. Taking the sample from what is
+    actually published keeps the check meaningful (it still verifies that
+    deployed posts advertise a reachable social card) without racing the
+    deploy that is still in flight.
     """
     print("• live og:image URLs resolve")
-    posts = sorted(POSTS_DIR.glob("*.md"),
-                   key=lambda p: p.stat().st_mtime, reverse=True)[:12]
+    published = _sitemap_post_urls()
+    if published is None:
+        return False
+
+    # Most recent published posts — same date ordering as the sitemap.
+    recent = sorted(published, key=_post_path_sort_key, reverse=True)[:12]
+
     failures = []
     checked = 0
-    for p in posts:
-        date_match = re.match(r"^(\d{4})-(\d{2})-(\d{2})-", p.stem)
-        if not date_match:
-            continue
-        slug = re.sub(r"[^a-z0-9]", "-", p.stem[len(date_match.group(0)):].lower())
-        slug = re.sub(r"-+", "-", slug).strip("-")
-        url = f"{BASE_URL}/blog/{date_match.group(1)}/{date_match.group(2)}/{date_match.group(3)}/{slug}/"
+    for path in recent:
+        url = BASE_URL + path
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "SolAI-Tests/2.0"})
             with urllib.request.urlopen(req, timeout=20) as resp:
                 html = resp.read().decode("utf-8", errors="ignore")
         except Exception as e:
-            failures.append(f"{p.name}: could not fetch post ({e})")
+            failures.append(f"{path}: could not fetch post ({e})")
             continue
         m = re.search(r'<meta[^>]+property="og:image"[^>]+content="([^"]+)"', html)
         if not m:
-            failures.append(f"{p.name}: no og:image tag in rendered page")
+            failures.append(f"{path}: no og:image tag in rendered page")
             continue
         image_url = m.group(1)
         if image_url.startswith("/"):
@@ -415,7 +504,7 @@ def test_live_og_images_resolve():
         checked += 1
         status = head_status(image_url)
         if status != 200:
-            failures.append(f"{p.name}: og:image {status} {image_url}")
+            failures.append(f"{path}: og:image {status} {image_url}")
     if failures:
         print(f"  FAIL: {len(failures)} og:image problem(s):")
         for f in failures[:10]:
@@ -423,6 +512,71 @@ def test_live_og_images_resolve():
         return False
     print(f"  PASS: {checked} live og:image URLs return 200")
     return True
+
+
+def test_latest_posts_are_published():
+    """Every locally committed post must be reachable on the live site.
+
+    The 2026-10-22 incident was exactly this failure: content was committed
+    and pushed, but a push landed on a side branch instead of main, so the
+    posts never went live while every log line said they had. Nothing in the
+    suite noticed, because every check that looked at the live site only
+    looked at posts that were already there.
+
+    This closes that gap: take the newest posts that exist locally and
+    require each one to be published and to resolve. A post that is committed
+    but not yet deployed fails here, loudly.
+
+    There is a deliberate grace period. The deploy for a push lands a minute
+    or two after the push, so a post committed seconds ago may legitimately
+    not be live yet. The check therefore retries for a few minutes before
+    declaring failure, which distinguishes "still deploying" from "lost".
+    """
+    print("• newest committed posts are published")
+    newest = _local_posts_by_date(limit=3)
+    if not newest:
+        print("  FAIL: no posts found in _posts")
+        return False
+
+    deadline = time.time() + 300
+    attempt = 0
+    while True:
+        attempt += 1
+        published = _sitemap_post_urls()
+        if published is None:
+            # Sitemap unreachable — treat as a transient network problem and
+            # retry rather than failing on a fluke.
+            if time.time() < deadline:
+                time.sleep(20)
+                continue
+            return False
+
+        live_paths = {p for p in published}
+        missing = []
+        for p in newest:
+            date_match = re.match(r"^(\d{4})-(\d{2})-(\d{2})-", p.stem)
+            if not date_match:
+                continue
+            slug = re.sub(r"[^a-z0-9]", "-", p.stem[len(date_match.group(0)):].lower())
+            slug = re.sub(r"-+", "-", slug).strip("-")
+            path = (f"/blog/{date_match.group(1)}/{date_match.group(2)}/"
+                    f"{date_match.group(3)}/{slug}/")
+            if path not in live_paths:
+                missing.append(p.name)
+
+        if not missing:
+            print(f"  PASS: all {len(newest)} newest posts are published "
+                  f"(attempt {attempt})")
+            return True
+
+        if time.time() >= deadline:
+            print(f"  FAIL: {len(missing)} committed post(s) not published "
+                  f"after {attempt} attempts over 5 minutes:")
+            for m in missing:
+                print(f"    {m}")
+            return False
+
+        time.sleep(20)
 
 
 def main():
@@ -438,6 +592,7 @@ def main():
         test_og_image_files_exist,
         test_layout_uses_source_path_for_og_image,
         test_live_og_images_resolve,
+        test_latest_posts_are_published,
     ]
     results = []
     for t in tests:
