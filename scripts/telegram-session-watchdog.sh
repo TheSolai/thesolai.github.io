@@ -72,6 +72,7 @@ set -u
 export PATH="/Users/amre/.openclaw/tools/current-bin:$PATH"
 
 STATE_DB="/Users/amre/.openclaw/state/openclaw.sqlite"
+AGENT_DB="/Users/amre/.openclaw/agents/main/agent/openclaw-agent.sqlite"
 GATEWAY_LOG="/Users/amre/Library/Logs/openclaw/gateway.log"
 LOG="/Users/amre/.openclaw/workspace/scripts/telegram-session-watchdog.log"
 GATEWAY_LABEL="ai.openclaw.gateway"
@@ -209,16 +210,23 @@ last_wake_epoch() {
 }
 
 # A restart must never kill a turn that is about to produce a reply.
+#
+# The authoritative signal is the gateway's own session status
+# (`openclaw sessions list --json` -> "status":"running", backed by
+# session_windows.status in the agent DB).
+#
+# The OLD implementation queried `task_runs` for a running row owned by the
+# Telegram session — but task_runs only records EXEC tasks, never the agent
+# turn itself. So it reported "idle" while a Telegram turn was mid-flight.
+# That is how the watchdog reset a live session and dropped a reply.
 telegram_turn_active() {
-    [ -f "$STATE_DB" ] || return 1
-    local n
-    n=$(sqlite3 "$STATE_DB" "
-        SELECT COUNT(*) FROM task_runs
-        WHERE status='running' AND owner_key LIKE 'agent:main:telegram:%';" 2>/dev/null | head -1)
-    case "$n" in
-        ''|*[!0-9]*) return 1 ;;
-    esac
-    [ "$n" -gt 0 ]
+    [ -f "$AGENT_DB" ] || return 1
+    local st
+    st=$(sqlite3 "$AGENT_DB" "
+        SELECT status FROM session_windows
+        WHERE session_key='$KEY'
+        ORDER BY created_at DESC LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
+    [ "$st" = "running" ]
 }
 
 provider_dns_ok() {
@@ -351,7 +359,6 @@ fi
 #     2. A death runId is healed ONCE (state file). Re-detecting the same
 #        death is a no-op, so it can never touch a later turn.
 # ---------------------------------------------------------------------------
-AGENT_DB="/Users/amre/.openclaw/agents/main/agent/openclaw-agent.sqlite"
 MAX_WINDOW_BYTES=500000   # prompt budget is ~715 KB; compact well before it
 
 transcript_bytes() {
@@ -366,6 +373,43 @@ transcript_bytes() {
         LEFT JOIN transcript_events t
           ON t.session_id=ae.session_id AND t.seq=ae.event_seq
         WHERE ae.session_id='$sid';" 2>/dev/null | head -1 | tr -d ' '
+}
+
+# ---------------------------------------------------------------------------
+# Attribution: WHICH session did a dead run belong to?
+#
+# The gateway log line "embedded run agent end: ... error=Context overflow"
+# carries NO session key. The watchdog therefore treated a context death in
+# ANY session (a cron, a skill-workshop review, an isolated evaluation) as a
+# death in the Telegram session — and then compacted, or RESET, the user's
+# live Telegram session. On 2026-10-28 12:52 that reset killed the turn that
+# was answering her 12:46 message; the gateway then logged
+#   "visible channel turn dispatched with no queued reply payloads:
+#    messageId=2303 ... cause=skipped:reply_operation_aborted"
+# which is exactly the "OpenClaw couldn't produce or deliver a reply"
+# symptom she reported.
+#
+# The transcript in the agent DB carries the runId, so the owning session can
+# be looked up directly. A death that belongs to another session is REPORTED
+# and IGNORED — it must never touch the Telegram session.
+# ---------------------------------------------------------------------------
+telegram_session_id() {
+    [ -f "$AGENT_DB" ] || return 1
+    sqlite3 "$AGENT_DB" \
+        "SELECT session_id FROM session_windows WHERE session_key='$KEY' ORDER BY created_at DESC LIMIT 1;" \
+        2>/dev/null | head -1 | tr -d ' '
+}
+
+death_session_key() {
+    local run_id="$1"
+    [ -n "$run_id" ] || return 1
+    [ -f "$AGENT_DB" ] || return 1
+    sqlite3 "$AGENT_DB" "
+        SELECT DISTINCT w.session_key
+        FROM transcript_events t
+        JOIN session_windows w ON w.session_id = t.session_id
+        WHERE t.event_json LIKE '%$run_id%'
+        LIMIT 1;" 2>/dev/null | head -1 | tr -d ' '
 }
 
 compact_session() {
@@ -403,6 +447,14 @@ heal_context_overflow() {
 
     bytes=$(transcript_bytes)
     if [ -n "$bytes" ] && [ "$bytes" -gt "$MAX_WINDOW_BYTES" ] 2>/dev/null; then
+        if telegram_turn_active; then
+            # NEVER reset while a turn is live. `sessions delete` kills the run
+            # that is about to deliver the reply, and the user sees
+            # "couldn't produce or deliver a reply". Defer instead: the
+            # OVERSIZED WINDOW pass below shrinks the window once the turn ends.
+            log "  window still oversized (${bytes} bytes > ${MAX_WINDOW_BYTES}) but a Telegram turn is LIVE — deferring the reset (resetting now would drop the reply)"
+            return 1
+        fi
         log "  window still oversized (${bytes} bytes > ${MAX_WINDOW_BYTES}) — resetting session (transcript is archived, not lost)"
         openclaw sessions delete "$KEY" --yes 2>&1 | tail -2 | cut -c1-160
         return 0
@@ -419,6 +471,10 @@ heal_context_overflow() {
 heal_oversized_window() {
     local out bytes
     bytes=$(transcript_bytes)
+    if telegram_turn_active; then
+        log "  session busy with a live turn (${bytes} bytes) — not touching it; will retry"
+        return 1
+    fi
     out=$(compact_session)
     case "$out" in
         *"kept "*)
@@ -450,14 +506,28 @@ if [ -f "$GATEWAY_LOG" ]; then
         | grep -a "embedded run agent end" | grep -a "isError=true" | grep -a "error=Context" | tail -1)
     if [ -n "$RECENT_DEATH" ]; then
         STAMP=$(echo "$RECENT_DEATH" | cut -c1-19)
-        CUTOFF=$(date -v-5M '+%Y-%m-%dT%H:%M:%S')
+        # The gateway log stamps events in UTC; compare in UTC too, otherwise
+        # the 5-minute window silently breaks the moment the machine's
+        # timezone stops being GMT.
+        CUTOFF=$(date -u -v-5M '+%Y-%m-%dT%H:%M:%S')
         if [[ "$STAMP" > "$CUTOFF" ]]; then
-            DEAD_RUN_ID=$(echo "$RECENT_DEATH" | grep -aoE 'runId=[0-9a-fA-F-]+' | head -1 | cut -d= -f2)
-            # Heal each dead run EXACTLY ONCE. Without this, the same stale
-            # death line is re-detected on every watchdog run for as long as
-            # it stays in the log window — and each re-detection aborted a
-            # live turn (2026-10-28: Amre lost two replies that way).
-            if [ -f "$HEALED_STATE" ] && [ "$(cat "$HEALED_STATE" 2>/dev/null)" = "$DEAD_RUN_ID" ]; then
+            # Run ids can be compound ("skill-workshop-review:<uuid>"), so pull
+            # the UUID out rather than the whole runId token.
+            DEAD_RUN_ID=$(echo "$RECENT_DEATH" \
+                | grep -aoE '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' \
+                | head -1)
+            OWNER=$(death_session_key "$DEAD_RUN_ID")
+            if [ -n "$OWNER" ] && [ "$OWNER" != "$KEY" ]; then
+                # A context death in somebody else's session (a cron, a
+                # skill-workshop review, an isolated evaluation) is NOT the
+                # Telegram session's problem. Healing the Telegram session for
+                # it reset the user's live turn and dropped her reply.
+                log "FOREIGN CONTEXT DEATH in '${OWNER}' (run ${DEAD_RUN_ID}) — Telegram session NOT touched"
+            elif [ -f "$HEALED_STATE" ] && [ "$(cat "$HEALED_STATE" 2>/dev/null)" = "$DEAD_RUN_ID" ]; then
+                # Heal each dead run EXACTLY ONCE. Without this, the same stale
+                # death line is re-detected on every watchdog run for as long as
+                # it stays in the log window — and each re-detection aborted a
+                # live turn (2026-10-28: Amre lost two replies that way).
                 log "CONTEXT DEATH ${DEAD_RUN_ID} already handled — not touching the session"
             else
                 log "CONTEXT DEATH detected: $(echo "$RECENT_DEATH" | sed 's/\(.\{110\}\).*/\1/')"
