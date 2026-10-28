@@ -1030,6 +1030,212 @@ def check_cache_ttl_markers(window_hours):
             "config scope.")
 
 
+# --------------------------------------------------------------------------
+# Live-turn safety. Both of these invariants were violated on 2026-10-28 and
+# both produced the same user-visible symptom: "OpenClaw couldn't produce or
+# deliver a reply".
+# --------------------------------------------------------------------------
+
+GUARD_LIB_REL = os.path.join("scripts", "lib", "gateway-restart-guard.sh")
+RESTART_PATTERNS = ("launchctl kickstart", "launchctl bootout")
+# Room reserved for the model's own output when sizing a fallback's context.
+FALLBACK_OUTPUT_RESERVE = 20000
+
+
+def _shell_scripts():
+    out = []
+    root = os.path.join(WORKSPACE, "scripts")
+    for dirpath, _dirs, files in os.walk(root):
+        for name in files:
+            if name.endswith(".sh"):
+                out.append(os.path.join(dirpath, name))
+    return sorted(out)
+
+
+def _executes_restart(path):
+    """True if the file actually RUNS a gateway restart, not merely mentions it."""
+    try:
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            for line in fh:
+                s = line.strip()
+                if not s or s.startswith("#"):
+                    continue
+                if not any(p in s for p in RESTART_PATTERNS):
+                    continue
+                # A line that only *reports* a restart is not a restart.
+                if s.startswith(("log ", "echo ", "log(", "echo(")):
+                    continue
+                return True
+    except OSError:
+        pass
+    return False
+
+
+def check_live_turn_safety():
+    """Nothing may abort a live run, and every restart must be turn-aware.
+
+    Why this is a check and not a comment:
+
+    * On 2026-10-28 the watchdog aborted the very run it was supposed to
+      heal. A context-overflow death line and a live run are usually the
+      SAME event: the gateway's own auto-compaction recovers an overflowed
+      turn in place. The watchdog killed run e66ea972 25 seconds before the
+      reply went out (13:22:19) and produced the exact error it existed to
+      prevent.
+    * The gateway's shutdown drain is 5 seconds and a turn takes minutes, so
+      ANY restart during a turn kills the reply. Three scripts could restart
+      the gateway. They now share scripts/lib/gateway-restart-guard.sh,
+      which defers while a turn is live and fails CLOSED when the state is
+      unknown.
+
+    This is a static invariant: it reads the scripts, so it catches the
+    regression the moment someone edits one, rather than after a user's
+    message has died.
+    """
+    guard_path = os.path.join(WORKSPACE, GUARD_LIB_REL)
+    problems = []
+    evidence = []
+
+    if not os.path.exists(guard_path):
+        problems.append(
+            f"the shared restart guard is missing: {GUARD_LIB_REL}")
+    else:
+        evidence.append("shared restart guard present")
+
+    for path in _shell_scripts():
+        rel = os.path.relpath(path, WORKSPACE)
+        if os.path.abspath(path) == os.path.abspath(guard_path):
+            continue    # the guard IS the mechanism
+
+        try:
+            with open(path, encoding="utf-8", errors="replace") as fh:
+                body = fh.read()
+        except OSError:
+            continue
+
+        # A live run must never be aborted. Not by session key, not by runId.
+        if "sessions.abort" in body:
+            problems.append(f"{rel} calls sessions.abort")
+
+        # A restart must be behind the guard.
+        if _executes_restart(path) and GUARD_LIB_REL not in body \
+                and "safe_restart_gateway" not in body \
+                and "restart_allowed" not in body:
+            problems.append(f"{rel} restarts the gateway without the turn guard")
+
+    if problems:
+        return Check(
+            "live-turn-safety",
+            "Live turns are protected from aborts and restarts",
+            "FAIL",
+            f"{len(problems)} script problem(s) — a live Telegram turn can be killed",
+            evidence + problems,
+            fix="Remove sessions.abort from the script, and route every gateway "
+                "restart through scripts/lib/gateway-restart-guard.sh "
+                "(safe_restart_gateway / restart_allowed), which defers while a "
+                "turn is live and fails closed when the state is unknown.")
+
+    scripts = _shell_scripts()
+    return Check(
+        "live-turn-safety",
+        "Live turns are protected from aborts and restarts",
+        "PASS",
+        f"no script aborts a run; every gateway restart is turn-aware",
+        evidence + [f"{len(scripts)} shell script(s) scanned"])
+
+
+def check_fallback_capacity():
+    """Every configured fallback must be able to hold the prompts it will see.
+
+    The primary provider can be rate-limited out at any time — on 2026-10-28
+    MiniMax returned HTTP 429 "Token Plan usage limit reached" on every call
+    and every turn fell through to the local model. A fallback whose context
+    window is smaller than the prompt cannot answer: the router admits the
+    attempt as `route=compact_only` and the turn stalls with
+    "repeated_model_requests_without_progress" until it dies.
+
+    Measured that day: estimatedPromptTokens=113455 against
+    promptBudgetBeforeReserve=111072 on a fallback declared at 131072. The
+    fallback was 2,383 tokens too small and the turn never produced a reply.
+    """
+    try:
+        with open(CONFIG_PATH) as fh:
+            cfg = json.load(fh)
+    except (OSError, json.JSONDecodeError) as exc:
+        return Check("fallback-capacity", "Fallbacks can hold the prompts they see",
+                     "INFO", f"could not read {CONFIG_PATH}: {exc}")
+
+    defaults = cfg.get("agents", {}).get("defaults", {})
+    fallbacks = defaults.get("model", {}).get("fallbacks") or []
+    if not fallbacks:
+        return Check("fallback-capacity", "Fallbacks can hold the prompts they see",
+                     "INFO", "no fallback models are configured")
+
+    providers = cfg.get("models", {}).get("providers", {})
+
+    # Largest prompt the runtime has actually tried to send.
+    max_est = 0
+    max_est_at = None
+    for path in sorted(glob.glob(LOG_GLOB)):
+        try:
+            with open(path, encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    if "context-pressure-diagnostic" not in line:
+                        continue
+                    m = re.search(r"estimatedPromptTokens=(\d+)", line)
+                    if not m:
+                        continue
+                    val = int(m.group(1))
+                    if val > max_est:
+                        max_est = val
+                        max_est_at = parse_ts(
+                            (json.loads(line) or {}).get("time")) if line.strip().startswith("{") else None
+        except (OSError, json.JSONDecodeError):
+            continue
+
+    windows = {}
+    for pname, pcfg in providers.items():
+        for mdl in (pcfg.get("models") or []):
+            if isinstance(mdl, dict) and mdl.get("id"):
+                windows[f"{pname}/{mdl['id']}"] = mdl.get("contextWindow") or 0
+
+    problems = []
+    evidence = []
+    if max_est:
+        evidence.append(f"largest prompt the runtime tried to send: {max_est} tokens")
+
+    for fb in fallbacks:
+        ctx = windows.get(fb)
+        if ctx is None:
+            problems.append(f"{fb} is configured as a fallback but is not in any provider")
+            continue
+        need = max_est + FALLBACK_OUTPUT_RESERVE if max_est else 0
+        evidence.append(f"{fb}: contextWindow={ctx}"
+                        + (f" (needs >= {need})" if need else ""))
+        if need and ctx < need:
+            problems.append(
+                f"{fb} contextWindow={ctx} is below the {need} tokens a prompt "
+                f"of {max_est} needs")
+
+    if problems:
+        return Check(
+            "fallback-capacity", "Fallbacks can hold the prompts they see",
+            "FAIL",
+            f"{len(problems)} fallback(s) cannot serve the prompts this agent produces",
+            evidence + problems,
+            fix="Raise the fallback's contextWindow to at least "
+                "max_observed_prompt_tokens + 20000, and drop fallbacks whose "
+                "model does not support that context at all. A fallback that "
+                "cannot hold the prompt is worse than no fallback: the turn "
+                "stalls instead of failing fast.")
+
+    return Check(
+        "fallback-capacity", "Fallbacks can hold the prompts they see",
+        "PASS",
+        f"{len(fallbacks)} fallback(s) can hold the prompts this agent produces",
+        evidence)
+
+
 def collect(window_hours):
     events, source = read_log_events(window_hours)
     return [
@@ -1047,6 +1253,8 @@ def collect(window_hours):
         check_session_store(),
         check_dead_artifacts(),
         check_cache_ttl_markers(window_hours),
+        check_live_turn_safety(),
+        check_fallback_capacity(),
         check_git_state(),
     ], events, source
 
