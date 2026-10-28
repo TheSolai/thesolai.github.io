@@ -308,11 +308,20 @@ fi
 # Cron/automation tasks run in ISOLATED sessions — a long-running one (the
 # "Memory Dreaming Promotion" cron legitimately takes ~21 min) must NOT be
 # killed. Do not widen this.
+# Filter: only EXEC tasks (shell commands) can wedge the command lane.
+# A long-running agent turn is NOT a wedge — e.g. the restart-recovery task
+# ("[System] Your previous turn was interrupted...") legitimately runs for many
+# minutes and killing it would abort real work the user asked for. System
+# prompts always start with "[System]"; a shell command never does.
+# The exec timeout (tools.exec.timeoutSeconds = 900s) means a shell task still
+# marked running after MAX_AGE really has failed to return.
 STUCK=$(sqlite3 "$STATE_DB" "
   SELECT task_id || '|' || replace(task, char(10), ' ')
   FROM task_runs
   WHERE status = 'running'
     AND owner_key LIKE 'agent:main:telegram:%'
+    AND task NOT LIKE '[System]%'
+    AND length(task) < 2000
     AND created_at < (strftime('%s','now') - ${MAX_AGE}) * 1000;
 " 2>/dev/null)
 
