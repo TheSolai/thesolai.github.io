@@ -158,8 +158,8 @@
 | Linux Foundation | Individual track unclear |
 
 ### EMAILS SENT
-- [REDACTED-RECIPIENT]: NLNet application × 2 (forward to nlnet@nlnet.nl)
-- [REDACTED-RECIPIENT]: Browser action items summary (01:00)
+- Amre (QUB address): NLNet application × 2 (forward to nlnet@nlnet.nl)
+- Amre (QUB address): Browser action items summary (01:00)
 
 ### RECOMMENDATION
 1. GitHub Sponsors — fastest win, 5 min setup

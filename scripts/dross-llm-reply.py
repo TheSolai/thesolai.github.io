@@ -21,6 +21,21 @@ from urllib.parse import quote
 
 DROSS_KEY = open(os.path.expanduser('~/.openclaw/workspace/secrets/the-dross-agentmail-api-key.txt')).read().strip()
 INBOX = 'thedross@agentmail.to'
+REPLY_ADDRESSES_PATH = os.path.expanduser('~/.openclaw/workspace/secrets/reply-addresses.txt')
+
+
+def load_reply_addresses():
+    """Amre's mail addresses, read from the gitignored secrets file.
+
+    This script is tracked in the public site repo, so the address must never
+    be hardcoded here — that would publish it.
+    """
+    try:
+        with open(REPLY_ADDRESSES_PATH) as f:
+            return [ln.strip() for ln in f
+                    if ln.strip() and not ln.strip().startswith('#')]
+    except Exception:
+        return []
 MINIMAX_KEY = os.environ.get('MINIMAX_API_KEY')
 MINIMAX_URL = 'https://api.minimax.io/anthropic/v1/messages'
 MINIMAX_MODEL = os.environ.get('MINIMAX_MODEL', 'MiniMax-M2.7')
@@ -222,9 +237,10 @@ def process(msg_id, context=None, send=True):
         if isinstance(sender, dict):
             sender = sender.get('email', '')
         to_field = full.get('to', [])
-        amre_email = '[REDACTED-RECIPIENT]'
+        known_addrs = load_reply_addresses()
+        amre_email = known_addrs[0] if known_addrs else ''
         for t in to_field:
-            if isinstance(t, dict) and 'amrree' in t.get('email', ''):
+            if isinstance(t, dict) and t.get('email', '') in known_addrs:
                 amre_email = t['email']
         subject = full.get('subject', '(no subject)')
         result = send_reply(amre_email, subject, reply_text, msg_id)

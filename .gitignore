@@ -189,3 +189,22 @@ agents/dross/screenshots/
 # must never enter the public site repo. Untracked 2026-10-28.
 .dross-reply-cache/
 .openclaw/trajectory-exports/
+
+# ── Local toolchain + scratch dirs (untracked 2026-10-28) ─────
+# These are dot-prefixed or underscore-prefixed working dirs, not site
+# content. They were tracked but are not part of the published site.
+.claude/
+.clawhub/
+_outreach/
+/data/
+
+# NOTE: .agents/ stays tracked on purpose. skills/ego-browser is a tracked
+# symlink to ../.agents/skills/ego-browser; untracking .agents/ would leave
+# that symlink dangling in a fresh clone and break the Jekyll build.
+# .agents/ is not publicly served and holds no credentials.
+
+# ── Archival inbox scripts containing personal correspondence ──
+# These embed full historical email threads (message-ids, subjects, bodies).
+# They are one-shot archive tools, not live pipeline code.
+/scripts/update_inbox_pending.py
+/scripts/update_inbox_pending2.py

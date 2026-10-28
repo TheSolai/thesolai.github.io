@@ -23,7 +23,7 @@ Dross checks INBOX.md for pending messages.
 3. For each `## PENDING` entry:
    - Extract the Message-ID and body
    - Compose a reply with appropriate Dross flair — not just functional, but *stylized*
-   - Send reply to [REDACTED-RECIPIENT] via AgentMail
+   - Send reply to Amre via AgentMail, using the address(es) in `secrets/reply-addresses.txt` (never hardcode the address here)
    - Update INBOX.md: change `## PENDING` to `## REPLIED` and add the reply text
 4. If no PENDING entries remain: make a dramatic note of this triumph
 

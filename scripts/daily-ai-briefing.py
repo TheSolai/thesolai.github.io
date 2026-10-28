@@ -15,6 +15,21 @@ import re
 from datetime import datetime
 
 AGENTMAIL_KEY_PATH = "/Users/amre/.openclaw/workspace/secrets/sol-agentmail-api-key.txt"
+REPLY_ADDRESSES_PATH = "/Users/amre/.openclaw/workspace/secrets/reply-addresses.txt"
+
+def load_reply_addresses():
+    """Read Amre's mail addresses from the gitignored secrets file.
+
+    The addresses are deliberately not hardcoded here: this script is tracked
+    in the public site repo, so a literal would publish them.
+    """
+    try:
+        with open(REPLY_ADDRESSES_PATH) as f:
+            addrs = [ln.strip() for ln in f
+                     if ln.strip() and not ln.strip().startswith('#')]
+        return addrs
+    except Exception:
+        return []
 
 def fetch(url, timeout=10):
     try:
@@ -107,12 +122,11 @@ def main():
         
         client.inboxes.messages.send(
             inbox_id='sol-ai@agentmail.to',
-        # Amre's replies all come from [REDACTED-RECIPIENT]. The old
-        # [REDACTED-RECIPIENT] address accepted mail but she never replies from
-        # there, so anything needing a reply stalled silently (see
-        # repo-roulette, which sat 11 days waiting for a verdict).
-        # Send to both so the briefing reaches whichever inbox she reads.
-        to=['[REDACTED-RECIPIENT]', '[REDACTED-RECIPIENT]'],
+        # Amre's reply addresses live in secrets/reply-addresses.txt (gitignored)
+        # so they are not published by the public site repo.
+        # Historically she read one address but the older one also accepted
+        # mail, so every known address is notified.
+        to=load_reply_addresses(),
             subject=f'AI/RAG/Memory Briefing — {datetime.now().strftime("%Y-%m-%d")}',
             text=body
         )
