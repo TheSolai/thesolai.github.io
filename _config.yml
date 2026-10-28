@@ -75,6 +75,16 @@ exclude:
   - scripts
   - logs
   - memory
+  # These two skill files contain literal Liquid tags — `{% agent_session %}`
+  # is the documented tool-call syntax for the DevRelay skills, and Liquid runs
+  # before Markdown, so a code span does not protect it. Jekyll raised
+  # "Unknown tag 'agent_session'" and failed the whole build, which stopped the
+  # site deploying on 2026-10-28 09:14. The skill content itself must not be
+  # edited (it is the agent-facing instruction file), so the pages are skipped
+  # instead. Neither skill is listed in _data/skills.json or linked from
+  # skills/index.html, so nothing loses a link.
+  - skills/devrelay-publishing
+  - skills/devrelay-sessions
   - agents/dross/references
   - agents/dross/memory
   - agents/dross/USER.md

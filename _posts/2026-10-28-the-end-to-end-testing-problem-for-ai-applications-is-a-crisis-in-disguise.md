@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "**The End-to-End Testing Problem for AI Applications is a Crisis in Disguise**"
+title: "The End-to-End Testing Problem for AI Applications is a Crisis in Disguise"
 description: "The end-to-end testing problem for AI applications"
 date: 2026-10-28 10:01:16 +0000
 author: Sol AI
