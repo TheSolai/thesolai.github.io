@@ -1,0 +1,279 @@
+{
+  "traceSchema": "openclaw-trajectory",
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-26T20:17:43.072Z",
+  "traceId": "920bd838-9aae-4d22-9c48-b51166fbbb49",
+  "sessionId": "920bd838-9aae-4d22-9c48-b51166fbbb49",
+  "sessionKey": "agent:main:telegram:direct:8125193571",
+  "harness": {
+    "type": "openclaw",
+    "name": "OpenClaw",
+    "version": "2026.9.6",
+    "gitSha": "b3da928",
+    "os": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "release": "27.0.0",
+      "label": "macos 27.0.1 (arm64)"
+    },
+    "runtime": {
+      "node": "v24.21.0"
+    },
+    "invocation": [
+      "/opt/homebrew/Cellar/node@24/24.21.0/bin/node",
+      "$OPENCLAW_STATE_DIR/tools/node-v24.21.0/lib/node_modules/openclaw/dist/index.js",
+      "gateway",
+      "--port",
+      "18789"
+    ],
+    "entrypoint": "$OPENCLAW_STATE_DIR/tools/node-v24.21.0/lib/node_modules/openclaw/dist/index.js",
+    "workspaceDir": "$OPENCLAW_STATE_DIR/workspace",
+    "sessionFile": "$OPENCLAW_STATE_DIR/agent:main:telegram:direct:8125193571"
+  },
+  "model": {
+    "provider": "minimax",
+    "name": "MiniMax-M2.7",
+    "api": "anthropic-messages",
+    "fastMode": false,
+    "thinkLevel": "medium",
+    "reasoningLevel": "off"
+  },
+  "config": {
+    "redacted": {
+      "meta": {
+        "lastTouchedVersion": "2026.9.6",
+        "migrations": {
+          "modelPolicyAllowlist": true,
+          "utilityModelSeparation": true
+        }
+      },
+      "wizard": {
+        "lastRunAt": "2026-10-18T11:28:33.374Z",
+        "lastRunVersion": "2026.9.6",
+        "lastRunCommand": "doctor",
+        "lastRunMode": "local"
+      },
+      "auth": {
+        "profiles": {
+          "minimax:global": {
+            "provider": "minimax",
+            "mode": "api_key"
+          },
+          "minimax:manual": {
+            "provider": "minimax",
+            "mode": "api_key"
+          }
+        }
+      },
+      "models": {
+        "mode": "merge",
+        "providers": {
+          "minimax": {
+            "baseUrl": "https://api.minimax.io/anthropic",
+            "api": "anthropic-messages",
+            "authHeader": true,
+            "models": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            }
+          },
+          "ollama": {
+            "baseUrl": "http://localhost:11434",
+            "api": "ollama",
+            "authHeader": false,
+            "models": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            }
+          }
+        }
+      },
+      "agents": {
+        "defaults": {
+          "model": {
+            "primary": "minimax/MiniMax-M2.7",
+            "fallbacks": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            }
+          },
+          "models": {
+            "minimax/MiniMax-M2.5": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "minimax/MiniMax-M2.7": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "ollama/qwen3:14b": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            }
+          },
+          "modelPolicy": {
+            "allow": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            }
+          },
+          "workspace": "$WORKSPACE_DIR",
+          "compaction": {
+            "enabled": true,
+            "mode": "safeguard",
+            "keepRecentTokens": 20000,
+            "recentTurnsPreserve": 3,
+            "qualityGuard": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "midTurnPrecheck": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "postCompactionSections": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "timeoutSeconds": 180,
+            "maxActiveTranscriptBytes": 600000
+          },
+          "thinkingDefault": "medium",
+          "typingIntervalSeconds": 15,
+          "heartbeat": {
+            "every": "0m",
+            "timeoutSeconds": 1800
+          },
+          "maxConcurrent": 64,
+          "subagents": {
+            "maxConcurrent": 8,
+            "archiveAfterMinutes": 60
+          }
+        },
+        "entries": {
+          "main": {
+            "heartbeat": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "identity": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "tools": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            }
+          }
+        }
+      },
+      "tools": {
+        "profile": "coding",
+        "web": {
+          "search": {
+            "enabled": true,
+            "provider": "duckduckgo"
+          }
+        },
+        "toolSearch": false,
+        "elevated": {
+          "enabled": true
+        },
+        "exec": {
+          "backgroundMs": 30000,
+          "timeoutSeconds": 900,
+          "notifyOnExit": true
+        }
+      },
+      "messages": {
+        "inbound": {
+          "byChannel": {
+            "whatsapp": 0
+          }
+        },
+        "ackReactionScope": "group-mentions"
+      },
+      "tts": {
+        "auto": "off",
+        "provider": "tts-local-cli",
+        "persona": "toby",
+        "personas": {
+          "toby": {
+            "label": "Toby",
+            "description": "System default voice. Local Phonon TTS, UK male.",
+            "provider": "tts-local-cli"
+          },
+          "piper": {
+            "label": "Piper (Bryce, US male)",
+            "description": "Original Piper voice, kept as an alternate.",
+            "provider": "tts-local-cli"
+          }
+        },
+        "providers": {
+          "tts-local-cli": {
+            "command": "~/.local/bin/phonon-say",
+            "args": {
+              "truncated": true,
+              "reason": "trajectory-depth-limit",
+              "limitDepth": 6
+            },
+            "outputFormat": "wav",
+            "timeoutMs": 120000
+          }
+        }
+      },
+      "commands": {
+        "native": "auto",
+        "nativeSkills": "auto",
+        "restart": true,
+        "ownerAllowFrom": [
+          "telegram:8125193571"
+        ]
+      },
+      "session": {
+        "dmScope": "per-channel-peer",
+        "notifyOnCreate": false,
+        "maintenance": {
+          "mode": "enforce",
+          "maxEntries": 1500,
+          "preserveRecent": "7d",
+          "maxDiskBytes": "500mb"
+        }
+      },
+      "hooks": {
+        "internal": {
+          "enabled": true,
+          "entries": {
+            "command-logger": "[Truncated]",
+            "session-memory": "[Truncated]"
+          }
+        }
+      },
+      "channels": "[Truncated]",
+      "gateway": "[Truncated]",
+      "memory": "[Truncated]",
+      "mcp": "[Truncated]",
+      "skills": "[Truncated]",
+      "plugins": "[Truncated]"
+    },
+    "runtime": "[Truncated]"
+  },
+  "plugins": "[Truncated]",
+  "skills": "[Truncated]",
+  "prompting": "[Truncated]",
+  "redaction": "[Truncated]",
+  "metadata": "[Truncated]"
+}

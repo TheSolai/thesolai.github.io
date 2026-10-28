@@ -1,29 +1,55 @@
 #!/bin/bash
 # telegram-session-watchdog.sh
 #
-# Keeps the OpenClaw Telegram bot alive. Three failure modes it heals:
+# Keeps the OpenClaw Telegram bot alive.
 #
-#   1. NETWORK / DNS FAILURE  (the persistent one)
-#      The Mac sleeps on lid close. On wake, macOS can be left with only a
-#      fragile IPv6 link-local resolver (fe80::...%en0) and no IPv4 fallback,
-#      so `getaddrinfo` for api.minimax.io returns ENOTFOUND. Every LLM call
-#      then fails, every turn dies with
-#        "LLM request failed: DNS lookup for the provider endpoint failed"
-#      and the bot delivers nothing. The gateway does not recover by itself —
-#      its connection pool holds stale state.
-#      FIX: if the provider hostname does not resolve, restart the gateway so
-#      it re-resolves from scratch. The check is ACTIVE (we resolve the name
-#      ourselves), not log-scraping.
+# DESIGN RULE (learned the hard way on 2026-10-26):
+#   A restart is the LAST resort. Every extra restart is another chance to
+#   abort a running turn, drop a reply, and wedge a lane. The old version of
+#   this script restarted the gateway whenever Telegram reported pending
+#   updates. That heuristic was a false-positive factory: messages sit pending
+#   in Telegram for the whole duration of any long turn, so it restarted the
+#   gateway 12 times in one afternoon, and one of those restarts landed during
+#   a maintenance window and left a stale lease behind — after which the
+#   gateway could never start again. That single restart storm is what turned
+#   "the bot is slow" into "the bot is dead for 24 hours".
+#
+#   So: every restart now requires a rate limit AND a positive, verified
+#   reason. Everything that is merely suspicious is logged, never acted on.
+#
+# What it heals:
+#
+#   0. THE SERVICE IS NOT LOADED OR IS DISABLED
+#      launchd forgets a LaunchAgent across logins, and `launchctl print-disabled`
+#      can carry a stale "disabled" flag that makes `launchctl bootstrap` fail
+#      with "5: Input/output error". When that happens the gateway simply is
+#      not running, KeepAlive never fires, and the bot is silent forever.
+#      FIX: enable + bootstrap (with `launchctl load -w` as the fallback that
+#      actually worked on this machine).
+#
+#   0b. A STALE LEASE BLOCKING STARTUP
+#      `state_leases` holds a row for `core:agent-database-maintenance` with an
+#      `expires_at` in the past. The startup migration sees the lease as held
+#      and refuses with "gateway.maintenance_required", so the gateway can
+#      never boot. The lease is never reclaimed.
+#      FIX: delete only EXPIRED lease rows before any start attempt.
+#
+#   1. THE MACHINE SLEPT (clamshell) AND THE GATEWAY CAME BACK STALE
+#      On wake, macOS can be left with a fragile resolver and the gateway's
+#      connection pool holds stale sockets, so every LLM call fails with
+#      "DNS lookup for the provider endpoint failed" and no reply is sent.
+#      FIX: if the machine woke after the gateway started, restart the gateway
+#      so it re-resolves and rebuilds its connections.
 #
 #   2. A WEDGED SESSION
 #      A foreground long-running command through the exec tool never exits, so
 #      the session's command-lane queue entry never resolves. The lane's
-#      queuedCount stays > 0 forever, which (a) makes `sessions compact`
-#      refuse with "has queued work" and (b) stops the ingress handler from
-#      adopting any new Telegram update. Messages arrive and are spooled but
-#      never become turns — the bot looks dead while the gateway burns turns.
+#      queuedCount stays > 0 forever, which (a) makes `sessions compact` refuse
+#      with "has queued work" and (b) stops the ingress handler from adopting
+#      any new Telegram update. Messages arrive and are spooled but never
+#      become turns — the bot looks dead while the gateway burns turns.
 #      FIX: kill the offending process, fail the task row, restart the gateway
-#      (the lane queue is in gateway memory, so a restart is the only way to
+#      (the lane queue lives in gateway memory, so a restart is the only way to
 #      clear it).
 #
 #   3. A TURN THAT DIED OF A PROVIDER-SIDE CONTEXT OVERFLOW
@@ -31,6 +57,13 @@
 #      turn and NO reply is delivered. The mid-turn precheck cannot catch it
 #      because it only checks at prompt-build time.
 #      FIX: hard-truncate the transcript so the next turn starts small.
+#
+# NEVER, under any circumstance:
+#   * restart because Telegram reports pending updates (that is the bug that
+#     caused the 2026-10-26 outage)
+#   * restart because DNS is down (a restart cannot fix a resolver)
+#   * kill a task that is not owned by a Telegram session (the 21-minute
+#     "Memory Dreaming Promotion" cron is legitimate and must never be killed)
 #
 # Usage: telegram-session-watchdog.sh [stuck_task_max_age_seconds]
 #   default 1200 (20 min, safely past the 15 min exec timeout cap)
@@ -42,6 +75,8 @@ STATE_DB="/Users/amre/.openclaw/state/openclaw.sqlite"
 GATEWAY_LOG="/Users/amre/Library/Logs/openclaw/gateway.log"
 LOG="/Users/amre/.openclaw/workspace/scripts/telegram-session-watchdog.log"
 GATEWAY_LABEL="ai.openclaw.gateway"
+PLIST="/Users/amre/Library/LaunchAgents/${GATEWAY_LABEL}.plist"
+HEALTH_URL="http://127.0.0.1:18789/healthz"
 KEY="agent:main:telegram:direct:8125193571"
 PROVIDER_HOST="api.minimax.io"
 MAX_AGE="${1:-1200}"
@@ -51,10 +86,76 @@ log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*" >> "$LOG"; }
 
 gateway_pid() { launchctl list 2>/dev/null | awk -v l="$GATEWAY_LABEL" '$3 == l {print $1}'; }
 
+service_loaded() { launchctl print "gui/501/${GATEWAY_LABEL}" >/dev/null 2>&1; }
+
+service_enabled() {
+    launchctl print-disabled gui/501 2>/dev/null \
+        | grep -a "\"${GATEWAY_LABEL}\"" | grep -aq "enabled"
+}
+
+# ---------------------------------------------------------------------------
+# Heal 0: the service is not loaded, or launchd is carrying a "disabled" flag.
+# ---------------------------------------------------------------------------
+ensure_service_available() {
+    local pid; pid=$(gateway_pid)
+    if [ -n "$pid" ] && [ "$pid" != "-" ]; then
+        return 0   # running
+    fi
+
+    # Not running. Make sure launchd will even accept the service.
+    if ! service_enabled; then
+        log "SERVICE DISABLED: launchd has '${GATEWAY_LABEL}' flagged disabled — enabling"
+        launchctl enable "gui/501/${GATEWAY_LABEL}" 2>&1 | tail -1
+    fi
+
+    if ! service_loaded; then
+        log "SERVICE UNLOADED: bootstrapping ${GATEWAY_LABEL}"
+        if ! launchctl bootstrap "gui/501" "${PLIST}" 2>&1 | tail -1; then
+            log "  bootstrap failed — falling back to: launchctl load -w"
+            launchctl load -w "${PLIST}" 2>&1 | tail -1
+        fi
+        sleep 6
+    else
+        # Loaded but not running: launchd's KeepAlive should retry it.
+        log "SERVICE LOADED BUT NOT RUNNING: kicking ${GATEWAY_LABEL}"
+        launchctl kickstart -k "gui/501/${GATEWAY_LABEL}" 2>&1 | tail -1
+        sleep 4
+    fi
+
+    pid=$(gateway_pid)
+    if [ -n "$pid" ] && [ "$pid" != "-" ]; then
+        log "SERVICE RESTORED: ${GATEWAY_LABEL} running as pid $pid"
+        return 0
+    fi
+    log "SERVICE STILL DOWN after recovery attempt — see the startup error in ${GATEWAY_LOG}"
+    return 1
+}
+
+# ---------------------------------------------------------------------------
+# Heal 0b: an expired lease in the state DB blocks the startup migration
+# ("gateway.maintenance_required"). Delete ONLY rows that are already expired.
+# ---------------------------------------------------------------------------
+clear_expired_leases() {
+    [ -f "$STATE_DB" ] || return 0
+    local removed
+    removed=$(sqlite3 "$STATE_DB" "
+        DELETE FROM state_leases
+        WHERE expires_at IS NOT NULL AND expires_at < strftime('%s','now')*1000;
+        SELECT changes();
+    " 2>/dev/null | tail -1)
+    case "$removed" in
+        ''|*[!0-9]*) return 0 ;;
+    esac
+    if [ "$removed" -gt 0 ]; then
+        log "STALE LEASE: removed $removed expired state_leases row(s) that were blocking startup"
+    fi
+}
+
 restart_gateway() {
     local pid; pid=$(gateway_pid)
     if [ -z "$pid" ] || [ "$pid" = "-" ]; then
-        log "  gateway not running — launchd KeepAlive will start it"
+        log "  gateway not running — calling the service-recovery path instead"
+        ensure_service_available
         return 0
     fi
     log "GATEWAY-RESTART pid=$pid reason=watchdog"
@@ -78,13 +179,6 @@ rate_limited() {
 # Heal 1: the Mac slept (clamshell) and the gateway came back with stale
 #         network state.
 #
-# The Mac sleeps when the lid closes. On wake, macOS can be left with only a
-# fragile IPv6 link-local resolver and the gateway's connection pool holds
-# stale sockets, so every LLM call fails with
-#   "LLM request failed: DNS lookup for the provider endpoint failed"
-# (getaddrinfo ENOTFOUND api.minimax.io) and the bot delivers nothing.
-# The gateway does not recover on its own.
-#
 # FIX: if the machine has woken since the gateway started, restart the
 # gateway so it re-resolves and rebuilds its connections.
 # ---------------------------------------------------------------------------
@@ -103,6 +197,18 @@ last_wake_epoch() {
     date -j -f '%Y-%m-%d %H:%M:%S' "$stamp" '+%s' 2>/dev/null
 }
 
+# ---------------------------------------------------------------------------
+# Heal 1a: the gateway is not running at all.
+# This is checked FIRST and it REPAIRS rather than restarts, because a gateway
+# that is not running has no in-flight turn to lose.
+# ---------------------------------------------------------------------------
+GW_PID=$(gateway_pid)
+if [ -z "$GW_PID" ] || [ "$GW_PID" = "-" ]; then
+    clear_expired_leases
+    ensure_service_available
+    exit 0
+fi
+
 GW_START=$(gateway_start_epoch) || GW_START=""
 LAST_WAKE=$(last_wake_epoch) || LAST_WAKE=""
 if [ -n "$GW_START" ] && [ -n "$LAST_WAKE" ] && [ "$LAST_WAKE" -gt "$GW_START" ]; then
@@ -118,12 +224,10 @@ fi
 # ---------------------------------------------------------------------------
 # Heal 1b: Telegram is holding messages that we are not consuming.
 #
-# getWebhookInfo's pending_update_count is the count of updates Telegram has
-# NOT yet handed to a getUpdates caller. Our poller long-polls continuously,
-# so a sustained non-zero count means the poller is dead or wedged — the
-# user's messages are sitting in Telegram and nothing is arriving. Require it
-# to persist for PENDING_GRACE seconds before acting, so a momentary blip
-# does not trigger a restart.
+# LOG ONLY. This used to restart the gateway and it was a false-positive
+# factory: any long turn leaves messages pending in Telegram, so the bot
+# restarted itself 12 times in one afternoon and one of those restarts broke
+# the gateway completely. A pending count is now only ever reported.
 # ---------------------------------------------------------------------------
 PENDING_FILE="/Users/amre/.openclaw/workspace/scripts/.telegram-pending-since"
 PENDING_GRACE=180
@@ -152,19 +256,12 @@ except Exception:
     if [ "$PENDING" -gt 0 ]; then
         if [ ! -f "$PENDING_FILE" ]; then
             date '+%s' > "$PENDING_FILE"
-            log "TELEGRAM PENDING: $PENDING update(s) waiting — starting ${PENDING_GRACE}s grace timer"
+            log "TELEGRAM PENDING (report only, no action): $PENDING update(s) waiting — starting ${PENDING_GRACE}s observation timer"
         else
             FIRST=$(cat "$PENDING_FILE" 2>/dev/null)
             NOW=$(date '+%s')
             if [ -n "$FIRST" ] && [ $(( NOW - FIRST )) -ge "$PENDING_GRACE" ]; then
-                log "TELEGRAM PENDING: $PENDING update(s) stuck for $(( NOW - FIRST ))s — poller is dead, restarting gateway"
-                if ! rate_limited; then
-                    restart_gateway
-                else
-                    log "  restart rate-limited"
-                fi
-                rm -f "$PENDING_FILE"
-                exit 0
+                log "TELEGRAM PENDING (report only, no action): $PENDING update(s) pending for $(( NOW - FIRST ))s — NOT restarting; a long turn looks identical to this"
             fi
         fi
     else
@@ -174,12 +271,11 @@ fi
 
 # ---------------------------------------------------------------------------
 # Heal 1c: DNS genuinely broken right now.
-# Restarting cannot fix a broken resolver, so only log it — the gateway is
-# restarted by the wake check above once connectivity returns.
+# Restarting cannot fix a broken resolver, so only log it.
 # ---------------------------------------------------------------------------
 if ! /usr/bin/dig +short +time=3 +tries=1 A "$PROVIDER_HOST" 2>/dev/null \
      | grep -qE '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'; then
-    log "DNS DOWN: '$PROVIDER_HOST' does not resolve — provider calls will fail until the resolver recovers"
+    log "DNS DOWN: '$PROVIDER_HOST' does not resolve — provider calls will fail until the resolver recovers (no restart attempted)"
     exit 0
 fi
 
