@@ -211,22 +211,82 @@ last_wake_epoch() {
 
 # A restart must never kill a turn that is about to produce a reply.
 #
-# The authoritative signal is the gateway's own session status
-# (`openclaw sessions list --json` -> "status":"running", backed by
-# session_windows.status in the agent DB).
+# THE RULE: this function FAILS CLOSED. It returns 0 ("a turn is live") when
+# it cannot prove the session is idle. The old implementation returned 1
+# ("idle") on any error — including a failed database read — so a broken read
+# silently handed the watchdog permission to reset a session that was
+# mid-reply. Fail-open is how "couldn't produce or deliver a reply" happens.
+#
+# Signal 1 (authoritative): the gateway's own view.
+#   `openclaw sessions list --json` reports status per session:
+#     "running"  -> a turn is live
+#     "done"/"killed"/"timeout"/null -> no active run (null = not tracked)
+#   This is the same signal `openclaw doctor` reads.
+#
+# Signal 2 (fallback): session_windows.status in the agent DB, which backs
+# the CLI value.
 #
 # The OLD implementation queried `task_runs` for a running row owned by the
 # Telegram session — but task_runs only records EXEC tasks, never the agent
 # turn itself. So it reported "idle" while a Telegram turn was mid-flight.
 # That is how the watchdog reset a live session and dropped a reply.
+# Read the gateway's own session status for $KEY, with a hard time bound.
+#
+# `openclaw sessions list --json` is the authoritative signal, but it spawns
+# a Node process, so it is run in the background and killed if it hangs. A
+# watchdog that hangs is worse than a watchdog that does nothing.
+#
+# Prints the raw status string, or nothing at all if the status cannot be
+# determined (which the caller must treat as UNKNOWN, never as "idle").
+cli_session_status() {
+    local tmp pid i out
+    tmp=$(mktemp 2>/dev/null) || return 1
+    ( openclaw sessions list --json >"$tmp" 2>/dev/null ) &
+    pid=$!
+    for i in 1 2 3 4 5 6 7 8 9 10; do
+        kill -0 "$pid" 2>/dev/null || break
+        sleep 1
+    done
+    if kill -0 "$pid" 2>/dev/null; then
+        kill -9 "$pid" 2>/dev/null
+        wait "$pid" 2>/dev/null
+        rm -f "$tmp"
+        return 1
+    fi
+    wait "$pid" 2>/dev/null
+    out=$(jq -r --arg k "$KEY" '
+        (.sessions // [])[]
+        | select(.key == $k)
+        | if .status == null then "idle" else .status end' "$tmp" 2>/dev/null | head -1 | tr -d ' \t')
+    rm -f "$tmp"
+    [ -n "$out" ] || return 1
+    echo "$out"
+}
+
 telegram_turn_active() {
-    [ -f "$AGENT_DB" ] || return 1
-    local st
-    st=$(sqlite3 "$AGENT_DB" "
-        SELECT status FROM session_windows
-        WHERE session_key='$KEY'
-        ORDER BY created_at DESC LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
-    [ "$st" = "running" ]
+    local st=""
+
+    # Signal 1: the gateway's own session list (bounded, never hangs).
+    st=$(cli_session_status)
+
+    # Signal 2: the agent DB, if the CLI could not answer.
+    if [ -z "$st" ] && [ -f "$AGENT_DB" ]; then
+        st=$(sqlite3 "$AGENT_DB" "
+            SELECT status FROM session_windows
+            WHERE session_key='$KEY'
+            ORDER BY created_at DESC LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
+    fi
+
+    case "$st" in
+        running)                                  return 0 ;;
+        done|killed|timeout|error|idle)           return 1 ;;
+        *)
+            # UNKNOWN. Assume LIVE so we never reset or abort a session we
+            # cannot prove is idle. Deferring costs one watchdog cycle;
+            # guessing wrong costs the user a reply.
+            log "  turn state UNKNOWN (status='${st}') — assuming a turn is LIVE and deferring"
+            return 0 ;;
+    esac
 }
 
 provider_dns_ok() {
@@ -400,16 +460,59 @@ telegram_session_id() {
         2>/dev/null | head -1 | tr -d ' '
 }
 
+# Which session did a dead run belong to?
+#
+# Signal 1 (best): the gateway log. A context-overflow death emits two
+# adjacent lines — "embedded run agent end ... error=Context overflow"
+# (carries the runId) and, ~10ms later, "[context-overflow-diag]"
+# (carries sessionKey=). Pairing them attributes the death with no database
+# read at all.
+#
+# Signal 2 (fallback): the runId inside the transcript events in the agent DB.
+#
+# Either way, the answer is "unknown" when it cannot be determined — and
+# "unknown" means DO NOT TOUCH THE TELEGRAM SESSION. An unattributed death is
+# far more likely to belong to some cron or workshop review than to Amre's
+# live chat, and treating it as hers is what reset her session on 2026-10-28.
+death_owner_from_log() {
+    local death_line="$1" diag_line e1 e2 delta
+    diag_line=$(tail -600 "$GATEWAY_LOG" 2>/dev/null \
+        | grep -a "context-overflow-diag" | tail -1)
+    [ -n "$diag_line" ] || { echo "unknown"; return; }
+
+    e1=$(date -j -u -f '%Y-%m-%dT%H:%M:%S' "$(echo "$death_line" | cut -c1-19)" '+%s' 2>/dev/null)
+    e2=$(date -j -u -f '%Y-%m-%dT%H:%M:%S' "$(echo "$diag_line" | cut -c1-19)" '+%s' 2>/dev/null)
+    if [ -z "$e1" ] || [ -z "$e2" ]; then echo "unknown"; return; fi
+    delta=$((e1 - e2))
+
+    # The two lines are written milliseconds apart. Anything further apart is
+    # a different death and must not be paired.
+    if [ "$delta" -gt 5 ] || [ "$delta" -lt -5 ]; then echo "unknown"; return; fi
+
+    echo "$diag_line" | grep -aoE 'sessionKey=[^ ]+' | head -1 | cut -d= -f2
+}
+
 death_session_key() {
-    local run_id="$1"
-    [ -n "$run_id" ] || return 1
-    [ -f "$AGENT_DB" ] || return 1
-    sqlite3 "$AGENT_DB" "
+    local run_id="$1" owner death_line="${2:-}"
+    [ -n "$run_id" ] || { echo "unknown"; return; }
+
+    if [ -n "$death_line" ]; then
+        owner=$(death_owner_from_log "$death_line")
+        if [ -n "$owner" ] && [ "$owner" != "unknown" ]; then
+            echo "$owner"
+            return
+        fi
+    fi
+
+    [ -f "$AGENT_DB" ] || { echo "unknown"; return; }
+    owner=$(sqlite3 "$AGENT_DB" "
         SELECT DISTINCT w.session_key
         FROM transcript_events t
         JOIN session_windows w ON w.session_id = t.session_id
         WHERE t.event_json LIKE '%$run_id%'
-        LIMIT 1;" 2>/dev/null | head -1 | tr -d ' '
+        LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
+    [ -n "$owner" ] || { echo "unknown"; return; }
+    echo "$owner"
 }
 
 compact_session() {
@@ -516,13 +619,20 @@ if [ -f "$GATEWAY_LOG" ]; then
             DEAD_RUN_ID=$(echo "$RECENT_DEATH" \
                 | grep -aoE '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' \
                 | head -1)
-            OWNER=$(death_session_key "$DEAD_RUN_ID")
-            if [ -n "$OWNER" ] && [ "$OWNER" != "$KEY" ]; then
+            OWNER=$(death_session_key "$DEAD_RUN_ID" "$RECENT_DEATH")
+            if [ -n "$OWNER" ] && [ "$OWNER" != "$KEY" ] && [ "$OWNER" != "unknown" ]; then
                 # A context death in somebody else's session (a cron, a
                 # skill-workshop review, an isolated evaluation) is NOT the
                 # Telegram session's problem. Healing the Telegram session for
                 # it reset the user's live turn and dropped her reply.
                 log "FOREIGN CONTEXT DEATH in '${OWNER}' (run ${DEAD_RUN_ID}) — Telegram session NOT touched"
+            elif [ "$OWNER" = "unknown" ]; then
+                # UNATTRIBUTED. We could not prove whose session died, so we
+                # do not act on the Telegram session at all. The oversized
+                # window is still caught by the independent size check below
+                # (Heal 2b), which also refuses to touch a live turn — so
+                # nothing is lost by refusing here.
+                log "CONTEXT DEATH ${DEAD_RUN_ID} UNATTRIBUTED — Telegram session NOT touched"
             elif [ -f "$HEALED_STATE" ] && [ "$(cat "$HEALED_STATE" 2>/dev/null)" = "$DEAD_RUN_ID" ]; then
                 # Heal each dead run EXACTLY ONCE. Without this, the same stale
                 # death line is re-detected on every watchdog run for as long as
