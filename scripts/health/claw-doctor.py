@@ -960,6 +960,64 @@ def append_history(entry):
 # Main
 # --------------------------------------------------------------------------
 
+def check_cache_ttl_markers(window_hours):
+    """The `openclaw.cache-ttl` marker is pure bookkeeping, but it is O(n^2).
+
+    Each attempt appends a marker that re-lists every frozen tool result, so a
+    session with N attempts and T tool results carries roughly N*T bytes of
+    marker overhead. Measured on 2026-10-28 with MiniMax M2.7: 30 markers =
+    961 KB of a 1.34 MB session window (72% of the transcript), and the
+    session overflowed its context budget because of it.
+
+    OpenClaw treats any provider speaking the Anthropic Messages API as
+    cache-TTL eligible, so `agents.defaults.contextPruning.mode = "off"` does
+    NOT stop the markers. The runtime bundle carries a local patch that
+    excludes those providers (see scripts/apply-openclaw-patches.sh). This
+    check is the tripwire for an OpenClaw upgrade that silently reverts it.
+    """
+    audit = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "cache-ttl-audit.py")
+    if not os.path.exists(audit):
+        return Check("cache-ttl", "Cache-TTL markers are absent",
+                     "INFO", "cache-ttl-audit.py is missing — check not run")
+    minutes = 30   # a live tripwire, not a historical report
+    try:
+        proc = subprocess.run(
+            ["/opt/homebrew/bin/python3", audit, "--minutes", str(minutes),
+             "--json"],
+            capture_output=True, text=True, timeout=180)
+    except (OSError, subprocess.SubprocessError) as exc:
+        return Check("cache-ttl", "Cache-TTL markers are absent",
+                     "INFO", f"audit could not run: {exc}")
+    try:
+        report = json.loads(proc.stdout or "{}")
+    except json.JSONDecodeError:
+        return Check("cache-ttl", "Cache-TTL markers are absent",
+                     "INFO", "audit produced no parsable output")
+    sessions = report.get("sessions") or []
+    if not sessions:
+        return Check("cache-ttl", "Cache-TTL markers are absent",
+                     "PASS",
+                     f"no openclaw.cache-ttl markers in the last {minutes} min "
+                     "- the transcript carries no provider bookkeeping")
+    worst = sessions[0]
+    share = (worst["marker_bytes"] / worst["session_bytes"] * 100) if worst.get("session_bytes") else 0
+    return Check(
+        "cache-ttl", "Cache-TTL markers are absent", "WARN",
+        f"{sum(s['markers'] for s in sessions)} openclaw.cache-ttl marker(s) "
+        f"in the last {minutes} min - {worst['marker_bytes'] // 1024} KB of "
+        f"pure bookkeeping in the worst session ({share:.0f}% of its window)",
+        evidence=[f"{s['session_key'] or s['session_id'][:12]}: {s['markers']} marker(s), "
+                  f"{s['marker_bytes'] // 1024} KB" for s in sessions[:4]],
+        fix="An OpenClaw upgrade reverted the runtime patch that excludes "
+            "Anthropic-compatible providers from the cache-TTL path. Run "
+            "`bash scripts/apply-openclaw-patches.sh` and then "
+            "`launchctl kickstart -k gui/501/ai.openclaw.gateway`. "
+            "`agents.defaults.contextPruning.mode = \"off\"` does NOT fix this "
+            "on its own - the agent runtime re-applies `cache-ttl` in its own "
+            "config scope.")
+
+
 def collect(window_hours):
     events, source = read_log_events(window_hours)
     return [
@@ -976,6 +1034,7 @@ def collect(window_hours):
         check_stale_cli(),
         check_session_store(),
         check_dead_artifacts(),
+        check_cache_ttl_markers(window_hours),
         check_git_state(),
     ], events, source
 
