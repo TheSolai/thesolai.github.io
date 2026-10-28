@@ -18,6 +18,12 @@
 #   hard-truncates the persisted window. Measured on the Telegram session:
 #   200 events / 963 KB  ->  99 events / 564 KB (kept 100 lines).
 #
+#   IMPORTANT: --max-lines counts EVENTS, not bytes. A single event can be a
+#   30-60 KB thinking block, so "60 lines" still left the Telegram window at
+#   216 KB and the cron window at 588 KB. 20 events keeps the starting window
+#   near 60-70 KB, which is what actually gives a turn room to grow before it
+#   hits the 184,800-token (715 KB) prompt budget.
+#
 #   It is a no-op when the window is under budget ("No compaction needed"),
 #   so it is safe to call unconditionally whenever the session is idle.
 #   It refuses while a run is active ("has an active run") or while work is
@@ -29,7 +35,7 @@
 #   runs such as the 21-minute "Memory Dreaming Promotion" cron.
 #
 # Usage: telegram-session-compact.sh [max_lines] [wait_seconds]
-#   max_lines    transcript lines to keep (default 100)
+#   max_lines    transcript EVENTS to keep (default 20)
 #   wait_seconds how long to wait for an in-flight run to end (default 900)
 
 set -u
@@ -44,7 +50,7 @@ KEYS=(
   "agent:main:main"
   "agent:main:cron:debe0687-a581-4c01-9194-8c049cf8b5e0"
 )
-MAX_LINES="${1:-100}"
+MAX_LINES="${1:-20}"
 WAIT_SECONDS="${2:-900}"
 LOG="/Users/amre/.openclaw/workspace/scripts/telegram-session-compact.log"
 

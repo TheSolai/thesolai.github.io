@@ -516,7 +516,7 @@ death_session_key() {
 }
 
 compact_session() {
-    openclaw sessions compact "$KEY" --max-lines 60 2>&1 | tail -2
+    openclaw sessions compact "$KEY" --max-lines 20 2>&1 | tail -2
 }
 
 heal_context_overflow() {
