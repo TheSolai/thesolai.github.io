@@ -14,6 +14,14 @@
 # ============================================================================
 set -u
 
+# Shared restart guard: never bounce the gateway while a Telegram turn is live.
+# The gateway's shutdown drain is 5s and a turn takes minutes, so a bounce
+# here kills the reply the user is waiting for ("couldn't produce or deliver
+# a reply"). 2026-10-28: 16 SIGTERMs, one of them killed messageId=2308.
+GUARD_LIB="/Users/amre/.openclaw/workspace/scripts/lib/gateway-restart-guard.sh"
+# shellcheck source=/dev/null
+[ -f "$GUARD_LIB" ] && . "$GUARD_LIB"
+
 STATE_DIR="/Users/amre/.openclaw"
 LOG="/Users/amre/.openclaw/workspace/scripts/exec-approvals-watchdog.log"
 AGENT_DB="${STATE_DIR}/agents/main/agent/openclaw-agent.sqlite"
@@ -105,17 +113,33 @@ bounce_gateway() {
         log "SKIP bounce ($why) — still in $((${COOLDOWN_SECS}/60))min cooldown"
         return 0
     fi
+
+    # GUARDED: do not bounce while a Telegram turn is live.
+    #
+    # The old code did `launchctl bootout` unconditionally. That sends SIGTERM
+    # to the gateway, the gateway drains for only 5 seconds, and any turn in
+    # flight dies with "agent run aborted for restart" -> "visible channel
+    # turn dispatched with no queued reply payloads". That is the exact
+    # "OpenClaw couldn't produce or deliver a reply" symptom.
+    #
+    # `safe_restart_gateway` uses `launchctl kickstart -k` instead of
+    # bootout/bootstrap: it is a single atomic operation, it keeps the
+    # `caffeinate -dims` wrapper in the plist, and it does not hit the
+    # "Bootstrap failed: 5: Input/output error" that this script kept hitting
+    # when the label was left disabled.
+    if ! restart_allowed "$why"; then
+        log "DEFER bounce ($why) — a Telegram turn is live; bouncing now would drop the reply"
+        return 0
+    fi
+
     bounced=1
     mark_bounce
     log "BOUNCING gateway: $why"
-    launchctl bootout gui/501/"$LABEL" 2>/dev/null || true
-    sleep 3
-    launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true
-    # launchd sometimes returns a spurious I/O error on first attempt
-    sleep 5
+    launchctl kickstart -k "gui/501/${LABEL}" 2>&1 | tee -a "$LOG" >/dev/null || true
+    sleep 6
     if ! gateway_alive; then
-        log "  first bootstrap didn't take; retrying"
-        launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true
+        log "  gateway not healthy after kickstart — retrying once"
+        launchctl kickstart -k "gui/501/${LABEL}" 2>&1 | tee -a "$LOG" >/dev/null || true
         sleep 6
     fi
     if gateway_alive; then
@@ -163,13 +187,17 @@ fi
 if [ -n "$(gateway_pid)" ]; then
     capid=$(pgrep -f "caffeinate -dims" 2>/dev/null | head -1)
     if [ -z "$capid" ]; then
-        log "caffeinate -dims wrapper missing -> restoring from plist"
-        launchctl bootout gui/501/"$LABEL" 2>/dev/null || true
-        sleep 3
-        launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true
-        sleep 5
-        capid=$(pgrep -f "caffeinate -dims" 2>/dev/null | head -1)
-        [ -n "$capid" ] && log "  caffeinate restored (pid $capid)" || log "  !! caffeinate still missing"
+        # GUARDED: restoring the wrapper means bouncing the gateway. Do not
+        # bounce while a Telegram turn is live.
+        if ! restart_allowed "caffeinate wrapper missing"; then
+            log "caffeinate -dims wrapper missing but a Telegram turn is live — deferring the restore"
+        else
+            log "caffeinate -dims wrapper missing -> restoring from plist"
+            launchctl kickstart -k "gui/501/${LABEL}" 2>&1 | tee -a "$LOG" >/dev/null || true
+            sleep 5
+            capid=$(pgrep -f "caffeinate -dims" 2>/dev/null | head -1)
+            [ -n "$capid" ] && log "  caffeinate restored (pid $capid)" || log "  !! caffeinate still missing"
+        fi
     fi
 fi
 
@@ -177,6 +205,14 @@ fi
 if [ -f "$AGENT_DB" ]; then
     dbsize=$(stat -f%z "$AGENT_DB" 2>/dev/null || echo 0)
     if [ "$dbsize" -gt "$MAX_DB_BYTES" ]; then
+        # GUARDED: the VACUUM needs the gateway stopped to release the SQLite
+        # write lock, and stopping the gateway kills any live turn (the drain
+        # is only 5s). Defer the whole maintenance job instead of choosing
+        # between "bloat" and "a dropped reply" — this runs every 5 minutes,
+        # so deferring costs 5 minutes, not a week.
+        if ! restart_allowed "agent DB bloat VACUUM"; then
+            log "agent DB is ${dbsize} bytes (> 150MB) but a Telegram turn is live — deferring the VACUUM (will retry next tick)"
+        else
         log "agent DB is ${dbsize} bytes (> 150MB) -> pruning + VACUUM"
         # stop gateway so we don't fight for the write lock
         launchctl bootout gui/501/"$LABEL" 2>/dev/null || true
@@ -198,6 +234,7 @@ SQL
         gateway_alive || { launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true; sleep 4; }
         newsize=$(stat -f%z "$AGENT_DB" 2>/dev/null || echo 0)
         log "  VACUUM done: ${dbsize} -> ${newsize} bytes; gateway $(gateway_alive && echo up || echo DOWN)"
+        fi
     fi
 fi
 

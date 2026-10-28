@@ -10,11 +10,41 @@ LOG="/Users/amre/.openclaw/workspace/scripts/agent-db-vacuum.log"
 GATEWAY_LABEL="ai.openclaw.gateway"
 PLIST="/Users/amre/Library/LaunchAgents/${GATEWAY_LABEL}.plist"
 
+# Shared restart guard. This script STOPS the gateway to release the SQLite
+# write lock, and the gateway's shutdown drain is only 5 seconds — so a stop
+# here kills any in-flight Telegram turn ("couldn't produce or deliver a
+# reply"). Never stop the gateway while a turn is live.
+GUARD_LIB="/Users/amre/.openclaw/workspace/scripts/lib/gateway-restart-guard.sh"
+# shellcheck source=/dev/null
+[ -f "$GUARD_LIB" ] && . "$GUARD_LIB"
+
 log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*" | tee -a "$LOG" ; }
 
 if [ ! -f "$DB" ]; then
     log "WARN: $DB not found"
     exit 0
+fi
+
+# Wait for any live Telegram turn to finish before stopping the gateway.
+# Bounded: after MAX_WAIT seconds we proceed anyway, because a permanently
+# blocked DB is a worse outcome than one dropped reply, and the next weekly
+# run will try again.
+MAX_WAIT="${MAX_WAIT:-600}"
+if [ -n "${GUARD_LIB:-}" ]; then
+    waited=0
+    while [ "$waited" -lt "$MAX_WAIT" ]; do
+        if restart_allowed "agent DB vacuum"; then
+            break
+        fi
+        if [ "$waited" -eq 0 ]; then
+            log "A Telegram turn is live — waiting up to ${MAX_WAIT}s before stopping the gateway"
+        fi
+        sleep 30
+        waited=$(( waited + 30 ))
+    done
+    if [ "$waited" -ge "$MAX_WAIT" ]; then
+        log "WARN: a Telegram turn is still live after ${MAX_WAIT}s — proceeding anyway (the DB lock matters more)"
+    fi
 fi
 
 log "=== Weekly agent DB maintenance starting ==="

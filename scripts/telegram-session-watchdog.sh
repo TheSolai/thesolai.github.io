@@ -56,7 +56,10 @@
 #      "embedded run agent end: ... isError=true ... error=Context" aborts the
 #      turn and NO reply is delivered. The mid-turn precheck cannot catch it
 #      because it only checks at prompt-build time.
-#      FIX: hard-truncate the transcript so the next turn starts small.
+#      FIX: compact the transcript so the next turn starts small — but only
+#      when the session is IDLE. A busy session means the gateway's own
+#      auto-compaction is recovering the turn in place; that recovery
+#      delivers the reply, so it must never be interrupted.
 #
 # NEVER, under any circumstance:
 #   * restart because Telegram reports pending updates (that is the bug that
@@ -64,12 +67,23 @@
 #   * restart because DNS is down (a restart cannot fix a resolver)
 #   * kill a task that is not owned by a Telegram session (the 21-minute
 #     "Memory Dreaming Promotion" cron is legitimate and must never be killed)
+#   * ABORT a run to "help" a context-overflow recovery. The gateway recovers
+#     the turn itself and delivers the reply ~50s later. Aborting is what
+#     produced the "couldn't produce or deliver a reply" errors on
+#     2026-10-28 (12:10, 12:12, 13:22).
 #
 # Usage: telegram-session-watchdog.sh [stuck_task_max_age_seconds]
 #   default 1200 (20 min, safely past the 15 min exec timeout cap)
 
 set -u
 export PATH="/Users/amre/.openclaw/tools/current-bin:$PATH"
+
+# Shared restart guard — one source of truth for "is a Telegram turn live?".
+# Sourced, not copied: exec-approvals-watchdog.sh and agent-db-vacuum.sh use
+# the same rules, and they are all capable of killing a live reply.
+GUARD_LIB="/Users/amre/.openclaw/workspace/scripts/lib/gateway-restart-guard.sh"
+# shellcheck source=/dev/null
+[ -f "$GUARD_LIB" ] && . "$GUARD_LIB"
 
 STATE_DB="/Users/amre/.openclaw/state/openclaw.sqlite"
 AGENT_DB="/Users/amre/.openclaw/agents/main/agent/openclaw-agent.sqlite"
@@ -156,11 +170,30 @@ clear_expired_leases() {
 }
 
 restart_gateway() {
-    local pid; pid=$(gateway_pid)
+    local pid mode="${1:-guarded}"
+    pid=$(gateway_pid)
     if [ -z "$pid" ] || [ "$pid" = "-" ]; then
         log "  gateway not running — calling the service-recovery path instead"
         ensure_service_available
         return 0
+    fi
+
+    if [ "$mode" = "force" ]; then
+        # FORCED restart. Only used for a WEDGED session, where the command
+        # lane is permanently blocked and no new Telegram message can ever
+        # become a turn. There the choice is "drop the stuck turn" or "the
+        # bot is dead forever", and dropping it is obviously right.
+        log "GATEWAY-RESTART pid=$pid reason=watchdog mode=force (wedged session — the stuck turn is lost, the lane is not)"
+        launchctl kickstart -k "gui/501/${GATEWAY_LABEL}" 2>&1 | tail -1
+        return 0
+    fi
+
+    # GUARDED restart: refuse to bounce the gateway while a Telegram turn is
+    # live. The gateway's shutdown drain is 5s and a turn takes minutes, so
+    # a restart here kills the reply the user is waiting for.
+    if ! restart_allowed "watchdog"; then
+        log "GATEWAY-RESTART DEFERRED — a Telegram turn is live (reason=watchdog)"
+        return 1
     fi
     log "GATEWAY-RESTART pid=$pid reason=watchdog"
     launchctl kickstart -k "gui/501/${GATEWAY_LABEL}" 2>&1 | tail -1
@@ -230,63 +263,23 @@ last_wake_epoch() {
 # Telegram session — but task_runs only records EXEC tasks, never the agent
 # turn itself. So it reported "idle" while a Telegram turn was mid-flight.
 # That is how the watchdog reset a live session and dropped a reply.
-# Read the gateway's own session status for $KEY, with a hard time bound.
 #
-# `openclaw sessions list --json` is the authoritative signal, but it spawns
-# a Node process, so it is run in the background and killed if it hangs. A
-# watchdog that hangs is worse than a watchdog that does nothing.
-#
-# Prints the raw status string, or nothing at all if the status cannot be
-# determined (which the caller must treat as UNKNOWN, never as "idle").
+# The implementation now lives in scripts/lib/gateway-restart-guard.sh so
+# that every script capable of restarting the gateway asks the SAME question
+# the same way. It fails closed: an unknown state counts as live.
 cli_session_status() {
-    local tmp pid i out
-    tmp=$(mktemp 2>/dev/null) || return 1
-    ( openclaw sessions list --json >"$tmp" 2>/dev/null ) &
-    pid=$!
-    for i in 1 2 3 4 5 6 7 8 9 10; do
-        kill -0 "$pid" 2>/dev/null || break
-        sleep 1
-    done
-    if kill -0 "$pid" 2>/dev/null; then
-        kill -9 "$pid" 2>/dev/null
-        wait "$pid" 2>/dev/null
-        rm -f "$tmp"
-        return 1
-    fi
-    wait "$pid" 2>/dev/null
-    out=$(jq -r --arg k "$KEY" '
-        (.sessions // [])[]
-        | select(.key == $k)
-        | if .status == null then "idle" else .status end' "$tmp" 2>/dev/null | head -1 | tr -d ' \t')
-    rm -f "$tmp"
-    [ -n "$out" ] || return 1
-    echo "$out"
+    [ -n "${GUARD_LIB:-}" ] || return 1
+    guard_cli_session_status
 }
 
 telegram_turn_active() {
-    local st=""
-
-    # Signal 1: the gateway's own session list (bounded, never hangs).
-    st=$(cli_session_status)
-
-    # Signal 2: the agent DB, if the CLI could not answer.
-    if [ -z "$st" ] && [ -f "$AGENT_DB" ]; then
-        st=$(sqlite3 "$AGENT_DB" "
-            SELECT status FROM session_windows
-            WHERE session_key='$KEY'
-            ORDER BY created_at DESC LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
+    if [ -n "${GUARD_LIB:-}" ] && [ -f "$GUARD_LIB" ]; then
+        telegram_turn_live
+        return $?
     fi
-
-    case "$st" in
-        running)                                  return 0 ;;
-        done|killed|timeout|error|idle)           return 1 ;;
-        *)
-            # UNKNOWN. Assume LIVE so we never reset or abort a session we
-            # cannot prove is idle. Deferring costs one watchdog cycle;
-            # guessing wrong costs the user a reply.
-            log "  turn state UNKNOWN (status='${st}') — assuming a turn is LIVE and deferring"
-            return 0 ;;
-    esac
+    # Guard library missing: fail closed, never assume idle.
+    log "  restart-guard library missing — assuming a turn is LIVE and deferring"
+    return 0
 }
 
 provider_dns_ok() {
@@ -400,24 +393,28 @@ fi
 #
 # So this heal escalates:
 #   tier 1  compact (works when the session is idle)
-#   tier 2  abort ONLY the run that died, then compact again
-#   tier 3  the window is still oversized -> reset the session
-#           (`sessions delete` archives the transcript to a recoverable .zst
-#           and clears the window; the next message starts fresh)
+#   tier 2  the session is BUSY -> defer, never abort
+#   tier 3  the window is still oversized AND the session is idle -> reset
+#           the session (`sessions delete` archives the transcript to a
+#           recoverable .zst and clears the window; the next message starts
+#           fresh)
 #
-# WHY TIER 2 MUST NEVER ABORT THE SESSION (learned 2026-10-28):
-#   The old code called `sessions.abort {"key":"<session>"}`, which aborts
-#   whatever run is CURRENTLY ACTIVE in that session — not the run that
-#   died. Because the death line stays in the gateway log for minutes, the
-#   same stale death was re-detected on later watchdog runs, and each
-#   detection aborted Amre's brand-new live turn. That is exactly how two
-#   of her messages died with "OpenClaw couldn't produce or deliver a
-#   reply" at 12:10 and 12:12 on 2026-10-28.
+# WHY NOTHING HERE EVER ABORTS A RUN (learned 2026-10-28, the hard way):
+#   A context-overflow death line and a live run are usually the SAME event:
+#   the gateway's own auto-compaction recovers an overflowed turn IN PLACE by
+#   replacing the prompt with a summary and letting the turn continue.
+#   Proven: 13:21:54 "auto-compaction succeeded" -> 13:22:22 the reply went
+#   out. Aborting that run destroyed the recovery and produced the exact
+#   error this watchdog exists to prevent ("OpenClaw couldn't produce or
+#   deliver a reply", run e66ea972, killed 13:22:19).
 #
-#   Two rules now prevent that:
-#     1. Abort is scoped to the dead run's own runId, never the session key.
-#     2. A death runId is healed ONCE (state file). Re-detecting the same
-#        death is a no-op, so it can never touch a later turn.
+#   So the rules are:
+#     1. NEVER abort a run in this heal — not by session key, not by runId.
+#     2. A busy session means the gateway is recovering a turn. LEAVE IT.
+#     3. A death runId is healed ONCE (state file), so a stale log line is
+#        never re-detected against a later turn.
+#     4. Only touch the Telegram session when the death is ATTRIBUTED to it.
+#        Foreign and unattributed deaths are reported and ignored.
 # ---------------------------------------------------------------------------
 MAX_WINDOW_BYTES=500000   # prompt budget is ~715 KB; compact well before it
 
@@ -530,22 +527,27 @@ heal_context_overflow() {
     esac
 
     if echo "$out" | grep -qiE "active run|queued work"; then
-        # Abort ONLY the run that actually died. Aborting the session would
-        # also abort whatever turn is running NOW — which is the user's live
-        # message, not the corpse we are trying to bury.
-        if [ -n "$dead_run_id" ]; then
-            log "  session is busy — aborting ONLY the dead run ${dead_run_id}"
-            openclaw gateway call sessions.abort --params "{\"runId\":\"${dead_run_id}\"}" 2>&1 | tail -1
-            sleep 3
-            out=$(compact_session)
-            case "$out" in
-                *"kept "*)
-                    log "  healed after abort: $out"
-                    return 0 ;;
-            esac
-        else
-            log "  session is busy and the dead run id is unknown — NOT aborting anything"
-        fi
+        # THE SESSION IS BUSY — AND THAT IS GOOD NEWS, NOT BAD NEWS.
+        #
+        # A context-overflow death line and a live run are the SAME event most
+        # of the time: the gateway's own auto-compaction recovers an
+        # overflowed turn IN PLACE (it replaces the prompt with a summary and
+        # lets the turn continue). Proven on 2026-10-28: 13:21:54
+        # "auto-compaction succeeded" -> 13:22:22 the reply was delivered.
+        #
+        # The watchdog used to "help" by aborting the dead run and compacting
+        # again. That destroyed the recovery: the run carrying the user's
+        # message was killed a few seconds before it would have replied, and
+        # she saw exactly the error this watchdog was meant to prevent:
+        #   "OpenClaw couldn't produce or deliver a reply"
+        # That happened to run e66ea972 on 2026-10-28 (killed 13:22:19).
+        #
+        # RULE: NEVER ABORT A RUN IN THIS HEAL. Not by session key, not by
+        # runId, not ever. If the session is busy, the right move is to leave
+        # it alone and let the gateway finish its recovery. Deferring costs
+        # one watchdog cycle; aborting costs the user her reply.
+        log "  session is busy (run ${dead_run_id}) — NOT aborting; the gateway's auto-compaction is recovering the turn in place. Deferring."
+        return 1
     fi
 
     bytes=$(transcript_bytes)
@@ -712,6 +714,9 @@ $STUCK
 EOF
 
 sleep 2
-restart_gateway
+# FORCED: the lane is already wedged, so the guarded path would refuse to
+# restart (a turn is live — the stuck one) and the bot would stay dead.
+# The stuck turn is lost; the lane comes back.
+restart_gateway force
 log "watchdog action complete"
 exit 0
