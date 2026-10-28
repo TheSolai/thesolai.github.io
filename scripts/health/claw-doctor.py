@@ -980,7 +980,7 @@ def check_cache_ttl_markers(window_hours):
     if not os.path.exists(audit):
         return Check("cache-ttl", "Cache-TTL markers are absent",
                      "INFO", "cache-ttl-audit.py is missing — check not run")
-    minutes = 30   # a live tripwire, not a historical report
+    minutes = int(os.environ.get("CLAW_DOCTOR_CACHE_TTL_WINDOW_MIN", "30"))
     try:
         proc = subprocess.run(
             ["/opt/homebrew/bin/python3", audit, "--minutes", str(minutes),
