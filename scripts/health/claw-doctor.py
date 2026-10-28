@@ -1000,13 +1000,25 @@ def check_cache_ttl_markers(window_hours):
                      "PASS",
                      f"no openclaw.cache-ttl markers in the last {minutes} min "
                      "- the transcript carries no provider bookkeeping")
-    worst = sessions[0]
+    # A marker is only worth reporting when it is actually costing the
+    # context window. The pathological case (2026-10-28) was 26 KB per
+    # marker, 72-83% of the window. After the compaction and thinking fixes a
+    # residual single marker is a few hundred bytes, which is noise.
+    total_marker_bytes = sum(s["marker_bytes"] for s in sessions)
+    worst = max(sessions, key=lambda s: s["marker_bytes"])
     share = (worst["marker_bytes"] / worst["session_bytes"] * 100) if worst.get("session_bytes") else 0
+    if total_marker_bytes < 50_000 and share < 10:
+        return Check("cache-ttl", "Cache-TTL markers are absent",
+                     "PASS",
+                     f"{sum(s['markers'] for s in sessions)} marker(s) totalling "
+                     f"{total_marker_bytes // 1024} KB across "
+                     f"{len(sessions)} session(s) - below the reporting "
+                     "threshold, the window is not paying for it")
     return Check(
         "cache-ttl", "Cache-TTL markers are absent", "WARN",
         f"{sum(s['markers'] for s in sessions)} openclaw.cache-ttl marker(s) "
-        f"in the last {minutes} min - {worst['marker_bytes'] // 1024} KB of "
-        f"pure bookkeeping in the worst session ({share:.0f}% of its window)",
+        f"in the last {minutes} min - {total_marker_bytes // 1024} KB of "
+        f"pure bookkeeping, {share:.0f}% of the worst session window",
         evidence=[f"{s['session_key'] or s['session_id'][:12]}: {s['markers']} marker(s), "
                   f"{s['marker_bytes'] // 1024} KB" for s in sessions[:4]],
         fix="An OpenClaw upgrade reverted the runtime patch that excludes "
