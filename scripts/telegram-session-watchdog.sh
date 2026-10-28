@@ -78,6 +78,9 @@ GATEWAY_LABEL="ai.openclaw.gateway"
 PLIST="/Users/amre/Library/LaunchAgents/${GATEWAY_LABEL}.plist"
 HEALTH_URL="http://127.0.0.1:18789/healthz"
 KEY="agent:main:telegram:direct:8125193571"
+# Remembers the last context-death runId we healed, so the same stale death
+# line is never acted on twice (see the note above heal_context_overflow).
+HEALED_STATE="/Users/amre/.openclaw/workspace/scripts/.telegram-last-healed-death"
 PROVIDER_HOST="api.minimax.io"
 MAX_AGE="${1:-1200}"
 MIN_RESTART_GAP=600   # at most one restart per 10 minutes
@@ -191,10 +194,36 @@ gateway_start_epoch() {
 }
 
 last_wake_epoch() {
-    local line; line=$(pmset -g log 2>/dev/null | grep -aE "^20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9:]+ .*Wake " | tail -1)
+    # ONLY real Wake/Sleep subsystem events count.
+    # pmset also logs "Assertions ... NoDisplaySleepAssertion \"Video Wake Lock\""
+    # (Steam, and others) — a loose `.*Wake ` pattern matches those and treats
+    # them as system wakes. That was a bug: 588 assertion lines vs 29 real
+    # wake events, and every false match restarted the gateway mid-turn.
+    # A real event is anchored on the timezone offset followed by "Wake ".
+    local line
+    line=$(pmset -g log 2>/dev/null \
+        | grep -aE "^20[0-9]{2}-[0-9]{2}-[0-9]{2} [0-9:]+ \+[0-9]{4} Wake " | tail -1)
     [ -z "$line" ] && return 1
     local stamp; stamp=$(echo "$line" | cut -d' ' -f1,2)
     date -j -f '%Y-%m-%d %H:%M:%S' "$stamp" '+%s' 2>/dev/null
+}
+
+# A restart must never kill a turn that is about to produce a reply.
+telegram_turn_active() {
+    [ -f "$STATE_DB" ] || return 1
+    local n
+    n=$(sqlite3 "$STATE_DB" "
+        SELECT COUNT(*) FROM task_runs
+        WHERE status='running' AND owner_key LIKE 'agent:main:telegram:%';" 2>/dev/null | head -1)
+    case "$n" in
+        ''|*[!0-9]*) return 1 ;;
+    esac
+    [ "$n" -gt 0 ]
+}
+
+provider_dns_ok() {
+    /usr/bin/dig +short +time=3 +tries=1 A "$PROVIDER_HOST" 2>/dev/null \
+        | grep -qE '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
 }
 
 # ---------------------------------------------------------------------------
@@ -212,7 +241,19 @@ fi
 GW_START=$(gateway_start_epoch) || GW_START=""
 LAST_WAKE=$(last_wake_epoch) || LAST_WAKE=""
 if [ -n "$GW_START" ] && [ -n "$LAST_WAKE" ] && [ "$LAST_WAKE" -gt "$GW_START" ]; then
-    log "WAKE DETECTED: machine woke after the gateway started (wake $LAST_WAKE > start $GW_START) — restarting gateway for fresh DNS/connections"
+    # A wake event is only a REASON TO CHECK, never a reason to restart.
+    # The original fault was a broken resolver after clamshell sleep, so test
+    # the resolver. If DNS is fine the gateway is fine and must not be
+    # restarted — restarting kills whatever turn is in flight.
+    if provider_dns_ok; then
+        log "WAKE DETECTED (wake $LAST_WAKE > start $GW_START) but provider DNS resolves fine — no restart"
+        exit 0
+    fi
+    log "WAKE DETECTED (wake $LAST_WAKE > start $GW_START) and provider DNS is BROKEN — restarting gateway for fresh connections"
+    if telegram_turn_active; then
+        log "  a Telegram turn is running — deferring the restart to protect the in-flight reply"
+        exit 0
+    fi
     if ! rate_limited; then
         restart_gateway
     else
@@ -280,8 +321,130 @@ if ! /usr/bin/dig +short +time=3 +tries=1 A "$PROVIDER_HOST" 2>/dev/null \
 fi
 
 # ---------------------------------------------------------------------------
-# Heal 2: context-overflow turn death -> truncate the transcript
+# Heal 2: context-overflow turn death -> shrink the transcript.
+#
+# The LLM's own auto-compaction does NOT shrink the persisted window (it emits
+# a summary artifact and leaves the window alone), so a bloated session
+# overflows on EVERY turn and auto-compaction "succeeds" forever without
+# fixing anything. `openclaw sessions compact --max-lines N` is the only
+# reliable shrink, but it refuses while the session has an active run or
+# queued work — which is exactly the state a runaway overflow loop creates.
+#
+# So this heal escalates:
+#   tier 1  compact (works when the session is idle)
+#   tier 2  abort ONLY the run that died, then compact again
+#   tier 3  the window is still oversized -> reset the session
+#           (`sessions delete` archives the transcript to a recoverable .zst
+#           and clears the window; the next message starts fresh)
+#
+# WHY TIER 2 MUST NEVER ABORT THE SESSION (learned 2026-10-28):
+#   The old code called `sessions.abort {"key":"<session>"}`, which aborts
+#   whatever run is CURRENTLY ACTIVE in that session — not the run that
+#   died. Because the death line stays in the gateway log for minutes, the
+#   same stale death was re-detected on later watchdog runs, and each
+#   detection aborted Amre's brand-new live turn. That is exactly how two
+#   of her messages died with "OpenClaw couldn't produce or deliver a
+#   reply" at 12:10 and 12:12 on 2026-10-28.
+#
+#   Two rules now prevent that:
+#     1. Abort is scoped to the dead run's own runId, never the session key.
+#     2. A death runId is healed ONCE (state file). Re-detecting the same
+#        death is a no-op, so it can never touch a later turn.
 # ---------------------------------------------------------------------------
+AGENT_DB="/Users/amre/.openclaw/agents/main/agent/openclaw-agent.sqlite"
+MAX_WINDOW_BYTES=500000   # prompt budget is ~715 KB; compact well before it
+
+transcript_bytes() {
+    [ -f "$AGENT_DB" ] || { echo 0; return; }
+    local sid
+    sid=$(sqlite3 "$AGENT_DB" \
+        "SELECT session_id FROM session_windows WHERE session_key='$KEY';" 2>/dev/null | head -1)
+    [ -z "$sid" ] && { echo 0; return; }
+    sqlite3 "$AGENT_DB" "
+        SELECT COALESCE(SUM(COALESCE(t.event_utf8_bytes,0)),0)
+        FROM session_transcript_active_events ae
+        LEFT JOIN transcript_events t
+          ON t.session_id=ae.session_id AND t.seq=ae.event_seq
+        WHERE ae.session_id='$sid';" 2>/dev/null | head -1 | tr -d ' '
+}
+
+compact_session() {
+    openclaw sessions compact "$KEY" --max-lines 60 2>&1 | tail -2
+}
+
+heal_context_overflow() {
+    local out bytes dead_run_id
+    dead_run_id="$1"
+    out=$(compact_session)
+    case "$out" in
+        *"kept "*)
+            log "  healed: $out"
+            return 0 ;;
+    esac
+
+    if echo "$out" | grep -qiE "active run|queued work"; then
+        # Abort ONLY the run that actually died. Aborting the session would
+        # also abort whatever turn is running NOW — which is the user's live
+        # message, not the corpse we are trying to bury.
+        if [ -n "$dead_run_id" ]; then
+            log "  session is busy — aborting ONLY the dead run ${dead_run_id}"
+            openclaw gateway call sessions.abort --params "{\"runId\":\"${dead_run_id}\"}" 2>&1 | tail -1
+            sleep 3
+            out=$(compact_session)
+            case "$out" in
+                *"kept "*)
+                    log "  healed after abort: $out"
+                    return 0 ;;
+            esac
+        else
+            log "  session is busy and the dead run id is unknown — NOT aborting anything"
+        fi
+    fi
+
+    bytes=$(transcript_bytes)
+    if [ -n "$bytes" ] && [ "$bytes" -gt "$MAX_WINDOW_BYTES" ] 2>/dev/null; then
+        log "  window still oversized (${bytes} bytes > ${MAX_WINDOW_BYTES}) — resetting session (transcript is archived, not lost)"
+        openclaw sessions delete "$KEY" --yes 2>&1 | tail -2 | cut -c1-160
+        return 0
+    fi
+
+    log "  heal deferred: $(echo "$out" | tr '\n' ' ' | cut -c1-130)"
+    return 1
+}
+
+# Shrink an oversized window WITHOUT aborting anything. Used when there is no
+# confirmed context death: a long legitimate turn must never be killed just
+# because the transcript is big. If the session is busy we only report; if it
+# is idle and still oversized we reset it.
+heal_oversized_window() {
+    local out bytes
+    bytes=$(transcript_bytes)
+    out=$(compact_session)
+    case "$out" in
+        *"kept "*)
+            log "  healed: $out"
+            return 0 ;;
+        *"No compaction needed"*)
+            log "  window reports under budget; nothing to do"
+            return 0 ;;
+    esac
+
+    if echo "$out" | grep -qiE "active run|queued work"; then
+        log "  session busy with a live turn (${bytes} bytes) — not aborting it; will retry"
+        return 1
+    fi
+
+    bytes=$(transcript_bytes)
+    if [ -n "$bytes" ] && [ "$bytes" -gt "$MAX_WINDOW_BYTES" ] 2>/dev/null; then
+        log "  window still oversized (${bytes} bytes > ${MAX_WINDOW_BYTES}) and idle — resetting session (transcript is archived, not lost)"
+        openclaw sessions delete "$KEY" --yes 2>&1 | tail -2 | cut -c1-160
+        return 0
+    fi
+
+    log "  heal deferred: $(echo "$out" | tr '\n' ' ' | cut -c1-130)"
+    return 1
+}
+
 if [ -f "$GATEWAY_LOG" ]; then
     RECENT_DEATH=$(tail -600 "$GATEWAY_LOG" 2>/dev/null \
         | grep -a "embedded run agent end" | grep -a "isError=true" | grep -a "error=Context" | tail -1)
@@ -289,14 +452,32 @@ if [ -f "$GATEWAY_LOG" ]; then
         STAMP=$(echo "$RECENT_DEATH" | cut -c1-19)
         CUTOFF=$(date -v-5M '+%Y-%m-%dT%H:%M:%S')
         if [[ "$STAMP" > "$CUTOFF" ]]; then
-            log "CONTEXT DEATH detected: $(echo "$RECENT_DEATH" | sed 's/\(.\{110\}\).*/\1/')"
-            OUT=$(openclaw sessions compact "$KEY" --max-lines 60 2>&1 | tail -2)
-            case "$OUT" in
-                *"kept "*) log "  healed: $OUT" ;;
-                *)         log "  heal deferred: $(echo "$OUT" | tr '\n' ' ' | cut -c1-130)" ;;
-            esac
+            DEAD_RUN_ID=$(echo "$RECENT_DEATH" | grep -aoE 'runId=[0-9a-fA-F-]+' | head -1 | cut -d= -f2)
+            # Heal each dead run EXACTLY ONCE. Without this, the same stale
+            # death line is re-detected on every watchdog run for as long as
+            # it stays in the log window — and each re-detection aborted a
+            # live turn (2026-10-28: Amre lost two replies that way).
+            if [ -f "$HEALED_STATE" ] && [ "$(cat "$HEALED_STATE" 2>/dev/null)" = "$DEAD_RUN_ID" ]; then
+                log "CONTEXT DEATH ${DEAD_RUN_ID} already handled — not touching the session"
+            else
+                log "CONTEXT DEATH detected: $(echo "$RECENT_DEATH" | sed 's/\(.\{110\}\).*/\1/')"
+                echo "$DEAD_RUN_ID" > "$HEALED_STATE" 2>/dev/null
+                heal_context_overflow "$DEAD_RUN_ID"
+            fi
         fi
     fi
+fi
+
+# ---------------------------------------------------------------------------
+# Heal 2b: the window is oversized even without a fresh context death.
+# This catches the bloat BEFORE it kills a turn. Compacting is tried first;
+# if the session is busy, the session is reset instead (archived, recoverable).
+# ---------------------------------------------------------------------------
+WINDOW_BYTES=$(transcript_bytes)
+if [ -n "$WINDOW_BYTES" ] && [ "$WINDOW_BYTES" -gt "$MAX_WINDOW_BYTES" ] 2>/dev/null; then
+    log "OVERSIZED WINDOW: ${WINDOW_BYTES} bytes > ${MAX_WINDOW_BYTES} — shrinking before it causes a context death"
+    heal_oversized_window
+    exit 0
 fi
 
 # ---------------------------------------------------------------------------
