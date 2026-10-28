@@ -183,3 +183,9 @@ scripts/.telegram-last-healed-death
 
 # PR evidence screenshots (DocsGPT#3214) — local artifacts, not site content
 agents/dross/screenshots/
+
+# Private runtime state — email reply cache and trajectory exports.
+# These hold third-party correspondence and session transcripts, so they
+# must never enter the public site repo. Untracked 2026-10-28.
+.dross-reply-cache/
+.openclaw/trajectory-exports/
