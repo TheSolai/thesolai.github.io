@@ -91,11 +91,48 @@ CLI_CANDIDATES = [
 # `context-overflow-recovery`, verified against the config schema:
 #   keepRecentTokens  20000  (default)
 #   recentTurnsPreserve    3  (default, max 12)
-# These are the baseline. Lowering keepRecentTokens pushes MORE content into
-# the summary, which is where `summary-tail` loss happens.
+#
+# The two knobs push in OPPOSITE directions on the loss axis, so they must be
+# judged separately (see budgetCompactionSummary in the OpenClaw compaction
+# module, which splits ONE char budget -- capped at 16000 -- between the
+# summary body and the retained suffix):
+#
+#   keepRecentTokens   how many recent tokens stay RAW after compaction.
+#                      LOW  -> more content is pushed into the summary body
+#                              -> the body gets trimmed -> `summary-tail`.
+#                      HIGH -> less in the body. Better on the loss axis.
+#
+#   recentTurnsPreserve  how many recent user turns are preserved VERBATIM in
+#                      the retained suffix, together with every tool call and
+#                      tool result they contain. A single turn can be hundreds
+#                      of KB, so a high value makes the suffix enormous, the
+#                      body gets squeezed to maxChars/2, and the loss is
+#                      `summary-tail` (and `suffix-head`).
+#                      LOW  -> smaller suffix -> body survives intact.
+#                      HIGH -> worse on the loss axis.
+#
+# So: keepRecentTokens at or above its default is good; recentTurnsPreserve at
+# or below its default is good. Setting recentTurnsPreserve to 0 is a
+# deliberate, sanctioned deviation -- see SANCTIONED_COMPACTION.
 EXPECTED_COMPACTION = {
     "keepRecentTokens": 20000,
     "recentTurnsPreserve": 3,
+}
+
+# Deviations from the documented defaults that are deliberate and safe, with
+# the reason. The doctor must not cry wolf about these.
+SANCTIONED_COMPACTION = {
+    "recentTurnsPreserve": (
+        0,
+        "the preserved turns are the suffix hog: each preserved turn carries "
+        "every tool call and tool result verbatim, so with a bot that runs "
+        "dozens of tool calls per turn the suffix exceeds the 16000-char "
+        "artifact budget, the summary body is squeezed to half of it and the "
+        "artifact is cut (loss=summary-tail). With preserve=0 the suffix is "
+        "only the structural sections plus the workspace context, so the body "
+        "keeps the whole budget. Verified 2026-10-28: a compaction after this "
+        "change completed with no loss line.",
+    ),
 }
 
 # Cron contracts that must not silently regress.
@@ -515,12 +552,20 @@ def check_truncation(events, window_hours):
         f"change — the artifact was cut, so content was silently dropped. "
         f"This is NOT the overflow axis and the overflow knobs do not fix it",
         ev,
-        f"keepRecentTokens is already {EXPECTED_COMPACTION['keepRecentTokens']} "
-        f"(the runtime default) and the loss persisted after the reload, so "
-        f"raising or lowering it is not the fix; this axis is budget "
-        f"competition between the summary body, the retained suffix and the "
-        f"preserved turn inside one char budget (cap 16000) — read the "
-        f"compaction module's summary/suffix budget split")
+        f"this axis is budget competition between the summary body, the "
+        f"retained suffix and the preserved turn inside one char budget "
+        f"(cap 16000). budgetCompactionSummary() reserves min(suffix.length, "
+        f"maxChars) for the suffix and floors the body at ceil(maxChars/2), "
+        f"so a suffix that exceeds half the budget squeezes the body and the "
+        f"artifact is cut. The suffix's bulk is preservedTurnsSection — the "
+        f"last N user turns kept VERBATIM with every tool call and tool "
+        f"result they contain, which for this agent is hundreds of KB per "
+        f"turn. Fix: set recentTurnsPreserve=0 (and keepRecentTokens at or "
+        f"above {EXPECTED_COMPACTION['keepRecentTokens']}), so the suffix "
+        f"holds only the structural sections and the body keeps the whole "
+        f"budget. Also keep agents.defaults.contextLimits."
+        f"postCompactionMaxChars small so the injected workspace context "
+        f"does not compete for the same budget.")
 
 
 def check_compaction_config():
@@ -565,14 +610,32 @@ def check_config_drift():
     # Two different questions:
     #   1. does the live config match the DOCUMENTED runtime defaults?
     #   2. did it change since the doctor last looked?
-    # The first is a defect (a knob below the documented default pushes more
-    # content into the summary and makes summary-tail loss MORE likely).
+    # The first is a defect ONLY in the direction that hurts: keepRecentTokens
+    # BELOW its default pushes more content into the summary body and makes
+    # summary-tail loss MORE likely; recentTurnsPreserve ABOVE its default
+    # makes the retained suffix huge and squeezes the body the same way.
+    # The opposite directions are improvements, not defects, and the
+    # deliberate ones are sanctioned (SANCTIONED_COMPACTION).
     # The second is only news.
     expected_diffs = []
+    sanctioned = []
     for key, want in sorted(EXPECTED_COMPACTION.items()):
         have = live.get(key)
-        if have != want:
-            expected_diffs.append(f"{key}: {have} (documented default {want})")
+        if have == want:
+            continue
+        sanctioned_spec = SANCTIONED_COMPACTION.get(key)
+        if sanctioned_spec and have == sanctioned_spec[0]:
+            sanctioned.append(f"{key}: {have} (sanctioned deviation)")
+            continue
+        hurts = (have < want) if key == "keepRecentTokens" else (have > want)
+        if hurts:
+            expected_diffs.append(
+                f"{key}: {have} (documented default {want}) — this direction "
+                f"makes summary-tail loss MORE likely")
+        else:
+            sanctioned.append(
+                f"{key}: {have} (documented default {want}) — this direction "
+                f"reduces loss")
 
     changed = []
     if baseline:
@@ -598,27 +661,35 @@ def check_config_drift():
 
     if expected_diffs:
         return Check(
-            "config-drift", "Compaction knobs match the documented defaults",
+            "config-drift", "Compaction knobs are in the safe direction",
             "WARN",
-            f"{len(expected_diffs)} compaction knob(s) differ from the "
-            f"documented runtime default — a knob BELOW the default means "
-            f"more content is pushed into the summary, where it is more "
-            f"likely to be truncated",
-            ev + expected_diffs,
-            f"restore the documented defaults: keepRecentTokens="
-            f"{EXPECTED_COMPACTION['keepRecentTokens']}, recentTurnsPreserve="
+            f"{len(expected_diffs)} compaction knob(s) sit in the direction "
+            f"that makes summary-tail loss more likely",
+            ev + expected_diffs + sanctioned,
+            f"keepRecentTokens must be >= {EXPECTED_COMPACTION['keepRecentTokens']} "
+            f"and recentTurnsPreserve <= "
             f"{EXPECTED_COMPACTION['recentTurnsPreserve']}")
+
+    if sanctioned:
+        return Check(
+            "config-drift", "Compaction knobs are in the safe direction",
+            "INFO",
+            f"{len(sanctioned)} compaction knob(s) differ from the documented "
+            f"runtime default in the direction that REDUCES artifact loss",
+            ev + sanctioned,
+            "no action needed — see SANCTIONED_COMPACTION in "
+            "scripts/health/claw-doctor.py for the reasoning")
 
     if changed:
         return Check(
-            "config-drift", "Compaction knobs match the documented defaults",
+            "config-drift", "Compaction knobs are in the safe direction",
             "INFO",
             f"{len(changed)} compaction setting(s) changed since the last "
             f"doctor run (the live values still match the documented "
             f"defaults)", ev + changed,
             "find the writer in the config-reload events below")
 
-    return Check("config-drift", "Compaction knobs match the documented defaults",
+    return Check("config-drift", "Compaction knobs are in the safe direction",
                  "PASS",
                  f"keepRecentTokens={live.get('keepRecentTokens')}, "
                  f"recentTurnsPreserve={live.get('recentTurnsPreserve')} — "
