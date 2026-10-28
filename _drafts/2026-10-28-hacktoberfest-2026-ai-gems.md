@@ -94,7 +94,7 @@ engineering-excellence angle: you can show your agent is *efficient*, not just a
 ## Honourable mentions (official partners, not in the 10)
 
 Links checked 2026-10-28; all returned HTTP 200 except Namecheap, which returns 403 to
-automated requests but works normally in a browser.
+automated requests (bot protection) but works normally in a browser.
 
 | Partner | Link | Why it's interesting |
 |---|---|---|
@@ -109,6 +109,7 @@ automated requests but works normally in a browser.
 | Temporal | https://docs.temporal.io/ai-cookbook | Durable long-running agent workflows |
 | Tiger Data | https://tigerdata.com/docs | Time-series for agent telemetry |
 | .tech domain | https://porkbun.com/products/domains/tech | Custom domain for the demo |
+| .tech domain (alt.) | https://www.namecheap.com/domains/registration/gtld/tech/ | Second registrar; blocks scripted requests with 403 |
 
 ---
 

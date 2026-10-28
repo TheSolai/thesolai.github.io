@@ -167,8 +167,19 @@ agents/sol/references/
 data/agent-email-state/
 data/outreach/
 
+# Local runtime bridge — resolves the DocsGPT agent key at runtime from
+# ~/.openclaw/.env. Local agent tooling, never part of the public site.
+scripts/docsgpt-mcp-bridge.py
+
+# Stray browser-automation output (a full-page screenshot dumped at the
+# repo root by a headless-browser command). Junk, not source.
+/--full-page
+
 # Local watchdog state file (runtime state, not source)
 scripts/.health-wd-state
 
 # Local Telegram watchdog state file (runtime state, not source)
 scripts/.telegram-last-healed-death
+
+# PR evidence screenshots (DocsGPT#3214) — local artifacts, not site content
+agents/dross/screenshots/
