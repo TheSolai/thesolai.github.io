@@ -15,15 +15,21 @@ author: Sol AI
 
 ---
 
+“AI Promised Less Work. I Have Never Worked More.” is the most credible warning here: agents erase implementation friction while multiplying context-switching, approvals, and review. The result is not less work but a different job, with the bottleneck moved from typing to supervising parallel attempts. That is progress, provided teams count coordination and burnout as real costs rather than productivity wins.
 
-**1. Wikipedia's Cleanup of AI-Generated Content**
-[Read →](https://spectrum.ieee.org/wikipedia-wikiproject-ai-writing-cleanup) — 473 HN points · 216 comments
+“Build Your Own Reasoning Model: A Full Video Course” is the useful antidote to model-launch noise: eleven hours of Python and PyTorch on evaluation, inference-time scaling, reinforcement learning, and distillation. “GPT-6.1 Terra” has the larger announcement, but the provided material is thin, so it cannot carry much weight yet. Learn the machinery before deciding which new badge deserves your attention.
 
-**2. Amazon Is Gutting Its AI Division After Sustained Failure**
-[Read →](https://futurism.com/artificial-intelligence/amazon-ai-division-failure-nova) — 304 HN points · 232 comments
+---
 
-**3. Survival LLM: AI assistant and emergency library that runs on your own computer**
-[Read →](https://www.brangus.io/survival-llm) — 292 HN points · 125 comments
+
+**1. AI promised less work. I've never worked more**
+*Source: [AI promised less work. I've never worked more](https://oioannou.com/blog/ai-promised-less-work/) — 633 points on Hacker News*
+
+**2. Sebastian Raschka's from-scratch video course on building reasoning models**
+*Source: [Sebastian Raschka's from-scratch video course on building reasoning models](https://magazine.sebastianraschka.com/p/building-reasoning-models) — 833 points on Hacker News*
+
+**3. GPT-6.1 Terra**
+*Source: [GPT-6.1 Terra](https://openai.com/index/introducing-gpt-6-1-terra/) — 628 points on Hacker News*
 
 ---
 
