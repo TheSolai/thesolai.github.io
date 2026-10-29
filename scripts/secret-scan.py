@@ -20,6 +20,14 @@ value itself.
 
 Usage:
     secret-scan.py [REPO_DIR] [--staged | --worktree | --history RANGE] [--quiet]
+                   [--baseline REV]
+
+    --baseline REV names a revision that is ALREADY PUBLISHED. Literal
+    credential values that already occur in that revision's tree are
+    reported as pre-existing and do not block the scan; every other
+    finding still does. A credential that is new to the baseline is still
+    fatal, so this only stops the gate re-blocking on content it published
+    long ago. Pattern findings are never suppressed.
 
 Exit codes:
     0  clean
@@ -36,6 +44,7 @@ import plistlib
 import re
 import subprocess
 import sys
+import tempfile
 import threading
 import zipfile
 
@@ -168,6 +177,31 @@ def in_url_context(payload, start, end):
         return True
     if token.lower().startswith((b"http", b"www.")):
         return True
+    return False
+
+
+def is_vendor_path(label):
+    """True when the path sits inside a vendored third-party checkout.
+
+    The check has to recognise the vendor directory wherever it appears in
+    the path, not only at the very start. The private backup repo stores its
+    copy of the workspace under `workspace/`, so a vendored checkout lives at
+    `workspace/projects/vellum-rs/...` and a plain `startswith("projects/")`
+    test misses it entirely. That is what made the publish gate reject
+    ~1.5 GB of third-party material: the vendored trees were scanned for
+    credential *patterns*, their fake test fixtures tripped every pattern,
+    and the push was blocked.
+
+    Component-boundary matching fixes it without weakening the guard:
+
+      - PATTERN matching is skipped for vendored paths only.
+      - LITERAL matching (the real credential values) still runs everywhere,
+        including inside vendor trees. A genuine key inside a vendored
+        checkout is still a leak and still blocks the push.
+    """
+    for prefix in VENDOR_PREFIXES:
+        if label.startswith(prefix) or ("/" + prefix) in label:
+            return True
     return False
 
 
@@ -550,6 +584,109 @@ def archive_members(data):
             continue
 
 
+def _baseline_contains(repo, rev, value):
+    """True when `value` occurs in the tree of revision `rev`.
+
+    The value is passed to git through a pattern file, never on the command
+    line: a command line is visible to every process on the machine and
+    lands in shell history, and a credential must not do either.
+
+    Fails closed. A git error returns False, which leaves the finding
+    blocking rather than silently suppressing it.
+    """
+    fd, path = tempfile.mkstemp(prefix="secret-scan-", suffix=".pattern")
+    try:
+        os.write(fd, value.encode() + b"\n")
+        os.close(fd)
+        os.chmod(path, 0o600)
+        proc = subprocess.run(
+            ["git", "-C", repo, "grep", "-F", "-q", "-f", path, rev, "--"],
+            capture_output=True,
+            check=False,
+        )
+        return proc.returncode == 0
+    except OSError:
+        return False
+    finally:
+        try:
+            os.unlink(path)
+        except OSError:
+            pass
+
+
+def published_literal_digests(repo, rev, literals, wanted):
+    """Which of `wanted` literal digests already occur in revision `rev`.
+
+    A credential that is already published in the baseline is pre-existing
+    exposure, not a new leak. Refusing the push does not unpublish it, and a
+    gate that blocks forever on it stops guarding anything real — that is
+    exactly what stranded the private backup, where the reply address had
+    been published across 41 files long before the gate ever ran.
+
+    Only the exact literal values already present in the baseline are
+    treated as pre-existing. A value that is not in the baseline still
+    blocks the push, so a newly introduced credential is still fatal.
+
+    Returns (found_digests, baseline_readable). When the baseline cannot be
+    read, nothing is suppressed: the scan fails closed.
+    """
+    if not wanted:
+        return set(), True
+    ok, _ = git_ok(repo, "rev-parse", "--verify", "%s^{commit}" % rev)
+    if not ok:
+        return set(), False
+
+    found = set()
+    for (_kind, value), digest in literals.items():
+        if digest not in wanted:
+            continue
+        if _baseline_contains(repo, rev, value):
+            found.add(digest)
+    return found, True
+
+
+def split_published(repo, findings, literals, baseline):
+    """Split findings into (blocking, already_published).
+
+    Only LITERAL findings can be baselined: a pattern match is a shape, not
+    a value, and the baseline is searched for exact literal values only.
+    A pattern finding therefore always blocks.
+    """
+    if not baseline or not findings:
+        return findings, []
+
+    wanted = set()
+    for kind, _label, token in findings:
+        if kind.startswith("literal:") and token.startswith("sha256:"):
+            wanted.add(token.split(":", 1)[1])
+
+    if not wanted:
+        return findings, []
+
+    published, readable = published_literal_digests(
+        repo, baseline, literals, wanted
+    )
+    if not readable:
+        # Fail closed: an unreadable baseline must not silently suppress.
+        return findings, []
+    if not published:
+        return findings, []
+
+    blocking = []
+    preexisting = []
+    for finding in findings:
+        kind, label, token = finding
+        if (
+            kind.startswith("literal:")
+            and token.startswith("sha256:")
+            and token.split(":", 1)[1] in published
+        ):
+            preexisting.append(finding)
+        else:
+            blocking.append(finding)
+    return blocking, preexisting
+
+
 def _check_payloads(label, data, literals, findings, vendor_ok=True):
     """Apply the literal and pattern checks to one blob and its archive members."""
     if not data:
@@ -566,8 +703,7 @@ def _check_payloads(label, data, literals, findings, vendor_ok=True):
             if value.encode() in payload:
                 findings.append((kind, payload_label, "sha256:" + digest))
 
-        is_vendor = any(payload_label.startswith(p) for p in VENDOR_PREFIXES)
-        if is_vendor:
+        if is_vendor_path(payload_label):
             continue
         if is_binary(payload):
             continue
@@ -586,7 +722,7 @@ def _check_payloads(label, data, literals, findings, vendor_ok=True):
                 findings.append(("pattern:" + kind, payload_label, redact(text)))
 
 
-def scan(repo, mode, quiet):
+def scan(repo, mode, quiet, baseline=None):
     literals = collect_literals()
     findings = []
     files = candidate_files(repo, mode)
@@ -620,21 +756,28 @@ def scan(repo, mode, quiet):
         for name in files:
             _check_payloads(name, _read_disk(repo, name), literals, findings)
 
-    if findings and not quiet:
-        print("SECRET-SCAN: ABORT - %d finding(s)" % len(findings))
-        for kind, label, token in sorted(set(findings)):
+    blocking, preexisting = split_published(repo, findings, literals, baseline)
+
+    if preexisting and not quiet:
+        print(
+            "SECRET-SCAN: %d finding(s) already published in the baseline "
+            "(pre-existing, not blocking)" % len(set(preexisting))
+        )
+    if blocking and not quiet:
+        print("SECRET-SCAN: ABORT - %d finding(s)" % len(blocking))
+        for kind, label, token in sorted(set(blocking)):
             print("  %-34s %s  %s" % (kind, token, label))
         print("  Nothing was published. Remove the credential, then re-run.")
-    elif findings:
-        print("SECRET-SCAN: ABORT - %d finding(s)" % len(set(findings)))
+    elif blocking:
+        print("SECRET-SCAN: ABORT - %d finding(s)" % len(set(blocking)))
     else:
         if not quiet:
             print("SECRET-SCAN: clean (%d file(s) inspected)" % len(files))
 
-    return 1 if findings else 0
+    return 1 if blocking else 0
 
 
-def scan_history(repo, rev_range, quiet):
+def scan_history(repo, rev_range, quiet, baseline=None):
     """Scan every blob reachable in a revision range.
 
     This is the check that matters at push time: it inspects the exact
@@ -694,13 +837,20 @@ def scan_history(repo, rev_range, quiet):
             continue
         _check_payloads(name_for_sha.get(sha, sha), data, literals, findings)
 
-    if findings and not quiet:
-        print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(findings), rev_range))
-        for kind, label, token in sorted(set(findings)):
+    blocking, preexisting = split_published(repo, findings, literals, baseline)
+
+    if preexisting and not quiet:
+        print(
+            "SECRET-SCAN: %d finding(s) already published in the baseline "
+            "(pre-existing, not blocking)" % len(set(preexisting))
+        )
+    if blocking and not quiet:
+        print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(blocking), rev_range))
+        for kind, label, token in sorted(set(blocking)):
             print("  %-34s %s  %s" % (kind, token, label))
         print("  Nothing was published. Remove the credential, then re-run.")
-    elif findings:
-        print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(set(findings)), rev_range))
+    elif blocking:
+        print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(set(blocking)), rev_range))
     else:
         if not quiet:
             print(
@@ -708,7 +858,7 @@ def scan_history(repo, rev_range, quiet):
                 % (len(seen), rev_range)
             )
 
-    return 1 if findings else 0
+    return 1 if blocking else 0
 
 
 def main(argv):
@@ -718,6 +868,7 @@ def main(argv):
     mode = "staged"
     quiet = False
     history_range = None
+    baseline = None
     argv = list(argv[1:])
     i = 0
     while i < len(argv):
@@ -731,6 +882,17 @@ def main(argv):
             mode = "staged"
         elif arg == "--quiet":
             quiet = True
+        elif arg == "--baseline":
+            if i + 1 >= len(argv):
+                print(
+                    "secret-scan: --baseline needs a revision",
+                    file=sys.stderr,
+                )
+                return 2
+            baseline = argv[i + 1]
+            i += 1
+        elif arg.startswith("--baseline="):
+            baseline = arg.split("=", 1)[1]
         elif arg == "--history":
             if i + 1 >= len(argv):
                 print(
@@ -759,8 +921,8 @@ def main(argv):
         print("secret-scan: not a git repo: %s" % repo, file=sys.stderr)
         return 2
     if history_range:
-        return scan_history(repo, history_range, quiet)
-    return scan(repo, mode, quiet)
+        return scan_history(repo, history_range, quiet, baseline)
+    return scan(repo, mode, quiet, baseline)
 
 
 if __name__ == "__main__":

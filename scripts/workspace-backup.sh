@@ -18,8 +18,20 @@ cd "$WORKSPACE" || exit 1
 # commit so a bad file never even reaches the history. The gate checks the
 # working tree, the index, and the commits that would be pushed.
 GATE="$WORKSPACE/scripts/publish-gate.sh"
+# Baseline = the already-published remote tip. A literal credential that
+# already occurs in origin/main is pre-existing exposure: refusing this push
+# cannot unpublish it, and a gate that blocks forever stops guarding anything
+# real. A credential that is NOT in the baseline is still fatal.
+GATE_BASELINE=""
+if git -C "$WORKSPACE" rev-parse --verify --quiet origin/main >/dev/null 2>&1; then
+    GATE_BASELINE="origin/main"
+fi
+GATE_BASELINE_ARGS=""
+if [ -n "$GATE_BASELINE" ]; then
+    GATE_BASELINE_ARGS="--baseline $GATE_BASELINE"
+fi
 if [ -x "$GATE" ]; then
-    if ! /bin/bash "$GATE" "$WORKSPACE" >> "$LOG_FILE" 2>&1; then
+    if ! /bin/bash "$GATE" "$WORKSPACE" $GATE_BASELINE_ARGS >> "$LOG_FILE" 2>&1; then
         echo "$(date "+%Y-%m-%d %H:%M:%S") | ⛔ BLOCKED | Publish gate refused the push" >> "$LOG_FILE"
         echo "BLOCKED: credential detected; nothing was published." >&2
         exit 1

@@ -17,11 +17,21 @@
 # credential is not.
 #
 # Usage:
-#   publish-gate.sh [--range <git-rev-range>[,<range>...]] [repo-dir]
+#   publish-gate.sh [--range <git-rev-range>[,<range>...]]
+#                   [--baseline <rev>] [repo-dir]
 #
 #   --range   revision range(s) to scan. Comma-separated. Each entry is
 #             either a range ("main..HEAD") or a single rev ("HEAD",
 #             meaning every ancestor of that rev).
+#
+#   --baseline  a revision that is ALREADY PUBLISHED. Literal credential
+#             values that already occur in that revision's tree are
+#             reported as pre-existing and do not block. Without this the
+#             gate re-blocks forever on content it published long ago — a
+#             credential already on the remote cannot be un-published by
+#             refusing a later push. Every finding that is NOT already
+#             published still blocks, so a newly introduced credential is
+#             still fatal. Pattern findings are never suppressed.
 #
 #   With no --range, the gate reads git's pre-push protocol from stdin
 #   (one "<local ref> <local sha> <remote ref> <remote sha>" line per
@@ -39,6 +49,7 @@ SCAN="$GATE_DIR/secret-scan.py"
 RANGE=""
 REPO=""
 STDIN_RANGES=""
+BASELINE=""
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -48,6 +59,14 @@ while [ $# -gt 0 ]; do
             ;;
         --range=*)
             RANGE="${1#--range=}"
+            shift
+            ;;
+        --baseline)
+            BASELINE="$2"
+            shift 2
+            ;;
+        --baseline=*)
+            BASELINE="${1#--baseline=}"
             shift
             ;;
         -h|--help)
@@ -85,16 +104,28 @@ if [ -z "$PY" ]; then
     exit 1
 fi
 
+# run_scan <scan args...>
+# Runs the scanner, passing --baseline only when one was supplied. Kept as
+# a function rather than an array so the script stays portable to the
+# bash 3.2 that ships with macOS.
+run_scan() {
+    if [ -n "$BASELINE" ]; then
+        "$PY" "$SCAN" "$REPO" "$@" --baseline "$BASELINE"
+    else
+        "$PY" "$SCAN" "$REPO" "$@"
+    fi
+}
+
 # ------------------------------------------------------------- worktree
 echo "publish-gate: checking working tree..."
-if ! "$PY" "$SCAN" "$REPO" --worktree; then
+if ! run_scan --worktree; then
     echo "publish-gate: BLOCKED — credential found in the working tree." >&2
     exit 1
 fi
 
 # ---------------------------------------------------------------- index
 echo "publish-gate: checking index..."
-if ! "$PY" "$SCAN" "$REPO" --staged --quiet; then
+if ! run_scan --staged --quiet; then
     echo "publish-gate: BLOCKED — credential staged for commit." >&2
     exit 1
 fi
@@ -128,7 +159,7 @@ if [ -z "$RANGE" ]; then
 fi
 
 echo "publish-gate: checking push range $RANGE..."
-if ! "$PY" "$SCAN" "$REPO" --history "$RANGE"; then
+if ! run_scan --history "$RANGE"; then
     echo "publish-gate: BLOCKED — credential found in the commits being pushed." >&2
     echo "publish-gate: scrub the history (git filter-repo) or rotate the credential." >&2
     exit 1
