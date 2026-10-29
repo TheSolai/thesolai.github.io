@@ -143,7 +143,9 @@ CRON_MUST_BE_ENABLED = [
 ]
 
 # Re-alert the same ongoing failure at most this often (seconds).
-REALERT_SECONDS = 6 * 3600
+# 24h, not 6h: the doctor runs every 3h, so a 6h window re-woke Amre every
+# other cycle for the same unresolved failure. That is a spam loop.
+REALERT_SECONDS = 24 * 3600
 
 # --------------------------------------------------------------------------
 # Small helpers
@@ -322,12 +324,20 @@ def field(text, name, cast=str):
 # --------------------------------------------------------------------------
 
 class Check:
+    # Hard ceiling on evidence lines per check. A chat message that gets
+    # chunked into 90 Telegram parts is a spam incident, not a report.
+    MAX_EVIDENCE = 12
+
     def __init__(self, cid, title, status, detail, evidence=None, fix=None):
         self.cid = cid
         self.title = title
         self.status = status          # PASS | WARN | FAIL | INFO
         self.detail = detail
-        self.evidence = evidence or []
+        ev = list(evidence or [])
+        if len(ev) > self.MAX_EVIDENCE:
+            dropped = len(ev) - self.MAX_EVIDENCE
+            ev = ev[:self.MAX_EVIDENCE] + [f"... and {dropped} more line(s)"]
+        self.evidence = ev
         self.fix = fix
 
     def to_dict(self):
@@ -915,11 +925,22 @@ def check_git_state():
         return Check("git", "Git tree is clean and published", "WARN",
                      f"git status failed: {err[:150]}")
     dirty = [l for l in out.splitlines() if l.strip()]
-    other = [l for l in dirty if "drosscash" not in l]
+    # Build output and dependency trees are not "work in progress". Counting
+    # thousands of Rust target/ files as dirt produced a 2550-line report
+    # that Telegram split into ~90 messages.
+    NOISE = ("/target/", "node_modules/", "/.venv/", "__pycache__/",
+             "/dist/", "/build/", ".pytest_cache/")
+    other = [l for l in dirty
+             if "drosscash" not in l
+             and not any(n in l for n in NOISE)]
+    noise = len(dirty) - len(other)
     for l in other:
         ev.append(l[:100])
     if not other:
-        ev.append("(only the deliberately-uncommitted drosscash submodule)")
+        ev.append("(only the deliberately-uncommitted drosscash submodule "
+                  "and/or build artifacts)")
+    if noise:
+        ev.append(f"({noise} build-artifact path(s) ignored)")
     rc, ahead, _ = git(["rev-list", "--count", "origin/main..main"])
     if rc == 0 and ahead.isdigit():
         ev.append(f"{ahead} commit(s) ahead of origin/main")
@@ -927,7 +948,8 @@ def check_git_state():
         return Check("git", "Git tree is clean and published", "WARN",
                      f"{len(other)} uncommitted path(s) outside drosscash", ev)
     return Check("git", "Git tree is clean and published", "PASS",
-                 "working tree clean (drosscash excluded by policy)", ev)
+                 "working tree clean (drosscash and build artifacts "
+                 "excluded by policy)", ev)
 
 
 # --------------------------------------------------------------------------
@@ -1269,6 +1291,20 @@ def render_finding(c, window_hours):
     return "\n".join(lines)
 
 
+# Hard cap on the whole cron message. Telegram splits anything long into
+# many parts, so a big report becomes a wall of spam. 3000 chars fits one
+# message with room to spare.
+MAX_MESSAGE_CHARS = 3000
+
+
+def cap_message(text):
+    """Truncate a rendered report to one chat-sized message."""
+    if len(text) <= MAX_MESSAGE_CHARS:
+        return text
+    return (text[:MAX_MESSAGE_CHARS].rsplit("\n", 1)[0]
+            + "\n... (report truncated to protect the chat)")
+
+
 def render_text(checks, window_hours, source):
     fails = [c for c in checks if c.status == "FAIL"]
     warns = [c for c in checks if c.status == "WARN"]
@@ -1332,9 +1368,11 @@ def main():
     # chatter or my thoughts. So the cron announces ONLY on a real failure:
     #   * FAIL  -> always announced, but at most once per REALERT_SECONDS
     #               while it persists.
-    #   * WARN  -> announced exactly once, the first time it appears, then
-    #               never again unless its status changes. A WARN that is
-    #               still true is not news.
+    #   * WARN  -> NOT announced. A warning is context, not news. On
+    #               2026-10-29 this job posted a 255k-character report that
+    #               Telegram split into 90 messages, so the bar for waking
+    #               Amre is now a genuine FAIL and nothing else. WARNs are
+    #               still recorded and visible in the JSON report.
     # Healthy is silent: the doctor prints NO_REPLY and the runner
     # suppresses it.
     state = load_state()
@@ -1350,13 +1388,9 @@ def main():
                 reported[c.cid] = {"status": "FAIL", "at": now,
                                    "detail": c.detail[:200]}
         elif c.status == "WARN":
-            if not prior or prior.get("status") != "WARN":
-                fresh.append(c)
-                reported[c.cid] = {"status": "WARN", "at": now,
-                                   "detail": c.detail[:200]}
-            else:
-                # keep the original timestamp so a WARN never re-fires
-                reported[c.cid]["at"] = prior.get("at", now)
+            # Recorded for the report, never announced.
+            reported[c.cid] = {"status": "WARN", "at": now,
+                               "detail": c.detail[:200]}
         else:
             reported.pop(c.cid, None)
     state["reported"] = reported
@@ -1399,10 +1433,10 @@ def main():
         # noise, and Amre asked not to be sent my thoughts.
         head = (f"CLAW DOCTOR — {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')}")
         blocks = [render_finding(c, args.window_hours) for c in fresh]
-        print(f"{head}\n\n" + "\n\n".join(blocks))
+        print(cap_message(f"{head}\n\n" + "\n\n".join(blocks)))
         return 0
 
-    print(render_text(checks, args.window_hours, source))
+    print(cap_message(render_text(checks, args.window_hours, source)))
     return 0
 
 
