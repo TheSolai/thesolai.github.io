@@ -88,6 +88,14 @@ exclude:
   - agents/dross/references
   - agents/dross/memory
   - agents/dross/USER.md
+  # Agent files that map the location of secrets. Excluded from the build
+  # because Jekyll publishes front-matter-less Markdown as raw static
+  # files: the exclude list is what actually keeps them off the live
+  # site, independent of whether git tracks them.
+  - agents/dross/HEARTBEAT.md
+  - agents/sol/IDENTITY.md
+  - agents/sol/TOOLS.md
+  - agents/sol/skills/email
   - agents/dross/SUCCESSION-TODO.md
   - agents/sol/USER.md
   - agents/patch/memory

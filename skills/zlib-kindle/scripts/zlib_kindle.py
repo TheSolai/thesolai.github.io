@@ -35,6 +35,12 @@ import urllib.request
 import zipfile
 from http.cookiejar import CookieJar
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    import bookmeta
+except ImportError:  # pragma: no cover - bookmeta ships with the skill
+    bookmeta = None
+
 HOME = os.path.expanduser("~")
 WORKSPACE = os.path.join(HOME, ".openclaw", "workspace")
 SECRETS = os.path.join(WORKSPACE, "secrets")
@@ -419,16 +425,23 @@ def _names_match(want, got):
 
 
 def verify_book(path, expect_title=None, expect_author=None):
-    """Check that an EPUB is the book that was requested.
+    """Check that a book file is the book that was requested.
 
-    The zip magic bytes prove the file is an archive, not that it is the
+    The magic bytes prove the container format, not that it is the
     right book. A wrong Project Gutenberg id resolves to a real EPUB of
-    a completely different title, so the title inside the file is the
+    a completely different title, and a Z-Library row can advertise one
+    edition while serving another, so the title inside the file is the
     only reliable check.
+
+    EPUBs are read from their OPF metadata; MOBI and AZW3 files are read
+    from the MOBI header, EXTH records and the internal title string.
     """
-    title, creator = epub_metadata(path)
+    if bookmeta is not None:
+        title, creator = bookmeta.extract_metadata(path)
+    else:
+        title, creator = epub_metadata(path)
     if title is None:
-        print(f"  ! no readable EPUB metadata in {os.path.basename(path)}")
+        print(f"  ! no readable book metadata in {os.path.basename(path)}")
         return False
     print(f"  · title:  {title}")
     print(f"  · author: {creator or '(none)'}")
@@ -788,6 +801,15 @@ def cmd_deliver(args) -> int:
         if download_file(opener, files[0]["url"], dest):
             dest = retarget_ext(dest)
             print(f"  ✓ {os.path.getsize(dest)} bytes -> {dest}")
+            # The download is a real file of a real format, but it may
+            # not be the book that was asked for. Confirm the title
+            # inside the file before it goes to Amazon's converter.
+            expect_title = args.expect_title or lookup_title
+            expect_author = args.expect_author or pick.get("author")
+            if not verify_book(dest, expect_title, expect_author):
+                print("  ! downloaded file is not the requested book; not sending it",
+                      file=sys.stderr)
+                return 1
             if not send_to_kindle(dest, subject, args.to):
                 return 1
             return 0
@@ -859,6 +881,10 @@ def main() -> int:
     p.add_argument("--format", help="prefer this extension (default: azw3 for Kindle)")
     p.add_argument("--limit", type=int, default=8)
     p.add_argument("--to", default=KINDLE_ADDR)
+    p.add_argument("--expect-title",
+                   help="title the downloaded file must actually contain")
+    p.add_argument("--expect-author",
+                   help="author the downloaded file must actually carry")
     p.set_defaults(func=cmd_deliver)
 
     p = sub.add_parser("verify", help="check that an EPUB is the book that was requested")

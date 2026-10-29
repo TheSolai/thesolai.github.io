@@ -167,6 +167,20 @@ agents/sol/references/
 data/agent-email-state/
 data/outreach/
 
+# Agent files that map the location of secrets (which secret file holds
+# which key, and the reply-address roster). The values themselves are
+# never written here — these are pointers. But a pointer published is a
+# published inventory of the credential store, so they stay local.
+#
+# Untracked 2026-10-29. These four were still tracked from before the
+# ignore rules existed, and the Jekyll build copied them to the live
+# site as raw static files (front-matter-less Markdown is published
+# verbatim, so an exclude rule alone does not protect them).
+agents/dross/HEARTBEAT.md
+agents/sol/IDENTITY.md
+agents/sol/TOOLS.md
+agents/sol/skills/email/
+
 # Local runtime bridge — resolves the DocsGPT agent key at runtime from
 # ~/.openclaw/.env. Local agent tooling, never part of the public site.
 scripts/docsgpt-mcp-bridge.py
