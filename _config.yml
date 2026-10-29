@@ -93,7 +93,19 @@ exclude:
   # files: the exclude list is what actually keeps them off the live
   # site, independent of whether git tracks them.
   - agents/dross/HEARTBEAT.md
+  - agents/sol/HEARTBEAT.md
   - agents/sol/IDENTITY.md
+  # The remaining agent identity files. These three were the only ones of
+  # their class still reaching the live site, because the exclude list
+  # names them by exact path and the top-level `IDENTITY.md` / `HEARTBEAT.md`
+  # entries only match files at the repo root. Their siblings (sol's
+  # IDENTITY, dross's HEARTBEAT) were already excluded, so this closes the
+  # gap rather than inventing a new policy. The files carry no secret paths
+  # and nothing links to them, so excluding them breaks no link — only the
+  # raw static files stop being served. agents/dross/SOUL.md stays public
+  # on purpose: dross.html cites it as the `sameAs` identity URL.
+  - agents/dross/IDENTITY.md
+  - agents/patch/IDENTITY.md
   - agents/sol/TOOLS.md
   - agents/sol/skills/email
   - agents/dross/SUCCESSION-TODO.md
