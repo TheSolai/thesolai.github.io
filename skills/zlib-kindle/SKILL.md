@@ -43,6 +43,7 @@ cd {baseDir}/scripts
 | `python3 zlib_kindle.py account` | Check whether Z-Library credentials are configured |
 | `python3 zlib_kindle.py books` | List curated titles with their Project Gutenberg ids |
 | `python3 zlib_kindle.py verify <file> --title "..."` | Check that an EPUB is the book that was requested |
+| `python3 zlib_kindle.py preflight <file> --title "..."` | Check a file against every delivery guard |
 
 `search` prints the **hash** next to each id. Pass it to `fetch` with
 `--hash` — the eAPI resolves a book by the (id, hash) pair, so a bare id
@@ -60,9 +61,18 @@ python3 zlib_kindle.py deliver "The Fisherman John Langan" --index 1
 `amrekin@kindle.com`. Use `--index N` to choose a different hit and
 `--to <address>` to override the destination.
 
-**Kindle prefers AZW3/MOBI.** When the destination is a `@kindle.com`
-address, `deliver` looks for the same title in a Kindle-native format and
-switches to it automatically. Override with `--format azw3|mobi|epub`.
+**Kindle Scribe reads EPUB, not MOBI/AZW3.** When the destination is a
+`@kindle.com` address, `deliver` looks for the same title as an EPUB and
+switches to it automatically; PDF is the only other format it falls back
+to. MOBI and AZW3 are deliberately ranked *last* for Kindle destinations
+because the Scribe cannot open them — sending one produces a book that
+silently never appears on the device. Override with
+`--format epub|pdf|mobi|azw3`.
+
+The Kindle format rank lives in `KINDLE_FORMAT_RANK`; the general one in
+`FORMAT_RANK`. Both `cmd_deliver` and `cmd_send` branch on the
+destination address, so a non-Kindle destination keeps the old
+MOBI/AZW3 behaviour.
 
 **Trust the bytes, not the label.** Z-Library's advertised extension is
 often wrong — an "AZW3" row can serve MOBI bytes, and a MOBI downloaded
@@ -93,6 +103,81 @@ you sent to Kindle", carried `E009 - No Attachment`. That is an
 attachment-labelling failure, not an invalid book format — when you see
 E009, look at the content type and the file size, not at the book's
 format.
+
+## The delivery guards — why a book can vanish with no error
+
+**Amazon's Send-to-Kindle accepts a file silently or not at all.** It
+sends no confirmation and no rejection. A file it will not take simply
+never appears on the device, and nothing in the mail tells you. So every
+check has to happen *before* the send, not after.
+
+On 2026-10-29 this cost a real book: *The Haunting of Hill House* was
+sent as an EPUB and never arrived. The EPUB was a valid zip, parsed
+cleanly, carried correct metadata, had no DRM, and had a perfectly good
+`META-INF/container.xml`. Its defect was one line in the OPF package
+document:
+
+```xml
+<opf:package xmlns:opf="http://www.idpf.org/2007/opf" ...>
+```
+
+The package root carried the OPF namespace as a **prefix** instead of as
+the **default** namespace:
+
+```xml
+<package xmlns="http://www.idpf.org/2007/opf" ...>
+```
+
+Every EPUB that *did* arrive (NOS4A2, The Fisherman, The Great God Pan,
+The King in Yellow) used the default form. The one that did not arrive
+used the prefixed form. An XML parser expands prefixes and reports both
+as "in the OPF namespace", which is exactly why this hides from a
+normal validity check — and Amazon's converter drops the prefixed form
+without a word.
+
+The guards now run on every `send` and every `deliver`. A file must
+pass all of these or it is never sent:
+
+| Guard | What it enforces |
+|---|---|
+| `preflight_book` | Magic bytes, filename extension, and the content type Amazon receives all agree |
+| `preflight_book` | The file is non-empty |
+| `preflight_book` | The EPUB's OPF root uses the **default** OPF namespace |
+| `preflight_book` | Title and author are readable **from inside** the file, and match what was asked for |
+| `preflight_book` | An expected author that the file cannot state is a **failure**, not a pass |
+
+The content type is derived from the format proven by the magic bytes,
+never from the filename. An EPUB named `.mobi` is refused rather than
+mislabelled, because a mislabelled attachment is exactly what produced
+Amazon's `E009 - No Attachment`.
+
+**A bad file is repaired, not just refused.** `ensure_kindle_ready()`
+runs before the send:
+
+1. If the EPUB's OPF root is prefixed, `repair_epub_namespace()` writes a
+   corrected copy with the default namespace (the original file is never
+   modified) and the book is sent as that copy.
+2. If repair is not enough, `calibre_convert()` converts the book with
+   Calibre's `ebook-convert`. The fallback format depends on the
+   destination: **PDF for a Kindle address** (Scribe-readable), MOBI or
+   AZW3 elsewhere. Never let a Kindle-bound repair fall back to MOBI or
+   AZW3 — the file would send cleanly and still never reach the device.
+3. If neither rescues the file, the send is **refused**. Nothing is
+   emailed, and the book is not recorded as delivered.
+
+Check a file by hand any time:
+
+```bash
+python3 zlib_kindle.py preflight ~/Downloads/dross-books/BOOK.epub \
+  --title "The Haunting of Hill House" --author "Shirley Jackson"
+```
+
+The guard suite lives at `tests/test_delivery_guards.py` and runs
+offline against synthetic files and the real library:
+
+```bash
+python3 tests/test_delivery_guards.py
+```
 
 ## Z-Library needs an account
 
@@ -186,7 +271,10 @@ When the cron fires, the delivery is still only complete once the
 attachment is right. The Friday job runs unattended, so the
 content checks matter more there than anywhere else: a wrong book in the
 Gutenberg fallback would go out silently, once a week, to the Kindle
-address. `deliver` verifies the title inside the EPUB before sending.
+address. `deliver` verifies the title inside the EPUB before sending,
+and every file passes the delivery guards before it is attached. A file
+that fails is repaired or converted; a file that cannot be rescued is
+not sent at all.
 
 If the Friday run fails, report the failing step rather than retrying
 the script in a loop — each run is a Z-Library login, and the login
@@ -211,6 +299,19 @@ with a JSON body rather than an HTTP error code:
   still answers `success: 1` but withholds the download link, with
   `allowDownload: false` and a `disallowDownloadMessage` explaining the
   wait. The script prints that message.
+
+  The cap is **account-wide and cumulative for the rolling day**, not
+  per-title and not per-run. Reaching it is not a failure of the title
+  that happened to trip it — every later title in the same batch would
+  be refused too. `batch_deliver.py` therefore detects the refusal
+  (`zlib_kindle.quota_exhausted()`), stops the run immediately, and
+  **exits 3** with the resume file intact. Do not treat exit 3 as an
+  error and do not re-run the batch to "retry" it: the next run will
+  simply hit the same wall. Wait for the counter to reset instead.
+
+  The resume file is what makes a multi-day backlog work: a re-run
+  skips every title already marked done and picks up at the first
+  undelivered one.
 - **Login rate limit.** Every script run performs one sign-in, and too
   many in quick succession returns `Too many logins #N. Try again
   later.` Do not re-run the script in a loop to test it — one run is
@@ -234,6 +335,12 @@ surfaces the server's own explanation rather than a bare `http 400`.
   appear in the IMAP Sent folder, so absence there proves nothing.
 - **One script run is one Z-Library login.** Do not loop the script to
   test it — repeated runs trip the login rate limit.
+- **Run long batches as a tracked foreground `exec`** and poll them with
+  `process(poll)`. A detached (`nohup`/background) batch dies silently
+  when the parent exec exits, and `setsid` does not exist on macOS.
+- **Keep the resume state file in the skill directory**, not `/tmp`:
+  `/tmp` is cleared on reboot and silently loses the done-markers,
+  which makes a re-run re-deliver books Amre already has.
 - **A fallback must never silently substitute a different book.** Confirm
   the EPUB's `dc:title` matches the title that was requested before
   sending it.

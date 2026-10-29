@@ -24,10 +24,11 @@ from __future__ import annotations
 import argparse
 import base64
 import json
-import mimetypes
 import os
 import re
+import shutil
 import ssl
+import subprocess
 import sys
 import urllib.error
 import urllib.parse
@@ -89,9 +90,27 @@ GUTENBERG_IDS = {
 
 FORMAT_RANK = {"epub": 0, "epub3": 0, "mobi": 1, "azw3": 2, "pdf": 3, "djvu": 4, "txt": 5}
 
-# Kindle reads AZW3 natively and needs no conversion, so a Kindle-bound
-# fetch prefers it over EPUB even though EPUB is the better general format.
-KINDLE_FORMAT_RANK = {"azw3": 0, "epub": 1, "epub3": 1, "mobi": 2, "pdf": 3, "txt": 4, "djvu": 5}
+# A Kindle-bound fetch prefers EPUB. Kindle Scribe (Amre's device) reads
+# EPUB, PDF and DOCX; it does NOT read MOBI or AZW3, so preferring those
+# here produced books that silently never appeared on the device.
+KINDLE_FORMAT_RANK = {"epub": 0, "epub3": 0, "pdf": 1, "azw3": 2, "mobi": 3, "txt": 4, "djvu": 5}
+
+# Set by zlib_files() when the eAPI withholds a download link because the
+# account has hit its daily download cap (10/day). The refusal message is the
+# only signal the server gives, and it is transient: the cap resets on a
+# rolling window, so a batch that keeps hammering after the refusal just
+# burns time re-confirming the same wall.
+LAST_REFUSAL_REASON = ""
+
+# Z-Library's phrasing for the daily cap, as observed in the wild.
+QUOTA_MARKERS = ("daily limit", "download counter being reset",
+                 "already reached for today")
+
+
+def quota_exhausted(reason: str = "") -> bool:
+    """True if the given refusal (or the last one seen) is the daily cap."""
+    text = (reason or LAST_REFUSAL_REASON or "").lower()
+    return any(marker in text for marker in QUOTA_MARKERS)
 
 
 # --------------------------------------------------------------------------
@@ -284,6 +303,8 @@ def zlib_files(opener, book_id: str, book_hash: str = "") -> list[dict]:
         reason = (reason.replace("&nbsp;", " ").replace("&amp;", "&")
                         .replace("&quot;", '"').replace("&#39;", "'"))
         reason = re.sub(r"\s+", " ", reason).strip()
+        global LAST_REFUSAL_REASON
+        LAST_REFUSAL_REASON = reason
         if reason:
             print(f"  ! zlib refused the download: {reason[:200]}", file=sys.stderr)
         else:
@@ -424,6 +445,146 @@ def _names_match(want, got):
     return a == b or a <= b or b <= a
 
 
+# --------------------------------------------------------------------------
+# Metadata repair for EPUBs with malformed OPF metadata
+# --------------------------------------------------------------------------
+# Two defects turn up in real Z-Library EPUBs, and both produce a false
+# negative against an otherwise-correct file:
+#
+#   1. dc:creator echoes the title with a version suffix appended, e.g.
+#      "The King of Elfland's Daughter v2.0". The creator field names no
+#      author at all, and the title is right.
+#   2. dc:title and dc:creator are swapped: the creator holds the title
+#      and the title holds the author.
+#
+# The repair is evidence-based and stays fail-closed. A defect is only
+# repaired when the metadata itself proves it — the echo pattern, or a
+# clean swap against the expectations — and an author that the metadata
+# cannot state is only accepted when the author's name is actually found
+# in the book's own text. Anything that is not provably one of these two
+# defects still fails exactly as before.
+
+_VERSION_TOKEN = re.compile(r"v\d+|\d+")
+
+
+def _title_matches(expect_title, found):
+    """True when a file's title is the requested title.
+
+    A Z-Library EPUB carries the eAPI's combined form in dc:title, so
+    "NOS4A2" arrives as "Hill, Joe - NOS4A2"; each side of the separator
+    is offered as a candidate and the token sets are compared.
+    """
+    if not expect_title:
+        return True
+    want = _tokens(expect_title)
+    return any(want == _tokens(c) or want <= _tokens(c) or _tokens(c) <= want
+               for c in _title_candidates(found))
+
+
+def _creator_is_title_echo(title, creator):
+    """True when dc:creator merely repeats the title plus version junk."""
+    ct, cc = _tokens(title), _tokens(creator)
+    if not ct or not cc or ct == cc:
+        return False
+    if not ct <= cc:
+        return False
+    # Only a version suffix may be extra ("v2", "0" from "v2.0").
+    return all(_VERSION_TOKEN.fullmatch(t) for t in cc - ct)
+
+
+def _metadata_is_swapped(expect_title, expect_author, title, creator):
+    """True when dc:title and dc:creator are demonstrably swapped.
+
+    Both halves must hold: the creator carries the requested title and
+    the title carries the requested author. One half alone is not proof.
+    """
+    if not (expect_title and expect_author and title and creator):
+        return False
+    return (_title_matches(expect_title, creator)
+            and _names_match(expect_author, title)
+            and not _names_match(expect_author, creator))
+
+
+def _epub_text(path, limit=600_000):
+    """Plain text of an EPUB's HTML documents, for metadata cross-checks."""
+    parts = []
+    total = 0
+    try:
+        with zipfile.ZipFile(path) as zf:
+            for name in zf.namelist():
+                if not name.lower().endswith((".html", ".xhtml", ".htm")):
+                    continue
+                try:
+                    raw = zf.read(name)
+                except (OSError, KeyError, zipfile.BadZipFile):
+                    continue
+                data = raw.decode("utf-8", "replace")
+                data = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", data)
+                data = re.sub(r"(?s)<[^>]+>", " ", data)
+                parts.append(data)
+                total += len(data)
+                if total >= limit:
+                    break
+    except (OSError, zipfile.BadZipFile):
+        return ""
+    return " ".join(parts)[:limit]
+
+
+def _phrase_in(text, phrase):
+    """True when every word of phrase appears, in order, inside text."""
+    want = re.findall(r"[a-z0-9]+", (phrase or "").lower())
+    hay = re.findall(r"[a-z0-9]+", (text or "").lower())
+    if not want or not hay:
+        return False
+    span = len(want)
+    for i in range(len(hay) - span + 1):
+        if hay[i:i + span] == want:
+            return True
+    return False
+
+
+def _metadata_check(path, expect_title=None, expect_author=None):
+    """Check a file's identity, repairing provable metadata defects.
+
+    Returns (ok, title, creator, errors, notes). `errors` holds failure
+    kinds ("title_mismatch", "no_author", "author_mismatch") and `notes`
+    describes any repair applied. Each caller formats its own message,
+    so the wording of the existing failures is unchanged.
+    """
+    if bookmeta is not None:
+        title, creator = bookmeta.extract_metadata(path)
+    else:
+        title, creator = epub_metadata(path)
+    if title is None:
+        return False, title, creator, ["no_metadata"], []
+
+    errors = []
+    notes = []
+
+    if _metadata_is_swapped(expect_title, expect_author, title, creator):
+        title, creator = creator, title
+        notes.append("dc:title and dc:creator were swapped; using the corrected pair")
+
+    if expect_title and not _title_matches(expect_title, title):
+        errors.append("title_mismatch")
+
+    if expect_author:
+        if _creator_is_title_echo(title, creator):
+            notes.append(f"dc:creator echoes the title ({creator!r}) and names no author")
+            creator = None
+            if _phrase_in(_epub_text(path), expect_author):
+                creator = expect_author
+                notes.append(f"author {expect_author!r} confirmed in the book's own text")
+            else:
+                errors.append("no_author")
+        elif not creator:
+            errors.append("no_author")
+        elif not _names_match(expect_author, creator):
+            errors.append("author_mismatch")
+
+    return (not errors), title, creator, errors, notes
+
+
 def verify_book(path, expect_title=None, expect_author=None):
     """Check that a book file is the book that was requested.
 
@@ -436,34 +597,293 @@ def verify_book(path, expect_title=None, expect_author=None):
     EPUBs are read from their OPF metadata; MOBI and AZW3 files are read
     from the MOBI header, EXTH records and the internal title string.
     """
-    if bookmeta is not None:
-        title, creator = bookmeta.extract_metadata(path)
-    else:
-        title, creator = epub_metadata(path)
+    ok, title, creator, errors, notes = _metadata_check(path, expect_title, expect_author)
     if title is None:
         print(f"  ! no readable book metadata in {os.path.basename(path)}")
         return False
+    for note in notes:
+        print(f"  · {note}")
     print(f"  · title:  {title}")
     print(f"  · author: {creator or '(none)'}")
 
-    ok = True
-    if expect_title:
-        want = _tokens(expect_title)
-        matched = any(
-            want == _tokens(c) or want <= _tokens(c) or _tokens(c) <= want
-            for c in _title_candidates(title)
-        )
-        if not matched:
+    for kind in errors:
+        if kind == "title_mismatch":
             print(f"  ! title mismatch: wanted {expect_title!r}, file says {title!r}",
                   file=sys.stderr)
-            ok = False
-    if expect_author and creator:
-        if not _names_match(expect_author, creator):
+        elif kind == "no_author":
+            print(f"  ! no author metadata in file; wanted {expect_author!r}",
+                  file=sys.stderr)
+        elif kind == "author_mismatch":
             print(f"  ! author mismatch: wanted {expect_author!r}, file says {creator!r}",
                   file=sys.stderr)
-            ok = False
     print("  ✓ metadata matches" if ok else "  ! metadata does not match")
     return ok
+
+
+# --------------------------------------------------------------------------
+# Delivery preflight
+# --------------------------------------------------------------------------
+# Nothing reaches Amazon until it has passed these checks. They are the
+# difference between a book that arrives and a book that vanishes with no
+# error anywhere: Amazon's Send-to-Kindle accepts a file silently or not
+# at all, and it never tells you which one happened.
+#
+# The namespace rule is not pedantry. An EPUB whose package document is
+# <opf:package xmlns:opf="..."> is well-formed XML but is NOT the form
+# Amazon's converter takes, and such a file is dropped without a word.
+# Every EPUB that arrived used the default namespace; the one that did
+# not arrive used the prefixed form.
+
+OPF_NS = "http://www.idpf.org/2007/opf"
+
+
+def epub_opf_info(path):
+    """Return (root_tag, default_ns, opf_member) for an EPUB's OPF.
+
+    The .opf path is not fixed across books, so it is located by suffix.
+    The default namespace is read from the raw root tag's attributes
+    rather than from a parsed tree: an XML parser expands prefixes and
+    would report <opf:package> as being in the OPF namespace, hiding
+    exactly the defect this check exists to catch.
+    """
+    try:
+        with zipfile.ZipFile(path) as zf:
+            opf = None
+            for name in zf.namelist():
+                if name.lower().endswith(".opf"):
+                    opf = name
+                    break
+            if not opf:
+                return None, None, None
+            data = zf.read(opf).decode("utf-8", "replace")
+    except (OSError, zipfile.BadZipFile, KeyError):
+        return None, None, None
+    match = re.search(r"<([A-Za-z_][\w.\-]*(?::[\w.\-]+)?)\b([^>]*)>", data)
+    if not match:
+        return None, None, None
+    tag, attrs = match.group(1), match.group(2)
+    default_ns = re.search(r'xmlns\s*=\s*"([^"]+)"', attrs)
+    return tag, (default_ns.group(1) if default_ns else None), opf
+
+
+def epub_namespace_ok(path) -> bool:
+    """True when the OPF package document uses the default OPF namespace."""
+    import xml.etree.ElementTree as ET
+
+    tag, default_ns, opf = epub_opf_info(path)
+    if not opf or default_ns != OPF_NS:
+        return False
+    try:
+        with zipfile.ZipFile(path) as zf:
+            root = ET.fromstring(zf.read(opf))
+    except Exception:
+        return False
+    return root.tag == "{%s}package" % OPF_NS
+
+
+def canonical_format(path) -> str | None:
+    """Return the real format of a file, read from its magic bytes.
+
+    Only formats Amazon's Send-to-Kindle accepts are recognised. The
+    extension a Z-Library row advertises is not evidence: the row can
+    say EPUB and serve a MOBI, and the Gutenberg fallback always serves
+    EPUB. Anything unrecognised returns None so the file is refused
+    rather than quietly mislabelled.
+    """
+    raw = sniff_ext(path)
+    if raw in ("epub", "mobi", "azw3", "pdf"):
+        return raw
+    if raw == "txt":
+        # sniff_ext falls back to "txt" for anything it cannot place, so
+        # confirm the bytes really are text before trusting that answer.
+        try:
+            with open(path, "rb") as fh:
+                head = fh.read(4096)
+        except OSError:
+            return None
+        if not head:
+            return None
+        try:
+            head.decode("utf-8")
+        except UnicodeDecodeError:
+            return None
+        control = sum(1 for b in head if b < 9 or 13 < b < 32)
+        if control > len(head) * 0.05:
+            return None
+        return "txt"
+    return None
+
+
+def preflight_book(path, expect_title=None, expect_author=None):
+    """Fail-closed checks a book must pass before Amazon sees it.
+
+    Returns (ok, reason). On success the reason is the real format.
+    """
+    if not os.path.isfile(path):
+        return False, "file does not exist"
+    if os.path.getsize(path) == 0:
+        return False, "file is empty"
+
+    fmt = canonical_format(path)
+    if fmt is None:
+        return False, "magic bytes are not a format Amazon's converter accepts"
+
+    ext = os.path.splitext(path)[1].lower()
+    want_ext = FORMAT_EXT.get(fmt)
+    if ext != want_ext:
+        return False, (f"extension {ext or '(none)'} disagrees with the real "
+                       f"format ({fmt})")
+
+    if fmt == "epub" and not epub_namespace_ok(path):
+        return False, ("EPUB package document does not use the default OPF "
+                       "namespace (prefixed opf: root); Amazon drops these")
+
+    ok, title, creator, errors, notes = _metadata_check(path, expect_title, expect_author)
+    if not title:
+        return False, "no readable title metadata inside the file"
+    for kind in errors:
+        if kind == "title_mismatch":
+            return False, f"title mismatch: wanted {expect_title!r}, file says {title!r}"
+        if kind == "no_author":
+            return False, f"no author metadata inside the file (wanted {expect_author!r})"
+        if kind == "author_mismatch":
+            return False, f"author mismatch: wanted {expect_author!r}, file says {creator!r}"
+    return True, fmt
+
+
+def _default_ns_opf(data: str) -> str:
+    """Rewrite a prefixed-namespace OPF into the default-namespace form.
+
+    The root becomes <package xmlns="...opf">, the prefixed child
+    elements are unprefixed, and the xmlns:opf declaration is kept so
+    prefixed attributes (opf:role, opf:file-as) stay valid.
+    """
+    root_match = re.search(r"<opf:package\b([^>]*)>", data)
+    if root_match:
+        attrs = root_match.group(1)
+        if "xmlns=" not in attrs:
+            attrs = f' xmlns="{OPF_NS}"' + attrs
+        data = (data[:root_match.start()] + "<package" + attrs + ">"
+                + data[root_match.end():])
+    return data.replace("<opf:", "<").replace("</opf:", "</")
+
+
+def repair_epub_namespace(src, dest=None) -> str | None:
+    """Write a copy of an EPUB whose OPF root uses the default namespace.
+
+    Returns the repaired path, or None when the file cannot be repaired.
+    The original file is never modified.
+    """
+    import xml.etree.ElementTree as ET
+
+    try:
+        with zipfile.ZipFile(src) as zin:
+            entries = [(i, zin.read(i.filename)) for i in zin.infolist()]
+    except (OSError, zipfile.BadZipFile) as exc:
+        print(f"  ! cannot read {os.path.basename(src)}: {type(exc).__name__}",
+              file=sys.stderr)
+        return None
+
+    opf_member = None
+    for info, _ in entries:
+        if info.filename.lower().endswith(".opf"):
+            opf_member = info.filename
+            break
+    if not opf_member:
+        print("  ! no OPF package document to repair", file=sys.stderr)
+        return None
+
+    fixed = []
+    for info, blob in entries:
+        if info.filename == opf_member:
+            text = blob.decode("utf-8", "replace")
+            blob = _default_ns_opf(text).encode("utf-8")
+        fixed.append((info, blob))
+
+    dest = dest or f"{os.path.splitext(src)[0]}-repaired.epub"
+    try:
+        with zipfile.ZipFile(dest, "w") as zout:
+            for info, blob in fixed:
+                out_info = zipfile.ZipInfo(info.filename, date_time=info.date_time)
+                out_info.compress_type = info.compress_type
+                out_info.external_attr = info.external_attr
+                zout.writestr(out_info, blob)
+    except (OSError, zipfile.BadZipFile) as exc:
+        print(f"  ! could not write repaired EPUB: {type(exc).__name__}", file=sys.stderr)
+        return None
+
+    try:
+        with zipfile.ZipFile(dest) as zf:
+            ET.fromstring(zf.read(opf_member))
+    except Exception as exc:
+        print(f"  ! repaired EPUB is not readable: {type(exc).__name__}", file=sys.stderr)
+        return None
+    return dest
+
+
+def calibre_convert(src, fmt="mobi", dest=None) -> str | None:
+    """Convert a book file with Calibre's ebook-convert.
+
+    Conversion is the dependable fallback for a file Amazon's converter
+    will not take: Calibre rewrites the book into a format Amazon reads
+    natively, so no Amazon-side conversion is needed at all.
+    """
+    exe = shutil.which("ebook-convert") or "/opt/homebrew/bin/ebook-convert"
+    if not exe or not os.path.isfile(exe):
+        print("  · calibre not available; cannot convert", file=sys.stderr)
+        return None
+    dest = dest or f"{os.path.splitext(src)[0]}.{fmt}"
+    # The Friday cron gives the whole script 300 seconds, so a
+    # conversion that hangs must not eat the entire budget and get the
+    # job killed with no report. Bounded well below the cron timeout.
+    try:
+        proc = subprocess.run([exe, src, dest], capture_output=True,
+                              text=True, timeout=120)
+    except subprocess.TimeoutExpired:
+        print("  ! conversion timed out", file=sys.stderr)
+        return None
+    except (OSError, subprocess.SubprocessError) as exc:
+        print(f"  ! conversion failed: {type(exc).__name__}", file=sys.stderr)
+        return None
+    if proc.returncode != 0 or not os.path.isfile(dest) or os.path.getsize(dest) == 0:
+        detail = (proc.stderr or proc.stdout or "").strip().splitlines()
+        print(f"  ! conversion failed: {detail[-1][:120] if detail else proc.returncode}",
+              file=sys.stderr)
+        return None
+    return dest
+
+
+def ensure_kindle_ready(path, expect_title=None, expect_author=None,
+                        fallbacks=("mobi", "azw3")):
+    """Make a downloaded file safe to send, repairing or converting it.
+
+    Returns (ready_path, ok, notes). The original file is left in place.
+
+    `fallbacks` are the formats to try when an EPUB cannot be repaired.
+    Pass fallbacks=() to refuse rather than send a format the target
+    device cannot read (Kindle Scribe rejects MOBI and AZW3).
+    """
+    ok, reason = preflight_book(path, expect_title, expect_author)
+    if ok:
+        return path, True, []
+
+    notes = [reason]
+    if os.path.splitext(path)[1].lower() == ".epub":
+        repaired = repair_epub_namespace(path)
+        if repaired:
+            ok2, reason2 = preflight_book(repaired, expect_title, expect_author)
+            if ok2:
+                return repaired, True, notes + [f"repaired OPF namespace -> {os.path.basename(repaired)}"]
+            notes.append(f"repair did not satisfy preflight: {reason2}")
+        for fmt in fallbacks:
+            converted = calibre_convert(path, fmt)
+            if not converted:
+                continue
+            ok3, reason3 = preflight_book(converted, expect_title, expect_author)
+            if ok3:
+                return converted, True, notes + [f"converted to {fmt.upper()} -> {os.path.basename(converted)}"]
+            notes.append(f"{fmt.upper()} conversion failed preflight: {reason3}")
+    return path, False, notes
 
 
 # --------------------------------------------------------------------------
@@ -479,10 +899,13 @@ def agentmail_key():
     raise SystemExit("no AgentMail API key found in secrets/")
 
 
-# mimetypes does not know the ebook formats that matter to Kindle, so it
-# silently returns None for .azw3 and .epub3 and the attachment would go out
-# as application/octet-stream. Amazon's Send-to-Kindle is picky about this:
-# a mislabelled or empty attachment comes back as "E009 - No Attachment".
+# Python's mimetypes does not know the ebook formats that matter to Kindle,
+# so it silently returns None for .azw3 and .epub3 and the attachment would
+# go out as application/octet-stream. Amazon's Send-to-Kindle is picky
+# about this: a mislabelled or empty attachment comes back as "E009 - No
+# Attachment". These types are mapped explicitly, and the type actually
+# sent is derived from the format proven by the file's magic bytes rather
+# than from its filename.
 KINDLE_CONTENT_TYPES = {
     ".azw3": "application/vnd.amazon.ebook",
     ".mobi": "application/x-mobipocket-ebook",
@@ -492,15 +915,43 @@ KINDLE_CONTENT_TYPES = {
     ".txt": "text/plain",
 }
 
+# The one true mapping of a real format (as read from magic bytes) to the
+# extension it must carry. The content type is then derived from the
+# extension through KINDLE_CONTENT_TYPES, so a file's bytes, its name and
+# the MIME type Amazon sees can never drift apart.
+FORMAT_EXT = {
+    "azw3": ".azw3",
+    "mobi": ".mobi",
+    "epub": ".epub",
+    "pdf": ".pdf",
+    "txt": ".txt",
+}
+
 
 def send_to_kindle(path: str, title: str, to_addr: str = KINDLE_ADDR) -> bool:
-    """Email a file to the Kindle address as an attachment, via AgentMail."""
+    """Email a file to the Kindle address as an attachment, via AgentMail.
+
+    The file must pass preflight_book() first: its magic bytes, its
+    name and the content type Amazon receives all have to agree, and its
+    metadata has to be readable from inside the file. A file that fails
+    is never sent, because Amazon accepts a bad file silently.
+    """
     from agentmail import AgentMail  # noqa: PLC0415
     from agentmail.attachments.types.send_attachment import SendAttachment  # noqa: PLC0415
 
-    ext = os.path.splitext(path)[1].lower()
-    ctype, _ = mimetypes.guess_type(path)
-    ctype = KINDLE_CONTENT_TYPES.get(ext) or ctype or "application/octet-stream"
+    ok, detail = preflight_book(path)
+    if not ok:
+        print(f"  ! refusing to send {os.path.basename(path)}: {detail}", file=sys.stderr)
+        return False
+
+    # The content type comes from the format proven by the magic bytes,
+    # never from the filename. A .epub that is really a MOBI is sent as
+    # a MOBI, and Amazon sees the truth.
+    ext = FORMAT_EXT[detail]
+    ctype = KINDLE_CONTENT_TYPES.get(ext)
+    if not ctype:
+        print(f"  ! no Kindle content type for {detail}", file=sys.stderr)
+        return False
 
     with open(path, "rb") as fh:
         raw = fh.read()
@@ -682,11 +1133,37 @@ def cmd_verify(args) -> int:
     return 0 if verify_book(args.file, args.title, args.author) else 1
 
 
+def cmd_preflight(args) -> int:
+    """Report whether a file would pass the delivery guards."""
+    if not os.path.isfile(args.file):
+        raise SystemExit(f"no such file: {args.file}")
+    ok, detail = preflight_book(args.file, args.title, args.author)
+    if ok:
+        print(f"  ✓ passes preflight as {detail}")
+        return 0
+    print(f"  ! {detail}", file=sys.stderr)
+    return 1
+
+
 def cmd_send(args) -> int:
     if not os.path.isfile(args.file):
         raise SystemExit(f"no such file: {args.file}")
     title = args.title or os.path.splitext(os.path.basename(args.file))[0]
-    if not send_to_kindle(args.file, title, args.to):
+    # Repair or convert before sending. If neither rescues the file, the
+    # send is refused rather than attempted.
+    # A Kindle Scribe reads EPUB and PDF, never MOBI or AZW3, so a
+    # Kindle-bound send must not fall back to those formats.
+    fallbacks = ("pdf",) if args.to.lower().endswith("@kindle.com") else ("mobi", "azw3")
+    ready, ok, notes = ensure_kindle_ready(args.file, args.expect_title,
+                                            args.expect_author,
+                                            fallbacks=fallbacks)
+    for note in notes:
+        print(f"  · {note}")
+    if not ok:
+        print(f"  ! refusing to send {os.path.basename(args.file)}: {notes[-1]}",
+              file=sys.stderr)
+        return 1
+    if not send_to_kindle(ready, title, args.to):
         return 1
     return 0
 
@@ -766,17 +1243,26 @@ def cmd_deliver(args) -> int:
         pick = rows[idx - 1]
     print(f"  → picked: {pick['title']} ({pick['id']})")
 
+    # A Kindle Scribe reads EPUB and PDF; it does not read MOBI or AZW3.
+    # So when the destination is a Kindle address, never fall back to a
+    # format the device cannot open. Elsewhere keep the old chain.
+    fallbacks = ("pdf",) if args.to.lower().endswith("@kindle.com") else ("mobi", "azw3")
+
     # The lookup title and the email subject are separate concerns: the
     # lookup needs the bare book title, the subject may carry the author.
     lookup_title = pick["title"] or args.query
     subject = args.title or lookup_title
 
-    # Kindle wants AZW3 when the same edition exists in it, so look for a
-    # better format of the *same* title before settling for the first hit.
+    # Look for a better format of the *same* title before settling for the
+    # first hit. For a Kindle Scribe that format is EPUB, not AZW3: the
+    # device cannot open MOBI or AZW3, so a file sent in either of those
+    # formats arrives nowhere.
     if args.format:
         want = args.format.lower()
     elif args.to.lower().endswith("@kindle.com"):
-        want = "azw3"
+        # Kindle Scribe cannot read MOBI or AZW3, so EPUB is the format
+        # that actually reaches the device.
+        want = "epub"
     else:
         want = ""
     if want and pick["extension"].lower() != want:
@@ -794,8 +1280,9 @@ def cmd_deliver(args) -> int:
     )
     files = zlib_files(opener, pick["id"], pick.get("hash", "")) if logged_in else []
     if files:
-        # A Kindle-native format avoids Amazon's conversion step, so rank
-        # for it when the destination is a Kindle address.
+        # Rank the available formats for the destination. For a Kindle
+        # address that means EPUB first — the Scribe reads EPUB natively,
+        # and MOBI/AZW3 rank last because it cannot open them at all.
         rank = KINDLE_FORMAT_RANK if args.to.lower().endswith("@kindle.com") else FORMAT_RANK
         files.sort(key=lambda f: rank.get(f["extension"], 9))
         if download_file(opener, files[0]["url"], dest):
@@ -810,7 +1297,17 @@ def cmd_deliver(args) -> int:
                 print("  ! downloaded file is not the requested book; not sending it",
                       file=sys.stderr)
                 return 1
-            if not send_to_kindle(dest, subject, args.to):
+            # Preflight, repair and conversion happen here so that only a
+            # file Amazon's converter will actually accept is sent.
+            ready, ok, notes = ensure_kindle_ready(dest, expect_title, expect_author,
+                                                 fallbacks=fallbacks)
+            for note in notes:
+                print(f"  · {note}")
+            if not ok:
+                print(f"  ! refusing to send {os.path.basename(dest)}: {notes[-1]}",
+                      file=sys.stderr)
+                return 1
+            if not send_to_kindle(ready, subject, args.to):
                 return 1
             return 0
 
@@ -824,7 +1321,15 @@ def cmd_deliver(args) -> int:
             print("  ! fallback file is not the requested book; not sending it",
                   file=sys.stderr)
             return 1
-        if not send_to_kindle(dest, subject, args.to):
+        ready, ok, notes = ensure_kindle_ready(dest, lookup_title,
+                                             fallbacks=fallbacks)
+        for note in notes:
+            print(f"  · {note}")
+        if not ok:
+            print(f"  ! refusing to send {os.path.basename(dest)}: {notes[-1]}",
+                  file=sys.stderr)
+            return 1
+        if not send_to_kindle(ready, subject, args.to):
             return 1
         return 0
     print("  ! could not obtain a downloadable file", file=sys.stderr)
@@ -871,7 +1376,15 @@ def main() -> int:
     p.add_argument("file")
     p.add_argument("--title")
     p.add_argument("--to", default=KINDLE_ADDR)
+    p.add_argument("--expect-title", help="title the file must actually carry")
+    p.add_argument("--expect-author", help="author the file must actually carry")
     p.set_defaults(func=cmd_send)
+
+    p = sub.add_parser("preflight", help="check a file against the delivery guards")
+    p.add_argument("file")
+    p.add_argument("--title", help="the title the book should have")
+    p.add_argument("--author", help="the author the book should have")
+    p.set_defaults(func=cmd_preflight)
 
     p = sub.add_parser("deliver", help="search, download, and send in one go")
     p.add_argument("query")

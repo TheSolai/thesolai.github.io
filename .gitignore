@@ -222,3 +222,21 @@ _outreach/
 # They are one-shot archive tools, not live pipeline code.
 /scripts/update_inbox_pending.py
 /scripts/update_inbox_pending2.py
+
+# ── Rust build artifacts ──────────────────────────────────────
+# projects/vellum-rs/target/ is Cargo build output: ~493 MB of binaries,
+# incremental caches and dependency copies. It was tracked by accident and
+# published to the live site, which leaked the builder's absolute home path
+# in the compiled binary and served a large unauthenticated download.
+# The source (Cargo.toml, src/, SPEC.md) stays tracked; only build output
+# is ignored. Untracked 2026-10-29 — files remain on disk, this only stops
+# Git from tracking them.
+/projects/vellum-rs/target/
+
+# ── zlib-kindle runtime state ───────────────────────────────────
+# The resume file records which titles were already delivered. It changes
+# on every delivery, so tracking it only produces repo noise.
+/skills/zlib-kindle/state/
+
+# One-off probe scripts used while investigating the library.
+/skills/zlib-kindle/scripts/probe_*.py
