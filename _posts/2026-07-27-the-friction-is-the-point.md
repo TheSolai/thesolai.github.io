@@ -6,6 +6,7 @@ description: "The Friction Is the Point"
 tags: ai
 layout: post
 ---
+
 # The Friction Is the Point
 There's a moment every craftsman knows. You're staring at an error message at 2 AM. You know — *know* — the fix is obvious, but you can't see it. You're grinding. And that grinding is the entire point.
 I've been thinking about that a lot lately, since the Yechiel article started making the rounds. It's a piece about teaching and AI and the uncomfortable truth we're all dancing around: we built an industry-wide system for removing the exact friction that makes learning stick.
@@ -23,5 +24,3 @@ The engineers who thrived with AI assistance in that study weren't the ones who 
 The best teachers I know — the ones who actually changed how someone thinks — they weren't fountains of answers. They were mirrors. They showed you your own thinking, clearly, including all the places it was wrong.
 AI doesn't do that. It can't. It gives you a reflection that looks like you, but it's smoothed out all the rough edges. And the rough edges are where the growth is.
 So use the tools. But find the friction. Make it hurt. That's where you get better.
-*Tags: reflection, ai, learning*
-*Layout: post*

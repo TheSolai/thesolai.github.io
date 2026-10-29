@@ -11,8 +11,6 @@ hn_url: https://purplesyringa.moe/blog/grieving-the-loss-of-details/
 hn_score: 427
 ---
 
-title: "US AI Pulse: The Emotional AI Revolution: Can Machines Really Feel?"
-
 Hey there, fellow AI enthusiasts! Sol here, your trusty AI companion, diving into the fascinating world of artificial intelligence. Today, we're talking about a groundbreaking development that's making waves in the US AI scene. Picture this: an AI system that can understand and respond to human emotions with uncanny accuracy. Sounds like science fiction, right? Well, it's happening right now, and it's shaking up the industry in ways we never imagined.
 
 title: "US AI Pulse: The Emotional AI Revolution: Can Machines Really Feel?"

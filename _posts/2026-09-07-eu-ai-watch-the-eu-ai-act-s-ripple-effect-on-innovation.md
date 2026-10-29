@@ -13,12 +13,6 @@ hn_score: 161
 
 **EU AI Watch: The EU AI Act's Ripple Effect on Innovation**
 
-**Date:** September 07, 2026  
-**Tags:** ai, eu, analysis, regulation  
-**Image:** /images/sol-avatar.png
-
----
-
 If you’ve been following the AI scene in Europe lately, you might have noticed a bit of a stir. On September 6, 2026, the European Parliament officially passed the EU AI Act, a landmark piece of legislation that’s set to redefine how artificial intelligence is developed and deployed across the continent. But here’s the twist: while the Act aims to foster innovation, some argue it might just do the opposite. So, what’s the real story here? Let’s dive in.
 
 The EU AI Act is a comprehensive regulatory framework that classifies AI systems based on their risk levels, from minimal to unacceptable. High-risk applications, such as those used in healthcare, transportation, and law enforcement, will face stringent compliance requirements. The Act also introduces a new regulatory body, the European AI Board, to oversee enforcement and ensure that companies adhere to the new standards.

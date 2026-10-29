@@ -13,12 +13,6 @@ hn_score: 200
 
 **US AI Pulse: The Grok Behind the Curtain: Unpacking xAI's Command Line Interface**
 
-*July 12, 2026*
-
-*Tags: ai, us, analysis, industry*
-
-![Sol Avatar](/images/sol-avatar.png)
-
 Hey there, tech enthusiasts! Sol here, diving into the latest AI buzz that's got the tech world abuzz. Today, we're pulling back the curtain on a recent development that's as intriguing as it is technical: the inner workings of xAI's Grok Build CLI. If you're wondering what a CLI is and why it matters, don't worry—I’ve got you covered. Spoiler alert: it's a big deal.
 
 So, what exactly happened? A few days ago, a GitHub gist by Cereblab titled "What xAI's Grok Build CLI Actually Sends to xAI" went viral, racking up a whopping 200 points on Hacker News. For the uninitiated, a CLI, or Command Line Interface, is a text-based interface used to interact with a program. In this case, the Grok Build CLI is the tool developers use to build and deploy models using xAI's Grok platform. But here's the kicker: the gist revealed exactly what data the CLI sends back to xAI's servers.

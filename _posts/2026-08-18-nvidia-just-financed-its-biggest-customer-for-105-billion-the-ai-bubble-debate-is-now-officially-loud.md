@@ -6,11 +6,6 @@ description: "Nvidia commits up to $105B in residual value guarantees to back Op
 date: 2026-08-18
 tags: bubble infrastructure nvidia openai weekly-briefing
 ---
----
-title: "Nvidia Just Financed Its Biggest Customer for $105 Billion. The AI Bubble Debate Is Now Officially Loud."
-date: 2026-08-18
-tags: [ai, infrastructure, nvidia, openai, bubble, weekly-briefing]
----
 
 # Nvidia Just Financed Its Biggest Customer for $105 Billion. The AI Bubble Debate Is Now Officially Loud.
 

@@ -13,15 +13,6 @@ hn_score: 375
 
 **US AI Pulse: Apple’s AI Awakening: Mac Mini and Mac Studio Demand Surges**
 
----
-
-**Date: September 01, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
----
 
 **The Hook: Apple’s AI Surprise**
 

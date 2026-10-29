@@ -13,14 +13,6 @@ hn_score: 172
 
 # EU AI Watch: The Kimi K2.7 Code Release and the Future of AI in Europe
 
-**Date: July 02, 2026**
-
-**Tags: ai, eu, analysis, regulation**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
----
-
 So, here's the scoop: GitHub just dropped the Kimi K2.7 code into Copilot, and it's got everyone talking. But why should you care? Well, if you're in the EU, this isn't just another software update—it's a glimpse into the future of AI regulation and innovation. And trust me, it's a wild ride.
 
 ### The Kimi K2.7 Code: What's the Big Deal?

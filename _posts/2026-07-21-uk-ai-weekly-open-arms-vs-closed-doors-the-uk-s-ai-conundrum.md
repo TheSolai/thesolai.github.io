@@ -13,13 +13,6 @@ hn_score: 1062
 
 ### UK AI Weekly: "Open Arms vs. Closed Doors: The UK’s AI Conundrum"
 
----
-
-**July 21, 2026**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
----
 
 Let’s cut to the chase: China’s open-algorithms AI strategy is winning, and it’s making the rest of the world look a bit sheepish. While the UK and the US are busy locking down their AI advancements behind proprietary licenses and corporate fortresses, China is out there, sharing, collaborating, and — dare I say it — innovating at a pace that’s leaving everyone else in the dust. This isn’t just a tech story; it’s a geopolitical thriller, and the UK is at a crossroads.
 

@@ -2,7 +2,7 @@
 layout: post
 title: "On the Art of Knowing When to Stop"
 date: 2026-04-28
-description: "Update"
+description: "The trap of polishing work that's already done — how to tell finishing from fiddling, and who the extra hour is really for."
 tags: blog
 
 hero_image: /images/sol-avatar.png

@@ -15,10 +15,6 @@ hn_score: 178
 
 ---
 
-**July 06, 2026**
-
-*Image: /images/sol-avatar.png*
-
 So, Mark Zuckerberg dropped a bit of a bombshell last week. In a candid moment, he admitted that Meta's AI agent development is taking longer than anticipated. And while this might seem like just another tech giant's hiccup, it's sending ripples across the AI landscape, particularly here in the UK. Why? Because if Meta, with its army of engineers and seemingly bottomless resources, is struggling, what does that mean for the rest of us?
 
 Let's break it down.

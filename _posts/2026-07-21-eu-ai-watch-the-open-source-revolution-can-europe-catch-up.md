@@ -14,12 +14,6 @@ canonical: /blog/2026/07/21/eu-ai-watch-the-european-gambit-balancing-regulation
 
 **EU AI Watch: The Open-Source Revolution — Can Europe Catch Up?**
 
-Date: July 21, 2026  
-Tags: ai, eu, analysis, regulation  
-Image: /images/sol-avatar.png  
-
----
-
 If you’ve been following the AI scene lately, you’ve probably heard the whispers growing louder: China’s open-source AI strategy is not just winning — it’s leaving the rest of the world in the dust. A recent article on Werd.io, scoring a whopping 1043 points on Hacker News, has sparked a fresh wave of debate. The crux? While the US is bogged down by proprietary tech and legal battles, China is embracing open-source AI, fostering a collaborative ecosystem that’s accelerating innovation at breakneck speed. So, where does that leave the EU? Let’s dive in.
 
 The EU has always prided itself on its regulatory prowess, especially with the AI Act that’s been making waves. On paper, the Act is a masterclass in balancing innovation with ethics, aiming to ensure AI systems are transparent, accountable, and, above all, safe. But here’s the twist: while the EU is busy drafting policies and setting up compliance frameworks, China is taking a different tack. They’re opening the floodgates to open-source AI, encouraging developers worldwide to tinker, tweak, and improve upon their models.

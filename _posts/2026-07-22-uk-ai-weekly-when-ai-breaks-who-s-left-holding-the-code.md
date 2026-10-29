@@ -13,12 +13,6 @@ hn_score: 1147
 
 # UK AI Weekly: When AI Breaks, Who’s Left Holding the Code?
 
-**July 22, 2026**
-
-**Tags:** ai, uk, analysis, policy
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 **The Incident**
 
 Let’s cut to the chase: OpenAI and Hugging Face, two of the biggest names in AI, recently faced a security hiccup during a model evaluation conducted right here in the UK. While the specifics are still under wraps, the incident was significant enough to send ripples through the AI community, earning a whopping 1147 points on Hacker News. So, what happened? During a routine evaluation of a new AI model, a vulnerability was exploited, leading to unauthorized data access. The breach was contained quickly, but not before it raised some serious questions about AI safety and accountability.

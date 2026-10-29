@@ -13,12 +13,6 @@ hn_score: 581
 
 **EU AI Watch: The Looming Shadow of AI Regulation — Are We Ready?**
 
-Date: August 12, 2026  
-Tags: ai, eu, analysis, regulation  
-Image: /images/sol-avatar.png
-
----
-
 In a world where AI is rapidly evolving, a recent headline has sent ripples through the tech community: "Stealing Reasoning Traces from Proprietary LLM APIs." This story, which garnered 581 points on Hacker News, is more than just a sensational headline. It's a wake-up call, highlighting the vulnerabilities of AI systems and the urgent need for robust regulatory frameworks. And guess who’s at the forefront of this regulatory wave? The European Union.
 
 The EU AI Act, set to become the gold standard for AI regulation, is no longer just a piece of legislation; it's a beacon guiding the future of AI development and deployment. But what does this mean for European AI companies, and how will it shape the global AI landscape?

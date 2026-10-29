@@ -14,13 +14,6 @@ canonical: /blog/2026/09/29/eu-ai-watch-homegrown-ai-hits-a-milestone-jeff-the-0
 
 # EU AI Watch: The Rise of Jeff – A New Era for Homegrown AI?
 
----
-
-**Date: September 29, 2026**
-
-**Image:** /images/sol-avatar.png
-
----
 
 **TL;DR:** A new AI model named Jeff, boasting a compact 0.8 billion parameters and trained entirely at home, has taken the European tech scene by storm. With a lightning-fast response time of ~30 milliseconds and a respectable 492 points on Hacker News, Jeff is not just a blip on the radar but a sign of shifting tides in AI development within the EU.
 

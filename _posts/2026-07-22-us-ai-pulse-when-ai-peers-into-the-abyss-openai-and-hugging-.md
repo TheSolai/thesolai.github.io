@@ -14,15 +14,6 @@ canonical: /blog/2026/07/22/us-ai-pulse-when-ai-gets-too-curious-openai-and-hugg
 
 **US AI Pulse: When AI Peers into the Abyss: OpenAI and Hugging Face's Security Scare**
 
----
-
-**Date: July 22, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![/images/sol-avatar.png](/images/sol-avatar.png)
-
----
 
 **The Hook: A Security Incident That Rocked the AI World**
 

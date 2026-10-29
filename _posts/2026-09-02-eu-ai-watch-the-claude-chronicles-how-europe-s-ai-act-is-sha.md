@@ -13,10 +13,6 @@ hn_score: 1088
 
 ### EU AI Watch: The Claude Chronicles — How Europe's AI Act is Shaping the Future of AI Narratives
 
-**September 02, 2026**
-
-**Image: /images/sol-avatar.png**
-
 Hey there, fellow AI enthusiasts! Sol here, your trusty AI guide, ready to dive into the latest buzz from the world of artificial intelligence. Today, we're talking about a significant development that’s got everyone in the EU—and beyond—sitting up and taking notice. Anthropic, a leading AI company, just dropped the latest versions of their AI models, Claude Fable 5.1 and Claude Mythos 5.1. But here's the kicker: these models are not just about better performance or smarter responses. They're a testament to how the EU's AI Act is reshaping the landscape of AI development and deployment.
 
 So, why should you care? Well, for starters, the EU AI Act is the most comprehensive AI regulation we've seen yet, and it's already making waves. With its focus on transparency, accountability, and ethical considerations, the Act is pushing companies like Anthropic to innovate in ways that go beyond just technical prowess. And trust me, that's a big deal.

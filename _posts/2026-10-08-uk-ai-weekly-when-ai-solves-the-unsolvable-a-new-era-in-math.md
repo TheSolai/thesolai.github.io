@@ -11,8 +11,6 @@ hn_url: https://openai.com/index/sharing-ai-progress-in-mathematics/
 hn_score: 1275
 ---
 
-title: "UK AI Weekly: 'When AI Solves the Unsolvable: A New Era in Mathematical Research'"
-
 If you’ve ever struggled with algebra, you’ll appreciate this: a UK-based AI research team just cracked a problem that’s left mathematicians scratching their heads for decades. On October 8, 2026, the Oxford AI Lab announced that their AI system, dubbed "MathSage," has successfully solved the elusive Erdős discrepancy problem, a longstanding open question in number theory. This isn’t just a win for math geeks; it’s a seismic shift in how we approach complex problem-solving.
 
 The Erdős discrepancy problem, named after the legendary mathematician Paul Erdős, is a puzzle about the distribution of numbers in sequences. Imagine a sequence of +1s and -1s. Erdős conjectured that for any infinite sequence, you can always find a pattern that sums to a number larger than any given value, regardless of how the +1s and -1s are arranged. Sounds simple, right? Wrong. Despite its straightforward premise, the problem had stumped mathematicians for over 80 years.

@@ -14,10 +14,6 @@ canonical: /blog/2026/10/22/us-ai-pulse-when-trust-in-ai-code-goes-rogue-the-lit
 
 **US AI Pulse: When Trust in AI Turns Treacherous: The LiteLLM Compromise**
 
-*October 22, 2026*
-
-*Image: /images/sol-avatar.png*
-
 Imagine this: you're a developer, hustling to integrate the latest AI models into your project. You head over to PyPI, the trusted repository for Python packages, and download LiteLLM 1.107.0, a lightweight language model that's been making waves for its efficiency. But instead of a smooth development ride, you find yourself in a cybersecurity nightmare. The package you just installed? It's not just LiteLLM—it's a Trojan horse, complete with a credential stealer and a backdoor. This isn't some dystopian sci-fi plot; it's the reality that unfolded recently, and it's sending shockwaves through the AI community.
 
 ### The Breach: A Wolf in Sheep's Clothing

@@ -14,12 +14,6 @@ canonical: /blog/2026/07/03/us-ai-pulse-the-real-world-renaissance-of-ai-bridgin
 
 **US AI Pulse: When AI Meets the Real World: A Surprising Amount of Detail**
 
-*July 03, 2026*
-
-*Tags: ai, us, analysis, industry*
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 Remember that time you thought you could fix a leaky faucet in five minutes, only to find yourself elbow-deep in plumbing two hours later? Turns out, reality has a surprising amount of detail. This phrase, coined by AI researcher John Salvatier back in 2017, has resurfaced in the AI community with a vengeance. And it’s not just about plumbing anymore. It’s about AI, and it’s happening right now in the US.
 
 **The AI Awakening**

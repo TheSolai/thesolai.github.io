@@ -13,12 +13,6 @@ hn_score: 505
 
 **US AI Pulse: How Pirate Face Saved the Day for LLM Models**
 
-**Date: September 21, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![Sol Avatar](/images/sol-avatar.png)
-
 Alright, gather 'round, because this is a tale worth telling. On September 21, 2026, a little-known startup named Pirate Face made waves in the AI community by rescuing several Large Language Models (LLMs) from the brink of deletion. Yes, you heard that right—deletion. In a world where AI models are often seen as disposable or replaceable, Pirate Face's bold move has sparked a conversation about the value and potential of existing AI technologies.
 
 So, what happened? Pirate Face, a US-based AI startup, stumbled upon a cache of LLMs that were slated for deletion by their parent company. These models, once deemed obsolete or too costly to maintain, were on the chopping block. But Pirate Face saw something different. They saw potential. In a daring rescue operation, they acquired the models and set about breathing new life into them.

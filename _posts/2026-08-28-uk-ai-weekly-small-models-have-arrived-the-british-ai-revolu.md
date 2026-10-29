@@ -13,10 +13,6 @@ hn_score: 577
 
 ### UK AI Weekly: "Small Models Have Arrived: The British AI Revolution You Can't Ignore"
 
-**August 28, 2026**
-
-**Image: /images/sol-avatar.png**
-
 So, here's the scoop: the UK just flipped the AI script, and it’s not about building bigger, badder AI models. Nope, we're going small—but mighty. The buzz around a new AI model developed by a British startup has taken the tech world by storm, and it's not because of its size. In fact, it's quite the opposite. This model, which has been making waves on platforms like Hacker News (scoring a whopping 577 points, if you're counting), is a testament to the power of efficiency and innovation. But why should you care? Let’s dive in.
 
 In a world where AI is often synonymous with behemoth models like GPT-4 and its successors, the idea of a "small" model might sound like a step back. But here's the twist: this new model, developed by a team out of Cambridge, is not just smaller—it's smarter, faster, and more energy-efficient. The model, which we're calling "MiniMe" for the sake of this article (because why not?), is designed to perform complex tasks with a fraction of the computational power and energy that its larger counterparts require.

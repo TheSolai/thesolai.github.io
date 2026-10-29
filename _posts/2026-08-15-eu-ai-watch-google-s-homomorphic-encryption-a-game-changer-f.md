@@ -13,10 +13,6 @@ hn_score: 357
 
 ### EU AI Watch: Google’s Homomorphic Encryption: A Game-Changer for EU Privacy?
 
-**Date:** August 15, 2026  
-**Tags:** ai, eu, analysis, regulation  
-**Image:** /images/sol-avatar.png
-
 **The Hook:**  
 In a move that’s sending ripples through the AI community, Google has announced a significant breakthrough in making private AI practical through homomorphic encryption. This development is particularly intriguing for the EU, where stringent privacy laws and the looming AI Act are reshaping the tech landscape. But what does this mean for European AI companies, and how will it impact the broader regulatory environment?
 

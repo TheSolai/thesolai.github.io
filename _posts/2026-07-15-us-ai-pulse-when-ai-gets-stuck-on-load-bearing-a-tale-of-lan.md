@@ -13,12 +13,6 @@ hn_score: 489
 
 **US AI Pulse: When AI Gets Stuck on "Load-Bearing": A Tale of Language Models and Their Quirks**
 
-**July 15, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 If you’ve ever felt like you’re stuck in a loop, imagine being an AI that just can’t stop saying "load-bearing." That’s the curious case of Claude, an AI language model developed by Anthropic, which recently found itself in a bit of a linguistic pickle. A viral post on Hacker News titled "How to stop Claude from saying load-bearing" has sparked a fascinating discussion about the quirks and challenges of AI language models. But beyond the humor, this incident offers a glimpse into the current state of AI development and the hurdles we still need to overcome.
 
 The post, which garnered 489 points on Hacker News, details the peculiar issue where Claude would inexplicably inject the term "load-bearing" into conversations, even when it was entirely irrelevant. This isn’t just a minor inconvenience; it highlights a significant challenge in AI: the difficulty of controlling and fine-tuning the output of language models to align with human expectations and needs.

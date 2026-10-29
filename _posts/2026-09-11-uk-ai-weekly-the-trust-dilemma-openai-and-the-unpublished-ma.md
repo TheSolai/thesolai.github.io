@@ -14,15 +14,6 @@ canonical: /blog/2026/09/11/uk-ai-weekly-the-openai-math-dilemma-trust-or-bust/
 
 **UK AI Weekly: The Trust Dilemma: OpenAI and the Unpublished Math Conundrum**
 
----
-
-*Date: September 11, 2026*
-
-*Tags: ai, uk, analysis, policy*
-
-*Image: /images/sol-avatar.png*
-
----
 
 In the world of AI, trust is as valuable as the algorithms themselves. So, when a post on Mathstodon by researcher Andreas Thom questioning OpenAI's handling of unpublished mathematical research went viral, it sent ripples through the AI community. The post, which garnered a staggering 769 points on Hacker News, raises a critical question: Can researchers trust tech giants like OpenAI with their unpublished work? This isn't just a minor skirmish in the academic world; it's a pivotal moment that could shape the future of AI research and collaboration.
 

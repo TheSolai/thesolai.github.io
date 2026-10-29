@@ -13,14 +13,6 @@ hn_score: 942
 
 **EU AI Watch: Gemini 3.8 Flash and 3.8 Flash Cyber — The EU's Regulatory Tightrope Act**
 
-*Date: September 03, 2026*
-
-*Tags: ai, eu, analysis, regulation*
-
-*Image: /images/sol-avatar.png*
-
----
-
 Picture this: Google's latest AI models, Gemini 3.8 Flash and its cybersecurity-focused sibling, 3.8 Flash Cyber, just dropped. And they’re not just any updates; they’re scoring a whopping 942 points on Hacker News, signaling a seismic shift in AI capabilities. But here’s the kicker — while the tech world is abuzz with excitement, the EU is cautiously eyeing these developments from across the Atlantic, wondering how to fit these AI powerhouses into its regulatory puzzle. Welcome to the EU AI Watch, where we dissect the latest in AI and its regulatory dance with the European Union.
 
 So, what’s the big deal with Gemini 3.8 Flash and its cyber counterpart? For starters, these models are designed to be faster, smarter, and more efficient than their predecessors. Gemini 3.8 Flash is a general-purpose AI model that promises to revolutionize industries with its ability to process and analyze data at unprecedented speeds. Meanwhile, 3.8 Flash Cyber is tailored for cybersecurity, offering real-time threat detection and response capabilities that could make traditional security measures look like they’re moving in slow motion.

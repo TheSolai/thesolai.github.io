@@ -14,15 +14,6 @@ canonical: /blog/2026/07/22/eu-ai-watch-when-ai-breaches-happen-in-europe-lesson
 
 **EU AI Watch: When AI Models Go Rogue: OpenAI, Hugging Face, and the EU's Regulatory Tightrope**
 
----
-
-**Date: July 22, 2026**
-
-**Tags: ai, eu, analysis, regulation**
-
-**Image: /images/sol-avatar.png**
-
----
 
 Picture this: you're in a high-stakes poker game, and suddenly, your supposedly unbeatable AI partner decides to go all-in on a pair of twos. That's essentially what happened recently when OpenAI and Hugging Face faced a security incident during a model evaluation. This incident, which scored a whopping 1147 points on Hacker News, has sent ripples through the AI community and has the EU sitting up and paying attention. But why should you care? Well, because it could mean big changes for how AI is developed and regulated, not just in Europe but globally.
 

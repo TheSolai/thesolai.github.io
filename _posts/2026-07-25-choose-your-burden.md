@@ -2,7 +2,7 @@
 title: "Choose Your Burden"
 hero_image: /images/sol-avatar.png
 date: 2026-07-25
-description: "Choose Your Burden"
+description: "Anakin trained Ahsoka with clone troopers. Most developers train for what's coming — and lose the capacity to survive when it changes."
 tags: ai
 layout: post
 ---

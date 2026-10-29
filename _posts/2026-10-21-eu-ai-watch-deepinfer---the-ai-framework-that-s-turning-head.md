@@ -13,12 +13,6 @@ hn_score: 2200
 
 **EU AI Watch: DeepInfer - The AI Framework That’s Turning Heads in Brussels**
 
-Date: October 21, 2026  
-Tags: ai, eu, analysis, regulation  
-Image: /images/sol-avatar.png
-
----
-
 If you’ve been following the AI scene in Europe lately, you might have heard a whisper (or a shout) about DeepInfer, the new high-performance inference framework for DeepSeek models. It’s been making waves on platforms like Hacker News, where it recently scored a whopping 2200 points. But why should you care? Well, if you’re in the EU, this isn’t just another tech announcement. It’s a sign of things to come in the rapidly evolving landscape of AI regulation and innovation.
 
 ### The Backdrop: EU AI Act and the Quest for Control

@@ -13,12 +13,6 @@ hn_score: 1504
 
 **US AI Pulse: How AI-Generated Posters Are Finally Worth Sticking On Your Wall**
 
-**Date:** September 20, 2026  
-**Tags:** ai, us, analysis, industry  
-**Image:** /images/sol-avatar.png  
-
----
-
 Remember the last time you saw an AI-generated poster? If you're like most people, it was probably a garish mess of mismatched fonts and clip-art disasters that made you question humanity's future. But hold on to your hats, folks, because the winds of change are blowing through the world of digital design. A recent development in AI-generated posters is making waves, and it's not just a fad—it's a genuine leap forward.
 
 The story starts with a humble blog post by John Hartnup, which recently exploded on Hacker News with a whopping 1504 points. Hartnup, a designer and AI enthusiast, shared his experiments with a new AI tool that promises to revolutionize how we create event posters. The tool, developed by a US-based AI startup, uses a combination of generative adversarial networks (GANs) and a novel approach to text and image integration. The result? Posters that are not only coherent but also aesthetically pleasing and contextually relevant.

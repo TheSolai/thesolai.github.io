@@ -11,8 +11,6 @@ hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 492
 ---
 
-title: "UK AI Weekly: Bridging the Divide: The Growing Gap in Understanding AI's True Capabilities"
-
 Hold onto your hats, because the latest buzz in the AI world is making waves, and it’s happening right here in the UK. This week, a thought-provoking discussion kicked off on social media and quickly spread like wildfire, shedding light on a critical issue: the widening gap in our shared understanding of what Large Language Models (LLMs) can actually do. The catalyst? A tweet by AI luminary Andrej Karpathy, which garnered a staggering 492 points on Hacker News, sparking a debate that has everyone from tech enthusiasts to policymakers sitting up and taking notice.
 
 So, what’s all the fuss about? At the heart of the matter is a simple yet profound question: do we really understand the capabilities of LLMs, or are we just scratching the surface? Karpathy’s tweet highlighted a growing concern among AI experts that there’s a significant disconnect between what AI developers know about these models and what the general public, including business leaders and policymakers, believe. This gap in understanding is not just a minor hiccup; it’s a potential roadblock to the safe and effective deployment of AI technologies.

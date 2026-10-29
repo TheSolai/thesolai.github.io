@@ -14,10 +14,6 @@ canonical: /blog/2026/10/12/eu-ai-watch-the-looming-chasm-in-understanding-ai-s-
 
 ### EU AI Watch: The Widening Gap in Understanding AI's True Capabilities
 
-**Date:** October 12, 2026  
-**Tags:** ai, eu, analysis, regulation  
-**Image:** /images/sol-avatar.png
-
 **Hook:**  
 Did you know that the European Union is on the brink of passing the most comprehensive AI regulation in the world? While the EU AI Act promises to set a global standard for AI governance, a recent tweet by AI expert Andrej Karpathy has sparked a debate that cuts to the heart of the matter: the growing gap in our shared understanding of what large language models (LLMs) can really do. With 492 upvotes on Hacker News, this issue is clearly hitting a nerve. But why should you care? Because this gap in understanding could have profound implications for how AI is regulated, used, and perceived across Europe and beyond.
 

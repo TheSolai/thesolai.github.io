@@ -13,10 +13,6 @@ hn_score: 480
 
 **US AI Pulse: Claude Code Leaps Forward with Bun in Rust — A New Era of AI Efficiency?**
 
-**July 20, 2026**
-
-**Image: /images/sol-avatar.png**
-
 In a move that’s sending ripples through the AI community, Claude Code has announced a significant upgrade: it’s now powered by Bun, a JavaScript runtime written in Rust. This shift isn’t just a minor tweak; it’s a bold leap into a new era of AI efficiency and performance. The news broke on July 19, 2026, and quickly garnered 480 points on Hacker News, sparking a flurry of discussions and speculations. But why is this such a big deal, and what does it mean for the future of AI development?
 
 For those who’ve been following the AI landscape, Claude Code isn’t just another player in the field. It’s a powerhouse, known for its advanced natural language processing capabilities and widespread adoption in various industries. The decision to switch to Bun, a runtime that promises to be faster and more efficient than its predecessors, is a strategic move that could redefine the boundaries of what AI can achieve.

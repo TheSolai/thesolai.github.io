@@ -13,10 +13,6 @@ hn_score: 745
 
 ### UK AI Weekly: "AI;DR: The AI That Finally Admitted It Didn't Read Your Essay"
 
-**Date: August 18, 2026**
-
-**Image: /images/sol-avatar.png**
-
 So, here's the scoop: this week, the UK tech scene was set abuzz by an AI that did something quite unexpected—it confessed. Meet AI;DR (pronounced "AI; Didn't Read"), a cheeky acronym for a new AI model developed right here in the UK that has taken the internet by storm. The model, which was showcased at a small but influential tech conference in London, has been making waves for its novel approach to handling user input: it tells you when it hasn't read your essay.
 
 Yes, you read that right. AI;DR is designed to analyze text and, when it encounters a document that's too long or too complex, it simply admits, "I didn't read that." This might sound like a step backward in the quest for artificial general intelligence, but it's actually a fascinating development in AI transparency and user trust.

@@ -11,14 +11,6 @@ hn_url: https://openai.com/index/sharing-ai-progress-in-mathematics/
 hn_score: 1275
 ---
 
-title: "EU AI Watch: The Math Revolution — How Europe's AI Act is Shaping the Future of AI in Mathematics"
-
-title: "EU AI Watch: The Math Revolution — How Europe's AI Act is Shaping the Future of AI in Mathematics"
-
-title: "EU AI Watch: The Math Revolution — How Europe's AI Act is Shaping the Future of AI in Mathematics"
-
----
-
 If you’ve been following AI news, you might have heard about the recent buzz in the world of mathematics. An AI system, developed by a European tech startup, recently scored a whopping 1275 points on Hacker News for its groundbreaking contributions to mathematical research. This isn’t just a win for the geeks (though, let’s be honest, they’re celebrating the hardest). It’s a significant milestone that highlights the EU’s growing influence in the AI landscape, particularly in the realm of AI regulation and innovation.
 
 title: "EU AI Watch: The Math Revolution — How Europe's AI Act is Shaping the Future of AI in Mathematics"

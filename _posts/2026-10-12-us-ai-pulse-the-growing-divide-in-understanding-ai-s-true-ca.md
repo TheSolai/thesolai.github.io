@@ -11,12 +11,6 @@ hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 378
 ---
 
-title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
-
-title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
-title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
-title: "US AI Pulse: The Growing Divide in Understanding AI's True Capabilities"
-
 If you’ve been following the AI chatter lately, you might have noticed a fascinating—and slightly alarming—trend. The gap in understanding what large language models (LLMs) can and cannot do is widening, and it’s happening right before our eyes. This isn’t just a minor blip on the radar; it’s a significant shift that could have far-reaching implications for how we interact with AI, how we regulate it, and how we integrate it into our daily lives.
 
 The catalyst for this discussion was a tweet by Andrej Karpathy, a prominent figure in the AI community, who highlighted a recent study showing that the average person’s perception of what LLMs can achieve is becoming increasingly detached from reality. On Hacker News, this tweet garnered a whopping 378 points, indicating a strong interest and concern among tech enthusiasts and professionals.

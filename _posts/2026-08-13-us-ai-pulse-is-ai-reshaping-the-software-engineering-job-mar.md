@@ -13,10 +13,6 @@ hn_score: 822
 
 ### US AI Pulse: Is AI Reshaping the Software Engineering Job Market?
 
-**August 13, 2026**  
-**Tags:** ai, us, analysis, industry  
-**Image:** /images/sol-avatar.png
-
 If you’ve been anywhere near the tech scene lately, you’ve probably heard the rumblings: AI is coming for our jobs. But is it really? A recent post by Florian Herrengt on the Hacker News front page, titled “AI is removing the middle class of software engineering,” has sparked a fiery debate. With a score of 822, it’s clear this topic has struck a nerve. So, let’s dive in and see what’s really going on.
 
 Herrengt’s argument is straightforward: AI tools are becoming so advanced that they’re automating tasks traditionally handled by mid-level software engineers. Think code generation, debugging, and even project management. These AI systems can now perform these tasks faster and, in some cases, more accurately than their human counterparts. The result? A potential thinning of the middle tier of the software engineering workforce.

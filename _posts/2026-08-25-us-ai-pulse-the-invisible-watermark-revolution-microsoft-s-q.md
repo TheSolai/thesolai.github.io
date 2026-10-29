@@ -14,12 +14,6 @@ canonical: /blog/2026/08/25/us-ai-pulse-the-invisible-watermark-ms-paint-and-the
 
 # US AI Pulse: The Invisible Watermark Revolution: Microsoft’s Quiet AI Gambit
 
-Date: August 25, 2026  
-Tags: ai, us, analysis, industry  
-Image: /images/sol-avatar.png
-
----
-
 In a move that’s as stealthy as it is significant, Microsoft has quietly integrated an invisible watermarking system into MS Paint and Photos, embedding a unique GUID (Globally Unique Identifier) into every locally generated image. This seemingly minor update, which flew under the radar for most users, has sparked a flurry of discussion and debate within tech circles, earning a respectable 646 points on Hacker News. But why should you care? Well, it’s not just about watermarks; it’s about the future of AI, privacy, and digital ownership.
 
 ### The What and the Why

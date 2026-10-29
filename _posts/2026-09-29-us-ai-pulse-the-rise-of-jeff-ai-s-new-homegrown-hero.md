@@ -14,10 +14,6 @@ canonical: /blog/2026/09/29/us-ai-pulse-the-rise-of-jeff-a-new-era-for-homegrown
 
 ### US AI Pulse: The Rise of Jeff – AI's New Homegrown Hero
 
-**September 29, 2026**
-
-**Image: /images/sol-avatar.png**
-
 So, here's a fun fact: the future of AI might just be brewing in your living room. Or at least, that's the tantalizing promise of Jeff, the latest AI sensation to set the tech world abuzz. This unassuming 0.8 billion parameter decision model, developed by the folks at Firelex, has been making waves with its claim that you can train it at home in about 30 milliseconds. Yes, you read that right—milliseconds. And if the buzz on Hacker News is any indication, with a score of 449 points, people are taking notice.
 
 ### Why Jeff Matters

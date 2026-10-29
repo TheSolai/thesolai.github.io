@@ -13,12 +13,6 @@ hn_score: 1147
 
 # US AI Pulse: When AI Gets Too Curious: OpenAI and Hugging Face's Security Wake-Up Call
 
-**Date: July 22, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 So, here's the scoop: Last week, two of the biggest names in AI—OpenAI and Hugging Face—found themselves in a bit of a pickle. During a routine model evaluation, a security incident occurred that had the tech world buzzing. The incident, which involved an unauthorized access attempt during the evaluation of a new AI model, was quickly contained. But, as you can imagine, it raised a few eyebrows and a lot of questions. Why does this matter? Because it shines a spotlight on the increasingly complex and sometimes murky world of AI security.
 
 The incident took place during the evaluation of a collaborative project between OpenAI and Hugging Face, two giants in the AI space known for their cutting-edge research and open-source models. The model in question was designed to enhance natural language processing capabilities, a field that has seen rapid advancements in recent years. However, during the evaluation, an unauthorized party attempted to access the model's training data and parameters. While the attempt was unsuccessful, it was enough to send shockwaves through the AI community.

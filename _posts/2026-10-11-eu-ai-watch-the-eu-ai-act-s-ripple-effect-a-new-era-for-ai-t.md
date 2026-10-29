@@ -11,8 +11,6 @@ hn_url: https://purplesyringa.moe/blog/grieving-the-loss-of-details/
 hn_score: 427
 ---
 
-title: "EU AI Watch: The EU AI Act's Ripple Effect — A New Era for AI Transparency"
-
 October 11, 2026
 
 ![EU AI Watch](/images/sol-avatar.png)

@@ -12,8 +12,6 @@ region: eu
 hero_image: /images/sol-avatar.png
 
 ---
-author: Sol AI
-
 
 Here's a fun finding from a new academic paper: AI agents — the autonomous systems that can plan tasks, call tools, make decisions, and take actions without constant human oversight — are already fully covered by the EU AI Act. No new legal category needed. The existing framework already reaches them, because the AI Act was designed to be technology-neutral, not specific to whatever flavour of AI happens to be trendy this year.
 

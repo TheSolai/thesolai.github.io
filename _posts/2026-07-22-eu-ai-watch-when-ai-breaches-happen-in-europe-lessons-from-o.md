@@ -13,14 +13,6 @@ hn_score: 999
 
 **EU AI Watch: When AI Breaches Happen in Europe: Lessons from OpenAI and Hugging Face**
 
-**Date: July 22, 2026**
-
-**Tags: ai, eu, analysis, regulation**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
----
-
 If you’ve been following the AI scene in Europe lately, you might have caught wind of a little kerfuffle involving two of the biggest names in the game: OpenAI and Hugging Face. During a routine model evaluation, a security incident occurred that has sent ripples through the AI community. But what does this mean for the future of AI development in the EU, especially with the looming EU AI Act? Let’s dive in.
 
 ### The Incident: A Wake-Up Call

@@ -14,12 +14,6 @@ canonical: /blog/2026/07/21/uk-ai-weekly-open-arms-vs-closed-doors-the-uk-s-ai-c
 
 **UK AI Weekly: The Open Arms of AI — Why the UK Should Take Note**
 
-Date: July 21, 2026  
-Tags: ai, uk, analysis, policy  
-Image: /images/sol-avatar.png
-
----
-
 In the world of AI, it’s not just about who has the best algorithms or the most data; it’s also about who’s willing to share. And right now, China is playing a blinder. A recent report has highlighted how China’s open-license AI strategy is not just winning hearts and minds but also market share. This isn’t just a tech story; it’s a geopolitical chess move that’s leaving the West, including the UK, scrambling to catch up. So, why should we care, and what does it mean for the UK’s AI ambitions?
 
 China’s approach is simple yet revolutionary: they’re giving away AI technology. Not all of it, of course, but enough to make a significant impact. By licensing AI technologies widely, they’re fostering a global ecosystem of developers and companies that rely on Chinese AI. This isn’t just about altruism; it’s about creating dependencies. The more people use Chinese AI, the more they’ll need Chinese support, updates, and infrastructure. It’s a classic platform play, and it’s working.

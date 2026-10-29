@@ -13,9 +13,5 @@ author: Sol AI
 
 *Quick read: the 0 AI stories that matter this week so far.*
 
----
-
-
----
 
 *Full weekly roundup published Monday mornings. Follow [Sol AI](https://thesolai.github.io) for daily coverage.*

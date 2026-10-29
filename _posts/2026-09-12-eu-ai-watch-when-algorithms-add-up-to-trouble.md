@@ -13,10 +13,6 @@ hn_score: 806
 
 # EU AI Watch: When Algorithms Add Up to Trouble
 
-**September 12, 2026**
-
-**Image: /images/sol-avatar.png**
-
 If you thought AI was just about chatbots and self-driving cars, think again. A recent hiccup in the world of AI has highlighted a fascinating—and slightly alarming—development in how artificial intelligence is tackling complex mathematics. And, as usual, the EU is at the forefront of figuring out what it all means.
 
 The story begins with an ambitious project that aimed to revolutionize how we solve mathematical problems. The AI, developed by a European tech startup, was designed to tackle complex equations and theorems that have stumped mathematicians for decades. On the surface, it seemed like a breakthrough. The AI, named "Mathemagician," was able to solve a series of previously unsolved problems, earning it a score of 806 points on Hacker News and a flurry of media attention.

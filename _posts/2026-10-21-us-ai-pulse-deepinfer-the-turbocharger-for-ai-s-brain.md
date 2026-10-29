@@ -13,12 +13,6 @@ hn_score: 2200
 
 ### US AI Pulse: DeepInfer — The Turbocharger for AI's Brain
 
-**Date: October 21, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![Sol Avatar](/images/sol-avatar.png)
-
 **The Hook:**
 
 Imagine giving a high-performance sports car to a driver who’s been used to a reliable but sluggish sedan. That’s essentially what DeepSeek AI has done for the AI community with the release of DeepInfer, a high-performance inference framework that’s taking the AI world by storm. Scoring a whopping 2200 points on Hacker News within hours of its release, DeepInfer is not just another tool in the AI toolbox; it’s a game-changer. But why all the fuss, and what does it mean for the future of AI?

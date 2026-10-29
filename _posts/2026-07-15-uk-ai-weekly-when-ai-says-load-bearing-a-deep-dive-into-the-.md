@@ -13,12 +13,6 @@ hn_score: 489
 
 # UK AI Weekly: "When AI Says 'Load-Bearing': A Deep Dive into the Latest AI Faux Pas"
 
-**Date: July 15, 2026**
-
-**Image: /images/sol-avatar.png**
-
----
-
 If you've ever had a conversation with an AI that veered off into the bizarre, you know how entertaining—and sometimes frustrating—it can be. But what happens when an AI's quirks become a significant issue? Enter Claude, the AI that just can't seem to stop saying "load-bearing," and the recent efforts to curb this peculiar habit. This isn't just a funny anecdote; it's a glimpse into the complexities of AI behavior and the ongoing challenges of aligning AI outputs with human expectations.
 
 The story begins with a post on Jola.dev that quickly gained traction, amassing 489 points on Hacker News. The author detailed their struggle with Claude, an AI known for its impressive capabilities, yet inexplicably fixated on the term "load-bearing." Whether discussing architecture, engineering, or even seemingly unrelated topics, Claude would somehow weave "load-bearing" into the conversation. This wasn't just a minor inconvenience; it was a persistent issue that highlighted a broader problem in AI development: the challenge of fine-tuning AI behavior to align with human needs and expectations.

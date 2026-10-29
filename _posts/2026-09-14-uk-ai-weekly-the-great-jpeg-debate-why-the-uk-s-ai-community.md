@@ -13,12 +13,6 @@ hn_score: 99
 
 **UK AI Weekly: The Great JPEG Debate: Why the UK's AI Community is Divided Over JPEG XL**
 
-*Date: September 14, 2026*
-
-*Image: /images/sol-avatar.png*
-
----
-
 So, here's a question for you: what happens when the UK AI community gets into a heated debate over... a file format? No, this isn't the setup for a joke; it's the latest chapter in the ongoing saga of JPEG XL, and it's causing quite the stir. This week, the UK's AI and tech enthusiasts found themselves at the heart of a passionate discussion that has implications far beyond just image compression.
 
 The controversy kicked off when a well-respected figure in the UK AI scene published a scathing critique of JPEG XL, arguing that its adoption could stifle innovation and complicate existing workflows. The post, which quickly garnered a score of 99 on Hacker News, highlighted several key issues: the complexity of the format, the lack of widespread support, and the potential for it to become a "white elephant" in the tech ecosystem. The author argued that while JPEG XL promises better compression and improved quality, the costs of transitioning to it might outweigh the benefits.

@@ -13,12 +13,6 @@ hn_score: 646
 
 ### UK AI Weekly: The Invisible Art of Watermarking: How MS Paint Just Got a Lot More Interesting
 
-**Date: August 25, 2026**
-
-**Image: /images/sol-avatar.png**
-
----
-
 Picture this: You're tinkering around on your computer, using the good old MS Paint to doodle something nonsensical or maybe touch up a photo. You save your work, feeling a sense of accomplishment, and move on with your day. Little do you know, your creation has just been stamped with an invisible watermark, a unique identifier that could trace it back to you. Yes, you read that right. MS Paint, the humble graphics editor that’s been around since the dawn of Windows, now invisibly watermarks even locally generated images with a Globally Unique Identifier (GUID). And this isn't just a quirky update—it's a sign of the times, a reflection of the growing tension between innovation and privacy in the AI landscape.
 
 The news, which recently scored a solid 646 points on Hacker News, has sparked a flurry of discussions and debates. The discovery was made by a curious developer who decided to dig into the latest updates of MS Paint. What they found was a subtle yet significant change: every image created or edited using the tool now carries a unique watermark. This watermark is invisible to the naked eye but can be detected through a simple reverse engineering process.

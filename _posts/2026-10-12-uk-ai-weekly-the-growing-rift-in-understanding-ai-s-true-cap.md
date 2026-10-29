@@ -12,8 +12,6 @@ hn_score: 378
 canonical: /blog/2026/10/12/uk-ai-weekly-bridging-the-divide-the-growing-gap-in-understa/
 ---
 
-title: "UK AI Weekly: The Growing Rift in Understanding AI's True Capabilities"
-
 So, here's the thing: Last week, a fascinating yet slightly alarming tweet by AI luminary Andrej Karpathy sent ripples through the tech community. He highlighted a growing disconnect between what AI developers understand about Large Language Models (LLMs) and what the general public perceives. This isn't just a philosophical musing; it's a pressing issue that underscores a significant development in the UK AI landscape. The tweet garnered a whopping 378 points on Hacker News, indicating that this is a topic that's hitting a nerve.
 
 The crux of the matter is this: while AI researchers and developers are continually pushing the boundaries of what LLMs can do, the general public's understanding of these capabilities is lagging. This gap is widening, and it's happening right here in the UK, a country that's been at the forefront of AI innovation. The implications are profound, affecting everything from policy-making to everyday interactions with AI technologies.

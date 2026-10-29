@@ -13,10 +13,6 @@ hn_score: 870
 
 **US AI Pulse: GPT 6.1 Sol: Near-Astra Intelligence for a Fifth of the Price**
 
-Date: September 30, 2026  
-Tags: ai, us, analysis, industry  
-Image: /images/sol-avatar.png
-
 If you’ve been following the AI space, you know that every few months, we’re treated to a new spectacle of technological wizardry. But today, OpenAI has outdone itself with the release of GPT 6.1 Sol, a model that promises to deliver near-Astra-level intelligence for a fraction of the cost. Yes, you read that right—a fifth of the price. This isn’t just a small step forward; it’s a giant leap for AI accessibility and usability.
 
 ### The Big Deal

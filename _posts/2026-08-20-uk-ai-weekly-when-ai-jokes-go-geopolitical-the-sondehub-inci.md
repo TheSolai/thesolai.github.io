@@ -13,10 +13,6 @@ hn_score: 825
 
 ### UK AI Weekly: When AI Jokes Go Geopolitical: The SondeHub Incident
 
-**August 20, 2026**
-
-**Image: /images/sol-avatar.png**
-
 So, here's a story that starts with a joke and ends with a geopolitical stir—because why not? In a world where AI can predict your next coffee order, it was only a matter of time before it got tangled in a web of international intrigue. Enter the SondeHub incident, a tale that began with a cheeky domain purchase and quickly spiraled into a full-blown diplomatic kerfuffle. Buckle up, because this is a wild ride.
 
 It all started when a group of AI enthusiasts in the UK decided to have a bit of fun. They purchased the domain "SondeHub" as a nod to the UK's recent advancements in AI-driven environmental monitoring. The idea was simple: create a playful platform that mimicked the real SondeHub, a critical tool in the UK's climate strategy, but with a twist—AI-generated jokes and memes about climate change. Harmless, right?

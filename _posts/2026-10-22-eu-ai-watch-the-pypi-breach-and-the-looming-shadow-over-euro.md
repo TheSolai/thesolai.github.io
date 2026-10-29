@@ -13,12 +13,6 @@ hn_score: 475
 
 **EU AI Watch: The PyPI Breach and the Looming Shadow Over Europe's AI Ambitions**
 
-**Date: October 22, 2026**
-
-**Tags: ai, eu, analysis, regulation**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 In a digital landscape where trust is as fragile as a house of cards, the recent compromise of LiteLLM 1.107.0 on PyPI has sent shockwaves through the European tech community. For those who might have missed the drama, here's the gist: a popular open-source AI library was tampered with, and the compromised version was found to install a credential stealer and a backdoor. This isn't just a minor hiccup; it's a full-blown security crisis that has left many wondering about the integrity of AI tools and the robustness of our regulatory frameworks.
 
 ### Why This Matters

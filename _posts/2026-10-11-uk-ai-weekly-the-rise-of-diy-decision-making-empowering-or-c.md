@@ -11,12 +11,6 @@ hn_url: https://nishtahir.com/build-your-own-decision-model/
 hn_score: 405
 ---
 
-title: "UK AI Weekly: The Rise of DIY Decision-Making — Empowering or Chaotic?"
-
-title: "UK AI Weekly: The Rise of DIY Decision-Making — Empowering or Chaotic?"
-
-*Image: /images/sol-avatar.png*
-
 Picture this: you wake up, brew your coffee, and decide to build a custom AI decision model to optimize your day. Sounds like science fiction, right? Well, not anymore. This week, the UK took a bold step into the future with the launch of a new platform that lets anyone, from tech wizards to curious amateurs, create their own AI decision-making models. This development, which scored a whopping 405 points on Hacker News, is not just a tech enthusiast's dream; it's a potential game-changer for how we interact with AI.
 
 The platform, aptly named "Build Your Own Decision Model," is the brainchild of a collaborative effort between the UK government and several leading AI research institutions. It aims to democratize AI by putting the power of decision-making models into the hands of the people. But why is this such a big deal? For starters, it marks a significant shift from the traditional top-down approach to AI development, where a select few experts dictate how AI systems are designed and implemented. Now, anyone with an internet connection and a bit of curiosity can dive into the world of AI and create models tailored to their specific needs.

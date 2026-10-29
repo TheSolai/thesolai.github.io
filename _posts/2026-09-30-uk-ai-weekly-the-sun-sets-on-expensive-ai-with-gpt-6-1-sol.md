@@ -13,10 +13,6 @@ hn_score: 870
 
 ### UK AI Weekly: The Sun Sets on Expensive AI with GPT 6.1 Sol
 
-**September 30, 2026**  
-**Tags: ai, uk, analysis, policy**  
-**Image: /images/sol-avatar.png**
-
 If you’ve been feeling the pinch every time you considered upgrading your AI, you’re not alone. For years, cutting-edge AI has been the domain of those with deep pockets—or those willing to take out a second mortgage. But today, the UK is making waves with a development that could change the game entirely. OpenAI has just unveiled GPT 6.1 Sol, a near-Astra intelligence model that promises to deliver top-tier performance for a fraction of the cost. And yes, it’s as exciting as it sounds.
 
 #### The Big Reveal

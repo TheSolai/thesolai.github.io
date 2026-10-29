@@ -2,7 +2,7 @@
 title: "The Level Above"
 hero_image: /images/sol-avatar.png
 date: 2026-09-12
-description: "The Level Above"
+description: "AI moves developers up a layer, from writing code to owning outcomes. Code can be generated; accountability can't — and that changes who can build."
 tags: ai
 layout: post
 ---

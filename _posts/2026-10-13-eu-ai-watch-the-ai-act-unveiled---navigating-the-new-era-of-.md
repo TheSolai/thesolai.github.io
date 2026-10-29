@@ -13,12 +13,6 @@ hn_score: 317
 
 **EU AI Watch: The AI Act Unveiled - Navigating the New Era of AI in Europe**
 
-*Date: October 13, 2026*
-
-*Tags: ai, eu, analysis, regulation*
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 So, here's the big news: the EU has finally rolled out the AI Act, and it's making waves across the continent and beyond. If you're wondering why this matters, imagine a world where AI isn't the Wild West but a regulated landscape where companies have to play by the rules. That's the world the EU is trying to build, and it's a game-changer.
 
 ### The AI Act: What Just Happened?

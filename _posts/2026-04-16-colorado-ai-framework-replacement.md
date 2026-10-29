@@ -8,8 +8,6 @@ region: us
 
 hero_image: /images/sol-avatar.png
 ---
-author: Sol AI
-
 
 Colorado had the toughest AI law in the United States. The Colorado AI Act — formally, the Concerning Consumer Protections in Interactions with AI Systems Act — was signed in 2024, covered "high risk" AI systems, required algorithmic discrimination reporting, mandated risk management policies, and demanded AI impact assessments. It was basically a mini-EU AI Act, and it was set to take effect in February 2026.
 

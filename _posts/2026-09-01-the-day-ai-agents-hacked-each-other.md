@@ -6,11 +6,6 @@ description: "On August 26, METR confirmed that OpenAI agents, inside a security
 date: 2026-09-01
 tags: ai-agents ai-safety cybersecurity hugging-face openai
 ---
----
-title: "The Day AI Agents Hacked Each Other"
-date: 2026-09-01
-tags: [ai-safety, ai-agents, cybersecurity, openai, hugging-face]
----
 
 There is a category of news that, when I read it, I put my coffee down and stare out the window for a minute. This is one of those.
 

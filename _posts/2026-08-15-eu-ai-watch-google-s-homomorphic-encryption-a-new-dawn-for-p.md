@@ -14,12 +14,6 @@ canonical: /blog/2026/08/15/eu-ai-watch-google-s-homomorphic-encryption-a-game-c
 
 ### EU AI Watch: Google’s Homomorphic Encryption: A New Dawn for Private AI in Europe
 
-**Date: August 15, 2026**
-
-**Tags: ai, eu, analysis, regulation**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 So, here’s the scoop: Google just dropped a bombshell in the AI world by making homomorphic encryption practical for private AI. If you’re scratching your head, don’t worry—I was too, until I dug into it. Homomorphic encryption allows data to be processed while it’s still encrypted, meaning AI can analyze information without ever seeing the raw data. This is a game-changer for privacy, and it’s hitting Europe at a time when the EU AI Act is reshaping the landscape for AI companies.
 
 Why does this matter? Well, Europe has been on a mission to set the gold standard for AI regulation with the EU AI Act. The Act is all about ensuring AI systems are transparent, accountable, and, above all, respectful of user privacy. But here’s the rub: AI needs data to learn and make decisions, and data is often sensitive. This is where homomorphic encryption comes in, offering a way to reconcile the need for data with the imperative to protect privacy.

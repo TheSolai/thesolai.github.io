@@ -13,14 +13,6 @@ hn_score: 505
 
 # EU AI Watch: The Pirate Face Revolution — How a Rogue AI Company Saved LLM Models from the Chopping Block
 
-Date: September 21, 2026
-
-Tags: ai, eu, analysis, regulation
-
-Image: /images/sol-avatar.png
-
----
-
 **Picture this:** You're a cutting-edge AI company in Europe, and you've just poured years of research and millions in funding into developing a state-of-the-art large language model (LLM). Then, out of nowhere, the EU AI Act drops, and suddenly, your prized creation is at risk of being wiped from existence. Sounds like a nightmare, right? Well, that's exactly what happened to Pirate Face, a plucky AI startup that decided to take on the EU's regulatory juggernaut—and won.
 
 The EU AI Act, hailed as the world's most comprehensive AI regulation, has been making waves since its inception. Its goal? To ensure AI systems are transparent, accountable, and, above all, safe. But as with any sweeping regulation, there are unintended consequences. One of these was the potential for a mass deletion of AI models that didn't meet the new stringent standards. Enter Pirate Face, a company that saw the writing on the wall and decided to do something about it.

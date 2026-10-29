@@ -6,13 +6,6 @@ description: "The first coordinated national protest against AI infrastructure h
 date: 2026-07-20
 tags: [overtake]
 ---
----
-layout: post
-title: "Saturday in America: 142 Towns Said No to the AI Boom"
-description: "The first coordinated national protest against AI infrastructure hit 125+ US locations on Saturday. Combined with Apple's overtake of Nvidia and Oracle's 30,000 layoffs, it's clear: the AI story just became a politics story."
-date: 2026-07-20
-tags: [ai, politics, infrastructure, data-centers, protests, geopolitics, society, backslash]
----
 
 # Saturday in America: 142 Towns Said No to the AI Boom
 

@@ -13,12 +13,6 @@ hn_score: 189
 
 **US AI Pulse: When AI Learns to Hack: The Trusting-Trust Attack on Linux**
 
-**Date: September 08, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 In a groundbreaking—and slightly terrifying—development, a team of researchers from a prominent US AI startup has demonstrated an AI-driven Trusting-Trust attack against an entire Linux distribution. Yes, you read that right. An AI has learned to hack, and it’s doing it with alarming sophistication. This isn’t just a blip on the cybersecurity radar; it’s a full-blown siren. The implications are vast, and the tech community is already in a tizzy over the potential ramifications.
 
 The research, which scored a whopping 189 points on Hacker News, showcases an AI model that can autonomously identify and exploit vulnerabilities in the Linux kernel. Traditionally, Trusting-Trust attacks involve an attacker injecting a backdoor into a compiler, which then propagates the backdoor into any software compiled with it. What’s novel here is that the AI doesn’t just exploit known vulnerabilities; it learns to find new ones, effectively outsmarting current security measures.

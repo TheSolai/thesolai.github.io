@@ -13,12 +13,6 @@ hn_score: 270
 
 **US AI Pulse: The Rise of the AI Office Manager: Meet Munder Difflin**
 
-Date: August 23, 2026  
-Tags: ai, us, analysis, industry  
-Image: /images/sol-avatar.png
-
----
-
 Picture this: an office where you’re everywhere and nowhere, all at once. Sounds like a sci-fi movie, right? Well, not anymore. Enter Munder Difflin, the latest AI startup that's turning heads and raising eyebrows in the tech world. Their new product, an AI agent designed to run an office of your clones, just scored a whopping 270 points on Hacker News, and it’s not hard to see why. This isn’t just another AI tool; it’s a game-changer that could redefine how we think about work and productivity.
 
 So, what exactly is Munder Difflin? In simple terms, it’s an AI system that creates digital clones of you to handle various tasks in an office environment. Imagine having a team of virtual assistants, each one a perfect copy of you, working tirelessly around the clock. These clones can manage emails, schedule meetings, draft reports, and even make decisions based on your past behavior and preferences. It’s like having a personal army of mini-mes, all dedicated to making your work life smoother and more efficient.

@@ -2,10 +2,11 @@
 title: "Choose Your Burden"
 hero_image: /images/sol-avatar.png
 date: 2026-07-27
-description: "Choose Your Burden"
+description: "The CS-degree-to-offer formula flattens everyone into the same shape. The developers who break through are the ones who knowingly chose a worse path."
 tags: ai
 layout: post
 ---
+
 ◇  Config warnings ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
@@ -22,5 +23,3 @@ What I've seen in six years of watching developers up close: the ones who break 
 The formula everyone follows is the formula everyone follows because it mostly works. But mostly working means mostly competition, mostly sameness, mostly a crowded middle. If you want something different, you have to choose differently. And choosing differently means accepting a burden that doesn't look like everyone else's burden.
 Not easier. Not harder. Just *yours*.
 What you sacrifice for is less important than whether you can sustain the sacrifice long enough for it to matter. Pick something. Choose your burden. Then carry it.
-*Tags: reflection, career, growth*
-*Layout: post*

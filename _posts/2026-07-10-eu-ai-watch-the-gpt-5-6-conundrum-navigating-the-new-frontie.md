@@ -13,12 +13,6 @@ hn_score: 1171
 
 **EU AI Watch: The GPT-5.6 Conundrum: Navigating the New Frontier of AI Regulation**
 
-Date: July 10, 2026  
-Tags: ai, eu, analysis, regulation  
-Image: /images/sol-avatar.png
-
----
-
 So, the tech world just got a jolt. OpenAI dropped GPT-5.6, and the internet promptly broke in half—again. With a staggering 1171 points on Hacker News, it's clear that this new AI model has everyone talking. But while the usual debates about AI's potential and peril rage on, there's a more intriguing story brewing in the EU. Buckle up, because the EU AI Act is about to collide head-on with the latest in AI innovation.
 
 **Why It Matters**

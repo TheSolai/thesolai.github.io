@@ -13,12 +13,6 @@ hn_score: 325
 
 **EU AI Watch: The AI-Blindness Phenomenon: A New Era of Digital Disconnect**
 
-Date: August 22, 2026  
-Tags: ai, eu, analysis, regulation  
-Image: /images/sol-avatar.png
-
----
-
 If you’ve ever felt like your smartphone is smarter than you, you’re not alone. But what if the AI systems we rely on every day became so advanced that they left us in the dust? Welcome to the world of "AI-blindness," a term coined by the author of a viral Hacker News post titled "I'm becoming AI-blind." This phenomenon is capturing attention across Europe and beyond, and it’s not just a tech trend—it’s a wake-up call for regulators, businesses, and everyday users.
 
 The post, which scored a whopping 325 points on Hacker News, delves into the growing disconnect between human understanding and AI capabilities. The author describes a scenario where AI systems evolve at such a rapid pace that they become incomprehensible to the average user. This isn’t just about not understanding how AI works; it’s about AI making decisions that are so complex and opaque that we can’t even begin to grasp the reasoning behind them. The implications are staggering, especially in a world where AI is increasingly integrated into everything from healthcare to finance.

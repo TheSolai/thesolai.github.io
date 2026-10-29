@@ -11,14 +11,6 @@ hn_url: https://twitter.com/karpathy/status/2109361546505966046
 hn_score: 378
 ---
 
-title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
-
-title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
-title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
-title: "EU AI Watch: The Looming Chasm in Understanding AI's True Potential"
-
----
-
 If you've been following the AI scene lately, you might have caught wind of a recent tweet by AI guru Andrej Karpathy that sent ripples through the tech community. He pointed out a growing gap in how different stakeholders perceive the capabilities of Large Language Models (LLMs). While this might sound like just another Twitter hot take, it underscores a significant issue that's becoming increasingly hard to ignore—especially in the EU, where the AI Act is set to redefine the landscape.
 
 ### Why This Matters

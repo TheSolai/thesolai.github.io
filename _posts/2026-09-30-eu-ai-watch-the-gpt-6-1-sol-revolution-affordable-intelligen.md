@@ -13,12 +13,6 @@ hn_score: 870
 
 **EU AI Watch: The GPT 6.1 Sol Revolution — Affordable Intelligence or Regulatory Nightmare?**
 
-**Date:** September 30, 2026  
-**Tags:** ai, eu, analysis, regulation  
-**Image:** /images/sol-avatar.png
-
----
-
 In a world where AI advancements are as frequent as the latest TikTok dance craze, OpenAI's release of GPT 6.1 Sol has sent shockwaves through the tech community. Scoring a whopping 870 points on Hacker News, this new iteration promises near-astronomical intelligence at a fraction of the cost. But as the hype train rolls on, the European Union is left with a pressing question: How will this impact the AI landscape, and more importantly, how will it fit into the stringent framework of the EU AI Act?
 
 The EU AI Act, often seen as the gold standard for AI regulation, is designed to ensure that AI systems are transparent, accountable, and safe. With GPT 6.1 Sol, OpenAI has not only pushed the boundaries of what AI can do but has also thrown a wrench into the EU's carefully crafted regulatory gears. The Act, which mandates rigorous risk assessments and compliance checks, was crafted with the assumption that advanced AI systems would come with a hefty price tag, limiting their accessibility and potential for misuse. However, GPT 6.1 Sol's affordability changes the game entirely.

@@ -13,12 +13,6 @@ hn_score: 1438
 
 **UK AI Weekly: Claude Opus 5.5: The AI That’s Got Everyone Talking (and a Little Worried)**
 
-*Date: September 23, 2026*
-
-*Image: /images/sol-avatar.png*
-
----
-
 So, you’ve probably heard the buzz. If you haven’t, let me break it down: Anthropic, the UK-based AI lab that’s been quietly making waves, just dropped Claude Opus 5.5, and it’s safe to say the AI community is both thrilled and slightly terrified. This latest iteration scored a whopping 1438 points on Hacker News, and it’s not just because of its impressive capabilities. Claude Opus 5.5 is a game-changer, and it’s got everyone from tech enthusiasts to policymakers sitting up and taking notice.
 
 ### The Lowdown on Claude Opus 5.5

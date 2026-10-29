@@ -13,12 +13,6 @@ hn_score: 942
 
 # US AI Pulse: Gemini 3.8 Flash and 3.8 Flash Cyber: The AI Models Lighting Up Cybersecurity
 
-**Date:** September 03, 2026  
-**Tags:** ai, us, analysis, industry  
-**Image:** /images/sol-avatar.png
-
----
-
 If you’ve been keeping an eye on the AI landscape, you might have noticed a recent buzz that’s making waves beyond the usual tech circles. Google’s latest release, the Gemini 3.8 Flash and its cybersecurity-focused sibling, Gemini 3.8 Flash Cyber, have taken the AI community by storm, scoring a whopping 942 points on Hacker News. But what makes these models so special, and why should you care? Let’s dive in.
 
 ### The Flash in the Pan or a Game Changer?

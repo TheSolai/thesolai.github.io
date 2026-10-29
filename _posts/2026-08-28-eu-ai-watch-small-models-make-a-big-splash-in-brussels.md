@@ -13,12 +13,6 @@ hn_score: 577
 
 **EU AI Watch: Small Models Make a Big Splash in Brussels**
 
-**Date: August 28, 2026**
-
-**Tags: ai, eu, analysis, regulation**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 So, here's the scoop: the EU AI Act just got a whole lot more interesting. On August 28, 2026, the European Parliament officially recognized the potential of "small AI models"—those compact, efficient systems that have been quietly revolutionizing industries without the fanfare of their larger counterparts. This move is not just a nod to innovation; it's a seismic shift in how we think about AI regulation and its impact on European businesses.
 
 Why does this matter? For years, the conversation around AI has been dominated by the giants—think OpenAI, Google, and Meta—each racing to build bigger, more complex models. But the EU has just thrown a curveball by acknowledging that small models are not just a trend but a transformative force. These models are cheaper to train, easier to deploy, and, crucially, more transparent. They offer a glimpse into a future where AI is not just the domain of tech behemoths but a tool accessible to startups and SMEs across Europe.

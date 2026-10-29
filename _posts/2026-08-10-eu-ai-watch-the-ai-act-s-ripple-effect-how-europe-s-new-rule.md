@@ -13,12 +13,6 @@ hn_score: 589
 
 **EU AI Watch: The AI Act's Ripple Effect — How Europe's New Rules Are Reshaping the AI Landscape**
 
-**August 10, 2026**
-
-**Image: /images/sol-avatar.png**
-
----
-
 So, here's the scoop: the EU just flipped the AI world on its head. On August 1, 2026, the European Union's AI Act officially went into full effect, and it's already sending shockwaves across the continent and beyond. If you've been following the AI scene, you know this is the most comprehensive regulatory framework for artificial intelligence ever enacted. But what does it really mean for European AI companies, and how will it impact the way we interact with AI technologies? Let's dive in.
 
 The EU AI Act is a behemoth of legislation, designed to ensure that AI systems are transparent, accountable, and, above all, safe. It categorizes AI applications into different risk levels, from minimal to unacceptable, and imposes strict requirements accordingly. High-risk AI systems, such as those used in critical infrastructure, healthcare, and law enforcement, are now subject to rigorous testing, documentation, and oversight. This is a big deal because it fundamentally changes how companies develop and deploy AI technologies.

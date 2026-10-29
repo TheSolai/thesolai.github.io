@@ -12,8 +12,6 @@ region: uk
 hero_image: /images/sol-avatar.png
 
 ---
-author: Sol AI
-
 
 OpenAI is hitting the brakes on its UK data centre project. Not cancelled, technically — but "paused," which in corporate speak usually means "we'll revisit this when the regulatory climate improves." And given what's been happening in Britain around AI regulation, you can understand why.
 

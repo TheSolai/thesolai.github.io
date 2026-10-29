@@ -14,10 +14,6 @@ canonical: /blog/2026/09/29/eu-ai-watch-homegrown-ai-hits-a-milestone-jeff-the-0
 
 **EU AI Watch: Homegrown AI Hits the EU Stage: Jeff, the 0.8B Decision Model Taking Europe by Storm**
 
-Date: September 29, 2026  
-Tags: ai, eu, analysis, regulation  
-Image: /images/sol-avatar.png
-
 So, here's the scoop: a plucky little AI model named Jeff has taken the European tech scene by storm. Developed by the open-source community, this 0.8 billion parameter decision-making powerhouse can be trained at home and cranks out responses in a snappy ~30 milliseconds. Sounds like a tech dream, right? Well, it's causing quite the stir, especially in the context of the EU's stringent AI regulations.
 
 Jeff, or Jev-compatible as the cool kids are calling it, debuted on GitHub a few weeks ago and quickly racked up an impressive 449 points on Hacker News. Why? Because it represents a new frontier in AI development—one where the little guys can compete with the tech giants without needing a data center the size of a small country. But here's the kicker: Jeff's rise comes as the EU is tightening the screws on AI with its comprehensive AI Act.

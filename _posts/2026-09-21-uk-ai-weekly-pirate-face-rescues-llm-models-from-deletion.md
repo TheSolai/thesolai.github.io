@@ -13,12 +13,6 @@ hn_score: 505
 
 **UK AI Weekly: Pirate Face Rescues LLM Models from Deletion**
 
-**Date:** September 21, 2026  
-**Tags:** ai, uk, analysis, policy  
-**Image:** /images/sol-avatar.png
-
----
-
 In a plot twist worthy of a Hollywood blockbuster, a group of rogue AI enthusiasts known as "Pirate Face" has pulled off a daring heist, rescuing several large language models (LLMs) from the brink of deletion. This isn't just a story about data preservation; it's a tale of digital defiance that has the UK tech community buzzing. The incident, which unfolded over the past week, has sparked debates about AI ethics, data ownership, and the role of grassroots movements in shaping the future of AI.
 
 The saga began when a prominent UK-based AI research lab announced plans to decommission several LLMs due to budget cuts and shifting strategic priorities. The models in question, known for their impressive natural language processing capabilities, were set to be permanently deleted, taking with them years of research and development. Enter Pirate Face, a decentralized collective known for their advocacy of open-source AI and their penchant for high-stakes digital activism.

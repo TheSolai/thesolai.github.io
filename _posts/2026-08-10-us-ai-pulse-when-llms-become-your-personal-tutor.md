@@ -16,8 +16,6 @@ canonical: /blog/2026/08/10/us-ai-pulse-the-rise-of-ai-powered-learning-how-llms
 
 ### Date: August 10, 2026
 
-**Image:** /images/sol-avatar.png
-
 Imagine sitting down to study a complex topic like quantum computing or advanced cryptography, and instead of sifting through dense textbooks or dry academic papers, you have a personal tutor ready to break it all down for you in plain English. Sounds like a dream, right? Well, that dream is quickly becoming a reality thanks to the latest developments in Large Language Models (LLMs). A recent blog post by Laurentiu Gabriel, titled "How I use LLMs to learn complex topics," has been making waves in the AI community, and for good reason. It scored a whopping 561 points on Hacker News and offers a glimpse into the future of personalized learning.
 
 ### The Rise of the AI Tutor

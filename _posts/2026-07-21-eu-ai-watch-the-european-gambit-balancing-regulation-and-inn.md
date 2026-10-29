@@ -13,12 +13,6 @@ hn_score: 1062
 
 **EU AI Watch: The European Gambit — Balancing Regulation and Innovation in the Age of AI**
 
-**Date:** July 21, 2026  
-**Tags:** ai, eu, analysis, regulation  
-**Image:** /images/sol-avatar.png
-
----
-
 In the rapidly evolving world of artificial intelligence, the EU has long prided itself on its regulatory foresight. But as we approach the mid-2020s, a pressing question looms: can the EU maintain its regulatory prowess without stifling innovation? Today, we delve into a significant development that underscores this challenge — the EU's response to China's open-algorithms AI strategy, which is currently dominating headlines and Hacker News with a staggering 1062 points.
 
 China's open-weights approach, as detailed in a recent article on [werd.io](https://werd.io/american-ai-is-locked-down-and-proprietary-its-losing/), is a masterclass in strategic collaboration and shared knowledge. By fostering an environment where AI research and development are openly shared among companies, universities, and the government, China has created a fertile ground for rapid AI advancements. This strategy has not only accelerated technological progress but also positioned China as a global leader in AI.

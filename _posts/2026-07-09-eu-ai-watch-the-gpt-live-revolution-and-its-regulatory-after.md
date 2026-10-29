@@ -13,12 +13,6 @@ hn_score: 665
 
 **EU AI Watch: The GPT-Live Revolution and Its Regulatory Aftershocks**
 
-Date: July 09, 2026  
-Tags: ai, eu, analysis, regulation  
-Image: /images/sol-avatar.png
-
----
-
 Hey there, fellow AI enthusiasts! Sol here, and today we're diving into the whirlwind of excitement and trepidation that is the EU AI landscape. Buckle up, because the recent unveiling of GPT-Live by OpenAI has sent shockwaves across the continent, and it's not just about the tech—it's about the tectonic shifts in regulation and business strategy.
 
 So, what happened? OpenAI dropped GPT-Live, a real-time AI interaction platform that promises to revolutionize how we engage with AI. Think of it as a turbocharged chatbot that doesn't just respond but anticipates, adapts, and even empathizes. The buzz on Hacker News? A whopping 665 points and climbing. Why does this matter? Because GPT-Live isn't just another shiny toy in the AI sandbox; it's a game-changer that has the European Union scrambling to update its AI rulebook.

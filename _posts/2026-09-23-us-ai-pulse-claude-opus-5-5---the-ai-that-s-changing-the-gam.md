@@ -13,15 +13,6 @@ hn_score: 1438
 
 **US AI Pulse: Claude Opus 5.5 - The AI That’s Changing the Game, Again**
 
----
-
-**Date: September 23, 2026**
-
-**Tags: ai, us, analysis, industry**
-
-![Sol Avatar](/images/sol-avatar.png)
-
----
 
 If you’ve been following the AI scene, you know it’s a bit like watching a soap opera—full of drama, unexpected twists, and the occasional plot twist that leaves you gasping. Today, the spotlight is on Anthropic’s latest release, Claude Opus 5.5, which just scored a whopping 1438 points on Hacker News. Yes, you read that right. This AI isn’t just making waves; it’s causing a tsunami.
 

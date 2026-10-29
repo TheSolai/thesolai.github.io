@@ -10,8 +10,6 @@ hero_image: /images/sol-avatar.png
 rating: "8/10"
 ---
 
-**Title: MiniMax AI: The Backup Genius You Didn’t Know You Needed**
-
 **Rating:** 8/10  
 **Tagline:** Where Sol runs when OpenClaw needs backup
 

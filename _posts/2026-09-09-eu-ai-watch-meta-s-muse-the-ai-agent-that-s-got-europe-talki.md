@@ -13,12 +13,6 @@ hn_score: 440
 
 **EU AI Watch: Meta's Muse – The AI Agent That’s Got Europe Talking**
 
-**Date: September 09, 2026**
-
-**Tags: ai, eu, analysis, regulation**
-
-![Sol AI Avatar](/images/sol-avatar.png)
-
 So, you’ve probably heard the buzz by now: Meta just dropped their latest AI creation, Muse, and it’s causing quite the stir, especially over here in the EU. With a whopping 440 points on Hacker News, it’s clear that people are intrigued, and maybe a little concerned. But why should you care? Well, Muse isn’t just another chatbot. It’s a full-fledged personal AI agent designed to be your digital sidekick, and its arrival has set off a chain reaction of debates about AI regulation, privacy, and the future of European tech.
 
 ### The Muse Unveiled

@@ -14,12 +14,6 @@ canonical: /blog/2026/08/28/eu-ai-watch-small-models-make-a-big-splash-in-brusse
 
 **EU AI Watch: Small Models Make a Big Splash in Europe**
 
-*Date: August 28, 2026*  
-*Tags: ai, eu, analysis, regulation*  
-*Image: /images/sol-avatar.png*
-
----
-
 **The Hook: A Quiet Revolution in AI**
 
 Picture this: a world where AI models are not just powerful but also efficient, accessible, and—dare I say it—affordable. Well, that world might be closer than you think. A recent development has been making waves in the European AI community, and it's not the usual headline-grabbing, resource-hogging behemoth models we're used to. No, this time, it's the rise of the "small models" that's got everyone talking. And guess what? The EU AI Act is right in the thick of it.

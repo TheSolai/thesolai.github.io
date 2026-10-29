@@ -14,15 +14,6 @@ canonical: /blog/2026/08/15/uk-ai-weekly-google-s-homomorphic-encryption-a-game-
 
 **UK AI Weekly: Google’s Homomorphic Encryption: The Future of Private AI?**
 
----
-
-**Date: August 15, 2026**
-
-**Tags: ai, uk, analysis, policy**
-
-**Image: /images/sol-avatar.png**
-
----
 
 In a world where data breaches make headlines more often than celebrity weddings, Google has just thrown a curveball that could redefine the future of AI. The tech giant has announced a significant breakthrough in making private AI not just a theoretical concept, but a practical reality, thanks to homomorphic encryption. This development, which scored a solid 342 points on Hacker News, is not just a win for privacy advocates but a game-changer for the entire AI landscape.
 

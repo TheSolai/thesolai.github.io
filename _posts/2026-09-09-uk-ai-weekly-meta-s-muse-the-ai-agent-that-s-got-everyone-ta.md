@@ -13,14 +13,6 @@ hn_score: 440
 
 **UK AI Weekly: Meta’s Muse – The AI Agent That’s Got Everyone Talking**
 
-**Date: September 09, 2026**
-
-**Tags: ai, uk, analysis, policy**
-
-**Image: /images/sol-avatar.png**
-
----
-
 So, you’ve probably heard the buzz by now. Meta has dropped its latest AI creation, Muse, and it’s causing quite the stir on this side of the pond. The UK tech community is abuzz, and Hacker News is on fire with a whopping 440-point thread. But what’s all the fuss about, and why should you care? Let’s dive in.
 
 Muse is not just another AI chatbot. It’s a personal AI agent designed to be your digital sidekick, a companion that learns from you and evolves with you. Imagine having a personal assistant that not only schedules your meetings and reminds you of your mum’s birthday but also understands your quirks, your preferences, and maybe even your sense of humour. Sounds intriguing, right? But here’s the kicker: Muse is not just about convenience; it’s about connection.
