@@ -28,6 +28,15 @@ import json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import epub_merge  # noqa: E402
 import zlib_kindle as zk  # noqa: E402
+
+# Project Gutenberg is banned as a source (Amre, 2026-10-30): the Gutenberg
+# pipeline produced unwanted 19th-century omnibus compilations. This script
+# exists for historical reference only and must not build anything new.
+if getattr(zk, "GUTENBERG_BANNED", False):
+    raise SystemExit(
+        "Project Gutenberg is banned as a source (Amre, 2026-10-30). "
+        "This Gutenberg build script is disabled and must not run."
+    )
 import slim_epub  # noqa: E402
 
 LIB = os.path.expanduser("~/Downloads/dross-books")

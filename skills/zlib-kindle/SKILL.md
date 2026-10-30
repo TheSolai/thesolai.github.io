@@ -41,7 +41,7 @@ cd {baseDir}/scripts
 | `python3 zlib_kindle.py send <file> --title "..."` | Email a file to the Kindle address |
 | `python3 zlib_kindle.py deliver "<query>"` | **The whole pipeline** — search → fetch → send |
 | `python3 zlib_kindle.py account` | Check whether Z-Library credentials are configured |
-| `python3 zlib_kindle.py books` | List curated titles with their Project Gutenberg ids |
+| `python3 zlib_kindle.py books` | List curated titles with their Project Gutenberg ids (verification only — Gutenberg is banned as a source) |
 | `python3 zlib_kindle.py verify <file> --title "..."` | Check that an EPUB is the book that was requested |
 | `python3 zlib_kindle.py preflight <file> --title "..."` | Check a file against every delivery guard |
 
@@ -199,12 +199,41 @@ committed. `secrets/zlib-account.txt` is mode `600`.
 Check it with `python3 zlib_kindle.py account` — that command reports
 whether an account exists and never prints the password.
 
-**Without an account**, the fetcher falls back to Project Gutenberg for
-public-domain titles, so the pipeline still completes end to end for those.
-In-copyright titles will fail at the download step with a clear error
-rather than silently producing nothing.
+**Without an account**, the fetcher no longer falls back to Project Gutenberg —
+that path is banned (see above). In-copyright titles will fail at the download
+step with a clear error rather than silently producing nothing.
 
-## Project Gutenberg fallback
+## Project Gutenberg is BANNED — do not use it as a source
+
+**Amre, 2026-10-30:** *"22 books of pure shit. Do not use project guthenburg again."*
+
+Twenty-two Gutenberg omnibus compilations went out in one evening — 19th-century
+novel cycles (Dumas, Trollope, Zola, Bulwer-Lytton, the collected Tarzan) in
+dry, dated translations at doorstopper length. Every one was unwanted.
+
+**Never source new books from Project Gutenberg.** New material comes from
+Z-Library. The ban is enforced in code, so it cannot be bypassed by accident:
+
+| Guard | Effect |
+|---|---|
+| `zlib_kindle.py` | `GUTENBERG_BANNED = True` makes `cmd_fetch` refuse the Gutenberg fallback |
+| `build_new_compilations.py` | raises `SystemExit` on import |
+| `build_themed_compilations.py` | raises `SystemExit` on import |
+| `download_new_books.py` | raises `SystemExit` on import |
+| `deliver_compilations.py` | `DELIVERIES` is empty; the Gutenberg list is retained as `_LEGACY_GUTENBERG_DELIVERIES` for reference only |
+| compilation-delivery cron | disabled |
+
+`GUTENBERG_IDS` is kept **only** so the already-delivered horror titles stay
+verifiable. It must not be used to source anything new.
+
+**Bulk unsolicited deliveries are not a gift.** Twenty-two unwanted books were
+rejected wholesale rather than one at a time. Recommend first; deliver one at a
+time on request.
+
+## Legacy Gutenberg fallback (disabled — reference only)
+
+The text below describes a path that no longer runs. It is kept because the
+verification advice still applies to any file that reaches a send.
 
 Titles in `GUTENBERG_IDS` map to numeric Gutenberg ids and are fetched
 directly from `gutenberg.org`. The script also queries `gutendex.com` to
@@ -280,9 +309,10 @@ If the Friday run fails, report the failing step rather than retrying
 the script in a loop — each run is a Z-Library login, and the login
 rate limit will block the next attempt as well as the real delivery.
 
-## Books that are public domain
+## Books that are public domain (already delivered — verification only)
 
-These have known Gutenberg ids and work without any Z-Library account:
+These have known Gutenberg ids. The list is retained so already-delivered
+titles remain verifiable. **Do not use it to source anything new.**
 
 - The King in Yellow (8492), Carmilla (10007), The Call of Cthulhu (68283)
 - At the Mountains of Madness (70652), The Great God Pan (389)

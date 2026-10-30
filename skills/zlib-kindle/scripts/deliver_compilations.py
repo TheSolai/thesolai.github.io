@@ -130,7 +130,17 @@ KINDLE, GMAIL = recipient_config.load()
 
 # The compilations, in the order they were built. The subject is the
 # state key, so it must not change once a file has been delivered.
-DELIVERIES = [
+# ---------------------------------------------------------------------------
+# Project Gutenberg is BANNED (Amre, 2026-10-30).
+#
+# Every entry below is a Gutenberg-sourced omnibus compilation: 19th-century
+# novel cycles (Dumas, Trollope, Zola, Bulwer-Lytton, the collected Tarzan) in
+# dry, dated translations. Twenty-two of these went out in one evening and every
+# one was unwanted. The list is retained for reference only and is not sent.
+# New material must come from Z-Library.
+# ---------------------------------------------------------------------------
+DELIVERIES = []
+_LEGACY_GUTENBERG_DELIVERIES = [
     ("The-Divine-Comedy-Dante.epub", "The Divine Comedy"),
     ("Paradise-Lost-and-Paradise-Regained-Milton.epub",
      "Paradise Lost and Paradise Regained"),

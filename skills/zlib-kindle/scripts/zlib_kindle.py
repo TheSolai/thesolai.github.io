@@ -66,7 +66,27 @@ UA = (
     "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 )
 
+# ---------------------------------------------------------------------------
+# PROJECT GUTENBERG IS BANNED (Amre, 2026-10-30).
+#
+# "22 books of pure shit. Do not use project guthenburg again."
+#
+# The Gutenberg pipeline delivered omnibus compilations of 19th-century
+# novel cycles -- Dumas, Trollope, Zola, Bulwer-Lytton, the collected Tarzan
+# -- in dry, dated translations, at doorstopper length. Twenty-two of those
+# went out in one evening and every one of them was unwanted.
+#
+# The Gutenberg fallback in cmd_fetch() and every Gutenberg build script
+# are now dead. New material must come from Z-Library.
+#
+# The GUTENBERG_IDS map below is retained ONLY so the existing, already
+# delivered horror titles stay verifiable. It must not be used to source
+# anything new.
+# ---------------------------------------------------------------------------
+GUTENBERG_BANNED = True
+
 # Curated horror list -> Project Gutenberg id where the title is public domain.
+# KEPT FOR VERIFICATION ONLY. Do not use to source new material.
 GUTENBERG_IDS = {
     "The King in Yellow": 8492,
     "Carmilla": 10007,
@@ -1110,6 +1130,11 @@ def cmd_fetch(args) -> int:
             return 0
         return 1
 
+    if GUTENBERG_BANNED:
+        print("  ! Project Gutenberg is banned as a source (Amre, 2026-10-30). "
+              "Use Z-Library: zlib_kindle.py search then fetch.",
+              file=sys.stderr)
+        return 1
     gid = args.gutenberg_id or gutenberg_lookup(title)
     if not gid:
         print("  ! no zlib file and no Gutenberg id; cannot fetch", file=sys.stderr)
