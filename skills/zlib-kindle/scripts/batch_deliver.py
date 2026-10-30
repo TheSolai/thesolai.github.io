@@ -28,7 +28,13 @@ import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import bounded  # noqa: E402
 import zlib_kindle as zk  # noqa: E402
+
+# The uncapped run output is written here as well, so nothing is lost for
+# auditing even though the chat only ever sees the bounded version.
+LOG_PATH = os.path.expanduser(
+    "~/Downloads/../.openclaw/workspace/skills/zlib-kindle/state/batch-deliver.log")
 
 
 # --------------------------------------------------------------------------
@@ -331,6 +337,18 @@ def main():
                     help="stop after N books delivered in this run")
     args = ap.parse_args()
 
+    # The run output is announced to a chat. It is bounded here, inside the
+    # script, so a long backlog, a verbose search, or a noisy failure can
+    # never turn one run into a flood. The capture also covers the lines
+    # printed by the shared zlib_kindle helpers, which do not go through
+    # this module's own prints.
+    with bounded.Bounded(log_path=LOG_PATH) as cap:
+        rc, verdict = _run(args)
+    cap.emit(verdict)
+    return rc
+
+
+def _run(args):
     with open(args.list, encoding="utf-8") as fh:
         books = json.load(fh)
     to_addrs = [a.strip() for a in args.to.split(",") if a.strip()]
@@ -341,7 +359,7 @@ def main():
     if not logged_in:
         print("  ! zlib: sign-in failed; cannot resolve download links",
               file=sys.stderr)
-        return 2
+        return 2, "=== could not start: zlib sign-in failed ==="
     print(f"  · zlib: signed in; {len(books)} titles queued")
 
     delivered = failed = skipped = 0
@@ -393,20 +411,18 @@ def main():
             print(f"  ! FAILED {title}: {msg}", file=sys.stderr)
             failed += 1
 
-    print(f"\n=== delivered {delivered}, failed {failed}, skipped {skipped} ===")
+    verdict = f"=== delivered {delivered}, failed {failed}, skipped {skipped} ==="
     if quota_stopped:
-        print("=== stopped early: zlib daily download cap reached ===")
-        rc = 3
-    else:
-        rc = 0 if failed == 0 else 1
+        verdict += "\n=== stopped early: zlib daily download cap reached ==="
+    rc = 3 if quota_stopped else (0 if failed == 0 else 1)
 
     # A run that delivered nothing and failed nothing has nothing to say.
     # The announce path is only silenced when the final line is exactly the
     # token NO_REPLY, so that token is printed last and on its own. Progress
     # chatter above it is for the log, not for the announcement.
     if delivered == 0 and failed == 0:
-        print("NO_REPLY")
-    return rc
+        verdict += "\nNO_REPLY"
+    return rc, verdict
 
 
 if __name__ == "__main__":

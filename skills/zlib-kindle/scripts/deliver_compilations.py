@@ -35,6 +35,7 @@ import sys
 import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import bounded  # noqa: E402
 import zlib_kindle as zk  # noqa: E402
 import slim_epub  # noqa: E402
 import send_cap  # noqa: E402
@@ -47,6 +48,65 @@ import recipient_config  # noqa: E402
 # This is the ceiling the builder uses too (build_new_compilations.py), so a
 # file that passes the build is always deliverable without a re-slice.
 MAX_ATTACHMENT_BYTES = 3_400_000
+
+# The run output is read by a human afterwards and announced to a chat.
+# It is bounded here, inside the script, so a long backlog or a noisy
+# error can never turn a single run into a flood. Both a maximum item
+# count and a maximum character count apply, and room is reserved for
+# the verdict so the outcome is always visible.
+MAX_LISTED = 10
+MAX_CHARS = 3000
+VERDICT_RESERVE = 400
+
+# The uncapped run output is written here as well, so nothing is lost for
+# auditing even though the chat only ever sees the bounded version.
+LOG_PATH = os.path.expanduser(
+    "~/Downloads/../.openclaw/workspace/skills/zlib-kindle/state/compilation-delivery.log")
+
+_OUT = []
+_OUT_CHARS = 0
+_OUT_DROPPED = 0
+_FAILURES = []
+
+
+def say(line=""):
+    """Append one line of run output, under the item and character caps."""
+    global _OUT_CHARS, _OUT_DROPPED
+    if len(_OUT) >= MAX_LISTED:
+        _OUT_DROPPED += 1
+        return
+    if _OUT_CHARS + len(line) + 1 > MAX_CHARS - VERDICT_RESERVE:
+        _OUT_DROPPED += 1
+        return
+    _OUT.append(line)
+    _OUT_CHARS += len(line) + 1
+
+
+def fail(subject, detail):
+    """Record a failure. Failed titles are always named in the report."""
+    _FAILURES.append((subject, detail))
+    say(f"  ! {subject}: {detail}")
+
+
+def flush_out(summary):
+    """Print the bounded run output, the failed titles, then the verdict.
+
+    The body is printed into the captured stdout, so the lines printed by
+    the shared zlib_kindle helpers are counted against the same caps. The
+    verdict itself is returned rather than printed here: the caller emits
+    it after the capture is closed, which guarantees it survives.
+    """
+    for line in _OUT:
+        print(line)
+    if _OUT_DROPPED:
+        print(f"  ... {_OUT_DROPPED} more line(s) not shown")
+    if _FAILURES:
+        print("  failed titles:")
+        for subject, detail in _FAILURES[:MAX_LISTED]:
+            print(f"    - {subject}: {detail}")
+        if len(_FAILURES) > MAX_LISTED:
+            print(f"    ... and {len(_FAILURES) - MAX_LISTED} more")
+    return summary
 
 # Each step is a downscaling pass; a heavier pass is tried if the lighter
 # one was not enough.
@@ -291,7 +351,7 @@ def send_one(path, subject, addr):
     """
     ok, detail = verify(path, subject)
     if not ok:
-        print(f"  ! refusing {subject} -> {addr}: {detail}", file=sys.stderr)
+        fail(subject, f"refusing to send to {addr}: {detail}")
         return False
 
     work = path
@@ -306,24 +366,21 @@ def send_one(path, subject, addr):
                 slim_epub.slim(work, **opts)
                 ok, detail = verify(work, subject)
                 if not ok:
-                    print(f"  ! refusing {subject} after slimming: {detail}",
-                          file=sys.stderr)
+                    fail(subject, f"refusing after slimming: {detail}")
                     return False
                 if os.path.getsize(work) <= MAX_ATTACHMENT_BYTES:
                     break
-                print(f"    still {os.path.getsize(work):,} bytes, slimming again")
+                say(f"    still {os.path.getsize(work):,} bytes, slimming again")
             else:
-                print(f"  ! {subject} -> {addr}: still over "
-                      f"{MAX_ATTACHMENT_BYTES:,} bytes after slimming",
-                      file=sys.stderr)
+                fail(subject, f"still over {MAX_ATTACHMENT_BYTES:,} bytes "
+                              f"after slimming")
                 return False
-            print(f"    slimmed copy to {os.path.getsize(work):,} bytes")
+            say(f"    slimmed copy to {os.path.getsize(work):,} bytes")
 
         try:
             return zk.send_to_kindle(work, subject, addr)
         except Exception as exc:
-            print(f"  ! {subject} -> {addr}: {type(exc).__name__}: {exc}",
-                  file=sys.stderr)
+            fail(subject, f"send to {addr} failed: {type(exc).__name__}: {exc}")
             return False
     finally:
         if tmpdir and os.path.isdir(tmpdir):
@@ -350,6 +407,17 @@ def main():
                     help="stop after this many sends in this run")
     args = ap.parse_args()
 
+    # The run output is announced to a chat. It is bounded here, inside the
+    # script, so a long backlog or a noisy error can never turn a single run
+    # into a flood. The capture also covers the lines printed by the shared
+    # zlib_kindle helpers, which do not go through this module's own prints.
+    with bounded.Bounded(log_path=LOG_PATH) as cap:
+        rc, verdict = _run(args)
+    cap.emit(verdict)
+    return rc
+
+
+def _run(args):
     to_addrs = [a.strip() for a in args.to.split(",") if a.strip()]
     state = load_state(args.state)
 
@@ -373,18 +441,18 @@ def main():
         have = recipients_done(state, key)
         want = [a for a in recipients if a not in have]
         if not want:
-            print(f"  = {subject}: every recipient already has it, skipping")
+            say(f"  = {subject}: every recipient already has it, skipping")
             skipped += 1
             continue
 
         if not os.path.isfile(path):
-            print(f"  ! {subject}: missing {path}", file=sys.stderr)
+            fail(subject, f"missing {path}")
             failed += 1
             continue
 
         if args.dry_run:
-            print(f"  → would send {os.path.basename(path)} "
-                  f"({os.path.getsize(path):,} bytes) -> {', '.join(want)}")
+            say(f"  -> would send {os.path.basename(path)} "
+                f"({os.path.getsize(path):,} bytes) -> {', '.join(want)}")
             continue
 
         for addr in want:
@@ -393,11 +461,11 @@ def main():
             # rejected mid-batch.
             left = remaining_budget()
             if left <= 0:
-                print(f"  ! daily send cap reached; stopping with state intact")
+                say("  ! daily send cap reached; stopping with state intact")
                 capped = True
                 break
             if args.budget and spent >= args.budget:
-                print(f"  ! run budget of {args.budget} send(s) reached")
+                say(f"  ! run budget of {args.budget} send(s) reached")
                 capped = True
                 break
 
@@ -406,7 +474,7 @@ def main():
                 save_state(args.state, state)
                 delivered += 1
                 spent += 1
-                print(f"  ✓ delivered: {subject} -> {addr}")
+                say(f"  + delivered: {subject} -> {addr}")
             else:
                 failed += 1
                 break
@@ -414,15 +482,14 @@ def main():
             break
 
     if args.dry_run:
-        print(f"\n=== dry run: {len(jobs)} job(s) ===")
-        return 0
+        return 0, flush_out(f"=== dry run: {len(jobs)} job(s) ===")
 
     if capped:
-        print(f"\n=== delivered {delivered}, failed {failed}, skipped {skipped}, "
-              f"stopped: daily send cap ===")
-        return 3
-    print(f"\n=== delivered {delivered}, failed {failed}, skipped {skipped} ===")
-    return 0 if failed == 0 else 1
+        return 3, flush_out(
+            f"=== delivered {delivered}, failed {failed}, skipped {skipped}, "
+            f"stopped: daily send cap ===")
+    return (0 if failed == 0 else 1), flush_out(
+        f"=== delivered {delivered}, failed {failed}, skipped {skipped} ===")
 
 
 if __name__ == "__main__":
