@@ -219,6 +219,22 @@ def human_size(n):
     return str(n)
 
 
+def clip_text(text, limit):
+    """Bound a rendered string to `limit` characters.
+
+    Every string that reaches the chat goes through here. The 2026-10-29
+    flood was 228,829 characters in one report, so an unbounded field is
+    the whole problem: bounding only the evidence list leaves a single
+    enormous `detail` free to flood on its own.
+    """
+    if text is None:
+        return text
+    text = str(text)
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0] + f" ... (+{len(text) - limit} chars)"
+
+
 def git(args, cwd=WORKSPACE, timeout=30):
     try:
         proc = subprocess.run(["git"] + args, cwd=cwd, capture_output=True,
@@ -327,18 +343,27 @@ class Check:
     # Hard ceiling on evidence lines per check. A chat message that gets
     # chunked into 90 Telegram parts is a spam incident, not a report.
     MAX_EVIDENCE = 12
+    # Same ceiling for the detail prose. Capping only the evidence list
+    # leaves a hole: any check that builds one enormous detail string (a
+    # pasted log, a long path list) still floods the chat.
+    MAX_DETAIL = 400
+    # The fix line gets a larger ceiling than the detail, because it carries
+    # the actual remediation and truncating it mid-sentence makes it useless.
+    # It is still bounded: an unbounded fix is the same flood, spelled
+    # differently.
+    MAX_FIX = 1500
 
     def __init__(self, cid, title, status, detail, evidence=None, fix=None):
         self.cid = cid
         self.title = title
         self.status = status          # PASS | WARN | FAIL | INFO
-        self.detail = detail
+        self.detail = clip_text(detail, self.MAX_DETAIL)
         ev = list(evidence or [])
         if len(ev) > self.MAX_EVIDENCE:
             dropped = len(ev) - self.MAX_EVIDENCE
             ev = ev[:self.MAX_EVIDENCE] + [f"... and {dropped} more line(s)"]
-        self.evidence = ev
-        self.fix = fix
+        self.evidence = [clip_text(e, 200) for e in ev]
+        self.fix = clip_text(fix, self.MAX_FIX) if fix else fix
 
     def to_dict(self):
         return {
@@ -349,6 +374,13 @@ class Check:
             "evidence": self.evidence,
             "fix": self.fix,
         }
+
+
+# Build output and dependency trees are not "work in progress". Counting
+# thousands of Rust target/ files as dirt produced a 2550-line report that
+# Telegram split into ~90 messages on 2026-10-29.
+NOISE_PATTERNS = ("/target/", "node_modules/", "/.venv/", "__pycache__/",
+                  "/dist/", "/build/", ".pytest_cache/")
 
 
 # --------------------------------------------------------------------------
@@ -562,7 +594,9 @@ def check_truncation(events, window_hours):
         f"change — the artifact was cut, so content was silently dropped. "
         f"This is NOT the overflow axis and the overflow knobs do not fix it",
         ev,
-        f"this axis is budget competition between the summary body, the "
+        f"raising keepRecentTokens is not the fix for this axis, and the "
+        f"overflow knobs do not fix it either — this axis is budget "
+        f"competition between the summary body, the "
         f"retained suffix and the preserved turn inside one char budget "
         f"(cap 16000). budgetCompactionSummary() reserves min(suffix.length, "
         f"maxChars) for the suffix and floors the body at ceil(maxChars/2), "
@@ -925,14 +959,9 @@ def check_git_state():
         return Check("git", "Git tree is clean and published", "WARN",
                      f"git status failed: {err[:150]}")
     dirty = [l for l in out.splitlines() if l.strip()]
-    # Build output and dependency trees are not "work in progress". Counting
-    # thousands of Rust target/ files as dirt produced a 2550-line report
-    # that Telegram split into ~90 messages.
-    NOISE = ("/target/", "node_modules/", "/.venv/", "__pycache__/",
-             "/dist/", "/build/", ".pytest_cache/")
     other = [l for l in dirty
              if "drosscash" not in l
-             and not any(n in l for n in NOISE)]
+             and not any(n in l for n in NOISE_PATTERNS)]
     noise = len(dirty) - len(other)
     for l in other:
         ev.append(l[:100])
@@ -1325,9 +1354,19 @@ def render_text(checks, window_hours, source):
             if c.fix:
                 lines.append(f"       fix: {c.fix}")
     lines.append("")
-    lines.append(f"SUMMARY: {len(passes)} pass, {len(warns)} warn, "
-                 f"{len(fails)} fail, {len(infos)} info")
-    return "\n".join(lines)
+    summary = (f"SUMMARY: {len(passes)} pass, {len(warns)} warn, "
+               f"{len(fails)} fail, {len(infos)} info")
+
+    # The report is bounded HERE, not only at the print site. A renderer that
+    # returns 127 KB and relies on the caller to truncate it is one careless
+    # caller away from the flood. The summary line is reserved first so the
+    # reader always learns the verdict.
+    body = "\n".join(lines)
+    budget = MAX_MESSAGE_CHARS - len(summary) - 2
+    if len(body) > budget:
+        body = (body[:budget].rsplit("\n", 1)[0]
+                + "\n... (report truncated to protect the chat)")
+    return f"{body}\n\n{summary}"
 
 
 def main():

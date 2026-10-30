@@ -244,6 +244,105 @@ class TruncationAxis(unittest.TestCase):
         self.assertIn("budget", fix)
 
 
+class FloodGuards(unittest.TestCase):
+    """
+    The 2026-10-29 flood guard.
+
+    On 2026-10-29 at 21:17 the Claw Doctor cron announced one report of
+    228,829 characters across 2,563 lines. Telegram split it into 59
+    messages. The cause was `check_git_state()` counting every Rust
+    build artifact as uncommitted dirt, and no cap anywhere between the
+    check and the chat.
+
+    The caps were added in the same session, but nothing TESTED them, so a
+    later audit reading a stale copy concluded the caps were absent and
+    that the flood was live. A guard that is not asserted is not a guard.
+    These tests are the assertion.
+    """
+
+    def test_evidence_is_capped(self):
+        check = doc.Check("x", "t", "WARN", "d",
+                          evidence=[f"line {i}" for i in range(500)])
+        self.assertLessEqual(len(check.evidence), doc.Check.MAX_EVIDENCE + 1)
+        self.assertIn("more line(s)", check.evidence[-1])
+
+    def test_detail_is_capped(self):
+        """The detail string is rendered inline, so it must be bounded too.
+
+        Capping only the evidence list leaves one enormous `detail` free to
+        flood on its own — which is the shape of the original bug.
+        """
+        check = doc.Check("x", "t", "WARN", "D" * 200000)
+        self.assertLessEqual(len(check.detail), doc.Check.MAX_DETAIL + 40)
+        self.assertLess(len(check.detail), 1000)
+
+    def test_fix_is_capped(self):
+        check = doc.Check("x", "t", "WARN", "d", fix="F" * 100000)
+        self.assertLessEqual(len(check.fix), doc.Check.MAX_FIX + 40)
+
+    def test_evidence_lines_are_bounded(self):
+        check = doc.Check("x", "t", "WARN", "d", evidence=["E" * 50000])
+        self.assertLess(len(check.evidence[0]), 500)
+
+    def test_cap_message_bounds_the_report(self):
+        # The truncation notice is appended, so the result is slightly LONGER
+        # than the cap itself. What matters is that it is bounded.
+        self.assertLessEqual(len(doc.cap_message("x" * 100000)),
+                             doc.MAX_MESSAGE_CHARS + 100)
+
+    def test_cap_message_keeps_short_reports_intact(self):
+        text = "a short report"
+        self.assertEqual(doc.cap_message(text), text)
+
+    def test_render_text_is_bounded(self):
+        """The full (non-cron) report must also fit one message."""
+        checks = [doc.Check(f"c{i}", f"title {i}", "WARN",
+                            "detail " * 500,
+                            evidence=[f"ev {j} " * 200 for j in range(50)])
+                  for i in range(40)]
+        rendered = doc.render_text(checks, 24, "test")
+        self.assertLessEqual(len(rendered), doc.MAX_MESSAGE_CHARS)
+
+    def test_render_finding_is_bounded(self):
+        check = doc.Check("x", "t", "FAIL", "D" * 200000,
+                          evidence=["E" * 5000 for _ in range(100)],
+                          fix="F" * 50000)
+        rendered = doc.render_finding(check, 24)
+        self.assertLess(len(rendered), 5000)
+
+
+class GitNoiseFilter(unittest.TestCase):
+    """Build output is not work in progress, and must not be reported as dirt."""
+
+    NOISE = ("/target/", "node_modules/", "/.venv/", "__pycache__/",
+             "/dist/", "/build/", ".pytest_cache/")
+
+    def test_noise_filter_constants_match_the_doctor(self):
+        """The doctor's noise list must be exactly what this test expects.
+
+        The list lives in one place (NOISE_PATTERNS) so the check and the
+        test cannot drift apart silently — that drift is how a flood filter
+        stops filtering.
+        """
+        self.assertEqual(tuple(doc.NOISE_PATTERNS), self.NOISE)
+
+    def test_noise_paths_are_recognised(self):
+        for path in ("D  projects/vellum-rs/target/debug/.fingerprint/x",
+                     "?? node_modules/foo/bar.js",
+                     " M app/.venv/lib/py3/x.py",
+                     "?? src/__pycache__/x.pyc",
+                     "?? web/dist/bundle.js",
+                     "?? web/build/out.js",
+                     "?? app/.pytest_cache/v/cache"):
+            self.assertTrue(any(n in path for n in self.NOISE), path)
+
+    def test_real_dirt_is_not_filtered(self):
+        for path in (" M scripts/health/claw-doctor.py",
+                     "?? README.md",
+                     " M projects/drosscash"):
+            self.assertFalse(any(n in path for n in self.NOISE), path)
+
+
 class BoundaryDetection(unittest.TestCase):
     """The boundary itself must be found, and only from real knob changes."""
 
