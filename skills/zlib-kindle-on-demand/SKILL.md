@@ -58,6 +58,24 @@ which reads like a missing file but is really a mislabelled or empty
 attachment. The script maps the extensions explicitly and refuses an
 empty file locally, before anything is sent.
 
+**Amazon accepts a file silently or not at all, so every check happens
+before the send.** On 2026-10-29 a valid, DRM-free EPUB of *The
+Haunting of Hill House* was sent and never arrived: its OPF package root
+used a prefixed `<opf:package xmlns:opf="...">` instead of the default
+`<package xmlns="http://www.idpf.org/2007/opf">`, which Amazon's
+converter drops without a word. Every EPUB that *did* arrive used the
+default form. The guards now enforce this on every send: magic bytes,
+filename extension, content type and EPUB namespace must all agree, the
+file must be non-empty, and title and author must be readable from inside
+it. A file that fails is repaired (OPF namespace rewritten) or converted
+with Calibre; one that cannot be rescued is never sent. Check any file
+by hand with:
+
+```bash
+python3 zlib_kindle.py preflight ~/Downloads/dross-books/BOOK.epub \
+  --title "The Haunting of Hill House" --author "Shirley Jackson"
+```
+
 **The `PK` zip check does not prove the file is the right book.** A wrong
 Gutenberg id resolves to a real EPUB of a completely different book.
 `deliver` and `fetch` check `dc:title`/`dc:creator` inside the EPUB

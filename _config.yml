@@ -117,6 +117,12 @@ exclude:
   - data/agent-email-state
   - data/outreach
   - projects/drosscash
+  # Cargo build output for projects/vellum-rs. ~493 MB of binaries and
+  # incremental caches, published to the live site because it was tracked
+  # by accident. The compiled binary embeds the builder's absolute home
+  # path, so serving it discloses a host path to anyone who downloads it.
+  # Excluded from the build; the source tree stays public.
+  - projects/vellum-rs/target
   - node_modules
   - vendor
   - .bundle
