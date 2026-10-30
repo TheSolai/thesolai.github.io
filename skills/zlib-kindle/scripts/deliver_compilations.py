@@ -216,12 +216,11 @@ GAPS = [
     ("The-King-in-Yellow-Chambers.epub", "The King in Yellow", [GMAIL]),
     ("The-Fisherman-by-John-Langan.epub", "The Fisherman", [GMAIL]),
     ("NOS4A2-by-Joe-Hill.epub", "NOS4A2", [GMAIL]),
-    # Kindle received the original of this edition, but its OPF uses a
-    # prefixed opf: root, which Amazon drops. Kindle therefore holds no
-    # usable copy of the canonical "Novel by Shirley Jackson" edition
-    # and needs the repaired file too.
-    ("The-Haunting-of-Hill-House-Novel-by-Shirley-Jackson-repaired.epub",
-     "The Haunting of Hill House", [KINDLE, GMAIL]),
+    # No repaired Haunting entry on purpose. Both recipients already hold
+    # The-Haunting-of-Hill-House.epub (2026-10-29T19:50), and that file's
+    # single content part is well-formed XHTML with a valid two-item spine
+    # and no prefixed opf: root, so Amazon renders it. Sending the
+    # repaired original as well would duplicate a book both sides have.
     ("Boccaccio-Decameron-Complete.epub", "The Decameron, Complete",
      [KINDLE, GMAIL]),
 ]
