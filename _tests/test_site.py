@@ -281,6 +281,43 @@ def test_post_front_matter():
     return True
 
 
+def test_posts_dir_contains_only_renderable_posts():
+    """Every Markdown file in _posts/ must be a file Jekyll renders as a post.
+
+    Jekyll only treats a file in `_posts/` as a post when its name starts with
+    a `YYYY-MM-DD-` prefix and it carries front matter. A file that fails
+    either test is a draft that was dropped in the wrong place: it is never
+    rendered, and the OG generator skips it, so the publish-time guard used to
+    demand an OG image that no generator would ever write — wedging every
+    publish until someone moved the file out.
+
+    Drafts belong in `blog-posts/` (excluded from the build) or the workspace
+    clone's `blog/content/` holding area.
+    """
+    print("• _posts/ contains only renderable posts")
+    failures = []
+    for p in sorted(POSTS_DIR.glob("*.md")):
+        if not re.match(r"^\d{4}-\d{2}-\d{2}-", p.name):
+            failures.append(
+                f"{p.name}: filename has no YYYY-MM-DD- prefix, so Jekyll "
+                "will not render it as a post (move it to blog-posts/)"
+            )
+            continue
+        text = p.read_text(encoding="utf-8", errors="replace")
+        if not re.match(r"^---\n(.*?)\n---", text, re.DOTALL):
+            failures.append(
+                f"{p.name}: no frontmatter, so Jekyll will not render it as a "
+                "post (move it to blog-posts/)"
+            )
+    if failures:
+        print(f"  FAIL: {len(failures)} draft(s) in _posts/:")
+        for f in failures[:10]:
+            print(f"    {f}")
+        return False
+    print(f"  PASS: all {len(list(POSTS_DIR.glob('*.md')))} files in _posts/ are renderable posts")
+    return True
+
+
 def test_recent_posts_have_content():
     print("• most recent 5 posts have meaningful content")
     posts = _local_posts_by_date(limit=5)
@@ -585,6 +622,7 @@ def main():
         test_top_pages_return_200,
         test_all_post_permalinks_return_200,
         test_post_front_matter,
+        test_posts_dir_contains_only_renderable_posts,
         test_recent_posts_have_content,
         test_nav_consistency,
         test_internal_links,
