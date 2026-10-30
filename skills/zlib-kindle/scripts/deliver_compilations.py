@@ -76,8 +76,14 @@ DELIVERIES = [
      "Paradise Lost and Paradise Regained"),
     ("The-City-of-God-Augustine.epub", "The City of God"),
     ("The-Devils-Library-Bierce-Scot-Conway.epub", "The Devil's Library"),
-    ("The-Watched-Wood-Three-Panics.epub",
-     "The Watched Wood: Three Narratives of the Old Gods"),
+    # Renamed from "The-Watched-Wood-Three-Panics.epub": that title named
+    # two works the file never contained. See build_themed_compilations.py
+    # for the byte-level evidence. Both recipients received this content
+    # on 2026-10-29 under the old subject, so the state file carries the
+    # new subject with both recipients already recorded against it, and
+    # the compilation is skipped rather than sent a second time.
+    ("Three-Narratives-of-the-Old-Gods.epub",
+     "Three Narratives of the Old Gods: The Great God Pan, The King in Yellow and The House on the Borderland"),
     ("Apocalypse-The-Book-of-Enoch-and-Revelation.epub",
      "Apocalypse: The Book of Enoch and The Revelation of Saint John"),
     ("Fausts-Bargain-Marlowe-and-Goethe.epub",

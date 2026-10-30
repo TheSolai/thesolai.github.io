@@ -75,8 +75,16 @@ COMPILATIONS = [
       ("The-Discoverie-of-Witchcraft-Scot.epub",
        "The Discoverie of Witchcraft by Reginald Scot")]),
 
-    ("The-Watched-Wood-Three-Panics.epub",
-     "The Watched Wood: Three Narratives of the Old Gods",
+    # This compilation was previously called
+    # "The-Watched-Wood-Three-Panics.epub" and titled "The Watched Wood:
+    # Three Narratives of the Old Gods". That name was wrong: the library
+    # has never held a "The Watched Wood" or a "Three Panic" source, and a
+    # byte-level read of the built file showed its 21 spine items are
+    # *The Great God Pan*, *The King in Yellow* and *The House on the
+    # Borderland*. The creator line was always correct; only the title
+    # lied. The name now states the three works it actually contains.
+    ("Three-Narratives-of-the-Old-Gods.epub",
+     "Three Narratives of the Old Gods: The Great God Pan, The King in Yellow and The House on the Borderland",
      "Arthur Machen, Robert W. Chambers and William Hope Hodgson",
      [("The-Great-God-Pan-by-Arthur-Machen.epub", "The Great God Pan by Arthur Machen"),
       ("The-King-in-Yellow-Chambers.epub", "The King in Yellow by Robert W. Chambers"),
