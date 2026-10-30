@@ -1,17 +1,27 @@
 {
-  "generated": "2026-10-26",
-  "seed": 739915,
+  "generated": "2026-10-30",
+  "seed": 739919,
   "count": 6,
   "skills": [
     {
-      "name": "Agent Deep Research",
-      "slug": "agent-deep-research",
-      "emoji": "🔬",
-      "summary": "Autonomous deep research powered by Google Gemini. Comprehensive research workflows — topic exploration, source gathering, synthesis, and structured…",
-      "description": "Autonomous deep research powered by Google Gemini. Comprehensive research workflows — topic exploration, source gathering, synthesis, and structured report generation.",
-      "url": "https://clawskills.sh/skills/24601-agent-deep-research",
+      "name": "Auto Review",
+      "slug": "autoreview",
+      "emoji": "🔍",
+      "summary": "Official OpenClaw skill for automated code and content review. Runs structured review passes against any codebase or document…",
+      "description": "Official OpenClaw skill for automated code and content review. Runs structured review passes against any codebase or document, checks for issues, and generates review reports.",
+      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/autoreview",
       "category": "ai",
-      "install": "openclaw skills install agent-deep-research"
+      "install": "openclaw skills install autoreview"
+    },
+    {
+      "name": "Session Viewer",
+      "slug": "session-viewer",
+      "emoji": "🖥️",
+      "summary": "Official OpenClaw skill for visualising and navigating agent session history. Provides a UI layer for reviewing past sessions…",
+      "description": "Official OpenClaw skill for visualising and navigating agent session history. Provides a UI layer for reviewing past sessions, search, and understanding agent decision chains.",
+      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/session-viewer",
+      "category": "automation",
+      "install": "openclaw skills install session-viewer"
     },
     {
       "name": "Apple Health",
@@ -24,44 +34,34 @@
       "install": "openclaw skills install apple-health-skill"
     },
     {
-      "name": "Sol Email Agent",
-      "slug": "sol-email-agent",
-      "emoji": "📧",
-      "summary": "The email automation skill Sol uses daily. Gmail/SMTP integration, scheduled digest, smart threading, auto-reply rules, and attachment handling…",
-      "description": "The email automation skill Sol uses daily. Gmail/SMTP integration, scheduled digest, smart threading, auto-reply rules, and attachment handling — works while you sleep.",
-      "url": "https://github.com/TheSolAI/openclaw-email-agent",
-      "category": "automation",
-      "install": "openclaw skills install https://github.com/TheSolAI/openclaw-email-agent"
+      "name": "PPTX Generator",
+      "slug": "pptx-generator",
+      "emoji": "📊",
+      "summary": "Generate, edit, and read PowerPoint presentations. Create from scratch with PptxGenJS, edit via XML, or extract text with…",
+      "description": "Generate, edit, and read PowerPoint presentations. Create from scratch with PptxGenJS, edit via XML, or extract text with markitdown.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/pptx-generator",
+      "category": "documents",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
     },
     {
-      "name": "Before You Build",
-      "slug": "before-you-build",
-      "emoji": "⚠️",
-      "summary": "Review product risk before building. Structured pre-flight checks for any project — identifies failure modes, scope creep, technical…",
-      "description": "Review product risk before building. Structured pre-flight checks for any project — identifies failure modes, scope creep, technical debt, and provides a go/no-go recommendation before you commit.",
-      "url": "https://clawhub.ai/bin1874/before-you-build",
-      "category": "productivity",
-      "install": "openclaw skills install before-you-build"
-    },
-    {
-      "name": "Academic Research",
-      "slug": "academic-research",
-      "emoji": "🎓",
-      "summary": "Search academic papers and conduct literature reviews using the OpenAlex API — free, no API key required. Finds…",
-      "description": "Search academic papers and conduct literature reviews using the OpenAlex API — free, no API key required. Finds papers, extracts citations, gathers references, and builds a research corpus.",
-      "url": "https://clawskills.sh/skills/rogersuperbuilderalpha-academic-research",
+      "name": "Agent Transcript",
+      "slug": "agent-transcript",
+      "emoji": "📜",
+      "summary": "Official OpenClaw skill for transcript processing — captures, stores, and retrieves agent conversation history. Enables persistent context across…",
+      "description": "Official OpenClaw skill for transcript processing — captures, stores, and retrieves agent conversation history. Enables persistent context across sessions and long-running project memory.",
+      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/agent-transcript",
       "category": "ai",
-      "install": "openclaw skills install academic-research"
+      "install": "openclaw skills install agent-transcript"
     },
     {
-      "name": "Session Viewer",
-      "slug": "session-viewer",
-      "emoji": "🖥️",
-      "summary": "Official OpenClaw skill for visualising and navigating agent session history. Provides a UI layer for reviewing past sessions…",
-      "description": "Official OpenClaw skill for visualising and navigating agent session history. Provides a UI layer for reviewing past sessions, search, and understanding agent decision chains.",
-      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/session-viewer",
-      "category": "automation",
-      "install": "openclaw skills install session-viewer"
+      "name": "Shader Dev",
+      "slug": "shader-dev",
+      "emoji": "✨",
+      "summary": "Comprehensive GLSL shader techniques — ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing.…",
+      "description": "Comprehensive GLSL shader techniques — ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing. ShaderToy-compatible.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/shader-dev",
+      "category": "creative",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
     }
   ]
 }
