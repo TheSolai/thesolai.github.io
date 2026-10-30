@@ -76,6 +76,72 @@ BOOKS = {
     "Dunsany-Sword-of-Welleran.epub": (10806, ("sword of welleran",), "dunsany"),
     "Dunsany-Fifty-One-Tales.epub": (7838, ("fifty-one tales",), "dunsany"),
     "Dunsany-A-Dreamers-Tales.epub": (8129, ("dreamer's tales", "dreamers tales"), "dunsany"),
+
+    # --- the Pellucidar saga (Barsoom-adjacent, two volumes) ---
+    "Pellucidar.epub": (605, ("pellucidar",), "burroughs"),
+    "Tanar-of-Pellucidar.epub": (70199, ("tanar of pellucidar", "tanar"), "burroughs"),
+
+    # --- the fourth Oz novel Baum wrote outside the numbered fourteen ---
+    "Oz-Extra-05-The-Woggle-Bug.epub": (21914, ("woggle-bug", "woggle bug"), "baum"),
+
+    # --- the Mahabharata, in the four volumes of the Ganguli translation ---
+    "Mahabharata-Vol-01.epub": (15474, ("mahabharata",), None),
+    "Mahabharata-Vol-02.epub": (15475, ("mahabharata",), None),
+    "Mahabharata-Vol-03.epub": (15476, ("mahabharata",), None),
+    "Mahabharata-Vol-04.epub": (15477, ("mahabharata",), None),
+
+    # --- the Norse sagas and eddas ---
+    "Norse-Heimskringla.epub": (598, ("heimskringla",), None),
+    "Norse-Story-of-the-Volsungs.epub": (1152, ("volsungs",), None),
+    "Norse-Nibelungenlied.epub": (1151, ("nibelungenlied",), None),
+    "Norse-Saga-of-Grettir-the-Strong.epub": (347, ("grettir",), None),
+    "Norse-Fridthjofs-Saga.epub": (3759, ("fridthjof",), None),
+    "Norse-Popular-Tales-from-the-Norse.epub": (8933, ("popular tales from the norse",), None),
+
+    # --- Herodotus, complete in two volumes ---
+    "Herodotus-Vol-01.epub": (2707, ("herodotus",), None),
+    "Herodotus-Vol-02.epub": (2456, ("herodotus",), None),
+
+    # --- Gibbon, complete in six volumes ---
+    "Gibbon-Decline-and-Fall-Vol-01.epub": (731, ("decline and fall",), "gibbon"),
+    "Gibbon-Decline-and-Fall-Vol-02.epub": (732, ("decline and fall",), "gibbon"),
+    "Gibbon-Decline-and-Fall-Vol-03.epub": (733, ("decline and fall",), "gibbon"),
+    "Gibbon-Decline-and-Fall-Vol-04.epub": (734, ("decline and fall",), "gibbon"),
+    "Gibbon-Decline-and-Fall-Vol-05.epub": (735, ("decline and fall",), "gibbon"),
+    "Gibbon-Decline-and-Fall-Vol-06.epub": (736, ("decline and fall",), "gibbon"),
+
+    # --- Grote, History of Greece, complete in twelve volumes ---------
+    "Grote-History-of-Greece-Vol-01.epub": (56342, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-02.epub": (57143, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-03.epub": (58565, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-04.epub": (60426, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-05.epub": (62098, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-06.epub": (54936, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-07.epub": (51181, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-08.epub": (52119, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-09.epub": (51182, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-10.epub": (51183, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-11.epub": (61469, ("history of greece",), "grote"),
+    "Grote-History-of-Greece-Vol-12.epub": (60786, ("history of greece",), "grote"),
+
+    # --- Valmiki, The Ramayana, complete in four volumes (Dutt) --------
+    "Ramayana-Vol-01-Balakandam-and-Ayodhyakandam.epub": (
+        57265, ("r\u0101m\u0101yana", "ramayana"), "valmiki"),
+    "Ramayana-Vol-02-Aranya-Kishkindha-and-Sundara.epub": (
+        57826, ("r\u0101m\u0101yana", "ramayana"), "valmiki"),
+    "Ramayana-Vol-03-Yuddhakandam.epub": (
+        60188, ("r\u0101m\u0101yana", "ramayana"), "valmiki"),
+    "Ramayana-Vol-04-Uttara-Kanda.epub": (
+        62496, ("r\u0101m\u0101yana", "ramayana"), "valmiki"),
+
+    # --- Valmiki, the Maharamayana / Yoga-Vasishtha, four volumes -----
+    "Maharamayana-Vol-01.epub": (71326, ("maharamayana",), "valmiki"),
+    "Maharamayana-Vol-02-Part-1.epub": (71063, ("maharamayana",), "valmiki"),
+    "Maharamayana-Vol-02-Part-2.epub": (71064, ("maharamayana",), "valmiki"),
+    "Maharamayana-Vol-03-Part-1.epub": (71095, ("maharamayana",), "valmiki"),
+    "Maharamayana-Vol-03-Part-2.epub": (46531, ("maharamayana",), "valmiki"),
+    "Maharamayana-Vol-04-Part-1.epub": (71248, ("maharamayana",), "valmiki"),
+    "Maharamayana-Vol-04-Part-2.epub": (71249, ("maharamayana",), "valmiki"),
 }
 
 

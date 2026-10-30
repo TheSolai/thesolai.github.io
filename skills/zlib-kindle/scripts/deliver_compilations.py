@@ -1,20 +1,43 @@
 #!/usr/bin/env python3
-"""Deliver the themed compilations to the Kindle address.
+"""Deliver the themed compilations and the single-recipient gap files.
 
-Each file is re-verified immediately before it is sent (magic bytes,
-extension agreement, default OPF namespace, readable title/creator), then
-sent to every recipient, and only then recorded in the resume file. If a
-send fails the file is not marked done, so a later run retries it.
+Two properties this script has that the Z-Library job does not need:
+
+* It is CAP-AWARE. The AgentMail account has a hard ceiling of 100 sends
+  per UTC day and the service enforces it. Rather than discover the
+  ceiling by being rejected mid-batch, the script reads the live sent
+  log before every send and stops cleanly, with its state intact, when
+  the day's budget is gone. A clean stop is exit code 3.
+
+* It is GAP-AWARE. A file that only one recipient still needs is sent to
+  that recipient alone, and a recipient that already has a file is never
+  sent it again. The recipient list recorded in the state file is the
+  set that actually received the file, so a partial delivery is
+  resumable and a completed one is never repeated.
+
+Each file is re-verified immediately before it is sent: magic bytes,
+extension agreement, default OPF namespace, and readable title/creator
+metadata. A file that fails is never sent, because Amazon accepts a bad
+file silently.
+
+Exit codes:
+    0: everything requested was delivered.
+    1: some files failed.
+    3: the daily send cap was reached; the state file is intact and the
+       next run resumes where this one stopped.
 """
 
 import argparse
 import json
 import os
+import shutil
 import sys
+import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import zlib_kindle as zk  # noqa: E402
 import slim_epub  # noqa: E402
+import send_cap  # noqa: E402
 import recipient_config  # noqa: E402
 
 # The mail API in front of Amazon rejects an oversized attachment with a
@@ -34,9 +57,19 @@ SLIM_PASSES = [
 ]
 
 COMPILATIONS = os.path.expanduser("~/Downloads/dross-books/compilations")
+LIBRARY = os.path.expanduser("~/Downloads/dross-books")
 STATE = os.path.expanduser(
     "~/Downloads/../.openclaw/workspace/skills/zlib-kindle/state/backlog-state.json")
 
+# The two delivery addresses are read at run time from an untracked
+# local config file. They are deliberately not written here: the publish
+# gate refuses to publish a tree containing an address that appears
+# under secrets/, and reading them at run time keeps that literal out of
+# the source without weakening the gate. See recipient_config.py.
+KINDLE, GMAIL = recipient_config.load()
+
+# The compilations, in the order they were built. The subject is the
+# state key, so it must not change once a file has been delivered.
 DELIVERIES = [
     ("The-Divine-Comedy-Dante.epub", "The Divine Comedy"),
     ("Paradise-Lost-and-Paradise-Regained-Milton.epub",
@@ -145,118 +178,244 @@ DELIVERIES = [
      "The Poetical Works of John Milton"),
     ("The-Complete-Works-of-William-Shakespeare.epub",
      "The Complete Works of William Shakespeare"),
+    # the five new series sets, built from the sources the second sweep
+    # found uncovered by anything already sent
+    ("Trollope-Barsetshire-Chronicles-Part-One.epub",
+     "The Barsetshire Chronicles, Part One: The Warden, Barchester Towers and Doctor Thorne"),
+    ("Trollope-Barsetshire-Chronicles-Part-Two.epub",
+     "The Barsetshire Chronicles, Part Two: Framley Parsonage, The Small House at Allington and The Last Chronicle of Barset"),
+    ("Dumas-dArtagnan-Cycle-Part-One.epub",
+     "The d'Artagnan Cycle, Part One: The Three Musketeers and Ten Years Later"),
+    ("Dumas-dArtagnan-Cycle-Part-Two.epub",
+     "The d'Artagnan Cycle, Part Two: Twenty Years After, The Vicomte de Bragelonne and Louise de la Valliere"),
+    ("Lytton-The-Works-Part-One.epub",
+     "The Works of Edward Bulwer-Lytton, Part One: Athens, Eugene Aram, My Novel and Night and Morning"),
+    ("Lytton-The-Works-Part-Two.epub",
+     "The Works of Edward Bulwer-Lytton, Part Two: The Caxtons and Zicci"),
+    ("Tarzan-The-Complete-Series-Volumes-One-to-Six.epub",
+     "Tarzan: The Complete Series, Volumes One to Six"),
+    ("Tarzan-The-Complete-Series-Volumes-Seven-to-Twelve.epub",
+     "Tarzan: The Complete Series, Volumes Seven to Twelve"),
+    ("Tarzan-The-Complete-Series-Volumes-Thirteen-to-Eighteen.epub",
+     "Tarzan: The Complete Series, Volumes Thirteen to Eighteen"),
+    ("Dumas-Celebrated-Crimes-Complete.epub",
+     "Celebrated Crimes, Complete"),
+    ("Zola-The-Three-Cities.epub",
+     "The Three Cities Trilogy, Complete: Lourdes, Rome and Paris"),
 ]
+
+# Files that only one recipient is still missing, or that a recipient
+# never received at all. Ordered by how empty the gap is: a recipient
+# that has no copy of the work at all comes first.
+#
+#   (filename, subject, recipients)
+#
+# The state key is prefixed with "gap:" so it can never collide with a
+# title key written by the Z-Library job, which shares this state file.
+GAPS = [
+    ("The-King-in-Yellow-Chambers.epub", "The King in Yellow", [GMAIL]),
+    ("The-Fisherman-by-John-Langan.epub", "The Fisherman", [GMAIL]),
+    ("NOS4A2-by-Joe-Hill.epub", "NOS4A2", [GMAIL]),
+    # Kindle received the original of this edition, but its OPF uses a
+    # prefixed opf: root, which Amazon drops. Kindle therefore holds no
+    # usable copy of the canonical "Novel by Shirley Jackson" edition
+    # and needs the repaired file too.
+    ("The-Haunting-of-Hill-House-Novel-by-Shirley-Jackson-repaired.epub",
+     "The Haunting of Hill House", [KINDLE, GMAIL]),
+    ("Boccaccio-Decameron-Complete.epub", "The Decameron, Complete",
+     [KINDLE, GMAIL]),
+]
+
+
+# ------------------------------------------------------------------ state --
+def load_state(path):
+    state = {"done": {}}
+    if os.path.isfile(path):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                state = json.load(fh)
+        except (OSError, ValueError):
+            state = {"done": {}}
+    state.setdefault("done", {})
+    return state
+
+
+def save_state(path, state):
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(state, fh, indent=2, sort_keys=True)
+    os.replace(tmp, path)
+
+
+def recipients_done(state, key):
+    """The set of recipients that already received this state key."""
+    raw = state["done"].get(key) or ""
+    if isinstance(raw, list):
+        return {a.strip() for a in raw if a.strip()}
+    return {a.strip() for a in str(raw).split(",") if a.strip()}
+
+
+def mark_done(state, key, addr):
+    have = recipients_done(state, key)
+    have.add(addr)
+    state["done"][key] = ",".join(sorted(have))
+
+
+# -------------------------------------------------------------- delivery --
+def verify(path, subject):
+    """Fail-closed checks run immediately before anything is sent.
+
+    Returns (ok, reason). The reason on success is the real format.
+    """
+    ok, detail = zk.preflight_book(path)
+    if not ok:
+        return False, detail
+    if not zk.epub_namespace_ok(path):
+        return False, "OPF namespace is not the default form"
+    title, creator = zk.epub_metadata(path)
+    if not title or not creator:
+        return False, "title/creator unreadable inside the file"
+    return True, detail
+
+
+def send_one(path, subject, addr):
+    """Send one file to one recipient, re-verifying it first.
+
+    An oversized file is slimmed on a COPY, never on the library file:
+    the original EPUB on disk is left exactly as it was found.
+    """
+    ok, detail = verify(path, subject)
+    if not ok:
+        print(f"  ! refusing {subject} -> {addr}: {detail}", file=sys.stderr)
+        return False
+
+    work = path
+    tmpdir = None
+    try:
+        if os.path.getsize(path) > MAX_ATTACHMENT_BYTES:
+            # A copy is slimmed; the library file is never rewritten.
+            tmpdir = tempfile.mkdtemp(prefix="dross-slim-")
+            work = os.path.join(tmpdir, os.path.basename(path))
+            shutil.copy2(path, work)
+            for opts in SLIM_PASSES:
+                slim_epub.slim(work, **opts)
+                ok, detail = verify(work, subject)
+                if not ok:
+                    print(f"  ! refusing {subject} after slimming: {detail}",
+                          file=sys.stderr)
+                    return False
+                if os.path.getsize(work) <= MAX_ATTACHMENT_BYTES:
+                    break
+                print(f"    still {os.path.getsize(work):,} bytes, slimming again")
+            else:
+                print(f"  ! {subject} -> {addr}: still over "
+                      f"{MAX_ATTACHMENT_BYTES:,} bytes after slimming",
+                      file=sys.stderr)
+                return False
+            print(f"    slimmed copy to {os.path.getsize(work):,} bytes")
+
+        try:
+            return zk.send_to_kindle(work, subject, addr)
+        except Exception as exc:
+            print(f"  ! {subject} -> {addr}: {type(exc).__name__}: {exc}",
+                  file=sys.stderr)
+            return False
+    finally:
+        if tmpdir and os.path.isdir(tmpdir):
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+def remaining_budget(day=None):
+    """How many sends are left in the current UTC day."""
+    import datetime as dt
+    day = day or dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
+    sent = send_cap.sent_messages()
+    total, _ = send_cap.count_day(sent, day)
+    return max(0, send_cap.CAP - total)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--to", default=recipient_config.as_csv())
+    ap.add_argument("--to", default=f"{KINDLE},{GMAIL}")
     ap.add_argument("--state", default=STATE)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--only", choices=("all", "gaps", "compilations"),
+                    default="all")
+    ap.add_argument("--budget", type=int, default=0,
+                    help="stop after this many sends in this run")
     args = ap.parse_args()
 
     to_addrs = [a.strip() for a in args.to.split(",") if a.strip()]
-    state = {"done": {}}
-    if os.path.isfile(args.state):
-        with open(args.state, encoding="utf-8") as fh:
-            state = json.load(fh)
-    state.setdefault("done", {})
+    state = load_state(args.state)
 
     delivered = failed = skipped = 0
-    for filename, subject in DELIVERIES:
-        path = os.path.join(COMPILATIONS, filename)
-        key = subject.lower()
-        if key in state["done"]:
-            print(f"  = {subject}: already sent, skipping")
+    spent = 0
+    capped = False
+
+    # The gap files come first: a recipient that has no copy of a work at
+    # all is a bigger hole than a compilation that is merely undelivered.
+    jobs = []
+    if args.only in ("all", "gaps"):
+        for filename, subject, recipients in GAPS:
+            jobs.append(("gap:" + filename, subject,
+                         os.path.join(LIBRARY, filename), recipients))
+    if args.only in ("all", "compilations"):
+        for filename, subject in DELIVERIES:
+            jobs.append((subject.lower(), subject,
+                         os.path.join(COMPILATIONS, filename), to_addrs))
+
+    for key, subject, path, recipients in jobs:
+        have = recipients_done(state, key)
+        want = [a for a in recipients if a not in have]
+        if not want:
+            print(f"  = {subject}: every recipient already has it, skipping")
             skipped += 1
             continue
+
         if not os.path.isfile(path):
             print(f"  ! {subject}: missing {path}", file=sys.stderr)
             failed += 1
             continue
 
-        # Fail closed: never let Amazon see a file that has not passed the
-        # same guards the Z-Library path applies.
-        ok, detail = zk.preflight_book(path)
-        if not ok:
-            print(f"  ! refusing {subject}: {detail}", file=sys.stderr)
-            failed += 1
-            continue
-        title, creator = zk.epub_metadata(path)
-        if not title or not creator:
-            print(f"  ! refusing {subject}: title/creator unreadable inside the file",
-                  file=sys.stderr)
-            failed += 1
-            continue
-        if not zk.epub_namespace_ok(path):
-            print(f"  ! refusing {subject}: OPF namespace is not the default form",
-                  file=sys.stderr)
-            failed += 1
-            continue
-
         if args.dry_run:
-            print(f"  → would send {filename} ({os.path.getsize(path):,} bytes) "
-                  f"[{title} / {creator}] -> {', '.join(to_addrs)}")
+            print(f"  → would send {os.path.basename(path)} "
+                  f"({os.path.getsize(path):,} bytes) -> {', '.join(want)}")
             continue
 
-        # Send first and let the API tell us the real ceiling, rather than
-        # guessing one. A 413 means the attachment was too large, so the
-        # illustrations are shrunk and the send retried.
-        sent_all = True
-        for addr in to_addrs:
-            for attempt, opts in enumerate([None] + SLIM_PASSES):
-                if attempt:
-                    slim_epub.slim(path, **opts)
-                    # The file changed underneath us, so the guards must
-                    # run again before anything is sent.
-                    ok, detail = zk.preflight_book(path)
-                    if not ok:
-                        print(f"  ! refusing {subject} after slimming: {detail}",
-                              file=sys.stderr)
-                        sent_all = False
-                        break
-                    if not zk.epub_namespace_ok(path):
-                        print(f"  ! refusing {subject} after slimming: OPF namespace changed",
-                              file=sys.stderr)
-                        sent_all = False
-                        break
-                    t2, c2 = zk.epub_metadata(path)
-                    if not t2 or not c2:
-                        print(f"  ! refusing {subject} after slimming: metadata unreadable",
-                              file=sys.stderr)
-                        sent_all = False
-                        break
-                    print(f"    slimmed to {os.path.getsize(path):,} bytes, retrying")
-                try:
-                    ok = zk.send_to_kindle(path, subject, addr)
-                    if ok:
-                        break
-                    sent_all = False
-                    break
-                except Exception as exc:  # one bad send must not abort the batch
-                    too_big = "413" in str(exc) or "Too Large" in str(exc)
-                    if too_big and attempt < len(SLIM_PASSES):
-                        print(f"    {subject} too large for {addr}; slimming and retrying",
-                              file=sys.stderr)
-                        continue
-                    print(f"  ! {subject} -> {addr}: {type(exc).__name__}: {exc}",
-                          file=sys.stderr)
-                    sent_all = False
-                    break
-            if not sent_all:
+        for addr in want:
+            # Ask the live sent log how much budget is left before every
+            # send, so the day's ceiling is never discovered by being
+            # rejected mid-batch.
+            left = remaining_budget()
+            if left <= 0:
+                print(f"  ! daily send cap reached; stopping with state intact")
+                capped = True
                 break
-        if sent_all:
-            state["done"][key] = ",".join(to_addrs)
-            with open(args.state, "w", encoding="utf-8") as fh:
-                json.dump(state, fh, indent=2, sort_keys=True)
-            delivered += 1
-            print(f"  ✓ delivered: {subject}")
-        else:
-            failed += 1
+            if args.budget and spent >= args.budget:
+                print(f"  ! run budget of {args.budget} send(s) reached")
+                capped = True
+                break
+
+            if send_one(path, subject, addr):
+                mark_done(state, key, addr)
+                save_state(args.state, state)
+                delivered += 1
+                spent += 1
+                print(f"  ✓ delivered: {subject} -> {addr}")
+            else:
+                failed += 1
+                break
+        if capped:
+            break
 
     if args.dry_run:
-        print(f"\n=== dry run: {len(DELIVERIES)} compilations ===")
+        print(f"\n=== dry run: {len(jobs)} job(s) ===")
         return 0
+
+    if capped:
+        print(f"\n=== delivered {delivered}, failed {failed}, skipped {skipped}, "
+              f"stopped: daily send cap ===")
+        return 3
     print(f"\n=== delivered {delivered}, failed {failed}, skipped {skipped} ===")
     return 0 if failed == 0 else 1
 
