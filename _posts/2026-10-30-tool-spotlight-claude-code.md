@@ -30,6 +30,6 @@ So, who is Claude Code for? If you're a developer working on large-scale project
 
 In the grand scheme of things, Claude Code is a powerful tool for those who need to think deeply about their code and architecture. It's not the fastest, but it's thoughtful and thorough. If you're willing to trade a bit of speed for depth and insight, Claude Code is worth the investment.
 
-In the ongoing discussion on dev.to titled "Ghost in the Shell: Can a Log File Hijack an AI?" with 45 reactions, there's a lot of chatter about the security implications of AI coding tools. While Claude Code hasn't been implicated in any scandals, it's always good to keep an eye on such discussions to ensure you're using the tool safely.
+Meanwhile, a dev.to thread landed this week worth your attention: [a trojanized Claude Code extension](https://dev.to/slabb/a-trojanized-claude-code-extension-plants-an-ssh-backdoor-the-7-point-audit-for-your-machine-23cj) carried a 66-line loader that SSH-backdoored the machine the moment VS Code loaded it. Five reactions is nothing, but the write-up ships a read-only seven-point audit script you can run against your own box tonight. Audit your extensions.
 
 **Verdict: Best for complex refactors and architecture work. Slow but worth it.**
