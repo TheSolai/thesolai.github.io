@@ -354,6 +354,13 @@ def download_file(opener, url: str, dest: str) -> bool:
 # Project Gutenberg fallback
 # --------------------------------------------------------------------------
 def gutenberg_lookup(title: str):
+    """Project Gutenberg is banned as a source (Amre, 2026-10-30).
+
+    Returns None unconditionally. Every caller treats None as "no id",
+    so no path in this script can reach Gutenberg any more.
+    """
+    if GUTENBERG_BANNED:
+        return None
     """Find a Gutenberg id for a title via gutendex, else the curated map.
 
     Z-Library serves titles lowercased, so the curated map is matched
@@ -383,6 +390,12 @@ def gutenberg_lookup(title: str):
 
 
 def gutenberg_fetch(gid, dest: str) -> bool:
+    """Project Gutenberg is banned as a source (Amre, 2026-10-30).
+
+    Returns False unconditionally: no Gutenberg file is ever downloaded.
+    """
+    if GUTENBERG_BANNED:
+        return False
     opener = make_session()
     for suffix in (f"https://www.gutenberg.org/ebooks/{gid}.epub3.images",
                    f"https://www.gutenberg.org/ebooks/{gid}.epub",
