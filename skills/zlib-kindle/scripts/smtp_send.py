@@ -107,7 +107,17 @@ def content_type_for(path):
 
 
 def send(path, title, to_addr):
-    """Send one file to one address. Returns (ok, message)."""
+    """Send one file to one address. Returns (ok, message).
+
+    Delivery is locked by default. Unless state/DELIVERY_ARMED exists,
+    nothing is sent and the reason is returned. See delivery_lock.py.
+    """
+    import delivery_lock
+
+    armed, why = delivery_lock.check()
+    if not armed:
+        return False, why
+
     ctype, detail = content_type_for(path)
     if not ctype:
         return False, f"no content type for {detail}"

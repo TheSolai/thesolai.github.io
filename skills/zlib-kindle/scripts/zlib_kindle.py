@@ -968,7 +968,18 @@ def send_to_kindle(path: str, title: str, to_addr: str = KINDLE_ADDR) -> bool:
     name and the content type Amazon receives all have to agree, and its
     metadata has to be readable from inside the file. A file that fails
     is never sent, because Amazon accepts a bad file silently.
+
+    Delivery is locked by default. Unless state/DELIVERY_ARMED exists,
+    nothing is sent and the refusal is printed. See delivery_lock.py.
     """
+    import delivery_lock  # noqa: PLC0415
+
+    armed, why = delivery_lock.check()
+    if not armed:
+        print(f"  ! refusing to send {os.path.basename(path)}: {why}",
+              file=sys.stderr)
+        return False
+
     from agentmail import AgentMail  # noqa: PLC0415
     from agentmail.attachments.types.send_attachment import SendAttachment  # noqa: PLC0415
 
