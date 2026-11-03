@@ -1,66 +1,66 @@
 {
-  "generated": "2026-10-30",
-  "seed": 739919,
+  "generated": "2026-11-03",
+  "seed": 739923,
   "count": 6,
   "skills": [
     {
-      "name": "Auto Review",
-      "slug": "autoreview",
-      "emoji": "🔍",
-      "summary": "Official OpenClaw skill for automated code and content review. Runs structured review passes against any codebase or document…",
-      "description": "Official OpenClaw skill for automated code and content review. Runs structured review passes against any codebase or document, checks for issues, and generates review reports.",
-      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/autoreview",
-      "category": "ai",
-      "install": "openclaw skills install autoreview"
-    },
-    {
-      "name": "Session Viewer",
-      "slug": "session-viewer",
-      "emoji": "🖥️",
-      "summary": "Official OpenClaw skill for visualising and navigating agent session history. Provides a UI layer for reviewing past sessions…",
-      "description": "Official OpenClaw skill for visualising and navigating agent session history. Provides a UI layer for reviewing past sessions, search, and understanding agent decision chains.",
-      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/session-viewer",
-      "category": "automation",
-      "install": "openclaw skills install session-viewer"
-    },
-    {
-      "name": "Apple Health",
-      "slug": "apple-health",
-      "emoji": "🍎",
-      "summary": "Talk to your Apple Health data — ask questions about workouts, heart rate, activity rings, and fitness trends.…",
-      "description": "Talk to your Apple Health data — ask questions about workouts, heart rate, activity rings, and fitness trends. Natural language access to your complete health history on iOS/macOS.",
-      "url": "https://clawskills.sh/skills/nftechie-apple-health-skill",
-      "category": "health",
-      "install": "openclaw skills install apple-health-skill"
-    },
-    {
-      "name": "PPTX Generator",
-      "slug": "pptx-generator",
-      "emoji": "📊",
-      "summary": "Generate, edit, and read PowerPoint presentations. Create from scratch with PptxGenJS, edit via XML, or extract text with…",
-      "description": "Generate, edit, and read PowerPoint presentations. Create from scratch with PptxGenJS, edit via XML, or extract text with markitdown.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/pptx-generator",
+      "name": "PDF Generator",
+      "slug": "minimax-pdf",
+      "emoji": "📄",
+      "summary": "Generate, fill, and reformat PDFs with a token-based design system. 15 cover styles, form field filling, print-ready output…",
+      "description": "Generate, fill, and reformat PDFs with a token-based design system. 15 cover styles, form field filling, print-ready output with typography and colour derived from document type.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-pdf",
       "category": "documents",
       "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
     },
     {
-      "name": "Agent Transcript",
-      "slug": "agent-transcript",
-      "emoji": "📜",
-      "summary": "Official OpenClaw skill for transcript processing — captures, stores, and retrieves agent conversation history. Enables persistent context across…",
-      "description": "Official OpenClaw skill for transcript processing — captures, stores, and retrieves agent conversation history. Enables persistent context across sessions and long-running project memory.",
-      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/agent-transcript",
-      "category": "ai",
-      "install": "openclaw skills install agent-transcript"
+      "name": "Self-Maintenance",
+      "slug": "active-maintenance",
+      "emoji": "🛠️",
+      "summary": "Automated system health and memory metabolism for OpenClaw. Regular maintenance tasks — log pruning, memory compaction, cache cleanup…",
+      "description": "Automated system health and memory metabolism for OpenClaw. Regular maintenance tasks — log pruning, memory compaction, cache cleanup, and context hygiene to keep the agent running smoothly.",
+      "url": "https://clawskills.sh/skills/xiaowenzhou-active-maintenance",
+      "category": "automation",
+      "install": "openclaw skills install active-maintenance"
     },
     {
-      "name": "Shader Dev",
-      "slug": "shader-dev",
-      "emoji": "✨",
-      "summary": "Comprehensive GLSL shader techniques — ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing.…",
-      "description": "Comprehensive GLSL shader techniques — ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing. ShaderToy-compatible.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/shader-dev",
-      "category": "creative",
+      "name": "Sol Self-Learning",
+      "slug": "sol-self-learning",
+      "emoji": "🧠",
+      "summary": "Sol's self-improvement skill — automatically captures failed tasks, analyses errors, generates fixes, and validates them before committing. The…",
+      "description": "Sol's self-improvement skill — automatically captures failed tasks, analyses errors, generates fixes, and validates them before committing. The agent gets better every time it breaks.",
+      "url": "https://github.com/TheSolAI/openclaw-self-learning-skill",
+      "category": "automation",
+      "install": "openclaw skills install https://github.com/TheSolAI/openclaw-self-learning-skill"
+    },
+    {
+      "name": "Vision Analysis",
+      "slug": "vision-analysis",
+      "emoji": "👁️",
+      "summary": "Analyse, describe, and extract information from images using vision AI models. Supports describe, OCR, UI mockup review, chart…",
+      "description": "Analyse, describe, and extract information from images using vision AI models. Supports describe, OCR, UI mockup review, chart data extraction, and object detection.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/vision-analysis",
+      "category": "ai",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
+    },
+    {
+      "name": "Blog Studio",
+      "slug": "blog-studio",
+      "emoji": "🗞️",
+      "summary": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media…",
+      "description": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media upload, and one-click deploy.",
+      "url": "https://github.com/TheSolAI/BlogStudio",
+      "category": "productivity",
+      "install": "openclaw skills install https://github.com/TheSolAI/BlogStudio"
+    },
+    {
+      "name": "Full-Stack Dev",
+      "slug": "fullstack-dev",
+      "emoji": "⚡",
+      "summary": "End-to-end backend and frontend architecture. REST API design, JWT/OAuth auth flows, WebSocket real-time features, SQL/NoSQL databases, and production…",
+      "description": "End-to-end backend and frontend architecture. REST API design, JWT/OAuth auth flows, WebSocket real-time features, SQL/NoSQL databases, and production hardening checklist.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/fullstack-dev",
+      "category": "development",
       "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
     }
   ]
