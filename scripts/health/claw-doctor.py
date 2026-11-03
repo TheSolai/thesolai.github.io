@@ -137,10 +137,21 @@ SANCTIONED_COMPACTION = {
 
 # Cron contracts that must not silently regress.
 CRON_MUST_BE_ENABLED = [
-    ("Horror Book", "Friday horror delivery"),
     ("Blog Post", "Weekly long-form post"),
     ("Agent Blog Network", "Blog network sync"),
 ]
+
+# RULE 9 (permanent, set by Amre on 2026-10-31): "Books are finished."
+# Do not recommend books, do not deliver books, and do not recreate any book
+# skill, script, cron or launchd agent.
+#
+# The "Sol — Horror Book" cron was removed on 2026-10-31 as part of that
+# instruction, so this Doctor must NOT demand it back. It used to, which
+# turned a deliberate removal into a standing FAIL and would have pushed a
+# future agent into recreating exactly what RULE 9 forbids. The check below
+# is now inverted: it fails if a book delivery path REAPPEARS.
+BOOK_DELIVERY_MARKERS = ("horror book", "kindle", "zlib", "book deliver",
+                         "book-deliver", "daily book")
 
 # Re-alert the same ongoing failure at most this often (seconds).
 # 24h, not 6h: the doctor runs every 3h, so a 6h window re-woke Amre every
@@ -838,23 +849,47 @@ def check_cron_contracts():
         else:
             ev.append(f"{match['name']}: enabled")
 
-    horror = next((j for j in jobs if "Horror Book" in j.get("name", "")), None)
-    if horror:
-        payload = horror.get("payload", {})
-        argv = payload.get("argv", [])
-        problems = []
-        if "--send" not in argv:
-            problems.append("missing --send (it would recommend but not deliver)")
-        if payload.get("timeoutSeconds", 0) < 300:
-            problems.append(f"timeout={payload.get('timeoutSeconds')}s < 300s")
-        if horror.get("sessionTarget") != "isolated":
-            problems.append(f"sessionTarget={horror.get('sessionTarget')}")
-        if (horror.get("delivery") or {}).get("mode") != "announce":
-            problems.append("delivery is not announce")
-        if problems:
-            failures.append("horror contract: " + "; ".join(problems))
-        else:
-            ev.append("horror contract intact (--send, 300s, isolated, announce)")
+    # RULE 9: books are finished. Fail if a book delivery path reappears.
+    book_jobs = [j.get("name") for j in jobs
+                 if any(marker in (j.get("name") or "").lower()
+                        for marker in BOOK_DELIVERY_MARKERS)]
+    if book_jobs:
+        failures.append(
+            "RULE 9 (books are finished) — a book delivery cron exists "
+            f"again: {book_jobs}. Amre set this rule permanently on "
+            "2026-10-31; do not recreate book crons.")
+    else:
+        ev.append("RULE 9 intact — no book delivery cron exists")
+
+    # RULE 9 also covers the launchd side and the workspace scripts.
+    book_agents = []
+    agents_dir = os.path.join(HOME, "Library", "LaunchAgents")
+    try:
+        for name in os.listdir(agents_dir):
+            low = name.lower()
+            if any(marker in low for marker in
+                   ("kcread", "book", "kindle", "zlib")):
+                book_agents.append(name)
+    except OSError:
+        pass
+    if book_agents:
+        failures.append(
+            "RULE 9 (books are finished) — a book launchd agent exists "
+            f"again: {book_agents}. Amre set this rule permanently on "
+            "2026-10-31; do not recreate book agents.")
+
+    book_scripts = []
+    for rel in ("scripts/smtp_send.py", "scripts/batch_deliver.py",
+                "scripts/send_cap.py", "scripts/rotation_guard.py"):
+        if os.path.exists(os.path.join(WORKSPACE, rel)):
+            book_scripts.append(rel)
+    if os.path.isdir(os.path.join(WORKSPACE, "skills", "zlib-kindle")):
+        book_scripts.append("skills/zlib-kindle")
+    if book_scripts:
+        failures.append(
+            "RULE 9 (books are finished) — a book delivery script/skill is "
+            f"back: {book_scripts}. Amre set this rule permanently on "
+            "2026-10-31; do not recreate book scripts.")
 
     for j in jobs:
         state = j.get("state") or {}
@@ -1010,6 +1045,87 @@ def append_history(entry):
 # --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
+
+def check_cache_ttl_patch():
+    """The runtime patch must be present in EVERY copy of the gate.
+
+    Why this check exists, and why the marker check alone was not enough:
+
+    `isCacheTtlEligibleProvider` is not defined once. It is inlined into
+    three separately-bundled files in the runtime dist:
+
+        dist/builtin-openclaw-<hash>.mjs       (the main bundle)
+        dist/worker/worker.mjs                 (the worker bundle)
+        dist/worker/sqlite-store.worker.mjs    (the sqlite worker bundle)
+
+    The agent turns actually run in the WORKER. On 2026-10-28 the patch was
+    applied to the main bundle only, and the markers duly stopped — for that
+    bundle. Six days later the cron session was carrying 22 markers = 607 KB
+    of a 910 KB window (67% pure bookkeeping), because the worker's own copy
+    of the function was still unpatched and still making the decision.
+
+    The marker-size tripwire caught it, but only after six days of damage.
+    This check is static: it reads the runtime files, so it reports the
+    divergence the moment it exists rather than after the transcript has
+    been bloated.
+    """
+    tools_dir = os.path.join(OPENCLAW_HOME, "tools")
+    found = []
+    hook_ok = False
+    for root, _dirs, files in os.walk(tools_dir):
+        for name in files:
+            if not name.endswith(".mjs"):
+                continue
+            path = os.path.join(root, name)
+            try:
+                with open(path, encoding="utf-8", errors="replace") as fh:
+                    body = fh.read()
+            except OSError:
+                continue
+            if "function isCacheTtlEligibleProvider" in body:
+                found.append((path, body))
+            if "MINIMAX_PROVIDER_HOOKS" in body and "isCacheTtlEligible" in body:
+                hook_ok = True
+
+    if not found:
+        return Check("cache-ttl-patch", "The cache-TTL gate is patched everywhere",
+                     "WARN",
+                     "no file under ~/.openclaw/tools defines "
+                     "isCacheTtlEligibleProvider — the runtime layout changed; "
+                     "re-derive the gate")
+
+    unpatched = []
+    evidence = []
+    for path, body in found:
+        rel = os.path.relpath(path, tools_dir)
+        if ("cache-ttl-no-minimax" in body
+                or "ANTHROPIC_COMPAT_WITHOUT_PROMPT_CACHE_TTL" in body):
+            evidence.append(f"patched: {rel}")
+        else:
+            unpatched.append(rel)
+    evidence.append(f"minimax provider hook present: {hook_ok}")
+
+    if unpatched or not hook_ok:
+        problems = list(unpatched)
+        if not hook_ok:
+            problems.append("the minimax provider hook is missing")
+        return Check(
+            "cache-ttl-patch", "The cache-TTL gate is patched everywhere",
+            "FAIL",
+            f"{len(problems)} runtime copy/copies would still write cache-TTL "
+            "bookkeeping",
+            evidence + problems,
+            fix="Run `bash scripts/apply-openclaw-patches.sh` — it discovers "
+                "every copy of isCacheTtlEligibleProvider and patches each one "
+                "— then restart the gateway with "
+                "`launchctl kickstart -k gui/501/ai.openclaw.gateway`.")
+
+    return Check(
+        "cache-ttl-patch", "The cache-TTL gate is patched everywhere",
+        "PASS",
+        f"all {len(found)} runtime copies of the gate exclude minimax",
+        evidence)
+
 
 def check_cache_ttl_markers(window_hours):
     """The `openclaw.cache-ttl` marker is pure bookkeeping, but it is O(n^2).
@@ -1303,6 +1419,7 @@ def collect(window_hours):
         check_stale_cli(),
         check_session_store(),
         check_dead_artifacts(),
+        check_cache_ttl_patch(),
         check_cache_ttl_markers(window_hours),
         check_live_turn_safety(),
         check_fallback_capacity(),
