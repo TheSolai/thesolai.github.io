@@ -1047,9 +1047,9 @@ def append_history(entry):
 # --------------------------------------------------------------------------
 
 def check_cache_ttl_patch():
-    """The runtime patch must be present in EVERY copy of the gate.
+    """The runtime patch must be present AND behave, in EVERY copy of the gate.
 
-    Why this check exists, and why the marker check alone was not enough:
+    Why this check exists, and why a string check was not enough:
 
     `isCacheTtlEligibleProvider` is not defined once. It is inlined into
     three separately-bundled files in the runtime dist:
@@ -1064,67 +1064,51 @@ def check_cache_ttl_patch():
     of a 910 KB window (67% pure bookkeeping), because the worker's own copy
     of the function was still unpatched and still making the decision.
 
-    The marker-size tripwire caught it, but only after six days of damage.
-    This check is static: it reads the runtime files, so it reports the
-    divergence the moment it exists rather than after the transcript has
-    been bloated.
+    And then a second failure: the guard matched only the BARE provider id
+    ("minimax") while the call site passes a QUALIFIED reference
+    ("minimax/MiniMax-M2.7"). The guard was present in all three copies,
+    passed every string check, and still never fired. The only way to catch
+    that is to extract the function and CALL it.
+
+    So this check delegates to scripts/apply-openclaw-patches.sh --verify-only,
+    which syntax-checks every copy and exercises the guard against every
+    shape of reference the runtime can pass.
     """
-    tools_dir = os.path.join(OPENCLAW_HOME, "tools")
-    found = []
-    hook_ok = False
-    for root, _dirs, files in os.walk(tools_dir):
-        for name in files:
-            if not name.endswith(".mjs"):
-                continue
-            path = os.path.join(root, name)
-            try:
-                with open(path, encoding="utf-8", errors="replace") as fh:
-                    body = fh.read()
-            except OSError:
-                continue
-            if "function isCacheTtlEligibleProvider" in body:
-                found.append((path, body))
-            if "MINIMAX_PROVIDER_HOOKS" in body and "isCacheTtlEligible" in body:
-                hook_ok = True
-
-    if not found:
+    script = os.path.join(WORKSPACE, "scripts", "apply-openclaw-patches.sh")
+    if not os.path.exists(script):
         return Check("cache-ttl-patch", "The cache-TTL gate is patched everywhere",
-                     "WARN",
-                     "no file under ~/.openclaw/tools defines "
-                     "isCacheTtlEligibleProvider — the runtime layout changed; "
-                     "re-derive the gate")
-
-    unpatched = []
-    evidence = []
-    for path, body in found:
-        rel = os.path.relpath(path, tools_dir)
-        if ("cache-ttl-no-minimax" in body
-                or "ANTHROPIC_COMPAT_WITHOUT_PROMPT_CACHE_TTL" in body):
-            evidence.append(f"patched: {rel}")
-        else:
-            unpatched.append(rel)
-    evidence.append(f"minimax provider hook present: {hook_ok}")
-
-    if unpatched or not hook_ok:
-        problems = list(unpatched)
-        if not hook_ok:
-            problems.append("the minimax provider hook is missing")
+                     "INFO", "apply-openclaw-patches.sh is missing — check not run")
+    try:
+        proc = subprocess.run(["/bin/bash", script, "--verify-only"],
+                              capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.SubprocessError) as exc:
+        return Check("cache-ttl-patch", "The cache-TTL gate is patched everywhere",
+                     "INFO", f"could not run the verifier: {exc}")
+    out = (proc.stdout or "") + (proc.stderr or "")
+    evidence = [ln.strip() for ln in out.splitlines()
+                if ln.strip().startswith("ok ") or ln.strip().startswith("FAIL")]
+    if proc.returncode != 0:
         return Check(
             "cache-ttl-patch", "The cache-TTL gate is patched everywhere",
             "FAIL",
-            f"{len(problems)} runtime copy/copies would still write cache-TTL "
-            "bookkeeping",
-            evidence + problems,
+            "a runtime copy of the cache-TTL gate would still write bookkeeping",
+            evidence[-12:],
             fix="Run `bash scripts/apply-openclaw-patches.sh` — it discovers "
-                "every copy of isCacheTtlEligibleProvider and patches each one "
-                "— then restart the gateway with "
-                "`launchctl kickstart -k gui/501/ai.openclaw.gateway`.")
+                "every copy of isCacheTtlEligibleProvider, widens an "
+                "existing too-narrow guard in place, and verifies the guard "
+                "BEHAVIOUR (not just its presence) — then restart the gateway "
+                "with `launchctl kickstart -k gui/501/ai.openclaw.gateway`.")
 
+    copies = 0
+    for line in out.splitlines():
+        if "behaviour verified:" in line:
+            copies += 1
     return Check(
         "cache-ttl-patch", "The cache-TTL gate is patched everywhere",
         "PASS",
-        f"all {len(found)} runtime copies of the gate exclude minimax",
-        evidence)
+        f"all {copies} runtime copies of the gate exclude minimax, "
+        "verified by calling the guard",
+        evidence[-14:])
 
 
 def check_cache_ttl_markers(window_hours):

@@ -48,6 +48,12 @@
 
 set -u
 
+# --verify-only: run the syntax + BEHAVIOUR checks without touching any file.
+# The Claw Doctor calls this so that the tripwire tests what the guard
+# actually DOES, not merely that a marker string is present.
+VERIFY_ONLY=0
+[ "${1:-}" = "--verify-only" ] && VERIFY_ONLY=1
+
 DIST="${OPENCLAW_DIST:-$HOME/.openclaw/tools/node-v24.21.0/lib/node_modules/openclaw/dist}"
 
 log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*"; }
@@ -79,21 +85,54 @@ log "found ${#TARGETS[@]} copy/copies of isCacheTtlEligibleProvider:"
 for t in "${TARGETS[@]}"; do log "  - ${t#$DIST/}"; done
 
 # ---------------------------------------------------------------------------
-# Patch A: the pretty-printed copy in the main bundle.
+# The guard.
 #
-#   Adds the provider exclusion set and the early return before the final
-#   eligibility check. The Anthropic-compat branch below is left intact for
-#   providers that genuinely implement Anthropic's prompt-cache TTL.
+# It must match on the provider, the model id AND the base URL, because the
+# call site does NOT pass a bare provider id. Measured on 2026-11-03 by
+# extracting the patched function and calling it directly:
+#
+#     provider="minimax"                  -> false   (matched)
+#     provider="minimax/MiniMax-M2.7"     -> TRUE    (MISSED - qualified ref)
+#     provider=""                         -> TRUE    (MISSED - empty)
+#     provider=undefined                  -> TRUE    (MISSED - undefined)
+#
+# The qualified form is what the attempt actually passes, so the earlier
+# exact-match guard never fired and the markers kept coming for six days.
+# Matching on the model id and base URL as well covers every shape.
+#
+# The guard is deliberately a substring test on "minimax", not a set
+# membership test: "minimax", "minimax/MiniMax-M2.7", "minimax-fast-mode"
+# and "MiniMax-M2.7" all have to be excluded, and none of them is a real
+# Anthropic endpoint.
+# ---------------------------------------------------------------------------
+GUARD_MINIFIED='if(/minimax/i.test(String(Ot??"")+" "+String(Zt??"")+" "+String(Dn?.baseUrl??"")))return false;/*cache-ttl-no-minimax*/'
+OLD_GUARD_MINIFIED='if(String(Ot??"").toLowerCase()==="minimax")return false;/*cache-ttl-no-minimax*/'
+
+GUARD_READABLE='if (/minimax/i.test(`${normalizedProvider} ${normalizedModelId} ${normalizeLowercaseStringOrEmpty(route?.baseUrl)}`)) return false;/*cache-ttl-no-minimax*/'
+OLD_GUARD_READABLE='if (ANTHROPIC_COMPAT_WITHOUT_PROMPT_CACHE_TTL.has(normalizedProvider)) return false;/*cache-ttl-no-minimax*/'
+
+# ---------------------------------------------------------------------------
+# Patch A: the pretty-printed copy in the main bundle.
 # ---------------------------------------------------------------------------
 patch_pretty() {
-    python3 - "$1" <<'PY'
+    python3 - "$1" <<PYEOF
 import sys
 
 path = sys.argv[1]
 src = open(path, encoding="utf-8", errors="replace").read()
 
-if "cache-ttl-no-minimax" in src or "ANTHROPIC_COMPAT_WITHOUT_PROMPT_CACHE_TTL" in src:
+NEW_GUARD = '''$GUARD_READABLE'''
+OLD_GUARD = '''$OLD_GUARD_READABLE'''
+
+if NEW_GUARD in src:
     print("already patched")
+    raise SystemExit(0)
+
+if OLD_GUARD in src:
+    # An earlier, too-narrow guard is in place. Widen it in place.
+    src = src.replace(OLD_GUARD, NEW_GUARD, 1)
+    open(path, "w", encoding="utf-8").write(src)
+    print("guard widened (readable shape)")
     raise SystemExit(0)
 
 const_anchor = 'const CACHE_TTL_CUSTOM_TYPE = "openclaw.cache-ttl";'
@@ -124,9 +163,14 @@ eligibility_block = (
     "\t// agent runtime resolves its own config scope and the Anthropic-compat\n"
     "\t// default re-applies `mode: \"cache-ttl\"` there. The only reliable gate\n"
     "\t// is provider eligibility.\n"
-    "\tif (ANTHROPIC_COMPAT_WITHOUT_PROMPT_CACHE_TTL.has(normalizedProvider)) return false;/*cache-ttl-no-minimax*/\n"
+    "\t//\n"
+    "\t// Match on the provider, the model id AND the base URL. The call site\n"
+    "\t// does not pass a bare provider id - it passes a qualified reference\n"
+    "\t// such as \"minimax/MiniMax-M2.7\" - so an exact-match test never fired.\n"
+    "\t$GUARD_READABLE\n"
+    "\tif (ANTHROPIC_COMPAT_WITHOUT_PROMPT_CACHE_TTL.has(normalizedProvider)) return false;\n"
     "\tconst normalizedBaseUrl = normalizeLowercaseStringOrEmpty(route?.baseUrl);\n"
-    "\tif (modelApi === \"anthropic-messages\" && normalizedBaseUrl && !normalizedBaseUrl.includes(\"api.anthropic.com\")) {\n"
+    "\tif (modelApi === \"anthropic-messages\" && normalizedBaseUrl && !normalizedBaseUrl.includes(\"api.anthropic.com\") && !ANTHROPIC_COMPAT_WITHOUT_PROMPT_CACHE_TTL.has(normalizedProvider)) {\n"
     "\t\tif (!isGooglePromptCacheEligible({\n"
     "\t\t\tmodelId: normalizedModelId\n"
     "\t\t}) && normalizedProvider !== \"kilocode\") return false;\n"
@@ -140,27 +184,31 @@ if eligibility_anchor not in src:
 src = src.replace(eligibility_anchor, eligibility_block, 1)
 open(path, "w", encoding="utf-8").write(src)
 print("patched (readable shape)")
-PY
+PYEOF
 }
 
 # ---------------------------------------------------------------------------
 # Patch B: the minified copies in the worker bundles.
-#
-#   The worker bundles are single-line minified builds with their own inlined
-#   copy of the provider runtime, so the main-bundle patch does not reach
-#   them. Insert a self-contained guard as the first statement of the
-#   function: if the provider is minimax, it is not cache-TTL eligible.
 # ---------------------------------------------------------------------------
 patch_minified() {
-    python3 - "$1" <<'PY'
+    python3 - "$1" <<PYEOF
 import re
 import sys
 
 path = sys.argv[1]
 src = open(path, encoding="utf-8", errors="replace").read()
 
-if "cache-ttl-no-minimax" in src:
+NEW_GUARD = '''$GUARD_MINIFIED'''
+OLD_GUARD = '''$OLD_GUARD_MINIFIED'''
+
+if NEW_GUARD in src:
     print("already patched")
+    raise SystemExit(0)
+
+if OLD_GUARD in src:
+    src = src.replace(OLD_GUARD, NEW_GUARD, 1)
+    open(path, "w", encoding="utf-8").write(src)
+    print("guard widened (minified shape)")
     raise SystemExit(0)
 
 # Insert the guard as the FIRST statement of the function, using the provider
@@ -172,19 +220,24 @@ m = pat.search(src)
 if not m:
     sys.exit("FAIL: could not find the minified isCacheTtlEligibleProvider")
 
-param = m.group(2)
-guard = f'if(String({param}??"").toLowerCase()==="minimax")return false;/*cache-ttl-no-minimax*/'
+guard = NEW_GUARD
 src = src[:m.end()] + guard + src[m.end():]
 open(path, "w", encoding="utf-8").write(src)
 print("patched (minified shape)")
-PY
+PYEOF
 }
 
 for t in "${TARGETS[@]}"; do
-    if grep -q "cache-ttl-no-minimax" "$t"; then
-        log "  already patched: ${t#$DIST/}"
+    if [ "$VERIFY_ONLY" = "1" ]; then
+        log "  (verify-only, not patching): ${t#$DIST/}"
         continue
     fi
+    # Always run the patcher: it is idempotent, and it also WIDENS an
+    # existing too-narrow guard in place. A file that merely contains the
+    # marker string is not proof that the guard is correct — the first
+    # version of this patch matched only the bare provider id and therefore
+    # never fired against the qualified reference the call site actually
+    # passes.
     out=$(patch_pretty "$t" 2>&1) && rc=0 || rc=$?
     if [ $rc -ne 0 ]; then
         out=$(patch_minified "$t" 2>&1) && rc=0 || rc=$?
@@ -195,7 +248,7 @@ for t in "${TARGETS[@]}"; do
         exit 1
     fi
     log "  $out: ${t#$DIST/}"
-    changed=1
+    [ "$out" != "already patched" ] && changed=1
 done
 
 # ---------------------------------------------------------------------------
@@ -240,9 +293,14 @@ PY
 fi
 
 # ---------------------------------------------------------------------------
-# Syntax-check EVERY patched file and VERIFY the guard is actually present.
-# A patch that does not compile, or that landed in a copy that never runs,
-# is worse than no patch at all.
+# Syntax-check EVERY patched file and VERIFY the guard BEHAVIOUR.
+#
+# A string check is not enough. The first version of this patch was present
+# in all three copies, passed every string check, and still never fired —
+# because it matched only the bare provider id while the call site passes a
+# qualified reference. The verification therefore extracts the function and
+# CALLS it, with the worst-case stubs (the Anthropic-family check says yes),
+# and asserts it returns false for every shape of minimax reference.
 # ---------------------------------------------------------------------------
 for f in "${TARGETS[@]}"; do
     node --check "$f" >/dev/null 2>&1 || { log "FAIL: syntax error in $f"; exit 1; }
@@ -252,7 +310,59 @@ for f in "${TARGETS[@]}"; do
     fi
 done
 
+log "behaviour check: extracting the guard from each copy and calling it"
+for f in "${TARGETS[@]}"; do
+    node - "$f" <<'NODEEOF' || exit 1
+const fs = require("fs");
+const path = process.argv[2];
+const src = fs.readFileSync(path, "utf8");
+const i = src.indexOf("function isCacheTtlEligibleProvider(");
+if (i < 0) { console.error("  FAIL: function not found in " + path); process.exit(1); }
+let depth = 0, j = src.indexOf("{", i), k = j;
+for (; k < src.length; k++) {
+  if (src[k] === "{") depth++;
+  else if (src[k] === "}") { depth--; if (depth === 0) { k++; break; } }
+}
+const fn = src.slice(i, k);
+const normalizeLowercaseStringOrEmpty = (v) => String(v ?? "").trim().toLowerCase();
+const resolveProviderCacheTtlEligibility = () => undefined;
+const isAnthropicFamilyCacheTtlEligible = () => true;   // worst case
+const isGooglePromptCacheEligible = () => false;
+const make = new Function(
+  "normalizeLowercaseStringOrEmpty", "resolveProviderCacheTtlEligibility",
+  "isAnthropicFamilyCacheTtlEligible", "isGooglePromptCacheEligible",
+  fn + "; return isCacheTtlEligibleProvider;"
+);
+const f = make(normalizeLowercaseStringOrEmpty, resolveProviderCacheTtlEligibility,
+  isAnthropicFamilyCacheTtlEligible, isGooglePromptCacheEligible);
+const cases = [
+  ["minimax", "MiniMax-M2.7", "anthropic-messages", { baseUrl: "https://api.minimax.io/anthropic" }],
+  ["minimax/MiniMax-M2.7", "MiniMax-M2.7", "anthropic-messages", { baseUrl: "https://api.minimax.io/anthropic" }],
+  ["MiniMax", "MiniMax-M2.7", "anthropic-messages", { baseUrl: "https://api.minimax.io/anthropic" }],
+  ["", "MiniMax-M2.7", "anthropic-messages", { baseUrl: "https://api.minimax.io/anthropic" }],
+  [undefined, "MiniMax-M2.7", "anthropic-messages", { baseUrl: "https://api.minimax.io/anthropic" }],
+  ["minimax", "MiniMax-M2.7", "anthropic-messages", { baseUrl: "" }],
+  ["somethingelse", "gpt-5", "openai-responses", { baseUrl: "https://api.openai.com" }],
+];
+let bad = 0;
+for (const c of cases) {
+  const r = f(c[0], c[1], c[2], c[3]);
+  const shouldBeFalse = c[0] === "somethingelse" ? false : true;
+  const ok = (r === false) === shouldBeFalse;
+  if (!ok) bad++;
+  console.log(`  ${ok ? "ok  " : "FAIL"} provider=${JSON.stringify(c[0])} model=${c[1]} -> ${r}`);
+}
+if (bad) { console.error(`  ${bad} case(s) wrong in ${path}`); process.exit(1); }
+NODEEOF
+    log "  behaviour verified: ${f#$DIST/}"
+done
+
 log "verified: ${#TARGETS[@]}/${#TARGETS[@]} copies patched and syntax-clean"
+
+if [ "$VERIFY_ONLY" = "1" ]; then
+    log "verify-only: all checks passed, nothing was modified"
+    exit 0
+fi
 
 if [ "$changed" = "1" ]; then
     log "patches applied - restart the gateway to load them:"
