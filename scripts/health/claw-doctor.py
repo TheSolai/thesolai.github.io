@@ -265,6 +265,7 @@ MARKERS = (
     "Compaction safeguard",
     "config change detected",
     "config hot reload applied",
+    "tool-search: cataloged",
 )
 
 
@@ -332,6 +333,8 @@ def classify(text):
         return "truncation"
     if "config change detected" in text or "config hot reload applied" in text:
         return "config-reload"
+    if "tool-search: cataloged" in text:
+        return "toolsearch"
     return None
 
 
@@ -1137,6 +1140,7 @@ def check_prompt_budget(events, window_hours):
     problems = []
     evidence = []
     worst = None
+    latest = None
 
     for e in prechecks:
         tok = field(e["text"], "estimatedPromptTokens", int)
@@ -1145,6 +1149,8 @@ def check_prompt_budget(events, window_hours):
             continue
         if worst is None or tok > worst[0]:
             worst = (tok, bud, e)
+        if latest is None or e["at"] >= latest[2]["at"]:
+            latest = (tok, bud, e)
 
     overflows = 0
     for e in events:
@@ -1157,20 +1163,56 @@ def check_prompt_budget(events, window_hours):
         if tok >= bud:
             overflows += 1
 
-    if worst is None:
+    if latest is None:
         evidence.append("no prompt measurement in the window")
     else:
-        tok, bud, e = worst
+        # The LIVE signal is the most recent measurement. The worst one in
+        # the window is kept as evidence, because a doctor that only reads
+        # the newest number hides a regression that was just fixed, and a
+        # doctor that only reads the worst number stays red for hours
+        # after the fix.
+        tok, bud, e = latest
         pct = (tok / bud * 100) if bud else 0
-        evidence.append(
-            f"worst prompt {tok:,} tokens vs budget {bud:,} ({pct:.1f}%)")
-        if tok >= bud:
-            problems.append(
-                f"prompt reached {tok:,} tokens against a {bud:,} budget")
-        elif pct >= 90:
-            problems.append(
-                f"prompt reached {pct:.1f}% of the {bud:,}-token budget")
-        if overflows:
+
+        # The precheck only fires when the runtime PREDICTS pressure, so
+        # after the catalogue compaction is applied the precheck simply
+        # stops firing — silence, not a measurement. When the last
+        # measurement predates the hot reload, judge on overflows since
+        # the reload instead of on a number we already know is stale.
+        reloads = [x for x in events if x["kind"] == "toolsearch"]
+        reload_at = reloads[-1]["at"] if reloads else None
+        if reload_at is not None and latest[2]["at"] < reload_at:
+            since = [x for x in events
+                     if x["kind"] == "overflow" and x["at"] >= reload_at]
+            catalogued = len(reloads)
+            evidence.append(
+                f"compact tool surface active ({catalogued} cataloguing "
+                f"event(s)); the last precheck predates it")
+            evidence.append(
+                f"overflows since the hot reload: {len(since)}")
+            if since:
+                problems.append(
+                    f"{len(since)} overflow(s) since the tool-catalogue "
+                    "compaction was applied")
+            else:
+                problems = []   # the stale number is not a live failure
+        else:
+            evidence.append(
+                f"latest prompt {tok:,} tokens vs budget {bud:,} "
+                f"({pct:.1f}%)")
+            if tok >= bud:
+                problems.append(
+                    f"prompt reached {tok:,} tokens against a {bud:,} budget")
+            elif pct >= 90:
+                problems.append(
+                    f"prompt reached {pct:.1f}% of the {bud:,}-token budget")
+
+        if worst is not None and worst[0] > tok:
+            w = (worst[0] / worst[1] * 100) if worst[1] else 0
+            evidence.append(
+                f"worst in window {worst[0]:,} ({w:.1f}%)")
+        if overflows and not (reload_at is not None
+                              and latest[2]["at"] < reload_at):
             problems.append(f"{overflows} over-budget prompt(s) in the window")
             evidence.append(f"over-budget prompts: {overflows}")
 
