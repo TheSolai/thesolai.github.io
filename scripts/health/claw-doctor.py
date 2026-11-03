@@ -1114,6 +1114,56 @@ def check_cache_ttl_patch():
         evidence[-14:])
 
 
+def check_sleep_guard():
+    """The Mac must not be able to idle-sleep, and the bot must survive it.
+
+    On 2026-10-31 the `pmset -a disablesleep 1` hardening was LOST (a
+    settings write, an update or a restore can drop it) and the Mac took
+    an idle sleep at 21:27 on AC power. It stayed asleep for 2.7 days. The
+    Telegram bot was simply unreachable for that whole time; nothing was
+    broken, the machine was off.
+
+    `pmset -g custom` still shows `sleep 1` in that state — the raw timer
+    is NOT the thing to look at. The override is the system-wide
+    `SleepDisabled` key, and `pmset -g` prints it. A live
+    `PreventUserIdleSystemSleep` assertion (the gateway's `caffeinate
+    -dims` wrapper) is a second, independent line of defence.
+
+    `womp 1` matters for the same reason: it lets the machine wake for
+    network traffic after a sleep.
+    """
+    try:
+        proc = subprocess.run(["pmset", "-g"], capture_output=True, text=True,
+                              timeout=20)
+        text = proc.stdout or ""
+    except (OSError, subprocess.TimeoutExpired):          # pragma: no cover
+        return Check("sleep-guard", "The Mac cannot idle-sleep",
+                     "WARN", "could not run pmset")
+    problems = []
+    evidence = []
+    if re.search(r"^\s*SleepDisabled\s+1\s*$", text, re.M):
+        evidence.append("SleepDisabled 1 (system-wide idle sleep is off)")
+    else:
+        problems.append("SleepDisabled is not 1 — the Mac can idle-sleep")
+        evidence.append("SleepDisabled NOT set in `pmset -g`")
+    if re.search(r"^\s*womp\s+1\s*$", text, re.M):
+        evidence.append("womp 1 (the Mac wakes for network traffic)")
+    else:
+        problems.append("womp is not 1 — the Mac will not wake for the network")
+    asserted = "sleep prevented" in text
+    if asserted:
+        evidence.append("a live assertion is already preventing sleep")
+    if problems:
+        return Check(
+            "sleep-guard", "The Mac cannot idle-sleep", "FAIL",
+            "; ".join(problems), evidence,
+            "osascript -e 'do shell script \"pmset -a disablesleep 1 && "
+            "pmset -a womp 1\" with administrator privileges'")
+    return Check("sleep-guard", "The Mac cannot idle-sleep", "PASS",
+                 "idle sleep is disabled and the Mac wakes for the network",
+                 evidence)
+
+
 def check_prompt_budget(events, window_hours):
     """The prompt must fit the context budget with room to spare.
 
@@ -1545,6 +1595,7 @@ def collect(window_hours):
         check_cache_ttl_patch(),
         check_cache_ttl_markers(window_hours),
         check_prompt_budget(events, window_hours),
+        check_sleep_guard(),
         check_live_turn_safety(),
         check_fallback_capacity(),
         check_git_state(),
