@@ -1111,6 +1111,103 @@ def check_cache_ttl_patch():
         evidence[-14:])
 
 
+def check_prompt_budget(events, window_hours):
+    """The prompt must fit the context budget with room to spare.
+
+    Measured on 2026-11-03: the Telegram session's prompt sat at
+    184.8k-186.4k tokens against a 184.8k budget — over budget on every
+    attempt. The mid-turn precheck caught it (route=compact_only), but the
+    auto-compaction it triggers cannot help: the bulk of the prompt is the
+    system prompt plus the inlined tool catalog, and
+    `toolResultReducibleChars=0` means there is nothing left for compaction
+    to trim. The session overflowed 16 times in two hours, each time
+    "recovered" by a compaction that changed nothing, and the user saw
+    "OpenClaw couldn't produce or deliver a reply".
+
+    Two things are checked here:
+
+      1. the live signal — the worst prompt seen in the window against the
+         budget the runtime was working to;
+      2. `tools.toolSearch` explicitly false. That setting DISABLES
+         OpenClaw's tool-catalog compaction (the feature is on by default
+         when the key is unset), which is what put ~168k tokens of tool
+         schemas into a prompt whose conversation slice was only ~17k.
+    """
+    prechecks = [e for e in events if e["kind"] == "precheck"]
+    problems = []
+    evidence = []
+    worst = None
+
+    for e in prechecks:
+        tok = field(e["text"], "estimatedPromptTokens", int)
+        bud = field(e["text"], "promptBudgetBeforeReserve", int)
+        if tok is None or bud is None:
+            continue
+        if worst is None or tok > worst[0]:
+            worst = (tok, bud, e)
+
+    overflows = 0
+    for e in events:
+        if e["kind"] != "overflow":
+            continue
+        tok = field(e["text"], "preflightEstimatedTokens", int)
+        bud = field(e["text"], "promptBudgetBeforeReserve", int)
+        if tok is None or bud is None:
+            continue
+        if tok >= bud:
+            overflows += 1
+
+    if worst is None:
+        evidence.append("no prompt measurement in the window")
+    else:
+        tok, bud, e = worst
+        pct = (tok / bud * 100) if bud else 0
+        evidence.append(
+            f"worst prompt {tok:,} tokens vs budget {bud:,} ({pct:.1f}%)")
+        if tok >= bud:
+            problems.append(
+                f"prompt reached {tok:,} tokens against a {bud:,} budget")
+        elif pct >= 90:
+            problems.append(
+                f"prompt reached {pct:.1f}% of the {bud:,}-token budget")
+        if overflows:
+            problems.append(f"{overflows} over-budget prompt(s) in the window")
+            evidence.append(f"over-budget prompts: {overflows}")
+
+    # The config cause: an explicit false switches the catalogue compaction
+    # off. Left unset, OpenClaw turns it on by itself.
+    tool_search = None
+    try:
+        with open(CONFIG_PATH) as fh:
+            tool_search = (json.load(fh).get("tools") or {}).get("toolSearch")
+    except (OSError, json.JSONDecodeError, AttributeError):
+        tool_search = None
+
+    if tool_search is False:
+        problems.append(
+            "tools.toolSearch is false — that DISABLES tool-catalog "
+            "compaction (it is on by default when unset) and inlines every "
+            "MCP tool schema into the prompt")
+        evidence.append("tools.toolSearch = false")
+        fix = ("openclaw config set tools.toolSearch "
+               "'{\"enabled\":true,\"mode\":\"tools\"}'")
+    elif isinstance(tool_search, dict):
+        evidence.append(
+            f"tools.toolSearch = {json.dumps(tool_search)}")
+        fix = None
+    else:
+        evidence.append("tools.toolSearch is unset (catalogue compaction on)")
+        fix = None
+
+    if problems:
+        status = "FAIL" if any("DISABLES" in p or "against a" in p
+                               for p in problems) else "WARN"
+        return Check("prompt-budget", "The prompt fits the context budget",
+                     status, "; ".join(problems), evidence, fix)
+    return Check("prompt-budget", "The prompt fits the context budget",
+                 "PASS", "prompt is inside the context budget", evidence)
+
+
 def check_cache_ttl_markers(window_hours):
     """The `openclaw.cache-ttl` marker is pure bookkeeping, but it is O(n^2).
 
@@ -1405,6 +1502,7 @@ def collect(window_hours):
         check_dead_artifacts(),
         check_cache_ttl_patch(),
         check_cache_ttl_markers(window_hours),
+        check_prompt_budget(events, window_hours),
         check_live_turn_safety(),
         check_fallback_capacity(),
         check_git_state(),
