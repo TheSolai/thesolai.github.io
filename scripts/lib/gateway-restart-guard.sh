@@ -43,6 +43,49 @@ GUARD_GATEWAY_LABEL="ai.openclaw.gateway"
 GUARD_CLI_SESSION_TIMEOUT=12   # seconds; a watchdog that hangs is worse
 GUARD_ACTIVITY_WINDOW=60       # seconds of transcript silence that means idle
 GUARD_GRACE_SECONDS=25         # quiet period before the final restart check
+GUARD_GATEWAY_LOG="$HOME/Library/Logs/openclaw/gateway.log"
+GUARD_STALL_SECONDS=180        # a session stalled this long is a corpse
+GUARD_STALL_FRESHNESS=90       # the stall report must be this recent to count
+
+# guard_stalled_session — 0 if the gateway itself reports the Telegram
+# session as a stalled agent run.
+#
+# WHY THIS EXISTS
+#   On 2026-11-03 at 18:02 the MiniMax API answered 429 and the agent
+#   run never recovered. The gateway knew:
+#
+#     [diagnostic] stalled session: sessionKey=agent:main:telegram:direct:8125193571
+#       state=processing age=704s queueDepth=0 reason=active_work_without_progress
+#       classification=stalled_agent_run activeWorkKind=model_call
+#       lastProgress=reply_operation:ended lastProgressAge=703s recovery=none
+#
+#   `classification=stalled_agent_run` with `recovery=none` is the gateway
+#   saying the run is a corpse: it is holding the session in `processing`
+#   forever, which blocks the compaction AND the restart that would fix
+#   it. The Oct 28 rule protects a turn whose reply is seconds away; a
+#   run the provider has abandoned is not that.
+#
+#   The report must also be CURRENT (within GUARD_STALL_FRESHNESS), so a
+#   stall that resolved on its own stops counting, and the age must have
+#   grown past GUARD_STALL_SECONDS, so a momentary hiccup never triggers
+#   it.
+guard_stalled_session() {
+    local line ts age now_epoch ts_epoch
+    [ -f "$GUARD_GATEWAY_LOG" ] || return 1
+    line=$(grep -a "stalled session: .*sessionKey=$TELEGRAM_SESSION_KEY" \
+           "$GUARD_GATEWAY_LOG" 2>/dev/null | tail -1)
+    [ -n "$line" ] || return 1
+
+    ts=$(printf '%s' "$line" | sed -n 's/^\([0-9][0-9-]*T[0-9:]*\).*/\1/p')
+    [ -n "$ts" ] || return 1
+    now_epoch=$(date -u +%s)
+    ts_epoch=$(date -j -u -f "%Y-%m-%dT%H:%M:%S" "$ts" +%s 2>/dev/null) || return 1
+    [ $(( now_epoch - ts_epoch )) -lt "$GUARD_STALL_FRESHNESS" ] || return 1
+
+    age=$(printf '%s' "$line" | sed -n 's/.*[^a-zA-Z]age=\([0-9][0-9]*\)s.*/\1/p')
+    [ -n "$age" ] || return 1
+    [ "$age" -ge "$GUARD_STALL_SECONDS" ]
+}
 
 # guard_recent_activity — 0 if the Telegram session wrote a transcript event
 # within the last GUARD_ACTIVITY_WINDOW seconds.
@@ -134,6 +177,15 @@ telegram_turn_state() {
             ORDER BY created_at DESC LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
     fi
 
+    # A run the gateway itself has classified as stalled is not a live
+    # turn: it is holding the session in `processing` forever. It will
+    # never deliver a reply, and it blocks the compaction and the restart
+    # that would fix the session. Treat it as restartable.
+    if guard_stalled_session; then
+        echo "stalled"
+        return
+    fi
+
     # Recent transcript activity means a turn is live, whatever the status
     # column says. The status column LAGS a turn that has just started:
     # the turn writes its first event before the row catches up. This is
@@ -164,9 +216,11 @@ telegram_turn_state() {
 telegram_turn_live() {
     local st
     st=$(telegram_turn_state)
-    # Only a PROVABLY idle session counts as idle. "live" and "unknown" both
-    # mean: do not touch it.
-    [ "$st" != "idle" ]
+    # Only a PROVABLY idle session counts as idle. "live" and "unknown"
+    # both mean: do not touch it. "stalled" is the one exception: the
+    # gateway has classified the run as a corpse, so it cannot deliver a
+    # reply and it is blocking the very restart that would clear it.
+    [ "$st" != "idle" ] && [ "$st" != "stalled" ]
 }
 
 # restart_allowed — 0 if it is safe to restart right now, 1 if it must be
@@ -183,6 +237,9 @@ restart_allowed() {
     case "$(telegram_turn_state)" in
         idle)
             echo "restart_allowed: Telegram session is idle — restarting (${reason})" >&2
+            return 0 ;;
+        stalled)
+            echo "restart_allowed: Telegram session is a STALLED run (the gateway classified it stalled_agent_run) — it cannot deliver a reply, so restarting (${reason})" >&2
             return 0 ;;
         live)
             echo "restart_allowed: DEFERRED — a Telegram turn is live; restarting would drop the reply (${reason})" >&2

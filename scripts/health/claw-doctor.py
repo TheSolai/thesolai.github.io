@@ -1484,10 +1484,33 @@ def check_live_turn_safety():
         evidence + [f"{len(scripts)} shell script(s) scanned"])
 
 
-def check_fallback_capacity():
-    """Every configured fallback must be able to hold the prompts it will see.
+def _ollama_real_context(model_id):
+    """What the running ollama server can ACTUALLY serve for this model.
 
-    The primary provider can be rate-limited out at any time — on 2026-10-28
+    Returns (real_context, note). `real_context` is None when it cannot be
+    determined (server down, model unknown).
+    """
+    try:
+        import urllib.request
+        req = urllib.request.Request(
+            "http://localhost:11434/api/show",
+            data=json.dumps({"model": model_id}).encode(),
+            headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8", "replace"))
+    except Exception as exc:                              # noqa: BLE001
+        return None, f"could not ask ollama about {model_id} ({exc})"
+    info = data.get("model_info") or {}
+    lens = [v for k, v in info.items() if k.endswith(".context_length")]
+    if not lens:
+        return None, f"ollama did not report a context length for {model_id}"
+    return max(lens), None
+
+
+def check_fallback_capacity():
+    """Can the fallback CHAIN hold the prompts this agent actually sends?
+
+    The primary provider can be rate-limited out at any time. On 2026-10-28
     MiniMax returned HTTP 429 "Token Plan usage limit reached" on every call
     and every turn fell through to the local model. A fallback whose context
     window is smaller than the prompt cannot answer: the router admits the
@@ -1497,6 +1520,22 @@ def check_fallback_capacity():
     Measured that day: estimatedPromptTokens=113455 against
     promptBudgetBeforeReserve=111072 on a fallback declared at 131072. The
     fallback was 2,383 tokens too small and the turn never produced a reply.
+
+    TWO separate failure modes, and they need different verdicts.
+
+      1. THE CHAIN IS TOO SMALL. Not one fallback can hold the prompt, so
+         when the primary drops there is nowhere to go. That is a FAIL.
+
+      2. A FALLBACK OVER-DECLARES ITS WINDOW. The config says 131072 but
+         the provider can only serve 90000. The runtime believes it has
+         room, sends a prompt the provider cannot take, and the turn dies
+         with an opaque error. THAT is the 2026-10-28 bug, and it is a FAIL
+         even when another fallback in the chain is big enough, because the
+         over-declaring one is still in the failover order.
+
+    A secondary fallback that is merely SMALLER than the largest prompt is a
+    WARN, not a FAIL: it is only reached when the earlier fallbacks have
+    already failed, and by then the big one was tried first.
     """
     try:
         with open(CONFIG_PATH) as fh:
@@ -1513,14 +1552,17 @@ def check_fallback_capacity():
 
     providers = cfg.get("models", {}).get("providers", {})
 
-    # Largest prompt the runtime has actually tried to send.
+    # Largest prompt the runtime has actually tried to send. Two markers
+    # carry the estimate: the mid-turn precheck (the common one) and the
+    # older context-pressure diagnostic.
     max_est = 0
     max_est_at = None
     for path in sorted(glob.glob(LOG_GLOB)):
         try:
             with open(path, encoding="utf-8", errors="replace") as fh:
                 for line in fh:
-                    if "context-pressure-diagnostic" not in line:
+                    if ("context-pressure-diagnostic" not in line and
+                            "context-overflow-midturn-precheck" not in line):
                         continue
                     m = re.search(r"estimatedPromptTokens=(\d+)", line)
                     if not m:
@@ -1539,41 +1581,401 @@ def check_fallback_capacity():
             if isinstance(mdl, dict) and mdl.get("id"):
                 windows[f"{pname}/{mdl['id']}"] = mdl.get("contextWindow") or 0
 
-    problems = []
+    need = max_est + FALLBACK_OUTPUT_RESERVE if max_est else 0
+    problems = []          # FAIL-level
+    warnings = []          # WARN-level
     evidence = []
     if max_est:
-        evidence.append(f"largest prompt the runtime tried to send: {max_est} tokens")
+        when = max_est_at.isoformat(timespec="seconds") if max_est_at else "?"
+        evidence.append(f"largest prompt the runtime tried to send: {max_est} "
+                        f"tokens ({when}); a fallback needs >= {need}")
 
+    capable = 0
     for fb in fallbacks:
         ctx = windows.get(fb)
         if ctx is None:
             problems.append(f"{fb} is configured as a fallback but is not in any provider")
             continue
-        need = max_est + FALLBACK_OUTPUT_RESERVE if max_est else 0
-        evidence.append(f"{fb}: contextWindow={ctx}"
-                        + (f" (needs >= {need})" if need else ""))
+        line = f"{fb}: contextWindow={ctx}"
+        if need:
+            line += f" (needs >= {need})"
+        # Honesty: does the provider actually serve this much?
+        if fb.startswith("ollama/"):
+            real, note = _ollama_real_context(fb.split("/", 1)[1])
+            if real is None:
+                warnings.append(f"{fb}: could not confirm the real context "
+                                f"window - {note}")
+            elif ctx > real:
+                problems.append(
+                    f"{fb} DECLARES contextWindow={ctx} but ollama can only "
+                    f"serve {real} - the runtime will send a prompt the "
+                    f"provider cannot take")
+            else:
+                line += f"; ollama actually serves {real}"
+        evidence.append(line)
+
         if need and ctx < need:
-            problems.append(
-                f"{fb} contextWindow={ctx} is below the {need} tokens a prompt "
-                f"of {max_est} needs")
+            warnings.append(f"{fb} contextWindow={ctx} is smaller than the "
+                            f"{need} tokens a prompt of {max_est} needs")
+        else:
+            capable += 1
 
     if problems:
         return Check(
             "fallback-capacity", "Fallbacks can hold the prompts they see",
             "FAIL",
-            f"{len(problems)} fallback(s) cannot serve the prompts this agent produces",
+            f"{len(problems)} fallback problem(s) that no other fallback can "
+            "compensate for",
             evidence + problems,
-            fix="Raise the fallback's contextWindow to at least "
-                "max_observed_prompt_tokens + 20000, and drop fallbacks whose "
-                "model does not support that context at all. A fallback that "
-                "cannot hold the prompt is worse than no fallback: the turn "
+            fix="Correct the declared contextWindow to what the provider "
+                "really serves, and make sure at least one fallback can hold "
+                "max_observed_prompt_tokens + 20000. A fallback that "
+                "over-declares its window is worse than no fallback: the turn "
                 "stalls instead of failing fast.")
+
+    if warnings and capable == 0:
+        return Check(
+            "fallback-capacity", "Fallbacks can hold the prompts they see",
+            "FAIL",
+            "NO fallback can hold the prompts this agent produces",
+            evidence + warnings,
+            fix="Raise a fallback's contextWindow to at least "
+                "max_observed_prompt_tokens + 20000. A fallback that cannot "
+                "hold the prompt is worse than no fallback: the turn stalls "
+                "instead of failing fast.")
+
+    if warnings:
+        return Check(
+            "fallback-capacity", "Fallbacks can hold the prompts they see",
+            "WARN",
+            f"{capable} of {len(fallbacks)} fallback(s) can hold the largest "
+            f"observed prompt; the rest are smaller (they are only reached "
+            "after the bigger ones fail)",
+            evidence + warnings,
+            fix="Optional: raise the smaller fallbacks' contextWindow, or "
+                "remove them from the chain if they cannot serve the prompts "
+                "this agent produces.")
 
     return Check(
         "fallback-capacity", "Fallbacks can hold the prompts they see",
         "PASS",
         f"{len(fallbacks)} fallback(s) can hold the prompts this agent produces",
         evidence)
+
+
+def _log_lines(window_hours):
+    """Yield (datetime, text) for every JSON-log line in the window.
+
+    Deliberately NOT filtered by MARKERS: the provider-failure lines this
+    reads ("status=429", "Token Plan usage limit reached") are not markers
+    the event classifier knows about, and the whole point of these checks is
+    to notice the lines nobody else is watching.
+    """
+    cutoff = now_utc() - timedelta(hours=window_hours)
+    for path in sorted(glob.glob(LOG_GLOB)):
+        try:
+            with open(path, encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    if not line.startswith("{"):
+                        continue
+                    try:
+                        rec = json.loads(line)
+                    except (json.JSONDecodeError, ValueError):
+                        continue
+                    text = rec.get("message") or rec.get("1") or ""
+                    if not text:
+                        continue
+                    ts = parse_ts(rec.get("time"))
+                    if ts and ts < cutoff:
+                        continue
+                    yield ts, text
+        except OSError:
+            continue
+
+
+def check_provider_health(window_hours):
+    """Is the PRIMARY provider actually serving right now?
+
+    Measured on 2026-11-03: MiniMax began returning HTTP 429 with
+    "Token Plan usage limit reached ... (2056)" at 18:02 and again at 18:18.
+    The turn did not fail cleanly. The auth profile was marked
+    "temporarily unavailable", the session stayed in `processing` forever,
+    compaction was refused ("Session has an active run"), and the user got
+    nothing for 14 minutes. The bot then degraded to a local model without
+    saying so.
+
+    The dangerous state is not the 429 itself — it is the 429 being INVISIBLE.
+    Nothing in the Doctor reported it, so the only symptom the user saw was
+    "the bot stopped answering". This check reads the primary provider's
+    outcome in the window and says plainly whether it is serving, degraded,
+    or down.
+
+    PASS  - the primary served a request in the window, or has never failed.
+    WARN  - the primary failed and a fallback is carrying the traffic.
+    FAIL  - the primary failed and there is NO fallback to carry it.
+    """
+    try:
+        with open(CONFIG_PATH) as fh:
+            cfg = json.load(fh)
+    except (OSError, json.JSONDecodeError) as exc:
+        return Check("provider-health", "The primary provider is serving",
+                     "INFO", f"could not read {CONFIG_PATH}: {exc}")
+
+    model = cfg.get("agents", {}).get("defaults", {}).get("model", {}) or {}
+    primary = model.get("primary") or ""
+    fallbacks = model.get("fallbacks") or []
+    if not primary:
+        return Check("provider-health", "The primary provider is serving",
+                     "INFO", "no primary model is configured")
+    primary_provider = primary.split("/")[0]
+
+    failures = []          # (ts, text)
+    successes = []         # (ts, text) for the PRIMARY provider
+    fallback_used = 0
+
+    fetch_fail = re.compile(
+        r"\[model-fetch\]\s+response\s+provider=(\S+).*?model=(\S+)\s+status=(\d+)")
+    for ts, text in _log_lines(window_hours):
+        m = fetch_fail.search(text)
+        if m:
+            prov, _mid, status = m.group(1), m.group(2), int(m.group(3))
+            if prov == primary_provider:
+                if status >= 400:
+                    failures.append((ts, text))
+                elif status < 400:
+                    successes.append((ts, text))
+            continue
+        if "Token Plan usage limit reached" in text or \
+                "temporarily unavailable for" in text:
+            if primary_provider in text:
+                failures.append((ts, text))
+        # A model-snapshot records which model actually served a turn.
+        if "model-snapshot" in text:
+            snap = re.search(r'"provider":"([^"]+)".*?"modelId":"([^"]+)"', text)
+            if snap and snap.group(1) != primary_provider:
+                fallback_used += 1
+
+    if not failures:
+        served = f"the primary served {len(successes)} request(s)" if successes \
+            else "no failure recorded in the window"
+        return Check("provider-health", "The primary provider is serving",
+                     "PASS", f"{primary}: {served}", [])
+
+    newest_fail = max((t for t, _ in failures if t), default=None)
+    recovered = any(t and newest_fail and t > newest_fail for t, _ in successes)
+    if recovered:
+        return Check(
+            "provider-health", "The primary provider is serving",
+            "PASS",
+            f"{primary}: {len(failures)} failure(s), but a later request "
+            "succeeded — it recovered on its own",
+            [f"newest failure {newest_fail.isoformat()}" if newest_fail else ""])
+
+    ev = []
+    for ts, text in failures[-6:]:
+        when = ts.isoformat(timespec="seconds") if ts else "?"
+        ev.append(f"{when} {clip_text(text, 160)}")
+    if fallback_used:
+        ev.append(f"{fallback_used} turn(s) were served by a fallback model")
+
+    if not fallbacks:
+        return Check(
+            "provider-health", "The primary provider is serving",
+            "FAIL",
+            f"{primary} is failing and there is NO fallback configured — "
+            "every turn will fail",
+            ev,
+            fix="Configure at least one fallback "
+                "(agents.defaults.model.fallbacks) so a provider outage "
+                "degrades instead of failing outright.")
+
+    return Check(
+        "provider-health", "The primary provider is serving",
+        "WARN",
+        f"{primary} is failing ({len(failures)} failure(s) in the window) — "
+        f"traffic is being served by the fallback chain: {', '.join(fallbacks)}",
+        ev,
+        fix="This is an ACCOUNT problem, not a code problem: the provider is "
+            "refusing calls (quota/limit/billing). Top up or fix the "
+            "credential on the provider side; the fallback chain is already "
+            "covering it, but the fallback is a local model and will be "
+            "slower and less capable.")
+
+
+def check_fallback_models():
+    """Is every configured fallback actually PRESENT and REACHABLE?
+
+    A fallback that names a model which is not installed is a silent trap:
+    the chain looks configured, the Doctor passes, and the turn fails with
+    an opaque provider error the first time it is needed.
+
+    For ollama this is checked against the running server's own model list,
+    because "installed" and "listed" are not the same thing on a machine
+    where models get pruned.
+    """
+    try:
+        with open(CONFIG_PATH) as fh:
+            cfg = json.load(fh)
+    except (OSError, json.JSONDecodeError) as exc:
+        return Check("fallback-models", "Fallback models are installed",
+                     "INFO", f"could not read {CONFIG_PATH}: {exc}")
+
+    defaults = cfg.get("agents", {}).get("defaults", {})
+    fallbacks = defaults.get("model", {}).get("fallbacks") or []
+    if not fallbacks:
+        return Check("fallback-models", "Fallback models are installed",
+                     "INFO", "no fallback models are configured")
+
+    providers = cfg.get("models", {}).get("providers", {})
+    problems = []
+    evidence = []
+
+    ollama_models = None
+    ollama_up = None
+    for fb in fallbacks:
+        prov, _sep, model_id = fb.partition("/")
+        if prov != "ollama":
+            pcfg = providers.get(prov) or {}
+            if not pcfg.get("baseUrl"):
+                problems.append(f"{fb}: provider '{prov}' is not configured "
+                                "(no baseUrl in models.providers)")
+            else:
+                evidence.append(f"{fb}: provider configured")
+            continue
+
+        if ollama_up is None:
+            try:
+                import urllib.request
+                with urllib.request.urlopen("http://localhost:11434/api/tags",
+                                            timeout=10) as resp:
+                    data = json.loads(resp.read().decode("utf-8", "replace"))
+                ollama_models = {m.get("name", "") for m in data.get("models", [])}
+                ollama_up = True
+                evidence.append(f"ollama server is up with "
+                                f"{len(ollama_models)} model(s) installed")
+            except Exception as exc:                      # noqa: BLE001
+                ollama_up = False
+                ollama_models = set()
+                problems.append(f"ollama server is not reachable at "
+                                f"localhost:11434 ({exc}) — every ollama "
+                                "fallback is dead")
+        if not ollama_up:
+            continue
+        names = {n for n in ollama_models}
+        wanted = model_id
+        if wanted not in names and f"{wanted}:latest" not in names:
+            # ollama reports 'qwen3:30b' for a model installed as 'qwen3:30b',
+            # but a bare tag shows up as 'name:latest'.
+            bare = wanted.split(":")[0]
+            if not any(n == wanted or n.split(":")[0] == bare and ":" in n
+                       for n in names):
+                problems.append(
+                    f"{fb}: not installed on the ollama server "
+                    f"(have: {', '.join(sorted(names))[:120]})")
+            else:
+                evidence.append(f"{fb}: installed")
+        else:
+            evidence.append(f"{fb}: installed")
+
+    if problems:
+        return Check(
+            "fallback-models", "Fallback models are installed",
+            "FAIL",
+            f"{len(problems)} configured fallback(s) cannot be used",
+            evidence + problems,
+            fix="Install the missing model or remove it from the fallback "
+                "chain. A fallback naming an absent model fails opaquely at "
+                "the moment it is needed.")
+
+    return Check(
+        "fallback-models", "Fallback models are installed",
+        "PASS",
+        f"{len(fallbacks)} fallback(s) are reachable and installed",
+        evidence)
+
+
+def check_session_wedge(window_hours):
+    """Is any session stuck in `processing` with no progress?
+
+    The failure mode of 2026-11-03: the provider refused the call, the lane
+    task errored, the error message went out to Telegram — and then the
+    session stayed `state=processing` forever. The gateway's own watchdog
+    noticed (`stalled session: ... classification=stalled_agent_run
+    recovery=none`) but nothing released it. While it was wedged:
+
+      * compaction was refused ("Session has an active run"), so the window
+        could not shrink;
+      * new turns queued behind a lane that would never drain;
+      * the restart guard saw a live-ish session and deferred.
+
+    The user saw a bot that had stopped answering. This check makes the
+    wedge visible instead of leaving it to be discovered by a user.
+    """
+    cutoff = now_utc() - timedelta(hours=window_hours)
+    stalled = []
+    for ts, text in _log_lines(window_hours):
+        if "stalled session:" not in text:
+            continue
+        if ts and ts < cutoff:
+            continue
+        key = field(text, "sessionKey")
+        age = field(text, "age", lambda v: int(float(v.rstrip("s"))))
+        cls = field(text, "classification")
+        rec = field(text, "recovery")
+        stalled.append((ts, key, age, cls, rec, text))
+
+    if not stalled:
+        return Check("session-wedge", "No session is wedged in processing",
+                     "PASS", "no stalled session reported in the window")
+
+    newest = max(stalled, key=lambda r: r[0] or datetime.min.replace(
+        tzinfo=timezone.utc))
+    ts, key, age, cls, rec, _text = newest
+    when = ts.isoformat(timespec="seconds") if ts else "?"
+    # A stall that was later resolved is history, not a fault. Look for
+    # progress on that session AFTER the stall report: a compaction, a
+    # reply going out, or a gateway restart all release a wedge.
+    last_progress = None
+    for pts, ptext in _log_lines(window_hours):
+        if pts is None or ts is None or pts <= ts:
+            continue
+        if key and key not in ptext:
+            continue
+        if ("Compacted session" in ptext or "telegram outbound send ok" in ptext
+                or "No compaction needed for session" in ptext
+                or "lane task error" in ptext or "model-snapshot" in ptext):
+            last_progress = pts
+            break
+    still_stuck = age is not None and age >= 180 and last_progress is None
+    evidence = [f"{when} age={age}s classification={cls} recovery={rec} "
+                f"session={key}"]
+    for _t, k, a, c, r, _x in stalled[-5:]:
+        if k != key:
+            evidence.append(f"session={k} age={a}s classification={c}")
+
+    if not still_stuck:
+        extra = ""
+        if last_progress is not None:
+            extra = (f" (released by progress at "
+                     f"{last_progress.isoformat(timespec='seconds')})")
+        return Check(
+            "session-wedge", "No session is wedged in processing",
+            "PASS",
+            f"{len(stalled)} stall report(s) in the window, none still "
+            f"wedged (the newest resolved){extra}",
+            evidence)
+
+    return Check(
+        "session-wedge", "No session is wedged in processing",
+        "FAIL",
+        f"session {key} has been in `processing` for {age}s with "
+        f"classification={cls} recovery={rec}",
+        evidence,
+        fix="The gateway restart guard (ai.sol.gateway-restart-if-idle, "
+            "every 5 min) restarts the gateway when the lane is quiet and "
+            "the session is classified stalled_agent_run with recovery=none — "
+            "that is what released it on 2026-11-03. If it does not fire, "
+            "run scripts/restart-and-verify.sh by hand.")
 
 
 def collect(window_hours):
@@ -1598,6 +2000,9 @@ def collect(window_hours):
         check_sleep_guard(),
         check_live_turn_safety(),
         check_fallback_capacity(),
+        check_provider_health(window_hours),
+        check_fallback_models(),
+        check_session_wedge(window_hours),
         check_git_state(),
     ], events, source
 
