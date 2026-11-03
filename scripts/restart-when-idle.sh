@@ -3,7 +3,7 @@
 # Used to load the cache-TTL worker patch. The shared guard decides when it is
 # safe; this only supplies the patience.
 . /Users/amre/.openclaw/workspace/scripts/lib/gateway-restart-guard.sh
-for i in $(seq 1 240); do
+for i in $(seq 1 720); do
     if ! telegram_turn_live; then
         echo "$(date '+%H:%M:%S') telegram idle — restarting to load the cache-TTL worker patch"
         safe_restart_gateway "load cache-TTL worker patch" && echo "$(date '+%H:%M:%S') restart issued"
