@@ -293,6 +293,97 @@ PY
 fi
 
 # ---------------------------------------------------------------------------
+# Patch D: gate the SECOND marker writer.
+#
+# The provider guard in `isCacheTtlEligibleProvider` only covers the first
+# writer, `appendAttemptCacheTtlIfNeeded`. There is a second one:
+#
+#     persistToolResultProjections(toolResultPromptProjectionState,
+#       (customType, data) => sessionManager.appendCustomEntry(customType, data))
+#
+# It runs on EVERY prompt submission and is gated only by
+# `toolResultPromptProjectionState.frozen.size > 0` — it never consults the
+# provider eligibility. Measured on 2026-11-03 at 17:18, AFTER the
+# provider guard was loaded by the 17:09:50 restart, the Telegram session
+# still wrote a 5,698-byte marker, and a subagent wrote 28 more. Patching
+# the first writer alone does not stop the bloat.
+#
+# The same eligibility test is applied to this writer, so a provider that
+# does not implement Anthropic's prompt-cache TTL semantics writes no
+# cache-TTL markers at all.
+#
+# The attempt identifier is DISCOVERED, never hardcoded: the minified
+# bundles name it differently in different bundles and the file may be
+# re-minified by an OpenClaw upgrade.
+# ---------------------------------------------------------------------------
+patch_projection_gate() {
+    python3 - "$1" <<'PYEOF'
+import re
+import sys
+
+path = sys.argv[1]
+src = open(path, encoding="utf-8", errors="replace").read()
+
+CALL = re.compile(
+    r"persistToolResultProjections\(\s*(\w+)\s*,\s*\((\w+)\s*,\s*(\w+)\)\s*=>\s*"
+    r"(\w+)\.appendCustomEntry\(\s*\2\s*,\s*\3\s*\)\s*\)")
+
+matches = list(CALL.finditer(src))
+if not matches:
+    sys.exit("FAIL: no projection-writer call site found")
+
+patched = 0
+for m in reversed(matches):          # reversed: earlier offsets stay valid
+    state, a, b, mgr = m.group(1), m.group(2), m.group(3), m.group(4)
+    before = src[max(0, m.start() - 4000):m.start()]
+
+    # The attempt identifier, DISCOVERED and never hardcoded:
+    #   `attempt:_n,`      the minified bundles
+    #   `attempt,`         the pretty-printed bundle (shorthand property)
+    #   `{ activeSession, attempt } = input`   the destructured binding
+    attempt = None
+    ids = re.findall(r"attempt:(\w+)\s*,", before)
+    if ids:
+        attempt = ids[-1]
+    elif re.search(r"\battempt\s*,", before):
+        attempt = "attempt"
+    elif re.search(r"\{[^}]*\battempt\b[^}]*\}\s*=\s*\w+", before):
+        attempt = "attempt"
+    if not attempt:
+        sys.exit("FAIL: could not determine the attempt identifier")
+
+    # The match consumed BOTH closing parens (appendCustomEntry's and
+    # persistToolResultProjections'), so the replacement has to close both
+    # as well. Leaving the original ')' in place produced a double close
+    # and a syntax error in all three bundles.
+    guarded = (
+        f"persistToolResultProjections({state},({a},{b})=>{{"
+        f"isCacheTtlEligibleProvider({attempt}.provider,{attempt}.modelId,"
+        f"{attempt}.model?.api,{{baseUrl:{attempt}.model?.baseUrl,"
+        f"supportsPromptCacheKey:{attempt}.model?.compat?.supportsPromptCacheKey}})"
+        f"&&{mgr}.appendCustomEntry({a},{b})}})")
+
+    src = src[:m.start()] + guarded + src[m.end():]
+    patched += 1
+
+open(path, "w", encoding="utf-8").write(src)
+print(f"projection gate applied to {patched} call site(s)")
+PYEOF
+}
+
+for t in "${TARGETS[@]}"; do
+    [ "$VERIFY_ONLY" = "1" ] && continue
+    out=$(patch_projection_gate "$t" 2>&1) && rc=0 || rc=$?
+    if [ $rc -ne 0 ]; then
+        log "  FAIL: ${t#$DIST/}"
+        log "    $(echo "$out" | tail -2)"
+        exit 1
+    fi
+    log "  $out: ${t#$DIST/}"
+    changed=1
+done
+
+# ---------------------------------------------------------------------------
 # Syntax-check EVERY patched file and VERIFY the guard BEHAVIOUR.
 #
 # A string check is not enough. The first version of this patch was present
@@ -308,6 +399,48 @@ for f in "${TARGETS[@]}"; do
         log "FAIL: $f has no cache-ttl guard after patching"
         exit 1
     fi
+done
+
+# ---------------------------------------------------------------------------
+# Verify the SECOND writer is gated too.
+#
+# The first guard covers `appendAttemptCacheTtlIfNeeded`. The projection
+# writer is a separate call site, and it is the one that kept producing
+# markers after the provider guard was loaded by the 17:09:50 restart on
+# 2026-11-03. Every projection call site must therefore carry the same
+# eligibility test, or the window keeps growing.
+# ---------------------------------------------------------------------------
+log "checking that every projection-writer call site is gated"
+for f in "${TARGETS[@]}"; do
+    /opt/homebrew/bin/python3 - "$f" <<'PYEOF'
+import re
+import sys
+
+path = sys.argv[1]
+src = open(path, encoding="utf-8", errors="replace").read()
+
+CALL = re.compile(
+    r"persistToolResultProjections\(\s*\w+\s*,\s*\(\w+\s*,\s*\w+\)\s*=>\s*"
+    r"(?:\{)?[^;]{0,500}?\.appendCustomEntry\(")
+
+sites = list(CALL.finditer(src))
+if not sites:
+    sys.exit(f"FAIL: no projection-writer call site found in {path}")
+
+unguarded = []
+for m in sites:
+    window = src[max(0, m.start() - 500):m.end() + 200]
+    if "isCacheTtlEligibleProvider(" not in window:
+        unguarded.append(m.start())
+
+if unguarded:
+    sys.exit(f"FAIL: {len(unguarded)} projection-writer call site(s) are "
+             f"ungated in {path}")
+
+print(f"  ok  {len(sites)} projection call site(s), all gated")
+PYEOF
+    rc=$?
+    [ $rc -eq 0 ] || { log "FAIL: $f has an ungated projection writer"; exit 1; }
 done
 
 log "behaviour check: extracting the guard from each copy and calling it"
