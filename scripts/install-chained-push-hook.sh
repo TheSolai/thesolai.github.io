@@ -62,7 +62,7 @@ if [ ! -f "\$GATE" ]; then
     echo "pre-push: credential gate missing at \$GATE -- refusing to publish" >&2
     exit 1
 fi
-if ! /bin/bash "\$GATE" "\$TOP" < "\$STDIN_COPY"; then
+if ! /bin/bash "\$GATE" "\$TOP" --remote "\${1:-origin}" < "\$STDIN_COPY"; then
     echo "pre-push: BLOCKED -- credential detected; nothing was published." >&2
     exit 1
 fi

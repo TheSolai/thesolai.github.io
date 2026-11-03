@@ -152,6 +152,37 @@ def looks_like_placeholder(value):
     return any(marker in low for marker in PLACEHOLDER_MARKERS)
 
 
+# Shapes that are IDENTIFIERS, not credentials.
+#
+# A secrets file can hold more than keys. `secrets/reply-addresses.txt`
+# holds a reply address, an account identifier and two real tokens. The
+# scanner harvests every line of it and treats each one as a credential,
+# so the 16-character address blocked the Private Workspace Backup on
+# every run since 2026-10-31, in ten files, while the two real tokens in
+# the same file appeared nowhere.
+#
+# Deliberately conservative: only shapes that cannot plausibly be a
+# secret key are treated as identifiers. A passphrase with spaces, a
+# base64 blob, a mixed-case token — all of those still block.
+IDENTIFIER_PATTERNS = (
+    re.compile(r"^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$"),                   # email
+    re.compile(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", re.I),                # URL
+    re.compile(r"^(?:[A-Za-z]:[\\/]|/|~)[\\/]?"),                    # path
+    re.compile(r"^[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+(?::\d+)?$"),      # host
+)
+
+
+def is_identifier_literal(value):
+    """True when a harvested literal is an identifier, not a credential."""
+    v = value.strip()
+    if not v:
+        return False
+    for pat in IDENTIFIER_PATTERNS:
+        if pat.match(v):
+            return True
+    return False
+
+
 def is_binary(payload):
     """True if the payload looks like compiled/binary data."""
     if b"\x00" in payload[:8000]:
@@ -687,6 +718,41 @@ def split_published(repo, findings, literals, baseline):
     return blocking, preexisting
 
 
+def split_private_repo(findings, literals):
+    """Split findings into (blocking, downgraded) for a PRIVATE target.
+
+    Only IDENTIFIER literals are downgraded. A credential-shaped literal
+    still blocks, and a pattern finding still blocks: a pattern match is a
+    shape rather than a value, so it can be a real key wherever it turns
+    up. Nothing else is relaxed.
+
+    The private repo is not a free pass — it is the difference between
+    "this content is not sensitive" and "this content is sensitive but is
+    not being made public".
+    """
+    if not findings:
+        return findings, []
+
+    values = {}
+    for (kind, value), digest in literals.items():
+        values[(kind, "sha256:" + digest)] = value
+
+    blocking = []
+    downgraded = []
+    for finding in findings:
+        kind, label, token = finding
+        value = values.get((kind, token))
+        if (
+            kind.startswith("literal:")
+            and value is not None
+            and is_identifier_literal(value)
+        ):
+            downgraded.append(finding)
+        else:
+            blocking.append(finding)
+    return blocking, downgraded
+
+
 def _check_payloads(label, data, literals, findings, vendor_ok=True):
     """Apply the literal and pattern checks to one blob and its archive members."""
     if not data:
@@ -722,7 +788,7 @@ def _check_payloads(label, data, literals, findings, vendor_ok=True):
                 findings.append(("pattern:" + kind, payload_label, redact(text)))
 
 
-def scan(repo, mode, quiet, baseline=None):
+def scan(repo, mode, quiet, baseline=None, private_repo=False):
     literals = collect_literals()
     findings = []
     files = candidate_files(repo, mode)
@@ -758,11 +824,23 @@ def scan(repo, mode, quiet, baseline=None):
 
     blocking, preexisting = split_published(repo, findings, literals, baseline)
 
+    downgraded = []
+    if private_repo:
+        blocking, downgraded = split_private_repo(blocking, literals)
+
     if preexisting and not quiet:
         print(
             "SECRET-SCAN: %d finding(s) already published in the baseline "
             "(pre-existing, not blocking)" % len(set(preexisting))
         )
+    if downgraded and not quiet:
+        print(
+            "SECRET-SCAN: %d identifier finding(s) in a PRIVATE repo — "
+            "reported, not blocking (a credential-shaped value or a pattern "
+            "match would still block)" % len(set(downgraded))
+        )
+        for kind, label, token in sorted(set(downgraded)):
+            print("  %-34s %s  %s" % (kind, token, label))
     if blocking and not quiet:
         print("SECRET-SCAN: ABORT - %d finding(s)" % len(blocking))
         for kind, label, token in sorted(set(blocking)):
@@ -777,7 +855,7 @@ def scan(repo, mode, quiet, baseline=None):
     return 1 if blocking else 0
 
 
-def scan_history(repo, rev_range, quiet, baseline=None):
+def scan_history(repo, rev_range, quiet, baseline=None, private_repo=False):
     """Scan every blob reachable in a revision range.
 
     This is the check that matters at push time: it inspects the exact
@@ -839,11 +917,23 @@ def scan_history(repo, rev_range, quiet, baseline=None):
 
     blocking, preexisting = split_published(repo, findings, literals, baseline)
 
+    downgraded = []
+    if private_repo:
+        blocking, downgraded = split_private_repo(blocking, literals)
+
     if preexisting and not quiet:
         print(
             "SECRET-SCAN: %d finding(s) already published in the baseline "
             "(pre-existing, not blocking)" % len(set(preexisting))
         )
+    if downgraded and not quiet:
+        print(
+            "SECRET-SCAN: %d identifier finding(s) in a PRIVATE repo — "
+            "reported, not blocking (a credential-shaped value or a pattern "
+            "match would still block)" % len(set(downgraded))
+        )
+        for kind, label, token in sorted(set(downgraded)):
+            print("  %-34s %s  %s" % (kind, token, label))
     if blocking and not quiet:
         print("SECRET-SCAN: ABORT - %d finding(s) in %s" % (len(blocking), rev_range))
         for kind, label, token in sorted(set(blocking)):
@@ -869,6 +959,7 @@ def main(argv):
     quiet = False
     history_range = None
     baseline = None
+    private_repo = False
     argv = list(argv[1:])
     i = 0
     while i < len(argv):
@@ -882,6 +973,8 @@ def main(argv):
             mode = "staged"
         elif arg == "--quiet":
             quiet = True
+        elif arg == "--private-repo":
+            private_repo = True
         elif arg == "--baseline":
             if i + 1 >= len(argv):
                 print(
@@ -921,8 +1014,8 @@ def main(argv):
         print("secret-scan: not a git repo: %s" % repo, file=sys.stderr)
         return 2
     if history_range:
-        return scan_history(repo, history_range, quiet, baseline)
-    return scan(repo, mode, quiet, baseline)
+        return scan_history(repo, history_range, quiet, baseline, private_repo)
+    return scan(repo, mode, quiet, baseline, private_repo)
 
 
 if __name__ == "__main__":

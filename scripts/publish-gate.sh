@@ -33,6 +33,24 @@
 #             published still blocks, so a newly introduced credential is
 #             still fatal. Pattern findings are never suppressed.
 #
+#   --remote  the git remote being pushed to (default: origin). Used to
+#             work out whether the TARGET repo is private.
+#
+# PRIVATE REPOS
+#   When the target repo is private, an IDENTIFIER harvested from a
+#   secrets file (an email address, a URL, a hostname) is reported but
+#   does not block. Publishing a reply address to a private backup repo
+#   is not a credential leak; blocking it did exactly that for the
+#   Private Workspace Backup, which failed every run from 2026-10-31 to
+#   2026-11-03 because a 16-character address in
+#   secrets/reply-addresses.txt appeared in ten files. A credential-SHAPED
+#   literal still blocks, and a pattern finding still blocks — nothing
+#   else is relaxed.
+#
+#   The privacy is read from GitHub itself (`gh api repos/<owner>/<repo>`),
+#   not from a local flag, and the check FAILS CLOSED: if GitHub cannot be
+#   asked, the strict public-repo rules apply.
+#
 #   With no --range, the gate reads git's pre-push protocol from stdin
 #   (one "<local ref> <local sha> <remote ref> <remote sha>" line per
 #   ref being pushed) and scans exactly those ranges. If stdin is empty
@@ -50,6 +68,8 @@ RANGE=""
 REPO=""
 STDIN_RANGES=""
 BASELINE=""
+REMOTE="origin"
+PRIVATE_REPO=0
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -67,6 +87,14 @@ while [ $# -gt 0 ]; do
             ;;
         --baseline=*)
             BASELINE="${1#--baseline=}"
+            shift
+            ;;
+        --remote)
+            REMOTE="$2"
+            shift 2
+            ;;
+        --remote=*)
+            REMOTE="${1#--remote=}"
             shift
             ;;
         -h|--help)
@@ -104,15 +132,56 @@ if [ -z "$PY" ]; then
     exit 1
 fi
 
+# gate_target_is_private — 0 if the repo being pushed to is PRIVATE.
+#
+# The answer comes from GitHub, not from a local flag, so it cannot be
+# faked by the thing being gated. It FAILS CLOSED: any error — no gh, no
+# auth, an unknown host, a private repo that does not exist — leaves the
+# strict public-repo rules in force.
+gate_target_is_private() {
+    local url path owner repo out
+    command -v gh >/dev/null 2>&1 || return 1
+    url=$(git remote get-url "$REMOTE" 2>/dev/null) || return 1
+    [ -n "$url" ] || return 1
+
+    case "$url" in
+        *github.com[:/]*) path="${url#*github.com/}" ;;
+        *github.com[:/]*) path="${url#*github.com:}" ;;
+        *) return 1 ;;
+    esac
+    path="${path%.git}"
+    path="${path#/}"
+    owner="${path%%/*}"
+    repo="${path#*/}"
+    [ "$owner" != "$path" ] || return 1
+    [ -n "$owner" ] && [ -n "$repo" ] || return 1
+
+    out=$(gh api "repos/$owner/$repo" --jq '.private' 2>/dev/null) || return 1
+    [ "$out" = "true" ]
+}
+
+if gate_target_is_private; then
+    PRIVATE_REPO=1
+    echo "publish-gate: target remote '$REMOTE' is a PRIVATE repo — identifier literals are reported, not blocking."
+fi
+
 # run_scan <scan args...>
 # Runs the scanner, passing --baseline only when one was supplied. Kept as
 # a function rather than an array so the script stays portable to the
 # bash 3.2 that ships with macOS.
 run_scan() {
     if [ -n "$BASELINE" ]; then
-        "$PY" "$SCAN" "$REPO" "$@" --baseline "$BASELINE"
+        if [ "$PRIVATE_REPO" = "1" ]; then
+            "$PY" "$SCAN" "$REPO" "$@" --baseline "$BASELINE" --private-repo
+        else
+            "$PY" "$SCAN" "$REPO" "$@" --baseline "$BASELINE"
+        fi
     else
-        "$PY" "$SCAN" "$REPO" "$@"
+        if [ "$PRIVATE_REPO" = "1" ]; then
+            "$PY" "$SCAN" "$REPO" "$@" --private-repo
+        else
+            "$PY" "$SCAN" "$REPO" "$@"
+        fi
     fi
 }
 
