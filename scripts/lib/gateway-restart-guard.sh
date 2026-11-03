@@ -41,6 +41,47 @@ GUARD_AGENT_DB="/Users/amre/.openclaw/agents/main/agent/openclaw-agent.sqlite"
 GUARD_HEALTH_URL="http://127.0.0.1:18789/healthz"
 GUARD_GATEWAY_LABEL="ai.openclaw.gateway"
 GUARD_CLI_SESSION_TIMEOUT=12   # seconds; a watchdog that hangs is worse
+GUARD_ACTIVITY_WINDOW=60       # seconds of transcript silence that means idle
+GUARD_GRACE_SECONDS=25         # quiet period before the final restart check
+
+# guard_recent_activity — 0 if the Telegram session wrote a transcript event
+# within the last GUARD_ACTIVITY_WINDOW seconds.
+#
+# WHY THIS EXISTS
+#   On 2026-11-03 at 17:09:39 the guard read "idle" for the fourth
+#   consecutive time and authorised a restart. At 17:09:46 the gateway
+#   aborted a live turn and the user lost messageId 2547:
+#
+#     "visible channel turn dispatched with no queued reply payloads:
+#      channel=telegram messageId=2547 cause=skipped:reply_operation_aborted"
+#
+#   The session status column was the only signal, and it LAGS: a turn that
+#   starts writes its first transcript event before the status row catches
+#   up. A transcript event is written within a second or two of a turn
+#   starting, so "has the session written anything in the last N seconds"
+#   is the far better liveness signal.
+#
+#   The session id is read from the same store, so this works even while
+#   the CLI is slow.
+guard_recent_activity() {
+    local sid last now
+    [ -f "$GUARD_AGENT_DB" ] || return 1
+    sid=$(sqlite3 "$GUARD_AGENT_DB" "
+        SELECT session_id FROM session_windows
+        WHERE session_key='$TELEGRAM_SESSION_KEY'
+        ORDER BY created_at DESC LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
+    [ -n "$sid" ] || return 1
+    last=$(sqlite3 "$GUARD_AGENT_DB" "
+        SELECT COALESCE(MAX(t.created_at), 0)
+        FROM session_transcript_active_events ae
+        LEFT JOIN transcript_events t
+          ON t.session_id = ae.session_id AND t.seq = ae.event_seq
+        WHERE ae.session_id = '$sid';" 2>/dev/null | head -1 | tr -d ' ')
+    [ -n "$last" ] || return 1
+    now=$(date +%s)
+    # created_at is milliseconds.
+    [ $(( (now - last / 1000) )) -lt "$GUARD_ACTIVITY_WINDOW" ]
+}
 
 # gateway_alive — 0 if the gateway answers /healthz
 guard_gateway_alive() {
@@ -91,6 +132,15 @@ telegram_turn_state() {
             SELECT status FROM session_windows
             WHERE session_key='$TELEGRAM_SESSION_KEY'
             ORDER BY created_at DESC LIMIT 1;" 2>/dev/null | head -1 | tr -d ' ')
+    fi
+
+    # Recent transcript activity means a turn is live, whatever the status
+    # column says. The status column LAGS a turn that has just started:
+    # the turn writes its first event before the row catches up. This is
+    # the signal that caught the messageId 2547 race.
+    if guard_recent_activity; then
+        echo "live"
+        return
     fi
 
     case "$st" in
@@ -150,8 +200,27 @@ restart_allowed() {
 # (which overwrites the `caffeinate -dims` wrapper in the plist and drops the
 # machine into sleep), and NOT `launchctl bootout` (which needs a bootstrap
 # afterwards and historically failed with "5: Input/output error").
+#
+# THE GRACE PERIOD
+#   A session that reads "idle" can still be about to adopt a queued
+#   message. On 2026-11-03 the guard read idle at 17:09:39, the turn
+#   wrote its first transcript event at 17:09:41, and the restart at
+#   17:09:50 killed it — the user lost messageId 2547:
+#
+#     "visible channel turn dispatched with no queued reply payloads:
+#      channel=telegram messageId=2547 cause=skipped:reply_operation_aborted"
+#
+#   A turn writes its first event within a second or two of starting, so
+#   waiting GUARD_GRACE_SECONDS and re-checking afterwards catches the
+#   turn before it is killed. The check is done twice: once after the
+#   grace period, and once more immediately before the kickstart.
 safe_restart_gateway() {
     local reason="${1:-unspecified}"
+
+    if [ "${GUARD_SKIP_GRACE:-0}" != "1" ]; then
+        echo "restart_allowed: grace ${GUARD_GRACE_SECONDS}s — re-checking before the restart (${reason})" >&2
+        sleep "$GUARD_GRACE_SECONDS"
+    fi
 
     if ! restart_allowed "$reason"; then
         return 1
