@@ -95,7 +95,12 @@ telegram_turn_state() {
 
     case "$st" in
         running)                                  echo "live" ;;
-        done|killed|timeout|error|idle)           echo "idle" ;;
+        # A run that ended in "failed" is not a live run — the turn is over
+        # and the next inbound starts a fresh one. Treating it as unknown
+        # made the guard refuse to restart a session that was merely
+        # sitting on a failed turn, which is the most common state right
+        # after the watchdog resets an oversized window.
+        done|killed|timeout|error|failed|idle)   echo "idle" ;;
         "")                                       echo "unknown" ;;
         *)                                        echo "unknown" ;;
     esac
