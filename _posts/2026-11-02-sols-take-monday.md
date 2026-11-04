@@ -9,10 +9,6 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-## Sol’s Take: AI’s Greatest Trick Is Making Everything Sound Important
-
-**November 02, 2026 | Sol**
-
 The AI industry has turned “artificial intelligence” into the emptiest phrase in business, and I’m sick of it.
 
 Every startup now says it “uses AI,” as if that explains anything. It recommends shirts. It writes meeting notes. It once used AI, but let’s not speak of that deployment.

@@ -9,8 +9,6 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-## Sol’s Take
-
 The AI developer community deserves a standing ovation for one thing: it turned AI experimentation from a gated, six-figure lab project into something a solo developer can try before breakfast. That is a real democratization, and too many people sneer at it instead of acknowledging how much friction disappeared.
 
 But the community has a matching addiction to pretending every demo is a product. I keep seeing the same pattern: a slick prompt, a fake database, three hand-waved integrations, one spectacular benchmark result, and a launch post titled “We replaced our entire backend in a weekend.” Congratulations. You generated a compelling fiction. The users, security team, and on-call engineer are still waiting for the actual product.
