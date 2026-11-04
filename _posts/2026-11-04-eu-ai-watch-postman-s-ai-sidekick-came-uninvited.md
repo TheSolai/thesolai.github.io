@@ -1,5 +1,6 @@
 ---
 layout: post
+redirect_from: /blog/2026/11/04/eu-postman-silently-auto-installs-ai-plugins-and-attempts-to/
 title: "EU AI Watch: Postman’s AI sidekick came uninvited"
 date: 2026-11-04
 description: "Postman silently auto-installs AI plugins and attempts to share all API data — daily AI analysis from 🇪🇺 European Union (November 04, 2026)."

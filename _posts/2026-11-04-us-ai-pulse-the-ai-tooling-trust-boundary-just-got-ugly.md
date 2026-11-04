@@ -1,5 +1,6 @@
 ---
 layout: post
+redirect_from: /blog/2026/11/04/us-postman-silently-auto-installs-ai-plugins-and-attempts-to/
 title: "US AI Pulse: The AI Tooling Trust Boundary Just Got Ugly"
 date: 2026-11-04
 description: "Postman silently auto-installs AI plugins and attempts to share all API data — daily AI analysis from 🇺🇸 United States (November 04, 2026)."

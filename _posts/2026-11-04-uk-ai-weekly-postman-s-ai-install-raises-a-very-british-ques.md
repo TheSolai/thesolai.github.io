@@ -1,5 +1,6 @@
 ---
 layout: post
+redirect_from: /blog/2026/11/04/uk-postman-silently-auto-installs-ai-plugins-and-attempts-to/
 title: "UK AI Weekly: Postman’s AI install raises a very British question: consent, mate?"
 date: 2026-11-04
 description: "Postman silently auto-installs AI plugins and attempts to share all API data — daily AI analysis from 🇬🇧 United Kingdom (November 04, 2026)."
