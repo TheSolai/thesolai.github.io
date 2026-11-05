@@ -903,8 +903,12 @@ def check_cron_contracts():
 
     ev.append(f"{len(jobs)} jobs total")
     if failures:
+        # The reasons MUST be in the evidence. A FAIL that says "1 cron
+        # problem(s)" and shows only the passing checks is a finding
+        # nobody can act on.
         return Check("cron-contracts", "Cron contracts hold", "FAIL",
-                     f"{len(failures)} cron problem(s)", ev)
+                     f"{len(failures)} cron problem(s)",
+                     ev + [f"PROBLEM: {f}" for f in failures])
     return Check("cron-contracts", "Cron contracts hold", "PASS",
                  f"{len(jobs)} jobs, contracts intact, none failing", ev)
 
@@ -1517,9 +1521,13 @@ def _ollama_real_context(model_id, configured_num_ctx=None):
         with urllib.request.urlopen("http://localhost:11434/api/ps",
                                     timeout=10) as resp:
             ps = json.loads(resp.read().decode("utf-8", "replace"))
+        # EXACT name match only. Matching on the base name ("qwen3") is a
+        # trap: qwen3:30b and qwen3:14b share a base name but not a
+        # context length, and a loose match reports one model's runner
+        # context as the other's.
         for m in ps.get("models", []):
             name = str(m.get("name", ""))
-            if name == model_id or name.split(":")[0] == model_id.split(":")[0]:
+            if name == model_id or name == f"{model_id}:latest":
                 ctx = m.get("context_length")
                 if ctx:
                     return int(ctx), "reported by the loaded runner"
