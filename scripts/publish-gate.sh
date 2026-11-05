@@ -214,6 +214,26 @@ if [ -z "$RANGE" ]; then
 
     if [ -n "$STDIN_RANGES" ]; then
         RANGE="$STDIN_RANGES"
+        # The remote may have commits this clone does not have - the
+        # content cron pushes from a different working tree, so the local
+        # remote-tracking ref lags. A range naming a commit that is not
+        # in the local object store cannot be resolved, and an
+        # unresolvable range is a fail-closed block for no real reason.
+        # Fetch first so the range resolves.
+        NEEDS_FETCH=0
+        for r in ${RANGE//,/ }; do
+            case "$r" in
+                *..*) SHA="${r%%..*}" ;;
+                *)     SHA="$r" ;;
+            esac
+            if ! git cat-file -e "$SHA^{commit}" 2>/dev/null; then
+                NEEDS_FETCH=1
+            fi
+        done
+        if [ "$NEEDS_FETCH" = "1" ]; then
+            echo "publish-gate: fetching the remote so the push range resolves..."
+            git fetch --quiet "$REMOTE" 2>/dev/null || true
+        fi
     else
         UPSTREAM="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null)"
         if [ -n "$UPSTREAM" ]; then

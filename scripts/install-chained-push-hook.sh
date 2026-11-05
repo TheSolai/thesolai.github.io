@@ -63,7 +63,7 @@ if [ ! -f "\$GATE" ]; then
     exit 1
 fi
 if ! /bin/bash "\$GATE" "\$TOP" --remote "\${1:-origin}" < "\$STDIN_COPY"; then
-    echo "pre-push: BLOCKED -- credential detected; nothing was published." >&2
+    echo "pre-push: BLOCKED -- see the publish-gate reason above; nothing was published." >&2
     exit 1
 fi
 
