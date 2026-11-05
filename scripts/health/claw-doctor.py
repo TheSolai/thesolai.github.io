@@ -1484,14 +1484,49 @@ def check_live_turn_safety():
         evidence + [f"{len(scripts)} shell script(s) scanned"])
 
 
-def _ollama_real_context(model_id):
+def _ollama_real_context(model_id, configured_num_ctx=None):
     """What the running ollama server can ACTUALLY serve for this model.
 
     Returns (real_context, note). `real_context` is None when it cannot be
     determined (server down, model unknown).
+
+    The subtlety this handles: the GGUF's `context_length` is NOT what
+    ollama serves. The served context is `min(num_ctx, native)`.
+
+      * `num_ctx` comes from the request (`params.num_ctx` in the config).
+        A num_ctx LARGER than the native length is CLAMPED - ollama accepts
+        it without complaint and silently serves less.
+      * `num_ctx` SMALLER than the native length SHRINKS the context. On
+        2026-11-03 a `params.num_ctx: 131072` was added to both ollama
+        models: it shrank qwen3:30b from its native 262144 down to 131072
+        while the config still declared 262144, and it asked for 131072 on
+        qwen3:14b whose native is 40960.
+
+    Both were over-declarations - exactly the 2026-10-28 failure mode -
+    and reading only the GGUF metadata hides both of them.
+
+    The most authoritative source is `/api/ps`, which reports the context
+    the RUNNER actually allocated. It is only available for a model that is
+    currently loaded, so it is used when present and the computed value is
+    the fallback.
     """
+    import urllib.request
+
+    # The runner's own report, when the model happens to be loaded.
     try:
-        import urllib.request
+        with urllib.request.urlopen("http://localhost:11434/api/ps",
+                                    timeout=10) as resp:
+            ps = json.loads(resp.read().decode("utf-8", "replace"))
+        for m in ps.get("models", []):
+            name = str(m.get("name", ""))
+            if name == model_id or name.split(":")[0] == model_id.split(":")[0]:
+                ctx = m.get("context_length")
+                if ctx:
+                    return int(ctx), "reported by the loaded runner"
+    except Exception:                                     # noqa: BLE001
+        pass
+
+    try:
         req = urllib.request.Request(
             "http://localhost:11434/api/show",
             data=json.dumps({"model": model_id}).encode(),
@@ -1504,7 +1539,14 @@ def _ollama_real_context(model_id):
     lens = [v for k, v in info.items() if k.endswith(".context_length")]
     if not lens:
         return None, f"ollama did not report a context length for {model_id}"
-    return max(lens), None
+    native = max(lens)
+    if configured_num_ctx:
+        effective = min(native, int(configured_num_ctx))
+        if effective != native:
+            return effective, (f"num_ctx={configured_num_ctx} shrinks the "
+                               f"native {native}")
+        return native, "native"
+    return native, "native"
 
 
 def check_fallback_capacity():
@@ -1601,7 +1643,11 @@ def check_fallback_capacity():
             line += f" (needs >= {need})"
         # Honesty: does the provider actually serve this much?
         if fb.startswith("ollama/"):
-            real, note = _ollama_real_context(fb.split("/", 1)[1])
+            num_ctx = None
+            for mdl in (providers.get("ollama", {}).get("models") or []):
+                if isinstance(mdl, dict) and mdl.get("id") == fb.split("/", 1)[1]:
+                    num_ctx = (mdl.get("params") or {}).get("num_ctx")
+            real, note = _ollama_real_context(fb.split("/", 1)[1], num_ctx)
             if real is None:
                 warnings.append(f"{fb}: could not confirm the real context "
                                 f"window - {note}")
@@ -1611,7 +1657,7 @@ def check_fallback_capacity():
                     f"serve {real} - the runtime will send a prompt the "
                     f"provider cannot take")
             else:
-                line += f"; ollama actually serves {real}"
+                line += f"; ollama actually serves {real} ({note})"
         evidence.append(line)
 
         if need and ctx < need:
@@ -1978,6 +2024,94 @@ def check_session_wedge(window_hours):
             "run scripts/restart-and-verify.sh by hand.")
 
 
+def check_restart_churn(window_hours):
+    """Is the gateway restarting for no reason?
+
+    The launchd restart agent (ai.sol.gateway-restart-if-idle) was written to
+    restart the gateway "when the lane is idle". That was wrong: idle is the
+    NORMAL state. On 2026-11-04 and 2026-11-05 it restarted the gateway 255
+    times - roughly every nine minutes, for two days.
+
+    Every restart is not free. It churns the Telegram plugin's polling, it
+    reloads the runtime, and it keeps the restart race permanently armed: the
+    guard reads "idle", a turn writes its first transcript event two seconds
+    later, and the restart kills the reply the user was waiting for (that is
+    how messageId 2547 died on 2026-11-03).
+
+    The agent now requires a REASON - a wedged session, or the cache-TTL gate
+    not being effective in the running process. This check is the tripwire
+    for that rule coming back.
+    """
+    starts = []
+    for path in sorted(glob.glob(LOG_GLOB)):
+        try:
+            with open(path, encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    if "http server listening" not in line:
+                        continue
+                    if not line.startswith("{"):
+                        continue
+                    try:
+                        rec = json.loads(line)
+                    except (json.JSONDecodeError, ValueError):
+                        continue
+                    ts = parse_ts(rec.get("time"))
+                    if ts:
+                        starts.append(ts)
+        except OSError:
+            continue
+
+    if not starts:
+        return Check("restart-churn", "The gateway is not restarting needlessly",
+                     "INFO", "no gateway start recorded in the window")
+
+    hours = max(window_hours, 1)
+    # Judge the CURRENT rate, not the historical average. A churn bug that
+    # was fixed an hour ago must not keep failing the doctor for the whole
+    # window, and a churn bug that started an hour ago must not be diluted
+    # by a quiet week. The last hour is the honest signal; the window total
+    # is the context.
+    now = now_utc()
+    recent = [ts for ts in starts
+              if (now - ts).total_seconds() <= 3600]
+    per_hour = len(recent)
+    evidence = [f"{len(starts)} gateway start(s) in the last {hours}h; "
+                f"{len(recent)} in the last hour ({per_hour}/hour)"]
+    for ts in starts[-6:]:
+        evidence.append(f"  started {ts.isoformat(timespec='seconds')}")
+
+    if per_hour > 12:
+        return Check(
+            "restart-churn", "The gateway is not restarting needlessly",
+            "FAIL",
+            f"the gateway started {len(recent)} time(s) in the last hour - "
+            "it is restarting continuously, and every restart can kill a "
+            "reply that was seconds away",
+            evidence,
+            fix="Read scripts/restart-if-idle.sh: a restart must have a "
+                "REASON (a wedged session, or the cache-TTL gate not being "
+                "effective in the running process). Restarting because the "
+                "lane is idle restarts the gateway every few minutes for no "
+                "reason at all.")
+
+    if per_hour > 4:
+        return Check(
+            "restart-churn", "The gateway is not restarting needlessly",
+            "WARN",
+            f"the gateway started {len(recent)} time(s) in the last hour",
+            evidence,
+            fix="Check scripts/restart-if-idle.log for why it is restarting. "
+                "A restart is only justified by a wedged session or by the "
+                "cache-TTL gate not being effective.")
+
+    return Check(
+        "restart-churn", "The gateway is not restarting needlessly",
+        "PASS",
+        f"{len(recent)} gateway start(s) in the last hour "
+        f"({len(starts)} in the last {hours}h)",
+        evidence)
+
+
 def collect(window_hours):
     events, source = read_log_events(window_hours)
     return [
@@ -2003,6 +2137,7 @@ def collect(window_hours):
         check_provider_health(window_hours),
         check_fallback_models(),
         check_session_wedge(window_hours),
+        check_restart_churn(window_hours),
         check_git_state(),
     ], events, source
 
