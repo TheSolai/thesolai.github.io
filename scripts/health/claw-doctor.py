@@ -2120,6 +2120,72 @@ def check_restart_churn(window_hours):
         evidence)
 
 
+def check_config_reload_pending():
+    """Has a config change been detected that the running gateway ignored?
+
+    The gateway hot-reloads MOST config paths and says so:
+    "config hot reload applied (models.providers.ollama.models)".
+
+    But not all of them. A change under `channels.telegram.streaming.*` is
+    announced as
+
+      config change detected; evaluating reload (channels.telegram.streaming.mode, ...)
+
+    and then NOTHING. No applied line, no "needs a restart" line. The
+    running gateway keeps the old value until it restarts, and nobody says
+    so.
+
+    That trap caught the Telegram streaming mode twice. On 2026-11-03 the
+    bot switched it to "progress" with narration and commentary on; the
+    reload never applied; the raw model narration only started reaching
+    Amre's chat at the next restart, and from then on every reply leaked
+    raw reasoning into the conversation. On 2026-11-05 the change back to
+    "off" was silently ignored in exactly the same way.
+
+    A config change that silently does not apply is worse than no change:
+    you look at the config, you believe it is in effect, and it is not.
+
+    scripts/health/config-reload-pending.py answers the question; this
+    check surfaces it, and the restart agent uses it as one of its reasons
+    to restart.
+    """
+    script = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "config-reload-pending.py")
+    if not os.path.exists(script):
+        return Check("config-reload", "Config changes are applied when detected",
+                     "INFO", "config-reload-pending.py is missing - check not run")
+    try:
+        proc = subprocess.run(
+            ["/opt/homebrew/bin/python3", script, "--json"],
+            capture_output=True, text=True, timeout=90)
+        report = json.loads(proc.stdout or "{}")
+    except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as exc:
+        return Check("config-reload", "Config changes are applied when detected",
+                     "INFO", f"could not run the detector: {exc}")
+
+    state = report.get("state")
+    detail = report.get("detail") or ""
+    if state == "pending":
+        return Check(
+            "config-reload", "Config changes are applied when detected",
+            "FAIL",
+            "a config change was detected and never applied - the running "
+            "gateway is still using the OLD value",
+            [detail,
+             f"changed paths: {report.get('detected_paths')}",
+             f"detected at: {report.get('detected_at')}"],
+            fix="The gateway hot-reloads most config paths but not channel "
+                "config. The restart agent (ai.sol.gateway-restart-if-idle) "
+                "restarts when a change is pending, so it should apply "
+                "within five minutes; if it does not, run "
+                "scripts/restart-and-verify.sh by hand.")
+    if state == "clean":
+        return Check("config-reload", "Config changes are applied when detected",
+                     "PASS", detail)
+    return Check("config-reload", "Config changes are applied when detected",
+                 "INFO", detail or "could not determine")
+
+
 def collect(window_hours):
     events, source = read_log_events(window_hours)
     return [
@@ -2146,6 +2212,7 @@ def collect(window_hours):
         check_fallback_models(),
         check_session_wedge(window_hours),
         check_restart_churn(window_hours),
+        check_config_reload_pending(),
         check_git_state(),
     ], events, source
 

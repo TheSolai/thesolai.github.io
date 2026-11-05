@@ -30,8 +30,23 @@
 #        patch is on disk but the running process still has the old code.
 #        Only a restart loads it.
 #
-#   If neither holds, this script does nothing. That is the normal case,
-#   and it is the correct behaviour.
+#     3. A CONFIG CHANGE IS PENDING. The gateway hot-reloads most config
+#        paths and says so ("config hot reload applied (...)"), but not
+#        all of them. A change under channels.telegram.streaming.* is
+#        announced as "config change detected; evaluating reload (...)"
+#        and then SILENTLY does nothing - no applied line, no "needs a
+#        restart" line. The running gateway keeps the old value until it
+#        restarts.
+#
+#        That trap caught the Telegram streaming mode on 2026-11-03: the
+#        bot switched it to "progress" with narration and commentary on,
+#        the reload never applied, and the raw narration only started
+#        reaching Amre's chat at the next restart - two days of replies
+#        leaking raw reasoning. It caught the change back to "off" on
+#        2026-11-05 in exactly the same way.
+#
+#   If none of these hold, this script does nothing. That is the normal
+#   case, and it is the correct behaviour.
 #
 # THE IDLE WINDOW STILL MATTERS
 #   When there IS a reason, the restart still waits for a quiet lane. The
@@ -87,8 +102,26 @@ else
     fi
 fi
 
+# --------------------------------------------------------------------------
+# REASON 3: a config change was detected but never applied.
+# --------------------------------------------------------------------------
 if [ -z "$REASON" ]; then
-    log "--- run end: no reason to restart (the gateway is healthy; nothing is wedged and the cache-TTL gate is effective) ---"
+    RELOAD_STATE=$(/opt/homebrew/bin/python3 \
+        "$WS/scripts/health/config-reload-pending.py" --json 2>/dev/null)
+    if [ -n "$RELOAD_STATE" ]; then
+        RELOAD_OK=$(printf '%s' "$RELOAD_STATE" | /opt/homebrew/bin/python3 -c \
+            "import sys,json;print(json.load(sys.stdin).get('state',''))" 2>/dev/null)
+        if [ "$RELOAD_OK" = "pending" ]; then
+            RELOAD_DETAIL=$(printf '%s' "$RELOAD_STATE" | /opt/homebrew/bin/python3 -c \
+                "import sys,json;print(json.load(sys.stdin).get('detail',''))" 2>/dev/null)
+            REASON="a config change is pending — the running gateway is still using the old value ($RELOAD_DETAIL)"
+            log "REASON: $REASON"
+        fi
+    fi
+fi
+
+if [ -z "$REASON" ]; then
+    log "--- run end: no reason to restart (the gateway is healthy; nothing is wedged, the cache-TTL gate is effective, and no config change is pending) ---"
     exit 0
 fi
 
