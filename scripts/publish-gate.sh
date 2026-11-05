@@ -228,9 +228,23 @@ if [ -z "$RANGE" ]; then
 fi
 
 echo "publish-gate: checking push range $RANGE..."
-if ! run_scan --history "$RANGE"; then
-    echo "publish-gate: BLOCKED — credential found in the commits being pushed." >&2
-    echo "publish-gate: scrub the history (git filter-repo) or rotate the credential." >&2
+run_scan --history "$RANGE"
+SCAN_RC=$?
+if [ "$SCAN_RC" -ne 0 ]; then
+    if [ "$SCAN_RC" -eq 3 ]; then
+        # Could not INSPECT, not "inspected and found something". This
+        # happens when the remote-tracking ref is stale and the range
+        # names a commit this clone does not have. The push is still
+        # blocked - an unscanned push is not a safe push - but telling
+        # someone to rotate a credential that is not there sends them
+        # chasing a phantom.
+        echo "publish-gate: BLOCKED - the push range could not be inspected." >&2
+        echo "publish-gate: this is a stale local ref, NOT a credential finding." >&2
+        echo "publish-gate: run 'git fetch origin' and push again." >&2
+    else
+        echo "publish-gate: BLOCKED - credential found in the commits being pushed." >&2
+        echo "publish-gate: scrub the history (git filter-repo) or rotate the credential." >&2
+    fi
     exit 1
 fi
 

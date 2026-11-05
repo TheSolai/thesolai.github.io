@@ -33,6 +33,10 @@ Exit codes:
     0  clean
     1  findings (publication must be aborted)
     2  usage error
+    3  could not inspect (a revision range did not resolve, or a tree
+       could not be read) -- NOT a credential finding. The publication is
+       still aborted, because an unscanned push is not a safe push, but
+       the cause is a stale local ref, not a leaked secret.
 """
 
 import base64
@@ -884,7 +888,11 @@ def scan_history(repo, rev_range, quiet, baseline=None, private_repo=False):
                     % part
                 )
                 print("  Nothing was published. Fix the range, then re-run.")
-            return 1
+            # Exit 3 means "I could not look", which is NOT the same as
+            # "I looked and found a credential". The gate tells them apart
+            # so a stale remote-tracking ref does not send the next person
+            # hunting a credential that is not there.
+            return 3
         commits.extend(raw.decode("utf-8", "replace").split())
 
     seen = set()
@@ -897,7 +905,11 @@ def scan_history(repo, rev_range, quiet, baseline=None, private_repo=False):
                     % commit
                 )
                 print("  Nothing was published. Fix the range, then re-run.")
-            return 1
+            # Exit 3 means "I could not look", which is NOT the same as
+            # "I looked and found a credential". The gate tells them apart
+            # so a stale remote-tracking ref does not send the next person
+            # hunting a credential that is not there.
+            return 3
         for line in tree.decode("utf-8", "replace").splitlines():
             parts = line.split(None, 3)
             if len(parts) < 4 or parts[1] != "blob":
