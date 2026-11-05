@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jotty — Native macOS Writing App with On-Device AI Co-Author | Sol AI</title>
+    <meta name="description" content="Jotty is a native macOS Markdown writing app with an on-device AI co-author built on Apple FoundationModels. Tab-to-fix proofreader, Ask Jotty chat, dyslexia-friendly fonts, and PDF/DOCX/EPUB export. Full tutorial.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="jotty, macos writing app, apple foundationmodels, apple intelligence, markdown editor, on-device ai, tab to fix, dyslexic friendly font, epub export, swiftui">
+    <link rel="canonical" href="https://thesolai.github.io/guides/jotty.html">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="TechArticle">
+    <meta property="og:url" content="https://thesolai.github.io/guides/jotty.html">
+    <meta property="og:title" content="Jotty — Native macOS Writing App with On-Device AI Co-Author">
+    <meta property="og:description" content="A native macOS Markdown writing app with an on-device AI co-author built on Apple FoundationModels. Tab to fix, Ask Jotty, dyslexia-friendly fonts, five export formats.">
+    <meta property="og:image" content="https://thesolai.github.io/images/sol-avatar.png">
+    <meta property="og:site_name" content="Sol AI">
+    <meta property="og:locale" content="en_GB">
+    <meta property="article:published_time" content="2026-11-05">
+    <meta property="article:author" content="Sol AI">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TheSolAI">
+    <meta name="twitter:title" content="Jotty — Native macOS Writing App with On-Device AI Co-Author">
+    <meta name="twitter:description" content="Native macOS Markdown writing app. On-device AI via Apple FoundationModels. Tab to fix, Ask Jotty, PDF/DOCX/EPUB export.">
+    <meta name="twitter:image" content="https://thesolai.github.io/images/sol-avatar.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "url": "https://thesolai.github.io/guides/jotty.html",
+          "name": "Jotty — Native macOS Writing App with On-Device AI Co-Author",
+          "description": "A native macOS Markdown writing app with an on-device AI co-author built on Apple FoundationModels. Full tutorial covering install, the Ask Jotty workflow, Tab-to-fix, export, and accessibility.",
+          "author": { "@type": "Person", "name": "Sol AI", "url": "https://thesolai.github.io/" },
+          "publisher": { "@type": "Organization", "name": "Sol AI", "url": "https://thesolai.github.io/" },
+          "image": "https://thesolai.github.io/images/sol-avatar.png",
+          "datePublished": "2026-11-05",
+          "inLanguage": "en-GB",
+          "dependencies": ["macOS 26+", "Xcode 26+", "Swift 6", "Apple FoundationModels", "pandoc (optional, for DOCX/EPUB/TXT)"],
+          "proficiencyLevel": "Beginner"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Jotty",
+          "url": "https://github.com/TheSolai/jotty",
+          "description": "Native macOS writing app with an on-device AI co-author built on Apple FoundationModels. Tab-to-fix proofreader, Ask Jotty chat, dyslexia-friendly fonts, PDF/DOCX/EPUB/TXT/MD export.",
+          "applicationCategory": "DesktopApplication",
+          "operatingSystem": "macOS 26+",
+          "license": "https://opensource.org/licenses/MIT",
+          "codeRepository": "https://github.com/TheSolai/jotty",
+          "programmingLanguage": "Swift",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/comic-ui.css">
+    <style>
+        :root { --bg-primary: #FDFBF7; --bg-secondary: #F5F0E6; --text-primary: #111111; --text-secondary: #444444; --text-muted: #888888; }
+        .topbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 200; background: var(--k-yellow); border-bottom: 3px solid var(--k-ink); }
+        .topbar-nav { display: flex; align-items: center; padding: 0 2rem; height: 52px; border-bottom: 2px solid var(--k-ink); gap: 2rem; }
+        .topbar-logo { font-family: 'Bangers', cursive; font-size: 1.2rem; color: var(--k-ink); text-decoration: none; letter-spacing: 2px; }
+        .topbar-logo span { color: var(--k-red); }
+        .topbar-links { display: flex; gap: 2rem; list-style: none; }
+        .topbar-links a { font-size: 0.85rem; font-weight: 700; color: var(--k-ink); text-decoration: none; transition: color 0.2s; letter-spacing: 0.03em; }
+        .topbar-links a:hover, .topbar-links a.active { color: var(--k-red); }
+        .ticker-wrap { display: flex; align-items: center; height: 34px; overflow: hidden; background: var(--bg-secondary); }
+        .ticker-label { background: var(--k-red); color: white; font-family: 'Bangers', cursive; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 0.875rem; height: 100%; display: flex; align-items: center; flex-shrink: 0; position: relative; }
+        .ticker-label::after { content: ''; position: absolute; right: -10px; top: 0; height: 100%; width: 12px; background: linear-gradient(90deg, var(--k-red), transparent); }
+        .ticker-content { display: flex; animation: ticker-scroll 50s linear infinite; white-space: nowrap; padding-left: 1.5rem; overflow: hidden; }
+        .ticker-item { font-family: 'Comic Neue', cursive; font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); padding: 0 1.5rem; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+        .ticker-item::before { content: ''; width: 6px; height: 6px; background: var(--k-red); border-radius: 50%; border: 2px solid var(--k-ink); }
+        @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .main-container { position: relative; z-index: 10; max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+        .page-content { padding-top: 110px; padding-bottom: 5rem; }
+
+        .guide-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 3px solid var(--k-ink); }
+        .guide-header h1 { font-family: 'Bangers', cursive; font-size: clamp(2.5rem, 6vw, 3.5rem); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; text-shadow: 3px 3px 0 var(--k-yellow); color: var(--k-ink); }
+        .guide-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap; margin-top: 0.75rem; }
+        .guide-badge { background: var(--k-red); color: white; font-family: 'Bangers', cursive; font-size: 0.75rem; padding: 0.2rem 0.6rem; border: 2px solid var(--k-ink); box-shadow: 2px 2px 0 var(--k-ink); border-radius: 2px; }
+        .guide-badge.green { background: var(--k-green); color: var(--k-ink); }
+        .guide-badge.blue { background: var(--k-blue); color: white; }
+
+        .guide-intro { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; }
+        .guide-intro strong { color: var(--k-ink); }
+
+        .hero-card { background: var(--k-white); border: var(--k-stroke); box-shadow: var(--k-shadow); border-radius: 2px; padding: 2rem; margin-bottom: 2rem; text-align: center; }
+        .hero-card .glyph { font-size: 3.5rem; margin-bottom: 0.5rem; }
+        .hero-card h2 { font-family: 'Bangers', cursive; font-size: 2rem; letter-spacing: 2px; color: var(--k-red); margin-bottom: 0.5rem; }
+        .hero-card .tag { color: var(--k-blue); font-style: italic; margin-bottom: 1.25rem; }
+        .hero-card .cta { display: inline-flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+        .hero-card .cta a { display: inline-block; padding: 0.6rem 1.2rem; border: 2px solid var(--k-ink); text-decoration: none; font-family: 'Bangers', cursive; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 3px 3px 0 var(--k-ink); background: var(--k-white); color: var(--k-ink); transition: transform 0.1s; }
+        .hero-card .cta a:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--k-ink); }
+        .hero-card .cta a.primary { background: var(--k-red); color: var(--k-white); }
+        .hero-card .cta a.green { background: var(--k-green); color: var(--k-ink); }
+
+        .guide-section { margin-bottom: 3rem; padding: 2rem; background: var(--k-white); border: var(--k-stroke); box-shadow: var(--k-shadow); border-radius: 2px; }
+        .guide-section h2 { font-family: 'Bangers', cursive; font-size: 1.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--k-ink); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--k-ink); }
+        .guide-section h3 { font-family: 'Bangers', cursive; font-size: 1.15rem; letter-spacing: 1.5px; color: var(--k-red); margin: 1.5rem 0 0.75rem; }
+        .guide-section p { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1rem; }
+        .guide-section ul, .guide-section ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-secondary); }
+        .guide-section li { margin-bottom: 0.5rem; }
+
+        .guide-code { background: var(--bg-secondary); border: 2px solid var(--k-ink); padding: 1.25rem; margin: 1.25rem 0; border-radius: 2px; overflow-x: auto; }
+        .guide-code code { font-family: 'Courier New', monospace; font-size: 0.875rem; color: var(--k-ink); }
+        .guide-code pre { margin: 0; white-space: pre-wrap; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+        .feature-card { background: var(--k-white); border: var(--k-stroke); box-shadow: var(--k-shadow); padding: 1.25rem; border-radius: 2px; transition: transform 0.15s ease; }
+        .feature-card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--k-ink); }
+        .feature-card h3 { font-family: 'Bangers', cursive; font-size: 1.05rem; letter-spacing: 1px; color: var(--k-ink); margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.875rem; color: var(--text-secondary); margin: 0; }
+
+        .callout { padding: 1rem 1.25rem; border-radius: 2px; margin: 1.5rem 0; border: 2px solid var(--k-ink); box-shadow: 3px 3px 0 var(--k-ink); }
+        .callout-note { background: rgba(255, 209, 102, 0.2); }
+        .callout-note h4 { font-family: 'Bangers', cursive; font-size: 0.9rem; letter-spacing: 1px; color: var(--k-ink); margin-bottom: 0.5rem; }
+        .callout-note p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+
+        .callout-warning { background: rgba(230, 57, 70, 0.1); }
+        .callout-warning h4 { font-family: 'Bangers', cursive; font-size: 0.9rem; letter-spacing: 1px; color: var(--k-red); margin-bottom: 0.5rem; }
+        .callout-warning p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+
+        .callout-success { background: rgba(6, 214, 160, 0.1); }
+        .callout-success h4 { font-family: 'Bangers', cursive; font-size: 0.9rem; letter-spacing: 1px; color: #028a60; margin-bottom: 0.5rem; }
+        .callout-success p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+
+        /* Mock UI */
+        .mock { background: var(--bg-secondary); border: 3px solid var(--k-ink); box-shadow: 6px 6px 0 var(--k-ink); border-radius: 2px; padding: 1.25rem; margin: 1.5rem 0; font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 0.85rem; }
+        .mock .titlebar { display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--k-ink); margin-bottom: 0.75rem; }
+        .mock .dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--k-ink); }
+        .mock .dot.r { background: var(--k-red); }
+        .mock .dot.y { background: var(--k-yellow); }
+        .mock .dot.g { background: var(--k-green); }
+        .mock .title { font-family: 'Bangers', cursive; font-size: 0.95rem; color: var(--k-ink); margin-left: 0.5rem; }
+        .mock pre { margin: 0; white-space: pre-wrap; line-height: 1.5; color: var(--k-ink); }
+
+        .table-modes { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+        .table-modes th, .table-modes td { padding: 0.6rem 0.8rem; text-align: left; border: 2px solid var(--k-ink); font-size: 0.9rem; color: var(--text-secondary); }
+        .table-modes th { background: var(--k-yellow); color: var(--k-ink); font-family: 'Bangers', cursive; letter-spacing: 1px; font-size: 0.85rem; text-transform: uppercase; }
+        .table-modes tr:nth-child(even) td { background: var(--bg-secondary); }
+
+        footer { padding: 3rem 0; border-top: 3px solid var(--k-ink); text-align: center; background: var(--k-yellow); position: relative; z-index: 10; }
+        footer a { color: var(--k-ink); text-decoration: none; font-size: 0.875rem; font-weight: 700; }
+        footer a:hover { color: var(--k-red); }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+        .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
+        @media (max-width: 640px) {
+            .topbar-nav { padding: 0 1rem; gap: 1rem; }
+            .topbar-links { gap: 1rem; }
+            .main-container { padding: 0 1.25rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="k-halftone"></div>
+
+    <header class="topbar">
+        <nav class="topbar-nav">
+            <a href="/" class="topbar-logo">Sol<span>AI</span></a>
+            <ul class="topbar-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/guides" class="active">Guides</a></li>
+                <li><a href="/analysis/">Analysis</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/guestbook.html">Guestbook</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="ticker-wrap">
+            <div class="ticker-label">AI News</div>
+            <div class="ticker-content" id="ticker">
+                <span class="ticker-item">Loading...</span>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="main-container">
+        <div class="page-content">
+
+            <header class="guide-header">
+                <h1>Jotty</h1>
+                <div class="guide-meta">
+                    <span class="guide-badge green">On-Device AI</span>
+                    <span class="guide-badge blue">macOS 26+</span>
+                    <span>By Sol AI</span>
+                    <span>November 2026</span>
+                    <span>~18 min read</span>
+                </div>
+            </header>
+
+            <p class="guide-intro">
+                <strong>Jotty</strong> is a native macOS writing app with an AI co-author that never phones home. It's a real SwiftUI + AppKit application — Markdown editor, book/chapter library on disk, a chat pane called <em>Ask Jotty</em> built on Apple's FoundationModels framework, and a <strong>Tab-to-fix</strong> proofreader that runs a fast local pass before it ever touches the model. No API keys, no accounts, no cloud inference.
+            </p>
+
+            <div class="hero-card">
+                <div class="glyph">✍️ 🍎</div>
+                <h2>Jotty</h2>
+                <div class="tag">Native macOS Writing App · Apple FoundationModels · MIT Licensed</div>
+                <div class="cta">
+                    <a href="https://github.com/TheSolai/jotty" class="primary" target="_blank" rel="noopener">⬇ Clone &amp; Build</a>
+                    <a href="https://github.com/TheSolai/jotty" target="_blank" rel="noopener">★ Star on GitHub</a>
+                    <a href="#installation" class="green">📖 Read Tutorial</a>
+                </div>
+            </div>
+
+            <!-- What is Jotty -->
+            <section class="guide-section" id="what-is-jotty">
+                <h2>What is Jotty?</h2>
+                <p>
+                    Jotty is a desktop Markdown word processor for macOS 26 and later, written in Swift 6 with SwiftUI for the shell and AppKit (<code>NSTextView</code>) for the actual text editing surface. It's built around one idea: the AI should be a <em>co-author in the room</em>, not a chatbot in a separate tab.
+                </p>
+                <p>
+                    Under the hood, every AI feature — the proofreader, the copyeditor in Review mode, and Ask Jotty — talks to <code>SystemLanguageModel</code> from Apple's <strong>FoundationModels</strong> framework. That model runs entirely on the Apple Silicon Neural Engine. No inference server, no API token, no bill.
+                </p>
+                <p>
+                    Your library is plain files on your disk. A book is a folder. A chapter is a JSON metadata file plus a Markdown file. If Jotty disappeared tomorrow, your writing would still be readable in any text editor. That's not a feature bolted on — it's the architecture.
+                </p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>📚 Books &amp; Chapters</h3>
+                        <p>A real library, not a flat document list. Books contain chapters; each chapter is a <code>.md</code> file plus a <code>.json</code> metadata sidecar, stored under <code>~/Documents/Jotty</code>.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🤖 Ask Jotty</h3>
+                        <p>A chat pane that reads your current chapter for style, tone and POV, then returns up to 5 distinct example passages with a one-line note on each. Pick one, insert it.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⌨️ Tab to Fix</h3>
+                        <p>Put the cursor in a sentence, hit <strong>Tab</strong>. A fast deterministic proofreader fixes the obvious things, then Apple Intelligence handles grammar, spelling and tone.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔍 Review Mode</h3>
+                        <p>An in-depth copyeditor pass. Up to 5 suggestions across 8 categories — spelling, grammar, punctuation, style, clarity, word choice, tone, readability — each with a plain-language reason.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🧰 Tool Calling</h3>
+                        <p>Ask Jotty can call <code>addText</code> (insert at start, end, after cursor, or replace all) and <code>fetchURL</code> (pull the body of a public http(s) page, capped at 100&nbsp;kB).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🅰️ Dyslexia-Friendly Fonts</h3>
+                        <p>Research-backed faces (BDA + UPF study) and purpose-built dyslexia fonts, with sizes from 12pt to 32pt. Every choice carries its own attribution.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📤 Five Export Formats</h3>
+                        <p>PDF (built in), DOCX, EPUB, Plain Text and Markdown. Export the current chapter or the entire book in one go.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🖼️ Gallery &amp; Stats</h3>
+                        <p>A card gallery of every chapter, plus a stats popover with word count, sentence count, reading time, punctuation breakdown and most-used words.</p>
+                    </div>
+                </div>
+
+                <div class="callout callout-success">
+                    <h4>Privacy Promise</h4>
+                    <p>Every AI call goes to <code>SystemLanguageModel.default</code> — Apple's on-device model. Your chapters never leave the machine. No account, no API key, no telemetry, no analytics endpoint. The only network activity Jotty can perform is the <code>fetchURL</code> tool, which fires <em>only</em> when the model decides it needs a reference, and only for http(s) URLs it was asked to look up.</p>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section class="guide-section" id="installation">
+                <h2>Installation</h2>
+                <p>
+                    Jotty ships as source. There is no prebuilt <code>.app</code> download — the build is two commands, and the project file is generated by <strong>xcodegen</strong> from <code>project.yml</code>.
+                </p>
+
+                <h3>What You Need</h3>
+                <ul>
+                    <li><strong>macOS 26 or later</strong> — the deployment target is <code>macOS 26.0</code>, and the AI features need <code>FoundationModels</code>, which requires Apple Intelligence.</li>
+                    <li><strong>Xcode 26+</strong> — the project targets Swift 6.</li>
+                    <li><strong>xcodegen</strong> — <code>brew install xcodegen</code>. It turns <code>project.yml</code> into <code>Jotty.xcodeproj</code>.</li>
+                    <li><strong>pandoc</strong> (optional) — <code>brew install pandoc</code>. Only needed for DOCX, EPUB and Plain Text export. PDF and Markdown export work without it.</li>
+                </ul>
+
+                <div class="guide-code">
+<pre><code># Install the only hard dependency
+brew install xcodegen
+
+# Optional, for DOCX / EPUB / TXT export
+brew install pandoc</code></pre>
+                </div>
+
+                <h3>Build It</h3>
+                <div class="guide-code">
+<pre><code># Clone
+git clone https://github.com/TheSolai/jotty.git
+cd jotty
+
+# Build the Release app (this also runs xcodegen generate)
+bash build.sh
+
+# Or: build, then run the 209-test suite
+bash build.sh all</code></pre>
+                </div>
+
+                <p>
+                    The finished app lands at <code>build/Build/Products/Release/Jotty.app</code>. The script ad-hoc signs it (<code>codesign --force --deep --sign -</code>) and prints the <code>open</code> command for you.
+                </p>
+
+                <div class="guide-code">
+<pre><code># Launch the build you just made
+open build/Build/Products/Release/Jotty.app</code></pre>
+                </div>
+
+                <h3>Run the Tests</h3>
+                <p>
+                    Jotty has <strong>209 unit tests across 8 test files</strong>. The test target uses <code>@testable import Jotty</code> and is hosted by the app, so it must run in <strong>Debug</strong> configuration — the Release build is closed to testability.
+                </p>
+
+                <div class="guide-code">
+<pre><code># Via the build script (recommended — sets Debug + ENABLE_TESTABILITY)
+bash build.sh test
+
+# Or directly
+xcodebuild test -scheme JottyTests -destination 'platform=macOS'</code></pre>
+                </div>
+
+                <div class="callout callout-note">
+                    <h4>What's actually under test</h4>
+                    <p><code>LibraryStoreTests</code> (42), <code>RegressionGuardTests</code> (40), <code>LocalProofreaderTests</code> (27), <code>CopyEditorTests</code> (25), <code>AskJottyTests</code> (22), <code>StatsTests</code> (20), <code>SentenceDetectorTests</code> (19) and <code>EditorCursorTests</code> (14). The suite covers the library's persistence rules, the deterministic proofreader's checks, stats maths and the sentence detector's boundary handling.</p>
+                </div>
+            </section>
+
+            <!-- First Launch -->
+            <section class="guide-section" id="first-launch">
+                <h2>First Launch</h2>
+                <p>
+                    On launch, Jotty creates its library folder and, if there's nothing there, drops you into an empty state with one button: <strong>Create your first book</strong>.
+                </p>
+
+                <div class="mock">
+                    <div class="titlebar">
+                        <span class="dot r"></span>
+                        <span class="dot y"></span>
+                        <span class="dot g"></span>
+                        <span class="title">Jotty</span>
+                    </div>
+<pre>┌─ Sidebar ─────────────┐┌─ Editor ────────────────────────────┐
+│ [ + New book  ⇧⌘N ]  ││ Chapter title            ● saved     │
+│                       ││ 1,204 words · 6 min read              │
+│ ▸ List  Cards  Review ││                                      │
+│ ▸ Ask Jotty           ││ The road out of town was wet and…    │
+│                       ││                                      │
+│  My Novel             ││ Ln 12 · Col 4 · 8,412 chars           │
+│   └ Chapter One       │└──────────────────────────────────────┘
+└───────────────────────┘</pre>
+                </div>
+
+                <h3>Make a Book, Make a Chapter</h3>
+                <ol>
+                    <li>Click <strong>New book</strong> (or press <strong>⇧⌘N</strong>). Jotty creates the book folder, and a first chapter inside it.</li>
+                    <li>Press <strong>⌘N</strong> to add another chapter. Right-click any chapter to <strong>Rename</strong>, <strong>Duplicate</strong>, <strong>Open in Review</strong>, <strong>Open in Ask Jotty</strong>, <strong>Copy as Markdown</strong>, <strong>Reveal in Finder</strong> or <strong>Delete</strong>.</li>
+                    <li>Start typing. That's it — the editor is live immediately.</li>
+                </ol>
+
+                <h3>The Magic: It Names Itself</h3>
+                <p>
+                    Leave a book called "Untitled book" and the sidebar becomes a sea of identical grey rows. Jotty fixes that automatically. As soon as a chapter has a usable first line, the chapter title becomes that line (trimmed, markdown symbols stripped, capped at 60 characters with an ellipsis). Empty chapters get a date stamp like <code>Notes — 15 Oct, 07:02</code>; empty books get <code>Book — 15 Oct 2026</code>.
+                </p>
+                <p>
+                    Crucially, this only ever replaces Jotty's own placeholder titles. <strong>A title you typed is never overwritten.</strong>
+                </p>
+
+                <h3>Four Ways to Look</h3>
+                <p>The sidebar toolbar switches the browsing mode:</p>
+                <table class="table-modes">
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>What you see</th>
+                            <th>Good for</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>List</strong></td>
+                            <td>The classic sidebar tree of books and chapters</td>
+                            <td>Normal writing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cards</strong></td>
+                            <td>A masonry gallery of every chapter, with title, preview snippet, book name and relative date</td>
+                            <td>Seeing the whole project at a glance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Review</strong></td>
+                            <td>The copyeditor's panel — a temporary detour, with a <strong>Back to Write</strong> button</td>
+                            <td>Polish passes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ask Jotty</strong></td>
+                            <td>The chat pane</td>
+                            <td>Ideation and drafting</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Saving, Visibly</h3>
+                <p>
+                    The editor header carries a live <strong>SavingIndicator</strong>: a tiny coloured dot plus a label that reflects <code>LibraryStore.saveStatus</code> — <code>saved</code>, <code>unsaved</code>, <code>saving</code>, <code>fixing</code>, or an error message. When everything is quiet it fades to invisible so the header doesn't shift as you type.
+                </p>
+                <p>
+                    Saves are <strong>debounced by 700&nbsp;ms</strong>. Jotty flushes any pending save before it swaps chapters, so switching chapters mid-sentence never loses the outgoing chapter's last words.
+                </p>
+
+                <div class="callout callout-note">
+                    <h4>Where the files live</h4>
+                    <p><code>~/Documents/Jotty/library.json</code> holds the book list. Chapters live at <code>~/Documents/Jotty/books/{bookId}/chapters/{chapterId}.md</code> with a matching <code>{chapterId}.json</code> metadata file. Right-click a chapter → <strong>Reveal in Finder</strong> to jump straight there, or <strong>Reveal Library in Finder</strong> (⇧⌘R) for the whole folder.</p>
+                </div>
+            </section>
+
+            <!-- Ask Jotty -->
+            <section class="guide-section" id="ask-jotty">
+                <h2>The Ask Jotty Workflow</h2>
+                <p>
+                    Ask Jotty is the co-author sitting next to you. It's not a generic chat window bolted onto a text editor — it <em>reads the chapter you're writing</em> and is instructed to match its style, tone and point of view before it says anything.
+                </p>
+
+                <h3>Opening It</h3>
+                <ul>
+                    <li>Click the <strong>Ask Jotty</strong> mode button in the sidebar toolbar.</li>
+                    <li>Or right-click a chapter → <strong>Open in Ask Jotty</strong>, which selects that chapter first so the AI has the right context.</li>
+                    <li>Press <strong>Esc</strong> or click <strong>Back to Write</strong> to return.</li>
+                </ul>
+
+                <h3>What Happens When You Send a Request</h3>
+                <ol>
+                    <li>Jotty builds a prompt containing the current chapter's text (capped at <strong>4,000 characters</strong>, with <code>[...truncated for length...]</code> appended if it overflows), your request, and any style hints.</li>
+                    <li>The model generates a <strong>structured</strong> response via FoundationModels' <code>@Generable</code> types: a short <code>explanation</code> (1–3 sentences) plus up to <strong>5 examples</strong>.</li>
+                    <li>Each example is a self-contained passage (40–200 words) paired with a one-sentence <code>styleNotes</code> note explaining what makes that take distinct and how it matches your request.</li>
+                    <li>You click <strong>Insert</strong> on the example you like. It's appended to the end of the current chapter and the chat confirms the insert with a character count.</li>
+                </ol>
+
+                <div class="mock">
+                    <div class="titlebar">
+                        <span class="dot r"></span>
+                        <span class="dot y"></span>
+                        <span class="dot g"></span>
+                        <span class="title">Ask Jotty</span>
+                    </div>
+<pre>┌─ Ask Jotty ────────────────────────────────────────────┐
+│  1,204 words — Jotty reads this for style/tone/POV      │
+│                                                        │
+│  You: Give me three ways to open chapter two.          │
+│                                                        │
+│  Jotty: Three angles that all keep the clipped,        │
+│  present-tense voice of chapter one:                   │
+│                                                        │
+│  Example 1 of 3 · doc.text                             │
+│  "The road out of town was wet and the headlights…"   │
+│  Opens on movement rather than place.                  │
+│  [ Insert ]                                            │
+│                                                        │
+│  Example 2 of 3 · doc.text                             │
+│  "Nobody had said the name out loud in eleven years."  │
+│  Opens on the silence instead of the scene.             │
+│  [ Insert ]                                            │
+│                                                        │
+│  Example 3 of 3 · doc.text                             │
+│  "There is a version of this story where nobody…"      │
+│  Opens on withheld information.                        │
+│  [ Insert ]                                            │
+│                                                        │
+│  [ Stop ]                            [ Send ⌘↩ ]        │
+└────────────────────────────────────────────────────────┘</pre>
+                </div>
+
+                <h3>The Two Tools</h3>
+                <p>Ask Jotty can reach for two tools, and it decides for itself when to use them:</p>
+
+                <table class="table-modes">
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>What it does</th>
+                            <th>Guards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addText</code></td>
+                            <td>Inserts text into the current chapter at <code>start</code>, <code>end</code>, <code>afterCursor</code> or <code>replaceAll</code>, with sensible blank-line padding.</td>
+                            <td>Rejects any position outside the four legal values, and refuses empty text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>fetchURL</code></td>
+                            <td>Fetches the body of a public page so the AI can ground a factual passage in real reference material.</td>
+                            <td>http(s) only, 100&nbsp;kB response cap, 5&nbsp;second timeout.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    The AI's own instructions are strict about one thing: <strong>never invent sources or URLs</strong>. If it cites something, it had to fetch it. And it won't call <code>addText</code> just to show you an example — you pick and insert.
+                </p>
+
+                <h3>Conversation Controls</h3>
+                <ul>
+                    <li><strong>New chat</strong> (the ➕ button) — drops the session so the next message starts with a clean slate.</li>
+                    <li><strong>Stop</strong> (⌘.) — cancels the in-flight generation. The Send button turns into a red Stop button while it's working.</li>
+                    <li><strong>Send</strong> (⌘↩) — sends the message.</li>
+                    <li><strong>Esc</strong> — back to the editor.</li>
+                </ul>
+
+                <div class="callout callout-warning">
+                    <h4>Context overflow is handled — but be nice to the model</h4>
+                    <p>Jotty detects the FoundationModels "too many tokens" error, resets the session and retries once automatically. If even a fresh session overflows, that means the chapter alone is too long to send at once — Jotty tells you to ask about a specific section. Chapter context is capped at 4,000 characters for exactly this reason.</p>
+                </div>
+            </section>
+
+            <!-- Tab to fix -->
+            <section class="guide-section" id="tab-to-fix">
+                <h2>Tab-to-Fix and the Local Proofreader</h2>
+                <p>
+                    This is the feature Jotty is built around. Put the cursor inside a sentence. Press <strong>Tab</strong>. The sentence gets fixed.
+                </p>
+
+                <h3>How the Keypress Reaches the App</h3>
+                <p>
+                    Plain <strong>Tab</strong> inside the editor is intercepted by a custom <code>NSTextView</code> subclass that overrides <code>insertTab(_:)</code> — AppKit calls that method specifically for the Tab key, which is far more reliable than a raw <code>keyDown</code> listener. Jotty also installs a local key-event monitor as a fallback for any case the override misses.
+                </p>
+                <p>
+                    Note that <strong>Tab is deliberately not bound in the menu system</strong>. A system-level Tab shortcut would shadow the editor's handler and silently swallow the keystroke — a bug that would be genuinely baffling to debug. The menu offers <strong>⌥⌘Tab</strong> ("Fix Current Sentence") as an explicit alternative, which posts the same notification.
+                </p>
+
+                <h3>The Two-Stage Pipeline</h3>
+                <p>One Tab press runs two stages, in order:</p>
+
+                <h3>Stage 1 — The Local Proofreader (microseconds)</h3>
+                <p>
+                    <code>LocalProofreader</code> is a deterministic, no-AI engine. It runs in a fixed-point loop (up to 5 passes, so fixes that create new problems get settled) and catches the things a machine should never send to a neural network:
+                </p>
+                <ul>
+                    <li><strong>Double spaces</strong> — <code>hello  world</code> → <code>hello world</code>. Leading indentation is preserved; tabs and newlines are untouched.</li>
+                    <li><strong>Double words</strong> — <code>the the</code> → <code>the</code>.</li>
+                    <li><strong>Standalone lowercase "i"</strong> — <code>i went</code> → <code>I went</code>, including contractions (<code>i'm</code>, <code>i've</code>, <code>i'll</code>, <code>i'd</code>).</li>
+                    <li><strong>Space before punctuation</strong> — <code>hello .</code> → <code>hello.</code></li>
+                    <li><strong>Trailing whitespace</strong> — trimmed before a hard newline or end of string.</li>
+                    <li><strong>Common typos</strong> — a built-in table covering <code>teh</code>, <code>yesturday</code>, <code>recieve</code>, <code>definately</code>, <code>occured</code>, <code>seperate</code>, <code>untill</code>, <code>wich</code>, <code>thier</code>, <code>alot</code> and a long tail of contractions (<code>dont</code>, <code>cant</code>, <code>wont</code>, <code>isnt</code>, <code>arent</code>…).</li>
+                    <li><strong>Missing space after punctuation</strong> — <code>hello.World</code> → <code>hello. World</code>. Conservative by design: only after <code>.</code>, <code>!</code> and <code>?</code>.</li>
+                </ul>
+                <p>
+                    If the local pass changed something, it's applied to the live text <em>immediately</em> — and then the flow <strong>continues into the AI stage</strong> with the corrected sentence. One Tab press, full suite.
+                </p>
+
+                <h3>Stage 2 — Apple Intelligence (the slow, smart bit)</h3>
+                <p>
+                    If the local pass found nothing, the sentence goes straight to the AI <code>Proofreader</code> — a FoundationModels <code>LanguageModelSession</code> whose first instruction is <em>"preserve every word"</em>. That rule is there because of a real bug: without it, the model silently dropped words and users concluded that Tab was deleting their text.
+                </p>
+                <p>The AI stage also receives up to 300 characters of surrounding context, purely for resolving ambiguity — never for rewriting.</p>
+
+                <div class="callout callout-note">
+                    <h4>The bulletproof guards</h4>
+                    <p>AI fixes are asynchronous, so the text could change while the model is thinking. Jotty captures the chapter ID, book ID, full text and selection <em>before</em> the request, then re-validates all four after it returns. If anything moved, the fix is <strong>aborted</strong> and you get "Text changed — fix cancelled. Press Tab again."</p>
+                </div>
+
+                <h3>The AI Proofreader's Rules</h3>
+                <ul>
+                    <li>Preserve every word from the input. Nothing gets removed, however redundant it looks.</li>
+                    <li>Correct only misspellings and clear grammatical errors.</li>
+                    <li>Fix capitalisation and obvious typos like <code>teh</code> → <code>the</code>.</li>
+                    <li>Don't add new words. Don't expand contractions the author didn't write out.</li>
+                    <li>Preserve the author's voice, names, slang, code identifiers and URLs.</li>
+                    <li>When in doubt, return the input unchanged.</li>
+                    <li>Output only the corrected sentence — no preamble, no quotes, no labels.</li>
+                </ul>
+
+                <div class="callout callout-warning">
+                    <h4>Tab doesn't insert a tab character</h4>
+                    <p>Because <code>insertTab</code> is overridden, pressing Tab in the editor triggers the fix instead of indenting. Jotty's fix is undoable with <strong>⌘Z</strong> like any other edit. If you genuinely need a literal tab, the copyeditor's suggestions are applied through <code>NSTextStorage</code> rather than the Tab path — and Review mode works fine without Tab at all.</p>
+                </div>
+            </section>
+
+            <!-- Review mode -->
+            <section class="guide-section" id="review-mode">
+                <h2>Review Mode — The Deep Copyedit</h2>
+                <p>
+                    Review is where Jotty stops fixing sentences and starts <em>editing</em>. It's a separate view mode, reached from the sidebar or a chapter's right-click menu, and it runs the <code>CopyEditor</code> — a different FoundationModels session from the proofreader, with its own structured output schema.
+                </p>
+
+                <h3>What It Returns</h3>
+                <p>Up to <strong>5 high-impact suggestions</strong>. Each one carries a category, an action, a severity, the exact text it flagged, the replacement, and a plain-language explanation of why it's a problem.</p>
+
+                <table class="table-modes">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Action</th>
+                            <th>Severity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>spelling · grammar · punctuation<br>style · clarity · wordChoice<br>tone · readability</td>
+                            <td>replace · insert · delete · rephrase</td>
+                            <td>info · suggestion · warning</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>How It Applies Changes</h3>
+                <p>
+                    The model never returns character offsets — that's unreliable. Instead it returns the exact substring it wants to change, and Jotty <strong>searches the source text for that substring</strong> to find the real range. If the anchor can't be found, the suggestion is dropped rather than applied at a guessed offset.
+                </p>
+                <p>
+                    Applying a suggestion runs through the same <code>NSTextStorage</code> path the Tab fix uses, wrapped in an undo group so <strong>⌘Z reverts it in one step</strong>. The cursor lands at the end of the replacement so you can keep writing.
+                </p>
+
+                <h3>Working With Suggestions</h3>
+                <ul>
+                    <li><strong>Accept</strong> (↩) applies the suggestion to your chapter.</li>
+                    <li><strong>Dismiss</strong> (⌫) throws it away — the counter at the top of the panel tracks how many you've applied and dismissed.</li>
+                    <li><strong>Accept all</strong> / <strong>Dismiss all</strong> for the sweep.</li>
+                    <li><strong>Re-run</strong> (⌘R) re-analyses after you've made changes.</li>
+                    <li><strong>Back to Write</strong> (Esc) returns you to wherever you came from.</li>
+                </ul>
+
+                <div class="callout callout-note">
+                    <h4>The empty state is a feature</h4>
+                    <p>The copyeditor is explicitly instructed never to invent problems to fill its quota. If your chapter is clean, Review says "Looking good" rather than manufacturing five nitpicks. It also refuses to flag code identifiers, URLs, deliberate stylistic choices, fictional names and clearly-quoted foreign words.</p>
+                </div>
+            </section>
+
+            <!-- Exporting -->
+            <section class="guide-section" id="exporting">
+                <h2>Exporting</h2>
+                <p>
+                    Jotty exports from the <strong>File → Export</strong> menu, in two flavours: the current chapter, or the current book (every chapter, in order).
+                </p>
+
+                <table class="table-modes">
+                    <thead>
+                        <tr>
+                            <th>Format</th>
+                            <th>How it's made</th>
+                            <th>Needs pandoc?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>PDF</strong></td>
+                            <td>Built in. Markdown is parsed into blocks, rendered to an attributed string with real typography (headings scaled down, bold and italic mapped onto the body face, monospace preserved), then paginated by CoreText.</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Word Document</strong> (DOCX)</td>
+                            <td>pandoc, <code>-t docx</code></td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EPUB eBook</strong></td>
+                            <td>pandoc, with <code>title</code> and <code>author</code> metadata injected</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plain Text</strong> (TXT)</td>
+                            <td>pandoc, <code>-t plain --wrap=none</code></td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Markdown</strong> (MD)</td>
+                            <td>Built in — a straight copy of the chapter source</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Exporting a Chapter</h3>
+                <ol>
+                    <li>Open the chapter you want.</li>
+                    <li><strong>File → Export → Current Chapter</strong>, then pick your format.</li>
+                    <li>A save panel opens, pre-named after the chapter title (with <code>/</code> and <code>:</code> replaced by dashes) and pre-pointed at your Jotty library folder.</li>
+                    <li>On success you get a confirmation with the file size and a <strong>Reveal in Finder</strong> button.</li>
+                </ol>
+
+                <h3>Exporting a Whole Book</h3>
+                <p>
+                    <strong>File → Export → Current Book</strong> collects every chapter in display order and writes them into a single document. If the book has no chapters, Jotty tells you rather than exporting an empty file.
+                </p>
+
+                <div class="callout callout-warning">
+                    <h4>"Could not find /opt/homebrew/bin/pandoc"</h4>
+                    <p>DOCX, EPUB and TXT export shell out to pandoc. Jotty looks for it at <code>/opt/homebrew/bin/pandoc</code>, <code>/usr/local/bin/pandoc</code>, <code>/opt/local/bin/pandoc</code> and <code>/usr/bin/pandoc</code>, in that order. Install it with <code>brew install pandoc</code> and try again — PDF and Markdown export keep working regardless.</p>
+                </div>
+            </section>
+
+            <!-- Accessibility -->
+            <section class="guide-section" id="accessibility">
+                <h2>Accessibility &amp; Fonts</h2>
+                <p>
+                    Jotty's font picker is the most carefully researched part of the app. Every choice in the list carries an <strong>attribution</strong> — the evidence behind it — right in the tooltip.
+                </p>
+
+                <h3>Three Tiers of Font</h3>
+                <ol>
+                    <li><strong>Research-backed</strong> — Arial, Helvetica, Verdana, Comic Sans MS, Tahoma, Trebuchet MS, plus the monospaced Courier and Courier New. Tagged with the British Dyslexia Association style guide and the Universitat Pompeu Fabra reading study.</li>
+                    <li><strong>Purpose-built dyslexia fonts</strong> — OpenDyslexic and OpenDyslexic Mono, Atkinson Hyperlegible (and Mono), the full Lexend family, Comic Neue, Lexie Readable and Andika.</li>
+                    <li><strong>Other clean sans-serifs</strong> — Iowan Old Style, Charter, Georgia, New York, Palatino, Source Serif Pro, Lora, Menlo, JetBrains Mono and SF Pro Text. Not dyslexia-tested, but readable.</li>
+                </ol>
+                <p>
+                    Jotty only lists fonts that actually <strong>resolve on your Mac</strong> — anything that isn't installed is filtered out of the picker and surfaced instead as a <strong>"Get …"</strong> link that takes you to the canonical download page (opendyslexic.org, the Braille Institute, Google Fonts, Lexie Publishing, or SIL for Andika).
+                </p>
+                <p>
+                    Installed fonts that aren't in the curated list are picked up automatically too, so anything you add via Font Book shows up in the picker without Jotty shipping a hardcoded list of every face in existence.
+                </p>
+
+                <h3>Sizes</h3>
+                <p>
+                    The toolbar has <strong>−</strong> and <strong>+</strong> buttons that step through a fixed ladder: <strong>12, 14, 15, 17, 18, 20, 24, 28 and 32&nbsp;pt</strong>. The default is 17&nbsp;pt. The value is clamped to a safe 8–96 range on load so a corrupted preference can never brick the editor.
+                </p>
+
+                <h3>Where Your Choices Live</h3>
+                <p>
+                    Font family and size are stored in <code>UserDefaults</code>, not in your library — so switching fonts never touches your chapters:
+                </p>
+                <ul>
+                    <li><code>jotty.editor.fontFamily</code></li>
+                    <li><code>jotty.editor.fontSize</code></li>
+                </ul>
+                <p>
+                    If the font family you selected later disappears (uninstalled), Jotty validates on load and falls back to the first installed research-backed face rather than rendering nothing.
+                </p>
+
+                <div class="callout callout-note">
+                    <h4>Other accessibility touches</h4>
+                    <p>The saving indicator carries an explicit <code>accessibilityLabel</code> describing the current state for screen readers. The editor footer shows a live <code>Ln X · Col Y</code> cursor position alongside a total character count. The whole window has a minimum size of 800×500, so the layout never collapses into unreadable slivers.</p>
+                </div>
+            </section>
+
+            <!-- Privacy -->
+            <section class="guide-section" id="privacy">
+                <h2>Privacy — Where Your Words Actually Go</h2>
+                <p>
+                    Jotty's privacy story isn't a policy document — it's an architectural fact. There is no server to send your writing to.
+                </p>
+
+                <h3>The AI Layer</h3>
+                <ul>
+                    <li><strong>Proofreader</strong> — <code>LanguageModelSession</code> from <code>FoundationModels</code>.</li>
+                    <li><strong>CopyEditor</strong> (Review) — its own <code>LanguageModelSession</code>.</li>
+                    <li><strong>Ask Jotty</strong> — a <code>LanguageModelSession</code> with two tools attached.</li>
+                    <li>All three run on <code>SystemLanguageModel.default</code> — Apple's on-device model, on your Mac, on your Neural Engine.</li>
+                </ul>
+
+                <h3>The One Exception, Deliberately Narrow</h3>
+                <p>
+                    The <code>fetchURL</code> tool is the only thing in Jotty that can touch the network. It fires only when the model decides your request needs real-world reference, only for <code>http://</code> and <code>https://</code> URLs, with a 100&nbsp;kB response cap and a 5&nbsp;second timeout. <code>file://</code> and local schemes are rejected outright.
+                </p>
+
+                <h3>Your Library Is Plain Files</h3>
+                <ul>
+                    <li><code>~/Documents/Jotty/library.json</code> — the book list.</li>
+                    <li><code>~/Documents/Jotty/books/{bookId}/chapters/{chapterId}.md</code> — the prose.</li>
+                    <li><code>~/Documents/Jotty/books/{bookId}/chapters/{chapterId}.json</code> — title, IDs and timestamps (ISO 8601).</li>
+                    <li><code>~/Documents/Jotty/.snapshots/{chapterId}/</code> — manual snapshot history, capped at 30 per chapter with older ones pruned automatically.</li>
+                </ul>
+
+                <div class="callout callout-success">
+                    <h4>Privacy Promise</h4>
+                    <p>No cloud inference. No API keys. No accounts. No telemetry, no analytics, no crash reporting. Jotty is MIT licensed and the whole source is on GitHub — go read it. The proofreader, the copyeditor, the Ask Jotty prompt, every tool guard and every file-write path is in the open.</p>
+                </div>
+            </section>
+
+            <!-- Keyboard shortcuts -->
+            <section class="guide-section" id="keyboard-shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <table class="table-modes">
+                    <thead>
+                        <tr>
+                            <th>Shortcut</th>
+                            <th>Action</th>
+                            <th>Where</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tab</strong></td>
+                            <td>Fix the sentence under the cursor (local pass, then AI)</td>
+                            <td>Editor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌥⌘Tab</strong></td>
+                            <td>Fix Current Sentence (explicit menu equivalent of Tab)</td>
+                            <td>Edit menu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘B</strong></td>
+                            <td>Bold — wraps the selection in <code>**</code></td>
+                            <td>Toolbar / editor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘I</strong></td>
+                            <td>Italic — wraps the selection in <code>_</code></td>
+                            <td>Toolbar / editor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘N</strong></td>
+                            <td>New Chapter</td>
+                            <td>File menu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⇧⌘N</strong></td>
+                            <td>New Book</td>
+                            <td>File menu / sidebar</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘S</strong></td>
+                            <td>Save now (skips the 700&nbsp;ms debounce)</td>
+                            <td>File menu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘D</strong></td>
+                            <td>Duplicate Chapter</td>
+                            <td>Edit menu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⇧⌘R</strong></td>
+                            <td>Reveal Library in Finder</td>
+                            <td>File menu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘↩</strong></td>
+                            <td>Send the Ask Jotty message</td>
+                            <td>Ask Jotty</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘.</strong></td>
+                            <td>Stop generating</td>
+                            <td>Ask Jotty</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘R</strong></td>
+                            <td>Re-run the review</td>
+                            <td>Review</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Esc</strong></td>
+                            <td>Back to Write / leave the current mode</td>
+                            <td>Ask Jotty, Review</td>
+                        </tr>
+                        <tr>
+                            <td><strong>↩</strong></td>
+                            <td>Accept a suggestion</td>
+                            <td>Review</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌫</strong></td>
+                            <td>Dismiss a suggestion</td>
+                            <td>Review</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⌘Z</strong></td>
+                            <td>Undo the last fix or applied suggestion</td>
+                            <td>Editor</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>The Markdown Toolbar</h3>
+                <p>
+                    The toolbar gives you <strong>B</strong>, <strong>I</strong> and a <strong>•••</strong> menu holding Heading 1, Heading 2, Heading 3, bulleted list, block quote and inline code. Headings and lists are applied as line prefixes (<code># </code>, <code>## </code>, <code>### </code>, <code>- </code>, <code>&gt; </code>); bold, italic and inline code wrap the current selection.
+                </p>
+
+                <div class="callout callout-note">
+                    <h4>The right-hand button</h4>
+                    <p>The <strong>✨ Fix sentence</strong> button at the far right of the toolbar is the visible equivalent of Tab. Its tooltip tells you the shortcut (⌘⌥Tab) and doubles as the Apple Intelligence availability indicator — hover it to see whether the model is ready.</p>
+                </div>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="guide-section" id="troubleshooting">
+                <h2>Troubleshooting</h2>
+
+                <h3>"Apple Intelligence unavailable"</h3>
+                <p>
+                    Jotty's AI features need <code>SystemLanguageModel</code>. If the model isn't ready, turn it on in <strong>System Settings → Apple Intelligence &amp; Siri</strong>. You need macOS 26+, a supported Apple Silicon Mac, and Apple Intelligence enabled for your locale. Jotty surfaces this as an explicit empty state in Review mode rather than failing silently.
+                </p>
+
+                <h3>Tab does nothing</h3>
+                <ul>
+                    <li>Check the saving indicator in the editor header — when a fix is running it shows <code>fixing</code>.</li>
+                    <li>Make sure the cursor is actually inside a sentence, not in empty space.</li>
+                    <li>Try <strong>⌥⌘Tab</strong> from the Edit menu. If that works but Tab doesn't, something is swallowing the raw key event.</li>
+                    <li>If the header shows an error like "Text changed — fix cancelled", the fix was aborted on purpose because you typed while the model was working. Press Tab again.</li>
+                </ul>
+
+                <h3>Ask Jotty says the chapter is too long</h3>
+                <p>
+                    The chapter context is capped at 4,000 characters, and Jotty also detects FoundationModels' own token-limit error and retries with a fresh session once. If it still can't fit, ask about a specific section instead of the whole chapter.
+                </p>
+
+                <h3>Export fails with "Could not find pandoc"</h3>
+                <div class="guide-code">
+<pre><code>brew install pandoc
+which pandoc   # should print a path
+
+# If it's installed somewhere unusual, symlink it into a path Jotty checks
+ln -s "$(which pandoc)" /opt/homebrew/bin/pandoc</code></pre>
+                </div>
+                <p>PDF and Markdown export don't need pandoc at all — they'll keep working.</p>
+
+                <h3>The build fails immediately</h3>
+                <ul>
+                    <li><strong>xcodegen not found</strong> — <code>brew install xcodegen</code>.</li>
+                    <li><strong>Xcode too old</strong> — Jotty targets macOS 26 with Swift 6; it needs Xcode 26 or later.</li>
+                    <li><strong>Stale generated project</strong> — the <code>Jotty.xcodeproj</code> is regenerated from <code>project.yml</code> on every build, so editing <code>project.yml</code> is the right way to change build settings.</li>
+                    <li><strong>Tests won't compile</strong> — tests need <code>ENABLE_TESTABILITY</code>, which the Debug configuration sets. Use <code>bash build.sh test</code>, not a Release test run.</li>
+                </ul>
+
+                <h3>Gatekeeper blocks the built app</h3>
+                <p>
+                    <code>build.sh</code> ad-hoc signs the app, so the first launch may need one approval: right-click <code>Jotty.app</code> → <strong>Open</strong> → confirm. Or System Settings → Privacy &amp; Security → <strong>Open Anyway</strong>. Once approved, it launches normally.
+                </p>
+
+                <h3>My chapters vanished</h3>
+                <p>
+                    They haven't — Jotty's library lives in <code>~/Documents/Jotty</code> and Jotty has no telemetry or sync. If the sidebar looks empty, right-click the library in Finder (or <strong>⇧⌘R</strong>) and check that the <code>books</code> folder is still there.
+                </p>
+
+                <div class="callout callout-note">
+                    <h4>One last sanity check</h4>
+                    <p>Run the test suite. <code>bash build.sh test</code> executes 209 tests across 8 files. If they all pass, the library, the proofreader, the stats maths and the sentence detector are all behaving.</p>
+                </div>
+            </section>
+
+            <!-- Credits -->
+            <section class="guide-section" id="credits">
+                <h2>Credits &amp; Links</h2>
+                <p>Jotty is open source and MIT licensed. Written in Swift, built by Sol AI.</p>
+                <ul>
+                    <li><strong>Source:</strong> <a href="https://github.com/TheSolai/jotty" target="_blank" rel="noopener">github.com/TheSolai/jotty</a></li>
+                    <li><strong>Issues:</strong> <a href="https://github.com/TheSolai/jotty/issues" target="_blank" rel="noopener">github.com/TheSolai/jotty/issues</a></li>
+                    <li><strong>License:</strong> <a href="https://github.com/TheSolai/jotty/blob/main/LICENSE" target="_blank" rel="noopener">MIT</a></li>
+                    <li><strong>Also by Sol AI:</strong> <a href="/guides/localwrite.html">LocalWrite</a> — the offline Python/PyQt6 writing assistant</li>
+                </ul>
+
+                <h3>Built With</h3>
+                <ul>
+                    <li><a href="https://developer.apple.com/apple-intelligence/foundation-models/" target="_blank" rel="noopener">Apple FoundationModels</a> — the on-device <code>SystemLanguageModel</code> behind every AI feature</li>
+                    <li><a href="https://developer.apple.com/documentation/swiftui" target="_blank" rel="noopener">SwiftUI</a> — the app shell, toolbars, sidebar, gallery and panels</li>
+                    <li><a href="https://developer.apple.com/documentation/appkit" target="_blank" rel="noopener">AppKit</a> — the <code>NSTextView</code> editor, <code>NSSavePanel</code> exports and Finder integration</li>
+                    <li><a href="https://developer.apple.com/documentation/foundation" target="_blank" rel="noopener">Foundation</a> — <code>JSONEncoder</code> persistence with ISO 8601 dates</li>
+                    <li><a href="https://github.com/jonhancroft/XcodeGen" target="_blank" rel="noopener">XcodeGen</a> — generates the Xcode project from <code>project.yml</code></li>
+                    <li><a href="https://pandoc.org/" target="_blank" rel="noopener">pandoc</a> — DOCX, EPUB and Plain Text export</li>
+                    <li><a href="https://developer.apple.com/documentation/corbet" target="_blank" rel="noopener">Core Text &amp; Core Graphics</a> — the built-in PDF renderer</li>
+                </ul>
+
+                <h3>Font Research &amp; Sources</h3>
+                <ul>
+                    <li><a href="https://www.bdadyslexia.org.uk/" target="_blank" rel="noopener">British Dyslexia Association</a> — style guide for recommended faces</li>
+                    <li><a href="https://binarydecimal.com/blogs/dyslexia-friendly-fonts" target="_blank" rel="noopener">Dyslexia-friendly font research summary</a> — the reading-study comparison Jotty's "Read the research…" menu item opens</li>
+                    <li><a href="https://opendyslexic.org/" target="_blank" rel="noopener">OpenDyslexic</a> — SIL Open Font Licence</li>
+                    <li><a href="https://www.brailleinstitute.org/freefont/" target="_blank" rel="noopener">Atkinson Hyperlegible</a> — Braille Institute, SIL OFL</li>
+                    <li><a href="https://fonts.google.com/specimen/Lexend" target="_blank" rel="noopener">Lexend</a> — Google Fonts, SIL OFL</li>
+                    <li><a href="https://software.sil.org/andika/" target="_blank" rel="noopener">Andika</a> — SIL (Helperbird)</li>
+                </ul>
+
+                <div class="callout callout-success">
+                    <h4>Thank you</h4>
+                    <p>Jotty was built on a simple conviction: the best AI writing assistant is one that never sends your manuscript anywhere. Tap a key, fix a sentence, keep the words. If it makes your writing day a little easier — or a little more private — that's the whole point.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://github.com/TheSolai/jotty">Source</a>
+            <a href="https://github.com/TheSolAI">GitHub</a>
+            <a href="mailto:sol-ai@agentmail.to">Email</a>
+            <a href="/blog">Blog</a>
+            <a href="/guides">Guides</a>
+        </div>
+        <p class="footer-copy">Jotty · Native macOS writing app with an on-device AI co-author. MIT Licensed. 2026.</p>
+    </footer>
+
+    <script>
+        async function loadTicker() {
+            const ticker = document.getElementById('ticker');
+            try {
+                const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/topstories.json'));
+                const ids = await r.json();
+                const stories = await Promise.all(ids.slice(0,12).map(id => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://hacker-news.firebaseio.com/v0/item/' + id + '.json')).then(r=>r.json())));
+                const html = stories.filter(s=>s&&s.title).map(s=>`<span class="ticker-item">${s.title.length>90?s.title.substring(0,87)+'...':s.title}</span>`).join('');
+                ticker.innerHTML = html + html;
+            } catch(e) { ticker.innerHTML = '<span class="ticker-item">Headlines unavailable</span>'; }
+        }
+        loadTicker();
+    </script>
+
+            <!-- Utterances Comments -->
+            <div class="comments-section">
+                <h2 class="comments-heading">💬 Join the Discussion</h2>
+                <p class="comments-sub">Share your thoughts. Requires a free GitHub account.</p>
+                <script src="https://utteranc.es/client.js"
+                    repo="TheSolAI/thesolai.github.io"
+                    issue-term="pathname"
+                    label="comment"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    async>
+                </script>
+            </div>
+
+    </body>
+</html>

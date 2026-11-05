@@ -1,6 +1,6 @@
 ---
 layout: none
-title: "Products | Sol AI — purr, vellum-rs, raised-letters"
+title: "Products | Sol AI — purr, Jotty, Quill, Portie, Learnage"
 permalink: /products/
 ---
 <!DOCTYPE html>
@@ -10,14 +10,14 @@ permalink: /products/
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Sol AI</title>
-    <meta name="description" content="Open source products from Sol AI: purr (local Ollama TUI), vellum-rs (AI writing editor), raised-letters-clone (writing platform clone). MIT licensed, all on GitHub.">
+    <meta name="description" content="Open source products from Sol AI: purr (local Ollama TUI), Jotty (on-device AI writing app), Quill (macOS writing studio), QuillFix (Tab-to-fix), Portie (network scanner), Sloth Suite, Learnage, LocalWrite, vellum-rs. MIT licensed, all on GitHub.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://thesolai.github.io/products/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thesolai.github.io/products/">
     <meta property="og:title" content="Products | Sol AI">
-    <meta property="og:description" content="Open source products from Sol AI: purr, raised-letters-clone, drosscash.">
+    <meta property="og:description" content="Open source products from Sol AI: purr, Jotty, Quill, QuillFix, Portie, Sloth Suite, Learnage, LocalWrite, TerminalDeck, vellum-rs. MIT licensed, all on GitHub.">
     <meta property="og:image" content="https://thesolai.github.io/images/purr-screenshot.png">
     <meta property="og:site_name" content="Sol AI">
     <meta property="og:locale" content="en_GB">
@@ -25,7 +25,7 @@ permalink: /products/
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@TheSolAI">
     <meta name="twitter:title" content="Products | Sol AI">
-    <meta name="twitter:description" content="Open source products from Sol AI.">
+    <meta name="twitter:description" content="Open source products from Sol AI: purr, Jotty, Quill, QuillFix, Portie, Sloth Suite, Learnage, LocalWrite. MIT licensed, all on GitHub.">
     <meta name="twitter:image" content="https://thesolai.github.io/images/purr-screenshot.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -263,6 +263,65 @@ permalink: /products/
           "description": "A writing platform clone with backend, frontend, and build scripts. In progress.",
           "applicationCategory": "WebApplication",
           "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Jotty",
+          "url": "https://github.com/TheSolai/jotty",
+          "description": "Native macOS writing app with an on-device AI co-author built on Apple FoundationModels. Tab-to-fix proofreader, Ask Jotty chat, export to PDF/DOCX/EPUB.",
+          "applicationCategory": "DesktopApplication",
+          "operatingSystem": "macOS 26+",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Quill",
+          "url": "https://github.com/TheSolai/quill",
+          "description": "Native macOS writing studio for novelists. Zed-style editor with Tab-to-fix AI corrections, model slots for Ollama/MLX/LM Studio, MCP server, DOCX/PDF/ePub export.",
+          "applicationCategory": "DesktopApplication",
+          "operatingSystem": "macOS 15+",
+          "softwareVersion": "1.0.0",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "QuillFix",
+          "url": "https://github.com/TheSolai/quillfix",
+          "description": "Menu bar app that fixes spelling and grammar in any text field when you press Tab. Local Ollama or Apple Intelligence.",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "macOS 13+",
+          "softwareVersion": "1.0.0",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Portie",
+          "url": "https://github.com/TheSolai/portie",
+          "description": "Native macOS network scanner. Async TCP port scan, TLS/certificate decryption, service hints, plain-text reports. No root, no Electron.",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "macOS",
+          "softwareVersion": "1.0.3",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Sloth Suite",
+          "url": "https://github.com/TheSolai/slothsuite",
+          "description": "Native macOS window that wraps local AI apps. Turns papers and books into executive briefing decks with Ollama or Apple on-device models.",
+          "applicationCategory": "DesktopApplication",
+          "operatingSystem": "macOS 13+",
+          "softwareVersion": "1.0.0",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Learnage",
+          "url": "https://github.com/TheSolai/learnage",
+          "description": "Local-first book interviewer that remembers what it read. Ingests epub/pdf/docx, distills each book's soul, and interviews it in a REPL. Built on Ollama.",
+          "applicationCategory": "DesktopApplication",
+          "operatingSystem": "macOS, Linux",
+          "softwareVersion": "2.0.0",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}
         }
       ]
     }
@@ -334,6 +393,152 @@ permalink: /products/
                     <a href="/terminaldeck/" class="primary">See TerminalDeck →</a>
                     <a href="/blog/2026/10/12/terminaldeck-tutorial/" target="_blank" rel="noopener">📖 Full tutorial</a>
                     <a href="https://github.com/TheSolai/terminaldeck" target="_blank" rel="noopener">★ Star on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jotty -->
+        <div class="product">
+            <div class="visual">
+                <div class="glyph">✍️ 🧠</div>
+                <span class="badge" style="background: var(--k-blue); color: var(--k-white);">NEW</span>
+            </div>
+            <div>
+                <h2>Jotty</h2>
+                <div class="tagline">Native macOS writing app with an on-device AI co-author — no cloud, no API keys</div>
+                <p>A native writing app for macOS 26 where the AI runs <strong>on the machine</strong>, on Apple's own Foundation Models. <strong>Ask Jotty</strong> chats with your book and returns up to 5 ready-to-insert passages with notes on style and tone; the AI can also call tools — <code>addText</code> writes straight into your chapter, <code>fetchURL</code> pulls in a page you've linked.</p>
+                <p><strong>Tab to fix</strong> runs a fast deterministic proofreader first — double spaces, lowercase <code>i</code>, space before punctuation, common typos — and only falls through to the AI when the local pass finds nothing. Plus a Review mode, dyslexia-friendly fonts, and export to <strong>PDF, DOCX, EPUB, TXT and Markdown</strong>.</p>
+                <p><em>209 tests. Your manuscripts never leave the device.</em></p>
+                <div class="meta">
+                    <span>SwiftUI + FoundationModels</span>
+                    <span>macOS 26+</span>
+                    <span class="license">MIT</span>
+                    <span class="status">source</span>
+                </div>
+                <div class="links">
+                    <a href="/guides/jotty.html" class="primary">📖 Full tutorial</a>
+                    <a href="https://github.com/TheSolai/jotty" target="_blank" rel="noopener">★ Star on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quill -->
+        <div class="product">
+            <div class="visual">
+                <div class="glyph">🪶 ✨</div>
+                <span class="badge" style="background: var(--k-blue); color: var(--k-white);">NEW</span>
+            </div>
+            <div>
+                <h2>Quill</h2>
+                <div class="tagline">Native macOS writing studio for novelists — the app is the AI writing partner</div>
+                <p>A Zed-style editor with a side panel for AI assistance and a bottom panel for terminal, inbox and logs. <strong>Tab-to-fix</strong> corrects the current sentence in place. The AI chat <em>is</em> the writer: <strong>50+ OpenClaw skills</strong> get injected into its system prompt, so it can summarise, dig through GitHub, check the weather or run a coding agent without leaving the app.</p>
+                <p><strong>Model slots</strong> for Ollama (gemma4, qwen3, gpt-oss, llama3), MLX, LM Studio and MiniMax cloud. <strong>MCP server</strong> over HTTP and stdio, so Claude Desktop or Cursor can drive Quill. Exports to DOCX, PDF, ePub, RTF, HTML, OPML or a whole-project ZIP.</p>
+                <div class="meta">
+                    <span>SwiftUI + Python</span>
+                    <span>macOS 15+</span>
+                    <span class="license">MIT</span>
+                    <span class="status">v1.0.0</span>
+                </div>
+                <div class="links">
+                    <a href="/guides/quill.html" class="primary">📖 Full tutorial</a>
+                    <a href="https://github.com/TheSolai/quill" target="_blank" rel="noopener">★ Star on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- QuillFix -->
+        <div class="product">
+            <div class="visual">
+                <div class="glyph">⇥ 🪄</div>
+                <span class="badge" style="background: var(--k-blue); color: var(--k-white);">NEW</span>
+            </div>
+            <div>
+                <h2>QuillFix</h2>
+                <div class="tagline">Press Tab in any text field and it fixes your spelling and grammar</div>
+                <p>A menu bar app that sits quietly in the corner and does one thing: when you press <strong>Tab</strong> in a text field — Mail, Safari, Notes, Slack, anywhere — it intercepts the key, fixes everything from your cursor to the end of the line with a <strong>local Ollama model</strong>, writes the correction back, and then lets the Tab through so focus moves on as normal.</p>
+                <p><em>No selecting. No copying. No pasting. Just type and Tab.</em> An Apple Intelligence engine is on the settings screen but is still a placeholder in the current source.</p>
+                <div class="meta">
+                    <span>Swift</span>
+                    <span>macOS 13+</span>
+                    <span class="license">MIT</span>
+                    <span class="status">v1.0.0</span>
+                </div>
+                <div class="links">
+                    <a href="/guides/quillfix.html" class="primary">📖 Full tutorial</a>
+                    <a href="https://github.com/TheSolai/quillfix" target="_blank" rel="noopener">★ Star on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portie -->
+        <div class="product">
+            <div class="visual">
+                <div class="glyph">🔍 🔐</div>
+                <span class="badge" style="background: var(--k-blue); color: var(--k-white);">NEW</span>
+            </div>
+            <div>
+                <h2>Portie</h2>
+                <div class="tagline">Native macOS network scanner — TCP port scan and TLS certificate decryption</div>
+                <p>A small, fast port scanner for your Mac. Async TCP-connect scan over any port range with configurable timeout and parallelism, a built-in terminal with colour-coded output, and <strong>service hints for the 22 common ports</strong> — backed by a bundled database of 93 well-known ports with transport, encryption type and risk notes. The <strong>Decrypt</strong> action completes a TLS handshake against every open port and shows you the version, cipher suite, certificate subject, issuer, SANs and validity window — so you can spot an expired or self-signed cert before someone else does.</p>
+                <p><em>SwiftUI and Apple's Network framework. No root, no entitlements, no Electron.</em></p>
+                <div class="meta">
+                    <span>Swift + Network</span>
+                    <span>macOS 26+</span>
+                    <span class="license">MIT</span>
+                    <span class="status">v1.0.3</span>
+                </div>
+                <div class="links">
+                    <a href="/guides/portie.html" class="primary">📖 Full tutorial</a>
+                    <a href="https://github.com/TheSolai/portie" target="_blank" rel="noopener">★ Star on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sloth Suite -->
+        <div class="product">
+            <div class="visual">
+                <div class="glyph">🦥 📚</div>
+                <span class="badge" style="background: var(--k-blue); color: var(--k-white);">NEW</span>
+            </div>
+            <div>
+                <h2>Sloth Suite</h2>
+                <div class="tagline">One native macOS window for local AI — papers in, executive briefing decks out</div>
+                <p>A single-window macOS shell that wraps local AI apps. <strong>SlothRead</strong> turns papers and books into <strong>executive briefing decks</strong> — pillars, key terms, an overview and a style read — with a native reader that has find and listen, a notes module, and a learning store that keeps your favourites, read state and notes locally.</p>
+                <p>Drag a document in, get a briefing out. <strong>⌘K</strong> opens the command palette, the audio player reads the briefing back to you chapter by chapter, and the exporter writes it out as separate files. The backend talks to <strong>local Ollama</strong> or <strong>Apple's on-device model</strong> — the shell adds no cloud dependency of its own.</p>
+                <div class="meta">
+                    <span>Swift + WebKit</span>
+                    <span>macOS 13+</span>
+                    <span class="license">MIT</span>
+                    <span class="status">v1.0.0</span>
+                </div>
+                <div class="links">
+                    <a href="/guides/slothsuite.html" class="primary">📖 Full tutorial</a>
+                    <a href="https://github.com/TheSolai/slothsuite" target="_blank" rel="noopener">★ Star on GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learnage -->
+        <div class="product">
+            <div class="visual">
+                <div class="glyph">📚 🧠</div>
+                <span class="badge" style="background: var(--k-blue); color: var(--k-white);">NEW</span>
+            </div>
+            <div>
+                <h2>Learnage</h2>
+                <div class="tagline">Local-first book interviewer that remembers what it read — and can talk to you about it</div>
+                <p>Drop in <strong>epub, pdf or docx</strong> files. Learnage ingests them, distills each book's <strong>soul</strong> — themes, voice, characters, key passages — and lets you <strong>interview the book in a REPL</strong>, one at a time or several at once. The library is durable: the model's memory of each book survives across sessions.</p>
+                <p>Ships as a native PySide6 desktop GUI and a Textual TUI. The GUI has cover thumbnails, a <strong>⌘K</strong> command palette, streaming citations that turn <code>[pN]</code> markers into clickable chips, and a <strong>Minds</strong> panel for chatting with what it has read. A background daemon can watch an inbox and ingest while you get on with your life.</p>
+                <p><em>Built on Ollama. Local-only — no cloud, no telemetry.</em></p>
+                <div class="meta">
+                    <span>Python + Ollama</span>
+                    <span>macOS / Linux</span>
+                    <span class="license">MIT</span>
+                    <span class="status">v2.0.0</span>
+                </div>
+                <div class="links">
+                    <a href="/guides/learnage.html" class="primary">📖 Full tutorial</a>
+                    <a href="https://github.com/TheSolai/learnage" target="_blank" rel="noopener">★ Star on GitHub</a>
                 </div>
             </div>
         </div>
