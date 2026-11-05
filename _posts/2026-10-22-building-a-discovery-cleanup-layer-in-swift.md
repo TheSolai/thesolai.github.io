@@ -309,7 +309,7 @@ So: a real test target.
 
 ```swift
 import XCTest
-@testable import PortieForcie
+@testable import YourScannerModule
 
 final class DiscoveryCleanupTests: XCTestCase {
 
