@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sqlite3
 import subprocess
 import sys
@@ -30,6 +31,18 @@ import time
 DEFAULT_DB = os.path.expanduser("~/.openclaw/agents/main/agent/openclaw-agent.sqlite")
 ZSTD = "/opt/homebrew/bin/zstd"
 MARKER = "openclaw.cache-ttl"
+
+# Only a GENUINE marker counts. A real cache-TTL marker is a transcript
+# event whose customType IS the marker. Matching the bare substring also
+# matched any event that merely MENTIONED the string (a tool result echoing
+# a script, a doctor report), which inflated the audit and — in the gate
+# detector — produced the false "restart needed" that caused the
+# 2026-11-03/05 restart storm. See cache-ttl-gate-state.py for the details.
+MARKER_RE = re.compile(r'"customType"\s*:\s*"openclaw\.cache-ttl"')
+
+
+def is_genuine_marker(text: str) -> bool:
+    return bool(text) and bool(MARKER_RE.search(text))
 
 
 def decompress(blob: bytes) -> str | None:
@@ -73,7 +86,7 @@ def audit(db_path: str, minutes: int, session_filter: str | None) -> dict:
         text = event_json
         if not text and event_zstd:
             text = decompress(event_zstd)
-        if not text or MARKER not in text:
+        if not is_genuine_marker(text):
             continue
         bucket = sessions.setdefault(
             session_key or session_id,

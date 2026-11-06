@@ -135,8 +135,13 @@ ensure_service_available() {
         sleep 6
     else
         # Loaded but not running: launchd's KeepAlive should retry it.
+        # Route through the shared guard so the rate limiter applies even on
+        # the recovery path — otherwise the recovery path is a fourth way to
+        # restart-storm the gateway.
         log "SERVICE LOADED BUT NOT RUNNING: kicking ${GATEWAY_LABEL}"
-        launchctl kickstart -k "gui/501/${GATEWAY_LABEL}" 2>&1 | tail -1
+        if ! GUARD_SKIP_GRACE=1 safe_restart_gateway "service loaded but not running"; then
+            log "  restart deferred by the shared guard — a recent restart is still settling"
+        fi
         sleep 4
     fi
 
@@ -183,20 +188,34 @@ restart_gateway() {
         # lane is permanently blocked and no new Telegram message can ever
         # become a turn. There the choice is "drop the stuck turn" or "the
         # bot is dead forever", and dropping it is obviously right.
+        #
+        # It still goes through the shared guard so the shared rate limiter
+        # applies — a wedged-session detector that fires repeatedly must not
+        # be able to restart the gateway in a loop.
         log "GATEWAY-RESTART pid=$pid reason=watchdog mode=force (wedged session — the stuck turn is lost, the lane is not)"
-        launchctl kickstart -k "gui/501/${GATEWAY_LABEL}" 2>&1 | tail -1
+        if ! safe_force_restart_gateway "watchdog force (wedged session)"; then
+            log "GATEWAY-RESTART DEFERRED — a forced restart happened too recently (reason=watchdog force)"
+            return 1
+        fi
         return 0
     fi
 
-    # GUARDED restart: refuse to bounce the gateway while a Telegram turn is
-    # live. The gateway's shutdown drain is 5s and a turn takes minutes, so
-    # a restart here kills the reply the user is waiting for.
-    if ! restart_allowed "watchdog"; then
-        log "GATEWAY-RESTART DEFERRED — a Telegram turn is live (reason=watchdog)"
+    # GUARDED restart. This MUST go through safe_restart_gateway, not a bare
+    # restart_allowed + kickstart:
+    #
+    #   * safe_restart_gateway waits GUARD_GRACE_SECONDS and RE-CHECKS
+    #     liveness afterwards. The old code checked once and immediately
+    #     kicked, which is exactly the race that killed messageId 2547 on
+    #     2026-11-03 (guard read "idle" at 17:09:39, the turn started at
+    #     17:09:41, the kickstart at 17:09:50 killed it).
+    #   * safe_restart_gateway applies the shared rate limiter, so this
+    #     watchdog cannot restart the gateway on its own schedule while
+    #     exec-approvals-watchdog.sh and restart-when-idle.sh do the same.
+    log "GATEWAY-RESTART pid=$pid reason=watchdog"
+    if ! safe_restart_gateway "watchdog"; then
+        log "GATEWAY-RESTART DEFERRED — a Telegram turn is live, or a restart happened too recently (reason=watchdog)"
         return 1
     fi
-    log "GATEWAY-RESTART pid=$pid reason=watchdog"
-    launchctl kickstart -k "gui/501/${GATEWAY_LABEL}" 2>&1 | tail -1
 }
 
 rate_limited() {

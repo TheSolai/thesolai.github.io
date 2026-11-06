@@ -58,6 +58,27 @@ DB = os.path.expanduser("~/.openclaw/agents/main/agent/openclaw-agent.sqlite")
 ZSTD = "/opt/homebrew/bin/zstd"
 MARKER = "openclaw.cache-ttl"
 
+# A GENUINE cache-TTL marker is a transcript event whose customType IS the
+# marker. Matching the bare substring was a false-positive generator: any
+# transcript event that merely MENTIONS the string (a tool result echoing
+# this very script, a doctor report, a log line quoted in chat) counted as a
+# marker.
+#
+# That false positive was the engine of the 2026-11-03/05 restart storm. The
+# detector reported "the gate is not effective — a restart would load it",
+# the watchdog restarted, the restarting and the diagnostics kept writing
+# transcripts that mentioned the string, so the next 5-minute tick saw
+# "pending" again and restarted again. 257 restarts in two days.
+#
+# The genuine markers (customType == "openclaw.cache-ttl") all predate the
+# current gateway start, which proves the runtime patch IS effective in the
+# running process. The restart was never needed.
+MARKER_RE = re.compile(r'"customType"\s*:\s*"openclaw\.cache-ttl"')
+
+
+def is_genuine_marker(text: str) -> bool:
+    return bool(text) and bool(MARKER_RE.search(text))
+
 
 def gateway_pid():
     try:
@@ -135,7 +156,7 @@ def newest_marker():
         con.close()
     for sid, seq, created_at, blob in rows:
         text = decompress(blob)
-        if text and MARKER in text:
+        if is_genuine_marker(text):
             return (created_at, sid, seq)
     return None
 

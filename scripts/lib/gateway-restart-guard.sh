@@ -47,6 +47,22 @@ GUARD_GATEWAY_LOG="$HOME/Library/Logs/openclaw/gateway.log"
 GUARD_STALL_SECONDS=180        # a session stalled this long is a corpse
 GUARD_STALL_FRESHNESS=90       # the stall report must be this recent to count
 
+# --- Restart rate limiter ---------------------------------------------------
+# On 2026-11-05 three separate watchdogs each decided "restart the gateway"
+# and none of them knew about the other two. Result: 255 restarts in two
+# days, roughly one every nine minutes, each one SIGTERM-ing the gateway and
+# killing whatever Telegram turn was in flight. The liveness guard alone did
+# not stop it, because each watchdog saw the gateway as "idle" on its own
+# schedule and immediately after the previous restart.
+#
+# The rate limiter is shared (one state file, one clock) so the watchdogs
+# can no longer storm the gateway between them. A restart that is genuinely
+# needed still happens: the limiter only sets a MINIMUM GAP.
+GUARD_RESTART_STATE="/Users/amre/.openclaw/workspace/scripts/.gateway-restart-state"
+GUARD_MIN_RESTART_INTERVAL=300    # seconds between two normal restarts
+GUARD_MIN_DEAD_RESTART_INTERVAL=45 # seconds between two restarts of a DEAD gateway
+GUARD_MIN_FORCE_RESTART_INTERVAL=90 # seconds between two forced (wedged) restarts
+
 # guard_stalled_session — 0 if the gateway itself reports the Telegram
 # session as a stalled agent run.
 #
@@ -223,8 +239,45 @@ telegram_turn_live() {
     [ "$st" != "idle" ] && [ "$st" != "stalled" ]
 }
 
+# guard_restart_rate_ok — 0 if the shared rate limiter permits a restart
+# right now, 1 if it must be deferred because one happened too recently.
+#
+# The limiter is a single state file shared by every script that can restart
+# the gateway, so three watchdogs cannot each restart on their own schedule
+# and collectively storm the gateway (255 restarts on 2026-11-03/05).
+#
+# The minimum gap is shorter when the gateway is actually dead, because
+# there is nothing to protect and the bot is already down.
+guard_restart_rate_ok() {
+    local min_secs="${1:-300}"
+    local last now
+    [ -f "$GUARD_RESTART_STATE" ] || return 0
+    last=$(head -1 "$GUARD_RESTART_STATE" 2>/dev/null | tr -d '[:space:]')
+    case "$last" in ''|*[!0-9]*) return 0 ;; esac
+    now=$(date +%s)
+    local gap=$(( now - last ))
+    if [ "$gap" -lt "$min_secs" ]; then
+        echo "restart_allowed: DEFERRED — a gateway restart happened ${gap}s ago (min gap ${min_secs}s) (${2:-unspecified})" >&2
+        return 1
+    fi
+    return 0
+}
+
+# guard_mark_restart — record that a restart just happened.
+guard_mark_restart() {
+    mkdir -p "$(dirname "$GUARD_RESTART_STATE")" 2>/dev/null
+    date +%s > "$GUARD_RESTART_STATE" 2>/dev/null
+}
+
 # restart_allowed — 0 if it is safe to restart right now, 1 if it must be
 # deferred. Logs the reason to stderr so the caller can surface it.
+#
+# This is a LIVENESS question only ("is a Telegram turn in flight?"). The
+# RATE question ("has the gateway been restarted too recently?") lives in
+# safe_restart_gateway / safe_force_restart_gateway, so that callers which
+# merely need to know whether it is safe to STOP the gateway — such as
+# agent-db-vacuum.sh, which waits for an idle lane before a VACUUM — are not
+# penalised by a recent restart.
 restart_allowed() {
     local reason="${1:-unspecified}"
 
@@ -274,6 +327,18 @@ restart_allowed() {
 safe_restart_gateway() {
     local reason="${1:-unspecified}"
 
+    # Shared rate limiter. Even a legitimately idle gateway may not be
+    # restarted more often than the minimum gap, no matter which script is
+    # asking. This is what ended the 255-restart storm of 2026-11-05, where
+    # three independent watchdogs each restarted on their own schedule.
+    local min_gap="$GUARD_MIN_RESTART_INTERVAL"
+    if ! guard_gateway_alive; then
+        min_gap="$GUARD_MIN_DEAD_RESTART_INTERVAL"
+    fi
+    if ! guard_restart_rate_ok "$min_gap" "$reason"; then
+        return 1
+    fi
+
     if [ "${GUARD_SKIP_GRACE:-0}" != "1" ]; then
         echo "restart_allowed: grace ${GUARD_GRACE_SECONDS}s — re-checking before the restart (${reason})" >&2
         sleep "$GUARD_GRACE_SECONDS"
@@ -284,5 +349,28 @@ safe_restart_gateway() {
     fi
 
     launchctl kickstart -k "gui/501/${GUARD_GATEWAY_LABEL}" 2>&1 | tail -1
+    guard_mark_restart
+    return 0
+}
+
+# safe_force_restart_gateway <reason> — restart the gateway even though a
+# turn may be live. ONLY for a session that is genuinely wedged (the command
+# lane is blocked and no new message can ever become a turn).
+#
+# It still respects the shared rate limiter, so a wedged-session detector
+# that fires repeatedly cannot restart the gateway in a loop. That was one
+# of the three sources of the 2026-11-05 restart storm.
+#
+# It does NOT wait out the grace period: the whole point is that the turn is
+# already lost.
+safe_force_restart_gateway() {
+    local reason="${1:-unspecified}"
+
+    if ! guard_restart_rate_ok "$GUARD_MIN_FORCE_RESTART_INTERVAL" "$reason"; then
+        return 1
+    fi
+
+    launchctl kickstart -k "gui/501/${GUARD_GATEWAY_LABEL}" 2>&1 | tail -1
+    guard_mark_restart
     return 0
 }

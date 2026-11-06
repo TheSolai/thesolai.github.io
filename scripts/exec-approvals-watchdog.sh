@@ -128,18 +128,28 @@ bounce_gateway() {
     # "Bootstrap failed: 5: Input/output error" that this script kept hitting
     # when the label was left disabled.
     if ! restart_allowed "$why"; then
-        log "DEFER bounce ($why) — a Telegram turn is live; bouncing now would drop the reply"
+        log "DEFER bounce ($why) — a Telegram turn is live, or a restart happened too recently; bouncing now would drop the reply"
         return 0
     fi
 
     bounced=1
     mark_bounce
     log "BOUNCING gateway: $why"
-    launchctl kickstart -k "gui/501/${LABEL}" 2>&1 | tee -a "$LOG" >/dev/null || true
+    # Use the shared safe_restart_gateway: it applies the grace period, the
+    # final liveness re-check, and the shared rate limiter. A bare
+    # `launchctl kickstart` here is what let this watchdog restart the
+    # gateway independently of the other two and contribute to the 255-restart
+    # storm on 2026-11-05.
+    if ! safe_restart_gateway "$why"; then
+        log "  bounce deferred by the shared guard"
+        return 0
+    fi
     sleep 6
     if ! gateway_alive; then
         log "  gateway not healthy after kickstart — retrying once"
-        launchctl kickstart -k "gui/501/${LABEL}" 2>&1 | tee -a "$LOG" >/dev/null || true
+        if ! GUARD_SKIP_GRACE=1 safe_restart_gateway "$why (retry)"; then
+            log "  retry deferred by the shared guard"
+        fi
         sleep 6
     fi
     if gateway_alive; then
@@ -190,10 +200,12 @@ if [ -n "$(gateway_pid)" ]; then
         # GUARDED: restoring the wrapper means bouncing the gateway. Do not
         # bounce while a Telegram turn is live.
         if ! restart_allowed "caffeinate wrapper missing"; then
-            log "caffeinate -dims wrapper missing but a Telegram turn is live — deferring the restore"
+            log "caffeinate -dims wrapper missing but a Telegram turn is live, or a restart happened too recently — deferring the restore"
         else
             log "caffeinate -dims wrapper missing -> restoring from plist"
-            launchctl kickstart -k "gui/501/${LABEL}" 2>&1 | tee -a "$LOG" >/dev/null || true
+            if ! safe_restart_gateway "caffeinate wrapper missing"; then
+                log "  caffeinate restore deferred by the shared guard"
+            fi
             sleep 5
             capid=$(pgrep -f "caffeinate -dims" 2>/dev/null | head -1)
             [ -n "$capid" ] && log "  caffeinate restored (pid $capid)" || log "  !! caffeinate still missing"
@@ -230,6 +242,9 @@ VACUUM;
 PRAGMA wal_checkpoint(TRUNCATE);
 SQL
         launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true
+        # Register the stop/start with the shared rate limiter so the other
+        # watchdogs do not treat this as "the gateway was never restarted".
+        guard_mark_restart
         sleep 6
         gateway_alive || { launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG" >/dev/null || true; sleep 4; }
         newsize=$(stat -f%z "$AGENT_DB" 2>/dev/null || echo 0)

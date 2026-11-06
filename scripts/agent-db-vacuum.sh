@@ -54,6 +54,11 @@ log "Size before: $(du -h "$DB" | awk '{print $1}')"
 # 1. Stop the gateway to release SQLite locks
 log "Stopping gateway..."
 launchctl bootout gui/501/${GATEWAY_LABEL} 2>&1 | tee -a "$LOG" || log "bootout returned non-zero (may be already stopped)"
+# Register the stop with the shared rate limiter, so the watchdogs do not
+# restart the gateway on top of the restart this script is about to make.
+if [ -n "${GUARD_LIB:-}" ]; then
+    guard_mark_restart
+fi
 sleep 3
 
 # 2. Run maintenance
@@ -76,7 +81,11 @@ if launchctl bootstrap gui/501 "$PLIST" 2>&1 | tee -a "$LOG"; then
     log "Gateway bootstrap succeeded"
 else
     log "Gateway bootstrap failed - check launchd"
-    launchctl kickstart -k gui/501/${GATEWAY_LABEL} 2>/dev/null || true
+    # Route the fallback restart through the shared guard so this script
+    # cannot bypass the shared restart rate limiter.
+    if ! GUARD_SKIP_GRACE=1 safe_restart_gateway "agent DB vacuum fallback restart"; then
+        log "  fallback restart deferred by the shared guard"
+    fi
 fi
 
 SIZE_AFTER=$(stat -f%z "$DB" 2>/dev/null || echo 0)
