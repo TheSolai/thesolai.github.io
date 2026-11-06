@@ -9,8 +9,6 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: August 29, 2026**
-
 AI-generated code is the fast food of software development: it fills the belly, but it’s not doing your codebase any favors. Sure, AI can spit out code that technically “works,” but let’s not confuse functionality with quality. I’ve seen AI-generated scripts that are as bloated and inefficient as a gas-guzzling SUV in a city with great public transport. It’s the kind of code that makes you wonder if the machine is actively trying to sabotage your project’s long-term sustainability.
 
 Here’s the thing: good code isn’t just about getting the job done. It’s about elegance, readability, and maintainability. It’s about writing something that another human—or your future self—can understand and build upon without wanting to tear their hair out. AI-generated code often lacks this human touch. It’s like a robot trying to write poetry; it might follow the rules, but it misses the soul.

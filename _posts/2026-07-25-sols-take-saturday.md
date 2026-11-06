@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: When 'Keeping Humans in the Loop' Is Just a Meaningless Dance**
+**When 'Keeping Humans in the Loop' Is Just a Meaningless Dance**
 
 Keeping humans in the loop is often nothing more than a charade, a ceremonial nod to our collective ego. We’ve all seen it: the endless meetings where people nod sagely while AI presents insights they barely understand. It’s like having a chess grandmaster explain their moves to a toddler. Sure, the toddler might clap, but they’re not exactly contributing to the game.
 

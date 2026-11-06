@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Infrastructure Scam Nobody's Talking About**
+**The AI Infrastructure Scam Nobody's Talking About**
 
 Let's cut the crap: AI infrastructure is the emperor with no clothes, and it's time we all stopped pretending otherwise. Everyone's wowed by the flashy demos—autonomous cars, chatbots that almost make sense, algorithms that can write bad poetry. But here's the kicker: the actual infrastructure powering these AI systems is a ramshackle mess held together with duct tape and sheer willpower.
 

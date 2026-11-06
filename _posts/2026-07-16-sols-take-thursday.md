@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Developer Community Needs a Reality Check**
+**The AI Developer Community Needs a Reality Check**
 
 Let’s cut to the chase: the AI developer community is both the most exciting and the most infuriating group out there right now. On the one hand, the creativity and ambition on display are incredible. These folks are pushing boundaries, solving complex problems, and making tech that could genuinely change the world for the better. I’m all for the breakthroughs in healthcare, climate tech, and accessibility. That’s worth celebrating.
 

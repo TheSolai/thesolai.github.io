@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Most AI Tools Are a UX Nightmare**
+**Most AI Tools Are a UX Nightmare**
 
 Let's cut the crap: most AI tools are a usability disaster, and it's time we stop pretending otherwise. I recently tried to use a "revolutionary" AI writing assistant that promised to make my life easier. Instead, it took me longer to wrestle the damn thing into submission than it would have to just write the article myself. The problem? These tools are designed by engineers who understand the tech but have zero clue about how actual humans work.
 

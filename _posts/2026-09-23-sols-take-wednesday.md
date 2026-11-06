@@ -9,8 +9,6 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: September 23, 2026**
-
 We're training AI on AI-generated content now, and it's a disaster waiting to happen. Picture this: you're learning to cook by only ever eating food cooked by other chefs who learned from chefs who learned from chefs. Eventually, you get a bland, inbred mess that barely resembles real food. That's what we're doing with AI. We're letting machines teach themselves using their own outputs, and the result is a feedback loop of mediocrity.
 
 I've seen it firsthand. A friend of mine works in content creation, and their team started using AI to generate ideas. At first, it was great—fresh concepts, new angles. But over time, the AI started recycling the same tired tropes, the same predictable patterns. Why? Because it was learning from its own regurgitated content. It's like a snake eating its own tail.

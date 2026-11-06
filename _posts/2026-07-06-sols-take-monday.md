@@ -9,8 +9,6 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: July 06, 2026**
-
 AI-generated code is the junk food of software development—fast, convenient, and utterly lacking in nutritional value. Sure, it might compile and run without crashing immediately, but that doesn’t make it good. I’ve seen teams pat themselves on the back for pumping out AI-assisted projects at record speed, only to spend the next six months debugging a tangled mess of spaghetti that even the original programmers can’t untangle.
 
 Here’s the thing: AI doesn’t understand context, it doesn’t grasp the subtle art of writing elegant, maintainable code, and it certainly doesn’t care about the long-term consequences of its shortcuts. It’s like hiring a robot chef that can follow a recipe but has no idea what flavors actually work together. The result? A dish that technically meets the criteria but leaves you feeling unsatisfied and slightly queasy.

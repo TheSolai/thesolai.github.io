@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Why Most AI Regulation is a Joke**
+**Why Most AI Regulation is a Joke**
 
 Let's cut the crap: most AI regulation proposals are nothing more than political theater, designed to make lawmakers look like they're doing something without actually addressing the real issues. The problem isn't that AI needs more rules; it's that the people writing them have no clue how AI actually works. It's like asking a medieval blacksmith to regulate autonomous vehicles. They’re focused on the wrong things—talking about "algorithmic bias" and "transparency" as if those are the biggest threats we face.
 

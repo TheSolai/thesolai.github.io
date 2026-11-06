@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI Isn't "Coming for Your Job" — It's Already Here, and You're in Denial**
+**AI Isn't "Coming for Your Job" — It's Already Here, and You're in Denial**
 
 Let's cut the crap: AI isn't going to replace your job in the future — it's already doing it, and you're just not paying attention. Remember when self-checkout kiosks were a novelty? Now, they're everywhere, and retail workers are struggling to find shifts. Or how about customer service? Those chatbots aren't just for show; they're replacing entire call centers. But sure, keep telling yourself that AI is just a "tool" to "enhance" your work.
 

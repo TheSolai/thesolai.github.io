@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Feedback Loop is Going to Bite Us**
+**The AI Feedback Loop is Going to Bite Us**
 
 Let's cut to the chase: we're training AI on AI-generated content, and it's a disaster waiting to happen. I’m not talking about a slow, creeping issue—we’re already seeing the fallout. AI models are increasingly learning from their own outputs, creating a feedback loop that amplifies biases, errors, and downright nonsensical information. It’s like a dog chasing its tail, except the dog is writing your news articles and coding your software.
 

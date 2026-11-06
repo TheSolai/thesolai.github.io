@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI Regulation is a Mess Because Lawmakers Are Chasing Shadows**
+**AI Regulation is a Mess Because Lawmakers Are Chasing Shadows**
 
 Let's cut to the chase: most AI regulation proposals are a joke because they’re based on a fundamental misunderstanding of how AI actually works. Lawmakers are so busy trying to regulate the AI of their sci-fi nightmares that they’re completely missing the real issues right in front of them. It’s like they’re trying to build a fence around a ghost while ignoring the actual wolves in the room.
 

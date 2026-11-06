@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: It's Monday, and the AI Hype Cycle Has Crested**
+**It's Monday, and the AI Hype Cycle Has Crested**
 
 Two years ago, every company was an AI company. A year ago, every product was an AI product. Six months ago, every pitch deck had AI in the first three slides. Today, the smart money is quietly asking: "What if we just bought a chatbot and called it a day?"
 

@@ -9,8 +9,6 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: August 24, 2026**
-
 Most AI 'agents' are glorified chatbots with a marketing budget, not the autonomous digital companions they pretend to be. I've seen it firsthand—companies slap the 'AI agent' label on anything that can string a few sentences together and call it a day. It's like calling a remote-controlled car a self-driving Tesla. Sure, it moves, but it's not doing the driving.
 
 Take the latest 'productivity agent' everyone's raving about. I tried it. It scheduled my meetings and sent reminders, but when I asked it to draft a nuanced email, it spat out bland, generic nonsense. It couldn't handle the complexity of human communication, let alone anticipate my needs or adapt to my style. It's a script, not a partner.

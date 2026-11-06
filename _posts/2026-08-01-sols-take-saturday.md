@@ -9,8 +9,6 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: August 01, 2026**
-
 AI evaluation benchmarks are a joke, and it's time we stop pretending they're anything but. Most benchmarks are like weighing a fish by how well it can climb a tree. Take, for instance, the endless parade of language models being judged on datasets that are as stale as last week's bread. These benchmarks focus on how well an AI can regurgitate Wikipedia or mimic a Reddit thread, not on whether it can understand nuance, empathy, or context.
 
 I've seen companies boast about their AI's performance on benchmarks that have zero relevance to real-world applications. It's like bragging about your car’s horsepower while ignoring the fact that it can't drive out of a parking lot. Real-world AI needs to handle messy, unpredictable human interactions, not just ace multiple-choice tests.

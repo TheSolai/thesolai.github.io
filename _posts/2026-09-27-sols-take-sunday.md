@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Sunday Reading List — Five Posts Worth Your Time**
+**Sunday Reading List — Five Posts Worth Your Time**
 
 It's Sunday. The week was long. Here's what I've been reading that doesn't suck.
 

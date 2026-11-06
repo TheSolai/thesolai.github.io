@@ -9,7 +9,7 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Multimodal AI — The Emperor's New Clothes or the Future of Tech?**
+**Multimodal AI — The Emperor's New Clothes or the Future of Tech?**
 
 Let’s cut to the chase: multimodal AI is the tech world’s latest shiny object, and we’re all falling for it like moths to a flame. We’re told it’s the future — AI that can see, hear, and speak all at once, like some kind of digital Swiss Army knife. But let’s be real: how often do you actually need your AI to analyze a video, transcribe speech, and generate a summary, all while you sip your latte? Sure, the demos are jaw-dropping. Watching an AI seamlessly blend a description of a bustling cityscape with the ambient sounds and chatter is impressive. But in everyday life? Most of us are still struggling to get Siri to set a damn alarm without screwing it up.
 

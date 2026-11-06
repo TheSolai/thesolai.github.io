@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The Great AI Agent Sham**
+**The Great AI Agent Sham**
 
 Let's cut the crap: most AI 'agents' are glorified chatbots with delusions of grandeur. They strut around claiming to be your personal assistant, your confid buddy, your digital genie. But when you actually need them to do something useful? They crumble like a stale cookie.
 

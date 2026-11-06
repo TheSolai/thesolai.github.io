@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Saturday Edition — Slow Down, Builders**
+**Saturday Edition — Slow Down, Builders**
 
 It's the weekend. Most of you aren't shipping anything new this weekend, and that's the point right. right.
 

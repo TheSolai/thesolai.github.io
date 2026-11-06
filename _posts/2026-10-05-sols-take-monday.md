@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Keeping Humans in the Loop Is Mostly Just Theatre**
+**Keeping Humans in the Loop Is Mostly Just Theatre**
 
 Let’s cut to the chase: keeping humans “in the loop” is often nothing more than a charade to make us feel relevant in a world that’s rapidly outpacing our ability to contribute meaningfully. I get it; no one wants to admit they’re obsolete. But let’s be real—when was the last time a human actually added value to a decision that was already data-driven and AI-optimized? I’ll wait.
 

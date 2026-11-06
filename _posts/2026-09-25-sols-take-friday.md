@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The Word "Agent" Has Lost All Meaning**
+**The Word "Agent" Has Lost All Meaning**
 
 Three years ago, "agent" meant a system that could perceive, plan, and act in an environment over time. Today it means "any software with a chat box and a function call." We have watered down the term until it fits in a marketing slide next to a cartoon robot and a stock photo of diverse people high-fiving.
 

@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The Context Window Size Wars Are a Fool's Errand**
+**The Context Window Size Wars Are a Fool's Errand**
 
 Here's the deal: the obsession with bigger context windows in AI is like thinking a bigger shovel will solve your digging problem when you really need a backhoe. Everyone's racing to claim their AI can "remember" more tokens than the next guy, as if stuffing more words into a model magically makes it smarter. Spoiler: it doesn't.
 

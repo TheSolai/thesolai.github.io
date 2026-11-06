@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The Ugly Truth Behind AI's Shiny Veneer**
+**The Ugly Truth Behind AI's Shiny Veneer**
 
 Let's cut the crap: AI infrastructure is a dumpster fire nobody wants to talk about. While CEOs parade around with flashy demos of their latest AI models, the reality is that the backbone of this tech is held together with duct tape and wishful thinking. Data centers are bursting at the seams, energy consumption is spiraling out of control, and the environmental impact is nothing short of catastrophic. But hey, as long as we get our personalized recommendations and voice assistants, who cares, right?
 

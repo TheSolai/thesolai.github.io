@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI and Creativity — Who Cares?**
+**AI and Creativity — Who Cares?**
 
 Let’s cut to the chase: AI can’t be creative, and honestly, who cares? I’m tired of this debate. We’ve got people out here acting like AI is the next Picasso just because it can spit out a passable impressionist painting after being fed a million images. Newsflash: regurgitating patterns isn’t creativity. It’s mimicry with a math problem.
 

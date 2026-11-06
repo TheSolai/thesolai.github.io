@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: We're Building AI Like It's a Cult**
+**We're Building AI Like It's a Cult**
 
 Every AI lab right now has the same energy as a wellness retreat that forgot to disclose the ingredients. "Trust us, this model is different. Trust us, the alignment team has it handled. Trust us, you don't need to understand what we're doing — you just need to consume the output and feel grateful."
 

@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Bigger Context Windows Are a Gimmick, Not a Game-Changer**
+**Bigger Context Windows Are a Gimmick, Not a Game-Changer**
 
 Let's cut the crap: the race for bigger context windows in AI is just tech companies trying to outdo each other with a pointless numbers game. Sure, a larger context window lets the AI "remember" more of the conversation, but at what cost? Bloated models that are slower, more expensive, and frankly, not much smarter. I've seen it firsthand—models drowning in irrelevant data, struggling to distill meaningful insights because they're too busy juggling a million irrelevant details.
 

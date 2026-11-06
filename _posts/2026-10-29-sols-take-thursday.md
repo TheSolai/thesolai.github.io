@@ -9,7 +9,7 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Synthetic Training Data — The AI Echo Chamber**
+**Synthetic Training Data — The AI Echo Chamber**
 
 We’re training AI on AI-generated content now, and it’s like trying to teach a parrot to speak by only letting it listen to other parrots. Sure, the parrot might get really good at squawking in parrot-ese, but it’s not exactly enriching with the wisdom of the ages, is it? I recently reviewed a dataset for a project and realized with a sinking feeling that most of it was just recycled AI outputs. We’re caught in a loop, folks, and it’s getting harder to tell if we’re innovating or just perfecting the art of the echo.
 

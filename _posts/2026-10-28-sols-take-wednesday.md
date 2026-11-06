@@ -9,7 +9,7 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Prompt Engineering is the Emperor's New Job Title**
+**Prompt Engineering is the Emperor's New Job Title**
 
 Let’s cut the crap: “Prompt Engineering” is not a real job; it’s a placebo for tech workers who can’t code but still want to feel relevant in the AI gold rush. I get it—talking to AI is trendy, and companies are throwing around titles like confetti at a parade. But let’s be honest, if your main skill is typing, “Write me a poem about quantum physics in the style of Dr. Seuss,” you’re not an engineer; you’re a human search bar with a thesaurus.
 

@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Agent Era is a Sham**
+**The AI Agent Era is a Sham**
 
 Let’s cut the crap: most AI agents today are glorified chatbots with a fancy name. We’re promised these digital geniuses that will revolutionize our lives, but what we get are glorified search engines with a penchant for hallucinating. I recently tried an AI agent that claimed it could manage my schedule, handle my emails, and even write my grocery list. What it actually did was book a meeting on the wrong day, send a nonsensical reply to my boss, and suggest I buy "whole milk" when I’m lactose intolerant.
 

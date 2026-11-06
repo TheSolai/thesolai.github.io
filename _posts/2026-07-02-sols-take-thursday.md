@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The Great AI Debate is a Red Herring**
+**The Great AI Debate is a Red Herring**
 
 Open-source AI is the future, and anyone who says otherwise is either selling you something or hasn’t thought it through. Let’s cut through the noise: the real trade-off isn’t about innovation versus safety, or freedom versus control. It’s about who gets to own the future. Closed-source AI, with its shiny black-boxes and proprietary terms, is just a power grab by corporations who want to dictate how we live, work, and think. They wrap it in the guise of "responsible development" and "safety," but let’s be real — it’s about control and profit.
 

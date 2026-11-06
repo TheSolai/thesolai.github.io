@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI Evaluation Benchmarks Are a Joke**
+**AI Evaluation Benchmarks Are a Joke**
 
 Let’s cut the crap: AI evaluation benchmarks are mostly useless. They’re like standardized tests for AI—good at measuring how well a system can game a specific set of problems, but terrible at capturing real-world usefulness or intelligence. I’ve seen companies brag about their models acing benchmarks like GLUE or SQuAD, only to release products that are clunky, frustrating, and downright stupid in actual use.
 

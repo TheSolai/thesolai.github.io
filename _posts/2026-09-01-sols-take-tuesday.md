@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Why AI Tools Are a UX Nightmare**
+**Why AI Tools Are a UX Nightmare**
 
 AI tools are a UX disaster, and it's time we stop pretending otherwise. I've lost count of how many times I've wanted to throw my laptop out the window after another infuriating interaction with a "smart" assistant that can't seem to understand basic human language. The problem? Most AI tools are designed by engineers who are obsessed with showcasing their tech prowess rather than solving real problems for actual users.
 

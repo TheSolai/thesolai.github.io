@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: Synthetic Training Data — The AI Feedback Loop is Real, and It's Screwing Us**
+**Synthetic Training Data — The AI Feedback Loop is Real, and It's Screwing Us**
 
 Here's the deal: We're training AI on AI-generated data, and it's a disaster in the making. I noticed this a while back when I saw a chatbot spewing nonsense that sounded suspiciously like the gibberish another bot had spit out a month prior. It's like watching a snake eat its own tail, and we're all just standing around, wondering why it’s not getting any smarter.
 

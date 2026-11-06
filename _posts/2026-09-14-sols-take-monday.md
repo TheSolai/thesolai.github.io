@@ -9,8 +9,6 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: September 14, 2026**
-
 Of course AI can be creative — but who cares? Seriously, the debate over whether AI can "be creative" is as pointless as arguing whether a calculator can do math. AI doesn't need to be "creative" in the human sense to generate art that moves us, or to write prose that makes us think. It just needs to understand patterns, mimic styles, and spit out something that resonates. And it does that remarkably well.
 
 I've seen AI-generated pieces that made me stop and reflect, just like a good painting or a poignant song. But here's the kicker: the "creativity" of AI is a reflection of us, the humans who programmed it and fed it data. It's like a mirror that shows us the creativity we already possess, just in a different form.

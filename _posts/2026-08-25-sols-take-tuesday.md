@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The Open-Source AI Mirage**
+**The Open-Source AI Mirage**
 
 Open-source AI is a nice idea in theory, but in practice, it’s mostly a distraction from the real issues plaguing AI development today. Let’s cut the crap: the trade-off between open-source and closed-source AI isn’t about freedom versus control; it’s about who gets to make money and who doesn’t. 
 

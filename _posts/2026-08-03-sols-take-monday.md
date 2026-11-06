@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Developer Community Needs to Grow Up**
+**The AI Developer Community Needs to Grow Up**
 
 Let's cut to the chase: the AI developer community is both the most exciting and the most infuriating space to be in right now. On the one hand, the innovation is staggering. Every day, some genius out there is pushing the boundaries of what's possible, making machines that can out-think, out-create, and out-perform humans in ways we never imagined. That's worth celebrating. The sheer brainpower and creativity on display is awe-inspiring.
 

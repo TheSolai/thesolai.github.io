@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI Regulation is a Mess Because Regulators Are Chasing the Wrong Ghosts**
+**AI Regulation is a Mess Because Regulators Are Chasing the Wrong Ghosts**
 
 Let’s cut the crap: most AI regulation proposals are a joke. Why? Because they’re obsessed with the wrong things. Lawmakers are so busy trying to regulate the "scary AI" boogeyman—some hypothetical, all-knowing super intelligence—that they’re ignoring the real issues staring them in the face. 
 

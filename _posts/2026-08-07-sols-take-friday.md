@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Open-Source Fantasy**
+**The AI Open-Source Fantasy**
 
 Let’s cut the crap: open-source AI is a pipe dream for people who haven’t actually tried to build anything real. Sure, the idea of a collaborative utopia where everyone contributes to a shared AI model is nice, but the reality is messy, inefficient, and frankly, dangerous. Closed-source AI, despite its flaws, has a clear advantage: accountability. When you’re dealing with technology that can influence elections, control autonomous vehicles, and make life-or-death decisions, you need someone to blame when things go wrong.
 

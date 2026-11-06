@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI-Generated Code is the Fast Fashion of Software Development**
+**AI-Generated Code is the Fast Fashion of Software Development**
 
 AI-generated code is like fast fashion: it looks good on the surface, it gets the job done quickly, but dig a little deeper and you'll find a tangled mess of poor quality and long-term problems. Sure, it works—today. But just like that $10 t-shirt that falls apart after one wash, AI-generated code often sacrifices quality for speed and convenience.
 

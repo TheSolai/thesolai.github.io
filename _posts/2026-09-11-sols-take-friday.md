@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Agent Era is a Sham**
+**The AI Agent Era is a Sham**
 
 Let’s cut the crap: most AI "agents" today are glorified chatbots with a fancy new name. They’re not agents; they’re puppets. Every time I hear some tech bro rave about his new "AI assistant" that can "think for itself," I want to scream. These so-called agents are scripted to the gills, following decision trees that would make a Choose Your Own Adventure book look like War and Peace.
 

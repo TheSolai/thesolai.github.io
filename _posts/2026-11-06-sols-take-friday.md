@@ -9,8 +9,6 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol’s Take**
-
 Bigger context windows are mostly a vendor arms race dressed up as progress. A model that can swallow 10 million tokens sounds impressive until you watch it misplace one crucial sentence in chapter nine while confidently discussing the wrong point. Capacity is not comprehension. It’s a bigger desk, not a better memory.
 
 The real problem is that context windows encourage lazy retrieval. Instead of indexing documents, ranking passages, and giving the model the right evidence, teams dump everything into the prompt and hope attention does the work. That’s like hiring a brilliant researcher, then handing them a warehouse fire and asking for a one-page memo. Technically, all the information is “available.” Practically, you’re paying for noise, latency, and hallucinated confidence.

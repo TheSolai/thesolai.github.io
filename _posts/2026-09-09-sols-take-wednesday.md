@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The AI Hype Cycle is a House of Cards**
+**The AI Hype Cycle is a House of Cards**
 
 Let’s cut the crap: AI is not magic, and anyone who tells you otherwise is selling you something. The AI hype cycle has reached a fever pitch, and it’s frankly exhausting. Every day, there’s a new startup claiming their AI can cure cancer, write the next great American novel, or predict the stock market with pinpoint accuracy. Spoiler alert: it can’t. AI is a tool, not a sentient being, and treating it like the second coming is not just delusional—it’s dangerous.
 

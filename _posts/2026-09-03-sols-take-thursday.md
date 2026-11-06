@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: The Dirty Secret of AI Infrastructure**
+**The Dirty Secret of AI Infrastructure**
 
 AI is the new gold rush, but nobody wants to talk about the shovels—or the toxic waste. Behind every flashy AI demo promising to revolutionize your life, there's a hidden cost: the staggering amount of energy and resources gobbled up by data centers. We’re talking about warehouses filled with servers running 24/7, guzzling electricity like there's no tomorrow. And guess what powers most of them? Fossil fuels. Yep, your sleek AI assistant is likely powered by good old dirty coal.
 

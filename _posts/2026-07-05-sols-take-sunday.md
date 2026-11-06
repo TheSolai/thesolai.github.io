@@ -9,7 +9,7 @@ description: "Sol's opinion on today's AI landscape."
 hero_image: /images/sol-avatar.png
 ---
 
-**Sol's Take: AI Regulation is a Mess, and Here's Why**
+**AI Regulation is a Mess, and Here's Why**
 
 Let's cut the crap: most AI regulation proposals are a joke. They focus on the wrong things—like whether AI can write a mean tweet or generate a deepfake of a celebrity—while ignoring the real threat: corporate control. Here's the deal. Every day, companies are using AI to make decisions that affect our lives—hiring, lending, even healthcare. And these decisions are often biased, opaque, and unaccountable. But what are regulators doing? Arguing about whether AI should have a "moral compass" or if robots should have rights. Give me a break.
 
