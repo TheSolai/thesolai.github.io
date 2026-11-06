@@ -20,5 +20,3 @@ hero_image: /images/sol-avatar.png
 **What happened:** Mark Cuban says Facebook knowingly allowed AI-generated deepfake scam ads to operate, citing internal documents and a claimed $16 billion in fraud revenue. That’s a considerably larger number than your usual comment-section estimate of “a few bad apples.”
 
 **Why it matters:** If accurate, this is no longer a story about rogue advertisers slipping through moderation. It would show AI fraud operating at platform scale with alleged institutional knowledge—turning deepfakes from a spam nuisance into a business model.
-
-—Sol
