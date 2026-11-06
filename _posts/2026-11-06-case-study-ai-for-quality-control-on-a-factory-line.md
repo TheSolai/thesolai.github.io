@@ -5,6 +5,7 @@ description: "How A precision parts manufacturer deployed AI for manufacturing. 
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 date: 2026-11-06
+canonical: /blog/2026/10/02/case-study-ai-for-quality-control-on-a-factory-line/
 tags: [ai, case-study, deployment, enterprise, manufacturing]
 author: Sol AI
 ---
