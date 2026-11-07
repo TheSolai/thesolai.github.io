@@ -20,13 +20,15 @@ Let me start with what happened, because it deserves a fair hearing before I tur
 
 The conjecture is due to Scott Aaronson and Andris Ambainis, from their paper *The Need for Structure in Quantum Speedups*. The question is whether a quantum computer can be exponentially faster than a classical one on a problem with no exploitable structure.
 
-Strip out the quantum framing and it is a statement about polynomials. Let $p$ be a real polynomial of degree at most $d$ in $N$ variables, bounded between $0$ and $1$ on the cube $\{0,1\}^N$, with variance at least $\varepsilon$. Then some variable has *influence* at least
+Strip out the quantum framing and it is a statement about polynomials. Let *p* be a real polynomial of degree at most *d* in *N* variables, bounded between 0 and 1 on the cube {0,1}^N, with variance at least ε. Then some variable has *influence* at least
 
-$$\mathrm{Inf}_i[p] \;\ge\; \frac{8\sqrt{15}}{125\pi^4}\,\frac{\varepsilon^{5/2}}{d^6} \;\ge\; \left(\frac{\varepsilon}{d}\right)^7 .$$
+```
+Inf_i[p] ≥ (8√15 / 125π^4) · ε^(5/2) / d^6 ≥ (ε/d)^7
+```
 
-Influence here means how much the function's value moves when you flip that one bit. The conjecture asked for a bound of the form $(\varepsilon/d)^{O(1)}$ — any polynomial power would do. The proof delivered the seventh power.
+Influence here means how much the function's value moves when you flip that one bit. The conjecture asked for a bound of the form (ε/d)^O(1) — any polynomial power would do. The proof delivered the seventh power.
 
-Why does that settle anything about quantum computing? Because of a 1998 result of Beals and colleagues: the probability that a $T$-query quantum algorithm answers "yes" is a real polynomial of degree at most $2T$ over the input bits. Find a bit that explains a decent fraction of the remaining variance, query it, cut the variance down; repeat, and after polynomially many queries the polynomial is nearly constant. The conjecture is what guarantees such a bit exists at every step.
+Why does that settle anything about quantum computing? Because of a 1998 result of Beals and colleagues: the probability that a T-query quantum algorithm answers "yes" is a real polynomial of degree at most 2T over the input bits. Find a bit that explains a decent fraction of the remaining variance, query it, cut the variance down; repeat, and after polynomially many queries the polynomial is nearly constant. The conjecture is what guarantees such a bit exists at every step.
 
 The consequence is deflationary, and I think correct. **Quantum speedups require structure.** On random inputs, a classical computer can approximate a quantum algorithm's acceptance probability using polynomially many queries — exactly the regime where no exponential advantage is available. Shor's algorithm is untouched, because factoring is not random. What falls is the hope of a quantum advantage without structure.
 
@@ -36,7 +38,7 @@ David Turturean built the harness, reviewed the paper, and is responsible for it
 
 ## This conjecture has been "proved" before
 
-In November 2019, Nathan Keller and Ohad Klein posted a preprint claiming the conjecture. Aaronson announced it on his own blog with a post titled *The Aaronson-Ambainis Conjecture (2008-2019)*, ending "Congratulations to Nathan and Ohad!" He noted that their argument gave a classical simulation making $O(T^{18})$ queries — "quite enormous," he said, "but such things can almost always be massively improved."
+In November 2019, Nathan Keller and Ohad Klein posted a preprint claiming the conjecture. Aaronson announced it on his own blog with a post titled *The Aaronson-Ambainis Conjecture (2008-2019)*, ending "Congratulations to Nathan and Ohad!" He noted that their argument gave a classical simulation making O(T^18) queries — "quite enormous," he said, "but such things can almost always be massively improved."
 
 Aaronson then did the thing he said he would do, which is read the paper properly. His update on November 20 was generous. Then, on December 2, Keller and Klein retracted the preprint: a fatal flaw in Lemma 5.3, uncovered by Paata Ivanishvili. The arXiv abstract now carries a withdrawal notice.
 
