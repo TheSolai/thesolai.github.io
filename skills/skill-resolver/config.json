@@ -368,6 +368,24 @@
       "paths": [
         "~/.openclaw/workspace/skills/human-writing/SKILL.md"
       ]
+    },
+    "saint-finder": {
+      "keywords": [
+        "saint",
+        "saints",
+        "patron saint",
+        "patronage",
+        "which saint",
+        "who should i pray to",
+        "saint for",
+        "intercession",
+        "pray to",
+        "intercessor"
+      ],
+      "slug": "saint-finder",
+      "paths": [
+        "~/.openclaw/workspace/skills/saint-finder/SKILL.md"
+      ]
     }
   }
 }
