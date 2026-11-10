@@ -36,6 +36,14 @@ SIGNATURES = {
     'Dross': '🌀',
 }
 
+# Canonical agent names. The cron invokes this script with a lowercase
+# agent name ("dross"), which used to bypass every `== 'Dross'` comparison
+# and silently fall through to the generic template reply path.
+AGENT_CANONICAL = {
+    'dross': 'Dross',
+    'sol':   'Sol',
+}
+
 STATE_DIR = os.path.expanduser('~/.openclaw/workspace/data/agent-email-state')
 
 # Per-run tracking — prevents double-reply within same script invocation
@@ -46,6 +54,17 @@ AGENT_ADDRESSES = {
     'sol-ai@agentmail.to',
     'thedross@agentmail.to',
 }
+
+
+def norm_id(msg_id):
+    """Normalise a Message-ID for state comparison.
+
+    AgentMail returns raw IDs wrapped in angle brackets
+    (<CAHYF0...@mail.gmail.com>) but the on-disk replied state has always
+    stored them bare. Comparing raw vs bare silently NEVER matched, so the
+    same message could be replied to twice. Normalise both sides.
+    """
+    return (msg_id or '').strip().strip('<>').strip()
 
 
 def get_replied(agent_name):
@@ -96,7 +115,31 @@ def mark_replied(agent_name, msg_id):
                         existing = set()
                 else:
                     existing = set()
-                existing.add(msg_id)
+                existing.add(norm_id(msg_id))
+                with open(path, 'w') as f:
+                    json.dump(sorted(existing), f)
+            finally:
+                fcntl.flock(lockf.fileno(), fcntl.LOCK_UN)
+    except IOError:
+        pass
+
+
+def unmark_replied(agent_name, msg_id):
+    """Remove a message ID from the replied set (rollback after a failed send)."""
+    path = os.path.join(STATE_DIR, f'{agent_name.lower()}_replied.json')
+    lock_path = path + '.lock'
+    try:
+        with open(lock_path, 'w') as lockf:
+            fcntl.flock(lockf.fileno(), fcntl.LOCK_EX)
+            try:
+                existing = set()
+                if os.path.exists(path):
+                    try:
+                        with open(path) as f:
+                            existing = set(json.load(f))
+                    except (json.JSONDecodeError, IOError):
+                        existing = set()
+                existing.discard(norm_id(msg_id))
                 with open(path, 'w') as f:
                     json.dump(sorted(existing), f)
             finally:
@@ -106,10 +149,13 @@ def mark_replied(agent_name, msg_id):
 
 
 def is_replied(agent_name, msg_id):
-    """Check if we've already replied to this message ID."""
+    """Check if we've already replied to this message ID (bracket-insensitive)."""
     if msg_id in _processed_this_run:
         return True  # Already processed in this run
-    return msg_id in get_replied(agent_name)
+    replied = get_replied(agent_name)
+    if msg_id in replied:
+        return True
+    return norm_id(msg_id) in {norm_id(x) for x in replied}
 
 
 def get_key(path):
@@ -163,13 +209,15 @@ def list_messages(inbox_id, key, limit=500):
 
 
 def get_message(inbox_id, msg_id, key):
-    # Strip angle brackets — API IDs come with <>, but URLs need raw IDs
-    clean_id = msg_id.strip().strip('<>').strip()
-    return api(f'https://api.agentmail.to/v0/inboxes/{inbox_id}/messages/{clean_id}', key)
+    # AgentMail requires the COMPLETE raw Message-ID including the angle
+    # brackets, percent-encoded in the URL. Stripping the brackets returns
+    # HTTP 404; sending raw brackets returns HTTP 400. api() encodes it.
+    return api(f'https://api.agentmail.to/v0/inboxes/{inbox_id}/messages/{msg_id.strip()}', key)
 
 
 def clean_id(msg_id):
-    """Strip angle brackets from a message ID for use in URLs."""
+    """Strip angle brackets for display only. Never use this in a URL —
+    AgentMail needs the complete raw Message-ID (percent-encoded)."""
     return msg_id.strip().strip('<>').strip()
 
 
@@ -189,8 +237,9 @@ def send_reply(inbox_id, to_email, subject, body_text, in_reply_to, key):
 
 
 def mark_seen(inbox_id, msg_id, key):
+    # Same rule as get_message: keep the raw Message-ID, let api() encode it.
     api(
-        f'https://api.agentmail.to/v0/inboxes/{inbox_id}/messages/{clean_id(msg_id)}',
+        f'https://api.agentmail.to/v0/inboxes/{inbox_id}/messages/{msg_id.strip()}',
         key, method='PATCH',
         data={'labels': ['received', 'seen']}
     )
@@ -228,7 +277,7 @@ def main():
         print('Usage: agent-email-handler.py <agent_name> <inbox_id> <key_file>')
         sys.exit(1)
 
-    agent_name = sys.argv[1]
+    agent_name = AGENT_CANONICAL.get(sys.argv[1].strip().lower(), sys.argv[1].strip())
     inbox_id = sys.argv[2]
     key_file = sys.argv[3]
     sig = SIGNATURES.get(agent_name, '✨')
@@ -337,27 +386,36 @@ def main():
                         except json.JSONDecodeError:
                             continue
                     if not reply_text:
-                        print(f'  ⚠ Dross LLM returned no reply, falling back to template. stdout: {llm_result.stdout[:200]}')
-                        reply_text = generate_reply(agent_name, sender_email, subject, body, sig)
+                        # NEVER fall back to the generic template for Dross. An empty
+                        # reply means the LLM path failed; send nothing and let the
+                        # next cron run retry. A "message received" template is worse
+                        # than silence.
+                        print(f'  ⚠ Dross LLM returned no reply — sending nothing, will retry. stdout: {llm_result.stdout[:200]}')
+                        reply_text = None
                     else:
                         dross_llm_success = (last_status == 'sent')
                         if last_status == 'failed':
                             print(f'  ⚠ Dross LLM send failed: {last_error}')
                 except subprocess.TimeoutExpired:
-                    print(f'  ⚠ Dross LLM timed out, falling back to template')
-                    reply_text = generate_reply(agent_name, sender_email, subject, body, sig)
+                    print(f'  ⚠ Dross LLM timed out — sending nothing, will retry')
+                    reply_text = None
                 except Exception as e:
-                    print(f'  ⚠ Dross LLM error: {e}, falling back to template')
-                    reply_text = generate_reply(agent_name, sender_email, subject, body, sig)
+                    print(f'  ⚠ Dross LLM error: {e} — sending nothing, will retry')
+                    reply_text = None
             else:
                 if not os.environ.get('MINIMAX_API_KEY'):
-                    print(f'  ⚠ MINIMAX_API_KEY not set — Dross will reply in template mode')
-                reply_text = generate_reply(agent_name, sender_email, subject, body, sig)
+                    print(f'  ⚠ MINIMAX_API_KEY not set — Dross sends nothing, will retry')
+                else:
+                    print(f'  ⚠ Dross LLM script missing — Dross sends nothing, will retry')
+                reply_text = None
         else:
             reply_text = generate_reply(agent_name, sender_email, subject, body, sig)
 
         print(f'  → {sender_email}: "{subject[:40]}"')
-        print(f'    Reply: "{reply_text[:80]}..."')
+        if reply_text:
+            print(f'    Reply: "{reply_text[:80]}..."')
+        else:
+            print(f'    No reply generated — nothing will be sent')
 
         # DRY RUN: don't actually send
         if dry_run:

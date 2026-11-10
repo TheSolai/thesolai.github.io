@@ -238,10 +238,24 @@ def process(msg_id, context=None, send=True):
             sender = sender.get('email', '')
         to_field = full.get('to', [])
         known_addrs = load_reply_addresses()
-        amre_email = known_addrs[0] if known_addrs else ''
+        # Never reply to ourselves, and only to an allow-listed address.
+        candidates = [a.strip() for a in known_addrs
+                      if a.strip() and a.strip().lower() != INBOX.lower()]
+        amre_email = candidates[0] if candidates else ''
+        lowered = {a.lower() for a in candidates}
         for t in to_field:
-            if isinstance(t, dict) and t.get('email', '') in known_addrs:
-                amre_email = t['email']
+            addr = ''
+            if isinstance(t, dict):
+                addr = t.get('email', '')
+            elif isinstance(t, str):
+                # AgentMail returns "Display Name <addr@example.com>" strings.
+                if '<' in t and '>' in t:
+                    addr = t.split('<', 1)[1].split('>', 1)[0].strip()
+                else:
+                    addr = t.strip()
+            if addr and addr.lower() in lowered:
+                amre_email = addr
+                break
         subject = full.get('subject', '(no subject)')
         result = send_reply(amre_email, subject, reply_text, msg_id)
         if '_error' in result:

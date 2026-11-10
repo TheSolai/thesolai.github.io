@@ -240,3 +240,10 @@ _outreach/
 
 # One-off probe scripts used while investigating the library.
 /skills/zlib-kindle/scripts/probe_*.py
+
+# ── localrag: local retrieval index ────────────────────────────────────
+# A 468 MB embedded git repository with its own .venv, index and cached
+# model artefacts. `git add -A` would stage it as a gitlink, which
+# publishes a broken submodule pointer to the public site repo and makes
+# every clone of that repo broken by default. Local runtime state only.
+/localrag/

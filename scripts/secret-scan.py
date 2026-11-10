@@ -397,6 +397,36 @@ def collect_literals():
                 # made the gate abort on legitimate backup content.
                 if not CREDENTIAL_ENV_NAME.search(key):
                     continue
+                # A *_FILE / *_PATH env var holds the PATH to a credential
+                # file, not the credential itself. Harvesting the path
+                # produced a false positive that blocked the daily workspace
+                # backup for two days (2026-11-09, 2026-11-10): the path
+                # string also appears verbatim in scripts/a2a-loci-shim.py
+                # as the default TOKEN_FILE, so the gate "found a credential"
+                # in a script that contains no secret at all.
+                #
+                # The path is not worth protecting. The CONTENT is. So when
+                # the value points at a real file, harvest that file's
+                # contents as the literal instead of the path. If the file
+                # is missing or unreadable we harvest nothing for this key,
+                # because a path to a non-existent file leaks nothing.
+                resolved = os.path.expanduser(value.strip())
+                if resolved != value.strip() or resolved.startswith("/"):
+                    if os.path.isfile(resolved):
+                        try:
+                            with open(resolved, "r", errors="ignore") as handle:
+                                body = handle.read(64 * 1024)
+                            for line in body.splitlines():
+                                line = line.strip()
+                                if not line or line.startswith("#"):
+                                    continue
+                                add(
+                                    "literal:launchd/" + name + ":" + key + ":content",
+                                    line,
+                                )
+                        except OSError:
+                            pass
+                        continue
                 add("literal:launchd/" + name + ":" + key, value)
 
     # The gateway config holds provider tokens under credential-named keys.
