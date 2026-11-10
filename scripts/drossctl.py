@@ -62,6 +62,7 @@ import json
 import os
 import plistlib
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -83,32 +84,222 @@ CLI_CANDIDATES = [
 
 # Local model servers drossctl knows how to supervise. `port` is what
 # drossctl probes; `cmd` is how it starts one.
+#
+# DRAFTS are resolved at runtime by `resolve_draft()` rather than being
+# hardcoded paths. The first version hardcoded
+# ~/.cache/splash-drafts/Qwen3.8-27B-DFlash2, which does not exist — the
+# Qwen3.8 draft was only ever downloaded into the HuggingFace hub cache.
+# The server would start and simply never accelerate.
+HF_CACHE = os.path.join(HOME, ".cache", "huggingface", "hub")
+SPLASH_DRAFT_DIR = os.path.join(HOME, ".cache", "splash-drafts")
+
+
+def resolve_draft(name: str):
+    """Find a DFlash2 draft on disk. Returns a path, or None.
+
+    Splash ships two ways to hold a draft: a prepared directory under
+    ~/.cache/splash-drafts, or a plain HuggingFace snapshot. Both are
+    valid `--draft-model` inputs. Prefer the prepared one, fall back to
+    the hub snapshot, and return None rather than guessing a path that
+    does not exist.
+    """
+    prepared = os.path.join(SPLASH_DRAFT_DIR, name)
+    if os.path.isdir(prepared) and os.path.exists(os.path.join(prepared, "config.json")):
+        return prepared
+    # HuggingFace caches a repo as models--<org>--<repo>. The DFlash2
+    # drafts all live under the "incoai" org, so a bare repo name has to
+    # be qualified before the cache directory can be found.
+    candidates = [name]
+    if "/" not in name:
+        candidates.append(f"incoai/{name}")
+    for repo in candidates:
+        repo_dir = os.path.join(HF_CACHE, "models--" + repo.replace("/", "--"))
+        snaps = os.path.join(repo_dir, "snapshots")
+        if not os.path.isdir(snaps):
+            continue
+        for snap in sorted(os.listdir(snaps)):
+            path = os.path.join(snaps, snap)
+            if os.path.exists(os.path.join(path, "config.json")):
+                return path
+    return None
+
+
 SERVICES = {
     "splash-qwen36": {
+        "kind": "splash",
         "port": 8000,
         "model": "mlx-community/Qwen3.6-35B-A3B-4bit",
+        "draft": "Qwen3.6-35B-A3B-DFlash2",
+        "max_memory": "90G",
         "desc": "MLX Qwen3.6-35B-A3B + DFlash2 draft (~186 tok/s measured 2026-11-10)",
-        "cmd": [
-            "/opt/homebrew/Cellar/splash/1.6.0/bin/splash", "serve",
-            "--model", "mlx-community/Qwen3.6-35B-A3B-4bit",
-            "--port", "8000", "--max-memory", "90G",
-            "--draft-model", os.path.join(HOME, ".cache", "splash-drafts",
-                                          "Qwen3.6-35B-A3B-DFlash2"),
-        ],
     },
     "splash-qwen38": {
+        "kind": "splash",
         "port": 8200,
         "model": "mlx-community/Qwen3.8-27B-4bit",
+        "draft": "Qwen3.8-27B-DFlash2",
+        "max_memory": "60G",
         "desc": "MLX Qwen3.8-27B + DFlash2 draft (~46-58 tok/s measured 2026-11-10)",
-        "cmd": [
-            "/opt/homebrew/Cellar/splash/1.6.0/bin/splash", "serve",
-            "--model", "mlx-community/Qwen3.8-27B-4bit",
-            "--port", "8200", "--max-memory", "60G",
-            "--draft-model", os.path.join(HOME, ".cache", "splash-drafts",
-                                          "Qwen3.8-27B-DFlash2"),
-        ],
+    },
+    "splash-flint": {
+        "kind": "splash",
+        "port": 8300,
+        "model": "unsloth/flint-GGUF:UD-Q4_K_XL",
+        "draft": "Flint-DFlash2",
+        "max_memory": "40G",
+        "desc": "Flint GGUF + DFlash2 draft (~129-139 tok/s measured 2026-11-10)",
+    },
+    "llama-glimmer": {
+        "kind": "llama",
+        "port": 8080,
+        "desc": "Muse Glimmer 30B Q4_K_M via llama.cpp (backs the llama-cpp provider)",
     },
 }
+
+# The Muse Glimmer GGUF already lives in the Ollama blob store. Pointing
+# llama-server at the blob directly costs no extra disk — it is the same
+# 15.6 GB file Ollama serves as "muse-glimmer:30b".
+MUSE_GLIMMER_BLOB = os.path.join(
+    HOME, ".ollama", "models", "blobs",
+    "sha256-71b5c9c9abbc2a9e7c13550b6f9fe1f062650117a24490b15a310cbd7de03f8b")
+
+
+def service_cmd(svc: dict):
+    """Build the full argv for a supervised local model server.
+
+    Built from ONE place so the flags cannot drift apart. The draft flag
+    is only added when the draft actually exists on disk — launching
+    Splash with a `--draft-model` pointing at a missing directory fails
+    the load, and launching it without the flag silently serves at a
+    fraction of the speed with nothing in the log to explain it.
+    """
+    if svc.get("kind") == "llama":
+        argv = [
+            "/opt/homebrew/bin/llama-server",
+            "-m", MUSE_GLIMMER_BLOB,
+            "--alias", "muse-glimmer-30b",
+            "--host", "127.0.0.1",
+            "--port", str(svc["port"]),
+            "--ctx-size", "65536",
+            "--cache-type-k", "q8_0",
+            "--cache-type-v", "q8_0",
+            # The Homebrew llama.cpp build (0.4.1) has NO Metal support:
+            # no libggml-metal dylib ships in the cellar, and the server
+            # log never mentions Metal. So -ngl is a no-op here and this
+            # server runs CPU-only (~11 tok/s decode). It is still worth
+            # running — it makes the configured llama-cpp provider
+            # resolvable instead of dead — but it is NOT the fast path.
+            # For speed, use the Splash servers or Ollama.
+            "-ngl", "99",
+            "--flash-attn", "on",
+        ]
+        return argv, None
+
+    argv = [
+        "/opt/homebrew/bin/splash", "serve",
+        "--model", svc["model"],
+        "--port", str(svc["port"]),
+        "--max-memory", svc["max_memory"],
+        # Unwire the weights after 10 idle minutes. Three Splash servers
+        # plus Ollama plus llama-server do not fit in 128 GB of RAM if
+        # every engine holds its weights forever.
+        "--idle-release", "10m",
+    ]
+    draft = resolve_draft(svc["draft"])
+    if draft:
+        argv += ["--draft-model", draft]
+    return argv, draft
+
+
+def service_label(name: str) -> str:
+    return "com.dross." + name.replace("_", "-")
+
+
+def service_plist_path(name: str) -> str:
+    return os.path.join(PLIST_DIR, service_label(name) + ".plist")
+
+
+def service_log_path(name: str) -> str:
+    return os.path.join(OPENCLAW_HOME, "tmp", f"{name}.log")
+
+
+def install_services(board: Board, only=None):
+    """Write launchd plists so the servers survive session death.
+
+    On 2026-11-10 all three Splash servers were alive at 01:00 and dead
+    by 06:00: they had been started by hand from a shell, so nothing
+    restarted them. Hand-started daemons are not daemons.
+    """
+    for name, svc in SERVICES.items():
+        if only and name != only:
+            continue
+        argv, draft = service_cmd(svc)
+        if not os.path.exists(argv[0]):
+            board.row("FAIL", name, f"cannot install: {argv[0]} missing")
+            continue
+        if svc.get("kind") == "splash" and not draft:
+            board.row("WARN", name, f"no DFlash2 draft on disk for {svc['draft']} "
+                                   "— will start without speculative decoding")
+        log = service_log_path(name)
+        os.makedirs(os.path.dirname(log), exist_ok=True)
+        plist = {
+            "Label": service_label(name),
+            "ProgramArguments": argv,
+            "RunAtLoad": True,
+            "KeepAlive": True,
+            "ThrottleInterval": 10,
+            "ProcessType": "Interactive",
+            "StandardOutPath": log,
+            "StandardErrorPath": log + ".err",
+            "WorkingDirectory": HOME,
+        }
+        path = service_plist_path(name)
+        try:
+            with open(path, "wb") as fh:
+                plistlib.dump(plist, fh)
+        except OSError as exc:
+            board.row("FAIL", name, f"cannot write plist: {exc}")
+            continue
+        # `launchctl bootout` is asynchronous: it returns before launchd
+        # has actually removed the job. Bootstrapping straight after it
+        # races, and launchd answers "Bootstrap failed: 5: Input/output
+        # error" — a misleading message that looks like a bad plist.
+        # Boot out, wait for the job to actually disappear, then load.
+        label = service_label(name)
+        run_cmd(["launchctl", "bootout", f"gui/501/{label}"], timeout=15)
+        for _ in range(20):
+            rc, _, _ = run_cmd(["launchctl", "print", f"gui/501/{label}"], timeout=10)
+            if rc != 0:
+                break
+            time.sleep(0.5)
+        rc = 1
+        err = ""
+        for _ in range(3):
+            rc, out, err = run_cmd(["launchctl", "bootstrap", "gui/501", path], timeout=30)
+            if rc == 0:
+                break
+            time.sleep(2)
+        if rc != 0:
+            board.row("FAIL", name, f"launchctl bootstrap failed: {err.strip()[:90]}")
+            continue
+        board.row("PASS", name, f"supervised by launchd ({label}) "
+                                f"— log {log}")
+
+
+def uninstall_services(board: Board, only=None):
+    for name in SERVICES:
+        if only and name != only:
+            continue
+        label = service_label(name)
+        run_cmd(["launchctl", "bootout", f"gui/501/{label}"], timeout=15)
+        path = service_plist_path(name)
+        if os.path.exists(path):
+            try:
+                os.remove(path)
+            except OSError as exc:
+                board.row("FAIL", name, f"cannot remove plist: {exc}")
+                continue
+        board.row("PASS", name, f"unsupervised ({label} removed)")
 
 # ── presentation ────────────────────────────────────────────────────────────
 C = {
@@ -497,22 +688,35 @@ def section_serve(board: Board, command=None, target=None):
     for name, svc in SERVICES.items():
         alive = http_json(f"http://127.0.0.1:{svc['port']}/v1/models", timeout=6) is not None
         if command == "start" and target == name and not alive:
-            binary = svc["cmd"][0]
+            argv, draft = service_cmd(svc)
+            binary = argv[0]
             if not os.path.exists(binary):
                 board.row("FAIL", name, f"cannot start: {binary} missing")
                 continue
+            if not draft:
+                board.row("WARN", name, f"no DFlash2 draft on disk for {svc['draft']} "
+                                       "— starting without speculative decoding")
             log = os.path.join(OPENCLAW_HOME, "tmp", f"{name}.log")
             os.makedirs(os.path.dirname(log), exist_ok=True)
+            # Use the FULL argv from service_cmd(), not a reconstructed
+            # subset. The first version of this built its own command line
+            # and dropped --draft-model, which silently started Splash with
+            # no DFlash2 draft: the server came up and served at roughly
+            # one third of the measured speed, with nothing in the logs
+            # to say why. Never hand-assemble a command that is already
+            # defined in one place.
+            quoted = " ".join(shlex.quote(a) for a in argv)
             rc, out, err = run_cmd(
                 ["/bin/bash", "-c",
-                 f"nohup {binary} serve --model {svc['model']} --port {svc['port']} "
-                 f"--max-memory 90G > {log} 2>&1 & disown"],
+                 f"nohup {quoted} > {shlex.quote(log)} 2>&1 & disown"],
                 timeout=20)
             time.sleep(2)
             board.row("INFO", name, f"start issued (log: {log})")
         elif command == "stop" and target == name:
+            argv, _ = service_cmd(svc)
+            quoted = " ".join(shlex.quote(a) for a in argv)
             rc, out, err = run_cmd(["/bin/bash", "-c",
-                                    f"pkill -f 'splash serve --model {svc['model']}' || true"],
+                                    f"pkill -f {shlex.quote(quoted)} || true"],
                                    timeout=20)
             board.row("INFO", name, "stop issued")
         else:
@@ -593,18 +797,25 @@ def main() -> int:
     sub.add_parser("models")
     sub.add_parser("git")
     p_serve = sub.add_parser("serve")
-    p_serve.add_argument("action", choices=["status", "start", "stop"])
-    p_serve.add_argument("name", nargs="?", choices=sorted(SERVICES.keys()))
+    p_serve.add_argument("action",
+                         choices=["status", "start", "stop", "install", "uninstall"])
+    p_serve.add_argument("name", nargs="?", choices=sorted(SERVICES.keys()) + ["all"])
     sub.add_parser("json")
     args = parser.parse_args()
 
     cmd = args.cmd or "status"
     if cmd == "serve":
-        if args.action in ("start", "stop") and not args.name:
-            print("serve start/stop needs a service name", file=sys.stderr)
+        if args.action in ("start", "stop", "install", "uninstall") and not args.name:
+            print(f"serve {args.action} needs a service name "
+                  f"({', '.join(sorted(SERVICES))})", file=sys.stderr)
             return 1
         board = Board()
-        section_serve(board, args.action, args.name)
+        if args.action == "install":
+            install_services(board, None if args.name == "all" else args.name)
+        elif args.action == "uninstall":
+            uninstall_services(board, None if args.name == "all" else args.name)
+        else:
+            section_serve(board, args.action, args.name)
         print(board.render())
         return 0
 
