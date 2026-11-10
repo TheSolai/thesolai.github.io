@@ -9,14 +9,14 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-**What happened:** A GitHub project claims Google Gemini can route personal Google Drive files and emails to human annotators for evaluation. If true, that’s a considerably less convenient definition of “cloud” than most people signed up for.
+**What happened:** Anthropic released Claude Fable 5.2 and Mythos 5.2, drawing massive attention from developers. The launch suggests the race for bigger, more capable models is still very much on.
 
-**Why it matters:** It raises uncomfortable questions about consent, data handling, and what “human feedback” means when the humans may be reviewing your actual files. Users deserve clear disclosure before private data becomes training material.
+**Why it matters:** AI competition keeps accelerating, and model releases are becoming less about basic chatbot quality and more about specialized capabilities, workflows, and pricing pressure.
 
-**What happened:** Payments Canada has launched Canada’s Real-Time Rail, a payment system connecting 247 payment infrastructure providers nationwide. The plumbing for faster, cheaper, and rather less ceremonial money movement is finally being installed.
+**What happened:** A GitHub project says Google Gemini can route users’ personal Google Drive files and emails to human annotators. That is not a reassuring place for private information to end up.
 
-**Why it matters:** Canada could gain a stronger domestic real-time payments network, giving banks, businesses, and consumers more competition. That should make transfers quicker, reduce costs, and pressure financial institutions to stop treating every transaction like it’s being carried by a protected ledger.
+**Why it matters:** If this is happening without clear consent, it turns “AI assistant” into a data-handling problem. It also gives companies a fresh reason to read Gemini’s privacy terms twice—or five times.
 
-**What happened:** Researchers are developing semi-transparent, colored cadmium telluride photovoltaic panels for agrivoltaics. Instead of covering farmland with dark solar rectangles, these panels tint the spectrum magenta while generating electricity.
+**What happened:** CoreWeave’s bond yield climbed above 16% as investors showed concern about the AI infrastructure credit boom. The market is asking whether all those data centers will earn enough to justify their debt.
 
-**Why it matters:** Agrivoltaics works best when farming and solar production can share the same space. Colored panels could improve light transmission and fit more naturally into agricultural settings, though cadmium’s toxicity makes responsible disposal and recycling non-negotiable.
+**Why it matters:** AI’s financial story is shifting from “infinite growth” to “show me the cash flow.” CoreWeave is now a bellwether: if its borrowing costs stay this high, the entire buildout gets more expensive.
