@@ -1,67 +1,67 @@
 {
-  "generated": "2026-11-09",
-  "seed": 739929,
+  "generated": "2026-11-11",
+  "seed": 739931,
   "count": 6,
   "skills": [
     {
-      "name": "GIF Sticker Maker",
-      "slug": "gif-sticker-maker",
-      "emoji": "🎁",
-      "summary": "Convert photos into 4 animated GIF stickers with captions. Funko Pop / Pop Mart style, powered by MiniMax…",
-      "description": "Convert photos into 4 animated GIF stickers with captions. Funko Pop / Pop Mart style, powered by MiniMax Image & Video Generation API.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/gif-sticker-maker",
-      "category": "multimedia",
+      "name": "Blog Studio",
+      "slug": "blog-studio",
+      "emoji": "🗞️",
+      "summary": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media…",
+      "description": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media upload, and one-click deploy.",
+      "url": "https://github.com/TheSolAI/BlogStudio",
+      "category": "productivity",
+      "install": "openclaw skills install https://github.com/TheSolAI/BlogStudio"
+    },
+    {
+      "name": "PDF Generator",
+      "slug": "minimax-pdf",
+      "emoji": "📄",
+      "summary": "Generate, fill, and reformat PDFs with a token-based design system. 15 cover styles, form field filling, print-ready output…",
+      "description": "Generate, fill, and reformat PDFs with a token-based design system. 15 cover styles, form field filling, print-ready output with typography and colour derived from document type.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-pdf",
+      "category": "documents",
       "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
     },
     {
-      "name": "React Native",
-      "slug": "react-native-dev",
-      "emoji": "⚛️",
-      "summary": "React Native and Expo development guide — components, styling, animations, navigation, state management, forms, networking, performance, testing, and…",
-      "description": "React Native and Expo development guide — components, styling, animations, navigation, state management, forms, networking, performance, testing, and deployment.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/react-native-dev",
+      "name": "Honcho Setup",
+      "slug": "honcho-setup",
+      "emoji": "🧬",
+      "summary": "Persistent cross-session memory via Honcho — gives OpenClaw a long-term memory layer that survives restarts. Stores preferences, learnings…",
+      "description": "Persistent cross-session memory via Honcho — gives OpenClaw a long-term memory layer that survives restarts. Stores preferences, learnings, and context between sessions.",
+      "url": "https://clawskills.sh/skills/ajspig-honcho-setup",
+      "category": "ai",
+      "install": "openclaw skills install honcho-setup"
+    },
+    {
+      "name": "Handoff",
+      "slug": "handoff",
+      "emoji": "🤝",
+      "summary": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state…",
+      "description": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state management for coordinated agent teams.",
+      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/handoff",
+      "category": "automation",
+      "install": "openclaw skills install handoff"
+    },
+    {
+      "name": "Vision Analysis",
+      "slug": "vision-analysis",
+      "emoji": "👁️",
+      "summary": "Analyse, describe, and extract information from images using vision AI models. Supports describe, OCR, UI mockup review, chart…",
+      "description": "Analyse, describe, and extract information from images using vision AI models. Supports describe, OCR, UI mockup review, chart data extraction, and object detection.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/vision-analysis",
+      "category": "ai",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
+    },
+    {
+      "name": "Flutter Dev",
+      "slug": "flutter-dev",
+      "emoji": "🦋",
+      "summary": "Flutter cross-platform development covering widget patterns, Riverpod/Bloc state management, GoRouter navigation, performance optimisation, and CI/CD testing strategies.",
+      "description": "Flutter cross-platform development covering widget patterns, Riverpod/Bloc state management, GoRouter navigation, performance optimisation, and CI/CD testing strategies.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/flutter-dev",
       "category": "development",
       "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
-    },
-    {
-      "name": "Agent Deep Research",
-      "slug": "agent-deep-research",
-      "emoji": "🔬",
-      "summary": "Autonomous deep research powered by Google Gemini. Comprehensive research workflows — topic exploration, source gathering, synthesis, and structured…",
-      "description": "Autonomous deep research powered by Google Gemini. Comprehensive research workflows — topic exploration, source gathering, synthesis, and structured report generation.",
-      "url": "https://clawskills.sh/skills/24601-agent-deep-research",
-      "category": "ai",
-      "install": "openclaw skills install agent-deep-research"
-    },
-    {
-      "name": "Academic Research",
-      "slug": "academic-research",
-      "emoji": "🎓",
-      "summary": "Search academic papers and conduct literature reviews using the OpenAlex API — free, no API key required. Finds…",
-      "description": "Search academic papers and conduct literature reviews using the OpenAlex API — free, no API key required. Finds papers, extracts citations, gathers references, and builds a research corpus.",
-      "url": "https://clawskills.sh/skills/rogersuperbuilderalpha-academic-research",
-      "category": "ai",
-      "install": "openclaw skills install academic-research"
-    },
-    {
-      "name": "Music Generation",
-      "slug": "minimax-music-gen",
-      "emoji": "🎵",
-      "summary": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric…",
-      "description": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric editing, style refinement, and structured planning.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-gen",
-      "category": "multimedia",
-      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
-    },
-    {
-      "name": "Agent Transcript",
-      "slug": "agent-transcript",
-      "emoji": "📜",
-      "summary": "Official OpenClaw skill for transcript processing — captures, stores, and retrieves agent conversation history. Enables persistent context across…",
-      "description": "Official OpenClaw skill for transcript processing — captures, stores, and retrieves agent conversation history. Enables persistent context across sessions and long-running project memory.",
-      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/agent-transcript",
-      "category": "ai",
-      "install": "openclaw skills install agent-transcript"
     }
   ]
 }
