@@ -19,6 +19,13 @@ GODOT="/opt/homebrew/bin/godot"
 NODE="/Users/amre/.openclaw/tools/node-v24.21.0/bin/node"
 PXL="$NODE tools/pxl/bin/pxl.js"
 
+# The web steps run `npm` and `node`, and the npm shim is a shebang script
+# (`#!/usr/bin/env node`), so it picks up whatever `node` is first on PATH.
+# The Homebrew node on PATH is broken (it cannot load libllhttp), so the
+# working toolchain has to be first on PATH or every web step dies with a
+# dyld error that looks like a test failure but is not one.
+export PATH="/Users/amre/.openclaw/tools/node-v24.21.0/bin:$PATH"
+
 FAILED=()
 PASSED=()
 
@@ -142,13 +149,32 @@ for f in files:
     cols |= set(re.findall(r'\b([0-9A-Fa-f]{6})\b', txt))
     sets[f] = {c.lower() for c in cols if not c.lower() in ("ffffff",)}
 base = sets["art/palette.px.js"]
+
+# The three canonical mirrors must spell the whole palette.
+CANONICAL = ("art/palette.px.js", "web/src/ui/palette.ts", "ai/verify_sprites.py")
+# The rest are consumers: they may use a SUBSET of the palette, but they may
+# never introduce a colour that is not in it. A consumer holding 4 of the 20
+# is correct; a consumer holding a 21st colour is a private palette, and
+# that is the drift this check exists to catch.
+CONSUMERS = ("tools/grid_check.py", "src/main.gd", "web/index.html")
+
 bad = False
-for f, s in sets.items():
+for f in CANONICAL:
+    s = sets[f]
     if s != base:
-        print(f"  MISMATCH {f}")
+        print(f"  MISMATCH {f} (canonical mirror must spell the whole palette)")
         print("    only in palette.px.js:", sorted(base - s))
         print("    only in mirror      :", sorted(s - base))
         bad = True
+for f in CONSUMERS:
+    s = sets[f]
+    foreign = s - base
+    if foreign:
+        print(f"  FOREIGN COLOUR {f}:", sorted(foreign))
+        print("    a consumer may use a subset of the palette, never a new colour")
+        bad = True
+    else:
+        print(f"  ok {f} ({len(s)}/{len(base)} colours, all canonical)")
 print("  palette colours:", len(base))
 sys.exit(1 if bad else 0)
 PY
