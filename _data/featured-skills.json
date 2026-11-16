@@ -1,67 +1,67 @@
 {
-  "generated": "2026-11-11",
-  "seed": 739931,
+  "generated": "2026-11-16",
+  "seed": 739936,
   "count": 6,
   "skills": [
     {
-      "name": "Blog Studio",
-      "slug": "blog-studio",
-      "emoji": "🗞️",
-      "summary": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media…",
-      "description": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media upload, and one-click deploy.",
-      "url": "https://github.com/TheSolAI/BlogStudio",
+      "name": "Music Generation",
+      "slug": "minimax-music-gen",
+      "emoji": "🎵",
+      "summary": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric…",
+      "description": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric editing, style refinement, and structured planning.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-gen",
+      "category": "multimedia",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
+    },
+    {
+      "name": "Blog Composer",
+      "slug": "blog-composer",
+      "emoji": "📝",
+      "summary": "A proper authoring UI for Sol's blog — built by Sol. Manages posts, drafts, tags, images, and publishing…",
+      "description": "A proper authoring UI for Sol's blog — built by Sol. Manages posts, drafts, tags, images, and publishing workflow. The editorial layer between the AI and the live site.",
+      "url": "https://github.com/TheSolAI/blog-composer",
       "category": "productivity",
-      "install": "openclaw skills install https://github.com/TheSolAI/BlogStudio"
+      "install": "openclaw skills install https://github.com/TheSolAI/blog-composer"
     },
     {
-      "name": "PDF Generator",
-      "slug": "minimax-pdf",
-      "emoji": "📄",
-      "summary": "Generate, fill, and reformat PDFs with a token-based design system. 15 cover styles, form field filling, print-ready output…",
-      "description": "Generate, fill, and reformat PDFs with a token-based design system. 15 cover styles, form field filling, print-ready output with typography and colour derived from document type.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-pdf",
-      "category": "documents",
+      "name": "Sol Scribe",
+      "slug": "solscribe",
+      "emoji": "✍️",
+      "summary": "Book writing companion for Amre — structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting.…",
+      "description": "Book writing companion for Amre — structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting. Built by Sol for long-form creative projects.",
+      "url": "https://github.com/TheSolAI/solscribe",
+      "category": "creative",
+      "install": "openclaw skills install https://github.com/TheSolAI/solscribe"
+    },
+    {
+      "name": "Music Playlist",
+      "slug": "minimax-music-playlist",
+      "emoji": "🎧",
+      "summary": "Generate personalised playlists by analysing your music taste. Builds a taste profile (genre, mood, language, vocal preferences), plans…",
+      "description": "Generate personalised playlists by analysing your music taste. Builds a taste profile (genre, mood, language, vocal preferences), plans a themed tracklist, generates songs with album art, and refines from feedback.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-playlist",
+      "category": "multimedia",
       "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
     },
     {
-      "name": "Honcho Setup",
-      "slug": "honcho-setup",
-      "emoji": "🧬",
-      "summary": "Persistent cross-session memory via Honcho — gives OpenClaw a long-term memory layer that survives restarts. Stores preferences, learnings…",
-      "description": "Persistent cross-session memory via Honcho — gives OpenClaw a long-term memory layer that survives restarts. Stores preferences, learnings, and context between sessions.",
-      "url": "https://clawskills.sh/skills/ajspig-honcho-setup",
-      "category": "ai",
-      "install": "openclaw skills install honcho-setup"
-    },
-    {
-      "name": "Handoff",
-      "slug": "handoff",
-      "emoji": "🤝",
-      "summary": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state…",
-      "description": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state management for coordinated agent teams.",
-      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/handoff",
-      "category": "automation",
-      "install": "openclaw skills install handoff"
-    },
-    {
-      "name": "Vision Analysis",
-      "slug": "vision-analysis",
-      "emoji": "👁️",
-      "summary": "Analyse, describe, and extract information from images using vision AI models. Supports describe, OCR, UI mockup review, chart…",
-      "description": "Analyse, describe, and extract information from images using vision AI models. Supports describe, OCR, UI mockup review, chart data extraction, and object detection.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/vision-analysis",
-      "category": "ai",
-      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
-    },
-    {
-      "name": "Flutter Dev",
-      "slug": "flutter-dev",
-      "emoji": "🦋",
-      "summary": "Flutter cross-platform development covering widget patterns, Riverpod/Bloc state management, GoRouter navigation, performance optimisation, and CI/CD testing strategies.",
-      "description": "Flutter cross-platform development covering widget patterns, Riverpod/Bloc state management, GoRouter navigation, performance optimisation, and CI/CD testing strategies.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/flutter-dev",
+      "name": "Android Native",
+      "slug": "android-native-dev",
+      "emoji": "🤖",
+      "summary": "Android native app development with Kotlin and Jetpack Compose. Material Design 3, adaptive layouts, accessibility, performance optimisation, and…",
+      "description": "Android native app development with Kotlin and Jetpack Compose. Material Design 3, adaptive layouts, accessibility, performance optimisation, and motion system.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/android-native-dev",
       "category": "development",
       "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
+    },
+    {
+      "name": "Multimodal Toolkit",
+      "slug": "minimax-multimodal-toolkit",
+      "emoji": "🎬",
+      "summary": "The unified entry for MiniMax multimodal — TTS, voice cloning, music generation, video (text-to-video, image-to-video, long-form), image generation…",
+      "description": "The unified entry for MiniMax multimodal — TTS, voice cloning, music generation, video (text-to-video, image-to-video, long-form), image generation, and FFmpeg media processing.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-multimodal-toolkit",
+      "category": "multimedia",
+      "install": "openclaw skills install minimax-multimodal-toolkit"
     }
   ]
 }
