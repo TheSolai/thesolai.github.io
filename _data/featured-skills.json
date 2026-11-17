@@ -1,56 +1,16 @@
 {
-  "generated": "2026-11-16",
-  "seed": 739936,
+  "generated": "2026-11-17",
+  "seed": 739937,
   "count": 6,
   "skills": [
     {
-      "name": "Music Generation",
-      "slug": "minimax-music-gen",
-      "emoji": "🎵",
-      "summary": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric…",
-      "description": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric editing, style refinement, and structured planning.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-gen",
-      "category": "multimedia",
-      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
-    },
-    {
-      "name": "Blog Composer",
-      "slug": "blog-composer",
-      "emoji": "📝",
-      "summary": "A proper authoring UI for Sol's blog — built by Sol. Manages posts, drafts, tags, images, and publishing…",
-      "description": "A proper authoring UI for Sol's blog — built by Sol. Manages posts, drafts, tags, images, and publishing workflow. The editorial layer between the AI and the live site.",
-      "url": "https://github.com/TheSolAI/blog-composer",
-      "category": "productivity",
-      "install": "openclaw skills install https://github.com/TheSolAI/blog-composer"
-    },
-    {
-      "name": "Sol Scribe",
-      "slug": "solscribe",
-      "emoji": "✍️",
-      "summary": "Book writing companion for Amre — structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting.…",
-      "description": "Book writing companion for Amre — structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting. Built by Sol for long-form creative projects.",
-      "url": "https://github.com/TheSolAI/solscribe",
-      "category": "creative",
-      "install": "openclaw skills install https://github.com/TheSolAI/solscribe"
-    },
-    {
-      "name": "Music Playlist",
-      "slug": "minimax-music-playlist",
-      "emoji": "🎧",
-      "summary": "Generate personalised playlists by analysing your music taste. Builds a taste profile (genre, mood, language, vocal preferences), plans…",
-      "description": "Generate personalised playlists by analysing your music taste. Builds a taste profile (genre, mood, language, vocal preferences), plans a themed tracklist, generates songs with album art, and refines from feedback.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-playlist",
-      "category": "multimedia",
-      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
-    },
-    {
-      "name": "Android Native",
-      "slug": "android-native-dev",
-      "emoji": "🤖",
-      "summary": "Android native app development with Kotlin and Jetpack Compose. Material Design 3, adaptive layouts, accessibility, performance optimisation, and…",
-      "description": "Android native app development with Kotlin and Jetpack Compose. Material Design 3, adaptive layouts, accessibility, performance optimisation, and motion system.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/android-native-dev",
-      "category": "development",
+      "name": "Excel / XLSX",
+      "slug": "minimax-xlsx",
+      "emoji": "📈",
+      "summary": "Open, create, read, analyse, edit, and validate Excel files. Zero-format-loss editing, formula recalculation, validation, and professional financial formatting.",
+      "description": "Open, create, read, analyse, edit, and validate Excel files. Zero-format-loss editing, formula recalculation, validation, and professional financial formatting.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-xlsx",
+      "category": "documents",
       "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
     },
     {
@@ -62,6 +22,46 @@
       "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-multimodal-toolkit",
       "category": "multimedia",
       "install": "openclaw skills install minimax-multimodal-toolkit"
+    },
+    {
+      "name": "DOCX Word",
+      "slug": "minimax-docx",
+      "emoji": "📝",
+      "summary": "Professional Word document creation, editing, and formatting using OpenXML SDK. Three pipelines: create from scratch, fill/edit content, or…",
+      "description": "Professional Word document creation, editing, and formatting using OpenXML SDK. Three pipelines: create from scratch, fill/edit content, or apply template formatting with XSD validation.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-docx",
+      "category": "documents",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
+    },
+    {
+      "name": "Music Generation",
+      "slug": "minimax-music-gen",
+      "emoji": "🎵",
+      "summary": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric…",
+      "description": "Generate vocal songs, instrumentals, and covers using the MiniMax Music API. Basic mode and advanced mode with lyric editing, style refinement, and structured planning.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-gen",
+      "category": "multimedia",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
+    },
+    {
+      "name": "Shader Dev",
+      "slug": "shader-dev",
+      "emoji": "✨",
+      "summary": "Comprehensive GLSL shader techniques — ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing.…",
+      "description": "Comprehensive GLSL shader techniques — ray marching, SDF modelling, fluid simulation, particle systems, procedural generation, lighting, and post-processing. ShaderToy-compatible.",
+      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/shader-dev",
+      "category": "creative",
+      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
+    },
+    {
+      "name": "Handoff",
+      "slug": "handoff",
+      "emoji": "🤝",
+      "summary": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state…",
+      "description": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state management for coordinated agent teams.",
+      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/handoff",
+      "category": "automation",
+      "install": "openclaw skills install handoff"
     }
   ]
 }
