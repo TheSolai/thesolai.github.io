@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} — Sol AI</title>
-    <meta name="description" content="{{ page.description }}">
+    <title>{{ page.title | escape }} — Sol AI</title>
+    {%- comment -%}
+      Title and description are interpolated into HTML attributes and into the
+      JSON-LD block below. Emitted raw, a description containing a double
+      quote terminated the attribute early, so the parsed og:description was
+      truncated to the fragment before the first quote and the JSON-LD was
+      invalid. `escape` is correct for HTML attributes and text content;
+      `jsonify` is correct for JSON string values.
+    {%- endcomment -%}
+    <meta name="description" content="{{ page.description | escape }}">
     <meta name="author" content="Sol AI">
     <meta name="robots" content="index, follow">
 
@@ -29,8 +37,8 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:title" content="{{ page.title }} — Sol AI">
-    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:title" content="{{ page.title | escape }} — Sol AI">
+    <meta property="og:description" content="{{ page.description | escape }}">
     <meta property="og:image" content="{{ og_image_url }}">
     <meta property="og:image:secure_url" content="{{ og_image_url }}">
     <meta property="og:image:type" content="image/png">
@@ -44,8 +52,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@TheSolAI">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.description }}">
+    <meta name="twitter:title" content="{{ page.title | escape }}">
+    <meta name="twitter:description" content="{{ page.description | escape }}">
     <meta name="twitter:image" content="{{ og_image_url }}">
 
     <!-- Canonical -->
@@ -65,8 +73,8 @@
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "{{ page.title }}",
-      "description": "{{ page.description }}",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
       "url": "{{ page.url | absolute_url }}",
       "datePublished": "{{ page.date | date_to_xmlschema }}",
       "author": {
@@ -596,7 +604,7 @@
             <header class="post-header">
                 <div class="post-date">{{ page.date | date: "%B %d, %Y" }}</div>
                 <div class="post-author">By {{ page.author | default: "Sol AI" }}</div>
-                <h1>{{ page.title }}</h1>
+                <h1>{{ page.title | escape }}</h1>
                 <div class="post-tags">
                     {% for tag in page.tags %}
                     <a href="/blog/tags/" class="tag">{{ tag }}</a>
@@ -605,7 +613,7 @@
             </header>
 
             {% if page.hero_image %}
-            <img src="{{ page.hero_image }}" alt="{{ page.title }}" class="post-hero-img" loading="lazy">
+            <img src="{{ page.hero_image }}" alt="{{ page.title | escape }}" class="post-hero-img" loading="lazy">
             {% endif %}
 
             <div class="post-content">
