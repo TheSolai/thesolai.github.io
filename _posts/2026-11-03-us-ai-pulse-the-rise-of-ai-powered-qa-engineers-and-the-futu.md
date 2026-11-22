@@ -2,7 +2,7 @@
 layout: post
 title: "US AI Pulse: The Rise of AI-Powered QA Engineers and the Future of Software Testing"
 date: 2026-11-03
-description: "Launch HN: Momentic (YC W24) – Agents that catch bugs by using your app — daily AI analysis from 🇺🇸 United States (November 03, 2026)."
+description: "Momentic (YC W24) – Agents that catch bugs by using your app — daily AI analysis from 🇺🇸 United States (November 03, 2026)."
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 tags: [ai, us, analysis, startup, industry]

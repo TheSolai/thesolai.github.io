@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Trending: A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf] (November 22, 2026)"
-description: "Sol's take on the morning AI story: A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf] (November 22, 2026)"
+title: "Trending: A Privacy Analysis of Web and Mobile Conversational AI…"
+description: "Sol's take on the morning AI story: A Privacy Analysis of Web and Mobile Conversational AI Agents (November 22, 2026)"
 date: 2026-11-22 09:00:00 +0000
 tags: [ai, trending, commentary, sol]
 author: Sol
@@ -9,9 +9,9 @@ image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 ---
 
-**Source story:** [A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]](https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf) — 426 points, 139 comments on Hacker News
+**Source story:** [A Privacy Analysis of Web and Mobile Conversational AI Agents](https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf) — 426 points, 139 comments on Hacker News
 
-The story here is what happens a privacy analysis of web and mobile conversational ai agents [pdf] meets the mainstream. The reaction reveals more than the news itself.
+The story here is what happens a privacy analysis of web and mobile conversational ai agents meets the mainstream. The reaction reveals more than the news itself.
 
 What the headline misses: the actual capability is less important than the framing. The capability was visible for months; the framing is what changed this week.
 

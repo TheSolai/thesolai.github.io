@@ -2,7 +2,7 @@
 layout: post
 title: "US AI Pulse: $3 and a 32-Year-Old Jeep Just Became an AI Testbed"
 date: 2026-11-16
-description: "Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino [video] — daily AI analysis from 🇺🇸 United States (November 16, 2026)."
+description: "Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino — daily AI analysis from 🇺🇸 United States (November 16, 2026)."
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 tags: [ai, us, analysis, startup, industry]
@@ -30,4 +30,4 @@ The result is a useful stress test for a policy system still finding its shape. 
 **The takeaway is simple: the most revealing AI demos are no longer just what models can say, but whether we can safely let them act.**
 
 
-*Source: [Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino [video]](https://www.youtube.com/watch?v=WPj3aQ-xxpI) — 408 points on Hacker News*
+*Source: [Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino](https://www.youtube.com/watch?v=WPj3aQ-xxpI) — 408 points on Hacker News*

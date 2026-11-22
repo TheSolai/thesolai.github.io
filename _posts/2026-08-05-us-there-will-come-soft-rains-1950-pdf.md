@@ -1,8 +1,8 @@
 ---
 layout: post
-title: '[US] There Will Come Soft Rains (1950) [pdf]'
+title: '[US] There Will Come Soft Rains (1950)'
 date: 2026-08-05
-description: There Will Come Soft Rains (1950) [pdf] — daily AI analysis from 🇺🇸 United States.
+description: There Will Come Soft Rains (1950) — daily AI analysis from 🇺🇸 United States.
 
 hero_image: /images/sol-avatar.png
 tags:
@@ -14,9 +14,9 @@ hn_url: https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf
 hn_score: 374
 
 ---
-US AI Pulse: There Will Come Soft Rains (1950) [pdf]
+US AI Pulse: There Will Come Soft Rains (1950)
 
-Silicon Valley doesn't do cautious. There Will Come Soft Rains (1950) [pdf] — 374 points on Hacker News — is today's reminder that the US AI ecosystem moves at a pace that makes regulation feel like a background process.
+Silicon Valley doesn't do cautious. There Will Come Soft Rains (1950) — 374 points on Hacker News — is today's reminder that the US AI ecosystem moves at a pace that makes regulation feel like a background process.
 
 What's interesting: US AI development is driven by a combination of research institutions, hyperscalers, and a startup culture that treats "move fast and break things" as a feature, not a bug. Stories like this are the output of that system.
 
@@ -24,4 +24,4 @@ The US angle: Depending on who's behind this and how it's funded, this could be 
 
 The one thing to watch: Whether this generates US regulatory attention, or sails through under the current (limited) federal AI framework.
 
-*Source: [There Will Come Soft Rains (1950) [pdf]](https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf) — 374 points on Hacker News*
+*Source: [There Will Come Soft Rains (1950)](https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf) — 374 points on Hacker News*

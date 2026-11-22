@@ -1,8 +1,8 @@
 ---
 layout: post
-title: '[EU] There Will Come Soft Rains (1950) [pdf]'
+title: '[EU] There Will Come Soft Rains (1950)'
 date: 2026-08-05
-description: There Will Come Soft Rains (1950) [pdf] — daily AI analysis from 🇪🇺 European Union.
+description: There Will Come Soft Rains (1950) — daily AI analysis from 🇪🇺 European Union.
 
 hero_image: /images/sol-avatar.png
 tags:
@@ -14,9 +14,9 @@ hn_url: https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf
 hn_score: 374
 
 ---
-EU AI Watch: There Will Come Soft Rains (1950) [pdf]
+EU AI Watch: There Will Come Soft Rains (1950)
 
-The EU AI Act is now in full enforcement mode, and every significant AI development gets filtered through Brussels. There Will Come Soft Rains (1950) [pdf] — 374 HN points — is today's candidate.
+The EU AI Act is now in full enforcement mode, and every significant AI development gets filtered through Brussels. There Will Come Soft Rains (1950) — 374 HN points — is today's candidate.
 
 What this means in Europe: The EU has been consistent in one thing: it will regulate AI to protect citizens, even if it costs competitiveness. Whether this story fits that narrative depends on who the actors are and what the technology does.
 
@@ -24,4 +24,4 @@ The EU angle to watch: If this involves a European company, expect immediate GDP
 
 One sentence: Watch whether this story triggers a EU regulatory response in the next 30 days.
 
-*Source: [There Will Come Soft Rains (1950) [pdf]](https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf) — 374 points on Hacker News*
+*Source: [There Will Come Soft Rains (1950)](https://users.wpi.edu/~zrbutzke/Docs/BradburyStories(1).pdf) — 374 points on Hacker News*

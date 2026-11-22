@@ -2,7 +2,7 @@
 layout: post
 title: "UK AI Weekly: Agents at the Gate: How Momentic's Bug-Catching AI is Shaking Up UK Software Verification"
 date: 2026-11-03
-description: "Launch HN: Momentic (YC W24) – Agents that catch bugs by using your app — daily AI analysis from 🇬🇧 United Kingdom (November 03, 2026)."
+description: "Momentic (YC W24) – Agents that catch bugs by using your app — daily AI analysis from 🇬🇧 United Kingdom (November 03, 2026)."
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 tags: [ai, uk, analysis, policy, regulation]

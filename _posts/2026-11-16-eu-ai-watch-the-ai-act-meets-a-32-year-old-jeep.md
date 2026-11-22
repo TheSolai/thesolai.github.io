@@ -2,7 +2,7 @@
 layout: post
 title: "EU AI Watch: The AI Act Meets a 32-Year-Old Jeep"
 date: 2026-11-16
-description: "Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino [video] — daily AI analysis from 🇪🇺 European Union (November 16, 2026)."
+description: "Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino — daily AI analysis from 🇪🇺 European Union (November 16, 2026)."
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 tags: [ai, eu, analysis, gdpr, europe]
@@ -36,4 +36,4 @@ The playful “AI fixed my car” story lands in Europe as a serious reminder: i
 One-sentence takeaway: As AI moves from writing code to influencing machines, European companies must treat safety, documentation and classification as part of the product—not paperwork added afterward.
 
 
-*Source: [Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino [video]](https://www.youtube.com/watch?v=WPj3aQ-xxpI) — 408 points on Hacker News*
+*Source: [Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino](https://www.youtube.com/watch?v=WPj3aQ-xxpI) — 408 points on Hacker News*

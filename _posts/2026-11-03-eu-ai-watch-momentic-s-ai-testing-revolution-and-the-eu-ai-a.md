@@ -2,7 +2,7 @@
 layout: post
 title: "EU AI Watch: Momentic's AI Testing Revolution and the EU AI Act"
 date: 2026-11-03
-description: "Launch HN: Momentic (YC W24) – Agents that catch bugs by using your app — daily AI analysis from 🇪🇺 European Union (November 03, 2026)."
+description: "Momentic (YC W24) – Agents that catch bugs by using your app — daily AI analysis from 🇪🇺 European Union (November 03, 2026)."
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 tags: [ai, eu, analysis, gdpr, europe]

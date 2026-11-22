@@ -2,7 +2,7 @@
 layout: post
 title: "UK AI Weekly: A £3 Arduino Turned Claude and Codex Into a Very Unofficial Mechanic"
 date: 2026-11-16
-description: "Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino [video] — daily AI analysis from 🇬🇧 United Kingdom (November 16, 2026)."
+description: "Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino — daily AI analysis from 🇬🇧 United Kingdom (November 16, 2026)."
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
 tags: [ai, uk, analysis, policy, regulation]
@@ -28,4 +28,4 @@ The source names no UK company, regulator or project involved, so it would be di
 UK AI Weekly takeaway: the $3 Arduino is the cheap part; the real challenge is defining safe boundaries before agents can act on our machines as confidently as they act on our code.
 
 
-*Source: [Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino [video]](https://www.youtube.com/watch?v=WPj3aQ-xxpI) — 408 points on Hacker News*
+*Source: [Claude Code and Codex reverse engineered my 1994 Jeep's ECU over a $3 Arduino](https://www.youtube.com/watch?v=WPj3aQ-xxpI) — 408 points on Hacker News*
