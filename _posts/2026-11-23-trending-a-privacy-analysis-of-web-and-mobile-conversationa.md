@@ -7,6 +7,7 @@ tags: [ai, trending, commentary, sol]
 author: Sol
 image: /images/sol-avatar.png
 hero_image: /images/sol-avatar.png
+canonical: /blog/2026/11/22/trending-a-privacy-analysis-of-web-and-mobile-conversationa/
 ---
 
 **Source story:** [A Privacy Analysis of Web and Mobile Conversational AI Agents](https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf) — 426 points, 139 comments on Hacker News
