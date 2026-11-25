@@ -46,18 +46,38 @@ jobs:
       # that from reaching production again.
       - run: ruby _tests/check_front_matter.rb
 
+  # Build the site and upload it as the "github-pages" artifact.
+  #
+  # WHY the upload and the deploy are in SEPARATE jobs (2026-11-25):
+  # `deploy-pages` finds the artifact by NAME through the run-artifacts
+  # listing API, and that listing is eventually consistent. When the
+  # upload and the deploy ran back to back in one job, the lookup
+  # intermittently came back empty for an artifact that had just been
+  # finalised a fraction of a second earlier:
+  #
+  #   09:02:07.595  Artifact github-pages has been successfully uploaded!
+  #                 Artifact ID is 15007285346
+  #   09:02:08.135  Found 0 artifact(s)
+  #   ##[error]No artifacts named "github-pages" were found for this
+  #             workflow run.
+  #
+  # The artifact existed — the REST API listed it afterwards — so the
+  # upload was never the problem. This is the known race in
+  # actions/deploy-pages#451. It cost 10 of the last 40 deploys (25%),
+  # and every one of them left that push's post unpublished until a
+  # later push happened to deploy successfully.
+  #
+  # A job boundary puts seconds between the upload and the lookup, which
+  # is the fix the upstream issue recommends and the layout GitHub's own
+  # Pages starter workflows use.
   build:
     needs: [validate]
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
+      contents: read
       # Needed to delete a stale "github-pages" artifact left behind by an
       # earlier attempt of this same run (see the cleanup step below).
       actions: write
-    environment: github-pages
-    # Only deploy to GitHub Pages on push to main, not on PRs
-    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -76,7 +96,7 @@ jobs:
       - run: bundle install
       - run: bundle exec jekyll build --baseurl ""
       - name: Delete a stale Pages artifact from an earlier attempt
-        # Re-running a failed run uploads a SECOND artifact named
+        # Re-running this job uploads a SECOND artifact named
         # "github-pages" into the same run, and deploy-pages@v4 then aborts:
         #   'Multiple artifacts named "github-pages" were unexpectedly found.
         #    Artifact count is 2.'
@@ -98,4 +118,65 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - uses: actions/deploy-pages@v4
+      - name: Record the uploaded artifact id
+        # Not strictly required by deploy-pages, which looks the artifact up
+        # by name. It is written down so a failed deploy can be diagnosed
+        # without guessing whether the upload ever happened.
+        id: artifact
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.run_id }}
+          REPO: ${{ github.repository }}
+        run: |
+          id=$(gh api "/repos/$REPO/actions/runs/$RUN_ID/artifacts" \
+            --jq '.artifacts[] | select(.name == "github-pages") | .id' | head -1)
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+
+  # Publish the artifact the build job uploaded.
+  #
+  # This job uploads nothing. That is what makes a retry safe: re-running
+  # a failed deploy can never leave a second "github-pages" artifact on the
+  # run, so it cannot fail with "Multiple artifacts named ...".
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      # To read the run's artifact list in the wait step below.
+      actions: read
+    environment: github-pages
+    url: ${{ steps.deployment.outputs.page_url }}
+    # Only deploy to GitHub Pages on push to main, not on PRs
+    if: github.event_name == 'push'
+    steps:
+      - name: Wait for the uploaded artifact to be listed
+        # The job boundary already gives the listing time to catch up, but
+        # it is not guaranteed. Probe for the artifact and only continue
+        # once GitHub can actually see it.
+        #
+        # Never fatal: this only ever delays. `deploy-pages` stays the
+        # authority on whether the site can publish, and a genuine problem
+        # must still surface as a deploy failure rather than a silent skip.
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.run_id }}
+          REPO: ${{ github.repository }}
+        run: |
+          for attempt in $(seq 1 30); do
+            count=$(gh api "/repos/$REPO/actions/runs/$RUN_ID/artifacts" \
+              --jq '[.artifacts[] | select(.name == "github-pages")] | length' \
+              2>/dev/null || echo 0)
+            if [ "${count:-0}" -gt 0 ]; then
+              echo "The github-pages artifact is listed (probe $attempt)."
+              exit 0
+            fi
+            echo "Artifact not listed yet (probe $attempt); waiting."
+            sleep 2
+          done
+          echo "::warning::The github-pages artifact was not listed after 60s; deploying anyway."
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
