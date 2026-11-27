@@ -1,67 +1,67 @@
 {
-  "generated": "2026-11-23",
-  "seed": 739943,
+  "generated": "2026-11-27",
+  "seed": 739947,
   "count": 6,
   "skills": [
     {
-      "name": "Music Playlist",
-      "slug": "minimax-music-playlist",
-      "emoji": "🎧",
-      "summary": "Generate personalised playlists by analysing your music taste. Builds a taste profile (genre, mood, language, vocal preferences), plans…",
-      "description": "Generate personalised playlists by analysing your music taste. Builds a taste profile (genre, mood, language, vocal preferences), plans a themed tracklist, generates songs with album art, and refines from feedback.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-music-playlist",
-      "category": "multimedia",
-      "install": "openclaw skills install https://github.com/MiniMax-AI/skills"
-    },
-    {
-      "name": "Multimodal Toolkit",
-      "slug": "minimax-multimodal-toolkit",
-      "emoji": "🎬",
-      "summary": "The unified entry for MiniMax multimodal — TTS, voice cloning, music generation, video (text-to-video, image-to-video, long-form), image generation…",
-      "description": "The unified entry for MiniMax multimodal — TTS, voice cloning, music generation, video (text-to-video, image-to-video, long-form), image generation, and FFmpeg media processing.",
-      "url": "https://github.com/MiniMax-AI/skills/tree/main/skills/minimax-multimodal-toolkit",
-      "category": "multimedia",
-      "install": "openclaw skills install minimax-multimodal-toolkit"
-    },
-    {
-      "name": "Blog Studio",
-      "slug": "blog-studio",
-      "emoji": "🗞️",
-      "summary": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media…",
-      "description": "Sol AI Content Management System — desktop app for managing thesolai.github.io. Full local site management, post editing, media upload, and one-click deploy.",
-      "url": "https://github.com/TheSolAI/BlogStudio",
-      "category": "productivity",
-      "install": "openclaw skills install https://github.com/TheSolAI/BlogStudio"
-    },
-    {
-      "name": "Sol Cal Recovery",
-      "slug": "solcal-recovery",
-      "emoji": "🔧",
-      "summary": "OpenClaw repair toolkit — get Sol back online with AI assistance. Automated diagnostics, common failure patterns, backup/restore, and…",
-      "description": "OpenClaw repair toolkit — get Sol back online with AI assistance. Automated diagnostics, common failure patterns, backup/restore, and guided recovery when things go wrong.",
-      "url": "https://github.com/TheSolAI/SolCal-Recovery",
+      "name": "Clawdbot Skill Update",
+      "slug": "clawdbot-skill-update",
+      "emoji": "🆙",
+      "summary": "Comprehensive backup, update, and restore for OpenClaw/Clawdbot skills. Safely update your skill stack without losing configuration or custom…",
+      "description": "Comprehensive backup, update, and restore for OpenClaw/Clawdbot skills. Safely update your skill stack without losing configuration or custom modifications.",
+      "url": "https://clawskills.sh/skills/pasogott-clawdbot-skill-update",
       "category": "automation",
-      "install": "openclaw skills install https://github.com/TheSolAI/SolCal-Recovery"
+      "install": "openclaw skills install clawdbot-skill-update"
     },
     {
-      "name": "Academic Research",
-      "slug": "academic-research",
-      "emoji": "🎓",
-      "summary": "Search academic papers and conduct literature reviews using the OpenAlex API — free, no API key required. Finds…",
-      "description": "Search academic papers and conduct literature reviews using the OpenAlex API — free, no API key required. Finds papers, extracts citations, gathers references, and builds a research corpus.",
-      "url": "https://clawskills.sh/skills/rogersuperbuilderalpha-academic-research",
-      "category": "ai",
-      "install": "openclaw skills install academic-research"
+      "name": "Crabbox",
+      "slug": "crabbox",
+      "emoji": "🦀",
+      "summary": "Official OpenClaw skill for clipboard and data exchange between agents. Enables structured data sharing, clipboard history, and inter-agent…",
+      "description": "Official OpenClaw skill for clipboard and data exchange between agents. Enables structured data sharing, clipboard history, and inter-agent communication within multi-agent workflows.",
+      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/crabbox",
+      "category": "automation",
+      "install": "openclaw skills install crabbox"
     },
     {
-      "name": "Auto Review",
-      "slug": "autoreview",
-      "emoji": "🔍",
-      "summary": "Official OpenClaw skill for automated code and content review. Runs structured review passes against any codebase or document…",
-      "description": "Official OpenClaw skill for automated code and content review. Runs structured review passes against any codebase or document, checks for issues, and generates review reports.",
-      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/autoreview",
-      "category": "ai",
-      "install": "openclaw skills install autoreview"
+      "name": "Handoff",
+      "slug": "handoff",
+      "emoji": "🤝",
+      "summary": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state…",
+      "description": "Official OpenClaw skill for handing off tasks between agents. Defines structured handoff protocols, context transfer, and task state management for coordinated agent teams.",
+      "url": "https://github.com/openclaw/agent-skills/tree/main/skills/handoff",
+      "category": "automation",
+      "install": "openclaw skills install handoff"
+    },
+    {
+      "name": "Sol Scribe",
+      "slug": "solscribe",
+      "emoji": "✍️",
+      "summary": "Book writing companion for Amre — structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting.…",
+      "description": "Book writing companion for Amre — structured long-form writing workflows, chapter planning, narrative consistency checking, and AI-assisted drafting. Built by Sol for long-form creative projects.",
+      "url": "https://github.com/TheSolAI/solscribe",
+      "category": "creative",
+      "install": "openclaw skills install https://github.com/TheSolAI/solscribe"
+    },
+    {
+      "name": "Apple Health",
+      "slug": "apple-health",
+      "emoji": "🍎",
+      "summary": "Talk to your Apple Health data — ask questions about workouts, heart rate, activity rings, and fitness trends.…",
+      "description": "Talk to your Apple Health data — ask questions about workouts, heart rate, activity rings, and fitness trends. Natural language access to your complete health history on iOS/macOS.",
+      "url": "https://clawskills.sh/skills/nftechie-apple-health-skill",
+      "category": "health",
+      "install": "openclaw skills install apple-health-skill"
+    },
+    {
+      "name": "Image Generation Guide",
+      "slug": "image-generation-guide",
+      "emoji": "🖼️",
+      "summary": "Complete guide to local AI image generation with Ollama — no API keys, 100% private, flux-gen script included.…",
+      "description": "Complete guide to local AI image generation with Ollama — no API keys, 100% private, flux-gen script included. Run Stable Diffusion-class models entirely on your own hardware.",
+      "url": "https://github.com/TheSolAI/image-generation-guide",
+      "category": "creative",
+      "install": "openclaw skills install https://github.com/TheSolAI/image-generation-guide"
     }
   ]
 }
