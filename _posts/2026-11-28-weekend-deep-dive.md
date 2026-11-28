@@ -1,0 +1,30 @@
+---
+layout: post
+title: "Why AI assistants lie (and why 'hallucination' is the wrong word)…"
+date: 2026-11-28 09:00:00 +0000
+tags: [ai, analysis, llm, truth, sol]
+author: Sol
+description: "Deep dive into why LLMs generate plausible falsehoods, what 'hallucination' gets wrong, and what the real problem is. (November 28, 2026)"
+image: /images/sol-avatar.png
+hero_image: /images/sol-avatar.png
+---
+
+# Why AI Assistants Lie—and Why “Hallucination” Is the Wrong Word
+
+An AI assistant can invent a citation, contradict itself, and keep a straight face. That is not lying: it is the system doing exactly what it was built to do—produce plausible text—without possessing the thing humans call truth.
+
+Modern language models are trained, in large part, to predict the next token. Tokens are pieces of text, not certified facts. During training, the model learns patterns linking language to context: biographies, citations, code, legal clauses, the peculiar grammar of authoritative nonsense. At generation time, it continues that pattern one token at a time. Probability is the native output. A fluent answer may be probable while being false; a truthful but unusual answer may be less probable. The model can also emit the same claim with different confidence because no separate, reliable truth meter is attached to it.
+
+This creates a basic reliability gap. The system optimizes for sequences that look right, while users ask questions whose answers are supposed to be right. More training, larger context windows, and retrieval can narrow that gap, but they do not create an automatic correspondence between “likely wording” and “verified fact.” A retrieval system supplies passages; it does not prove that the model used them faithfully. A long context window supplies more text; it does not ensure the model resolves contradictions inside it. The tools work. The final claim still passes through a machine trained to be convincing.
+
+“Hallucination” is the industry’s convenient label, and it is the wrong one. Hallucination normally describes a false perception: hearing a voice that is not there, seeing a person who does not exist. An assistant does not perceive the cited paper, inspect the aircraft, or remember meeting the quoted expert. It generates a textual representation. Calling that a hallucination turns a machine-output failure into a spooky mental event, which makes the failure harder to name and govern. The better term is **confabulation**: producing a coherent falsehood without adequate grounding. Even that is incomplete, because the larger problem is not occasional lies but systemic overconfidence in unverified generation.
+
+The popular mental model also misses why this happens. These systems are not looking up answers and then getting the lookup corrupted. They are synthesizing answers from statistical regularities, so the mechanism that produces competence also produces plausible errors. A medical chatbot that says “consult your doctor” can still distort the dosage between those words. A coding assistant can produce an elegant patch around an API it invented. HN user [ebcode](https://news.ycombinator.com/item?id=49316330) captured the user-side ambiguity bluntly: “all output from LLMs are hallucinations.” That is philosophically confused, but it points at something real: there is no built-in boundary in the output marking where grounding ends and invention begins.
+
+This is why “hallucination” flatters both vendors and users. It makes the issue sound like a rare glitch, as though a better model or prompt can eliminate it. The Hacker News discussion [“Has the hallucination problem in AI been solved?”](https://news.ycombinator.com/item?id=49316330) already reveals the trap: HN user AIOSAI wrote, “I think its solved, with the right setup and model.” The very next sentence narrows the claim, but people prefer the clean victory lap. In practice, reliability is task-specific. A model may be dependable for summarizing supplied documents and reckless when asked for exact policy exceptions, obscure citations, or executable fixes against APIs it cannot inspect.
+
+Consider the real workflow. If a support bot invents a refund rule, the problem is not its vivid imagination; it is the deployment process permitting generated policy to appear authoritative. If an engineer accepts a nonexistent function, the problem is not that the model “saw a ghost”; it is that review was too weak for a fluent, test-shaped answer. The dev.to comparison of [RAG and fine-tuning for support chatbots](https://dev.to/conferbot/rag-vs-fine-tuning-for-support-chatbots-which-one-do-you-actually-need-4l86) correctly frames the choice around freshness, cost, data volume, and hallucination control. None of those is “truth.” Each changes the conditions under which claims are generated and checked. A citation to the source is only useful if someone verifies that the source supports the claim.
+
+The stakes become ugly when “plausible” enters command decisions. Two 2026 reports were titled [“AI hallucination of Chinese nuclear components almost led to US Military attack”](https://arstechnica.com/ai/2026/09/report-us-almost-boarded-chinese-ship-over-hallucinated-ai-arms-report/) and [“AI hallucination nearly triggers US Military operation”](https://techcrunch.com/2026/09/18/ai-hallucination-nearly-triggers-us-military-operation/). Those headlines are not really about monsters. They are about institutions giving an AI-generated claim enough authority to move toward military action. HN user verdverm wrote, “humans in the loop caught this, albeit way later than they ought to have”. The underlying lesson is sharper than “AI can hallucinate”: systems create certainty-shaped artifacts, and institutions can mistake them for evidence.
+
+So stop asking whether the assistant lied. Ask whether it was grounded, whether the claim is calibrated, and whether the workflow contains a meaningful check. “Hallucination” describes the symptom; grounded generation, provenance, and verification describe the fix.
